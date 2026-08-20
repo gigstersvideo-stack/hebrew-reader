@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.10.0
+  Hebrew Reader — v1.12.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -283,7 +283,7 @@
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.10.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.12.0</div>
   </div>
 </div>
 
@@ -348,6 +348,10 @@
         <div class="settings-row">
           <div><div class="settings-row-label">Автопрокрутка</div><div class="settings-row-sub">экран следует за текущим предложением при воспроизведении</div></div>
           <label class="switch"><input type="checkbox" id="swAutoscroll" checked><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-row-label">Режим редактирования</div><div class="settings-row-sub">показывает значок ✎ у предложений твоих книг</div></div>
+          <label class="switch"><input type="checkbox" id="swEditMode"><span class="switch-track"></span></label>
         </div>
         <div class="settings-row" id="ownerEditRow" style="display:none;">
           <div><div class="settings-row-label">Правка базовых книг</div><div class="settings-row-sub">только у тебя — обычным посетителям этот пункт не виден</div></div>
@@ -421,6 +425,7 @@
     <div style="margin-top:12px;">
       <label class="settings-row-label" style="display:block; margin-bottom:6px;">Добавить/заменить картинку к этому предложению</label>
       <input type="file" id="editImageFile" accept="image/*">
+      <button class="pill-btn ghost" id="editRemoveImageBtn" style="margin-top:8px; font-size:12px; padding:6px 12px;">🗑 Убрать картинку</button>
       <div id="editImageStatus" style="font-size:11px; color:var(--ink-soft); margin-top:6px;"></div>
     </div>
 
@@ -869,7 +874,7 @@ function renderSentence(s, container){
   toggle.addEventListener('click', (e) => { e.stopPropagation(); trBlock.classList.toggle('open'); });
   sSpan.appendChild(toggle);
 
-  const canEditThisBook = bookId.startsWith('local-') || (isOwner && settings.editModeBase);
+  const canEditThisBook = (bookId.startsWith('local-') && settings.editMode) || (isOwner && settings.editModeBase);
   if (canEditThisBook){
     const editIcon = document.createElement('span');
     editIcon.className = 'translate-toggle edit-toggle';
@@ -954,6 +959,24 @@ document.getElementById('editImageFile').addEventListener('change', async (e) =>
   }catch(err){
     statusEl.textContent = 'Не удалось прочитать файл: ' + err.message;
   }
+});
+
+document.getElementById('editRemoveImageBtn').addEventListener('click', () => {
+  const ta = document.getElementById('editTextarea');
+  const statusEl = document.getElementById('editImageStatus');
+  try{
+    const obj = JSON.parse(ta.value);
+    if (obj.illustration){
+      delete obj.illustration;
+      ta.value = JSON.stringify(obj, null, 2);
+      statusEl.textContent = '🗑 Картинка убрана из JSON ниже — не забудь нажать «Сохранить».';
+    } else {
+      statusEl.textContent = 'У этого предложения и так нет картинки.';
+    }
+  }catch(err){
+    statusEl.textContent = '⚠️ JSON в поле выше сейчас невалиден, не могу убрать автоматически — почини JSON и попробуй снова.';
+  }
+  document.getElementById('editImageFile').value = '';
 });
 
 document.getElementById('editSaveBtn').addEventListener('click', () => {
@@ -1218,7 +1241,7 @@ function renderTrainCard(){
 // across the full reading text itself needs a diacritization pass added to
 // the OCR pipeline later, not something we can toggle on text we never had)
 const SETTINGS_KEY = 'hebrew-reader-settings';
-let settings = { nikud:true, literal:true, detailed:true, autoscroll:true, editModeBase:false };
+let settings = { nikud:true, literal:true, detailed:true, autoscroll:true, editMode:false, editModeBase:false };
 try{
   const saved = localStorage.getItem(SETTINGS_KEY);
   if (saved) settings = {...settings, ...JSON.parse(saved)};
@@ -1244,6 +1267,7 @@ document.getElementById('swLiteral').checked = settings.literal;
 document.getElementById('swDetailed').checked = settings.detailed;
 document.getElementById('swAutoscroll').checked = settings.autoscroll;
 document.getElementById('swEditBase').checked = settings.editModeBase;
+document.getElementById('swEditMode').checked = settings.editMode;
 if (isOwner) document.getElementById('ownerEditRow').style.display = '';
 
 document.getElementById('swNikud').addEventListener('change', (e) => { settings.nikud = e.target.checked; saveSettings(); applySettings(); });
@@ -1251,6 +1275,7 @@ document.getElementById('swLiteral').addEventListener('change', (e) => { setting
 document.getElementById('swDetailed').addEventListener('change', (e) => { settings.detailed = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swAutoscroll').addEventListener('change', (e) => { settings.autoscroll = e.target.checked; saveSettings(); });
 document.getElementById('swEditBase').addEventListener('change', (e) => { settings.editModeBase = e.target.checked; saveSettings(); renderPage(currentPage); });
+document.getElementById('swEditMode').addEventListener('change', (e) => { settings.editMode = e.target.checked; saveSettings(); renderPage(currentPage); });
 
 const settingsBtn = document.getElementById('settingsBtn');
 const settingsPanel = document.getElementById('settingsPanel');
