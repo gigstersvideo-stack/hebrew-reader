@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!--
+  Hebrew Reader — v1.10.0
+  См. CHANGELOG.md за полной историей изменений.
+-->
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -84,6 +88,8 @@
     border-radius: 50%; font-size: 11px; cursor:pointer; vertical-align: middle; user-select:none; background: transparent;
   }
   .translate-toggle:hover{ background: var(--gold-soft); }
+  .edit-toggle{ margin-inline-start: 4px; font-size:10px; }
+  .edit-toggle:hover{ background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
 
   .sentence-tr{
     display:none; font-family:'Inter', sans-serif; direction: ltr; text-align: left;
@@ -263,6 +269,12 @@
 
 <div class="topline"><div class="topline-fill" id="topFill"></div></div>
 
+<button id="bugReportBtn" title="Сообщить о проблеме" style="
+  position:fixed; bottom:18px; left:18px; z-index:50; width:42px; height:42px; border-radius:50%;
+  background:var(--ink); color:#fff; border:none; font-size:18px; cursor:pointer;
+  box-shadow:0 6px 16px rgba(0,0,0,.2); display:flex; align-items:center; justify-content:center;
+">🐞</button>
+
 <div id="libraryView">
   <div class="library-wrap">
     <div class="library-header">
@@ -271,6 +283,7 @@
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
     </div>
     <div class="book-grid" id="bookGrid"></div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.10.0</div>
   </div>
 </div>
 
@@ -284,6 +297,10 @@
 
     <label class="settings-row-label" style="display:block; margin-bottom:6px;">Файл book-data.json</label>
     <input type="file" id="importFile" accept="application/json,.json" style="margin-bottom:10px;">
+
+    <label class="settings-row-label" style="display:block; margin:10px 0 6px;">Обложка (необязательно)</label>
+    <input type="file" id="importCoverFile" accept="image/*">
+    <div id="importCoverStatus" style="font-size:11px; color:var(--ink-soft); margin-top:4px;"></div>
 
     <label class="settings-row-label" style="display:block; margin:10px 0 6px;">...или вставь JSON текстом</label>
     <textarea id="importText" placeholder='{ "sentences": [ ... ] }'
@@ -312,6 +329,7 @@
   <div class="header-right">
     <div class="header-actions">
       <button class="icon-btn" id="settingsBtn" title="Настройки">⚙</button>
+      <button class="pill-btn ghost" id="downloadEditsBtn" style="display:none;">⬇ Скачать книгу с правками</button>
       <button class="pill-btn" id="vocabBtn"><span class="star">★</span><span id="vocabCount">Мои слова (0)</span></button>
       <div class="settings-panel" id="settingsPanel">
         <div class="settings-title">Настройки отображения</div>
@@ -330,6 +348,10 @@
         <div class="settings-row">
           <div><div class="settings-row-label">Автопрокрутка</div><div class="settings-row-sub">экран следует за текущим предложением при воспроизведении</div></div>
           <label class="switch"><input type="checkbox" id="swAutoscroll" checked><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row" id="ownerEditRow" style="display:none;">
+          <div><div class="settings-row-label">Правка базовых книг</div><div class="settings-row-sub">только у тебя — обычным посетителям этот пункт не виден</div></div>
+          <label class="switch"><input type="checkbox" id="swEditBase"><span class="switch-track"></span></label>
         </div>
       </div>
     </div>
@@ -386,6 +408,27 @@
       <div class="train-progress" id="trainProgress"></div>
       <div id="trainArea"></div>
     </div>
+  </div>
+</div>
+
+<div class="drawer-backdrop" id="editBackdrop"></div>
+<div class="drawer" id="editModal">
+  <div class="drawer-head"><h2>Править предложение</h2><button class="drawer-close" id="editClose">✕</button></div>
+  <div class="drawer-body">
+    <label class="settings-row-label" style="display:block; margin-bottom:6px;">JSON этого предложения</label>
+    <textarea id="editTextarea" style="width:100%; height:280px; font-family:monospace; font-size:12px; padding:8px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); box-sizing:border-box; direction:ltr;"></textarea>
+
+    <div style="margin-top:12px;">
+      <label class="settings-row-label" style="display:block; margin-bottom:6px;">Добавить/заменить картинку к этому предложению</label>
+      <input type="file" id="editImageFile" accept="image/*">
+      <div id="editImageStatus" style="font-size:11px; color:var(--ink-soft); margin-top:6px;"></div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-top:16px;">
+      <button class="pill-btn" id="editSaveBtn">Сохранить</button>
+      <button class="pill-btn ghost" id="editCancelBtn">Отмена</button>
+    </div>
+    <div id="editStatus" style="margin-top:12px;"></div>
   </div>
 </div>
 </div>
@@ -761,6 +804,12 @@ function initReader(data, bookId, meta) {
 document.getElementById('bookTitle').textContent = (meta && meta.title) || 'קורא';
 document.getElementById('bookKicker').textContent = (meta && meta.kicker) || '';
 document.getElementById('bookSub').textContent = (meta && meta.sub) || '';
+let hasUnsavedEdits = false;
+updateDownloadEditsButtonHidden();
+function updateDownloadEditsButtonHidden(){
+  const btn = document.getElementById('downloadEditsBtn');
+  if (btn) btn.style.display = 'none';
+}
 const AVG_WORD_SEC = 0.42;
 let cursor = 0;
 data.sentences.forEach(s => {
@@ -820,6 +869,16 @@ function renderSentence(s, container){
   toggle.addEventListener('click', (e) => { e.stopPropagation(); trBlock.classList.toggle('open'); });
   sSpan.appendChild(toggle);
 
+  const canEditThisBook = bookId.startsWith('local-') || (isOwner && settings.editModeBase);
+  if (canEditThisBook){
+    const editIcon = document.createElement('span');
+    editIcon.className = 'translate-toggle edit-toggle';
+    editIcon.textContent = '✎';
+    editIcon.title = 'Править это предложение';
+    editIcon.addEventListener('click', (e) => { e.stopPropagation(); openSentenceEditor(s, sSpan); });
+    sSpan.appendChild(editIcon);
+  }
+
   s.words.forEach((w, i) => {
     const wSpan = document.createElement('span');
     wSpan.className = 'tword';
@@ -846,6 +905,103 @@ function renderSentence(s, container){
     container.appendChild(buildIllustration(s.illustration));
   }
 }
+
+let editingSentenceIdx = null;
+
+function openSentenceEditor(sentence, sSpanEl){
+  editingSentenceIdx = data.sentences.indexOf(sentence);
+  document.getElementById('editTextarea').value = JSON.stringify(sentence, null, 2);
+  document.getElementById('editStatus').innerHTML = '';
+  document.getElementById('editImageStatus').innerHTML = '';
+  document.getElementById('editImageFile').value = '';
+  document.getElementById('editModal').classList.add('open');
+  document.getElementById('editBackdrop').classList.add('open');
+}
+
+function closeSentenceEditor(){
+  document.getElementById('editModal').classList.remove('open');
+  document.getElementById('editBackdrop').classList.remove('open');
+  editingSentenceIdx = null;
+}
+
+document.getElementById('editClose').addEventListener('click', closeSentenceEditor);
+document.getElementById('editCancelBtn').addEventListener('click', closeSentenceEditor);
+document.getElementById('editBackdrop').addEventListener('click', closeSentenceEditor);
+
+document.getElementById('editImageFile').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const statusEl = document.getElementById('editImageStatus');
+  statusEl.textContent = 'Обрабатываю...';
+  try{
+    const dataUrl = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+    const ta = document.getElementById('editTextarea');
+    try{
+      const obj = JSON.parse(ta.value);
+      obj.illustration = obj.illustration || {};
+      obj.illustration.img = dataUrl;
+      if (!obj.illustration.caption) obj.illustration.caption = '';
+      ta.value = JSON.stringify(obj, null, 2);
+      statusEl.textContent = '✅ Картинка вставлена в поле illustration.img ниже.';
+    }catch(err){
+      statusEl.textContent = '⚠️ JSON в поле выше сейчас невалиден, не могу вставить автоматически — почини JSON и попробуй снова.';
+    }
+  }catch(err){
+    statusEl.textContent = 'Не удалось прочитать файл: ' + err.message;
+  }
+});
+
+document.getElementById('editSaveBtn').addEventListener('click', () => {
+  const statusEl = document.getElementById('editStatus');
+  const raw = document.getElementById('editTextarea').value;
+  let obj;
+  try{
+    obj = JSON.parse(raw);
+  }catch(e){
+    statusEl.innerHTML = `<div class="status err">JSON невалиден: ${e.message}</div>`;
+    return;
+  }
+  if (!obj.id || !Array.isArray(obj.words)){
+    statusEl.innerHTML = `<div class="status err">Нужны поля "id" и "words" (массив).</div>`;
+    return;
+  }
+  data.sentences[editingSentenceIdx] = obj;
+
+  if (bookId.startsWith('local-')){
+    try{
+      localStorage.setItem('hebrew-reader-bookdata:' + bookId, JSON.stringify(data));
+      statusEl.innerHTML = `<div class="status ok">✅ Сохранено в браузере.</div>`;
+    }catch(err){
+      statusEl.innerHTML = `<div class="status err">Не удалось сохранить: ${err.message}</div>`;
+    }
+  } else {
+    hasUnsavedEdits = true;
+    updateDownloadEditsButton();
+    statusEl.innerHTML = `<div class="status ok">✅ Изменено на этой странице. Эта книга не хранится в браузере — жми "⬇ Скачать книгу с правками" в шапке, когда закончишь редактировать, и замени файл вручную.</div>`;
+  }
+
+  renderPage(currentPage);
+  setTimeout(closeSentenceEditor, 1200);
+});
+
+function updateDownloadEditsButton(){
+  const btn = document.getElementById('downloadEditsBtn');
+  if (btn) btn.style.display = hasUnsavedEdits ? 'inline-flex' : 'none';
+}
+
+document.getElementById('downloadEditsBtn').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = bookId + '-edited.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
 
 function renderPage(pageIndex){
   currentPage = Math.max(0, Math.min(totalPages - 1, pageIndex));
@@ -1062,7 +1218,7 @@ function renderTrainCard(){
 // across the full reading text itself needs a diacritization pass added to
 // the OCR pipeline later, not something we can toggle on text we never had)
 const SETTINGS_KEY = 'hebrew-reader-settings';
-let settings = { nikud:true, literal:true, detailed:true, autoscroll:true };
+let settings = { nikud:true, literal:true, detailed:true, autoscroll:true, editModeBase:false };
 try{
   const saved = localStorage.getItem(SETTINGS_KEY);
   if (saved) settings = {...settings, ...JSON.parse(saved)};
@@ -1087,11 +1243,14 @@ document.getElementById('swNikud').checked = settings.nikud;
 document.getElementById('swLiteral').checked = settings.literal;
 document.getElementById('swDetailed').checked = settings.detailed;
 document.getElementById('swAutoscroll').checked = settings.autoscroll;
+document.getElementById('swEditBase').checked = settings.editModeBase;
+if (isOwner) document.getElementById('ownerEditRow').style.display = '';
 
 document.getElementById('swNikud').addEventListener('change', (e) => { settings.nikud = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swLiteral').addEventListener('change', (e) => { settings.literal = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swDetailed').addEventListener('change', (e) => { settings.detailed = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swAutoscroll').addEventListener('change', (e) => { settings.autoscroll = e.target.checked; saveSettings(); });
+document.getElementById('swEditBase').addEventListener('change', (e) => { settings.editModeBase = e.target.checked; saveSettings(); renderPage(currentPage); });
 
 const settingsBtn = document.getElementById('settingsBtn');
 const settingsPanel = document.getElementById('settingsPanel');
@@ -1254,6 +1413,35 @@ function slugify(str){
     .slice(0, 40) + '-' + Date.now().toString(36);
 }
 
+// ---- bug reporting: deep-links into a prefilled GitHub Issue, since this
+// is a static site with no backend of its own. Edit this constant if the
+// repo ever moves. ----
+const BUG_REPORT_REPO = 'gigstersvideo-stack/hebrew-reader';
+
+document.getElementById('bugReportBtn').addEventListener('click', () => {
+  const body = [
+    '**Что произошло:**',
+    '(опиши здесь, что пошло не так)',
+    '',
+    '---',
+    'Диагностика (не удаляй, поможет разобраться):',
+    '- URL: ' + window.location.href,
+    '- Браузер: ' + navigator.userAgent,
+    '- Время: ' + new Date().toISOString()
+  ].join('\n');
+  const url = 'https://github.com/' + BUG_REPORT_REPO + '/issues/new'
+    + '?title=' + encodeURIComponent('Баг в ридере: ')
+    + '&body=' + encodeURIComponent(body);
+  window.open(url, '_blank');
+});
+
+// ---- owner mode: unlocks editing for base/built-in books, without needing
+// a real backend/login. Change OWNER_KEY to whatever secret string you like,
+// then bookmark the site with ?owner=YOUR_KEY on the end — regular visitors
+// who don't know the key never see this option at all. ----
+const OWNER_KEY = 'reader-owner-2026';
+const isOwner = new URLSearchParams(window.location.search).get('owner') === OWNER_KEY;
+
 async function boot(){
   const loadingEl = document.getElementById("loadingMsg");
   if (loadingEl) loadingEl.remove();
@@ -1298,8 +1486,11 @@ function renderLibrary(manifest){
     const card = document.createElement('div');
     card.className = 'book-card';
     const spineColor = entry.spineColor || '#37564D';
+    const spineContent = entry.cover
+      ? `<img src="${entry.cover}" alt="" style="width:100%; height:100%; object-fit:cover;">`
+      : (entry.title || entry.id);
     card.innerHTML = `
-      <div class="book-spine" style="background:${spineColor}">${entry.title || entry.id}</div>
+      <div class="book-spine" style="background:${spineColor}; padding:0; overflow:hidden;">${spineContent}</div>
       <div class="book-card-body">
         <div class="book-card-title">${entry.title || entry.id}</div>
         <div class="book-card-sub">${entry.sub || ''}</div>
@@ -1360,6 +1551,7 @@ async function openBook(entry){
 // ---- in-browser book import: validates + stores entirely in localStorage,
 // nothing is ever uploaded anywhere ----
 let pendingImportData = null;
+let pendingCoverDataUrl = null;
 
 function validateBookData(raw){
   let json;
@@ -1389,6 +1581,24 @@ function setupImportModal(manifest){
 
   document.getElementById('importClose').addEventListener('click', closeImportModal);
   backdrop.addEventListener('click', closeImportModal);
+
+  document.getElementById('importCoverFile').addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    const coverStatus = document.getElementById('importCoverStatus');
+    if (!file){ pendingCoverDataUrl = null; coverStatus.textContent = ''; return; }
+    try{
+      pendingCoverDataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+      coverStatus.textContent = '✅ Обложка выбрана.';
+    }catch(err){
+      pendingCoverDataUrl = null;
+      coverStatus.textContent = 'Не удалось прочитать файл: ' + err.message;
+    }
+  });
 
   document.getElementById('importValidateBtn').addEventListener('click', async () => {
     const fileInput = document.getElementById('importFile');
@@ -1437,6 +1647,7 @@ function setupImportModal(manifest){
       return;
     }
     const entry = { id, title, sub: pendingImportData.sentences.length + ' предложений', source: 'local', spineColor: '#5C4A72' };
+    if (pendingCoverDataUrl) entry.cover = pendingCoverDataUrl;
     const idx = getLocalBooksIndex();
     idx.push(entry);
     saveLocalBooksIndex(idx);
@@ -1445,6 +1656,9 @@ function setupImportModal(manifest){
     statusEl.innerHTML = '<div class="status ok">✅ Сохранено в библиотеку этого браузера.</div>';
     pendingImportData = null;
     titleInput.value = '';
+    pendingCoverDataUrl = null;
+    document.getElementById('importCoverFile').value = '';
+    document.getElementById('importCoverStatus').textContent = '';
     document.getElementById('importText').value = '';
     document.getElementById('importFile').value = '';
     saveBtn.disabled = true;
