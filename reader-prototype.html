@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קורא — Reader Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EAE6DC; --ink: #211F1C; --ink-soft: #6B665C; --line: #D5CEBE;
+    --accent: #37564D; --accent-soft: #DCE6E2; --gold: #A8813F; --gold-soft: #F0E4CC;
+    --panel: #F8F6F0; --danger: #A3402F; --root-hl: #C9A24A;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{ background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; min-height:100vh; padding-bottom: 100px; }
+
+  .topline{ position: sticky; top:0; left:0; right:0; height: 3px; background: var(--line); z-index: 20; }
+  .topline-fill{ height:100%; width: 0%; background: var(--gold); transition: width .3s ease; }
+
+  header{
+    max-width: 720px; margin: 0 auto; padding: 36px 24px 14px;
+    display:flex; align-items:flex-start; justify-content:space-between;
+    direction: ltr; border-bottom: 1px solid var(--line); flex-wrap: wrap; gap:12px;
+  }
+  .title-block{ direction: rtl; }
+  .kicker{ font-size:11px; letter-spacing: .1em; text-transform:uppercase; color: var(--gold); margin:0 0 6px; font-weight:500; }
+  h1{ font-family:'Frank Ruhl Libre', serif; font-weight:500; font-size:23px; margin:0; color:var(--ink); }
+  .header-right{ display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
+  .header-btns{ display:flex; gap:8px; }
+  .demo-flag{ font-size:11px; color: var(--ink-soft); }
+  .pill-btn{
+    display:flex; align-items:center; gap:6px; background: var(--ink); color:#fff;
+    border:none; border-radius: 18px; padding: 7px 13px; cursor:pointer;
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:500;
+  }
+  .pill-btn.ghost{ background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .pill-btn .star{ color: var(--gold); font-size:14px; }
+  .pill-btn:hover{ opacity:.85; }
+  .icon-btn{
+    width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:transparent;
+    color:var(--ink); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .icon-btn:hover{ background: var(--accent-soft); }
+
+  .settings-panel{
+    position:absolute; top:calc(100% + 8px); left:0; z-index:35; direction:ltr; text-align:left;
+    background: var(--panel); border:1px solid var(--line); border-radius:12px; width:280px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.15); padding: 14px 16px; display:none;
+  }
+  .settings-panel.open{ display:block; animation: popin .12s ease; }
+  .settings-title{ font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:10px; font-weight:500; }
+  .settings-row{ display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); gap:12px; }
+  .settings-row:last-child{ border-bottom:none; }
+  .settings-row-label{ font-size:13px; color:var(--ink); }
+  .settings-row-sub{ font-size:11px; color:var(--ink-soft); margin-top:1px; }
+  .switch{ position:relative; width:38px; height:22px; flex-shrink:0; }
+  .switch input{ opacity:0; width:0; height:0; }
+  .switch-track{ position:absolute; inset:0; background: var(--line); border-radius:12px; cursor:pointer; transition: background .15s ease; }
+  .switch-track::before{ content:""; position:absolute; width:16px; height:16px; left:3px; top:3px; background:#fff; border-radius:50%; transition: transform .15s ease; }
+  .switch input:checked + .switch-track{ background: var(--accent); }
+  .switch input:checked + .switch-track::before{ transform: translateX(16px); }
+  .header-actions{ position:relative; display:flex; gap:8px; align-items:center; }
+
+  main{ max-width: 720px; margin: 0 auto; padding: 32px 24px; }
+  .paragraph{ font-family:'Frank Ruhl Libre', serif; font-size: 25px; line-height: 2.05; color: var(--ink); margin-bottom: 8px; }
+
+  .sentence{ position:relative; border-radius: 3px; transition: background .25s ease; }
+  .sentence.playing{ background: var(--gold-soft); }
+
+  .tword{ cursor:pointer; border-radius: 3px; padding: 0 1px; position:relative; transition: background .15s ease, color .15s ease, box-shadow .15s ease; }
+  .tword:hover{ background: var(--accent-soft); }
+  .tword.speaking{ background: var(--accent); color: #fff; }
+  .tword.selected{ background: var(--accent); color: #fff; }
+  .tword.saved:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--gold); }
+  .tword.root-match:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--root-hl), 0 0 0 1px var(--root-hl); border-radius:3px; }
+  body.nikud-off .wp-lemma{ letter-spacing: 0; }
+
+  .translate-toggle{
+    display:inline-flex; align-items:center; justify-content:center;
+    width: 18px; height:18px; margin-inline-end: 6px; color: var(--gold); border: 1px solid var(--gold);
+    border-radius: 50%; font-size: 11px; cursor:pointer; vertical-align: middle; user-select:none; background: transparent;
+  }
+  .translate-toggle:hover{ background: var(--gold-soft); }
+
+  .sentence-tr{
+    display:none; font-family:'Inter', sans-serif; direction: ltr; text-align: left;
+    background: var(--panel); border-inline-start: 2px solid var(--gold);
+    padding: 12px 16px; margin: 6px 0 16px; border-radius: 0 8px 8px 0;
+  }
+  .sentence-tr.open{ display:block; animation: fadein .18s ease; }
+  .tr-row{ display:flex; gap:10px; font-size: 14px; margin: 5px 0; }
+  .tr-row:first-child{ margin-top:0; }
+  .tr-label{ color: var(--ink-soft); font-size: 10px; text-transform: uppercase; letter-spacing:.06em; min-width: 74px; flex-shrink:0; padding-top:3px; font-weight:500; }
+  .tr-value{ color: var(--ink); }
+  .tr-value.literal{ color: var(--ink-soft); font-style: italic; }
+
+  @keyframes fadein{ from{opacity:0; transform:translateY(-3px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes popin{ from{opacity:0; transform:translateY(-4px) scale(.98);} to{opacity:1; transform:translateY(0) scale(1);} }
+
+  .word-popover{
+    position:absolute; z-index:30; direction: ltr; text-align:left; background: var(--ink); color: #fff;
+    font-family:'Inter', sans-serif; font-size: 13px; padding: 12px 14px; border-radius: 10px;
+    box-shadow: 0 10px 28px rgba(0,0,0,.28); min-width: 190px; max-width: 270px; animation: popin .12s ease;
+  }
+  .wp-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+  .wp-lemma{ font-family:'Frank Ruhl Libre', serif; direction: rtl; text-align:right; font-size: 19px; }
+  .wp-star{ cursor:pointer; font-size:17px; color:#6B665C; flex-shrink:0; line-height:1; padding-top:2px; }
+  .wp-star:hover{ color: var(--gold); }
+  .wp-star.on{ color: var(--gold); }
+  .wp-pos{ display:inline-block; font-size:10px; color:#C9BFA6; border:1px solid #4A473F; border-radius:3px; padding:1px 6px; margin:6px 0; text-transform:uppercase; letter-spacing:.03em; }
+  .wp-main{ font-size:14px; font-weight:500; margin-bottom:4px; }
+  .wp-extra{ font-size:12px; color:#C9BFA6; line-height:1.5; }
+  .wp-root{ font-size:11px; color:#8A8474; margin-top:6px; }
+  .wp-link{ display:inline-block; margin-top:8px; font-size:11.5px; color:var(--gold); text-decoration:none; border-top:1px solid #4A473F; padding-top:8px; width:100%; }
+  .wp-link:hover{ text-decoration:underline; }
+
+  footer.audiobar{
+    position: fixed; bottom:0; left:0; right:0; background: var(--panel); border-top: 1px solid var(--line);
+    padding: 10px 20px 14px; direction: ltr; z-index: 25;
+  }
+  .audiobar-inner{ max-width: 720px; margin: 0 auto; display:flex; align-items:center; gap: 10px; flex-wrap:wrap; }
+  .play-btn, .loop-btn{
+    width: 36px; height:36px; border-radius:50%; background: var(--accent); color:#fff; border:none;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; font-size: 14px;
+  }
+  .loop-btn{ background: transparent; color: var(--ink-soft); border: 1px solid var(--line); }
+  .loop-btn.on{ background: var(--accent); color:#fff; border-color: var(--accent); }
+  .play-btn:active, .loop-btn:active{ transform: scale(.95); }
+  .scrub-wrap{ flex:1; position:relative; min-width:80px; }
+  .scrub-track{ position:relative; height: 4px; background: var(--line); border-radius: 2px; cursor:pointer; }
+  .scrub-fill{ position:absolute; top:0; left:0; height:100%; width:0%; background: var(--gold); border-radius:2px; }
+  .scrub-tick{ position:absolute; top:-3px; width:2px; height:10px; background: var(--line); }
+  .time-label{ font-size: 11px; color: var(--ink-soft); min-width: 32px; text-align:center; }
+  .speed-select{ font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); background:transparent; border:1px solid var(--line); border-radius:14px; padding:4px 8px; cursor:pointer; }
+
+  .drawer-backdrop{ position:fixed; inset:0; background:rgba(33,31,28,.35); z-index:40; display:none; }
+  .drawer-backdrop.open{ display:block; }
+  .drawer{
+    position:fixed; top:0; right:0; bottom:0; width: 360px; max-width: 92vw; background: var(--panel); z-index: 41;
+    direction: ltr; box-shadow: -12px 0 30px rgba(0,0,0,.15); transform: translateX(100%); transition: transform .22s ease;
+    display:flex; flex-direction:column;
+  }
+  .drawer.open{ transform: translateX(0); }
+  .drawer-head{ padding: 18px 20px 0; display:flex; align-items:center; justify-content:space-between; }
+  .drawer-head h2{ font-family:'Inter',sans-serif; font-size:16px; font-weight:600; margin:0; }
+  .drawer-close{ background:none; border:none; font-size:18px; color:var(--ink-soft); cursor:pointer; }
+  .drawer-tabs{ display:flex; gap:4px; padding: 14px 20px 0; border-bottom:1px solid var(--line); }
+  .drawer-tab{ background:none; border:none; font-family:'Inter',sans-serif; font-size:12.5px; color:var(--ink-soft); padding:8px 10px; cursor:pointer; border-bottom:2px solid transparent; }
+  .drawer-tab.active{ color: var(--ink); border-bottom-color: var(--gold); font-weight:500; }
+  .drawer-body{ overflow-y:auto; flex:1; padding: 14px 20px 20px; }
+  .drawer-pane{ display:none; }
+  .drawer-pane.active{ display:block; }
+
+  .drawer-item{ padding: 12px 0; border-bottom: 1px solid var(--line); display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .drawer-item .dlemma{ font-family:'Frank Ruhl Libre', serif; direction:rtl; text-align:right; font-size:18px; }
+  .drawer-item .dtr{ font-size:13px; color:var(--ink-soft); margin-top:2px; }
+  .drawer-remove{ background:none; border:none; color: var(--danger); font-size:12px; cursor:pointer; flex-shrink:0; padding-top:3px; }
+  .drawer-empty{ font-size:13px; color:var(--ink-soft); padding: 20px 0; text-align:center; }
+  .export-btn{ width:100%; margin-bottom:10px; }
+
+  .coverage-box{ background:var(--bg); border-radius:8px; padding:12px 14px; margin-bottom:14px; }
+  .coverage-num{ font-size:22px; font-weight:600; font-family:'Inter',sans-serif; }
+  .coverage-label{ font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; }
+  .coverage-bar{ height:6px; background:var(--line); border-radius:3px; margin-top:8px; overflow:hidden; }
+  .coverage-fill{ height:100%; background: var(--accent); }
+
+  .freq-row{ display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); font-size:13px; }
+  .freq-left{ display:flex; align-items:center; gap:8px; }
+  .freq-rank{ color:var(--ink-soft); font-size:11px; width:16px; }
+  .freq-lemma{ font-family:'Frank Ruhl Libre', serif; direction:rtl; font-size:16px; }
+  .freq-count{ font-size:11px; color:var(--ink-soft); background:var(--bg); border-radius:8px; padding:1px 7px; }
+  .freq-star{ cursor:pointer; color:#B8B2A2; font-size:14px; }
+  .freq-star.on{ color:var(--gold); }
+
+  .illustration-block{
+    margin: 32px auto 36px; max-width: 420px; text-align:center; direction: ltr;
+  }
+  .illustration-frame{
+    border: 1px solid var(--line); border-radius: 4px; background: var(--panel);
+    padding: 22px 22px 16px; position: relative;
+  }
+  .illustration-frame::before{
+    content:""; position:absolute; inset: 6px; border: 1px solid var(--line); border-radius:2px; pointer-events:none;
+  }
+  .illustration-frame svg{ width:100%; height:auto; display:block; }
+  .illustration-caption{
+    font-family:'Frank Ruhl Libre', serif; font-size: 15px; color: var(--ink);
+    margin-top: 10px; direction: rtl;
+  }
+  .illustration-caption .cap-tr{ font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft); direction:ltr; margin-top:2px; }
+  .mnemonic-box{
+    font-family:'Inter',sans-serif; font-size: 12.5px; color: var(--ink-soft);
+    background: var(--bg); border-inline-start: 2px solid var(--gold);
+    text-align: left; padding: 9px 12px; margin-top: 12px; border-radius: 0 6px 6px 0;
+  }
+  .mnemonic-box b{ color: var(--ink); font-weight:600; }
+
+  .train-card{ background:var(--bg); border-radius:10px; padding:28px 20px; text-align:center; min-height:140px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; cursor:pointer; }
+  .train-lemma{ font-family:'Frank Ruhl Libre', serif; font-size:30px; direction:rtl; }
+  .train-hint{ font-size:11px; color:var(--ink-soft); }
+  .train-answer{ font-size:15px; color:var(--accent); display:none; }
+  .train-answer.show{ display:block; }
+  .train-progress{ font-size:11px; color:var(--ink-soft); margin-bottom:10px; text-align:center; }
+  .train-btns{ display:flex; gap:8px; margin-top:14px; }
+  .train-btns button{ flex:1; padding:9px; border-radius:8px; border:none; font-family:'Inter',sans-serif; font-size:13px; cursor:pointer; }
+  .train-no{ background:var(--gold-soft); color:#7A5B22; }
+  .train-yes{ background:var(--accent-soft); color:var(--accent); }
+  .train-empty{ font-size:13px; color:var(--ink-soft); text-align:center; padding:20px 0; }
+  .train-summary{ text-align:center; font-size:14px; padding:20px 0; }
+
+  /* ---- library / book selector ---- */
+  .library-wrap{ max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+  .library-header{ margin-bottom: 36px; direction: rtl; text-align: right; }
+  .library-kicker{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin:0 0 6px; direction:ltr; text-align:left; font-family:'Inter',sans-serif; }
+  .library-title{ font-family:'Frank Ruhl Libre', serif; font-size:28px; margin:0; color:var(--ink); }
+  .library-sub{ font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft); margin-top:8px; direction:ltr; text-align:left; }
+  .book-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:20px; direction:ltr; }
+  .book-card{
+    background: var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden;
+    cursor:pointer; transition: box-shadow .15s ease, transform .15s ease; text-align:left;
+  }
+  .book-card:hover{ box-shadow: 0 8px 20px rgba(0,0,0,.10); transform: translateY(-2px); }
+  .book-spine{
+    height: 90px; display:flex; align-items:center; justify-content:center;
+    font-family:'Frank Ruhl Libre', serif; font-size:15px; color:#fff; text-align:center; padding:10px;
+    direction: rtl;
+  }
+  .book-card-body{ padding: 14px 16px 16px; }
+  .book-card-title{ font-family:'Frank Ruhl Libre', serif; font-size:16px; color:var(--ink); direction:rtl; text-align:right; }
+  .book-card-sub{ font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); margin-top:6px; }
+  .book-card-progress{ font-family:'Inter',sans-serif; font-size:11px; color:var(--gold); margin-top:8px; }
+  .book-card.add-new{
+    display:flex; align-items:center; justify-content:center; min-height:150px;
+    border-style:dashed; color:var(--ink-soft); font-family:'Inter',sans-serif; font-size:13px;
+    text-align:center; padding:16px;
+  }
+  .back-to-library{
+    display:inline-flex; align-items:center; gap:6px; background:none; border:none;
+    color:var(--ink-soft); font-family:'Inter',sans-serif; font-size:12.5px; cursor:pointer;
+    padding:0; margin-bottom:10px;
+  }
+  .back-to-library:hover{ color:var(--ink); }
+  .page-nav{
+    max-width: 720px; margin: 20px auto 0; padding: 0 24px;
+    display:flex; align-items:center; justify-content:center; gap:16px; direction:ltr;
+  }
+  .page-nav-btn{
+    width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:var(--panel);
+    color:var(--ink); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .page-nav-btn:disabled{ opacity:.35; cursor:default; }
+  .page-nav-btn:not(:disabled):hover{ background:var(--accent-soft); }
+  .page-indicator{ font-family:'Inter',sans-serif; font-size:12.5px; color:var(--ink-soft); min-width:100px; text-align:center; }
+  .status{ padding:10px 12px; border-radius:6px; font-size:13px; }
+  .status.ok{ background:#E4EFE8; color:#2F6B4F; border:1px solid #2F6B4F; }
+  .status.err{ background:#F6E4E1; color:var(--danger); border:1px solid var(--danger); }
+</style>
+</head>
+<body>
+
+<div class="topline"><div class="topline-fill" id="topFill"></div></div>
+
+<div id="libraryView">
+  <div class="library-wrap">
+    <div class="library-header">
+      <p class="library-kicker">קורא · библиотека</p>
+      <h1 class="library-title">Выбери книгу</h1>
+      <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
+    </div>
+    <div class="book-grid" id="bookGrid"></div>
+  </div>
+</div>
+
+<div class="drawer-backdrop" id="importBackdrop"></div>
+<div class="drawer" id="importModal">
+  <div class="drawer-head"><h2>Добавить книгу</h2><button class="drawer-close" id="importClose">✕</button></div>
+  <div class="drawer-body">
+    <label class="settings-row-label" style="display:block; margin-bottom:6px;">Название книги</label>
+    <input type="text" id="importTitle" placeholder="Например: Гарри Поттер, глава 1"
+      style="width:100%; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; font-size:13px; margin-bottom:14px; box-sizing:border-box;">
+
+    <label class="settings-row-label" style="display:block; margin-bottom:6px;">Файл book-data.json</label>
+    <input type="file" id="importFile" accept="application/json,.json" style="margin-bottom:10px;">
+
+    <label class="settings-row-label" style="display:block; margin:10px 0 6px;">...или вставь JSON текстом</label>
+    <textarea id="importText" placeholder='{ "sentences": [ ... ] }'
+      style="width:100%; height:120px; font-family:monospace; font-size:12px; padding:8px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); box-sizing:border-box;"></textarea>
+
+    <div style="display:flex; gap:10px; margin-top:14px;">
+      <button class="pill-btn" id="importValidateBtn">Проверить</button>
+      <button class="pill-btn" id="importSaveBtn" disabled style="opacity:.5;">Сохранить в библиотеку</button>
+    </div>
+    <div id="importStatus" style="margin-top:14px;"></div>
+
+    <div style="margin-top:24px; padding-top:16px; border-top:1px solid var(--line);">
+      <label class="settings-row-label" style="display:block; margin-bottom:8px;">Уже добавленные книги</label>
+      <div id="localBooksList"></div>
+    </div>
+  </div>
+</div>
+
+<div id="readerView" style="display:none;">
+<header>
+  <div class="title-block">
+    <button class="back-to-library" id="backToLibrary">← Библиотека</button>
+    <p class="kicker" id="bookKicker">אות מהחלל · פרק ראשון</p>
+    <h1 id="bookTitle">קורא — тренировочный текст (научная фантастика)</h1>
+  </div>
+  <div class="header-right">
+    <div class="header-actions">
+      <button class="icon-btn" id="settingsBtn" title="Настройки">⚙</button>
+      <button class="pill-btn" id="vocabBtn"><span class="star">★</span><span id="vocabCount">Мои слова (0)</span></button>
+      <div class="settings-panel" id="settingsPanel">
+        <div class="settings-title">Настройки отображения</div>
+        <div class="settings-row">
+          <div><div class="settings-row-label">Огласовки</div><div class="settings-row-sub">никуд в словарной форме слова</div></div>
+          <label class="switch"><input type="checkbox" id="swNikud" checked><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-row-label">Дословный перевод предложений</div><div class="settings-row-sub">перевод слово-в-слово под текстом</div></div>
+          <label class="switch"><input type="checkbox" id="swLiteral" checked><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-row-label">Подробный перевод слов</div><div class="settings-row-sub">часть речи, форма, корень</div></div>
+          <label class="switch"><input type="checkbox" id="swDetailed" checked><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-row-label">Автопрокрутка</div><div class="settings-row-sub">экран следует за текущим предложением при воспроизведении</div></div>
+          <label class="switch"><input type="checkbox" id="swAutoscroll" checked><span class="switch-track"></span></label>
+        </div>
+      </div>
+    </div>
+    <span class="demo-flag" id="bookSub">оригинальный текст, написан для практики</span>
+  </div>
+</header>
+
+<div class="page-nav">
+  <button class="page-nav-btn" id="pagePrev" title="Предыдущая страница">‹</button>
+  <span class="page-indicator" id="pageIndicator">Стр. 1 / 1</span>
+  <button class="page-nav-btn" id="pageNext" title="Следующая страница">›</button>
+</div>
+<main id="reader">
+  <p id="loadingMsg" style="font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft);">Загрузка книги…</p>
+</main>
+
+<footer class="audiobar">
+  <div class="audiobar-inner">
+    <button class="play-btn" id="playBtn" aria-label="Play"><span id="playIcon">▶</span></button>
+    <button class="loop-btn" id="loopBtn" title="Повтор текущего предложения">⟲</button>
+    <span class="time-label" id="curTime">0:00</span>
+    <div class="scrub-wrap"><div class="scrub-track" id="scrubTrack"><div class="scrub-fill" id="scrubFill"></div></div></div>
+    <span class="time-label" id="totalTime">0:00</span>
+    <select class="speed-select" id="speedSelect">
+      <option value="0.75">0.75×</option>
+      <option value="1" selected>1×</option>
+      <option value="1.25">1.25×</option>
+    </select>
+  </div>
+</footer>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head"><h2>Словарь</h2><button class="drawer-close" id="drawerClose">✕</button></div>
+  <div class="drawer-tabs">
+    <button class="drawer-tab active" data-tab="mine">Мои слова</button>
+    <button class="drawer-tab" data-tab="freq">Частота</button>
+    <button class="drawer-tab" data-tab="train">Тренировка</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-pane active" id="pane-mine">
+      <button class="pill-btn export-btn" id="exportBtn">Экспорт в Anki (.csv)</button>
+      <div id="drawerList"></div>
+    </div>
+    <div class="drawer-pane" id="pane-freq">
+      <div class="coverage-box">
+        <div class="coverage-label">Твоё покрытие книги</div>
+        <div class="coverage-num" id="coverageNum">0%</div>
+        <div class="coverage-bar"><div class="coverage-fill" id="coverageFill" style="width:0%"></div></div>
+      </div>
+      <div id="freqList"></div>
+    </div>
+    <div class="drawer-pane" id="pane-train">
+      <div class="train-progress" id="trainProgress"></div>
+      <div id="trainArea"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const demoData = {
+  sentences: [
+    { id:"s1", literal:"станция — космоса — парила — тихо — над — шаром — земли",
+      fluent:"Космическая станция тихо парила над земным шаром.",
+      words:[
+        {t:"תחנת", lemma:"תַּחֲנָה", pos:"сущ.", tr:"станция", extra:"сопряж. форма (смихут) от תַּחֲנָה", root:"ת-ח-ן"},
+        {t:"החלל", lemma:"חָלָל", pos:"сущ.", tr:"космос", extra:"с артиклем; תחנת החלל = «космическая станция»", root:"ח-ל-ל"},
+        {t:"ריחפה", lemma:"רִחֵף", pos:"гл.", tr:"парила", extra:"биньян פיעל, прош. вр., ж.р. ед.ч.", root:"ר-ח-ף"},
+        {t:"בשקט", lemma:"שֶׁקֶט", pos:"нареч.", tr:"тихо", extra:"предлог ב־ + שקט", root:"ש-ק-ט"},
+        {t:"מעל", lemma:"מֵעַל", pos:"предл.", tr:"над", extra:"", root:"—"},
+        {t:"כדור", lemma:"כַּדּוּר", pos:"сущ.", tr:"шар", extra:"сопряж. форма перед הארץ", root:"כ-ד-ר"},
+        {t:"הארץ.", lemma:"אֶרֶץ", pos:"сущ.", tr:"земля", extra:"כדור הארץ = «Земля» (планета)", root:"א-ר-ץ"}
+      ]},
+    { id:"s2", literal:"капитан — Ноа — сидела — напротив — экрана — большого — и изучала — [—] — данные",
+      fluent:"Капитан Ноа сидела перед большим экраном и изучала данные.",
+      words:[
+        {t:"הקפטן", lemma:"קַפְּטָן", pos:"сущ.", tr:"капитан", extra:"заимствование, с артиклем", root:"—"},
+        {t:"נועה", lemma:"נוֹעָה", pos:"имя собств.", tr:"Ноа", extra:"капитан станции", root:"—"},
+        {t:"ישבה", lemma:"יָשַׁב", pos:"гл.", tr:"сидела", extra:"биньян פעל, прош. вр., ж.р.", root:"י-ש-ב"},
+        {t:"מול", lemma:"מוּל", pos:"предл.", tr:"напротив", extra:"", root:"—"},
+        {t:"מסך", lemma:"מָסָךְ", pos:"сущ.", tr:"экран", extra:"м.р., ед.ч.", root:"מ-ס-ך"},
+        {t:"גדול", lemma:"גָּדוֹל", pos:"прил.", tr:"большой", extra:"согласуется с «экран»", root:"ג-ד-ל"},
+        {t:"ובחנה", lemma:"בָּחַן", pos:"гл.", tr:"и изучала", extra:"союз ו־ + биньян פעל, прош. вр., ж.р.", root:"ב-ח-ן"},
+        {t:"את", lemma:"אֵת", pos:"частица", tr:"(без перевода)", extra:"маркер прямого определённого дополнения", root:"—"},
+        {t:"הנתונים.", lemma:"נָתוּן", pos:"сущ.", tr:"данные", extra:"мн.ч., м.р., с артиклем", root:"נ-ת-ן"}
+      ]},
+    { id:"s3", literal:"внезапно — послышался — звук — странный — из системы",
+      fluent:"Внезапно из системы послышался странный звук.",
+      words:[
+        {t:"לפתע", lemma:"פֶּתַע", pos:"нареч.", tr:"внезапно", extra:"предлог ל־ + פתע", root:"פ-ת-ע"},
+        {t:"נשמע", lemma:"נִשְׁמַע", pos:"гл.", tr:"послышался", extra:"биньян נפעל, прош. вр., м.р.", root:"ש-מ-ע"},
+        {t:"צליל", lemma:"צְלִיל", pos:"сущ.", tr:"звук", extra:"м.р., ед.ч.", root:"צ-ל-ל"},
+        {t:"מוזר", lemma:"מוּזָר", pos:"прил.", tr:"странный", extra:"согласуется с «звук»", root:"ז-ר"},
+        {t:"מהמערכת.", lemma:"מַעֲרֶכֶת", pos:"сущ.", tr:"система", extra:"предлог מ־ + ה + מערכת", root:"ע-ר-ך"}
+      ]},
+    { id:"s4", literal:"робот — М-7 — приблизился — к ней — тихо",
+      fluent:"Робот М-7 тихо приблизился к ней.",
+      words:[
+        {t:"הרובוט", lemma:"רוֹבּוֹט", pos:"сущ.", tr:"робот", extra:"заимствование, с артиклем", root:"—"},
+        {t:"מ-7", lemma:"מ-7", pos:"имя собств.", tr:"М-7 (робот)", extra:"обозначение робота", root:"—"},
+        {t:"התקרב", lemma:"הִתְקָרֵב", pos:"гл.", tr:"приблизился", extra:"биньян התפעל, прош. вр., м.р.", root:"ק-ר-ב"},
+        {t:"אליה", lemma:"אֶל", pos:"предл.", tr:"к ней", extra:"предлог אל + местоим. суффикс ж.р.", root:"—"},
+        {t:"בשקט.", lemma:"שֶׁקֶט", pos:"нареч.", tr:"тихо", extra:"предлог ב־ + שקט", root:"ש-ק-ט"}
+      ]},
+    { id:"s5", literal:"мы получили — сигнал — новый, — он — сказал — голосом — спокойным",
+      fluent:"Мы получили новый сигнал, — сказал он спокойным голосом.",
+      words:[
+        {t:"קיבלנו", lemma:"קִבֵּל", pos:"гл.", tr:"получили", extra:"биньян פיעל, прош. вр., 1 л. мн.ч.", root:"ק-ב-ל"},
+        {t:"אות", lemma:"אוֹת", pos:"сущ.", tr:"сигнал, знак", extra:"ед.ч.", root:"א-ו-ת"},
+        {t:"חדש,", lemma:"חָדָשׁ", pos:"прил.", tr:"новый", extra:"согласуется с «сигнал»", root:"ח-ד-ש"},
+        {t:"הוא", lemma:"הוּא", pos:"мест.", tr:"он", extra:"3 л. ед.ч. м.р.", root:"—"},
+        {t:"אמר", lemma:"אָמַר", pos:"гл.", tr:"сказал", extra:"биньян פעל, прош. вр., м.р.", root:"א-מ-ר"},
+        {t:"בקול", lemma:"קוֹל", pos:"сущ.", tr:"голос", extra:"предлог ב־ + קול", root:"ק-ו-ל"},
+        {t:"רגוע.", lemma:"רָגוּעַ", pos:"прил.", tr:"спокойный", extra:"согласуется с «голос»", root:"ר-ג-ע"}
+      ]},
+    { id:"s6", literal:"Ноа — подняла — [—] — голову её — с удивлением",
+      fluent:"Ноа удивлённо подняла голову.",
+      words:[
+        {t:"נועה", lemma:"נוֹעָה", pos:"имя собств.", tr:"Ноа", extra:"", root:"—"},
+        {t:"הרימה", lemma:"הֵרִים", pos:"гл.", tr:"подняла", extra:"биньян הפעיל, прош. вр., ж.р.", root:"ר-ו-ם"},
+        {t:"את", lemma:"אֵת", pos:"частица", tr:"(без перевода)", extra:"маркер прямого дополнения", root:"—"},
+        {t:"ראשה", lemma:"רֹאשׁ", pos:"сущ.", tr:"голова (её)", extra:"с местоим. суффиксом ж.р.", root:"ר-א-ש"},
+        {t:"בהפתעה.", lemma:"הַפְתָּעָה", pos:"сущ.", tr:"удивление", extra:"предлог ב־ + הפתעה", root:"פ-ת-ע"}
+      ]},
+    { id:"s7", literal:"откуда — сигнал — приходит? — она — спросила",
+      fluent:"Откуда приходит сигнал? — спросила она.",
+      words:[
+        {t:"מאיפה", lemma:"אֵיפֹה", pos:"нареч.", tr:"где, откуда", extra:"предлог מ־ + איפה", root:"—"},
+        {t:"האות", lemma:"אוֹת", pos:"сущ.", tr:"сигнал", extra:"с артиклем", root:"א-ו-ת"},
+        {t:"מגיע?", lemma:"הִגִּיעַ", pos:"гл.", tr:"приходит", extra:"биньян הפעיל, наст. вр., м.р.", root:"נ-ג-ע"},
+        {t:"היא", lemma:"הִיא", pos:"мест.", tr:"она", extra:"3 л. ед.ч. ж.р.", root:"—"},
+        {t:"שאלה.", lemma:"שָׁאַל", pos:"гл.", tr:"спросила", extra:"биньян פעל, прош. вр., ж.р.", root:"ש-א-ל"}
+      ]},
+    { id:"s8", literal:"с расстояния — [—] — трёх — лет — света, — ответил — робот",
+      fluent:"С расстояния в три световых года, — ответил робот.",
+      words:[
+        {t:"ממרחק", lemma:"מֶרְחָק", pos:"сущ.", tr:"расстояние", extra:"предлог מ־ + מרחק", root:"ר-ח-ק"},
+        {t:"של", lemma:"שֶׁל", pos:"предл.", tr:"чей, из", extra:"показатель принадлежности", root:"—"},
+        {t:"שלוש", lemma:"שָׁלוֹשׁ", pos:"числ.", tr:"три", extra:"ж.р. (согласуется с «годы»)", root:"ש-ל-ש"},
+        {t:"שנות", lemma:"שָׁנָה", pos:"сущ.", tr:"год", extra:"мн.ч., сопряж. форма перед אור", root:"ש-נ-ה"},
+        {t:"אור,", lemma:"אוֹר", pos:"сущ.", tr:"свет", extra:"שנות אור = «световые годы»", root:"א-ו-ר"},
+        {t:"ענה", lemma:"עָנָה", pos:"гл.", tr:"ответил", extra:"биньян פעל, прош. вр., м.р.", root:"ע-נ-ה"},
+        {t:"הרובוט.", lemma:"רוֹבּוֹט", pos:"сущ.", tr:"робот", extra:"с артиклем", root:"—"}
+      ]},
+    { id:"s9", literal:"тишина — в комнате — командования — была — тяжёлой",
+      fluent:"Тишина в командном пункте была тяжёлой.",
+      illustration: {
+    word: "חָלָל", tr: "космос / пустота",
+    caption: "חלל", capTr: "space / void",
+    mnemonic: "Созвучно с русским «холл»: представь длинный пустой ХОЛЛ station, который в конце обрывается прямо в черноту космоса — вместо двери там звёзды.",
+    svg: `<svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="300" height="190" fill="none"/>
+      <circle cx="40" cy="30" r="1.4" fill="var(--gold)"/>
+      <circle cx="80" cy="15" r="1" fill="var(--ink-soft)"/>
+      <circle cx="255" cy="25" r="1.4" fill="var(--gold)"/>
+      <circle cx="270" cy="55" r="1" fill="var(--ink-soft)"/>
+      <circle cx="230" cy="12" r="1" fill="var(--ink-soft)"/>
+      <circle cx="25" cy="70" r="1" fill="var(--ink-soft)"/>
+      <circle cx="15" cy="120" r="1.3" fill="var(--gold)"/>
+      <circle cx="280" cy="130" r="1" fill="var(--ink-soft)"/>
+      <g stroke="var(--ink)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="150" cy="100" rx="95" ry="30"/>
+        <line x1="55" y1="100" x2="55" y2="100"/>
+        <path d="M75 78 L225 78 L245 100 L225 122 L75 122 L55 100 Z"/>
+        <circle cx="150" cy="100" r="16"/>
+        <circle cx="150" cy="100" r="9"/>
+        <path d="M118 62 L100 40 M182 62 L200 40" />
+        <path d="M105 40 L100 40 L100 48" />
+        <path d="M195 40 L200 40 L200 48" />
+        <path d="M118 138 L100 160 M182 138 L200 160"/>
+        <rect x="55" y="94" width="14" height="12" rx="1"/>
+      </g>
+    </svg>`
+      },
+      words:[
+        {t:"השקט", lemma:"שֶׁקֶט", pos:"сущ.", tr:"тишина", extra:"с артиклем", root:"ש-ק-ט"},
+        {t:"בחדר", lemma:"חֶדֶר", pos:"сущ.", tr:"комната", extra:"предлог ב־ + חדר", root:"ח-ד-ר"},
+        {t:"הפיקוד", lemma:"פִּקּוּד", pos:"сущ.", tr:"командование", extra:"חדר הפיקוד = «командный пункт»", root:"פ-ק-ד"},
+        {t:"היה", lemma:"הָיָה", pos:"гл.", tr:"был", extra:"биньян פעל, прош. вр., м.р.", root:"ה-י-ה"},
+        {t:"כבד.", lemma:"כָּבֵד", pos:"прил.", tr:"тяжёлый", extra:"согласуется с «тишина», м.р.", root:"כ-ב-ד"}
+      ]},
+    { id:"s10", literal:"Ноа — встала — со своего места — и подошла — к — окну",
+      fluent:"Ноа встала со своего места и подошла к окну.",
+      words:[
+        {t:"נועה", lemma:"נוֹעָה", pos:"имя собств.", tr:"Ноа", extra:"", root:"—"},
+        {t:"קמה", lemma:"קָם", pos:"гл.", tr:"встала", extra:"биньян פעל, прош. вр., ж.р.", root:"ק-ו-ם"},
+        {t:"ממושבה", lemma:"מוֹשָׁב", pos:"сущ.", tr:"место, сиденье", extra:"предлог מ־ + суффикс «её»", root:"י-ש-ב"},
+        {t:"וניגשה", lemma:"נִגַּשׁ", pos:"гл.", tr:"и подошла", extra:"союз ו־ + биньян נפעל, прош. вр., ж.р.", root:"נ-ג-ש"},
+        {t:"אל", lemma:"אֶל", pos:"предл.", tr:"к", extra:"", root:"—"},
+        {t:"החלון.", lemma:"חַלּוֹן", pos:"сущ.", tr:"окно", extra:"с артиклем", root:"ח-ל-ן"}
+      ]},
+    { id:"s11", literal:"сквозь — стекло — виднелись — звёзды — многочисленные",
+      fluent:"Сквозь стекло виднелось множество звёзд.",
+      words:[
+        {t:"מבעד", lemma:"בְּעַד", pos:"предл.", tr:"сквозь, через", extra:"предлог מ־ + בעד", root:"—"},
+        {t:"לזכוכית", lemma:"זְכוּכִית", pos:"сущ.", tr:"стекло", extra:"предлог ל־ + זכוכית", root:"—"},
+        {t:"נראו", lemma:"נִרְאָה", pos:"гл.", tr:"виднелись", extra:"биньян נפעל, прош. вр., мн.ч.", root:"ר-א-ה"},
+        {t:"כוכבים", lemma:"כּוֹכָב", pos:"сущ.", tr:"звезда", extra:"мн.ч., м.р.", root:"כ-ו-כ-ב"},
+        {t:"רבים.", lemma:"רַב", pos:"прил.", tr:"многочисленный", extra:"мн.ч., согласуется с «звёзды»", root:"ר-ב-ב"}
+      ]},
+    { id:"s12", literal:"проанализируй — [—] — сигнал, — она — приказала",
+      fluent:"Проанализируй сигнал, — приказала она.",
+      words:[
+        {t:"תנתח", lemma:"נִתֵּחַ", pos:"гл.", tr:"анализировать", extra:"биньян פיעל, повелит. накл., м.р.", root:"נ-ת-ח"},
+        {t:"את", lemma:"אֵת", pos:"частица", tr:"(без перевода)", extra:"маркер прямого дополнения", root:"—"},
+        {t:"האות,", lemma:"אוֹת", pos:"сущ.", tr:"сигнал", extra:"с артиклем", root:"א-ו-ת"},
+        {t:"היא", lemma:"הִיא", pos:"мест.", tr:"она", extra:"", root:"—"},
+        {t:"פקדה.", lemma:"פָּקַד", pos:"гл.", tr:"приказала", extra:"биньян פעל, прош. вр., ж.р.", root:"פ-ק-ד"}
+      ]},
+    { id:"s13", literal:"М-7 — обработал — [—] — данные — быстро",
+      fluent:"М-7 быстро обработал данные.",
+      words:[
+        {t:"המ-7", lemma:"מ-7", pos:"имя собств.", tr:"М-7 (робот)", extra:"с артиклем", root:"—"},
+        {t:"עיבד", lemma:"עִבֵּד", pos:"гл.", tr:"обработал", extra:"биньян פיעל, прош. вр., м.р.", root:"ע-ב-ד"},
+        {t:"את", lemma:"אֵת", pos:"частица", tr:"(без перевода)", extra:"маркер прямого дополнения", root:"—"},
+        {t:"הנתונים", lemma:"נָתוּן", pos:"сущ.", tr:"данные", extra:"мн.ч., с артиклем", root:"נ-ת-ן"},
+        {t:"במהירות.", lemma:"מְהִירוּת", pos:"сущ.", tr:"скорость", extra:"предлог ב־ + מהירות = «быстро»", root:"מ-ה-ר"}
+      ]},
+    { id:"s14", literal:"после — минуты — долгой — он — остановился",
+      fluent:"После долгой минуты он остановился.",
+      words:[
+        {t:"אחרי", lemma:"אַחֲרֵי", pos:"предл.", tr:"после", extra:"", root:"א-ח-ר"},
+        {t:"דקה", lemma:"דַּקָּה", pos:"сущ.", tr:"минута", extra:"ж.р., ед.ч.", root:"ד-ק-ק"},
+        {t:"ארוכה", lemma:"אָרֹךְ", pos:"прил.", tr:"длинный", extra:"ж.р., согласуется с «минута»", root:"א-ר-ך"},
+        {t:"הוא", lemma:"הוּא", pos:"мест.", tr:"он", extra:"", root:"—"},
+        {t:"הפסיק.", lemma:"הִפְסִיק", pos:"гл.", tr:"остановился", extra:"биньян הפעיל, прош. вр., м.р.", root:"פ-ס-ק"}
+      ]},
+    { id:"s15", literal:"сигнал — не есть — естественный, — он — сказал — осторожно",
+      fluent:"Сигнал не природного происхождения, — осторожно сказал он.",
+      words:[
+        {t:"האות", lemma:"אוֹת", pos:"сущ.", tr:"сигнал", extra:"с артиклем", root:"א-ו-ת"},
+        {t:"אינו", lemma:"אֵין", pos:"частица", tr:"не (есть)", extra:"отрицание + суффикс м.р.", root:"—"},
+        {t:"טבעי,", lemma:"טִבְעִי", pos:"прил.", tr:"естественный", extra:"согласуется с «сигнал»", root:"ט-ב-ע"},
+        {t:"הוא", lemma:"הוּא", pos:"мест.", tr:"он", extra:"", root:"—"},
+        {t:"אמר", lemma:"אָמַר", pos:"гл.", tr:"сказал", extra:"биньян פעל, прош. вр., м.р.", root:"א-מ-ר"},
+        {t:"בזהירות.", lemma:"זְהִירוּת", pos:"сущ.", tr:"осторожность", extra:"предлог ב־ + זהירות", root:"ז-ה-ר"}
+      ]},
+    { id:"s16", literal:"сердце — Ноа — билось — быстро",
+      fluent:"Сердце Ноа билось быстро.",
+      words:[
+        {t:"לב", lemma:"לֵב", pos:"сущ.", tr:"сердце", extra:"сопряж. форма перед именем", root:"ל-ב-ב"},
+        {t:"נועה", lemma:"נוֹעָה", pos:"имя собств.", tr:"Ноа", extra:"", root:"—"},
+        {t:"פעם", lemma:"פָּעַם", pos:"гл.", tr:"билось", extra:"биньян פעל, прош. вр., м.р.", root:"פ-ע-ם"},
+        {t:"מהר.", lemma:"מַהֵר", pos:"нареч.", tr:"быстро", extra:"", root:"מ-ה-ר"}
+      ]},
+    { id:"s17", literal:"ты — думаешь, — что есть — там — кто-то? — спросил — М-7",
+      fluent:"Думаешь, там кто-то есть? — спросил М-7.",
+      words:[
+        {t:"את", lemma:"אַתְּ", pos:"мест.", tr:"ты (жен.)", extra:"2 л. ед.ч. ж.р.", root:"—"},
+        {t:"חושבת", lemma:"חָשַׁב", pos:"гл.", tr:"думаешь", extra:"биньян פעל, наст. вр., ж.р.", root:"ח-ש-ב"},
+        {t:"שיש", lemma:"יֵשׁ", pos:"частица", tr:"есть, имеется", extra:"союз ש־ + יש", root:"—"},
+        {t:"שם", lemma:"שָׁם", pos:"нареч.", tr:"там", extra:"", root:"—"},
+        {t:"מישהו?", lemma:"מִישֶׁהוּ", pos:"мест.", tr:"кто-то", extra:"м.р.", root:"—"},
+        {t:"שאל", lemma:"שָׁאַל", pos:"гл.", tr:"спросил", extra:"биньян פעל, прош. вр., м.р.", root:"ש-א-ל"},
+        {t:"המ-7.", lemma:"מ-7", pos:"имя собств.", tr:"М-7 (робот)", extra:"с артиклем", root:"—"}
+      ]},
+    { id:"s18", literal:"Ноа — не — ответила — сразу",
+      fluent:"Ноа не ответила сразу.",
+      words:[
+        {t:"נועה", lemma:"נוֹעָה", pos:"имя собств.", tr:"Ноа", extra:"", root:"—"},
+        {t:"לא", lemma:"לֹא", pos:"частица", tr:"не", extra:"", root:"—"},
+        {t:"ענתה", lemma:"עָנָה", pos:"гл.", tr:"ответила", extra:"биньян פעל, прош. вр., ж.р.", root:"ע-נ-ה"},
+        {t:"מיד.", lemma:"מִיָּד", pos:"нареч.", tr:"сразу", extra:"", root:"—"}
+      ]},
+    { id:"s19", literal:"она — посмотрела — снова — на звёзды — тёмные",
+      fluent:"Она снова взглянула на тёмные звёзды.",
+      illustration: {
+    word: "כּוֹכָבִים", tr: "звёзды",
+    caption: "כוכבים", capTr: "stars",
+    mnemonic: "Представь иллюминатор станции: за ним не пара огоньков, а рассыпанная по чёрному бархату соль — сотни мелких точек света. Чем ярче ты вообразишь эту картинку, тем крепче слово останется в памяти.",
+    svg: `<svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">
+      <g fill="var(--gold)">
+        <path d="M60 40 L64 52 L76 56 L64 60 L60 72 L56 60 L44 56 L56 52 Z"/>
+        <path d="M220 30 L223 39 L232 42 L223 45 L220 54 L217 45 L208 42 L217 39 Z"/>
+        <path d="M150 100 L155 116 L171 121 L155 126 L150 142 L145 126 L129 121 L145 116 Z"/>
+      </g>
+      <g fill="var(--ink-soft)">
+        <circle cx="100" cy="90" r="1.6"/>
+        <circle cx="130" cy="45" r="1.3"/>
+        <circle cx="190" cy="110" r="1.6"/>
+        <circle cx="240" cy="90" r="1.3"/>
+        <circle cx="270" cy="140" r="1.6"/>
+        <circle cx="35" cy="120" r="1.3"/>
+        <circle cx="80" cy="150" r="1.6"/>
+        <circle cx="210" cy="160" r="1.3"/>
+        <circle cx="255" cy="55" r="1.3"/>
+        <circle cx="20" cy="60" r="1.3"/>
+      </g>
+      <path d="M60 40 L150 100 L220 30" stroke="var(--line)" stroke-width="0.8" fill="none" stroke-dasharray="2 3"/>
+    </svg>`
+      },
+      words:[
+        {t:"היא", lemma:"הִיא", pos:"мест.", tr:"она", extra:"", root:"—"},
+        {t:"הביטה", lemma:"הִבִּיט", pos:"гл.", tr:"посмотрела", extra:"биньян הפעיל, прош. вр., ж.р.", root:"נ-ב-ט"},
+        {t:"שוב", lemma:"שׁוּב", pos:"нареч.", tr:"снова", extra:"", root:"ש-ו-ב"},
+        {t:"בכוכבים", lemma:"כּוֹכָב", pos:"сущ.", tr:"звезда", extra:"предлог ב־ + мн.ч.", root:"כ-ו-כ-ב"},
+        {t:"החשוכים.", lemma:"חָשׁוּךְ", pos:"прил.", tr:"тёмный", extra:"мн.ч., с артиклем, согласуется со «звёзды»", root:"ח-ש-ך"}
+      ]},
+    { id:"s20", literal:"я — думаю, — что мы — собираемся — узнать, — она — прошептала",
+      fluent:"Кажется, мы вот-вот узнаем, — прошептала она.",
+      words:[
+        {t:"אני", lemma:"אֲנִי", pos:"мест.", tr:"я", extra:"", root:"—"},
+        {t:"חושבת", lemma:"חָשַׁב", pos:"гл.", tr:"думаю", extra:"биньян פעל, наст. вр., ж.р.", root:"ח-ש-ב"},
+        {t:"שאנחנו", lemma:"אֲנַחְנוּ", pos:"мест.", tr:"мы", extra:"союз ש־ + אנחנו", root:"—"},
+        {t:"עומדים", lemma:"עוֹמֵד", pos:"гл.", tr:"собираемся", extra:"наст. вр., мн.ч.; עומדים ל־ = «собираемся»", root:"ע-מ-ד"},
+        {t:"לגלות,", lemma:"גִּלָּה", pos:"гл.", tr:"обнаружить", extra:"инфинитив, биньян פיעל", root:"ג-ל-ה"},
+        {t:"היא", lemma:"הִיא", pos:"мест.", tr:"она", extra:"", root:"—"},
+        {t:"לחשה.", lemma:"לָחַשׁ", pos:"гл.", tr:"прошептала", extra:"биньян פעל, прош. вр., ж.р.", root:"ל-ח-ש"}
+      ]},
+    { id:"s21", literal:"двигатели — [—] — станции — начали — дрожать — мягко",
+      fluent:"Двигатели станции начали тихонько вибрировать.",
+      words:[
+        {t:"המנועים", lemma:"מָנוֹעַ", pos:"сущ.", tr:"двигатель", extra:"мн.ч., с артиклем", root:"נ-ו-ע"},
+        {t:"של", lemma:"שֶׁל", pos:"предл.", tr:"чей, из", extra:"", root:"—"},
+        {t:"התחנה", lemma:"תַּחֲנָה", pos:"сущ.", tr:"станция", extra:"с артиклем", root:"ת-ח-ן"},
+        {t:"החלו", lemma:"הֵחֵל", pos:"гл.", tr:"начали", extra:"биньян הפעיל, прош. вр., мн.ч.", root:"ח-ל-ל"},
+        {t:"לרעוד", lemma:"רָעַד", pos:"гл.", tr:"дрожать", extra:"инфинитив, биньян פעל", root:"ר-ע-ד"},
+        {t:"בעדינות.", lemma:"עֲדִינוּת", pos:"сущ.", tr:"мягкость", extra:"предлог ב־ + עדינות", root:"ע-ד-ן"}
+      ]},
+    { id:"s22", literal:"что-то, — где-то — далеко, — начало — двигаться",
+      fluent:"Что-то далеко-далеко начало двигаться.",
+      words:[
+        {t:"משהו,", lemma:"מַשֶּׁהוּ", pos:"мест.", tr:"что-то", extra:"", root:"—"},
+        {t:"אי-שם", lemma:"אֵי־שָׁם", pos:"нареч.", tr:"где-то", extra:"", root:"—"},
+        {t:"רחוק,", lemma:"רָחוֹק", pos:"прил.", tr:"далёкий, далеко", extra:"", root:"ר-ח-ק"},
+        {t:"החל", lemma:"הֵחֵל", pos:"гл.", tr:"начал(о)", extra:"биньян הפעיל, прош. вр., м.р.", root:"ח-ל-ל"},
+        {t:"לזוז.", lemma:"זָז", pos:"гл.", tr:"двигаться", extra:"инфинитив", root:"ז-ו-ז"}
+      ]},
+    { id:"s23", literal:"Ноа — приказала — [—] — экипажу — готовиться",
+      fluent:"Ноа приказала экипажу готовиться.",
+      words:[
+        {t:"נועה", lemma:"נוֹעָה", pos:"имя собств.", tr:"Ноа", extra:"", root:"—"},
+        {t:"פקדה", lemma:"פָּקַד", pos:"гл.", tr:"приказала", extra:"биньян פעל, прош. вр., ж.р.", root:"פ-ק-ד"},
+        {t:"על", lemma:"עַל", pos:"предл.", tr:"на, по отношению к", extra:"", root:"—"},
+        {t:"הצוות", lemma:"צֶוֶת", pos:"сущ.", tr:"экипаж, команда", extra:"с артиклем", root:"צ-ו-ת"},
+        {t:"להתכונן.", lemma:"הִתְכּוֹנֵן", pos:"гл.", tr:"готовиться", extra:"инфинитив, биньян התפעל", root:"כ-ו-ן"}
+      ]},
+    { id:"s24", literal:"все — экраны — на станции — зажглись — разом",
+      fluent:"Все экраны на станции зажглись разом.",
+      words:[
+        {t:"כל", lemma:"כֹּל", pos:"мест.", tr:"все, каждый", extra:"", root:"כ-ל-ל"},
+        {t:"המסכים", lemma:"מָסָךְ", pos:"сущ.", tr:"экран", extra:"мн.ч., с артиклем", root:"מ-ס-ך"},
+        {t:"בתחנה", lemma:"תַּחֲנָה", pos:"сущ.", tr:"станция", extra:"предлог ב־ + תחנה", root:"ת-ח-ן"},
+        {t:"נדלקו", lemma:"נִדְלַק", pos:"гл.", tr:"зажглись", extra:"биньян נפעל, прош. вр., мн.ч.", root:"ד-ל-ק"},
+        {t:"בבת", lemma:"בַּת", pos:"сущ.", tr:"(в составе идиомы)", extra:"בבת אחת = «разом»", root:"—"},
+        {t:"אחת.", lemma:"אַחַת", pos:"числ.", tr:"одна", extra:"ж.р.; вместе с בבת: «разом»", root:"א-ח-ד"}
+      ]},
+    { id:"s25", literal:"на — одном — из них — появилась — форма — странная",
+      fluent:"На одном из них появилась странная форма.",
+      words:[
+        {t:"על", lemma:"עַל", pos:"предл.", tr:"на", extra:"", root:"—"},
+        {t:"אחד", lemma:"אֶחָד", pos:"числ.", tr:"один", extra:"м.р.", root:"א-ח-ד"},
+        {t:"מהם", lemma:"הֵם", pos:"мест.", tr:"они (м.р.)", extra:"предлог מ־ + суффикс мн.ч. м.р.", root:"—"},
+        {t:"הופיעה", lemma:"הוֹפִיעַ", pos:"гл.", tr:"появилась", extra:"биньян הפעיל, прош. вр., ж.р.", root:"י-פ-ע"},
+        {t:"צורה", lemma:"צוּרָה", pos:"сущ.", tr:"форма", extra:"ж.р., ед.ч.", root:"צ-ו-ר"},
+        {t:"מוזרה.", lemma:"מוּזָר", pos:"прил.", tr:"странная", extra:"ж.р., согласуется с «форма»", root:"ז-ר"}
+      ]},
+    { id:"s26", literal:"она — не — была похожа — ни на какую — вещь — что видели — раньше",
+      fluent:"Она не была похожа ни на что виденное прежде.",
+      words:[
+        {t:"היא", lemma:"הִיא", pos:"мест.", tr:"она", extra:"", root:"—"},
+        {t:"לא", lemma:"לֹא", pos:"частица", tr:"не", extra:"", root:"—"},
+        {t:"דמתה", lemma:"דָּמָה", pos:"гл.", tr:"была похожа", extra:"биньян פעל, прош. вр., ж.р.", root:"ד-מ-ה"},
+        {t:"לשום", lemma:"שׁוּם", pos:"мест.", tr:"никакой", extra:"предлог ל־ + שום", root:"—"},
+        {t:"דבר", lemma:"דָּבָר", pos:"сущ.", tr:"вещь", extra:"м.р., ед.ч.", root:"ד-ב-ר"},
+        {t:"שראו", lemma:"רָאָה", pos:"гл.", tr:"видели", extra:"союз ש־ + биньян פעל, прош. вр., мн.ч.", root:"ר-א-ה"},
+        {t:"קודם.", lemma:"קֹדֶם", pos:"нареч.", tr:"раньше, прежде", extra:"", root:"ק-ד-ם"}
+      ]},
+    { id:"s27", literal:"информируй — меня — о каждом — изменении, — сказала — Ноа — голосом — решительным",
+      fluent:"Докладывай мне о любом изменении, — сказала Ноа решительным голосом.",
+      words:[
+        {t:"תעדכן", lemma:"עִדְכֵּן", pos:"гл.", tr:"обновлять, информировать", extra:"биньян פיעל, повелит. накл., м.р.", root:"ע-ד-כ-ן"},
+        {t:"אותי", lemma:"אֲנִי", pos:"мест.", tr:"меня", extra:"объектная форма от אני", root:"—"},
+        {t:"בכל", lemma:"כֹּל", pos:"мест.", tr:"каждый, весь", extra:"предлог ב־ + כל", root:"כ-ל-ל"},
+        {t:"שינוי,", lemma:"שִׁנּוּי", pos:"сущ.", tr:"изменение", extra:"м.р., ед.ч.", root:"ש-נ-ה"},
+        {t:"אמרה", lemma:"אָמַר", pos:"гл.", tr:"сказала", extra:"биньян פעל, прош. вр., ж.р.", root:"א-מ-ר"},
+        {t:"נועה", lemma:"נוֹעָה", pos:"имя собств.", tr:"Ноа", extra:"", root:"—"},
+        {t:"בקול", lemma:"קוֹל", pos:"сущ.", tr:"голос", extra:"предлог ב־ + קול", root:"ק-ו-ל"},
+        {t:"נחוש.", lemma:"נָחוּשׁ", pos:"прил.", tr:"решительный", extra:"согласуется с «голос»", root:"נ-ח-ש"}
+      ]},
+    { id:"s28", literal:"М-7 — подтвердил — тихо",
+      fluent:"М-7 тихо подтвердил.",
+      words:[
+        {t:"המ-7", lemma:"מ-7", pos:"имя собств.", tr:"М-7 (робот)", extra:"с артиклем", root:"—"},
+        {t:"אישר", lemma:"אִשֵּׁר", pos:"гл.", tr:"подтвердил", extra:"биньян פיעל, прош. вр., м.р.", root:"א-ש-ר"},
+        {t:"בשקט.", lemma:"שֶׁקֶט", pos:"нареч.", tr:"тихо", extra:"предлог ב־ + שקט", root:"ש-ק-ט"}
+      ]},
+    { id:"s29", literal:"форма — на — экране — начала — двигаться — медленно",
+      fluent:"Форма на экране начала медленно двигаться.",
+      illustration: {
+    word: "צוּרָה", tr: "форма",
+    caption: "צורה מוזרה", capTr: "странная форма",
+    mnemonic: "«Цура» созвучно с русским «цирк» — вообрази цирковую арену, а на ней вместо акробата медленно перетекает из одной формы в другую загадочное существо без чёткой границы.",
+    svg: `<svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="var(--ink)" stroke-width="1.4" fill="none" stroke-linejoin="round">
+        <rect x="35" y="20" width="230" height="150" rx="6"/>
+      </g>
+      <g stroke="var(--line)" stroke-width="0.6">
+        <line x1="35" y1="55" x2="265" y2="55"/>
+        <line x1="35" y1="90" x2="265" y2="90"/>
+        <line x1="35" y1="125" x2="265" y2="125"/>
+      </g>
+      <path d="M150 60 C 190 55, 210 85, 195 105 C 220 115, 200 150, 165 140 C 140 155, 105 135, 115 110 C 90 100, 105 65, 140 70 Z"
+        fill="none" stroke="var(--gold)" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="150" cy="105" r="3" fill="var(--gold)"/>
+    </svg>`
+      },
+      words:[
+        {t:"הצורה", lemma:"צוּרָה", pos:"сущ.", tr:"форма", extra:"с артиклем", root:"צ-ו-ר"},
+        {t:"על", lemma:"עַל", pos:"предл.", tr:"на", extra:"", root:"—"},
+        {t:"המסך", lemma:"מָסָךְ", pos:"сущ.", tr:"экран", extra:"с артиклем", root:"מ-ס-ך"},
+        {t:"החלה", lemma:"הֵחֵל", pos:"гл.", tr:"начала", extra:"биньян הפעיל, прош. вр., ж.р.", root:"ח-ל-ל"},
+        {t:"לזוז", lemma:"זָז", pos:"гл.", tr:"двигаться", extra:"инфинитив", root:"ז-ו-ז"},
+        {t:"לאט.", lemma:"לְאַט", pos:"нареч.", tr:"медленно", extra:"", root:"—"}
+      ]},
+    { id:"s30", literal:"Ноа — задержала — [—] — дыхание её",
+      fluent:"Ноа затаила дыхание.",
+      words:[
+        {t:"נועה", lemma:"נוֹעָה", pos:"имя собств.", tr:"Ноа", extra:"", root:"—"},
+        {t:"עצרה", lemma:"עָצַר", pos:"гл.", tr:"задержала", extra:"биньян פעל, прош. вр., ж.р.", root:"ע-צ-ר"},
+        {t:"את", lemma:"אֵת", pos:"частица", tr:"(без перевода)", extra:"маркер прямого дополнения", root:"—"},
+        {t:"נשימתה.", lemma:"נְשִׁימָה", pos:"сущ.", tr:"дыхание (её)", extra:"с местоим. суффиксом ж.р.", root:"נ-ש-ם"}
+      ]}
+  ]
+};
+
+function initReader(data, bookId, meta) {
+document.getElementById('bookTitle').textContent = (meta && meta.title) || 'קורא';
+document.getElementById('bookKicker').textContent = (meta && meta.kicker) || '';
+document.getElementById('bookSub').textContent = (meta && meta.sub) || '';
+const AVG_WORD_SEC = 0.42;
+let cursor = 0;
+data.sentences.forEach(s => {
+  s.start = cursor;
+  s.words.forEach(w => { w.start = cursor; w.end = cursor + AVG_WORD_SEC; cursor = w.end; });
+  s.end = cursor; cursor += 0.3;
+});
+const TOTAL = cursor;
+
+// ---- frequency list built from the book data itself (same mechanism will
+// scale to the full OCR'd book later) ----
+const freqMap = {};
+data.sentences.forEach(s => s.words.forEach(w => {
+  if (!freqMap[w.lemma]) freqMap[w.lemma] = {...w, count:0};
+  freqMap[w.lemma].count++;
+}));
+const freqList = Object.values(freqMap).sort((a,b) => b.count - a.count);
+const totalOccurrences = freqList.reduce((sum,w) => sum + w.count, 0);
+
+// ---- illustrations: one per "page" (~10 sentences), original line-art,
+// paired with a mnemonic technique for the featured word ----
+
+function buildIllustration(item){
+  const wrap = document.createElement('div');
+  wrap.className = 'illustration-block';
+  const media = item.svg ? item.svg : (item.img ? `<img src="${item.img}" alt="${item.caption || ''}" style="width:100%;display:block;border-radius:2px;">` : '');
+  wrap.innerHTML = `
+    <div class="illustration-frame">${media}</div>
+    <div class="illustration-caption">${item.caption}<div class="cap-tr">${item.capTr}</div></div>
+    ${item.mnemonic ? `<div class="mnemonic-box"><b>Мнемоника «${item.word}» — ${item.tr}:</b> ${item.mnemonic}</div>` : ''}
+  `;
+  return wrap;
+}
+
+const reader = document.getElementById('reader');
+
+// ---- pagination: ~20 sentences per page keeps a screen roughly at the
+// length of a real printed book page, and makes bookmarking meaningful ----
+const PAGE_SIZE = 20;
+const totalPages = Math.max(1, Math.ceil(data.sentences.length / PAGE_SIZE));
+const PAGE_KEY = 'hebrew-reader-page:' + bookId;
+let currentPage = 0;
+try{
+  const savedPage = parseInt(localStorage.getItem(PAGE_KEY), 10);
+  if (!isNaN(savedPage) && savedPage >= 0 && savedPage < totalPages) currentPage = savedPage;
+}catch(err){}
+
+function renderSentence(s, container){
+  const sSpan = document.createElement('span');
+  sSpan.className = 'sentence';
+  sSpan.id = s.id;
+
+  const toggle = document.createElement('span');
+  toggle.className = 'translate-toggle';
+  toggle.textContent = 'א';
+  toggle.title = 'תרגום המשפט';
+  toggle.addEventListener('click', (e) => { e.stopPropagation(); trBlock.classList.toggle('open'); });
+  sSpan.appendChild(toggle);
+
+  s.words.forEach((w, i) => {
+    const wSpan = document.createElement('span');
+    wSpan.className = 'tword';
+    wSpan.dataset.sentence = s.id;
+    wSpan.dataset.word = i;
+    wSpan.dataset.lemma = w.lemma;
+    wSpan.dataset.root = w.root;
+    wSpan.textContent = w.t + (i < s.words.length - 1 ? ' ' : '');
+    wSpan.addEventListener('click', (e) => { e.stopPropagation(); showPopover(e, w, wSpan); });
+    sSpan.appendChild(wSpan);
+  });
+
+  container.appendChild(sSpan);
+
+  const trBlock = document.createElement('div');
+  trBlock.className = 'sentence-tr';
+  trBlock.innerHTML = `
+    <div class="tr-row"><span class="tr-label">Дословно</span><span class="tr-value literal">${s.literal}</span></div>
+    <div class="tr-row"><span class="tr-label">Перевод</span><span class="tr-value">${s.fluent}</span></div>
+  `;
+  container.appendChild(trBlock);
+
+  if (s.illustration){
+    container.appendChild(buildIllustration(s.illustration));
+  }
+}
+
+function renderPage(pageIndex){
+  currentPage = Math.max(0, Math.min(totalPages - 1, pageIndex));
+  try{ localStorage.setItem(PAGE_KEY, String(currentPage)); }catch(err){}
+
+  reader.innerHTML = '';
+  const p = document.createElement('div');
+  p.className = 'paragraph';
+  const start = currentPage * PAGE_SIZE;
+  const end = Math.min(data.sentences.length, start + PAGE_SIZE);
+  for (let i = start; i < end; i++){
+    renderSentence(data.sentences[i], p);
+  }
+  reader.appendChild(p);
+
+  const pageIndicator = document.getElementById('pageIndicator');
+  if (pageIndicator) pageIndicator.textContent = `Стр. ${currentPage + 1} / ${totalPages}`;
+  const prevBtn = document.getElementById('pagePrev');
+  const nextBtn = document.getElementById('pageNext');
+  if (prevBtn) prevBtn.disabled = currentPage === 0;
+  if (nextBtn) nextBtn.disabled = currentPage === totalPages - 1;
+  reader.scrollIntoView({ behavior: 'auto', block: 'start' });
+
+  applySettings();
+}
+
+const scrubTrack = document.getElementById('scrubTrack');
+data.sentences.forEach(s => {
+  const tick = document.createElement('div');
+  tick.className = 'scrub-tick';
+  tick.style.left = (s.start / TOTAL * 100) + '%';
+  scrubTrack.appendChild(tick);
+});
+
+// ---- vocabulary, persisted with localStorage (works on any real hosted site) ----
+// namespaced per book, so word lists / frequency coverage don't mix across books
+const STORAGE_PREFIX = 'hebrew-reader-vocab:' + bookId + ':';
+const vocabCache = {};
+
+function loadVocabFromStorage(){
+  try{
+    for (let i = 0; i < localStorage.length; i++){
+      const key = localStorage.key(i);
+      if (key && key.startsWith(STORAGE_PREFIX)){
+        const lemma = key.slice(STORAGE_PREFIX.length);
+        try{ vocabCache[lemma] = JSON.parse(localStorage.getItem(key)); }
+        catch(err){ console.error('bad vocab entry', key, err); }
+      }
+    }
+  }catch(err){ console.error('localStorage unavailable', err); }
+  refreshVocabUI();
+}
+
+function saveVocabEntry(w){
+  const entry = {lemma:w.lemma, pos:w.pos, tr:w.tr, extra:w.extra, root:w.root, addedAt:Date.now()};
+  try{ localStorage.setItem(STORAGE_PREFIX + w.lemma, JSON.stringify(entry)); }
+  catch(err){ console.error('save failed', err); return; }
+  vocabCache[w.lemma] = entry;
+}
+function deleteVocabEntry(lemma){
+  try{ localStorage.removeItem(STORAGE_PREFIX + lemma); }
+  catch(err){ console.error('delete failed', err); }
+  delete vocabCache[lemma];
+}
+
+function toggleSaveWord(w, starEl){
+  const isSaved = !!vocabCache[w.lemma];
+  if (isSaved) deleteVocabEntry(w.lemma); else saveVocabEntry(w);
+  if (starEl) starEl.classList.toggle('on', !isSaved);
+  refreshVocabUI();
+}
+
+function refreshVocabUI(){
+  const count = Object.keys(vocabCache).length;
+  document.getElementById('vocabCount').textContent = `Мои слова (${count})`;
+  document.querySelectorAll('.tword').forEach(el => el.classList.toggle('saved', !!vocabCache[el.dataset.lemma]));
+  renderMineList();
+  renderFreqList();
+}
+
+function renderMineList(){
+  const list = document.getElementById('drawerList');
+  const entries = Object.values(vocabCache).sort((a,b) => b.addedAt - a.addedAt);
+  if (entries.length === 0){
+    list.innerHTML = '<div class="drawer-empty">Пока нет сохранённых слов — жми ★ в подсказке слова.</div>';
+    return;
+  }
+  list.innerHTML = entries.map(e => `
+    <div class="drawer-item">
+      <div><div class="dlemma">${e.lemma}</div><div class="dtr">${e.pos} · ${e.tr}</div></div>
+      <button class="drawer-remove" data-lemma="${e.lemma}">убрать</button>
+    </div>`).join('');
+  list.querySelectorAll('.drawer-remove').forEach(btn => {
+    btn.addEventListener('click', (e) => { deleteVocabEntry(e.target.dataset.lemma); refreshVocabUI(); });
+  });
+}
+
+function renderFreqList(){
+  const savedCount = freqList.filter(w => vocabCache[w.lemma]).reduce((s,w) => s + w.count, 0);
+  const pct = totalOccurrences ? Math.round(savedCount / totalOccurrences * 100) : 0;
+  document.getElementById('coverageNum').textContent = pct + '%';
+  document.getElementById('coverageFill').style.width = pct + '%';
+
+  const el = document.getElementById('freqList');
+  el.innerHTML = freqList.map((w, i) => `
+    <div class="freq-row">
+      <div class="freq-left">
+        <span class="freq-rank">${i+1}</span>
+        <span class="freq-lemma">${w.lemma}</span>
+        <span class="freq-count">${w.count}×</span>
+      </div>
+      <span class="freq-star ${vocabCache[w.lemma] ? 'on' : ''}" data-lemma="${w.lemma}">★</span>
+    </div>`).join('');
+  el.querySelectorAll('.freq-star').forEach(star => {
+    star.addEventListener('click', () => {
+      const lemma = star.dataset.lemma;
+      const w = freqMap[lemma];
+      toggleSaveWord(w, null);
+    });
+  });
+}
+
+loadVocabFromStorage();
+
+// ---- drawer + tabs ----
+document.getElementById('vocabBtn').addEventListener('click', () => {
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('drawerBackdrop').classList.add('open');
+});
+document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+document.getElementById('drawerBackdrop').addEventListener('click', closeDrawer);
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawerBackdrop').classList.remove('open');
+}
+document.querySelectorAll('.drawer-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.drawer-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.drawer-pane').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('pane-' + tab.dataset.tab).classList.add('active');
+    if (tab.dataset.tab === 'train') startTraining();
+  });
+});
+
+// ---- Anki export (tab-separated, front / back) ----
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const entries = Object.values(vocabCache);
+  if (entries.length === 0){ alert('Пока нечего экспортировать — сохрани хотя бы одно слово.'); return; }
+  const rows = entries.map(e => [e.lemma, `${e.tr} (${e.pos})${e.extra ? ' — ' + e.extra : ''}`]);
+  const tsv = rows.map(r => r.map(v => v.replace(/\t/g,' ').replace(/\n/g,' ')).join('\t')).join('\n');
+  const blob = new Blob([tsv], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'hebrew-vocab-anki.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+// In Anki: File -> Import, choose this .txt, field separator = Tab, map field 1 -> Front, field 2 -> Back.
+
+// ---- training / flashcards ----
+let trainQueue = [];
+let trainIndex = 0;
+let trainStats = {know:0, dontKnow:0};
+
+function startTraining(){
+  const words = Object.values(vocabCache);
+  trainStats = {know:0, dontKnow:0};
+  if (words.length === 0){
+    document.getElementById('trainProgress').textContent = '';
+    document.getElementById('trainArea').innerHTML = '<div class="train-empty">Сначала сохрани несколько слов (★) — тогда здесь появится тренировка.</div>';
+    return;
+  }
+  trainQueue = [...words].sort(() => Math.random() - 0.5);
+  trainIndex = 0;
+  renderTrainCard();
+}
+
+function renderTrainCard(){
+  if (trainIndex >= trainQueue.length){
+    document.getElementById('trainProgress').textContent = '';
+    document.getElementById('trainArea').innerHTML = `
+      <div class="train-summary">
+        Готово! Знал: ${trainStats.know} · Повторить: ${trainStats.dontKnow}
+        <div style="margin-top:14px;"><button class="pill-btn" id="trainAgain">Пройти ещё раз</button></div>
+      </div>`;
+    document.getElementById('trainAgain').addEventListener('click', startTraining);
+    return;
+  }
+  const w = trainQueue[trainIndex];
+  document.getElementById('trainProgress').textContent = `${trainIndex+1} / ${trainQueue.length}`;
+  const area = document.getElementById('trainArea');
+  area.innerHTML = `
+    <div class="train-card" id="flipCard">
+      <div class="train-lemma">${w.lemma}</div>
+      <div class="train-hint" id="flipHint">нажми, чтобы увидеть перевод</div>
+      <div class="train-answer" id="trainAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos})</span></div>
+    </div>
+    <div class="train-btns" id="trainBtns" style="display:none;">
+      <button class="train-no" id="btnDontKnow">Не знал</button>
+      <button class="train-yes" id="btnKnow">Знал</button>
+    </div>`;
+  document.getElementById('flipCard').addEventListener('click', () => {
+    document.getElementById('trainAnswer').classList.add('show');
+    document.getElementById('flipHint').style.display = 'none';
+    document.getElementById('trainBtns').style.display = 'flex';
+  });
+  document.getElementById('btnKnow').addEventListener('click', (e) => { e.stopPropagation(); trainStats.know++; trainIndex++; renderTrainCard(); });
+  document.getElementById('btnDontKnow').addEventListener('click', (e) => { e.stopPropagation(); trainStats.dontKnow++; trainIndex++; renderTrainCard(); });
+}
+
+// ---- display settings: nikud / literal translation / detailed word info ----
+// (demo scope note: nikud toggle affects the popover lemma; restoring niqqud
+// across the full reading text itself needs a diacritization pass added to
+// the OCR pipeline later, not something we can toggle on text we never had)
+const SETTINGS_KEY = 'hebrew-reader-settings';
+let settings = { nikud:true, literal:true, detailed:true, autoscroll:true };
+try{
+  const saved = localStorage.getItem(SETTINGS_KEY);
+  if (saved) settings = {...settings, ...JSON.parse(saved)};
+}catch(err){ console.error('settings load failed', err); }
+
+function saveSettings(){
+  try{ localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); }
+  catch(err){ console.error('settings save failed', err); }
+}
+
+function stripNikud(str){ return str.replace(/[\u0591-\u05C7]/g, ''); }
+
+function applySettings(){
+  document.body.classList.toggle('nikud-off', !settings.nikud);
+  document.querySelectorAll('.sentence-tr .tr-row:first-child').forEach(row => {
+    row.style.display = settings.literal ? 'flex' : 'none';
+  });
+  if (popoverEl && currentPopoverWord) refreshPopoverContent(currentPopoverWord);
+}
+
+document.getElementById('swNikud').checked = settings.nikud;
+document.getElementById('swLiteral').checked = settings.literal;
+document.getElementById('swDetailed').checked = settings.detailed;
+document.getElementById('swAutoscroll').checked = settings.autoscroll;
+
+document.getElementById('swNikud').addEventListener('change', (e) => { settings.nikud = e.target.checked; saveSettings(); applySettings(); });
+document.getElementById('swLiteral').addEventListener('change', (e) => { settings.literal = e.target.checked; saveSettings(); applySettings(); });
+document.getElementById('swDetailed').addEventListener('change', (e) => { settings.detailed = e.target.checked; saveSettings(); applySettings(); });
+document.getElementById('swAutoscroll').addEventListener('change', (e) => { settings.autoscroll = e.target.checked; saveSettings(); });
+
+const settingsBtn = document.getElementById('settingsBtn');
+const settingsPanel = document.getElementById('settingsPanel');
+settingsBtn.addEventListener('click', (e) => { e.stopPropagation(); settingsPanel.classList.toggle('open'); });
+document.addEventListener('click', (e) => {
+  if (settingsPanel.classList.contains('open') && !settingsPanel.contains(e.target) && e.target !== settingsBtn){
+    settingsPanel.classList.remove('open');
+  }
+});
+
+// ---- word popover + root highlighting ----
+let popoverEl = null;
+let selectedWordEl = null;
+let currentPopoverWord = null;
+
+function showPopover(e, w, wordEl){
+  closePopover();
+  selectedWordEl = wordEl;
+  selectedWordEl.classList.add('selected');
+  currentPopoverWord = w;
+
+  if (w.root && w.root !== '—'){
+    document.querySelectorAll(`.tword[data-root="${w.root}"]`).forEach(el => {
+      if (el !== wordEl) el.classList.add('root-match');
+    });
+  }
+
+  popoverEl = document.createElement('div');
+  popoverEl.className = 'word-popover';
+  document.body.appendChild(popoverEl);
+  refreshPopoverContent(w);
+
+  const r = wordEl.getBoundingClientRect();
+  popoverEl.style.top = (window.scrollY + r.bottom + 6) + 'px';
+  let left = window.scrollX + r.left;
+  const maxLeft = window.scrollX + document.documentElement.clientWidth - 280;
+  if (left > maxLeft) left = maxLeft;
+  popoverEl.style.left = left + 'px';
+}
+
+function refreshPopoverContent(w){
+  if (!popoverEl) return;
+  const isSaved = !!vocabCache[w.lemma];
+  const lemmaText = settings.nikud ? w.lemma : stripNikud(w.lemma);
+  const milogWord = stripNikud(w.lemma).replace(/[^\u05D0-\u05EA]/g, '');
+  const milogUrl = 'https://milog.co.il/' + encodeURIComponent(milogWord);
+  popoverEl.innerHTML = `
+    <div class="wp-top"><div class="wp-lemma">${lemmaText}</div><div class="wp-star ${isSaved ? 'on' : ''}">★</div></div>
+    ${settings.detailed ? `<div class="wp-pos">${w.pos}</div>` : ''}
+    <div class="wp-main">${w.tr}</div>
+    ${settings.detailed && w.extra ? `<div class="wp-extra">${w.extra}</div>` : ''}
+    ${settings.detailed && w.root && w.root !== '—' ? `<div class="wp-root">корень: ${w.root}</div>` : ''}
+    ${milogWord ? `<a class="wp-link" href="${milogUrl}" target="_blank" rel="noopener">📖 примеры употребления на Milog ↗</a>` : ''}
+  `;
+  const starEl = popoverEl.querySelector('.wp-star');
+  starEl.addEventListener('click', (e) => { e.stopPropagation(); toggleSaveWord(w, starEl); });
+}
+
+function closePopover(){
+  if (popoverEl){ popoverEl.remove(); popoverEl = null; }
+  if (selectedWordEl){ selectedWordEl.classList.remove('selected'); selectedWordEl = null; }
+  document.querySelectorAll('.tword.root-match').forEach(el => el.classList.remove('root-match'));
+  currentPopoverWord = null;
+}
+
+document.addEventListener('click', (e) => { if (popoverEl && !popoverEl.contains(e.target)) closePopover(); });
+
+// ---- fake playback engine ----
+let playing = false, t = 0, lastTs = null, speed = 1, loopSentence = false;
+let lastScrolledSentenceId = null;
+function fmt(sec){ const m = Math.floor(sec/60), s = Math.floor(sec%60); return m + ':' + String(s).padStart(2,'0'); }
+document.getElementById('totalTime').textContent = fmt(TOTAL);
+
+function tick(ts){
+  if (!lastTs) lastTs = ts;
+  const dt = (ts - lastTs) / 1000;
+  lastTs = ts;
+  if (playing){
+    t += dt * speed;
+    if (loopSentence){
+      const cur = data.sentences.find(s => (t - dt*speed) >= s.start - 0.001 && (t - dt*speed) < s.end) || data.sentences[0];
+      if (t >= cur.end) t = cur.start;
+    } else if (t >= TOTAL){ t = TOTAL; playing = false; }
+    render();
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+function render(){
+  document.getElementById('curTime').textContent = fmt(t);
+  document.getElementById('scrubFill').style.width = (t/TOTAL*100) + '%';
+  document.getElementById('topFill').style.width = (t/TOTAL*100) + '%';
+
+  const idx = data.sentences.findIndex(s => t >= s.start && t < s.end);
+  if (idx !== -1){
+    const s = data.sentences[idx];
+    const targetPage = Math.floor(idx / PAGE_SIZE);
+    if (targetPage !== currentPage){
+      renderPage(targetPage); // rebuilds #reader for the page that contains the playing sentence
+    }
+    document.querySelectorAll('.sentence').forEach(el => el.classList.remove('playing'));
+    document.querySelectorAll('.tword').forEach(el => { if (el !== selectedWordEl) el.classList.remove('speaking'); });
+
+    const sentenceEl = document.getElementById(s.id);
+    if (sentenceEl){
+      sentenceEl.classList.add('playing');
+      if (playing && settings.autoscroll && s.id !== lastScrolledSentenceId){
+        lastScrolledSentenceId = s.id;
+        sentenceEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      const w = s.words.find(w => t >= w.start && t < w.end);
+      if (w){
+        const wIdx = s.words.indexOf(w);
+        const el = document.querySelector(`.tword[data-sentence="${s.id}"][data-word="${wIdx}"]`);
+        if (el && el !== selectedWordEl) el.classList.add('speaking');
+      }
+    }
+  }
+  document.getElementById('playIcon').textContent = playing ? '❚❚' : '▶';
+}
+render();
+
+document.getElementById('playBtn').addEventListener('click', (e) => { e.stopPropagation(); playing = !playing; lastTs = null; render(); });
+document.getElementById('loopBtn').addEventListener('click', (e) => { e.stopPropagation(); loopSentence = !loopSentence; document.getElementById('loopBtn').classList.toggle('on', loopSentence); });
+document.getElementById('speedSelect').addEventListener('change', (e) => { speed = parseFloat(e.target.value); });
+scrubTrack.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const r = scrubTrack.getBoundingClientRect();
+  const ratio = (e.clientX - r.left) / r.width;
+  t = Math.max(0, Math.min(TOTAL, ratio * TOTAL));
+  render();
+});
+  applySettings();
+
+  // everything (vocab, settings, popover, playback) is declared by now -> safe to do the first paint
+  renderPage(currentPage);
+  document.getElementById('pagePrev').addEventListener('click', () => renderPage(currentPage - 1));
+  document.getElementById('pageNext').addEventListener('click', () => renderPage(currentPage + 1));
+}
+
+const LOCAL_BOOKS_INDEX_KEY = 'hebrew-reader-local-books';
+
+function getLocalBooksIndex(){
+  try{
+    const raw = localStorage.getItem(LOCAL_BOOKS_INDEX_KEY);
+    return raw ? JSON.parse(raw) : [];
+  }catch(err){ return []; }
+}
+
+function saveLocalBooksIndex(list){
+  try{ localStorage.setItem(LOCAL_BOOKS_INDEX_KEY, JSON.stringify(list)); }
+  catch(err){ console.error('save index failed', err); }
+}
+
+function slugify(str){
+  return 'local-' + str.toLowerCase()
+    .replace(/[^\u0590-\u05FFa-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 40) + '-' + Date.now().toString(36);
+}
+
+async function boot(){
+  const loadingEl = document.getElementById("loadingMsg");
+  if (loadingEl) loadingEl.remove();
+
+  // Always-available built-in entry (the sci-fi practice text). Extra books
+  // come from books-manifest.json (for advanced/self-hosted setups) plus
+  // anything imported directly in the browser (stored only in localStorage,
+  // never sent anywhere — safe to use even with copyrighted book text).
+  let manifest = [
+    { id: "demo-scifi", title: "אות מהחלל", kicker: "פרק ראשון · תרגיל", sub: "оригинальный текст, написан для практики", source: "demo", spineColor: "#37564D" }
+  ];
+
+  try {
+    const res = await fetch("books-manifest.json", {cache: "no-store"});
+    if (res.ok) {
+      const external = await res.json();
+      if (external && Array.isArray(external.books)) {
+        manifest = manifest.concat(external.books);
+      }
+    }
+  } catch (err) {
+    // no books-manifest.json next to this file -> that's fine, skip it
+  }
+
+  manifest = manifest.concat(getLocalBooksIndex());
+
+  renderLibrary(manifest);
+
+  document.getElementById('backToLibrary').addEventListener('click', () => {
+    document.getElementById('readerView').style.display = 'none';
+    document.getElementById('libraryView').style.display = '';
+    renderLibrary(manifest); // refresh in case a book was just imported
+  });
+
+  setupImportModal(manifest);
+}
+
+function renderLibrary(manifest){
+  const grid = document.getElementById('bookGrid');
+  grid.innerHTML = '';
+  manifest.forEach(entry => {
+    const card = document.createElement('div');
+    card.className = 'book-card';
+    const spineColor = entry.spineColor || '#37564D';
+    card.innerHTML = `
+      <div class="book-spine" style="background:${spineColor}">${entry.title || entry.id}</div>
+      <div class="book-card-body">
+        <div class="book-card-title">${entry.title || entry.id}</div>
+        <div class="book-card-sub">${entry.sub || ''}</div>
+      </div>
+    `;
+    card.addEventListener('click', () => openBook(entry));
+    grid.appendChild(card);
+  });
+
+  const addCard = document.createElement('div');
+  addCard.className = 'book-card add-new';
+  addCard.textContent = '+ Добавить свою книгу';
+  addCard.addEventListener('click', openImportModal);
+  grid.appendChild(addCard);
+}
+
+async function openBook(entry){
+  let bookData = demoData;
+  if (entry.source === 'file'){
+    try{
+      const res = await fetch(entry.file, {cache: "no-store"});
+      if (res.ok){
+        const json = await res.json();
+        if (json && Array.isArray(json.sentences) && json.sentences.length){
+          bookData = json;
+        } else {
+          alert('Файл ' + entry.file + ' пустой или не в том формате.');
+          return;
+        }
+      } else {
+        alert('Не нашёл файл ' + entry.file + ' рядом с сайтом.');
+        return;
+      }
+    }catch(err){
+      alert('Не смог загрузить ' + entry.file + ': ' + err.message);
+      return;
+    }
+  } else if (entry.source === 'local'){
+    try{
+      const raw = localStorage.getItem('hebrew-reader-bookdata:' + entry.id);
+      const json = raw ? JSON.parse(raw) : null;
+      if (json && Array.isArray(json.sentences) && json.sentences.length){
+        bookData = json;
+      } else {
+        alert('Не смог найти сохранённые данные этой книги в браузере.');
+        return;
+      }
+    }catch(err){
+      alert('Ошибка чтения книги: ' + err.message);
+      return;
+    }
+  }
+  document.getElementById('libraryView').style.display = 'none';
+  document.getElementById('readerView').style.display = '';
+  initReader(bookData, entry.id, entry);
+}
+
+// ---- in-browser book import: validates + stores entirely in localStorage,
+// nothing is ever uploaded anywhere ----
+let pendingImportData = null;
+
+function validateBookData(raw){
+  let json;
+  try{
+    json = JSON.parse(raw);
+  }catch(e){
+    return { valid:false, error: 'Не получилось разобрать JSON: ' + e.message };
+  }
+  if (!json || !Array.isArray(json.sentences)){
+    return { valid:false, error: 'Нет массива "sentences" на верхнем уровне.' };
+  }
+  if (json.sentences.length === 0){
+    return { valid:false, error: 'Массив "sentences" пустой.' };
+  }
+  const bad = json.sentences.findIndex(s => !s.id || !Array.isArray(s.words));
+  if (bad !== -1){
+    return { valid:false, error: `Предложение №${bad+1} (индекс ${bad}) без поля "id" или "words".` };
+  }
+  return { valid:true, json, count: json.sentences.length, firstText: json.sentences[0].fluent || json.sentences[0].literal || '(нет перевода)' };
+}
+
+function setupImportModal(manifest){
+  const modal = document.getElementById('importModal');
+  const backdrop = document.getElementById('importBackdrop');
+  const statusEl = document.getElementById('importStatus');
+  const saveBtn = document.getElementById('importSaveBtn');
+
+  document.getElementById('importClose').addEventListener('click', closeImportModal);
+  backdrop.addEventListener('click', closeImportModal);
+
+  document.getElementById('importValidateBtn').addEventListener('click', async () => {
+    const fileInput = document.getElementById('importFile');
+    const textInput = document.getElementById('importText');
+    let raw = textInput.value.trim();
+
+    if (fileInput.files && fileInput.files[0]){
+      raw = await fileInput.files[0].text();
+    }
+
+    if (!raw){
+      statusEl.innerHTML = '<div class="status err">Выбери файл или вставь JSON текстом.</div>';
+      return;
+    }
+
+    const result = validateBookData(raw);
+    if (result.valid){
+      pendingImportData = result.json;
+      statusEl.innerHTML = `<div class="status ok">✅ Валидно: ${result.count} предложений. Первое: «${result.firstText.slice(0,60)}${result.firstText.length>60?'…':''}»</div>`;
+      saveBtn.disabled = false;
+      saveBtn.style.opacity = '1';
+    } else {
+      pendingImportData = null;
+      statusEl.innerHTML = `<div class="status err">⚠️ ${result.error}</div>`;
+      saveBtn.disabled = true;
+      saveBtn.style.opacity = '.5';
+    }
+  });
+
+  saveBtn.addEventListener('click', () => {
+    const titleInput = document.getElementById('importTitle');
+    const title = titleInput.value.trim();
+    if (!title){
+      statusEl.innerHTML = '<div class="status err">Дай книге название перед сохранением.</div>';
+      return;
+    }
+    if (!pendingImportData){
+      statusEl.innerHTML = '<div class="status err">Сначала нажми «Проверить».</div>';
+      return;
+    }
+    const id = slugify(title);
+    try{
+      localStorage.setItem('hebrew-reader-bookdata:' + id, JSON.stringify(pendingImportData));
+    }catch(err){
+      statusEl.innerHTML = `<div class="status err">Не удалось сохранить: ${err.message} (возможно, книга слишком большая для localStorage — попробуй разбить на главы поменьше).</div>`;
+      return;
+    }
+    const entry = { id, title, sub: pendingImportData.sentences.length + ' предложений', source: 'local', spineColor: '#5C4A72' };
+    const idx = getLocalBooksIndex();
+    idx.push(entry);
+    saveLocalBooksIndex(idx);
+    manifest.push(entry);
+
+    statusEl.innerHTML = '<div class="status ok">✅ Сохранено в библиотеку этого браузера.</div>';
+    pendingImportData = null;
+    titleInput.value = '';
+    document.getElementById('importText').value = '';
+    document.getElementById('importFile').value = '';
+    saveBtn.disabled = true;
+    saveBtn.style.opacity = '.5';
+    renderLocalBooksList(manifest);
+    renderLibrary(manifest);
+  });
+
+  renderLocalBooksList(manifest);
+}
+
+function renderLocalBooksList(manifest){
+  const listEl = document.getElementById('localBooksList');
+  const local = getLocalBooksIndex();
+  if (local.length === 0){
+    listEl.innerHTML = '<div class="drawer-empty">Пока ничего не добавлено.</div>';
+    return;
+  }
+  listEl.innerHTML = local.map(e => `
+    <div class="drawer-item">
+      <div><div class="dtr" style="font-size:13px; color:var(--ink);">${e.title}</div><div class="dtr">${e.sub}</div></div>
+      <button class="drawer-remove" data-id="${e.id}">удалить</button>
+    </div>
+  `).join('');
+  listEl.querySelectorAll('.drawer-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const idx = getLocalBooksIndex().filter(e => e.id !== id);
+      saveLocalBooksIndex(idx);
+      try{ localStorage.removeItem('hebrew-reader-bookdata:' + id); }catch(err){}
+      const pos = manifest.findIndex(e => e.id === id);
+      if (pos !== -1) manifest.splice(pos, 1);
+      renderLocalBooksList(manifest);
+      renderLibrary(manifest);
+    });
+  });
+}
+
+function openImportModal(){
+  document.getElementById('importModal').classList.add('open');
+  document.getElementById('importBackdrop').classList.add('open');
+}
+function closeImportModal(){
+  document.getElementById('importModal').classList.remove('open');
+  document.getElementById('importBackdrop').classList.remove('open');
+}
+
+boot();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "books": [
+    {
+      "id": "harry-potter-1",
+      "title": "הארי פוטר ואבן החכמים",
+      "kicker": "פרק 1 · הילד שנשאר בחיים",
+      "sub": "Гарри Поттер — глава 1 (твой текст, размеченный через NotebookLM)",
+      "source": "file",
+      "file": "book-poter-data.json",
+      "spineColor": "#7A3B2E"
+    }
+  ]
+}
