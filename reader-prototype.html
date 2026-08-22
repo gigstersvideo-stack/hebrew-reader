@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.12.0
+  Hebrew Reader — v1.17.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -136,9 +136,11 @@
   .loop-btn.on{ background: var(--accent); color:#fff; border-color: var(--accent); }
   .play-btn:active, .loop-btn:active{ transform: scale(.95); }
   .scrub-wrap{ flex:1; position:relative; min-width:80px; }
-  .scrub-track{ position:relative; height: 4px; background: var(--line); border-radius: 2px; cursor:pointer; }
-  .scrub-fill{ position:absolute; top:0; left:0; height:100%; width:0%; background: var(--gold); border-radius:2px; }
-  .scrub-tick{ position:absolute; top:-3px; width:2px; height:10px; background: var(--line); }
+  .scrub-track{ position:relative; height: 16px; display:flex; align-items:center; gap:3px; cursor:pointer; }
+  .scrub-seg{ position:relative; flex:1; height:5px; background: var(--line); border-radius: 2px; overflow:hidden; transition: height .12s ease; }
+  .scrub-seg.current{ height:8px; }
+  .scrub-seg-fill{ position:absolute; top:0; left:0; height:100%; width:0%; background: var(--gold); border-radius:2px; }
+  .scrub-seg:hover{ background: var(--accent-soft); }
   .time-label{ font-size: 11px; color: var(--ink-soft); min-width: 32px; text-align:center; }
   .speed-select{ font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); background:transparent; border:1px solid var(--line); border-radius:14px; padding:4px 8px; cursor:pointer; }
 
@@ -283,7 +285,7 @@
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.12.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.17.0</div>
   </div>
 </div>
 
@@ -377,7 +379,7 @@
     <button class="play-btn" id="playBtn" aria-label="Play"><span id="playIcon">▶</span></button>
     <button class="loop-btn" id="loopBtn" title="Повтор текущего предложения">⟲</button>
     <span class="time-label" id="curTime">0:00</span>
-    <div class="scrub-wrap"><div class="scrub-track" id="scrubTrack"><div class="scrub-fill" id="scrubFill"></div></div></div>
+    <div class="scrub-wrap"><div class="scrub-track" id="scrubTrack"></div></div>
     <span class="time-label" id="totalTime">0:00</span>
     <select class="speed-select" id="speedSelect">
       <option value="0.75">0.75×</option>
@@ -815,14 +817,7 @@ function updateDownloadEditsButtonHidden(){
   const btn = document.getElementById('downloadEditsBtn');
   if (btn) btn.style.display = 'none';
 }
-const AVG_WORD_SEC = 0.42;
-let cursor = 0;
-data.sentences.forEach(s => {
-  s.start = cursor;
-  s.words.forEach(w => { w.start = cursor; w.end = cursor + AVG_WORD_SEC; cursor = w.end; });
-  s.end = cursor; cursor += 0.3;
-});
-const TOTAL = cursor;
+const AVG_WORD_SEC = 0.42; // only used as a fallback estimate for sentences without real audio yet
 
 // ---- frequency list built from the book data itself (same mechanism will
 // scale to the full OCR'd book later) ----
@@ -1048,16 +1043,9 @@ function renderPage(pageIndex){
   if (nextBtn) nextBtn.disabled = currentPage === totalPages - 1;
   reader.scrollIntoView({ behavior: 'auto', block: 'start' });
 
+  renderScrubSegments();
   applySettings();
 }
-
-const scrubTrack = document.getElementById('scrubTrack');
-data.sentences.forEach(s => {
-  const tick = document.createElement('div');
-  tick.className = 'scrub-tick';
-  tick.style.left = (s.start / TOTAL * 100) + '%';
-  scrubTrack.appendChild(tick);
-});
 
 // ---- vocabulary, persisted with localStorage (works on any real hosted site) ----
 // namespaced per book, so word lists / frequency coverage don't mix across books
@@ -1259,7 +1247,7 @@ function applySettings(){
   document.querySelectorAll('.sentence-tr .tr-row:first-child').forEach(row => {
     row.style.display = settings.literal ? 'flex' : 'none';
   });
-  if (popoverEl && currentPopoverWord) refreshPopoverContent(currentPopoverWord);
+  if (popoverEl && currentPopoverWord) refreshPopoverContent(currentPopoverWord, selectedWordEl);
 }
 
 document.getElementById('swNikud').checked = settings.nikud;
@@ -1297,6 +1285,15 @@ function showPopover(e, w, wordEl){
   selectedWordEl.classList.add('selected');
   currentPopoverWord = w;
 
+  // Клик по слову для перевода — это "посмотреть", а не "продолжай играть
+  // мимо" — ставим на паузу, чтобы звук не убегал вперёд, пока читаешь подсказку.
+  if (playing){
+    playing = false;
+    audioEl.pause();
+    stopFakeTimer();
+    updatePlayIcon();
+  }
+
   if (w.root && w.root !== '—'){
     document.querySelectorAll(`.tword[data-root="${w.root}"]`).forEach(el => {
       if (el !== wordEl) el.classList.add('root-match');
@@ -1306,7 +1303,7 @@ function showPopover(e, w, wordEl){
   popoverEl = document.createElement('div');
   popoverEl.className = 'word-popover';
   document.body.appendChild(popoverEl);
-  refreshPopoverContent(w);
+  refreshPopoverContent(w, wordEl);
 
   const r = wordEl.getBoundingClientRect();
   popoverEl.style.top = (window.scrollY + r.bottom + 6) + 'px';
@@ -1316,7 +1313,7 @@ function showPopover(e, w, wordEl){
   popoverEl.style.left = left + 'px';
 }
 
-function refreshPopoverContent(w){
+function refreshPopoverContent(w, wordEl){
   if (!popoverEl) return;
   const isSaved = !!vocabCache[w.lemma];
   const lemmaText = settings.nikud ? w.lemma : stripNikud(w.lemma);
@@ -1328,10 +1325,24 @@ function refreshPopoverContent(w){
     <div class="wp-main">${w.tr}</div>
     ${settings.detailed && w.extra ? `<div class="wp-extra">${w.extra}</div>` : ''}
     ${settings.detailed && w.root && w.root !== '—' ? `<div class="wp-root">корень: ${w.root}</div>` : ''}
+    <button class="wp-link wp-play-from" style="width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px;">▶ Слушать отсюда</button>
     ${milogWord ? `<a class="wp-link" href="${milogUrl}" target="_blank" rel="noopener">📖 примеры употребления на Milog ↗</a>` : ''}
   `;
   const starEl = popoverEl.querySelector('.wp-star');
   starEl.addEventListener('click', (e) => { e.stopPropagation(); toggleSaveWord(w, starEl); });
+
+  const playFromBtn = popoverEl.querySelector('.wp-play-from');
+  if (playFromBtn && wordEl){
+    playFromBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const sentenceId = wordEl.dataset.sentence;
+      const idx = data.sentences.findIndex(s => s.id === sentenceId);
+      if (idx !== -1){
+        closePopover();
+        goToSentence(idx, true);
+      }
+    });
+  }
 }
 
 function closePopover(){
@@ -1343,78 +1354,219 @@ function closePopover(){
 
 document.addEventListener('click', (e) => { if (popoverEl && !popoverEl.contains(e.target)) closePopover(); });
 
-// ---- fake playback engine ----
-let playing = false, t = 0, lastTs = null, speed = 1, loopSentence = false;
+// ---- real per-sentence playback engine: plays actual mp3 files
+// generated by 3_generate_audio.py when a sentence has one, otherwise
+// falls back to an estimated timer so the site never breaks on books
+// that don't have real audio yet (like the demo story) ----
+let currentSentenceIdx = currentPage * PAGE_SIZE;
+let playing = false;
+let loopSentence = false;
+let speed = 1;
 let lastScrolledSentenceId = null;
-function fmt(sec){ const m = Math.floor(sec/60), s = Math.floor(sec%60); return m + ':' + String(s).padStart(2,'0'); }
-document.getElementById('totalTime').textContent = fmt(TOTAL);
+let fakeTimerRAF = null;
+let fakeT = 0;
 
-function tick(ts){
-  if (!lastTs) lastTs = ts;
-  const dt = (ts - lastTs) / 1000;
-  lastTs = ts;
-  if (playing){
-    t += dt * speed;
-    if (loopSentence){
-      const cur = data.sentences.find(s => (t - dt*speed) >= s.start - 0.001 && (t - dt*speed) < s.end) || data.sentences[0];
-      if (t >= cur.end) t = cur.start;
-    } else if (t >= TOTAL){ t = TOTAL; playing = false; }
-    render();
+const audioEl = document.createElement('audio');
+audioEl.preload = 'auto';
+document.body.appendChild(audioEl);
+audioEl.addEventListener('timeupdate', () => {
+  updateTransportUI(audioEl.currentTime, audioEl.duration || 0);
+});
+audioEl.addEventListener('ended', onSentenceEnded);
+
+// Подсветка слова считается ОТДЕЛЬНО от timeupdate — у timeupdate браузеры
+// сами ограничивают частоту примерно до 4 раз в секунду, а слова короткие
+// (0.3-0.4с), из-за этого подсветка ощущалась как скачки, а не плавное
+// движение. requestAnimationFrame даёт ~60 обновлений в секунду — в паре
+// с CSS-переходом на .tword это уже выглядит как перетекание, а не прыжок.
+let highlightRAF = null;
+function startHighlightLoop(){
+  if (highlightRAF) return;
+  function step(){
+    if (!playing || !audioEl.src){ highlightRAF = null; return; }
+    highlightWordAtTime(data.sentences[currentSentenceIdx], audioEl.currentTime);
+    highlightRAF = requestAnimationFrame(step);
   }
-  requestAnimationFrame(tick);
+  highlightRAF = requestAnimationFrame(step);
 }
-requestAnimationFrame(tick);
 
-function render(){
-  document.getElementById('curTime').textContent = fmt(t);
-  document.getElementById('scrubFill').style.width = (t/TOTAL*100) + '%';
-  document.getElementById('topFill').style.width = (t/TOTAL*100) + '%';
+function fmt(sec){ const m = Math.floor(sec/60), s = Math.floor(sec%60); return m + ':' + String(s).padStart(2,'0'); }
 
-  const idx = data.sentences.findIndex(s => t >= s.start && t < s.end);
-  if (idx !== -1){
-    const s = data.sentences[idx];
-    const targetPage = Math.floor(idx / PAGE_SIZE);
-    if (targetPage !== currentPage){
-      renderPage(targetPage); // rebuilds #reader for the page that contains the playing sentence
-    }
-    document.querySelectorAll('.sentence').forEach(el => el.classList.remove('playing'));
-    document.querySelectorAll('.tword').forEach(el => { if (el !== selectedWordEl) el.classList.remove('speaking'); });
+function renderScrubSegments(){
+  const track = document.getElementById('scrubTrack');
+  track.innerHTML = '';
+  const pageStart = currentPage * PAGE_SIZE;
+  const pageEnd = Math.min(data.sentences.length, pageStart + PAGE_SIZE);
+  for (let i = pageStart; i < pageEnd; i++){
+    const seg = document.createElement('div');
+    seg.className = 'scrub-seg';
+    seg.title = `Предложение ${i - pageStart + 1}`;
+    const fill = document.createElement('div');
+    fill.className = 'scrub-seg-fill';
+    seg.appendChild(fill);
+    seg.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToSentence(i, true);
+    });
+    track.appendChild(seg);
+  }
+  updateScrubSegments(0);
+}
 
-    const sentenceEl = document.getElementById(s.id);
-    if (sentenceEl){
-      sentenceEl.classList.add('playing');
-      if (playing && settings.autoscroll && s.id !== lastScrolledSentenceId){
-        lastScrolledSentenceId = s.id;
-        sentenceEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-      const w = s.words.find(w => t >= w.start && t < w.end);
-      if (w){
-        const wIdx = s.words.indexOf(w);
-        const el = document.querySelector(`.tword[data-sentence="${s.id}"][data-word="${wIdx}"]`);
-        if (el && el !== selectedWordEl) el.classList.add('speaking');
-      }
+function updateScrubSegments(ratioWithinCurrent){
+  const track = document.getElementById('scrubTrack');
+  const pageStart = currentPage * PAGE_SIZE;
+  const segs = track.children;
+  for (let k = 0; k < segs.length; k++){
+    const idx = pageStart + k;
+    const seg = segs[k];
+    const fill = seg.firstChild;
+    seg.classList.toggle('current', idx === currentSentenceIdx);
+    if (idx < currentSentenceIdx) fill.style.width = '100%';
+    else if (idx === currentSentenceIdx) fill.style.width = (ratioWithinCurrent * 100) + '%';
+    else fill.style.width = '0%';
+  }
+}
+
+function updateTransportUI(cur, dur){
+  document.getElementById('curTime').textContent = fmt(cur);
+  document.getElementById('totalTime').textContent = fmt(dur);
+  const ratio = dur ? Math.min(1, cur / dur) : 0;
+  document.getElementById('topFill').style.width = (ratio * 100) + '%';
+  updateScrubSegments(ratio);
+}
+
+function highlightWordAtTime(sentence, time){
+  document.querySelectorAll('.tword').forEach(el => { if (el !== selectedWordEl) el.classList.remove('speaking'); });
+  const w = sentence.words.find(w => w.start !== undefined && time >= w.start && time < w.end);
+  if (w){
+    const idx = sentence.words.indexOf(w);
+    const el = document.querySelector(`.tword[data-sentence="${sentence.id}"][data-word="${idx}"]`);
+    if (el && el !== selectedWordEl) el.classList.add('speaking');
+  }
+}
+
+function markSentencePlaying(sentence){
+  document.querySelectorAll('.sentence').forEach(el => el.classList.remove('playing'));
+  const el = document.getElementById(sentence.id);
+  if (el){
+    el.classList.add('playing');
+    if (settings.autoscroll && sentence.id !== lastScrolledSentenceId){
+      lastScrolledSentenceId = sentence.id;
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
+}
+
+function stopFakeTimer(){
+  if (fakeTimerRAF){ cancelAnimationFrame(fakeTimerRAF); fakeTimerRAF = null; }
+}
+
+function updatePlayIcon(){
   document.getElementById('playIcon').textContent = playing ? '❚❚' : '▶';
 }
-render();
 
-document.getElementById('playBtn').addEventListener('click', (e) => { e.stopPropagation(); playing = !playing; lastTs = null; render(); });
-document.getElementById('loopBtn').addEventListener('click', (e) => { e.stopPropagation(); loopSentence = !loopSentence; document.getElementById('loopBtn').classList.toggle('on', loopSentence); });
-document.getElementById('speedSelect').addEventListener('change', (e) => { speed = parseFloat(e.target.value); });
-scrubTrack.addEventListener('click', (e) => {
+function onSentenceEnded(){
+  if (loopSentence){
+    if (audioEl.src) { audioEl.currentTime = 0; audioEl.play().catch(()=>{}); }
+    return;
+  }
+  goToSentence(currentSentenceIdx + 1, true);
+}
+
+function startFakeTimerForSentence(s, autoplay){
+  fakeT = 0;
+  const dur = s.words.length * AVG_WORD_SEC;
+  updateTransportUI(0, dur);
+  if (!autoplay) return;
+  let lastTs = null;
+  function step(ts){
+    if (!playing) return;
+    if (!lastTs) lastTs = ts;
+    const dt = (ts - lastTs) / 1000 * speed;
+    lastTs = ts;
+    fakeT += dt;
+    if (fakeT >= dur){
+      if (loopSentence){ fakeT = 0; lastTs = null; }
+      else { stopFakeTimer(); onSentenceEnded(); return; }
+    }
+    updateTransportUI(fakeT, dur);
+    const idx = Math.min(s.words.length - 1, Math.floor(fakeT / AVG_WORD_SEC));
+    document.querySelectorAll('.tword').forEach(el => { if (el !== selectedWordEl) el.classList.remove('speaking'); });
+    const el = document.querySelector(`.tword[data-sentence="${s.id}"][data-word="${idx}"]`);
+    if (el && el !== selectedWordEl) el.classList.add('speaking');
+    fakeTimerRAF = requestAnimationFrame(step);
+  }
+  fakeTimerRAF = requestAnimationFrame(step);
+}
+
+function goToSentence(idx, autoplay){
+  stopFakeTimer();
+  audioEl.pause();
+  if (idx < 0 || idx >= data.sentences.length){
+    playing = false;
+    updatePlayIcon();
+    return;
+  }
+  currentSentenceIdx = idx;
+  const targetPage = Math.floor(idx / PAGE_SIZE);
+  if (targetPage !== currentPage) renderPage(targetPage);
+
+  const s = data.sentences[idx];
+  markSentencePlaying(s);
+
+  if (s.audio){
+    audioEl.src = s.audio;
+    audioEl.playbackRate = speed;
+    if (autoplay){
+      playing = true;
+      audioEl.play().then(startHighlightLoop).catch(() => { playing = false; updatePlayIcon(); });
+    }
+  } else {
+    audioEl.removeAttribute('src');
+    playing = autoplay;
+    startFakeTimerForSentence(s, autoplay);
+  }
+  updatePlayIcon();
+}
+
+// initial paint of the transport bar for the first sentence, without playing
+goToSentence(currentSentenceIdx, false);
+
+document.getElementById('playBtn').addEventListener('click', (e) => {
   e.stopPropagation();
-  const r = scrubTrack.getBoundingClientRect();
-  const ratio = (e.clientX - r.left) / r.width;
-  t = Math.max(0, Math.min(TOTAL, ratio * TOTAL));
-  render();
+  const s = data.sentences[currentSentenceIdx];
+  if (playing){
+    playing = false;
+    audioEl.pause();
+    stopFakeTimer();
+    updatePlayIcon();
+  } else {
+    playing = true;
+    if (s.audio){
+      audioEl.playbackRate = speed;
+      audioEl.play().then(startHighlightLoop).catch(() => { playing = false; updatePlayIcon(); });
+    } else {
+      startFakeTimerForSentence(s, true);
+    }
+    updatePlayIcon();
+  }
+});
+document.getElementById('loopBtn').addEventListener('click', (e) => { e.stopPropagation(); loopSentence = !loopSentence; document.getElementById('loopBtn').classList.toggle('on', loopSentence); });
+document.getElementById('speedSelect').addEventListener('change', (e) => {
+  speed = parseFloat(e.target.value);
+  audioEl.playbackRate = speed;
 });
   applySettings();
 
   // everything (vocab, settings, popover, playback) is declared by now -> safe to do the first paint
   renderPage(currentPage);
-  document.getElementById('pagePrev').addEventListener('click', () => renderPage(currentPage - 1));
-  document.getElementById('pageNext').addEventListener('click', () => renderPage(currentPage + 1));
+  document.getElementById('pagePrev').addEventListener('click', () => {
+    if (currentPage > 0) goToSentence((currentPage - 1) * PAGE_SIZE, false);
+  });
+  document.getElementById('pageNext').addEventListener('click', () => {
+    if (currentPage < totalPages - 1) goToSentence((currentPage + 1) * PAGE_SIZE, false);
+  });
 }
 
 const LOCAL_BOOKS_INDEX_KEY = 'hebrew-reader-local-books';
@@ -1469,6 +1621,41 @@ const isOwner = new URLSearchParams(window.location.search).get('owner') === OWN
 
 async function boot(){
   const loadingEl = document.getElementById("loadingMsg");
+
+  // Bookmarkable direct link: reader-prototype.html?book=<URL к твоему
+  // приватно захостенному book-data.json>&title=Название
+  // Ничего не сохраняется в библиотеке сайта — просто открывает книгу
+  // напрямую из того места, куда указывает ссылка. Работает с любого
+  // устройства, где открыта эта ссылка, без повторной загрузки файлов —
+  // при условии, что хостинг книги отдаёт CORS-заголовки для fetch()
+  // (обычные статические хостинги вроде Cloudflare Pages/Netlify это
+  // умеют по умолчанию; прямые ссылки Google Drive/Dropbox — не всегда).
+  const params = new URLSearchParams(window.location.search);
+  const directBookUrl = params.get("book");
+  if (directBookUrl){
+    try{
+      const res = await fetch(directBookUrl, {cache: "no-store"});
+      if (res.ok){
+        const json = await res.json();
+        if (json && Array.isArray(json.sentences) && json.sentences.length){
+          if (loadingEl) loadingEl.remove();
+          const bookId = "url-" + directBookUrl.split("").reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0);
+          document.getElementById("libraryView").style.display = "none";
+          document.getElementById("readerView").style.display = "";
+          initReader(json, bookId, {
+            title: params.get("title") || "Книга по ссылке",
+            sub: "загружено с внешнего адреса"
+          });
+          return; // не показываем библиотеку вообще — сразу открываем книгу
+        }
+      }
+      console.error("Не удалось загрузить книгу по ссылке ?book=, код:", res && res.status);
+    }catch(err){
+      console.error("Ошибка загрузки книги по ссылке:", err);
+    }
+    // если не получилось — просто проваливаемся дальше, в обычную библиотеку
+  }
+
   if (loadingEl) loadingEl.remove();
 
   // Always-available built-in entry (the sci-fi practice text). Extra books
