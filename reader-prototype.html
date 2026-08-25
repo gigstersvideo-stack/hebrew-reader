@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.17.0
+  Hebrew Reader — v1.18.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -285,7 +285,7 @@
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.17.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.18.0</div>
   </div>
 </div>
 
@@ -305,7 +305,7 @@
     <div id="importCoverStatus" style="font-size:11px; color:var(--ink-soft); margin-top:4px;"></div>
 
     <label class="settings-row-label" style="display:block; margin:10px 0 6px;">...или вставь JSON текстом</label>
-    <textarea id="importText" placeholder='{ "sentences": [ ... ] }'
+    <textarea id="importText" placeholder='{ "title": "необязательно, подставится в поле выше", "sentences": [ ... ] }'
       style="width:100%; height:120px; font-family:monospace; font-size:12px; padding:8px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); box-sizing:border-box;"></textarea>
 
     <div style="display:flex; gap:10px; margin-top:14px;">
@@ -1782,7 +1782,7 @@ function validateBookData(raw){
   if (bad !== -1){
     return { valid:false, error: `Предложение №${bad+1} (индекс ${bad}) без поля "id" или "words".` };
   }
-  return { valid:true, json, count: json.sentences.length, firstText: json.sentences[0].fluent || json.sentences[0].literal || '(нет перевода)' };
+  return { valid:true, json, count: json.sentences.length, firstText: json.sentences[0].fluent || json.sentences[0].literal || '(нет перевода)', title: json.title || null };
 }
 
 function setupImportModal(manifest){
@@ -1832,6 +1832,8 @@ function setupImportModal(manifest){
       statusEl.innerHTML = `<div class="status ok">✅ Валидно: ${result.count} предложений. Первое: «${result.firstText.slice(0,60)}${result.firstText.length>60?'…':''}»</div>`;
       saveBtn.disabled = false;
       saveBtn.style.opacity = '1';
+      const titleInput = document.getElementById('importTitle');
+      if (result.title && !titleInput.value.trim()) titleInput.value = result.title;
     } else {
       pendingImportData = null;
       statusEl.innerHTML = `<div class="status err">⚠️ ${result.error}</div>`;
