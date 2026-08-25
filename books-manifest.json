@@ -1,3 +1,13 @@
 {
-  "books": []
+  "books": [
+    {
+      "id": "demo-scifi",
+      "title": "אות מהחלל",
+      "kicker": "פרק ראשון · תרגיל",
+      "sub": "оригинальный текст, написан для практики",
+      "source": "file",
+      "file": "demo-book-data.json",
+      "spineColor": "#37564D"
+    }
+  ]
 }
