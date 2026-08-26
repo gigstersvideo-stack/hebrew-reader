@@ -8,6 +8,15 @@
       "source": "file",
       "file": "demo-book-data.json",
       "spineColor": "#37564D"
+    },
+    {
+      "id": "robot-cat-alef",
+      "title": "רוֹנִי וְהֶחָתוּל",
+      "kicker": "רמה א׳ · סיפור מקורי",
+      "sub": "робот-уборщик находит кота на балконе — первая история из «фермы» уровневых текстов (алеф)",
+      "source": "file",
+      "file": "book-data-robot-cat-alef.json",
+      "spineColor": "#3B6E8F"
     }
   ]
 }
