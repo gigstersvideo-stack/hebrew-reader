@@ -56,16 +56,7 @@
           "end": 1.988
         }
       ],
-      "audio": "audio_robot_cat_alef/s1.mp3",
-      "illustration": {
-        "word": "כָּחֹל",
-        "tr": "и синий",
-        "caption": "כָּחֹל",
-        "capTr": "kahol",
-        "mnemonic": "Слово «кахоль» звучит похоже на «кашлял». Представьте, как маленький робот громко КАШЛЯЛ, и с каждым «кашлем» из его рта вылетала струя СИНЕЙ краски. Он так сильно кашлял, что полностью выкрасил себя в ярко-СИНИЙ цвет!",
-        "img": "illustrations_robot_cat_alef/s1.jpg",
-        "imgMnemonic": "illustrations_robot_cat_alef/s1-mnemonic.jpg"
-      }
+      "audio": "audio_robot_cat_alef/s1.mp3"
     },
     {
       "id": "s2",
@@ -600,8 +591,8 @@
         "word": "כִּסֵּא",
         "tr": "стуле",
         "caption": "כִּסֵּא",
-        "capTr": "Kise",
-        "mnemonic": "Слово «кисе́» (стул) по звуку напоминает КИСЕЛЬ. Представьте, что старый деревянный СТУЛ неожиданно превратился в огромную дрожащую массу розового КИСЕЛЯ. Человек пытается сесть на этот СТУЛ и со смешным всплеском проваливается сквозь КИСЕЛЬ прямо на пол!",
+        "capTr": "kise",
+        "mnemonic": "Слово звучит как \"кисе\" или \"киса\". На высоком стуле сидит огромная фиолетовая киса в балетной пачке, которая яростно грызет ножку этого стула.",
         "img": "illustrations_robot_cat_alef/s11.jpg",
         "imgMnemonic": "illustrations_robot_cat_alef/s11-mnemonic.jpg"
       }
@@ -1154,7 +1145,16 @@
           "end": 2.513
         }
       ],
-      "audio": "audio_robot_cat_alef/s21.mp3"
+      "audio": "audio_robot_cat_alef/s21.mp3",
+      "illustration": {
+        "word": "לַעֲשׂוֹת",
+        "tr": "издает",
+        "caption": "לַעֲשׂוֹת",
+        "capTr": "laasot",
+        "mnemonic": "Слово звучит как «ласоут». Представьте, как огромная синяя корова в балетной пачке залезла на сугроб и изо всех сил лает на солнце громким басом.",
+        "img": "illustrations_robot_cat_alef/s21.jpg",
+        "imgMnemonic": "illustrations_robot_cat_alef/s21-mnemonic.jpg"
+      }
     },
     {
       "id": "s22",

@@ -272,16 +272,7 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s3.mp3",
-      "illustration": {
-        "word": "קָרָא",
-        "tr": "читать",
-        "caption": "קָרָא",
-        "capTr": "Kara",
-        "mnemonic": "Слово «КАРА» созвучно со словом КАРАСЬ. Представьте, что гигантский КАРАСЬ в толстых очках уселся в книжном магазине и с азартом ЧИТАЕТ огромную древнюю книгу. Если кто-то пытается ему помешать, карась отвешивает звонкую оплеуху мокрым хвостом!",
-        "img": "illustrations_bookshop_mystery_bet/s3.jpg",
-        "imgMnemonic": "illustrations_bookshop_mystery_bet/s3-mnemonic.jpg"
-      }
+      "audio": "audio_bookshop_mystery_bet/s3.mp3"
     },
     {
       "id": "s4",
@@ -507,7 +498,16 @@
           "end": 4.487
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s5.mp3"
+      "audio": "audio_bookshop_mystery_bet/s5.mp3",
+      "illustration": {
+        "word": "חִפֵּשׂ",
+        "tr": "искала",
+        "caption": "חִפֵּשׂ",
+        "capTr": "chifes",
+        "mnemonic": "Слово «хипес» звучит похоже на русский сленг «хипиш» или слово «хэппи». Представь, что гигантский бегемот поднял шум и хипиш, отчаянно и суетливо искал пропавший золотой орех под диваном.",
+        "img": "illustrations_bookshop_mystery_bet/s5.jpg",
+        "imgMnemonic": "illustrations_bookshop_mystery_bet/s5-mnemonic.jpg"
+      }
     },
     {
       "id": "s6",
@@ -635,16 +635,7 @@
           "end": 5.013
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s6.mp3",
-      "illustration": {
-        "word": "יָרֹק",
-        "tr": "зеленая",
-        "caption": "יָרֹק",
-        "capTr": "yarok",
-        "mnemonic": "Слово «яро́к» звучит как «Я — рок!». Представьте, как зеленая книга натянула кожаную куртку, схватила электрогитару и кричит «Я — рок!», зарывая весь зал в потоки яркой зелёной краски.",
-        "img": "illustrations_bookshop_mystery_bet/s6.jpg",
-        "imgMnemonic": "illustrations_bookshop_mystery_bet/s6-mnemonic.jpg"
-      }
+      "audio": "audio_bookshop_mystery_bet/s6.mp3"
     },
     {
       "id": "s7",
@@ -762,16 +753,7 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s7.mp3",
-      "illustration": {
-        "word": "מַדָּף",
-        "tr": "полку",
-        "caption": "מַדָּף",
-        "capTr": "madaf",
-        "mnemonic": "Слово «мадаф» созвучно с «МАДАМ». Представь, как пышная эпатажная МАДАМ в огромной шляпе с перьями попыталась усесться на хрупкую книжную ПОЛКУ. Полка с треском прогибается, книги во все стороны разлетаются, а мадам комично пытается удержать равновесие!",
-        "img": "illustrations_bookshop_mystery_bet/s7.jpg",
-        "imgMnemonic": "illustrations_bookshop_mystery_bet/s7-mnemonic.jpg"
-      }
+      "audio": "audio_bookshop_mystery_bet/s7.mp3"
     },
     {
       "id": "s8",
@@ -1901,7 +1883,16 @@
           "end": 2.788
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s22.mp3"
+      "audio": "audio_bookshop_mystery_bet/s22.mp3",
+      "illustration": {
+        "word": "מַדָּף",
+        "tr": "к полке",
+        "caption": "מַדָּף",
+        "capTr": "madaf",
+        "mnemonic": "Слово «мадáф» звучит похоже на русское «модуль давай». Представьте огромного робота, который требует дать ему мебельный модуль и с размаху приколачивает большую книжную полку прямо к чужому лбу.",
+        "img": "illustrations_bookshop_mystery_bet/s22.jpg",
+        "imgMnemonic": "illustrations_bookshop_mystery_bet/s22-mnemonic.jpg"
+      }
     },
     {
       "id": "s23",

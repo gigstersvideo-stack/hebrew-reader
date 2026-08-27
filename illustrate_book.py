@@ -1,11 +1,23 @@
 """
-illustrate_book.py — добавляет 2-3 иллюстрации-мнемоники к уже размеченному
+illustrate_book.py — добавляет ровно ОДНУ иллюстрацию на каждую страницу
+(PAGE_SIZE=20 предложений, как в reader-prototype.html) уже размеченного
 book-data.json: слово выбирается по РЕАЛЬНОЙ частотности (списки Dicta,
-top_500/top_20000), а не наугад; мнемоника (созвучие + абсурдная сценка)
-пишется через Gemini; картинка рисуется настоящей диффузионной моделью
-через Cloudflare Workers AI (@cf/black-forest-labs/flux-1-schnell,
-бесплатно в рамках дневного лимита нейронов) — SVG для этого не годится,
-он не умеет достоверно рисовать конкретное действие/сценку.
+top_500/top_20000) в пределах этой страницы, а не наугад; заимствования
+(רובוט и т.п., которые и так звучат как в русском) исключены из отбора.
+
+На каждую иллюстрацию — две картинки:
+  - атмосферная (по умолчанию видна читателю): строго соответствует
+    происходящему в предложении, единый стиль на всю книгу — стиль
+    задаётся фиксированной строкой в коде (ATMOSPHERE_STYLE), а не
+    отдельным решением модели на каждое слово, иначе картинки книги
+    не будут похожи друг на друга.
+  - мнемоническая (видна при включённом тумблере "Мнемоника"): созвучие
+    + абсурдная гротескная сценка, свобода образа не ограничена сюжетом.
+
+Мнемоника и обе картинки пишутся/рисуются через Gemini (текст) и
+Cloudflare Workers AI (@cf/black-forest-labs/flux-1-schnell, бесплатно
+в рамках дневного лимита нейронов) — SVG для этого не годится, он не
+умеет достоверно рисовать конкретное действие/сценку.
 
 Установка:
     pip install google-genai requests --break-system-packages
@@ -17,7 +29,7 @@ top_500/top_20000), а не наугад; мнемоника (созвучие +
 
 Запуск:
     python illustrate_book.py book-data.json --out book-data-illustrated.json \
-        --images-dir illustrations_mybook --count 3
+        --images-dir illustrations_mybook
 """
 
 import argparse
@@ -47,6 +59,19 @@ def with_retries(fn, retries=4, delay=5):
 
 FREQ_500_URL = "https://nakdan.dicta.org.il/top_500_words.json"
 FREQ_20000_URL = "https://nakdan.dicta.org.il/top_20000_partial.json"
+
+# должно совпадать с PAGE_SIZE в reader-prototype.html — одна страница
+# книги = одна иллюстрация
+PAGE_SIZE = 20
+
+# фиксированный стиль атмосферных картинок — единый на всю книгу.
+# Дописывается кодом к промту, а не оставляется на усмотрение модели,
+# иначе от картинки к картинке стиль будет плыть.
+ATMOSPHERE_STYLE = (
+    "Art style: soft cinematic photography, warm natural lighting, shallow "
+    "depth of field, muted realistic color grading, no text, no speech "
+    "bubbles, no letters, no writing anywhere in the image."
+)
 
 # части речи, которые не стоит иллюстрировать, даже если формально "редкие"
 # (частицы/предлоги/союзы/местоимения не несут отдельного образа)
@@ -87,9 +112,9 @@ def is_loanword(w):
     return False
 
 
-def select_words(data, top500, top20000, count):
+def score_candidates(sentences, top500, top20000):
     candidates = {}
-    for s in data["sentences"]:
+    for s in sentences:
         for w in s["words"]:
             if w.get("pos") in SKIP_POS or is_loanword(w):
                 continue
@@ -109,9 +134,22 @@ def select_words(data, top500, top20000, count):
             })
             entry["occurrences"] += 1
             entry["rarity"] = max(entry["rarity"], rarity)
+    return candidates
 
-    ranked = sorted(candidates.values(), key=lambda e: (-e["rarity"], -e["occurrences"]))
-    return ranked[:count]
+
+def select_words_per_page(data, top500, top20000):
+    """Одна иллюстрация на страницу (PAGE_SIZE предложений) — не наугад,
+    самое редкое+значимое слово именно в пределах этой страницы."""
+    sentences = data["sentences"]
+    selected = []
+    for start in range(0, len(sentences), PAGE_SIZE):
+        page_sentences = sentences[start:start + PAGE_SIZE]
+        candidates = score_candidates(page_sentences, top500, top20000)
+        if not candidates:
+            continue  # на этой странице не нашлось ни одного подходящего слова
+        best = max(candidates.values(), key=lambda e: (e["rarity"], e["occurrences"]))
+        selected.append(best)
+    return selected
 
 
 MNEMONIC_SCHEMA = {
@@ -120,28 +158,36 @@ MNEMONIC_SCHEMA = {
         "mnemonic_ru": {"type": "string", "description": "Мнемоника на русском: созвучие + абсурдная запоминающаяся сцена, 2-3 предложения"},
         "cap_tr": {"type": "string", "description": "Транслитерация слова латиницей"},
         "mnemonic_image_prompt": {"type": "string", "description": "Описание сцены НА АНГЛИЙСКОМ для генерации яркой гротескной картинки-мнемоники: комикс-стиль, конкретное действие"},
-        "atmosphere_image_prompt": {"type": "string", "description": "Описание НА АНГЛИЙСКОМ спокойной, атмосферной картинки того же момента истории — без гротеска и мнемонического образа, просто передаёт настроение сцены"},
+        "atmosphere_image_prompt": {"type": "string", "description": "ТОЛЬКО описание содержимого кадра НА АНГЛИЙСКОМ — те же персонажи/место/действие, что буквально в контекстном предложении, без художественных вольностей. Про стиль/освещение/палитру НЕ писать — это добавляется отдельно."},
     },
     "required": ["mnemonic_ru", "cap_tr", "mnemonic_image_prompt", "atmosphere_image_prompt"],
 }
 
-MNEMONIC_PROMPT = """Слово на иврите: {lemma} ({tr}) — часть речи: {pos}.
+MNEMONIC_PROMPT = """{book_summary_block}Слово на иврите: {lemma} ({tr}) — часть речи: {pos}.
 Контекст: слово встречается в истории со следующим предложением: "{sentence_context}"
 
 ЗАДАЧА 1 — мнемоника: придумай созвучие с русским словом/фразой +
 гротескную, преувеличенную, абсурдную сцену, которая свяжет звучание со
 значением. Чем страннее и ярче образ — тем лучше запоминается (эффект
-причудливости в мнемотехнике) — избегай спокойных, буквальных сцен.
+причудливости в мнемотехнике) — избегай спокойных, буквальных сцен. Эта
+картинка НЕ обязана соответствовать сюжету книги — она про звучание
+слова, а не про историю.
 Опиши эту сцену как mnemonic_image_prompt — НА АНГЛИЙСКОМ, конкретно и
 по-комиксовому: чёткое действие, преувеличенная мимика/поза, яркие
 плоские цвета, юмор. Не описывай стиль абстрактно — опиши, что именно
 нарисовано.
 
-ЗАДАЧА 2 — atmosphere_image_prompt: НА АНГЛИЙСКОМ опиши спокойную,
-атмосферную картинку того же момента истории (контекстного предложения
-выше) — без гротеска, без мнемонического образа, просто передаёт
-настроение и обстановку сцены книги. Мягкая палитра, кинематографичная
-композиция, никакого юмора или преувеличения.
+ЗАДАЧА 2 — atmosphere_image_prompt: опиши НА АНГЛИЙСКОМ, что БУКВАЛЬНО
+происходит в контекстном предложении выше — используя общий контекст
+книги (если он дан выше), чтобы верно передать, КТО именно действует
+(например, если "он" — это конкретный персонаж книги, а не случайный
+человек) и ГДЕ это происходит. Никаких выдуманных деталей, никакой
+связи со звучанием слова (это не мнемоника, а иллюстрация сюжета).
+Соответствие сюжету книги должно быть стопроцентным — это единственная
+цель атмосферной картинки, если персонаж не человек (робот, животное,
+существо) — так и опиши, не заменяй его человеком. НЕ пиши про стиль,
+освещение или цветовую палитру — это добавляется отдельно и одинаково
+для всех картинок книги, чтобы они были в одной стилистике.
 
 ВАЖНО для обоих промтов: никаких надписей, слов, речевых пузырей, букв
 на картинке — диффузионные модели рисуют текст нечитаемой кашей, явно
@@ -150,8 +196,12 @@ writing anywhere in the image".
 """
 
 
-def generate_mnemonic(client, model, lemma, tr, pos, sentence_context):
-    prompt = MNEMONIC_PROMPT.format(lemma=lemma, tr=tr, pos=pos, sentence_context=sentence_context)
+def generate_mnemonic(client, model, lemma, tr, pos, sentence_context, book_summary=None):
+    book_summary_block = f"Общий сюжет книги (для контекста персонажей): {book_summary}\n\n" if book_summary else ""
+    prompt = MNEMONIC_PROMPT.format(
+        book_summary_block=book_summary_block,
+        lemma=lemma, tr=tr, pos=pos, sentence_context=sentence_context,
+    )
     response = with_retries(lambda: client.models.generate_content(
         model=model,
         contents=prompt,
@@ -197,7 +247,10 @@ def main():
     ap.add_argument("book_data", help="уже размеченный book-data.json")
     ap.add_argument("--out", default=None, help="куда сохранить (по умолчанию перезаписать вход)")
     ap.add_argument("--images-dir", default="illustrations", help="папка для картинок")
-    ap.add_argument("--count", type=int, default=3, help="сколько слов иллюстрировать")
+    ap.add_argument("--summary", default=None,
+                     help="краткое описание сюжета/персонажей книги (из .meta.json от "
+                          "2_generate_story.py) — без него атмосферные картинки не будут "
+                          "знать, кто такой 'он' в предложении, и могут нарисовать не того персонажа")
     ap.add_argument("--model", default="gemini-3.6-flash")
     ap.add_argument("--api-key", default=None, help="Gemini — или GEMINI_API_KEY")
     ap.add_argument("--cf-account-id", default=None, help="или CF_ACCOUNT_ID")
@@ -214,8 +267,14 @@ def main():
     with open(args.book_data, encoding="utf-8") as f:
         data = json.load(f)
 
+    # чистим иллюстрации от прошлых прогонов — иначе при повторном запуске
+    # (например, после правки промта) старые картинки на страницах, чьё
+    # слово-кандидат сменилось, остаются висеть рядом с новыми
+    for s in data["sentences"]:
+        s.pop("illustration", None)
+
     top500, top20000 = load_freq_sets()
-    words = select_words(data, top500, top20000, args.count)
+    words = select_words_per_page(data, top500, top20000)
     if not words:
         print("Не нашлось подходящих слов (все входят в топ-500 частотных).", file=sys.stderr)
         sys.exit(0)
@@ -231,10 +290,11 @@ def main():
         sentence = sentences_by_id[sid]
         context = sentence.get("fluent") or sentence.get("literal") or ""
         print(f"[{sid}] {w['lemma']} ({w['tr']}) — мнемоника...", file=sys.stderr)
-        m = generate_mnemonic(client, args.model, w["lemma"], w["tr"], w["pos"], context)
+        m = generate_mnemonic(client, args.model, w["lemma"], w["tr"], w["pos"], context, args.summary)
 
         print(f"[{sid}] рисую атмосферную картинку...", file=sys.stderr)
-        atmo_bytes = generate_image(cf_account_id, cf_api_token, m["atmosphere_image_prompt"])
+        atmo_prompt = f"{m['atmosphere_image_prompt']} {ATMOSPHERE_STYLE}"
+        atmo_bytes = generate_image(cf_account_id, cf_api_token, atmo_prompt)
         atmo_path = os.path.join(args.images_dir, f"{sid}.jpg")
         with open(atmo_path, "wb") as f:
             f.write(atmo_bytes)

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.23.0
+  Hebrew Reader — v1.24.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -80,6 +80,8 @@
   .tword.selected{ background: var(--accent); color: #fff; }
   .tword.saved:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--gold); }
   .tword.root-match:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--root-hl), 0 0 0 1px var(--root-hl); border-radius:3px; }
+  .tword.illustration-hover:not(.speaking):not(.selected){ background: var(--gold-soft); box-shadow: 0 0 0 1px var(--gold); border-radius:3px; }
+  .illustration-frame, .illustration-caption{ cursor:pointer; }
   body.nikud-off .wp-lemma{ letter-spacing: 0; }
 
   .translate-toggle{
@@ -287,7 +289,7 @@
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.23.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.24.0</div>
   </div>
 </div>
 
@@ -454,6 +456,22 @@
 // книг без явной паузы.
 let activeReaderToken = 0;
 
+// Настройки — часть статичного каркаса страницы (существуют до и
+// независимо от того, какая книга открыта), поэтому открытие/закрытие
+// панели вешается один раз здесь, а не внутри initReader — иначе при
+// каждом новом открытии книги обработчик клика дублировался бы поверх
+// старого (та же природа бага, что была у play/loop-кнопок).
+(() => {
+  const settingsBtn = document.getElementById('settingsBtn');
+  const settingsPanel = document.getElementById('settingsPanel');
+  settingsBtn.addEventListener('click', (e) => { e.stopPropagation(); settingsPanel.classList.toggle('open'); });
+  document.addEventListener('click', (e) => {
+    if (settingsPanel.classList.contains('open') && !settingsPanel.contains(e.target) && e.target !== settingsBtn){
+      settingsPanel.classList.remove('open');
+    }
+  });
+})();
+
 function initReader(data, bookId, meta) {
 activeReaderToken++;
 const myReaderToken = activeReaderToken;
@@ -487,17 +505,33 @@ const totalOccurrences = freqList.reduce((sum,w) => sum + w.count, 0);
 // ---- illustrations: one per "page" (~10 sentences), original line-art,
 // paired with a mnemonic technique for the featured word ----
 
-function buildIllustration(item){
+function buildIllustration(item, sentenceId, container){
   const wrap = document.createElement('div');
   wrap.className = 'illustration-block';
   const showMnemonic = settings.mnemonic && item.imgMnemonic;
   const imgSrc = showMnemonic ? item.imgMnemonic : item.img;
   const media = item.svg ? item.svg : (imgSrc ? `<img src="${imgSrc}" alt="${item.caption || ''}" style="width:100%;display:block;border-radius:2px;">` : '');
+  // подпись со словом и блок мнемоники — часть "режима мнемоники":
+  // в спокойном атмосферном режиме их прячем целиком, не только текст
   wrap.innerHTML = `
     <div class="illustration-frame">${media}</div>
-    <div class="illustration-caption">${item.caption}<div class="cap-tr">${item.capTr}</div></div>
+    ${showMnemonic ? `<div class="illustration-caption">${item.caption}<div class="cap-tr">${item.capTr}</div></div>` : ''}
     ${showMnemonic && item.mnemonic ? `<div class="mnemonic-box"><b>Мнемоника «${item.word}» — ${item.tr}:</b> ${item.mnemonic}</div>` : ''}
   `;
+
+  // наведение на картинку/подпись подсвечивает то же слово в тексте
+  // предложения — чтобы можно было сопоставить иллюстрацию со словом
+  const targetWord = (sentenceId && container)
+    ? container.querySelector(`.tword[data-sentence="${sentenceId}"][data-lemma="${CSS.escape(item.word)}"]`)
+    : null;
+  if (targetWord){
+    const on = () => targetWord.classList.add('illustration-hover');
+    const off = () => targetWord.classList.remove('illustration-hover');
+    wrap.querySelectorAll('.illustration-frame, .illustration-caption').forEach(el => {
+      el.addEventListener('mouseenter', on);
+      el.addEventListener('mouseleave', off);
+    });
+  }
   return wrap;
 }
 
@@ -559,7 +593,7 @@ function renderSentence(s, container){
   container.appendChild(trBlock);
 
   if (s.illustration){
-    container.appendChild(buildIllustration(s.illustration));
+    container.appendChild(buildIllustration(s.illustration, s.id, container));
   }
 }
 
@@ -923,15 +957,6 @@ document.getElementById('swAutoscroll').addEventListener('change', (e) => { sett
 document.getElementById('swMnemonic').addEventListener('change', (e) => { settings.mnemonic = e.target.checked; saveSettings(); renderPage(currentPage); });
 document.getElementById('swEditBase').addEventListener('change', (e) => { settings.editModeBase = e.target.checked; saveSettings(); renderPage(currentPage); });
 document.getElementById('swEditMode').addEventListener('change', (e) => { settings.editMode = e.target.checked; saveSettings(); renderPage(currentPage); });
-
-const settingsBtn = document.getElementById('settingsBtn');
-const settingsPanel = document.getElementById('settingsPanel');
-settingsBtn.addEventListener('click', (e) => { e.stopPropagation(); settingsPanel.classList.toggle('open'); });
-document.addEventListener('click', (e) => {
-  if (settingsPanel.classList.contains('open') && !settingsPanel.contains(e.target) && e.target !== settingsBtn){
-    settingsPanel.classList.remove('open');
-  }
-});
 
 // ---- word popover + root highlighting ----
 let popoverEl = null;
