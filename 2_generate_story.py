@@ -125,6 +125,17 @@ NIQUD_SCHEMA = {
     "required": ["vocalized_text"],
 }
 
+COVER_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "cover_svg": {
+            "type": "string",
+            "description": "Полный код SVG-иконки для обложки книги, от <svg> до </svg>",
+        },
+    },
+    "required": ["cover_svg"],
+}
+
 STORY_PROMPT = """Ты — автор оригинальных коротких историй на иврите для изучающих язык в ульпане.
 
 ЗАДАЧА: напиши полностью оригинальный рассказ — без существующих
@@ -145,6 +156,24 @@ STORY_PROMPT = """Ты — автор оригинальных коротких 
 - summary_ru — краткое описание сюжета на русском, 1-2 предложения.
 - keywords — 8-12 слов истории, которые стоит подсветить учащемуся
   (лемма с огласовками + перевод), подходящих для иллюстраций/мнемоники.
+"""
+
+COVER_PROMPT = """Нарисуй простую минималистичную SVG-иконку для обложки книги.
+
+Сюжет книги: {summary_ru}
+
+Требования к стилю (важно соблюсти точно):
+- viewBox="0 0 300 140" (широкий формат, как обложка-баннер)
+- Только тонкие контурные линии (stroke), без заливок фотографического типа
+- Цвета ТОЛЬКО через CSS-переменные: stroke="var(--ink)" для основных контуров,
+  fill/stroke="var(--gold)" для мелких акцентов (точки, звёзды, блики)
+- stroke-width около 2, stroke-linecap="round", fill="none" на контурах
+  (кроме мелких акцентных элементов — их можно заливать var(--gold))
+- Простые геометрические формы, никаких градиентов, теней, фотореализма
+- Никакого текста внутри SVG
+- Композиция должна читаться на широком прямоугольнике, не квадрате
+
+Верни только cover_svg — код SVG целиком, от <svg> до </svg>.
 """
 
 NIQUD_PROMPT = """Расставь огласовки (никуд) в этом тексте на иврите.
@@ -192,6 +221,19 @@ def add_nikud(client, model, text):
     return json.loads(response.text)["vocalized_text"]
 
 
+def generate_cover_svg(client, model, summary_ru):
+    prompt = COVER_PROMPT.format(summary_ru=summary_ru)
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            response_mime_type="application/json",
+            response_schema=COVER_SCHEMA,
+        ),
+    )
+    return json.loads(response.text)["cover_svg"]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("level", choices=list(LEVEL_PROFILES.keys()), help="alef / bet / gimel / dalet")
@@ -199,7 +241,7 @@ def main():
     ap.add_argument("--word-count", type=int, default=None,
                      help="целевой объём в словах (по умолчанию — типичный для уровня)")
     ap.add_argument("--out", default=None, help="куда сохранить .txt (по умолчанию story-<level>.txt)")
-    ap.add_argument("--model", default="gemini-2.5-flash")
+    ap.add_argument("--model", default="gemini-3.6-flash")
     ap.add_argument("--api-key", default=None, help="или задай переменную окружения GEMINI_API_KEY")
     args = ap.parse_args()
 
@@ -220,6 +262,9 @@ def main():
     print("Расставляю огласовки...", file=sys.stderr)
     vocalized = add_nikud(client, args.model, story["story_text"])
 
+    print("Рисую обложку...", file=sys.stderr)
+    cover_svg = generate_cover_svg(client, args.model, story["summary_ru"])
+
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(vocalized)
 
@@ -230,6 +275,7 @@ def main():
             "word_count_target": word_count,
             "summary_ru": story["summary_ru"],
             "keywords": story["keywords"],
+            "cover_svg": cover_svg,
         }, f, ensure_ascii=False, indent=2)
 
     print(f"\nГотово:\n  текст -> {out_path}\n  метаданные -> {meta_path}", file=sys.stderr)
