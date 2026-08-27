@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.21.0
+  Hebrew Reader — v1.23.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -287,7 +287,7 @@
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.21.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.23.0</div>
   </div>
 </div>
 
@@ -352,6 +352,10 @@
         <div class="settings-row">
           <div><div class="settings-row-label">Автопрокрутка</div><div class="settings-row-sub">экран следует за текущим предложением при воспроизведении</div></div>
           <label class="switch"><input type="checkbox" id="swAutoscroll" checked><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-row-label">Мнемоника</div><div class="settings-row-sub">яркие гротескные картинки-подсказки вместо спокойных атмосферных</div></div>
+          <label class="switch"><input type="checkbox" id="swMnemonic"><span class="switch-track"></span></label>
         </div>
         <div class="settings-row">
           <div><div class="settings-row-label">Режим редактирования</div><div class="settings-row-sub">показывает значок ✎ у предложений твоих книг</div></div>
@@ -486,11 +490,13 @@ const totalOccurrences = freqList.reduce((sum,w) => sum + w.count, 0);
 function buildIllustration(item){
   const wrap = document.createElement('div');
   wrap.className = 'illustration-block';
-  const media = item.svg ? item.svg : (item.img ? `<img src="${item.img}" alt="${item.caption || ''}" style="width:100%;display:block;border-radius:2px;">` : '');
+  const showMnemonic = settings.mnemonic && item.imgMnemonic;
+  const imgSrc = showMnemonic ? item.imgMnemonic : item.img;
+  const media = item.svg ? item.svg : (imgSrc ? `<img src="${imgSrc}" alt="${item.caption || ''}" style="width:100%;display:block;border-radius:2px;">` : '');
   wrap.innerHTML = `
     <div class="illustration-frame">${media}</div>
     <div class="illustration-caption">${item.caption}<div class="cap-tr">${item.capTr}</div></div>
-    ${item.mnemonic ? `<div class="mnemonic-box"><b>Мнемоника «${item.word}» — ${item.tr}:</b> ${item.mnemonic}</div>` : ''}
+    ${showMnemonic && item.mnemonic ? `<div class="mnemonic-box"><b>Мнемоника «${item.word}» — ${item.tr}:</b> ${item.mnemonic}</div>` : ''}
   `;
   return wrap;
 }
@@ -880,7 +886,7 @@ function renderTrainCard(){
 // from the popover lemma — works only for books whose words already carry
 // real niqud in the data; books without it look the same either way.
 const SETTINGS_KEY = 'hebrew-reader-settings';
-let settings = { nikud:true, literal:true, detailed:true, autoscroll:true, editMode:false, editModeBase:false };
+let settings = { nikud:true, literal:true, detailed:true, autoscroll:true, editMode:false, editModeBase:false, mnemonic:false };
 try{
   const saved = localStorage.getItem(SETTINGS_KEY);
   if (saved) settings = {...settings, ...JSON.parse(saved)};
@@ -905,6 +911,7 @@ document.getElementById('swNikud').checked = settings.nikud;
 document.getElementById('swLiteral').checked = settings.literal;
 document.getElementById('swDetailed').checked = settings.detailed;
 document.getElementById('swAutoscroll').checked = settings.autoscroll;
+document.getElementById('swMnemonic').checked = settings.mnemonic;
 document.getElementById('swEditBase').checked = settings.editModeBase;
 document.getElementById('swEditMode').checked = settings.editMode;
 if (isOwner) document.getElementById('ownerEditRow').style.display = '';
@@ -913,6 +920,7 @@ document.getElementById('swNikud').addEventListener('change', (e) => { settings.
 document.getElementById('swLiteral').addEventListener('change', (e) => { settings.literal = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swDetailed').addEventListener('change', (e) => { settings.detailed = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swAutoscroll').addEventListener('change', (e) => { settings.autoscroll = e.target.checked; saveSettings(); });
+document.getElementById('swMnemonic').addEventListener('change', (e) => { settings.mnemonic = e.target.checked; saveSettings(); renderPage(currentPage); });
 document.getElementById('swEditBase').addEventListener('change', (e) => { settings.editModeBase = e.target.checked; saveSettings(); renderPage(currentPage); });
 document.getElementById('swEditMode').addEventListener('change', (e) => { settings.editMode = e.target.checked; saveSettings(); renderPage(currentPage); });
 

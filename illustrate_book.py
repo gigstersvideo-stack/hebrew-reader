@@ -76,11 +76,22 @@ def load_freq_sets():
     return top500, top20000
 
 
+def is_loanword(w):
+    # заимствования (רובוט, טלפון и т.п.) размечены 5_gemini_pipeline.py
+    # без корня и/или с пометкой "заимствование" в extra — мнемоника для
+    # слова, которое и так звучит как в русском, бессмысленна
+    if w.get("root") in ("—", "-", ""):
+        return True
+    if "заимств" in (w.get("extra") or "").lower():
+        return True
+    return False
+
+
 def select_words(data, top500, top20000, count):
     candidates = {}
     for s in data["sentences"]:
         for w in s["words"]:
-            if w.get("pos") in SKIP_POS:
+            if w.get("pos") in SKIP_POS or is_loanword(w):
                 continue
             surface = clean_surface(w["t"])
             if not surface:
@@ -108,26 +119,34 @@ MNEMONIC_SCHEMA = {
     "properties": {
         "mnemonic_ru": {"type": "string", "description": "Мнемоника на русском: созвучие + абсурдная запоминающаяся сцена, 2-3 предложения"},
         "cap_tr": {"type": "string", "description": "Транслитерация слова латиницей"},
-        "image_prompt": {"type": "string", "description": "Описание сцены НА АНГЛИЙСКОМ для генерации картинки: яркая, гротескная, комикс-стиль, конкретное действие"},
+        "mnemonic_image_prompt": {"type": "string", "description": "Описание сцены НА АНГЛИЙСКОМ для генерации яркой гротескной картинки-мнемоники: комикс-стиль, конкретное действие"},
+        "atmosphere_image_prompt": {"type": "string", "description": "Описание НА АНГЛИЙСКОМ спокойной, атмосферной картинки того же момента истории — без гротеска и мнемонического образа, просто передаёт настроение сцены"},
     },
-    "required": ["mnemonic_ru", "cap_tr", "image_prompt"],
+    "required": ["mnemonic_ru", "cap_tr", "mnemonic_image_prompt", "atmosphere_image_prompt"],
 }
 
 MNEMONIC_PROMPT = """Слово на иврите: {lemma} ({tr}) — часть речи: {pos}.
 Контекст: слово встречается в истории со следующим предложением: "{sentence_context}"
 
-Придумай мнемонику для русскоговорящего: созвучие с русским словом/фразой +
+ЗАДАЧА 1 — мнемоника: придумай созвучие с русским словом/фразой +
 гротескную, преувеличенную, абсурдную сцену, которая свяжет звучание со
 значением. Чем страннее и ярче образ — тем лучше запоминается (эффект
 причудливости в мнемотехнике) — избегай спокойных, буквальных сцен.
+Опиши эту сцену как mnemonic_image_prompt — НА АНГЛИЙСКОМ, конкретно и
+по-комиксовому: чёткое действие, преувеличенная мимика/поза, яркие
+плоские цвета, юмор. Не описывай стиль абстрактно — опиши, что именно
+нарисовано.
 
-Затем опиши эту сцену как промт для генерации картинки диффузионной
-моделью — НА АНГЛИЙСКОМ, конкретно и по-комиксовому: чёткое действие,
-преувеличенная мимика/поза, яркие плоские цвета, юмор. Не описывай стиль
-абстрактно — опиши, что именно нарисовано. ВАЖНО: никаких надписей, слов,
-речевых пузырей, букв на картинке — диффузионные модели рисуют текст
-нечитаемой кашей, явно попроси "no text, no speech bubbles, no letters,
-no writing anywhere in the image".
+ЗАДАЧА 2 — atmosphere_image_prompt: НА АНГЛИЙСКОМ опиши спокойную,
+атмосферную картинку того же момента истории (контекстного предложения
+выше) — без гротеска, без мнемонического образа, просто передаёт
+настроение и обстановку сцены книги. Мягкая палитра, кинематографичная
+композиция, никакого юмора или преувеличения.
+
+ВАЖНО для обоих промтов: никаких надписей, слов, речевых пузырей, букв
+на картинке — диффузионные модели рисуют текст нечитаемой кашей, явно
+попроси в каждом промте "no text, no speech bubbles, no letters, no
+writing anywhere in the image".
 """
 
 
@@ -214,11 +233,17 @@ def main():
         print(f"[{sid}] {w['lemma']} ({w['tr']}) — мнемоника...", file=sys.stderr)
         m = generate_mnemonic(client, args.model, w["lemma"], w["tr"], w["pos"], context)
 
-        print(f"[{sid}] рисую картинку...", file=sys.stderr)
-        img_bytes = generate_image(cf_account_id, cf_api_token, m["image_prompt"])
-        img_path = os.path.join(args.images_dir, f"{sid}.jpg")
-        with open(img_path, "wb") as f:
-            f.write(img_bytes)
+        print(f"[{sid}] рисую атмосферную картинку...", file=sys.stderr)
+        atmo_bytes = generate_image(cf_account_id, cf_api_token, m["atmosphere_image_prompt"])
+        atmo_path = os.path.join(args.images_dir, f"{sid}.jpg")
+        with open(atmo_path, "wb") as f:
+            f.write(atmo_bytes)
+
+        print(f"[{sid}] рисую картинку-мнемонику...", file=sys.stderr)
+        mnem_bytes = generate_image(cf_account_id, cf_api_token, m["mnemonic_image_prompt"])
+        mnem_path = os.path.join(args.images_dir, f"{sid}-mnemonic.jpg")
+        with open(mnem_path, "wb") as f:
+            f.write(mnem_bytes)
 
         sentence["illustration"] = {
             "word": w["lemma"],
@@ -227,6 +252,7 @@ def main():
             "capTr": m["cap_tr"],
             "mnemonic": m["mnemonic_ru"],
             "img": f"{args.images_dir}/{sid}.jpg",
+            "imgMnemonic": f"{args.images_dir}/{sid}-mnemonic.jpg",
         }
 
     out_path = args.out or args.book_data
