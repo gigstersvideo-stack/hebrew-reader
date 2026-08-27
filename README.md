@@ -84,6 +84,23 @@ python 2_generate_story.py alef "робот-уборщик находит на �
 python 5_gemini_pipeline.py story-alef.txt --out book-data-alef.json
 ```
 
+## Как добавить иллюстрации-мнемоники к готовой книге
+
+`illustrate_book.py` сам находит 2-3 самых редких/значимых слова готового
+`book-data.json` (сверка с настоящими частотными списками иврита от
+Dicta — не наугад), пишет для каждого мнемонику (созвучие + абсурдная
+сценка) через Gemini и рисует картинку настоящей диффузионной моделью
+через Cloudflare Workers AI (`@cf/black-forest-labs/flux-1-schnell`,
+бесплатно в рамках дневного лимита) — SVG для мнемоник не годится, он не
+умеет достоверно рисовать конкретное действие/сценку:
+
+```bash
+export GEMINI_API_KEY=твой_ключ
+export CF_ACCOUNT_ID=id_твоего_аккаунта_cloudflare
+export CF_API_TOKEN=токен_с_правом_Workers_AI
+python illustrate_book.py book-data.json --images-dir illustrations_mybook --count 3
+```
+
 ## Как озвучить книгу без готовой аудиокниги
 
 `3_generate_audio.py` озвучивает уже размеченный `book-data.json`

@@ -272,7 +272,15 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s3.mp3"
+      "audio": "audio_bookshop_mystery_bet/s3.mp3",
+      "illustration": {
+        "word": "קָרָא",
+        "tr": "читать",
+        "caption": "קָרָא",
+        "capTr": "kara",
+        "mnemonic": "Слово «קָרָא» (КАРА) звучит как КАРАСЬ. Представьте гигантского КАРАСЯ в очках, который пытается ЧИТАЕТ книгу в полной тишине. Если кто-то мешает ему ЧИТАТЬ, карась с криком наносит ему сокрушительный удар КАРАте!",
+        "img": "illustrations_bookshop_mystery_bet/s3.jpg"
+      }
     },
     {
       "id": "s4",
@@ -626,7 +634,15 @@
           "end": 5.013
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s6.mp3"
+      "audio": "audio_bookshop_mystery_bet/s6.mp3",
+      "illustration": {
+        "word": "יָרֹק",
+        "tr": "зеленая",
+        "caption": "יָרֹק",
+        "capTr": "YAROK",
+        "mnemonic": "Созвучие: יָרֹק (ярок) — «Я — РОК!». Гигантский безумный огурец в кожаной куртке прыгает по сцене с гитарой из брокколи и вопит в микрофон: «Я — РОК!». Из гитары фонтаном брызжет ядовито-ЗЕЛЁНАЯ краска, заливая весь зал.",
+        "img": "illustrations_bookshop_mystery_bet/s6.jpg"
+      }
     },
     {
       "id": "s7",
@@ -744,7 +760,15 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s7.mp3"
+      "audio": "audio_bookshop_mystery_bet/s7.mp3",
+      "illustration": {
+        "word": "מַדָּף",
+        "tr": "полку",
+        "caption": "מַדָּף",
+        "capTr": "madaf",
+        "mnemonic": "Слово «МАДАФ» напоминает фразу «МАДАМ АФ!». Представьте пышную французскую МАДАМ в бальном платье, которая залезла на узкую книжную ПОЛКУ и громко лает «АФ!». Полка с треском прогибается, а тяжелые книги разлетаются в стороны.",
+        "img": "illustrations_bookshop_mystery_bet/s7.jpg"
+      }
     },
     {
       "id": "s8",
