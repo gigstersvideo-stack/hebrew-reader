@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.20.1
+  Hebrew Reader — v1.20.2
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -285,7 +285,7 @@
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.20.1</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.20.2</div>
   </div>
 </div>
 
@@ -336,7 +336,7 @@
       <div class="settings-panel" id="settingsPanel">
         <div class="settings-title">Настройки отображения</div>
         <div class="settings-row">
-          <div><div class="settings-row-label">Огласовки</div><div class="settings-row-sub">никуд в словарной форме слова</div></div>
+          <div><div class="settings-row-label">Огласовки</div><div class="settings-row-sub">никуд в тексте книги и в подсказках слов</div></div>
           <label class="switch"><input type="checkbox" id="swNikud" checked><span class="switch-track"></span></label>
         </div>
         <div class="settings-row">
@@ -535,7 +535,7 @@ function renderSentence(s, container){
     wSpan.dataset.word = i;
     wSpan.dataset.lemma = w.lemma;
     wSpan.dataset.root = w.root;
-    wSpan.textContent = w.t + (i < s.words.length - 1 ? ' ' : '');
+    wSpan.textContent = (settings.nikud ? w.t : stripNikud(w.t)) + (i < s.words.length - 1 ? ' ' : '');
     wSpan.addEventListener('click', (e) => { e.stopPropagation(); showPopover(e, w, wSpan); });
     sSpan.appendChild(wSpan);
   });
@@ -874,9 +874,9 @@ function renderTrainCard(){
 }
 
 // ---- display settings: nikud / literal translation / detailed word info ----
-// (demo scope note: nikud toggle affects the popover lemma; restoring niqqud
-// across the full reading text itself needs a diacritization pass added to
-// the OCR pipeline later, not something we can toggle on text we never had)
+// nikud toggle strips diacritics both from the running text (.tword) and
+// from the popover lemma — works only for books whose words already carry
+// real niqud in the data; books without it look the same either way.
 const SETTINGS_KEY = 'hebrew-reader-settings';
 let settings = { nikud:true, literal:true, detailed:true, autoscroll:true, editMode:false, editModeBase:false };
 try{
@@ -907,7 +907,7 @@ document.getElementById('swEditBase').checked = settings.editModeBase;
 document.getElementById('swEditMode').checked = settings.editMode;
 if (isOwner) document.getElementById('ownerEditRow').style.display = '';
 
-document.getElementById('swNikud').addEventListener('change', (e) => { settings.nikud = e.target.checked; saveSettings(); applySettings(); });
+document.getElementById('swNikud').addEventListener('change', (e) => { settings.nikud = e.target.checked; saveSettings(); applySettings(); renderPage(currentPage); });
 document.getElementById('swLiteral').addEventListener('change', (e) => { settings.literal = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swDetailed').addEventListener('change', (e) => { settings.detailed = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swAutoscroll').addEventListener('change', (e) => { settings.autoscroll = e.target.checked; saveSettings(); });
