@@ -33,6 +33,7 @@ Nakdan-эндпоинт, эту функцию (add_nikud) легко замен
 import argparse
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -180,8 +181,23 @@ COVER_PROMPT = """Нарисуй простую минималистичную S
 
 NIQUD_PROMPT = """Расставь огласовки (никуд) в этом тексте на иврите.
 
-ТРЕБОВАНИЯ:
-- Не меняй ни одного слова, порядок слов или пунктуацию — только добавь никуд.
+ТРЕБОВАНИЯ (все одинаково важны):
+- Используй ПОЛНОЕ написание с огласовками (כתיב מלא מנוקד) — как пишут в
+  израильских книгах для детей и изучающих язык. Это значит: НИКОГДА не
+  убирай буквы ו (вав) или י (йод), которые уже есть в исходном тексте —
+  даже если "традиционные"/библейские правила огласовки (כתיב חסר) в этом
+  месте требуют убрать букву в пользу самой огласовки. Огласовка
+  добавляется ПОВЕРХ существующих букв, а не вместо них. Примеры (как
+  должно получиться, а не как иногда "исправляет" по привычке):
+    בוקר -> בּוֹקֶר (НЕ בֹּקֶר — вав остаётся)
+    אומרים -> אוֹמְרִים (НЕ אֹמְרִים)
+    כחול -> כָּחוֹל (НЕ כָּחֹל)
+  Причина: дальше в пайплайне с текстом работают уже без огласовок —
+  кнопка в читалке просто вырезает точки/чёрточки поверх букв, сами буквы
+  не восстанавливаются. Если сейчас убрать вав/йод, текст без огласовок
+  останется неправильно написанным навсегда.
+- Не меняй ни одного слова, порядок слов или пунктуацию — не добавляй и не
+  убирай вообще никаких букв, только огласовки поверх них.
 - Огласовки должны быть грамматически и семантически корректны для контекста
   связного рассказа (не разрозненные слова — учитывай смысл соседних фраз).
 - Сохрани разбивку на абзацы как в оригинале.
@@ -189,6 +205,16 @@ NIQUD_PROMPT = """Расставь огласовки (никуд) в этом �
 Текст:
 {text}
 """
+
+NIQUD_RETRY_SUFFIX = """
+
+ВАЖНО: в прошлый раз при огласовке этого текста ты убрал(а) буквы вав/йод
+в некоторых словах вместо того, чтобы добавить огласовку поверх них — вот
+эти случаи (оригинал -> что получилось неправильно):
+{diff_examples}
+
+Исправь: используй ПОЛНОЕ написание (כתיב מלא) везде, ни одна буква из
+оригинала не должна пропасть."""
 
 
 CHAPTER_SCHEMA = {
@@ -360,7 +386,7 @@ def generate_story_chunked(client, model, level, premise, total_words, chapter_w
             )
 
             print(f"  Расставляю огласовки главы {chapter_num}...", file=sys.stderr)
-            vocalized = call_with_retry(add_nikud, client, model, chapter["chapter_text"])
+            vocalized = add_nikud_checked(client, model, chapter["chapter_text"])
         except Exception as e:
             print(f"\n!! Глава {chapter_num} не удалась после нескольких попыток ({e}).\n"
                   f"Прогресс {len(chapters)} из {total_chapters} глав сохранён в {progress_path}.\n"
@@ -409,8 +435,8 @@ def generate_story(client, model, level, premise, word_count):
     return json.loads(response.text)
 
 
-def add_nikud(client, model, text):
-    prompt = NIQUD_PROMPT.format(text=text)
+def add_nikud(client, model, text, extra_instruction=""):
+    prompt = NIQUD_PROMPT.format(text=text) + extra_instruction
     response = client.models.generate_content(
         model=model,
         contents=prompt,
@@ -420,6 +446,47 @@ def add_nikud(client, model, text):
         ),
     )
     return json.loads(response.text)["vocalized_text"]
+
+
+def strip_nikud_marks(text):
+    # тот же диапазон, что и stripNikud() в reader-prototype.html
+    return re.sub(r'[֑-ׇ]', '', text)
+
+
+def dropped_letters_diff(original, vocalized, limit=8):
+    """Слова, где огласовка убрала буквы (обычно вав/йод) вместо того, чтобы
+    добавить точки поверх них — сверяет "буквы без огласовок" с оригиналом
+    слово в слово. Не полагается на то, что глазами это заметят при
+    публикации (см. память проекта: генеративные пайплайны формально
+    выполняют промт, но заметно ошибаются по существу)."""
+    orig_words = original.split()
+    voc_words = strip_nikud_marks(vocalized).split()
+    diffs = [(a, b) for a, b in zip(orig_words, voc_words) if a != b]
+    if len(orig_words) != len(voc_words):
+        diffs.append((f"[{len(orig_words)} слов]", f"[{len(voc_words)} слов после огласовки]"))
+    return diffs[:limit]
+
+
+def add_nikud_checked(client, model, text, retries=2):
+    """add_nikud + автосверка, что буквы (вав/йод) не пропали — если пропали,
+    просит модель переделать с конкретными примерами того, что она сломала,
+    и только если и это не помогло — отдаёт последний результат с явным
+    предупреждением в stderr, а не молча."""
+    extra = ""
+    for attempt in range(retries + 1):
+        vocalized = call_with_retry(add_nikud, client, model, text, extra_instruction=extra)
+        diffs = dropped_letters_diff(text, vocalized)
+        if not diffs:
+            return vocalized
+        if attempt < retries:
+            examples = "\n".join(f"  {a} -> {b}" for a, b in diffs)
+            extra = NIQUD_RETRY_SUFFIX.format(diff_examples=examples)
+            print(f"    ⚠ огласовка убрала буквы в {len(diffs)}+ слов(ах), пробую ещё раз "
+                  f"с уточнением ({attempt+1}/{retries})...", file=sys.stderr)
+    examples = "\n".join(f"  {a} -> {b}" for a, b in diffs)
+    print(f"    !! ПОСЛЕ {retries} ПОПЫТОК огласовка всё ещё убирает буквы, беру как есть — "
+          f"проверь вручную:\n{examples}", file=sys.stderr)
+    return vocalized
 
 
 def generate_cover_svg(client, model, summary_ru):
@@ -483,7 +550,7 @@ def main():
         story = generate_story(client, args.model, args.level, args.premise, word_count)
 
         print("Расставляю огласовки...", file=sys.stderr)
-        vocalized = add_nikud(client, args.model, story["story_text"])
+        vocalized = add_nikud_checked(client, args.model, story["story_text"])
 
     print("Рисую обложку...", file=sys.stderr)
     cover_svg = generate_cover_svg(client, args.model, story["summary_ru"])
