@@ -17,6 +17,15 @@
       "source": "file",
       "file": "book-data-robot-cat-alef.json",
       "spineColor": "#3B6E8F"
+    },
+    {
+      "id": "bookshop-mystery-bet",
+      "title": "הַסֵּפֶר הַנֶּעֱלָם",
+      "kicker": "רמה ב׳ · סיפור מקורי",
+      "sub": "в книжном магазине пропадает редкая книга — детектив с тремя алиби, вторая история из «фермы» (бет)",
+      "source": "file",
+      "file": "book-data-bookshop-mystery-bet.json",
+      "spineColor": "#7A5C3E"
     }
   ]
 }
