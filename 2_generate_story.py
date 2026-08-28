@@ -516,8 +516,10 @@ def main():
                           "одного запроса на всю книгу — нужно для книг заметно больше "
                           "типичного объёма уровня (см. README, раздел про максимальный размер)")
     ap.add_argument("--resume", action="store_true",
-                     help="продолжить главную генерацию с последней недописанной главы "
-                          "(смотрит в <out>.progress.json); без --chapter-words не имеет смысла")
+                     help="продолжить с места обрыва: с --chapter-words — с последней "
+                          "недописанной главы (<out>.progress.json); без него — пропускает "
+                          "уже сгенерированный текст истории, если огласовка/обложка упали "
+                          "после него (<out>.raw.json)")
     ap.add_argument("--max-chapters", type=int, default=30,
                      help="защитный потолок числа глав при --chapter-words")
     args = ap.parse_args()
@@ -546,8 +548,19 @@ def main():
         print(f"Готово {len(story['keywords'])} новых ключевых слов из всех глав.", file=sys.stderr)
     else:
         progress_path = None
-        print(f"Пишу историю (уровень {args.level}, ~{word_count} слов)...", file=sys.stderr)
-        story = generate_story(client, args.model, args.level, args.premise, word_count)
+        raw_path = Path(str(out_path) + ".raw.json")
+        if args.resume and raw_path.exists():
+            with open(raw_path, encoding="utf-8") as f:
+                story = json.load(f)
+            print("Нашёл сохранённый черновик истории (--resume) — не генерирую заново, "
+                  "продолжаю с огласовки.", file=sys.stderr)
+        else:
+            print(f"Пишу историю (уровень {args.level}, ~{word_count} слов)...", file=sys.stderr)
+            story = generate_story(client, args.model, args.level, args.premise, word_count)
+            # сохраняем сразу, до огласовки/обложки — если что-то из них упадёт
+            # (кончится квота, сеть моргнёт), самый "дорогой" шаг не потеряется
+            with open(raw_path, "w", encoding="utf-8") as f:
+                json.dump(story, f, ensure_ascii=False, indent=2)
 
         print("Расставляю огласовки...", file=sys.stderr)
         vocalized = add_nikud_checked(client, args.model, story["story_text"])
@@ -570,6 +583,8 @@ def main():
 
     if progress_path and progress_path.exists():
         progress_path.unlink()
+    if not chunked and raw_path.exists():
+        raw_path.unlink()
 
     print(f"\nГотово:\n  текст -> {out_path}\n  метаданные -> {meta_path}", file=sys.stderr)
     print(f"\nДальше: python 5_gemini_pipeline.py {out_path} --out book-data-{args.level}.json", file=sys.stderr)
