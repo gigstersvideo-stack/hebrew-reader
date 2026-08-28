@@ -54,6 +54,9 @@
     background: var(--panel); border:1px solid var(--line); border-radius:12px; width:280px;
     box-shadow: 0 12px 30px rgba(0,0,0,.15); padding: 14px 16px; display:none;
   }
+  @media (max-width: 480px) {
+    .settings-panel{ left:auto; right:0; width: min(280px, calc(100vw - 32px)); }
+  }
   .settings-panel.open{ display:block; animation: popin .12s ease; }
   .settings-title{ font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:10px; font-weight:500; }
   .settings-row{ display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); gap:12px; }
@@ -289,7 +292,7 @@
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.24.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.25.4</div>
   </div>
 </div>
 
