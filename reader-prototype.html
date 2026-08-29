@@ -81,6 +81,7 @@
   .tword:hover{ background: var(--accent-soft); }
   .tword.speaking{ background: var(--accent); color: #fff; }
   .tword.selected{ background: var(--accent); color: #fff; }
+  .tword.seen:not(.speaking):not(.selected):not(.saved):not(.root-match):not(.illustration-hover){ box-shadow: inset 0 -1px 0 var(--ink-soft); }
   .tword.saved:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--gold); }
   .tword.root-match:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--root-hl), 0 0 0 1px var(--root-hl); border-radius:3px; }
   .tword.illustration-hover:not(.speaking):not(.selected){ background: var(--gold-soft); box-shadow: 0 0 0 1px var(--gold); border-radius:3px; }
@@ -292,7 +293,7 @@
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.25.4</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.26.0</div>
   </div>
 </div>
 
@@ -581,6 +582,8 @@ function renderSentence(s, container){
     wSpan.dataset.lemma = w.lemma;
     wSpan.dataset.root = w.root;
     wSpan.textContent = (settings.nikud ? w.t : stripNikud(w.t)) + (i < s.words.length - 1 ? ' ' : '');
+    if (vocabCache[w.lemma]) wSpan.classList.add('saved');
+    if (seenCache[w.lemma]) wSpan.classList.add('seen');
     wSpan.addEventListener('click', (e) => { e.stopPropagation(); showPopover(e, w, wSpan); });
     sSpan.appendChild(wSpan);
   });
@@ -772,6 +775,29 @@ function deleteVocabEntry(lemma){
   delete vocabCache[lemma];
 }
 
+// ---- "уже разбирал(а)" — лёгкая отметка слов, по которым хоть раз кликали
+// (отдельно от осознанного сохранения в словарь звёздочкой) — по образцу
+// LingQ/Readlang, чтобы виден был реальный прогресс по тексту с одного
+// взгляда. Тоже per-book, как и словарь.
+const SEEN_PREFIX = 'hebrew-reader-seen:' + bookId + ':';
+const seenCache = {};
+
+function loadSeenFromStorage(){
+  try{
+    for (let i = 0; i < localStorage.length; i++){
+      const key = localStorage.key(i);
+      if (key && key.startsWith(SEEN_PREFIX)) seenCache[key.slice(SEEN_PREFIX.length)] = true;
+    }
+  }catch(err){ console.error('localStorage unavailable', err); }
+}
+
+function markSeen(lemma){
+  if (seenCache[lemma]) return;
+  seenCache[lemma] = true;
+  try{ localStorage.setItem(SEEN_PREFIX + lemma, '1'); }catch(err){ console.error('save failed', err); }
+  document.querySelectorAll(`.tword[data-lemma="${CSS.escape(lemma)}"]`).forEach(el => el.classList.add('seen'));
+}
+
 function toggleSaveWord(w, starEl){
   const isSaved = !!vocabCache[w.lemma];
   if (isSaved) deleteVocabEntry(w.lemma); else saveVocabEntry(w);
@@ -830,6 +856,7 @@ function renderFreqList(){
 }
 
 loadVocabFromStorage();
+loadSeenFromStorage();
 
 // ---- drawer + tabs ----
 document.getElementById('vocabBtn').addEventListener('click', () => {
@@ -971,6 +998,7 @@ function showPopover(e, w, wordEl){
   selectedWordEl = wordEl;
   selectedWordEl.classList.add('selected');
   currentPopoverWord = w;
+  markSeen(w.lemma);
 
   // Клик по слову для перевода — это "посмотреть", а не "продолжай играть
   // мимо" — ставим на паузу, чтобы звук не убегал вперёд, пока читаешь подсказку.
