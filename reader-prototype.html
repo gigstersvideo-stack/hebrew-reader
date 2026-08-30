@@ -85,7 +85,7 @@
   .tword.saved:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--gold); }
   .tword.root-match:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--root-hl), 0 0 0 1px var(--root-hl); border-radius:3px; }
   .tword.illustration-hover:not(.speaking):not(.selected){ background: var(--gold-soft); box-shadow: 0 0 0 1px var(--gold); border-radius:3px; }
-  .illustration-frame, .illustration-caption{ cursor:pointer; }
+  .illustration-chip, .illustration-media, .illustration-caption, .illustration-collapse{ cursor:pointer; }
   body.nikud-off .wp-lemma{ letter-spacing: 0; }
 
   .translate-toggle{
@@ -189,17 +189,35 @@
   .freq-star{ cursor:pointer; color:#B8B2A2; font-size:14px; }
   .freq-star.on{ color:var(--gold); }
 
-  .illustration-block{
-    margin: 32px auto 36px; max-width: 420px; text-align:center; direction: ltr;
+  /* иллюстрации: свёрнуты в чип по умолчанию (не разрывают чтение, почти
+     не занимают места), разворачиваются в изображение без рамки по тапу
+     — см. CHANGELOG v1.27.0 за обоснованием отказа от прежней "рамки" */
+  .illustration-block{ margin: 18px 0; direction: ltr; }
+  .illustration-chip{
+    display:inline-flex; align-items:center; gap:8px; padding: 5px 12px 5px 5px;
+    background: var(--panel); border:1px solid var(--line); border-radius: 999px;
+    font-family:'Inter',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    transition: background .15s ease;
   }
-  .illustration-frame{
-    border: 1px solid var(--line); border-radius: 4px; background: var(--panel);
-    padding: 22px 22px 16px; position: relative;
+  .illustration-chip:hover{ background: var(--accent-soft); }
+  .illustration-chip .chip-thumb{
+    width:30px; height:30px; border-radius:50%; object-fit:cover; display:block; flex-shrink:0;
   }
-  .illustration-frame::before{
-    content:""; position:absolute; inset: 6px; border: 1px solid var(--line); border-radius:2px; pointer-events:none;
+  .illustration-chip .chip-thumb.chip-fallback{
+    display:flex; align-items:center; justify-content:center; background: var(--accent-soft); font-size:14px;
   }
-  .illustration-frame svg{ width:100%; height:auto; display:block; }
+  .illustration-block.open .illustration-chip{ display:none; }
+  .illustration-expanded{ display:none; }
+  .illustration-block.open .illustration-expanded{ display:block; animation: fadein .18s ease; }
+  .illustration-media{ width:100%; max-height:280px; object-fit:cover; display:block; border-radius:8px; }
+  .illustration-media.svg-media{
+    max-height:none; border:1px solid var(--line); border-radius:8px; background: var(--panel); padding:20px;
+  }
+  .illustration-media.svg-media svg{ width:100%; height:auto; display:block; }
+  .illustration-collapse{
+    display:inline-block; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);
+    margin-top:8px; text-decoration:underline; text-underline-offset:2px;
+  }
   .illustration-caption{
     font-family:'Frank Ruhl Libre', serif; font-size: 15px; color: var(--ink);
     margin-top: 10px; direction: rtl;
@@ -293,7 +311,7 @@
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.26.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.27.0</div>
   </div>
 </div>
 
@@ -514,14 +532,32 @@ function buildIllustration(item, sentenceId, container){
   wrap.className = 'illustration-block';
   const showMnemonic = settings.mnemonic && item.imgMnemonic;
   const imgSrc = showMnemonic ? item.imgMnemonic : item.img;
-  const media = item.svg ? item.svg : (imgSrc ? `<img src="${imgSrc}" alt="${item.caption || ''}" style="width:100%;display:block;border-radius:2px;">` : '');
-  // подпись со словом и блок мнемоники — часть "режима мнемоники":
-  // в спокойном атмосферном режиме их прячем целиком, не только текст
+  const isSvg = !!item.svg;
+  // фото обрезаются по высоте (object-fit:cover) — им есть, откуда обрезать;
+  // SVG-линарт демо-книги показывается целиком в естественных пропорциях,
+  // cover его бы просто обрезал криво
+  const media = isSvg
+    ? `<div class="illustration-media svg-media">${item.svg}</div>`
+    : (imgSrc ? `<img class="illustration-media" src="${imgSrc}" alt="${item.caption || ''}">` : '');
+  const thumb = (isSvg || !imgSrc)
+    ? `<div class="chip-thumb chip-fallback">🖼</div>`
+    : `<img class="chip-thumb" src="${imgSrc}" alt="">`;
+  const chipLabel = item.word ? `${item.word} — показать иллюстрацию` : 'Показать иллюстрацию';
+
+  // свёрнуто в чип по умолчанию — не разрывает чтение и не занимает места,
+  // пока не интересно; подпись со словом и блок мнемоники (часть "режима
+  // мнемоники") показываются только внутри развёрнутого состояния
   wrap.innerHTML = `
-    <div class="illustration-frame">${media}</div>
-    ${showMnemonic ? `<div class="illustration-caption">${item.caption}<div class="cap-tr">${item.capTr}</div></div>` : ''}
-    ${showMnemonic && item.mnemonic ? `<div class="mnemonic-box"><b>Мнемоника «${item.word}» — ${item.tr}:</b> ${item.mnemonic}</div>` : ''}
+    <div class="illustration-chip">${thumb}<span>${chipLabel}</span></div>
+    <div class="illustration-expanded">
+      ${media}
+      ${showMnemonic ? `<div class="illustration-caption">${item.caption}<div class="cap-tr">${item.capTr}</div></div>` : ''}
+      ${showMnemonic && item.mnemonic ? `<div class="mnemonic-box"><b>Мнемоника «${item.word}» — ${item.tr}:</b> ${item.mnemonic}</div>` : ''}
+      <div class="illustration-collapse">✕ Свернуть</div>
+    </div>
   `;
+  wrap.querySelector('.illustration-chip').addEventListener('click', () => wrap.classList.add('open'));
+  wrap.querySelector('.illustration-collapse').addEventListener('click', () => wrap.classList.remove('open'));
 
   // наведение на картинку/подпись подсвечивает то же слово в тексте
   // предложения — чтобы можно было сопоставить иллюстрацию со словом
@@ -531,7 +567,7 @@ function buildIllustration(item, sentenceId, container){
   if (targetWord){
     const on = () => targetWord.classList.add('illustration-hover');
     const off = () => targetWord.classList.remove('illustration-hover');
-    wrap.querySelectorAll('.illustration-frame, .illustration-caption').forEach(el => {
+    wrap.querySelectorAll('.illustration-chip, .illustration-media, .illustration-caption').forEach(el => {
       el.addEventListener('mouseenter', on);
       el.addEventListener('mouseleave', off);
     });
