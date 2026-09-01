@@ -265,6 +265,12 @@ def main():
     ap.add_argument("--api-key", default=None, help="Gemini — или GEMINI_API_KEY")
     ap.add_argument("--cf-account-id", default=None, help="или CF_ACCOUNT_ID")
     ap.add_argument("--cf-api-token", default=None, help="или CF_API_TOKEN")
+    ap.add_argument("--resume", action="store_true",
+                     help="не стирать уже готовые иллюстрации — пропустить страницы, "
+                          "где выбранное слово совпадает с уже сохранённым, и дописать "
+                          "только недостающие. Нужно для больших книг, где дневной квоты "
+                          "не хватает на все страницы за один прогон (без этого флага "
+                          "скрипт по умолчанию стирает все иллюстрации и рисует заново)")
     args = ap.parse_args()
 
     api_key = args.api_key or os.environ.get("GEMINI_API_KEY")
@@ -277,11 +283,13 @@ def main():
     with open(args.book_data, encoding="utf-8") as f:
         data = json.load(f)
 
-    # чистим иллюстрации от прошлых прогонов — иначе при повторном запуске
-    # (например, после правки промта) старые картинки на страницах, чьё
-    # слово-кандидат сменилось, остаются висеть рядом с новыми
-    for s in data["sentences"]:
-        s.pop("illustration", None)
+    if not args.resume:
+        # чистим иллюстрации от прошлых прогонов — иначе при повторном запуске
+        # (например, после правки промта) старые картинки на страницах, чьё
+        # слово-кандидат сменилось, остаются висеть рядом с новыми.
+        # С --resume, наоборот, сознательно НЕ стираем — см. ниже.
+        for s in data["sentences"]:
+            s.pop("illustration", None)
 
     top500, top20000 = load_freq_sets()
     words = select_words_per_page(data, top500, top20000)
@@ -294,10 +302,17 @@ def main():
     os.makedirs(args.images_dir, exist_ok=True)
     client = genai.Client(api_key=api_key)
     sentences_by_id = {s["id"]: s for s in data["sentences"]}
+    out_path = args.out or args.book_data
 
     for w in words:
         sid = w["sentence_id"]
         sentence = sentences_by_id[sid]
+
+        existing = sentence.get("illustration")
+        if args.resume and existing and existing.get("word") == w["lemma"]:
+            print(f"[{sid}] {w['lemma']} — уже готово, пропускаю", file=sys.stderr)
+            continue
+
         context = sentence.get("fluent") or sentence.get("literal") or ""
         print(f"[{sid}] {w['lemma']} ({w['tr']}) — мнемоника...", file=sys.stderr)
         m = generate_mnemonic(client, args.model, w["lemma"], w["tr"], w["pos"], context, args.summary)
@@ -325,9 +340,11 @@ def main():
             "imgMnemonic": f"{args.images_dir}/{sid}-mnemonic.jpg",
         }
 
-    out_path = args.out or args.book_data
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        # сохраняем после КАЖДОЙ страницы, а не только в конце — если прервётся
+        # (кончится дневная квота на середине книги), ничего не потеряется и
+        # --resume сможет продолжить с этого места
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
 
     print(f"\nГотово -> {out_path}, иллюстраций добавлено: {len(words)}", file=sys.stderr)
 
