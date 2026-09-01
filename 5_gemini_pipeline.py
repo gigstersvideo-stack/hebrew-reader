@@ -240,9 +240,18 @@ def main():
         with open(out_path, encoding="utf-8") as f:
             existing = json.load(f)
         result_sentences = existing.get("sentences", [])
-        start_idx = len(result_sentences)
+        # next_index — точная позиция в ИСХОДНОМ массиве предложений, откуда
+        # продолжать; НЕ то же самое, что len(result_sentences) — батч мог
+        # вернуть больше/меньше предложений, чем просили (см. предупреждение
+        # ниже), и тогда эти два числа расходятся. Раньше здесь стояло
+        # len(result_sentences) — из-за этого при таком расхождении resume
+        # либо задваивал уже готовые предложения, либо пропускал кусок
+        # (поймали вживую: 3 задвоенных id и 2 пропуска в одной книге).
+        # Файлы, сохранённые до этого фикса, next_index не имеют — тогда
+        # используем len(result_sentences) как лучшее приближение.
+        start_idx = existing.get("next_index", len(result_sentences))
         print(f"Продолжаю с предложения {start_idx + 1} "
-              f"(уже готово {start_idx} из {len(sentences)}).", file=sys.stderr)
+              f"(готовых записей: {len(result_sentences)} из {len(sentences)}).", file=sys.stderr)
 
     i = start_idx
     incomplete = False
@@ -266,14 +275,21 @@ def main():
                   file=sys.stderr)
 
         result_sentences.extend(got)
+        i += args.batch_size
 
         # Сохраняем после каждого куска, а не в конце — если прервётся
-        # на середине книги, ничего не потеряется.
+        # на середине книги, ничего не потеряется. next_index = i (позиция в
+        # исходном массиве), а не len(result_sentences) — см. комментарий выше.
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump({"sentences": result_sentences, "next_index": i}, f, ensure_ascii=False, indent=2)
+
+        time.sleep(1)  # вежливая пауза между запросами
+
+    if not incomplete:
+        # готово целиком — убираем служебное поле next_index из финального
+        # файла, дальше по пайплайну (озвучка/иллюстрации/сайт) его не ждут
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump({"sentences": result_sentences}, f, ensure_ascii=False, indent=2)
-
-        i += args.batch_size
-        time.sleep(1)  # вежливая пауза между запросами
 
     warn_deficient_spelling(result_sentences)
 
