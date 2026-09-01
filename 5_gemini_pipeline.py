@@ -245,6 +245,7 @@ def main():
               f"(уже готово {start_idx} из {len(sentences)}).", file=sys.stderr)
 
     i = start_idx
+    incomplete = False
     while i < len(sentences):
         batch = sentences[i:i + args.batch_size]
         print(f"[{i+1}-{i+len(batch)} / {len(sentences)}] обрабатываю...", file=sys.stderr)
@@ -255,6 +256,7 @@ def main():
                   f"Прогресс до предложения {i} сохранён в {args.out}.\n"
                   f"Перезапусти с флагом --resume, чтобы продолжить с этого места.",
                   file=sys.stderr)
+            incomplete = True
             break
 
         got = batch_result.get("sentences", [])
@@ -277,6 +279,12 @@ def main():
 
     print(f"\nГотово -> {args.out}, всего предложений в файле: {len(result_sentences)}",
           file=sys.stderr)
+
+    if incomplete:
+        # раньше здесь молча выходили кодом 0, даже если реально обработали
+        # только часть книги — retry-цикл видел "успех" и останавливался,
+        # думая, что всё готово (нашли это вживую на 359 из 589 предложений)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
