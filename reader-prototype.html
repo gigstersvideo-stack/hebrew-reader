@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.29.0
+  Hebrew Reader — v1.30.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -249,6 +249,11 @@
   .library-kicker{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin:0 0 6px; direction:ltr; text-align:left; font-family:'Inter',sans-serif; }
   .library-title{ font-family:'Frank Ruhl Libre', serif; font-size:28px; margin:0; color:var(--ink); }
   .library-sub{ font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft); margin-top:8px; direction:ltr; text-align:left; }
+  .library-auth{ margin-top:14px; direction:ltr; text-align:left; font-family:'Inter',sans-serif; font-size:13px; }
+  .library-auth a, .library-auth button.pill-btn.ghost{ font-size:13px; }
+  .reader-auth-user{ display:flex; align-items:center; gap:8px; }
+  .reader-auth-avatar{ width:22px; height:22px; border-radius:50%; }
+  .reader-auth-status{ font-size:11px; color:var(--ink-soft); margin-top:4px; }
   .book-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:20px; direction:ltr; }
   .book-card{
     background: var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden;
@@ -310,9 +315,18 @@
       <h1 class="library-title">Выбери книгу</h1>
       <p class="library-sub">Демо-текст встроен всегда. Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется.</p>
       <p class="library-sub">Здесь — целые истории. Для отработки конкретных фраз и грамматики отдельно есть <a href="https://gigstersvideo-stack.github.io/hebrew-tasks/" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">тренажёр предложений</a>.</p>
+      <div class="library-auth" id="libraryAuth">
+        <button class="pill-btn ghost" id="readerBtnSignin">Войти через Google — синхронизировать словарь и закладки</button>
+        <div class="reader-auth-user" id="readerAuthUser" style="display:none;">
+          <img class="reader-auth-avatar" id="readerAuthAvatar" alt="">
+          <span id="readerAuthName"></span>
+          <button class="pill-btn ghost" id="readerBtnSignout">Выйти</button>
+        </div>
+        <div class="reader-auth-status" id="readerAuthStatus"></div>
+      </div>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.29.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.30.0</div>
   </div>
 </div>
 
@@ -758,6 +772,7 @@ document.getElementById('downloadEditsBtn').addEventListener('click', () => {
 function renderPage(pageIndex){
   currentPage = Math.max(0, Math.min(totalPages - 1, pageIndex));
   try{ localStorage.setItem(PAGE_KEY, String(currentPage)); }catch(err){}
+  if (window.cloudSyncPage) window.cloudSyncPage(bookId, currentPage);
 
   reader.innerHTML = '';
   const p = document.createElement('div');
@@ -805,11 +820,13 @@ function saveVocabEntry(w){
   try{ localStorage.setItem(STORAGE_PREFIX + w.lemma, JSON.stringify(entry)); }
   catch(err){ console.error('save failed', err); return; }
   vocabCache[w.lemma] = entry;
+  if (window.cloudSyncVocab) window.cloudSyncVocab(bookId, w.lemma, entry);
 }
 function deleteVocabEntry(lemma){
   try{ localStorage.removeItem(STORAGE_PREFIX + lemma); }
   catch(err){ console.error('delete failed', err); }
   delete vocabCache[lemma];
+  if (window.cloudDeleteVocab) window.cloudDeleteVocab(bookId, lemma);
 }
 
 // ---- "уже разбирал(а)" — лёгкая отметка слов, по которым хоть раз кликали
@@ -833,6 +850,7 @@ function markSeen(lemma){
   seenCache[lemma] = true;
   try{ localStorage.setItem(SEEN_PREFIX + lemma, '1'); }catch(err){ console.error('save failed', err); }
   document.querySelectorAll(`.tword[data-lemma="${CSS.escape(lemma)}"]`).forEach(el => el.classList.add('seen'));
+  if (window.cloudSyncSeen) window.cloudSyncSeen(bookId, lemma);
 }
 
 function toggleSaveWord(w, starEl){
@@ -894,6 +912,52 @@ function renderFreqList(){
 
 loadVocabFromStorage();
 loadSeenFromStorage();
+
+// Merge this book's cloud progress (vocab/seen/page) into what's already
+// loaded locally: per word, the more recently-added side wins; "seen"
+// marks and anything local-only get pushed up so both sides converge.
+// Exposed on `window` (reassigned each time a book opens) so the Firebase
+// module can also call it if sign-in completes *while* a book is open,
+// not just at initial load.
+function pullCloudProgress(){
+  if (!window.cloudFetchBookProgress) return Promise.resolve();
+  return window.cloudFetchBookProgress(bookId).then(remote => {
+    remote = remote || { vocab:{}, seen:{}, page:null };
+    let vocabChanged = false;
+    for (const lemma in remote.vocab){
+      const r = remote.vocab[lemma], l = vocabCache[lemma];
+      if (!l || (r.addedAt||0) > (l.addedAt||0)){
+        vocabCache[lemma] = r;
+        try{ localStorage.setItem(STORAGE_PREFIX + lemma, JSON.stringify(r)); }catch(err){}
+        vocabChanged = true;
+      }
+    }
+    for (const lemma in vocabCache){
+      const l = vocabCache[lemma], r = remote.vocab[lemma];
+      if ((!r || (l.addedAt||0) > (r.addedAt||0)) && window.cloudSyncVocab) window.cloudSyncVocab(bookId, lemma, l);
+    }
+    if (vocabChanged) refreshVocabUI();
+
+    for (const lemma in remote.seen){
+      if (!seenCache[lemma]){
+        seenCache[lemma] = true;
+        try{ localStorage.setItem(SEEN_PREFIX + lemma, '1'); }catch(err){}
+        document.querySelectorAll(`.tword[data-lemma="${CSS.escape(lemma)}"]`).forEach(el => el.classList.add('seen'));
+      }
+    }
+    for (const lemma in seenCache){
+      if (!remote.seen[lemma] && window.cloudSyncSeen) window.cloudSyncSeen(bookId, lemma);
+    }
+
+    if (remote.page != null && localStorage.getItem(PAGE_KEY) === null){
+      renderPage(remote.page);
+    } else if (remote.page == null && currentPage > 0 && window.cloudSyncPage){
+      window.cloudSyncPage(bookId, currentPage);
+    }
+  }).catch(err => console.error('[ivrit-reader] cloud pull failed', err));
+}
+window.pullReaderCloudProgress = pullCloudProgress;
+pullCloudProgress();
 
 // ---- drawer + tabs ----
 document.getElementById('vocabBtn').addEventListener('click', () => {
@@ -1688,6 +1752,107 @@ function closeImportModal(){
 }
 
 boot();
+</script>
+
+<!--
+  Firebase auth + cloud sync, in its own module script — same Firebase
+  project as the sentence trainer (hebrew-tasks), so one Google account
+  covers both sites. Kept separate from the script above so the reader
+  itself still renders and works instantly and fully offline even if this
+  part fails to load or is blocked. Entirely optional: without signing in,
+  everything above works exactly as before, purely through localStorage.
+  Syncs the personal vocabulary list, "already looked up" word markers and
+  the last-read page per book. Deliberately does NOT sync locally-imported
+  books themselves (title index or book-data content) — the README's own
+  privacy promise for those is that they never leave the browser they were
+  added in, and this integration doesn't change that.
+-->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs, query, where,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBt1bUThfMV-9l864CrzdQnJoCmydlV4_E",
+  authDomain: "ivrit-progress.firebaseapp.com",
+  projectId: "ivrit-progress",
+  storageBucket: "ivrit-progress.firebasestorage.app",
+  messagingSenderId: "694820518201",
+  appId: "1:694820518201:web:1da61200a3b8d948c410e8",
+};
+const fbApp = initializeApp(firebaseConfig);
+const fbAuth = getAuth(fbApp);
+const fbDb = getFirestore(fbApp);
+window.cloudUid = null;
+
+window.cloudSyncVocab = function (bookId, lemma, entry) {
+  if (!window.cloudUid) return;
+  const docId = bookId + "__" + lemma;
+  setDoc(doc(fbDb, "users", window.cloudUid, "readerVocab", docId), Object.assign({ bookId }, entry)).catch(() => {});
+};
+window.cloudDeleteVocab = function (bookId, lemma) {
+  if (!window.cloudUid) return;
+  const docId = bookId + "__" + lemma;
+  deleteDoc(doc(fbDb, "users", window.cloudUid, "readerVocab", docId)).catch(() => {});
+};
+window.cloudSyncSeen = function (bookId, lemma) {
+  if (!window.cloudUid) return;
+  setDoc(doc(fbDb, "users", window.cloudUid, "readerMeta", bookId), { seen: { [lemma]: true } }, { merge: true }).catch(() => {});
+};
+window.cloudSyncPage = function (bookId, page) {
+  if (!window.cloudUid) return;
+  setDoc(doc(fbDb, "users", window.cloudUid, "readerMeta", bookId), { page }, { merge: true }).catch(() => {});
+};
+window.cloudFetchBookProgress = async function (bookId) {
+  if (!window.cloudUid) return null;
+  const uid = window.cloudUid;
+  const vocabQuery = query(collection(fbDb, "users", uid, "readerVocab"), where("bookId", "==", bookId));
+  const [vocabSnap, metaSnap] = await Promise.all([
+    getDocs(vocabQuery),
+    getDoc(doc(fbDb, "users", uid, "readerMeta", bookId)),
+  ]);
+  const vocab = {};
+  vocabSnap.forEach((d) => { const data = d.data(); vocab[data.lemma] = data; });
+  const meta = metaSnap.exists() ? metaSnap.data() : {};
+  return { vocab, seen: meta.seen || {}, page: typeof meta.page === "number" ? meta.page : null };
+};
+
+const readerAuthStatusEl = document.getElementById("readerAuthStatus");
+document.getElementById("readerBtnSignin").addEventListener("click", () => {
+  readerAuthStatusEl.textContent = "";
+  signInWithPopup(fbAuth, new GoogleAuthProvider())
+    .then((result) => { console.log("[ivrit-reader] signInWithPopup ok, uid:", result.user.uid); })
+    .catch((e) => {
+      console.error("[ivrit-reader] signInWithPopup error:", e);
+      readerAuthStatusEl.textContent = "Ошибка входа: " + (e && e.code ? e.code : e);
+    });
+});
+document.getElementById("readerBtnSignout").addEventListener("click", () => { signOut(fbAuth); });
+
+onAuthStateChanged(fbAuth, (user) => {
+  const signinBtn = document.getElementById("readerBtnSignin");
+  const userBox = document.getElementById("readerAuthUser");
+  if (user) {
+    window.cloudUid = user.uid;
+    signinBtn.style.display = "none";
+    userBox.style.display = "flex";
+    document.getElementById("readerAuthAvatar").src = user.photoURL || "";
+    document.getElementById("readerAuthName").textContent = user.displayName || user.email || "Вы";
+    readerAuthStatusEl.textContent = window.pullReaderCloudProgress ? "Синхронизация…" : "";
+    if (window.pullReaderCloudProgress) {
+      Promise.resolve(window.pullReaderCloudProgress()).then(() => { readerAuthStatusEl.textContent = "Прогресс синхронизирован"; });
+    }
+  } else {
+    window.cloudUid = null;
+    signinBtn.style.display = "";
+    userBox.style.display = "none";
+    readerAuthStatusEl.textContent = "";
+  }
+});
 </script>
 </body>
 </html>
