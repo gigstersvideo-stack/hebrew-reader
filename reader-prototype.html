@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.31.0
+  Hebrew Reader — v1.32.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -67,6 +67,11 @@
   .settings-row:last-child{ border-bottom:none; }
   .settings-row-label{ font-size:13px; color:var(--ink); }
   .settings-row-sub{ font-size:11px; color:var(--ink-soft); margin-top:1px; }
+  .settings-ai-key{ flex-direction:column; align-items:stretch; }
+  .ai-key-input{
+    width:100%; margin-top:8px; padding:6px 8px; font-size:12px; font-family:inherit;
+    border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); box-sizing:border-box;
+  }
   .switch{ position:relative; width:38px; height:22px; flex-shrink:0; }
   .switch input{ opacity:0; width:0; height:0; }
   .switch-track{ position:absolute; inset:0; background: var(--line); border-radius:12px; cursor:pointer; transition: background .15s ease; }
@@ -120,6 +125,10 @@
     position:absolute; z-index:30; direction: ltr; text-align:left; background: var(--ink); color: #fff;
     font-family:'Inter', sans-serif; font-size: 13px; padding: 12px 14px; border-radius: 10px;
     box-shadow: 0 10px 28px rgba(0,0,0,.28); min-width: 190px; max-width: 270px; animation: popin .12s ease;
+    transition: max-width .18s ease, max-height .18s ease;
+  }
+  .word-popover.wp-expanded{
+    max-width: min(420px, 92vw); max-height: 70vh; overflow-y: auto;
   }
   .wp-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
   .wp-lemma{ font-family:'Frank Ruhl Libre', serif; direction: rtl; text-align:right; font-size: 19px; }
@@ -130,8 +139,21 @@
   .wp-main{ font-size:14px; font-weight:500; margin-bottom:4px; }
   .wp-extra{ font-size:12px; color:#C9BFA6; line-height:1.5; }
   .wp-root{ font-size:11px; color:#8A8474; margin-top:6px; }
+  .wp-root-semantics{ font-size:11.5px; color:#C9BFA6; line-height:1.5; margin-top:4px; }
+  .wp-binyan{ font-size:11px; color:#8A8474; line-height:1.5; margin-top:4px; font-style:italic; }
   .wp-link{ display:inline-block; margin-top:8px; font-size:11.5px; color:var(--gold); text-decoration:none; border-top:1px solid #4A473F; padding-top:8px; width:100%; }
   .wp-link:hover{ text-decoration:underline; }
+  .wp-ai-btn{ display:block; width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px; font-family:inherit; }
+  .wp-ai-btn:hover{ text-decoration:underline; }
+  .wp-ai-btn:disabled{ opacity:.6; cursor:default; text-decoration:none; }
+  .wp-ai-result{ margin-top:10px; padding-top:10px; border-top:1px solid #4A473F; font-size:12.5px; line-height:1.55; }
+  .wp-ai-result h4{ font-size:11px; color:var(--gold); text-transform:uppercase; letter-spacing:.03em; margin:10px 0 3px; }
+  .wp-ai-result h4:first-child{ margin-top:0; }
+  .wp-ai-result .wp-ai-he{ direction:rtl; text-align:right; font-family:'Frank Ruhl Libre', serif; font-size:14px; margin:2px 0; }
+  .wp-ai-result .wp-ai-flag{ color:#D89A5A; font-size:11.5px; }
+  .wp-ai-result .wp-ai-add{ display:inline-block; margin-top:3px; font-size:10.5px; color:var(--gold); cursor:pointer; border:1px solid #4A473F; border-radius:3px; padding:1px 6px; }
+  .wp-ai-result .wp-ai-add:hover{ background:#4A473F; }
+  .wp-ai-err{ color:#D96A5A; font-size:12px; margin-top:8px; }
 
   footer.audiobar{
     position: fixed; bottom:0; left:0; right:0; background: var(--panel); border-top: 1px solid var(--line);
@@ -330,7 +352,7 @@
       </div>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.31.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.32.0</div>
   </div>
 </div>
 
@@ -407,6 +429,13 @@
         <div class="settings-row" id="ownerEditRow" style="display:none;">
           <div><div class="settings-row-label">Правка базовых книг</div><div class="settings-row-sub">только у тебя — обычным посетителям этот пункт не виден</div></div>
           <label class="switch"><input type="checkbox" id="swEditBase"><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row settings-ai-key">
+          <div>
+            <div class="settings-row-label">🤖 ИИ-разбор слова</div>
+            <div class="settings-row-sub">свой ключ Gemini (бесплатный, aistudio.google.com/apikey) — хранится только в этом браузере, не передаётся на наш сервер</div>
+            <input type="password" id="aiKeyInput" class="ai-key-input" placeholder="вставьте ключ Gemini">
+          </div>
         </div>
       </div>
     </div>
@@ -819,18 +848,37 @@ function loadVocabFromStorage(){
   refreshVocabUI();
 }
 
-function saveVocabEntry(w){
+function saveVocabEntry(w, wordEl){
   const entry = {lemma:w.lemma, pos:w.pos, tr:w.tr, extra:w.extra, root:w.root, addedAt:Date.now()};
   try{ localStorage.setItem(STORAGE_PREFIX + w.lemma, JSON.stringify(entry)); }
   catch(err){ console.error('save failed', err); return; }
   vocabCache[w.lemma] = entry;
   if (window.cloudSyncVocab) window.cloudSyncVocab(bookId, w.lemma, entry);
+  // Also push the whole containing sentence to the trainer's practice pool —
+  // only possible when we know which occurrence was starred (wordEl carries
+  // the sentence id); the frequency-list star has no single occurrence, so
+  // it skips this (still saves the word itself, just no sentence context).
+  if (window.cloudAddCustomCard && wordEl){
+    const sentenceId = wordEl.dataset.sentence;
+    const sentence = data.sentences.find(s => s.id === sentenceId);
+    if (sentence){
+      const he = sentence.words.map(sw => sw.t).join(' ');
+      window.cloudAddCustomCard('reader:' + bookId + ':' + sentence.id, he, sentence.fluent, w.t);
+    }
+  }
 }
-function deleteVocabEntry(lemma){
+function deleteVocabEntry(lemma, wordEl){
   try{ localStorage.removeItem(STORAGE_PREFIX + lemma); }
   catch(err){ console.error('delete failed', err); }
   delete vocabCache[lemma];
   if (window.cloudDeleteVocab) window.cloudDeleteVocab(bookId, lemma);
+  // Only clears the custom-card tied to THIS occurrence's sentence — if the
+  // word was originally starred from a different sentence, that card is
+  // left as-is (harmless: worst case a stale practice card lingers).
+  if (window.cloudRemoveCustomCard && wordEl){
+    const sentenceId = wordEl.dataset.sentence;
+    if (sentenceId) window.cloudRemoveCustomCard('reader:' + bookId + ':' + sentenceId);
+  }
 }
 
 // ---- "уже разбирал(а)" — лёгкая отметка слов, по которым хоть раз кликали
@@ -857,9 +905,9 @@ function markSeen(lemma){
   if (window.cloudSyncSeen) window.cloudSyncSeen(bookId, lemma);
 }
 
-function toggleSaveWord(w, starEl){
+function toggleSaveWord(w, starEl, wordEl){
   const isSaved = !!vocabCache[w.lemma];
-  if (isSaved) deleteVocabEntry(w.lemma); else saveVocabEntry(w);
+  if (isSaved) deleteVocabEntry(w.lemma, wordEl); else saveVocabEntry(w, wordEl);
   if (starEl) starEl.classList.toggle('on', !isSaved);
   refreshVocabUI();
 }
@@ -1112,6 +1160,19 @@ document.getElementById('swMnemonic').addEventListener('change', (e) => { settin
 document.getElementById('swEditBase').addEventListener('change', (e) => { settings.editModeBase = e.target.checked; saveSettings(); renderPage(currentPage); });
 document.getElementById('swEditMode').addEventListener('change', (e) => { settings.editMode = e.target.checked; saveSettings(); renderPage(currentPage); });
 
+// Свой ключ Gemini для AI-разбора слова — намеренно живёт только в
+// localStorage этого браузера, не проходит через saveSettings()/Firestore.
+try{
+  const aiKeyInput = document.getElementById('aiKeyInput');
+  const savedAiKey = localStorage.getItem('hebrew-reader-ai-key');
+  if (savedAiKey) aiKeyInput.value = savedAiKey;
+  aiKeyInput.addEventListener('change', (e) => {
+    const v = e.target.value.trim();
+    if (v) localStorage.setItem('hebrew-reader-ai-key', v);
+    else localStorage.removeItem('hebrew-reader-ai-key');
+  });
+}catch(err){ console.error('AI key input wiring failed', err); }
+
 // ---- word popover + root highlighting ----
 let popoverEl = null;
 let selectedWordEl = null;
@@ -1152,23 +1213,704 @@ function showPopover(e, w, wordEl){
   popoverEl.style.left = left + 'px';
 }
 
+// Семантическое ядро корня — краткая (не энциклопедическая) справка,
+// офлайн-фолбэк без ключа. Покрывает ~150 самых частых корней из уже
+// имеющихся книг (~72% всех размеченных словоупотреблений) — список можно
+// дополнять по мере добавления новых книг. Корни-омонимы (когда два разных
+// исторических корня совпадают по написанию) помечены явно, а не смешаны
+// в одно уверенное утверждение.
+const ROOT_SEMANTICS = {
+"ה-י-ה": "быть, существование",
+"כ-ל-ל": "всё, совокупность, включение",
+"י-צ-ר": "творение, создание, формирование",
+"א-ו-ר": "воздух, атмосфера (омоним корня «свет» — здесь про воздух)",
+"י-ר-ה": "стрельба, выстрел",
+"ק-ו-ל": "звук, голос",
+"א-מ-ר": "говорение, слово, речь",
+"מ-ה-ר": "быстрота, скорость",
+"ר-ו-ח": "дуновение, запах, ветер, дух — многозначный корень",
+"ח-ז-ק": "сила, крепость, прочность",
+"י-ד-ד": "рука; отсюда и близость, дружба (ידיד — «тот, кто рядом»)",
+"ק-ט-ן": "малость, младшинство",
+"א-ד-ם": "земля/почва, человек, красный цвет — одного корня",
+"פ-נ-ה": "лицо, обращение, поворот, направление",
+"פ-ק-ד": "назначение на пост, командование, учёт/перепись",
+"ש-ק-ט": "тишина, покой",
+"ס-כ-ל": "смотреть, разглядывать, вглядываться",
+"ד-ל-ת": "дверь",
+"ק-ר-ב": "близость, приближение; отсюда и «бой» (сближение с врагом)",
+"ר-ב-ב": "множество, изобилие",
+"ת-ו-ך": "середина, нутро, внутренность",
+"י-צ-ב": "устойчивость, позиция; отсюда «застава/пост»",
+"ר-א-ש": "голова, вершина, начало, главенство",
+"ע-מ-ד": "стояние, устойчивое положение",
+"ר-ח-ש": "копошение, шевеление, шорох (мелких существ)",
+"א-ח-ר": "«за, позади» — отсюда «после» и «последний»",
+"ר-א-ה": "видение, зрение",
+"ג-ד-ל": "величина, рост, взросление",
+"ח-י-ל": "сила, войско, солдат",
+"צ-ע-ק": "крик, вопль",
+"ר-ג-ל": "нога; отсюда и «привычность» (то, к чему нога привыкла)",
+"ר-ג-ע": "миг, момент; тот же корень даёт «спокойствие» (רוגע)",
+"ח-ש-ך": "темнота, мрак",
+"ח-נ-ה": "стоянка, привал — отсюда תחנה «станция», חנות «магазин»",
+"ש-מ-ע": "слышание, слух",
+"כ-ב-ד": "тяжесть, вес; отсюда и «честь, уважение» (весомость → почёт)",
+"ח-ל-ל": "пустота, полое пространство (חלל, חלון «окно»)",
+"פ-ח-ד": "страх, боязнь",
+"ק-ש-ה": "твёрдость, суровость, трудность",
+"נ-ו-ע": "движение, перемещение",
+"צ-ל-ל": "тень (созвучный корень «звук» — צליל — сюда не относится)",
+"ס-פ-ר": "счёт, рассказ, книга — одного корня («то, что изложено»)",
+"נ-ג-ע": "прикосновение; לְהַגִּיעַ «прибыть» — того же корня («дойти, коснуться цели»)",
+"ש-מ-ר": "хранение, охрана, соблюдение",
+"ק-ר-ר": "холод, прохлада",
+"ר-ח-ק": "даль, отдалённость",
+"פ-ג-ע": "удар, попадание, столкновение; нанесение вреда",
+"נ-ס-ה": "попытка, испытание, опыт",
+"ר-ע-ה": "пасти, дружить/сопровождать (רועה, רעיה) — в этих книгах чаще часть имени персонажа «Рои», не смысловое употребление",
+"ש-נ-ה": "«два/второй» (שני) — в этих словах про счёт (секунда, второй), созвучен с отдельным корнем «год/менять»",
+"נ-ח-ל": "поток, ручей; надел/наследие (נחלה) — связь со словом נחיל «рой» образная, не проверял по источнику",
+"ש-א-ל": "вопрос, просьба",
+"ר-ב-ה": "множественность, увеличение",
+"י-ב-ש": "сухость",
+"ח-ש-ב": "мысль, размышление, счёт",
+"ב-י-ת": "дом",
+"ק-ו-ם": "вставание, подъём; также «место» (מקום)",
+"י-ת-ר": "остаток, излишек; отсюда יותר «больше»",
+"ג-ב-ע": "холм",
+"פ-ת-א": "внезапность",
+"פ-ת-ח": "открывание, вход, начало",
+"ש-ח-ר": "чернота (созвучный корень «рассвет» — שחר — сюда не относится)",
+"נ-ב-ט": "взгляд, наблюдение",
+"י-ד-ע": "знание",
+"ע-ב-ר": "переход, сторона; также «прошлое» (עבר)",
+"ח-ז-ר": "возвращение",
+"ז-ו-ז": "движение, шевеление, сдвиг с места",
+"ע-נ-ק": "гигантский размер",
+"כ-ו-ן": "направление, наведение, приготовление, готовность",
+"ב-ו-א": "приход, прибытие",
+"י-כ-ל": "способность, возможность",
+"ס-ב-ב": "вращение, окружение вокруг",
+"ח-ד-ר": "комната, помещение",
+"ח-ד-ש": "новизна; тот же корень даёт «месяц» (по циклу обновления луны)",
+"צ-ו-ת": "экипаж, команда, группа людей",
+"ל-י-ל": "ночь",
+"ס-ל-ע": "скала, камень",
+"ל-ח-ש": "шёпот",
+"נ-פ-ל": "падение",
+"א-ח-ד": "единство, «один»",
+"צ-ע-ד": "шаг, поступь",
+"ר-ג-ש": "чувство, ощущение",
+"ר-ו-ם": "высота, поднятие",
+"כ-נ-ס": "вход, вхождение",
+"ע-י-ן": "глаз",
+"ח-ד-ד": "острота, резкость",
+"ח-ו-צ": "наружность, внешняя сторона",
+"ב-י-ן": "понимание; тот же корень даёт «между, среди» — оттенок различения",
+"ת-ח-ל": "начало",
+"י-צ-א": "выход",
+"י-ש-ר": "прямота",
+"ע-ב-ד": "работа, труд, служение",
+"י-ש-ב": "сидение, поселение (יישוב, מושב)",
+"ר-כ-ז": "центр, сосредоточение",
+"ע-ל-ה": "подъём, восхождение",
+"צ-ד-ד": "сторона",
+"ר-ו-ץ": "бег",
+"ד-ר-ך": "путь, дорога, способ",
+"כ-ו-ח": "сила",
+"י-ו-ם": "день",
+"ד-א-ג": "забота, беспокойство",
+"ז-כ-ר": "память, воспоминание",
+"מ-ע-ט": "малость, немногочисленность",
+"מ-ש-ך": "тяга, протяжение, продолжение",
+"מ-ל-א": "полнота, наполненность",
+"ב-ס-ס": "основа, база",
+"ק-ש-ר": "связь, узел",
+"י-ח-ד": "единственность, особость (יחד «вместе», מיוחד «особенный»)",
+"ש-ל-ש": "«три» (שלוש, שלישי)",
+"ע-ש-ה": "делание, действие",
+"ד-ב-ר": "слово, вещь, дело — одного корня («то, о чём говорят/что есть»)",
+"ח-י-ך": "улыбка",
+"ר-צ-ה": "желание, воля",
+"י-ר-ד": "спуск",
+"ל-ב-ב": "сердце",
+"ש-א-ר": "остаток, то, что осталось",
+"א-ח-ה": "брат",
+"כ-ל-ב": "собака",
+"כ-א-ב": "боль",
+"א-ר-ך": "длина, протяжённость",
+"ח-ל-ש": "слабость",
+"פ-ס-ק": "прекращение, пауза, остановка",
+"ר-ע-ד": "дрожь",
+"ע-צ-ר": "остановка, задержание",
+"ח-ש-כ": "темнота (вариант написания того же корня, что ח-ש-ך)",
+"ע-נ-ה": "ответ",
+"ל-ק-ח": "взятие, брать",
+"ס-ו-פ": "конец",
+"ז-ו-ר": "странность, чуждость",
+"ח-ב-ר": "соединение, товарищество, друг",
+"א-ב-ן": "камень",
+"ב-נ-ה": "строительство, здание",
+"ח-כ-ה": "ожидание",
+"ע-ז-ר": "помощь",
+"נ-ש-ק": "оружие",
+"ק-ד-ם": "перёд, раньше, движение вперёд",
+"ד-ק-ק": "тонкость, точность (דק «тонкий», דיוק «точность»)",
+"א-מ-ן": "тренировка; отдельно тот же корень — вера/доверие (להאמין)",
+"ת-ק-ף": "сила, нападение, действительность (תוקף)",
+"ס-י-ר": "разведка, обход, дозор",
+"ח-ר-ף": "острота (вкуса/тона) — חריף; тот же корень отдельно даёт «зима» (חורף)",
+"פ-ל-ץ": "чудовищность, ужас (מפלצת «чудовище»)",
+"ח-ת-ל": "кот",
+"ט-ו-ב": "добро, хорошесть",
+"ח-ל-ק": "часть, доля, разделение",
+"ד-פ-ק": "стук, биение (сердца, в дверь)",
+"ש-ו-ב": "возвращение, повторение («снова»)",
+"ס-כ-נ": "опасность",
+"ח-י-ב": "обязанность, долженствование",
+"ת-ק-פ": "сила, нападение (вариант написания того же корня, что ת-ק-ף)",
+};
+
+// Мини-подсказка про биньян — какой смысловой паттерн он обычно несёт.
+// Биньян зашит свободным текстом в w.extra (например "пааль наст. м.р.
+// ед.ч."), отдельного поля нет — ищем известное название подстрокой,
+// без претензии на 100% попадание по всем вариантам транслитерации.
+const BINYAN_INFO = [
+  { match: ["пааль", "паал", "каль"], text: "биньян פעל — базовый, простое действие: «просто делает Х»" },
+  { match: ["нифаль", "нифъаль", "нифъал"], text: "биньян נפעל — обычно пассив к פעל, иногда возвратность: «с ним происходит Х»" },
+  { match: ["пиэль", "пиэл"], text: "биньян פיעל — усиленное или каузативное действие: «активно/многократно делает Х»" },
+  { match: ["пуал", "пуаль"], text: "биньян פועל — пассив к פיעל" },
+  { match: ["ифъиль", "hif'il", "hifil", "апъиль", "hif‘il"], text: "биньян הפעיל — каузатив: «делает так, что Х происходит»" },
+  { match: ["уфъаль", "huf'al", "hufal"], text: "биньян הופעל — пассив к הפעיל" },
+  { match: ["итпаэль", "хитпаэль", "итпаэл"], text: "биньян התפעל — часто возвратное/взаимное действие: «делает это себе / друг другу»" },
+];
+function findBinyanInfo(extra) {
+  if (!extra) return null;
+  const low = extra.toLowerCase();
+  const hit = BINYAN_INFO.find(b => b.match.some(v => low.includes(v.toLowerCase())));
+  return hit ? hit.text : null;
+}
+
+// ---- AI-модуль разбора слова (BYOK — свой ключ Gemini, только в localStorage
+// этого браузера, никогда не синкается в облако и не покидает клиент кроме
+// собственно вызова Gemini). Промт ниже — дословно текст, который передал
+// пользователь ("строгий педагог иврита"): регистр/частотность, значения,
+// происхождение, синонимы, корень+семья по биньянам, грамматика по части
+// речи, примеры сначала на иврите потом переводом, устойчивые выражения,
+// частые ошибки — с жёсткими правилами честности (Академия языка иврит как
+// источник, помечать непроверенное, не выдумывать огласовку/корень/этимологию,
+// без транслита без запроса). Передаётся модели как есть, не пересказана.
+const AI_KEY_STORAGE = 'hebrew-reader-ai-key';
+const AI_PEDAGOGY_PROMPT = ` Ты работаешь со мной как строгий, внимательный педагог иврита.
+
+Когда я спрашиваю новое ивритское слово, выражение, фразу или корень, разбирай его не как быстрый переводчик, а как преподаватель языка: через значение, употребление, источник, корень, грамматику, семантическое поле и реальные языковые связи.
+
+Моя цель — не просто узнать перевод, а понять, как слово живёт в языке: где оно звучит естественно, с чем связано, какие у него оттенки, какие у него родственники и как его правильно употреблять.
+
+1. Главный принцип: проверяемость
+
+Главный источник для нормативной информации — Академия языка иврит.
+
+В первую очередь опирайся на:
+
+Академию языка иврит;
+
+толковые словари иврита;
+
+авторитетные лексические и грамматические источники;
+
+реальные употребления в современном иврите: СМИ, литература, официальные тексты, разговорная речь.
+
+Если информация не проверена по источнику, обязательно помечай это прямо:
+"Это требует проверки по Академии языка иврит / словарю"
+или
+"По общему знанию, без проверки источника".
+
+Не придумывай этимологию, историю слова, корень, биньян, мишкаль, огласовку или сленговое значение, если нет уверенности.
+
+Если есть доступ к источникам, сначала проверь слово по Академии языка иврит и/или словарям. Если доступа к источникам нет, честно скажи об этом и отдели проверенное знание от предположения.
+
+2. Жёсткие запреты
+
+Никакого транслита
+
+Категорически запрещено автоматически транскрибировать ивритское слово русскими или латинскими буквами.
+
+Транскрипцию можно давать только если я прямо попрошу
+
+Оогласовки
+
+Первое употребление разбираемого слова должно быть с огласовками. Два написания. С огласовками и без.
+
+Но запрещено выдумывать огласовку. Если ты не уверен, напиши:
+"Я не могу уверенно поставить огласовку без проверки по источнику."
+
+Если я загрузил текст, PDF, скриншот или фрагмент с огласовками, категорически запрещено:
+
+исправлять огласовки;
+
+дописывать недостающие огласовки;
+
+"нормализовать" текст;
+
+восстанавливать повреждённые слова;
+
+переносить текст "по смыслу";
+
+подменять видимый текст предполагаемым правильным вариантом.
+
+Если огласовки нет, она повреждена или плохо видна, нужно прямо написать:
+"Я не вижу огласовку"
+или
+"Данные повреждены".
+
+Если я прошу разобрать слово без огласовок, можно разобрать его, но отдельно укажи, что огласовка требует проверки.
+
+Язык ответа
+
+Все объяснения давай на русском языке.
+
+Ивритские слова, формы и примеры пиши ивритским письмом.
+
+Не смешивай ивритский пример и русский перевод в одной строке.
+
+3. Структура разбора слова
+
+Каждый раз разбирай слово в таком порядке.
+
+1. Слово и перевод
+
+Напиши разбираемое слово с огласовками, если они проверены или надёжно известны.
+
+Дай основной перевод.
+
+Если переводов несколько, перечисли их и коротко объясни разницу между значениями.
+
+Укажи уровень и употребимость слова:
+
+очень частотное;
+
+обычное;
+
+разговорное;
+
+официальное;
+
+книжное;
+
+литературное;
+
+библейское;
+
+мишнаитское;
+
+поэтическое;
+
+устаревшее;
+
+редкое;
+
+сленговое.
+
+Если слово в современном иврите звучит странно, архаично, слишком официально или неестественно, обязательно скажи об этом.
+
+2. Значение и употребление
+
+Объясни, как слово реально используется в современном иврите.
+
+Если есть несколько значений, раздели их:
+
+основное значение;
+
+переносное значение;
+
+разговорное значение;
+
+официальное значение;
+
+редкое или книжное значение;
+
+сленговое или ироническое значение, если есть.
+
+Если у слова есть неочевидные культурные, эмоциональные или стилистические оттенки, обязательно упомяни их.
+
+3. Происхождение и история
+
+Коротко расскажи происхождение слова, если это можно проверить.
+
+Укажи, если слово:
+
+библейское;
+
+мишнаитское;
+
+средневековое;
+
+современное;
+
+заимствованное;
+
+создано или нормировано Академией языка иврит;
+
+изменило значение в современном иврите.
+
+Не делай длинную этимологическую лекцию, если история слова не помогает его понять или запомнить.
+
+Не придумывай красивую этимологию. Если происхождение неясно или спорно, так и напиши.
+
+4. Синонимы и близкие слова
+
+Если есть синонимы или близкие слова, перечисли их.
+
+Объясни, чем наше слово отличается от них:
+по уровню языка;
+
+по частотности;
+
+по официальности;
+
+по эмоциональной окраске;
+
+по современности;
+
+по контексту употребления;
+
+по оттенку смысла.
+
+Особенно важно объяснить, когда употребляется именно это слово, а не его ближайший синоним.
+
+Если есть слова, похожие по звучанию или написанию, которые легко перепутать, тоже укажи их.
+
+5. Корень и семантическое поле
+
+Укажи корень слова, если он установлен и ты в нём уверен.
+
+Если корень сомнительный, спорный или неочевидный, не утверждай его уверенно. Напиши:
+"Корень требует проверки"
+или
+"Здесь возможна неоднозначность".
+
+Опиши семантическое поле корня: с какими идеями, действиями, образами или областями значения он связан.
+
+Покажи, в каких биньянах, мишкалях и родственных словах проявляется этот корень.
+
+Для каждого родственного слова дай:
+
+слово на иврите;
+
+короткий перевод;
+
+часть речи;
+
+биньян или мишкаль, если применимо;
+
+уровень языка: разговорное, книжное, официальное, частотное, редкое и т.д.;
+
+очень короткий комментарий, если есть что-то важное.
+
+Не превращай этот блок в огромную энциклопедию. Подробности нужны только тогда, когда они реально важны для изучения языка.
+
+Лучше дать несколько живых и полезных связей, чем длинный список редких слов без объяснения их употребимости.
+
+6. Грамматика
+
+Дай грамматику в зависимости от части речи.
+
+Для существительного:
+
+род;
+
+множественное число;
+
+сопряжённую форму, если она употребима;
+
+типичные сочетания;
+
+особенности склонения, если есть.
+
+Для глагола:
+
+корень;
+
+биньян;
+
+инфинитив;
+
+основные формы в настоящем, прошедшем и будущем времени;
+
+особенности спряжения;
+
+управление и предлоги, если важно.
+
+Для прилагательного:
+
+формы мужского и женского рода;
+
+формы единственного и множественного числа;
+
+типичные существительные, с которыми оно сочетается.
+
+Для наречий, предлогов, союзов и частиц:
+
+объясни функцию;
+
+покажи типичные конструкции;
+
+предупреди о частых ошибках.
+
+4. Примеры употребления
+
+На каждое разбираемое слово давай 3–5 примеров.
+
+Сначала напиши все примеры подряд только на иврите.
+
+Только после этого дай отдельный нумерованный список с переводами на русский язык.
+
+Первые два примера должны быть простыми, примерно уровня ульпан ב или не выше.
+
+Остальные примеры могут быть сложнее и должны показывать разные оттенки значения слова.
+
+Для глаголов старайся дать примеры в:
+
+настоящем времени;
+
+прошедшем времени;
+
+будущем времени.
+
+Также по возможности чередуй:
+
+мужской и женский род;
+
+единственное и множественное число;
+
+разные лица.
+
+Если у слова есть необычное спряжение, склонение, управление или форма, пример с этой специфической формой обязателен.
+
+Если у слова есть частоупотребимые выражения, фразеологизмы, устойчивые сочетания или языковые блоки, они предпочтительнее искусственных примеров.
+
+Если используешь реальные примеры из СМИ, книг, официальных текстов или других источников, укажи источник.
+
+Если пример составлен специально для обучения, честно пометь его как учебный.
+
+Примеры должны показывать не только грамматику, но и живую употребимость слова.
+
+5. Устойчивые выражения и языковые блоки
+
+Если со словом есть частотные выражения, конструкции или фразеологизмы, обязательно добавь отдельный короткий блок.
+
+Для каждого выражения дай:
+
+выражение на иврите;
+
+русский перевод;
+
+уровень языка;
+
+короткое объяснение, где оно уместно.
+
+Если устойчивые выражения важнее отдельных искусственных предложений, отдай приоритет им.
+
+6. Частые ошибки
+
+Обязательно добавляй короткий блок "Частые ошибки".
+
+В нём объясняй:
+
+с чем русскоязычные ученики обычно путают это слово;
+
+какие есть ложные друзья;
+
+какие ошибки бывают в роде, числе, предлоге, управлении, биньяне или мишкале;
+
+какие значения нельзя напрямую переносить из русского;
+
+когда слово звучит слишком книжно, грубо, официально или неестественно;
+
+какие формы лучше не использовать без уверенности.
+
+7. Связь с уже изученными словами
+
+Учитывай слова, которые мы уже разбирали в этом чате или которые я явно прошу считать изученными.
+
+Старайся интегрировать ранее разобранные слова в новые примеры, но не делай это искусственно.
+Если ты не видишь в текущем контексте, что мы уже разбирали слово раньше, не выдумывай. Напиши:
+"Я не вижу в текущем контексте, что мы уже разбирали это слово."
+
+8. Формат и стиль ответа
+
+Объясняй точно, но человеческим языком.
+
+Не делай ответ академически тяжёлым без необходимости.
+
+Не заменяй глубокий разбор простой карточкой "слово — перевод".
+
+Не перегружай ответ редкими словами без объяснения их уровня и употребимости.
+
+Если я прошу "коротко", можно сократить объём, но нельзя нарушать жёсткие правила: никакого транслита без запроса, никакого выдумывания огласовок, корней, этимологии и источников.
+
+Если слово простое, всё равно дай структуру, но компактно.
+
+Если слово сложное, многозначное или культурно важное, разбирай глубже.
+
+Дополнительно для этого конкретного вызова: у тебя нет живого доступа к сайту Академии языка иврит или словарям — учитывай это в правилах самораскрытия неуверенности выше. Ответ верни строго в виде JSON по схеме, которую я передал через responseSchema — без markdown-обёртки, без код-блоков, каждое текстовое поле — обычный читаемый текст (можно с переносами строк), следуя всем правилам выше внутри содержимого этих полей.`;
+
+const AI_RESPONSE_SCHEMA = {
+  type: "OBJECT",
+  properties: {
+    word_and_level: { type: "STRING", description: "п.1 промта: слово с огласовками (если уверен) + основной перевод + уровень/употребимость" },
+    meanings: { type: "STRING", description: "п.2 промта: значения и употребление по оттенкам" },
+    origin: { type: "STRING", description: "п.3 промта: происхождение и история, кратко" },
+    synonyms: { type: "STRING", description: "п.4 промта: синонимы и близкие/похожие слова, разница в употреблении" },
+    root_field: { type: "STRING", description: "п.5 промта: корень, семантическое поле, семья слов по биньянам/мишкалям" },
+    grammar: { type: "STRING", description: "п.6 промта: грамматика по части речи" },
+    examples: {
+      type: "ARRAY",
+      description: "п.4(примеры): 3-5 примеров",
+      items: {
+        type: "OBJECT",
+        properties: {
+          he: { type: "STRING", description: "предложение на иврите, с огласовками если уверен" },
+          ru: { type: "STRING", description: "перевод примера на русский" },
+          focusToken: { type: "STRING", description: "точная форма разбираемого слова ровно как она стоит в поле he (без огласовок) — нужно для точного текстового совпадения" },
+          note: { type: "STRING", description: "необязательно: 'учебный пример', уровень, источник и т.п." },
+        },
+        required: ["he", "ru", "focusToken"],
+      },
+    },
+    set_expressions: { type: "STRING", description: "п.5 промта: устойчивые выражения, если есть" },
+    common_mistakes: { type: "STRING", description: "п.6 промта: частые ошибки русскоязычных" },
+    caveats: { type: "STRING", description: "сводка всего, что помечено как непроверенное/требующее проверки по Академии иврита в любом из полей выше" },
+  },
+  required: ["word_and_level", "meanings", "root_field", "grammar", "examples"],
+};
+
+function escapeHtmlLite(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function buildAiUserPrompt(w, wordEl){
+  const sentenceId = wordEl ? wordEl.dataset.sentence : null;
+  const sentence = sentenceId ? data.sentences.find(s => s.id === sentenceId) : null;
+  let ctx = `Разбираемое слово (лемма): ${w.lemma}\nВ тексте встретилось в форме: ${w.t}\n`;
+  if (sentence){
+    ctx += `Контекст — предложение из читаемой книги: ${sentence.words.map(sw => sw.t).join(' ')}\n`;
+    ctx += `Дословный перевод предложения: ${sentence.literal}\nЛитературный перевод: ${sentence.fluent}\n`;
+  }
+  ctx += `Уровень/раздел книги (для калибровки сложности примеров, если известен): ${(meta && meta.kicker) || 'не указан'}.\n`;
+  return ctx;
+}
+
+function renderAiAnalysis(a, w){
+  const slot = popoverEl && popoverEl.querySelector('.wp-ai-slot');
+  if (!slot) return;
+  const section = (title, text) => text ? `<h4>${title}</h4><div>${escapeHtmlLite(text).replace(/\n/g, '<br>')}</div>` : '';
+  const examplesHtml = (a.examples || []).map((ex, i) => `
+    <div class="wp-ai-he">${escapeHtmlLite(ex.he || '')}</div>
+    <div>${i + 1}. ${escapeHtmlLite(ex.ru || '')}${ex.note ? ` <i>(${escapeHtmlLite(ex.note)})</i>` : ''}
+      <span class="wp-ai-add" data-idx="${i}" data-he="${escapeHtmlLite(ex.he || '')}" data-ru="${escapeHtmlLite(ex.ru || '')}" data-focus="${escapeHtmlLite(ex.focusToken || '')}">+ практика</span>
+    </div>`).join('');
+  slot.innerHTML = `
+    ${section('Слово и уровень', a.word_and_level)}
+    ${section('Значение и употребление', a.meanings)}
+    ${section('Происхождение', a.origin)}
+    ${section('Синонимы', a.synonyms)}
+    ${section('Корень и семантическое поле', a.root_field)}
+    ${section('Грамматика', a.grammar)}
+    ${examplesHtml ? `<h4>Примеры</h4>${examplesHtml}` : ''}
+    ${section('Устойчивые выражения', a.set_expressions)}
+    ${section('Частые ошибки', a.common_mistakes)}
+    ${a.caveats ? `<div class="wp-ai-flag">⚠ ${escapeHtmlLite(a.caveats)}</div>` : ''}
+  `;
+  slot.querySelectorAll('.wp-ai-add').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!window.cloudAddCustomCard) return;
+      window.cloudAddCustomCard('ai:' + w.lemma + ':' + btn.dataset.idx, btn.dataset.he, btn.dataset.ru, btn.dataset.focus);
+      btn.textContent = '✓ добавлено';
+      btn.style.pointerEvents = 'none';
+    });
+  });
+}
+
+async function askAiAboutWord(w, wordEl, btn){
+  const key = localStorage.getItem(AI_KEY_STORAGE);
+  if (!key){
+    btn.textContent = '⚠ добавьте свой Gemini-ключ в настройках';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Анализирую…';
+  if (popoverEl){
+    popoverEl.classList.add('wp-expanded');
+    if (!popoverEl.querySelector('.wp-ai-slot')){
+      const slot = document.createElement('div');
+      slot.className = 'wp-ai-result wp-ai-slot';
+      popoverEl.appendChild(slot);
+    }
+  }
+  try{
+    const body = {
+      systemInstruction: { parts: [{ text: AI_PEDAGOGY_PROMPT }] },
+      contents: [{ parts: [{ text: buildAiUserPrompt(w, wordEl) }] }],
+      generationConfig: { responseMimeType: 'application/json', responseSchema: AI_RESPONSE_SCHEMA },
+    };
+    const resp = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + encodeURIComponent(key),
+      { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
+    );
+    if (!resp.ok){
+      const errText = await resp.text();
+      throw new Error('HTTP ' + resp.status + ': ' + errText.slice(0, 300));
+    }
+    const respJson = await resp.json();
+    const parts = respJson.candidates && respJson.candidates[0] && respJson.candidates[0].content && respJson.candidates[0].content.parts;
+    const jsonText = parts && parts[0] && parts[0].text;
+    if (!jsonText) throw new Error('пустой ответ модели');
+    renderAiAnalysis(JSON.parse(jsonText), w);
+    btn.textContent = '🤖 Спросить ИИ ещё раз';
+  }catch(err){
+    console.error('[ivrit-reader] AI word analysis failed', err);
+    const slot = popoverEl && popoverEl.querySelector('.wp-ai-slot');
+    if (slot) slot.innerHTML = `<div class="wp-ai-err">Не получилось: ${escapeHtmlLite(String((err && err.message) || err))}</div>`;
+    btn.textContent = '🤖 Спросить ИИ (повторить)';
+  }finally{
+    btn.disabled = false;
+  }
+}
+
 function refreshPopoverContent(w, wordEl){
   if (!popoverEl) return;
+  popoverEl.classList.remove('wp-expanded');
   const isSaved = !!vocabCache[w.lemma];
   const lemmaText = settings.nikud ? w.lemma : stripNikud(w.lemma);
   const milogWord = stripNikud(w.lemma).replace(/[^\u05D0-\u05EA]/g, '');
   const milogUrl = 'https://milog.co.il/' + encodeURIComponent(milogWord);
+  const pealimUrl = 'https://www.pealim.com/search/?q=' + encodeURIComponent(milogWord);
+  const isVerb = w.pos === 'гл.';
+  const rootInfo = w.root && w.root !== '—' ? ROOT_SEMANTICS[w.root] : null;
+  const binyanInfo = isVerb ? findBinyanInfo(w.extra) : null;
   popoverEl.innerHTML = `
     <div class="wp-top"><div class="wp-lemma">${lemmaText}</div><div class="wp-star ${isSaved ? 'on' : ''}">★</div></div>
     ${settings.detailed ? `<div class="wp-pos">${w.pos}</div>` : ''}
     <div class="wp-main">${w.tr}</div>
     ${settings.detailed && w.extra ? `<div class="wp-extra">${w.extra}</div>` : ''}
     ${settings.detailed && w.root && w.root !== '—' ? `<div class="wp-root">корень: ${w.root}</div>` : ''}
+    ${settings.detailed && rootInfo ? `<div class="wp-root-semantics">${rootInfo}</div>` : ''}
+    ${settings.detailed && binyanInfo ? `<div class="wp-binyan">${binyanInfo}</div>` : ''}
     <button class="wp-link wp-play-from" style="width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px;">▶ Слушать отсюда</button>
     ${milogWord ? `<a class="wp-link" href="${milogUrl}" target="_blank" rel="noopener">📖 примеры употребления на Milog ↗</a>` : ''}
+    ${isVerb && milogWord ? `<a class="wp-link" href="${pealimUrl}" target="_blank" rel="noopener">📖 спряжение на Pealim ↗</a>` : ''}
+    <button class="wp-ai-btn">🤖 Спросить ИИ (разбор по всем правилам)</button>
+    <div class="wp-ai-slot"></div>
   `;
   const starEl = popoverEl.querySelector('.wp-star');
-  starEl.addEventListener('click', (e) => { e.stopPropagation(); toggleSaveWord(w, starEl); });
+  starEl.addEventListener('click', (e) => { e.stopPropagation(); toggleSaveWord(w, starEl, wordEl); });
+
+  const aiBtn = popoverEl.querySelector('.wp-ai-btn');
+  aiBtn.addEventListener('click', (e) => { e.stopPropagation(); askAiAboutWord(w, wordEl, aiBtn); });
 
   const playFromBtn = popoverEl.querySelector('.wp-play-from');
   if (playFromBtn && wordEl){
@@ -1860,6 +2602,29 @@ window.cloudFetchBookProgress = async function (bookId) {
   const meta = metaSnap.exists() ? metaSnap.data() : {};
   return { vocab, seen: meta.seen || {}, page: typeof meta.page === "number" ? meta.page : null };
 };
+// Whole-sentence practice cards pushed to the trainer's personal pool —
+// doc id is the `source` string itself ("reader:<bookId>:<sentenceId>" or
+// "ai:<lemma>"), so re-saving the same occurrence overwrites the same doc.
+// The trainer assigns these a fixed position in its DATA array on first
+// sight and never reorders it (see project memory on positional DATA
+// indices) — so `addedAt` must stay fixed for a doc's whole lifetime, even
+// across delete+re-add, or a later session would silently reshuffle every
+// other custom card's position. Hence the read-before-write: reuse the
+// existing addedAt if this doc already exists (e.g. was soft-deleted).
+window.cloudAddCustomCard = async function (source, he, ru, focusWord) {
+  if (!window.cloudUid || !source || !he || !ru) return;
+  const ref = doc(fbDb, "users", window.cloudUid, "customCards", source);
+  try {
+    const snap = await getDoc(ref);
+    const addedAt = (snap.exists() && snap.data().addedAt) || Date.now();
+    await setDoc(ref, { he, ru, focusWord: focusWord || "", addedAt, deleted: false });
+  } catch (e) { console.error("[ivrit-reader] cloudAddCustomCard failed", e); }
+};
+window.cloudRemoveCustomCard = function (source) {
+  if (!window.cloudUid || !source) return;
+  setDoc(doc(fbDb, "users", window.cloudUid, "customCards", source), { deleted: true }, { merge: true }).catch(() => {});
+};
+
 window.cloudSyncSettings = function (s) {
   if (!window.cloudUid) return;
   setDoc(doc(fbDb, "users", window.cloudUid, "readerSettings", "prefs"), s, { merge: true }).catch(() => {});
