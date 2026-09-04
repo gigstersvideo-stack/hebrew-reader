@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.30.0
+  Hebrew Reader — v1.31.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -8,6 +8,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>קורא — Reader Prototype</title>
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#27362D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -326,7 +330,7 @@
       </div>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.30.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.31.0</div>
   </div>
 </div>
 
@@ -1060,7 +1064,26 @@ try{
 function saveSettings(){
   try{ localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); }
   catch(err){ console.error('settings save failed', err); }
+  if (window.cloudSyncSettings) window.cloudSyncSettings(settings);
 }
+
+function pullCloudSettings(){
+  if (!window.cloudFetchSettings) return Promise.resolve();
+  return window.cloudFetchSettings().then(remote => {
+    if (!remote){ if (window.cloudSyncSettings) window.cloudSyncSettings(settings); return; }
+    settings = {...settings, ...remote};
+    try{ localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); }catch(err){}
+    document.getElementById('swNikud').checked = settings.nikud;
+    document.getElementById('swLiteral').checked = settings.literal;
+    document.getElementById('swDetailed').checked = settings.detailed;
+    document.getElementById('swAutoscroll').checked = settings.autoscroll;
+    document.getElementById('swMnemonic').checked = settings.mnemonic;
+    document.getElementById('swEditBase').checked = settings.editModeBase;
+    document.getElementById('swEditMode').checked = settings.editMode;
+    applySettings();
+  }).catch(err => console.error('[ivrit-reader] cloud settings pull failed', err));
+}
+window.pullReaderCloudSettings = pullCloudSettings;
 
 function stripNikud(str){ return str.replace(/[\u0591-\u05C7]/g, ''); }
 
@@ -1752,6 +1775,16 @@ function closeImportModal(){
 }
 
 boot();
+
+// PWA install support — safe no-op if manifest.json/sw.js aren't served
+// alongside this page.
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch((e) => {
+      console.warn("[ivrit-reader] service worker registration failed:", e);
+    });
+  });
+}
 </script>
 
 <!--
@@ -1773,7 +1806,8 @@ import {
   getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
-  getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs, query, where,
+  getFirestore, initializeFirestore, persistentLocalCache, persistentMultipleTabManager,
+  doc, getDoc, setDoc, deleteDoc, collection, getDocs, query, where,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -1786,7 +1820,13 @@ const firebaseConfig = {
 };
 const fbApp = initializeApp(firebaseConfig);
 const fbAuth = getAuth(fbApp);
-const fbDb = getFirestore(fbApp);
+let fbDb;
+try {
+  fbDb = initializeFirestore(fbApp, { localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }) });
+} catch (e) {
+  console.warn("[ivrit-reader] persistent Firestore cache unavailable, using in-memory client:", e);
+  fbDb = getFirestore(fbApp);
+}
 window.cloudUid = null;
 
 window.cloudSyncVocab = function (bookId, lemma, entry) {
@@ -1820,6 +1860,27 @@ window.cloudFetchBookProgress = async function (bookId) {
   const meta = metaSnap.exists() ? metaSnap.data() : {};
   return { vocab, seen: meta.seen || {}, page: typeof meta.page === "number" ? meta.page : null };
 };
+window.cloudSyncSettings = function (s) {
+  if (!window.cloudUid) return;
+  setDoc(doc(fbDb, "users", window.cloudUid, "readerSettings", "prefs"), s, { merge: true }).catch(() => {});
+};
+window.cloudFetchSettings = async function () {
+  if (!window.cloudUid) return null;
+  const snap = await getDoc(doc(fbDb, "users", window.cloudUid, "readerSettings", "prefs"));
+  return snap.exists() ? snap.data() : null;
+};
+
+// Persistent sync status (not just a one-off message) — reflects real
+// connectivity, since the persistent Firestore cache above means writes
+// keep working offline and just queue up rather than failing outright.
+function updateCloudStatusIndicator() {
+  if (!window.cloudUid) { readerAuthStatusEl.textContent = ""; return; }
+  readerAuthStatusEl.textContent = navigator.onLine
+    ? "☁ Синхронизировано"
+    : "📴 Офлайн — изменения досинхронизируются при подключении";
+}
+window.addEventListener("online", updateCloudStatusIndicator);
+window.addEventListener("offline", updateCloudStatusIndicator);
 
 const readerAuthStatusEl = document.getElementById("readerAuthStatus");
 document.getElementById("readerBtnSignin").addEventListener("click", () => {
@@ -1842,10 +1903,11 @@ onAuthStateChanged(fbAuth, (user) => {
     userBox.style.display = "flex";
     document.getElementById("readerAuthAvatar").src = user.photoURL || "";
     document.getElementById("readerAuthName").textContent = user.displayName || user.email || "Вы";
-    readerAuthStatusEl.textContent = window.pullReaderCloudProgress ? "Синхронизация…" : "";
-    if (window.pullReaderCloudProgress) {
-      Promise.resolve(window.pullReaderCloudProgress()).then(() => { readerAuthStatusEl.textContent = "Прогресс синхронизирован"; });
-    }
+    readerAuthStatusEl.textContent = "Синхронизация…";
+    const pulls = [];
+    if (window.pullReaderCloudProgress) pulls.push(Promise.resolve(window.pullReaderCloudProgress()).catch((e) => console.error("[ivrit-reader] progress sync failed:", e)));
+    if (window.pullReaderCloudSettings) pulls.push(Promise.resolve(window.pullReaderCloudSettings()).catch((e) => console.error("[ivrit-reader] settings sync failed:", e)));
+    Promise.all(pulls).then(() => updateCloudStatusIndicator());
   } else {
     window.cloudUid = null;
     signinBtn.style.display = "";
