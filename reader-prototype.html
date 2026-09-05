@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.33.2
+  Hebrew Reader — v1.34.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -354,7 +354,7 @@
       </div>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.33.2</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.34.0</div>
   </div>
 </div>
 
@@ -1394,16 +1394,25 @@ function findBinyanInfo(extra) {
   return hit ? hit.text : null;
 }
 
-// ---- Pealim conjugation snippet, fetched on demand ----
+// ---- Pealim snippet, fetched automatically per word (Russian pages) ----
 // Pealim.com has no API and no CORS headers of its own, so a direct browser
 // fetch() from our origin is blocked. r.jina.ai's reader proxy re-fetches
 // the page server-side and hands back clean, CORS-enabled markdown (checked
-// empirically: 5/5 test calls succeeded, and it echoes back
+// empirically: reliable across repeat calls, and it echoes back
 // Access-Control-Allow-Origin for whatever Origin sent the request) — no
-// backend of our own needed. This is still a third-party dependency outside
-// our control, so every step degrades to "just show the plain Pealim link"
-// on any failure rather than erroring visibly.
+// backend of our own needed. Uses Pealim's /ru/ pages specifically — unlike
+// the English pages, the Russian search-results markdown keeps a real
+// [word](url) link on every result card (even ambiguous/multi-match
+// searches), which the English version's conversion drops — so a single
+// search-page fetch reliably gives root + part of speech/binyan + a
+// Russian gloss for ANY word, verb or not, no second "detail page" hop
+// needed except to pull real conjugated forms for verbs specifically.
+// Every failure degrades to nothing shown (this call now runs
+// automatically on every word click, not behind a button, so a visible
+// error every time the proxy hiccups would just be noise).
 function jinaProxy(url) { return 'https://r.jina.ai/' + url; }
+const pealimCache = {}; // per-session, avoids refetching the same word twice
+function stripMd(s){ return s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_]/g, ''); }
 
 function extractPealimForm(rowLine) {
   if (!rowLine) return null;
@@ -1411,103 +1420,82 @@ function extractPealimForm(rowLine) {
   const cell = cells[1];
   if (!cell) return null;
   const heMatch = cell.match(/[א-ת֑-ׇ]+/);
-  const glosses = [...cell.matchAll(/\*\*([^*]+)\*\*/g)];
   if (!heMatch) return null;
-  return { he: heMatch[0], gloss: glosses.length ? glosses[glosses.length - 1][1] : '' };
+  // The last **bold** span is normally the gloss word (e.g. "...писать"),
+  // but some entries only bold a single stressed vowel inside the
+  // transliteration and never repeat the gloss on that row at all — a
+  // single-character "gloss" is that stress mark, not real content.
+  const glosses = [...cell.matchAll(/\*\*([^*]+)\*\*/g)].map(m => m[1]).filter(g => g.length > 2);
+  return { he: heMatch[0], gloss: glosses.length ? glosses[glosses.length - 1] : '' };
 }
 
 async function fetchPealimSnippet(hebrewWord) {
-  const searchUrl = jinaProxy('https://www.pealim.com/search/?q=' + encodeURIComponent(hebrewWord));
-  const searchResp = await fetch(searchUrl);
-  if (!searchResp.ok) throw new Error('search HTTP ' + searchResp.status);
-  const searchText = await searchResp.text();
-  const linkMatch = searchText.match(/\((https:\/\/www\.pealim\.com\/dict\/\d+-[a-z-]+\/)\)/);
-  if (!linkMatch) {
-    // Ambiguous search (e.g. the same root has both a Pi'el and a Pa'al verb,
-    // like לאבד) — Pealim's results page for this case lists each match's
-    // binyan + gloss as plain text, with no per-word link at all (unlike an
-    // unambiguous single match, which links straight to its own /dict/ page).
-    // Surface that summary instead of just failing outright.
-    const options = [...searchText.matchAll(/Part of speech:\s*verb\s*[–-]\s*\*\*([^*]+)\*\*\s*\n+\s*([^\n]+)/g)]
-      .map(m => ({ binyan: m[1].trim(), gloss: m[2].trim() }));
-    if (options.length) return { ambiguous: true, searchUrl: 'https://www.pealim.com/search/?q=' + encodeURIComponent(hebrewWord), options };
+  if (pealimCache[hebrewWord] !== undefined) return pealimCache[hebrewWord];
+  const promise = (async () => {
+    const searchUrl = jinaProxy('https://www.pealim.com/ru/search/?q=' + encodeURIComponent(hebrewWord));
+    const resp = await fetch(searchUrl);
+    if (!resp.ok) throw new Error('search HTTP ' + resp.status);
+    const text = await resp.text();
 
-    // Non-verbs (nouns, adjectives, etc.) go through this same "click a word
-    // to see all forms" results page too, but their table has no "Part of
-    // speech: verb" marker and its Word/Form/Notes columns don't survive
-    // markdown conversion in a row-aligned way — so there's no reliable
-    // structured field to pull, only the English glosses themselves. Take
-    // whatever plain-text lines sit between the results heading and the
-    // page footer, drop the boilerplate/label lines, and dedupe what's left.
-    const sectionMatch = searchText.match(/###\s*Results for[^\n]*\n([\s\S]*?)(?:\n####|\n###|$)/);
-    if (sectionMatch) {
-      const skip = /^(click on a word|word|form|notes)\b/i;
-      const isLabel = /^(masculine|feminine|singular|plural|construct state|part of speech)\b/i;
-      const meanings = [...new Set(
-        sectionMatch[1].split('\n').map(l => l.trim())
-          .filter(l => l && !skip.test(l) && !isLabel.test(l))
-      )];
-      if (meanings.length) return { generic: true, meanings, searchUrl: 'https://www.pealim.com/search/?q=' + encodeURIComponent(hebrewWord) };
+    // Each result "card" starts with a 🔊[слово](.../ru/dict/ID-slug/) link;
+    // the same dict id can repeat with a #h-... anchor for a specific
+    // inflected form mentioned inline — collapse those into one card.
+    const cardRe = /🔊\[[^\]]+\]\((https:\/\/www\.pealim\.com\/ru\/dict\/(\d+)-[a-z-]+\/)[^)]*\)/g;
+    const order = [];
+    const cards = {};
+    let m;
+    while ((m = cardRe.exec(text))) {
+      const [, url, id] = m;
+      if (cards[id]) continue;
+      const chunkEnd = text.slice(m.index + m[0].length).search(/🔊\[/);
+      const chunk = text.slice(m.index + m[0].length, chunkEnd === -1 ? undefined : m.index + m[0].length + chunkEnd);
+      const rootMatch = chunk.match(/Корень:\s*\[([^\]]+)\]/);
+      const posMatch = chunk.match(/Часть речи:\s*([^\n]+)/);
+      const gloss = chunk.split('\n').map(l => l.trim())
+        .find(l => l && !/^(Корень:|Часть речи:|Мужской|Женский|Единственное|Множественное|\[)/.test(l));
+      cards[id] = {
+        url, id,
+        root: rootMatch ? rootMatch[1] : null,
+        pos: posMatch ? stripMd(posMatch[1]).trim() : null,
+        gloss: gloss || null,
+      };
+      order.push(id);
     }
-    throw new Error('слово не найдено на Pealim');
-  }
-  const detailUrl = linkMatch[1];
+    if (!order.length) return null;
+    const card = cards[order[0]];
+    const isVerb = !!(card.pos && card.pos.toLowerCase().startsWith('глагол'));
+    card.searchUrl = 'https://www.pealim.com/ru/search/?q=' + encodeURIComponent(hebrewWord);
 
-  const detailResp = await fetch(jinaProxy(detailUrl));
-  if (!detailResp.ok) throw new Error('detail HTTP ' + detailResp.status);
-  const text = await detailResp.text();
-
-  const binyanMatch = text.match(/Verb\s*[–-]\s*\*\*([^*]+)\*\*/);
-  const rootMatch = text.match(/Root:\s*\[([^\]]+)\]/);
-  const meaningMatch = text.match(/###\s*Meaning\s*\n+([^\n#]+)/);
-  const lines = text.split('\n');
-  const present = extractPealimForm(lines.find(l => l.includes('Present tense')));
-  const infinitive = extractPealimForm(lines.find(l => l.includes('| Infinitive |')));
-
-  return {
-    url: detailUrl,
-    binyan: binyanMatch ? binyanMatch[1] : null,
-    root: rootMatch ? rootMatch[1] : null,
-    meaning: meaningMatch ? meaningMatch[1].trim() : null,
-    present,
-    infinitive,
-  };
+    if (isVerb) {
+      try {
+        const detailText = await (await fetch(jinaProxy(card.url))).text();
+        const lines = detailText.split('\n');
+        card.present = extractPealimForm(lines.find(l => l.includes('Настоящее время')));
+        card.infinitive = extractPealimForm(lines.find(l => l.includes('| Инфинитив |')));
+      } catch (e) { /* still show what the search page already gave us */ }
+    }
+    return card;
+  })();
+  pealimCache[hebrewWord] = promise;
+  promise.catch(() => { delete pealimCache[hebrewWord]; }); // don't cache failures
+  return promise;
 }
 
-async function showPealimSnippet(hebrewWord, btn, slotEl){
-  btn.disabled = true;
-  btn.textContent = 'Загружаю…';
+async function showPealimSnippet(hebrewWord, slotEl){
   try{
     const info = await fetchPealimSnippet(hebrewWord);
-    if (info.ambiguous){
-      const list = info.options.map(o => `биньян <b>${escapeHtmlLite(o.binyan)}</b> — ${escapeHtmlLite(o.gloss)}`).join('<br>');
-      slotEl.innerHTML = `<div class="wp-pealim-info">Нашлось несколько вариантов корня:<br>${list}<br>
-        <a class="wp-link" href="${info.searchUrl}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">выбрать нужный на Pealim ↗</a></div>`;
-      btn.style.display = 'none';
-      return;
-    }
-    if (info.generic){
-      slotEl.innerHTML = `<div class="wp-pealim-info">На Pealim (англ.): ${info.meanings.map(escapeHtmlLite).join('; ')}<br>
-        <a class="wp-link" href="${info.searchUrl}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">подробнее на Pealim ↗</a></div>`;
-      btn.style.display = 'none';
-      return;
-    }
+    if (!info || !slotEl.isConnected) return;
     const parts = [];
-    if (info.binyan) parts.push(`биньян <b>${escapeHtmlLite(info.binyan)}</b>`);
+    if (info.pos) parts.push(`<b>${escapeHtmlLite(info.pos)}</b>`);
     if (info.root) parts.push(`корень <b>${escapeHtmlLite(info.root)}</b>`);
-    if (info.meaning) parts.push(`значение: ${escapeHtmlLite(info.meaning)}`);
-    if (info.infinitive) parts.push(`инфинитив: <bdi>${escapeHtmlLite(info.infinitive.he)}</bdi> — ${escapeHtmlLite(info.infinitive.gloss)}`);
-    if (info.present) parts.push(`наст. время (м.р. ед.ч.): <bdi>${escapeHtmlLite(info.present.he)}</bdi> — ${escapeHtmlLite(info.present.gloss)}`);
-    slotEl.innerHTML = parts.length
-      ? `<div class="wp-pealim-info">${parts.join('<br>')}<br><a class="wp-link" href="${info.url}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">полная таблица на Pealim ↗</a></div>`
-      : `<div class="wp-ai-err">Не нашлось на Pealim.</div>`;
-    btn.style.display = 'none';
+    if (info.gloss) parts.push(escapeHtmlLite(info.gloss));
+    if (info.infinitive) parts.push(`инфинитив: <bdi>${escapeHtmlLite(info.infinitive.he)}</bdi>${info.infinitive.gloss ? ' — ' + escapeHtmlLite(info.infinitive.gloss) : ''}`);
+    if (info.present) parts.push(`наст. время (м.р. ед.ч.): <bdi>${escapeHtmlLite(info.present.he)}</bdi>${info.present.gloss ? ' — ' + escapeHtmlLite(info.present.gloss) : ''}`);
+    if (!parts.length) return;
+    slotEl.innerHTML = `<div class="wp-pealim-info">${parts.join('<br>')}<br>
+      <a class="wp-link" href="${info.url}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">подробнее на Pealim ↗</a></div>`;
   }catch(err){
-    console.warn('[ivrit-reader] Pealim snippet failed', err);
-    const fallbackUrl = 'https://www.pealim.com/search/?q=' + encodeURIComponent(hebrewWord);
-    slotEl.innerHTML = `<div class="wp-ai-err">Не получилось загрузить сюда — Pealim или прокси сейчас недоступны.</div>
-      <a class="wp-link" href="${fallbackUrl}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">Открыть на Pealim ↗</a>`;
-    btn.style.display = 'none';
+    console.warn('[ivrit-reader] Pealim snippet failed (silently skipped)', err);
   }
 }
 
@@ -1981,9 +1969,15 @@ async function askAiAboutWord(w, wordEl, btn){
     contents: [{ parts: [{ text: buildAiUserPrompt(w, wordEl) }] }],
     generationConfig: { responseMimeType: 'application/json', responseSchema: AI_RESPONSE_SCHEMA },
   };
-  const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=' + encodeURIComponent(key);
+  // Tried in order on a 503 ("model overloaded") — gemini-flash-latest first
+  // (best quality), falling back to lighter/less-congested tiers rather than
+  // just retrying the same busy model. All are aliases (not dated version
+  // numbers) so this list shouldn't need updating when Google rotates which
+  // specific model each alias points to.
+  const AI_MODELS = ['gemini-flash-latest', 'gemini-flash-lite-latest'];
 
-  async function attempt(){
+  async function attempt(model){
+    const url = 'https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent?key=' + encodeURIComponent(key);
     const resp = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     if (!resp.ok){
       const errText = await resp.text();
@@ -1999,21 +1993,27 @@ async function askAiAboutWord(w, wordEl, btn){
   }
 
   try{
-    let analysis;
-    try{
-      analysis = await attempt();
-    }catch(err){
-      // 503 = model temporarily overloaded (Google's own wording says
-      // "usually temporary") — worth one silent retry before bothering
-      // the user with an error they'd just retry themselves anyway.
-      if (err.status === 503){
-        btn.textContent = 'Модель перегружена, пробую ещё раз…';
-        await new Promise(r => setTimeout(r, 2500));
-        analysis = await attempt();
-      } else {
-        throw err;
+    let analysis, lastErr;
+    for (let i = 0; i < AI_MODELS.length; i++){
+      try{
+        analysis = await attempt(AI_MODELS[i]);
+        lastErr = null;
+        break;
+      }catch(err){
+        lastErr = err;
+        // 503 = model temporarily overloaded (Google's own wording says
+        // "usually temporary") — worth trying the next model before
+        // bothering the user with an error they'd just retry by hand anyway.
+        // Any other error (bad key, quota, etc.) isn't fixed by switching
+        // models, so stop immediately instead of burning more attempts.
+        if (err.status !== 503) break;
+        if (i < AI_MODELS.length - 1){
+          btn.textContent = 'Модель перегружена, пробую другую…';
+          await new Promise(r => setTimeout(r, 1200));
+        }
       }
     }
+    if (lastErr) throw lastErr;
     renderAiAnalysis(analysis, w);
     btn.textContent = '🎓 Разбор слова ещё раз';
   }catch(err){
@@ -2047,20 +2047,15 @@ function refreshPopoverContent(w, wordEl){
     ${settings.detailed && binyanInfo ? `<div class="wp-binyan">${binyanInfo}</div>` : ''}
     <button class="wp-link wp-play-from" style="width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px;">▶ Слушать отсюда</button>
     ${milogWord ? `<a class="wp-link" href="${milogUrl}" target="_blank" rel="noopener">📖 примеры употребления на Milog ↗</a>` : ''}
-    ${milogWord ? `<button class="wp-link wp-pealim-btn" style="border:none; background:none; cursor:pointer; font-family:inherit; text-align:left; width:100%;">📖 ${isVerb ? 'Показать спряжение' : 'Проверить'} на Pealim</button><div class="wp-pealim-slot"></div>` : ''}
+    ${milogWord ? `<div class="wp-pealim-slot"></div>` : ''}
     <button class="wp-ai-btn">🎓 Разбор слова (ИИ-педагог)</button>
     <div class="wp-ai-slot"></div>
   `;
   const starEl = popoverEl.querySelector('.wp-star');
   starEl.addEventListener('click', (e) => { e.stopPropagation(); toggleSaveWord(w, starEl, wordEl); });
 
-  const pealimBtn = popoverEl.querySelector('.wp-pealim-btn');
-  if (pealimBtn){
-    pealimBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      popoverEl.classList.add('wp-expanded');
-      showPealimSnippet(milogWord, pealimBtn, popoverEl.querySelector('.wp-pealim-slot'));
-    });
+  if (milogWord){
+    showPealimSnippet(milogWord, popoverEl.querySelector('.wp-pealim-slot'));
   }
 
   const aiBtn = popoverEl.querySelector('.wp-ai-btn');
