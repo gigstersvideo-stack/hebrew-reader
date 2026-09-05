@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+  Hebrew Reader — AI key help page — v1.0.0
+  Часть репозитория hebrew-reader, тот же origin что и reader-prototype.html,
+  поэтому localStorage['hebrew-reader-ai-key'], сохранённый отсюда, сразу
+  виден основной читалке.
+-->
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Свой ключ для ИИ-разбора — קורא</title>
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<meta name="theme-color" content="#27362D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EAE6DC; --ink: #211F1C; --ink-soft: #6B665C; --line: #D5CEBE;
+    --accent: #37564D; --accent-soft: #DCE6E2; --gold: #A8813F; --gold-soft: #F0E4CC;
+    --panel: #F8F6F0; --danger: #A3402F; --ok: #3F7A4E;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:640px; margin:0 auto; padding:40px 20px 80px; }
+  h1{ font-family:'Frank Ruhl Libre',serif; font-size:28px; margin:0 0 6px; }
+  .sub{ color:var(--ink-soft); font-size:14px; margin-bottom:32px; }
+  .back{ display:inline-block; margin-bottom:24px; color:var(--accent); text-decoration:none; font-size:13px; }
+  .back:hover{ text-decoration:underline; }
+  .step{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:18px 20px; margin-bottom:16px;
+  }
+  .step-num{
+    display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px;
+    background:var(--accent); color:#fff; border-radius:50%; font-size:13px; font-weight:600;
+    margin-right:8px; flex-shrink:0;
+  }
+  .step h3{ display:flex; align-items:center; font-size:15px; margin:0 0 8px; }
+  .step p{ margin:0 0 8px; font-size:13.5px; color:var(--ink); }
+  .step p:last-child{ margin-bottom:0; }
+  .step a.btn-link{
+    display:inline-block; margin-top:4px; padding:7px 14px; background:var(--accent); color:#fff;
+    border-radius:8px; text-decoration:none; font-size:13px; font-weight:500;
+  }
+  .step a.btn-link:hover{ opacity:.9; }
+  .save-box{
+    background:var(--accent-soft); border:1px solid var(--accent); border-radius:12px;
+    padding:20px; margin:28px 0;
+  }
+  .save-box h3{ margin:0 0 4px; font-size:16px; }
+  .save-box .sub2{ font-size:13px; color:var(--ink-soft); margin-bottom:14px; }
+  .save-row{ display:flex; gap:8px; flex-wrap:wrap; }
+  .save-row input{
+    flex:1; min-width:200px; padding:10px 12px; font-size:13px; font-family:monospace;
+    border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink);
+  }
+  .save-row button{
+    padding:10px 18px; background:var(--gold); color:#fff; border:none; border-radius:8px;
+    font-size:13px; font-weight:600; cursor:pointer; font-family:inherit;
+  }
+  .save-row button:hover{ opacity:.9; }
+  .status-msg{ margin-top:10px; font-size:13px; min-height:18px; }
+  .status-msg.ok{ color:var(--ok); }
+  .status-msg.err{ color:var(--danger); }
+  .privacy-note{ font-size:12px; color:var(--ink-soft); margin-top:10px; }
+  .faq{ margin-top:36px; }
+  .faq h2{ font-family:'Frank Ruhl Libre',serif; font-size:20px; margin-bottom:12px; }
+  details{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:12px 16px; margin-bottom:10px;
+  }
+  summary{ cursor:pointer; font-size:14px; font-weight:500; }
+  details p{ font-size:13.5px; color:var(--ink-soft); margin:10px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="reader-prototype.html">← Назад к читалке</a>
+  <h1>Свой ключ для разбора слова ИИ-педагогом</h1>
+  <p class="sub">Функция "🎓 Разбор слова" в попапе слова использует Gemini — бесплатный сервис Google.
+  Чтобы им пользоваться, нужен собственный ключ (это бесплатно и занимает пару минут).
+  У нас нет своего сервера, который мог бы платить за всех, поэтому каждый подключает свой.</p>
+
+  <div class="step">
+    <h3><span class="step-num">1</span> Откройте Google AI Studio</h3>
+    <p>Перейдите на страницу создания ключей и войдите под своим Google-аккаунтом (обычным, не нужен отдельный).</p>
+    <a class="btn-link" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Открыть aistudio.google.com/apikey ↗</a>
+  </div>
+
+  <div class="step">
+    <h3><span class="step-num">2</span> Создайте ключ</h3>
+    <p>Нажмите кнопку <b>"Create API key"</b> (или "Создать ключ API"). Если появится выбор проекта — можно оставить предложенный по умолчанию, ничего дополнительно настраивать не нужно.</p>
+  </div>
+
+  <div class="step">
+    <h3><span class="step-num">3</span> Скопируйте ключ</h3>
+    <p>Появится строка вида <code>AIzaSy...</code> — нажмите на неё или на значок копирования, чтобы скопировать целиком.</p>
+  </div>
+
+  <div class="step">
+    <h3><span class="step-num">4</span> Вставьте его ниже</h3>
+    <p>Ключ сохранится прямо в этом браузере — после этого "🎓 Разбор слова" в читалке заработает сразу, без перезагрузки страницы.</p>
+  </div>
+
+  <div class="save-box">
+    <h3>Вставьте ключ сюда</h3>
+    <div class="sub2">Работает как отдельное поле — сохранит ключ туда же, куда его ищет читалка.</div>
+    <div class="save-row">
+      <input type="password" id="keyInput" placeholder="AIzaSy...">
+      <button id="saveBtn">Сохранить</button>
+    </div>
+    <div class="status-msg" id="statusMsg"></div>
+    <div class="privacy-note">Хранится только в localStorage этого браузера на этом устройстве — не отправляется ни на какой наш сервер. На новом устройстве/браузере ключ нужно будет вставить ещё раз.</div>
+  </div>
+
+  <div class="faq">
+    <h2>Частые вопросы</h2>
+    <details>
+      <summary>Это точно бесплатно?</summary>
+      <p>Да, для обычного использования (несколько разборов слов за раз) бесплатной квоты Google с запасом хватает. Если квота на минуту исчерпается, разбор просто попросит попробовать чуть позже — это не платное действие с вашей стороны, если вы сами не включали отдельно оплату в своём Google-аккаунте.</p>
+    </details>
+    <details>
+      <summary>Кто-то ещё увидит мой ключ?</summary>
+      <p>Нет. Ключ живёт только в памяти вашего браузера (localStorage), никуда не передаётся, кроме прямого запроса к серверам Google при нажатии "Разбор слова". Мы (владельцы сайта) его не видим.</p>
+    </details>
+    <details>
+      <summary>Я вставил ключ, но не работает</summary>
+      <p>Проверьте, что скопировали ключ целиком (обычно начинается с "AIzaSy" и довольно длинный, без пробелов). Если проблема сохраняется — попробуйте создать новый ключ на той же странице AI Studio.</p>
+    </details>
+    <details>
+      <summary>Хочу удалить ключ</summary>
+      <p>Очистите поле выше и нажмите "Сохранить" ещё раз с пустым полем — либо то же самое в настройках самой читалки.</p>
+    </details>
+  </div>
+</div>
+<script>
+const KEY_STORAGE = 'hebrew-reader-ai-key';
+const input = document.getElementById('keyInput');
+const status = document.getElementById('statusMsg');
+try {
+  const existing = localStorage.getItem(KEY_STORAGE);
+  if (existing) input.value = existing;
+} catch (e) {}
+
+document.getElementById('saveBtn').addEventListener('click', () => {
+  const v = input.value.trim();
+  try {
+    if (v) {
+      localStorage.setItem(KEY_STORAGE, v);
+      status.textContent = '✓ Сохранено — можно возвращаться в читалку.';
+      status.className = 'status-msg ok';
+    } else {
+      localStorage.removeItem(KEY_STORAGE);
+      status.textContent = 'Ключ удалён.';
+      status.className = 'status-msg ok';
+    }
+  } catch (e) {
+    status.textContent = 'Не получилось сохранить: ' + e.message;
+    status.className = 'status-msg err';
+  }
+});
+</script>
+</body>
+</html>

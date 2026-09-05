@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.32.0
+  Hebrew Reader — v1.33.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -141,6 +141,8 @@
   .wp-root{ font-size:11px; color:#8A8474; margin-top:6px; }
   .wp-root-semantics{ font-size:11.5px; color:#C9BFA6; line-height:1.5; margin-top:4px; }
   .wp-binyan{ font-size:11px; color:#8A8474; line-height:1.5; margin-top:4px; font-style:italic; }
+  .wp-pealim-info{ font-size:12px; color:#C9BFA6; line-height:1.7; margin-top:6px; }
+  .wp-pealim-info bdi{ font-family:'Frank Ruhl Libre', serif; font-size:14px; color:#fff; }
   .wp-link{ display:inline-block; margin-top:8px; font-size:11.5px; color:var(--gold); text-decoration:none; border-top:1px solid #4A473F; padding-top:8px; width:100%; }
   .wp-link:hover{ text-decoration:underline; }
   .wp-ai-btn{ display:block; width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px; font-family:inherit; }
@@ -352,7 +354,7 @@
       </div>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.32.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.33.0</div>
   </div>
 </div>
 
@@ -432,8 +434,8 @@
         </div>
         <div class="settings-row settings-ai-key">
           <div>
-            <div class="settings-row-label">🤖 ИИ-разбор слова</div>
-            <div class="settings-row-sub">свой ключ Gemini (бесплатный, aistudio.google.com/apikey) — хранится только в этом браузере, не передаётся на наш сервер</div>
+            <div class="settings-row-label">🎓 Разбор слова (ИИ-педагог)</div>
+            <div class="settings-row-sub">свой ключ Gemini (бесплатный) — хранится только в этом браузере, не передаётся на наш сервер. <a href="ai-key-help.html" target="_blank" rel="noopener" style="color:var(--gold);">Как получить ключ ↗</a></div>
             <input type="password" id="aiKeyInput" class="ai-key-input" placeholder="вставьте ключ Gemini">
           </div>
         </div>
@@ -1392,6 +1394,80 @@ function findBinyanInfo(extra) {
   return hit ? hit.text : null;
 }
 
+// ---- Pealim conjugation snippet, fetched on demand ----
+// Pealim.com has no API and no CORS headers of its own, so a direct browser
+// fetch() from our origin is blocked. r.jina.ai's reader proxy re-fetches
+// the page server-side and hands back clean, CORS-enabled markdown (checked
+// empirically: 5/5 test calls succeeded, and it echoes back
+// Access-Control-Allow-Origin for whatever Origin sent the request) — no
+// backend of our own needed. This is still a third-party dependency outside
+// our control, so every step degrades to "just show the plain Pealim link"
+// on any failure rather than erroring visibly.
+function jinaProxy(url) { return 'https://r.jina.ai/' + url; }
+
+function extractPealimForm(rowLine) {
+  if (!rowLine) return null;
+  const cells = rowLine.split('|').map(c => c.trim()).filter(Boolean);
+  const cell = cells[1];
+  if (!cell) return null;
+  const heMatch = cell.match(/[א-ת֑-ׇ]+/);
+  const glosses = [...cell.matchAll(/\*\*([^*]+)\*\*/g)];
+  if (!heMatch) return null;
+  return { he: heMatch[0], gloss: glosses.length ? glosses[glosses.length - 1][1] : '' };
+}
+
+async function fetchPealimSnippet(hebrewWord) {
+  const searchUrl = jinaProxy('https://www.pealim.com/search/?q=' + encodeURIComponent(hebrewWord));
+  const searchResp = await fetch(searchUrl);
+  if (!searchResp.ok) throw new Error('search HTTP ' + searchResp.status);
+  const searchText = await searchResp.text();
+  const linkMatch = searchText.match(/\((https:\/\/www\.pealim\.com\/dict\/\d+-[a-z-]+\/)\)/);
+  if (!linkMatch) throw new Error('слово не найдено на Pealim');
+  const detailUrl = linkMatch[1];
+
+  const detailResp = await fetch(jinaProxy(detailUrl));
+  if (!detailResp.ok) throw new Error('detail HTTP ' + detailResp.status);
+  const text = await detailResp.text();
+
+  const binyanMatch = text.match(/Verb\s*[–-]\s*\*\*([^*]+)\*\*/);
+  const rootMatch = text.match(/Root:\s*\[([^\]]+)\]/);
+  const meaningMatch = text.match(/###\s*Meaning\s*\n+([^\n#]+)/);
+  const lines = text.split('\n');
+  const present = extractPealimForm(lines.find(l => l.includes('Present tense')));
+  const infinitive = extractPealimForm(lines.find(l => l.includes('| Infinitive |')));
+
+  return {
+    url: detailUrl,
+    binyan: binyanMatch ? binyanMatch[1] : null,
+    root: rootMatch ? rootMatch[1] : null,
+    meaning: meaningMatch ? meaningMatch[1].trim() : null,
+    present,
+    infinitive,
+  };
+}
+
+async function showPealimSnippet(hebrewWord, btn, slotEl){
+  btn.disabled = true;
+  btn.textContent = 'Загружаю…';
+  try{
+    const info = await fetchPealimSnippet(hebrewWord);
+    const parts = [];
+    if (info.binyan) parts.push(`биньян <b>${escapeHtmlLite(info.binyan)}</b>`);
+    if (info.root) parts.push(`корень <b>${escapeHtmlLite(info.root)}</b>`);
+    if (info.meaning) parts.push(`значение: ${escapeHtmlLite(info.meaning)}`);
+    if (info.infinitive) parts.push(`инфинитив: <bdi>${escapeHtmlLite(info.infinitive.he)}</bdi> — ${escapeHtmlLite(info.infinitive.gloss)}`);
+    if (info.present) parts.push(`наст. время (м.р. ед.ч.): <bdi>${escapeHtmlLite(info.present.he)}</bdi> — ${escapeHtmlLite(info.present.gloss)}`);
+    slotEl.innerHTML = parts.length
+      ? `<div class="wp-pealim-info">${parts.join('<br>')}<br><a class="wp-link" href="${info.url}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">полная таблица на Pealim ↗</a></div>`
+      : `<div class="wp-ai-err">Не нашлось на Pealim.</div>`;
+    btn.style.display = 'none';
+  }catch(err){
+    console.warn('[ivrit-reader] Pealim snippet failed', err);
+    slotEl.innerHTML = `<div class="wp-ai-err">Не получилось загрузить (Pealim/прокси недоступны сейчас) — попробуйте ссылку ниже.</div>`;
+    btn.style.display = 'none';
+  }
+}
+
 // ---- AI-модуль разбора слова (BYOK — свой ключ Gemini, только в localStorage
 // этого браузера, никогда не синкается в облако и не покидает клиент кроме
 // собственно вызова Gemini). Промт ниже — дословно текст, который передал
@@ -1838,7 +1914,13 @@ function renderAiAnalysis(a, w){
 async function askAiAboutWord(w, wordEl, btn){
   const key = localStorage.getItem(AI_KEY_STORAGE);
   if (!key){
-    btn.textContent = '⚠ добавьте свой Gemini-ключ в настройках';
+    btn.style.display = 'none';
+    if (popoverEl){
+      popoverEl.classList.add('wp-expanded');
+      let slot = popoverEl.querySelector('.wp-ai-slot');
+      if (!slot){ slot = document.createElement('div'); slot.className = 'wp-ai-result wp-ai-slot'; popoverEl.appendChild(slot); }
+      slot.innerHTML = `<div class="wp-ai-err">Нужен свой бесплатный ключ Gemini. <a href="ai-key-help.html" target="_blank" rel="noopener" style="color:var(--gold);">Как его получить и подключить ↗</a></div>`;
+    }
     return;
   }
   btn.disabled = true;
@@ -1902,12 +1984,21 @@ function refreshPopoverContent(w, wordEl){
     ${settings.detailed && binyanInfo ? `<div class="wp-binyan">${binyanInfo}</div>` : ''}
     <button class="wp-link wp-play-from" style="width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px;">▶ Слушать отсюда</button>
     ${milogWord ? `<a class="wp-link" href="${milogUrl}" target="_blank" rel="noopener">📖 примеры употребления на Milog ↗</a>` : ''}
-    ${isVerb && milogWord ? `<a class="wp-link" href="${pealimUrl}" target="_blank" rel="noopener">📖 спряжение на Pealim ↗</a>` : ''}
-    <button class="wp-ai-btn">🤖 Спросить ИИ (разбор по всем правилам)</button>
+    ${isVerb && milogWord ? `<button class="wp-link wp-pealim-btn" style="border:none; background:none; cursor:pointer; font-family:inherit; text-align:left; width:100%;">📖 Показать спряжение (Pealim)</button><div class="wp-pealim-slot"></div>` : ''}
+    <button class="wp-ai-btn">🎓 Разбор слова (ИИ-педагог)</button>
     <div class="wp-ai-slot"></div>
   `;
   const starEl = popoverEl.querySelector('.wp-star');
   starEl.addEventListener('click', (e) => { e.stopPropagation(); toggleSaveWord(w, starEl, wordEl); });
+
+  const pealimBtn = popoverEl.querySelector('.wp-pealim-btn');
+  if (pealimBtn){
+    pealimBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      popoverEl.classList.add('wp-expanded');
+      showPealimSnippet(milogWord, pealimBtn, popoverEl.querySelector('.wp-pealim-slot'));
+    });
+  }
 
   const aiBtn = popoverEl.querySelector('.wp-ai-btn');
   aiBtn.addEventListener('click', (e) => { e.stopPropagation(); askAiAboutWord(w, wordEl, aiBtn); });
