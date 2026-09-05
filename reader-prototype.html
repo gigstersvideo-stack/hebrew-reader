@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.35.0
+  Hebrew Reader — v1.36.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -272,6 +272,8 @@
   .train-answer.show{ display:block; }
   .train-progress{ font-size:11px; color:var(--ink-soft); margin-bottom:10px; text-align:center; }
   .train-btns{ display:flex; gap:8px; margin-top:14px; }
+  .review-btns button{ min-width:0; font-size:12px; padding:9px 4px; }
+  @media (max-width:380px) { .review-btns{ flex-wrap:wrap; } .review-btns button{ flex:1 1 45%; } }
   .train-btns button{ flex:1; padding:9px; border-radius:8px; border:none; font-family:'Inter',sans-serif; font-size:13px; cursor:pointer; }
   .train-no{ background:var(--gold-soft); color:#7A5B22; }
   .train-yes{ background:var(--accent-soft); color:var(--accent); }
@@ -359,9 +361,10 @@
         </div>
         <div class="reader-auth-status" id="readerAuthStatus"></div>
       </div>
+      <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.35.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.36.0</div>
   </div>
 </div>
 
@@ -394,6 +397,23 @@
       <label class="settings-row-label" style="display:block; margin-bottom:8px;">Уже добавленные книги</label>
       <div id="localBooksList"></div>
     </div>
+  </div>
+</div>
+
+<!--
+  Global vocabulary review (FSRS) — deliberately independent of the
+  per-book "Словарь" drawer (#drawer) and its inside-a-book lifecycle:
+  that drawer's open/close/tab listeners are re-attached on every
+  initReader() call, so reusing it here would risk duplicate listeners.
+  This modal's own listeners are wired once, top-level, alongside the
+  settings-panel IIFE above initReader().
+-->
+<div class="drawer-backdrop" id="reviewBackdrop"></div>
+<div class="drawer" id="reviewModal">
+  <div class="drawer-head"><h2>Повторение слов</h2><button class="drawer-close" id="reviewClose">✕</button></div>
+  <div class="drawer-body">
+    <div class="train-progress" id="reviewProgress"></div>
+    <div id="reviewArea"></div>
   </div>
 </div>
 
@@ -549,6 +569,246 @@ let activeReaderToken = 0;
       settingsPanel.classList.remove('open');
     }
   });
+})();
+
+// ---- FSRS-6 scheduling — verbatim port from the sentence trainer
+// (hebrew-tasks/template3.html), same weights/constants/step-queue
+// behaviour, already independently verified there against a Python
+// reference implementation. Pure functions, no dependency on anything
+// reader-specific — copied as-is rather than re-derived.
+const FSRS_W = [0.212, 1.2931, 2.3065, 8.2956, 6.4133, 0.8334, 3.0194, 0.001, 1.8722, 0.1666,
+                0.796, 1.4835, 0.0614, 0.2629, 1.6483, 0.6014, 1.8729, 0.5425, 0.0912, 0.0658, 0.1542];
+const FSRS_S_MIN = 0.001;
+const FSRS_S_MAX = 36500;
+const REQUEST_RETENTION = 0.9;
+const MAX_INTERVAL_DAYS = 180;
+const LEARNING_STEPS_MIN = [1, 10];
+const RELEARNING_STEPS_MIN = [10];
+
+function fsrsClamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+const FSRS_DECAY = -FSRS_W[20];
+const FSRS_FACTOR = Math.exp(Math.log(0.9) / FSRS_DECAY) - 1;
+const FSRS_INTERVAL_MODIFIER = (Math.pow(REQUEST_RETENTION, 1 / FSRS_DECAY) - 1) / FSRS_FACTOR;
+function fsrsForgettingCurve(t, s) { return Math.pow(1 + (FSRS_FACTOR * t) / s, FSRS_DECAY); }
+function fsrsInitStability(g) { return Math.max(FSRS_W[g - 1], 0.1); }
+function fsrsInitDifficultyRaw(g) { return FSRS_W[4] - Math.exp((g - 1) * FSRS_W[5]) + 1; }
+function fsrsLinearDamping(deltaD, oldD) { return (deltaD * (10 - oldD)) / 9; }
+function fsrsMeanReversion(init, current) { return FSRS_W[7] * init + (1 - FSRS_W[7]) * current; }
+function fsrsNextDifficulty(d, g) {
+  const deltaD = -FSRS_W[6] * (g - 3);
+  const nextD = d + fsrsLinearDamping(deltaD, d);
+  return fsrsClamp(fsrsMeanReversion(fsrsInitDifficultyRaw(4), nextD), 1, 10);
+}
+function fsrsNextRecallStability(d, s, r, g) {
+  const hardPenalty = g === 2 ? FSRS_W[15] : 1;
+  const easyBonus = g === 4 ? FSRS_W[16] : 1;
+  const val = s * (1 + Math.exp(FSRS_W[8]) * (11 - d) * Math.pow(s, -FSRS_W[9]) *
+    (Math.exp((1 - r) * FSRS_W[10]) - 1) * hardPenalty * easyBonus);
+  return fsrsClamp(val, FSRS_S_MIN, FSRS_S_MAX);
+}
+function fsrsNextForgetStability(d, s, r) {
+  const val = FSRS_W[11] * Math.pow(d, -FSRS_W[12]) * (Math.pow(s + 1, FSRS_W[13]) - 1) * Math.exp((1 - r) * FSRS_W[14]);
+  return fsrsClamp(val, FSRS_S_MIN, FSRS_S_MAX);
+}
+function fsrsNextShortTermStability(s, g) {
+  const sinc = Math.pow(s, -FSRS_W[19]) * Math.exp(FSRS_W[17] * (g - 3 + FSRS_W[18]));
+  const masked = g >= 2 ? Math.max(sinc, 1) : sinc;
+  return fsrsClamp(s * masked, FSRS_S_MIN, FSRS_S_MAX);
+}
+function fsrsNextState(d, s, t, g) {
+  if (d === 0 && s === 0) {
+    return { difficulty: fsrsClamp(fsrsInitDifficultyRaw(g), 1, 10), stability: fsrsInitStability(g) };
+  }
+  const r = fsrsForgettingCurve(t, s);
+  let newS;
+  if (t === 0) {
+    newS = fsrsNextShortTermStability(s, g);
+  } else if (g === 1) {
+    const sAfterFail = fsrsNextForgetStability(d, s, r);
+    const nextSMin = s / Math.exp(FSRS_W[17] * FSRS_W[18]);
+    newS = fsrsClamp(nextSMin, FSRS_S_MIN, sAfterFail);
+  } else {
+    newS = fsrsNextRecallStability(d, s, r, g);
+  }
+  return { difficulty: fsrsNextDifficulty(d, g), stability: newS };
+}
+function fsrsNextIntervalDays(s) {
+  return Math.min(MAX_INTERVAL_DAYS, Math.max(1, Math.round(s * FSRS_INTERVAL_MODIFIER)));
+}
+function toFsrsRating(oldScaleQuality) {
+  if (oldScaleQuality <= 1) return 1;
+  if (oldScaleQuality === 3) return 2;
+  if (oldScaleQuality === 4) return 3;
+  return 4;
+}
+function schedule(state, oldScaleQuality) {
+  const rating = toFsrsRating(oldScaleQuality);
+  const now = Date.now();
+  if (!state) {
+    state = { difficulty: 0, stability: 0, due: 0, lastReview: null, phase: "learning", stepIndex: 0, reps: 0, lapses: 0, seen: 0, correct: 0 };
+  }
+  state.seen++;
+  if (rating >= 3) state.correct++;
+
+  const elapsedMs = state.lastReview ? now - state.lastReview : 0;
+  const t = !state.lastReview || elapsedMs < 24 * 60 * 60 * 1000 ? 0 : elapsedMs / (24 * 60 * 60 * 1000);
+  const next = fsrsNextState(state.difficulty, state.stability, t, rating);
+  state.difficulty = next.difficulty;
+  state.stability = next.stability;
+  state.lastReview = now;
+
+  if (state.phase === "review") {
+    if (rating === 1) {
+      state.lapses++;
+      state.phase = "relearning";
+      state.stepIndex = 0;
+      state.due = now + RELEARNING_STEPS_MIN[0] * 60 * 1000;
+    } else {
+      state.reps++;
+      state.due = now + fsrsNextIntervalDays(state.stability) * 24 * 60 * 60 * 1000;
+    }
+    return state;
+  }
+
+  const steps = state.phase === "learning" ? LEARNING_STEPS_MIN : RELEARNING_STEPS_MIN;
+  if (rating === 1) {
+    if (state.phase === "relearning") state.lapses++;
+    state.stepIndex = 0;
+    state.due = now + steps[0] * 60 * 1000;
+    return state;
+  }
+  const nextStep = state.stepIndex + 1;
+  if (nextStep < steps.length) {
+    state.stepIndex = nextStep;
+    state.due = now + steps[nextStep] * 60 * 1000;
+  } else {
+    state.phase = "review";
+    state.stepIndex = 0;
+    state.reps++;
+    state.due = now + fsrsNextIntervalDays(state.stability) * 24 * 60 * 60 * 1000;
+  }
+  return state;
+}
+
+// ---- Global vocabulary review — across every book, not just the one
+// currently open. vocabCache itself is scoped inside initReader() (rebuilt
+// per book), so this reads localStorage/Firestore directly instead.
+function scanAllLocalVocab(){
+  const out = [];
+  for (let i = 0; i < localStorage.length; i++){
+    const key = localStorage.key(i);
+    const m = key && key.match(/^hebrew-reader-vocab:([^:]+):(.+)$/);
+    if (!m) continue;
+    try{
+      const entry = JSON.parse(localStorage.getItem(key));
+      out.push({ bookId: m[1], lemma: m[2], entry });
+    }catch(err){}
+  }
+  return out;
+}
+
+async function buildGlobalReviewQueue(){
+  const all = scanAllLocalVocab();
+  if (window.cloudFetchAllVocab){
+    try{
+      const cloudEntries = await window.cloudFetchAllVocab();
+      const localKeys = new Set(all.map(x => x.bookId + '__' + x.lemma));
+      cloudEntries.forEach(e => {
+        const k = e.bookId + '__' + e.lemma;
+        if (!localKeys.has(k)) all.push({ bookId: e.bookId, lemma: e.lemma, entry: e });
+      });
+    }catch(err){ console.warn('[ivrit-reader] global vocab cloud fetch failed', err); }
+  }
+  const now = Date.now();
+  const due = all.filter(x => x.entry.srs && x.entry.srs.due <= now).sort((a, b) => a.entry.srs.due - b.entry.srs.due);
+  const fresh = all.filter(x => !x.entry.srs);
+  return due.concat(fresh);
+}
+
+function updateGlobalReviewCount(){
+  const now = Date.now();
+  const all = scanAllLocalVocab();
+  const count = all.filter(x => !x.entry.srs || x.entry.srs.due <= now).length;
+  const el = document.getElementById('globalReviewCount');
+  if (el) el.textContent = count;
+}
+
+function commitGlobalReview(item, quality){
+  const entry = item.entry;
+  entry.srs = schedule(entry.srs, quality);
+  entry.updatedAt = Date.now();
+  const key = 'hebrew-reader-vocab:' + item.bookId + ':' + item.lemma;
+  try{ localStorage.setItem(key, JSON.stringify(entry)); }catch(err){}
+  if (window.cloudSyncVocab) window.cloudSyncVocab(item.bookId, item.lemma, entry);
+}
+
+(() => {
+  let reviewQueue = [];
+  let reviewIndex = 0;
+  const modal = document.getElementById('reviewModal');
+  const backdrop = document.getElementById('reviewBackdrop');
+  const progressEl = document.getElementById('reviewProgress');
+  const areaEl = document.getElementById('reviewArea');
+
+  function closeReview(){
+    modal.classList.remove('open');
+    backdrop.classList.remove('open');
+    updateGlobalReviewCount();
+  }
+
+  function renderReviewCard(){
+    if (reviewIndex >= reviewQueue.length){
+      progressEl.textContent = '';
+      areaEl.innerHTML = reviewQueue.length
+        ? `<div class="train-summary">Готово! Разобрано слов: ${reviewQueue.length}. <button class="pill-btn" id="reviewCloseDone">Закрыть</button></div>`
+        : `<div class="train-empty">Нечего повторять прямо сейчас — новые слова появятся здесь, когда вы сохраните их звёздочкой при чтении, а уже отвеченные вернутся по расписанию.</div>`;
+      const doneBtn = document.getElementById('reviewCloseDone');
+      if (doneBtn) doneBtn.addEventListener('click', closeReview);
+      return;
+    }
+    const item = reviewQueue[reviewIndex];
+    const w = item.entry;
+    const bookTitle = (window.readerManifest || []).find(b => b.id === item.bookId);
+    progressEl.textContent = `${reviewIndex + 1} / ${reviewQueue.length}`;
+    areaEl.innerHTML = `
+      <div class="train-card" id="reviewFlipCard">
+        <div class="train-lemma">${w.lemma}</div>
+        <div class="train-hint" id="reviewFlipHint">нажми, чтобы увидеть перевод</div>
+        <div class="train-answer" id="reviewAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos}${w.root && w.root !== '—' ? ' · ' + w.root : ''})</span></div>
+        ${bookTitle ? `<div style="font-size:11px; color:var(--ink-soft); margin-top:4px;">из книги: ${bookTitle.title}</div>` : ''}
+      </div>
+      <div class="train-btns review-btns" id="reviewBtns" style="display:none;">
+        <button class="train-no" data-q="1" style="background:var(--danger); color:#fff;">Снова</button>
+        <button class="train-no" data-q="3">Трудно</button>
+        <button class="train-yes" data-q="4">Хорошо</button>
+        <button class="train-yes" data-q="5" style="background:var(--accent); color:#fff;">Легко</button>
+      </div>`;
+    document.getElementById('reviewFlipCard').addEventListener('click', () => {
+      document.getElementById('reviewAnswer').classList.add('show');
+      document.getElementById('reviewFlipHint').style.display = 'none';
+      document.getElementById('reviewBtns').style.display = 'flex';
+    });
+    document.getElementById('reviewBtns').querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        commitGlobalReview(item, Number(btn.dataset.q));
+        reviewIndex++;
+        renderReviewCard();
+      });
+    });
+  }
+
+  document.getElementById('globalReviewBtn').addEventListener('click', async () => {
+    modal.classList.add('open');
+    backdrop.classList.add('open');
+    progressEl.textContent = '';
+    areaEl.innerHTML = `<div class="train-empty">Загружаю…</div>`;
+    reviewQueue = await buildGlobalReviewQueue();
+    reviewIndex = 0;
+    renderReviewCard();
+  });
+  document.getElementById('reviewClose').addEventListener('click', closeReview);
+  backdrop.addEventListener('click', closeReview);
 })();
 
 function initReader(data, bookId, meta) {
@@ -858,7 +1118,12 @@ function loadVocabFromStorage(){
 }
 
 function saveVocabEntry(w, wordEl){
-  const entry = {lemma:w.lemma, pos:w.pos, tr:w.tr, extra:w.extra, root:w.root, addedAt:Date.now()};
+  // bookId lives in the entry itself (not just the localStorage key/Firestore
+  // doc id) so a cross-book review queue knows where to write scheduling
+  // updates back to. updatedAt is bumped on every touch (star OR later FSRS
+  // review) — addedAt alone can't be the merge-conflict key once reviews
+  // start changing srs without changing addedAt (see pullCloudProgress).
+  const entry = {lemma:w.lemma, pos:w.pos, tr:w.tr, extra:w.extra, root:w.root, bookId, addedAt:Date.now(), updatedAt:Date.now()};
   try{ localStorage.setItem(STORAGE_PREFIX + w.lemma, JSON.stringify(entry)); }
   catch(err){ console.error('save failed', err); return; }
   vocabCache[w.lemma] = entry;
@@ -984,10 +1249,15 @@ function pullCloudProgress(){
   if (!window.cloudFetchBookProgress) return Promise.resolve();
   return window.cloudFetchBookProgress(bookId).then(remote => {
     remote = remote || { vocab:{}, seen:{}, page:null };
+    // Compares by updatedAt (falling back to addedAt for old records that
+    // predate it) rather than addedAt alone — addedAt never changes once an
+    // FSRS review updates only `srs`, so an addedAt-only comparison could
+    // let a stale copy silently overwrite newer review progress.
+    const touchedAt = (e) => (e && (e.updatedAt || e.addedAt)) || 0;
     let vocabChanged = false;
     for (const lemma in remote.vocab){
       const r = remote.vocab[lemma], l = vocabCache[lemma];
-      if (!l || (r.addedAt||0) > (l.addedAt||0)){
+      if (!l || touchedAt(r) > touchedAt(l)){
         vocabCache[lemma] = r;
         try{ localStorage.setItem(STORAGE_PREFIX + lemma, JSON.stringify(r)); }catch(err){}
         vocabChanged = true;
@@ -995,7 +1265,7 @@ function pullCloudProgress(){
     }
     for (const lemma in vocabCache){
       const l = vocabCache[lemma], r = remote.vocab[lemma];
-      if ((!r || (l.addedAt||0) > (r.addedAt||0)) && window.cloudSyncVocab) window.cloudSyncVocab(bookId, lemma, l);
+      if ((!r || touchedAt(l) > touchedAt(r)) && window.cloudSyncVocab) window.cloudSyncVocab(bookId, lemma, l);
     }
     if (vocabChanged) refreshVocabUI();
 
@@ -2509,6 +2779,7 @@ async function boot(){
   }
 
   manifest = manifest.concat(getLocalBooksIndex());
+  window.readerManifest = manifest; // lets the global review card show "из книги: ..."
 
   renderLibrary(manifest);
 
@@ -2522,6 +2793,7 @@ async function boot(){
 }
 
 function renderLibrary(manifest){
+  updateGlobalReviewCount();
   const grid = document.getElementById('bookGrid');
   grid.innerHTML = '';
   manifest.forEach(entry => {
@@ -2846,6 +3118,16 @@ window.cloudFetchBookProgress = async function (bookId) {
   vocabSnap.forEach((d) => { const data = d.data(); vocab[data.lemma] = data; });
   const meta = metaSnap.exists() ? metaSnap.data() : {};
   return { vocab, seen: meta.seen || {}, page: typeof meta.page === "number" ? meta.page : null };
+};
+// Same collection, no bookId filter — feeds the global (across-all-books)
+// FSRS review queue with entries from books that may not even be open (or
+// imported) on this particular device.
+window.cloudFetchAllVocab = async function () {
+  if (!window.cloudUid) return [];
+  const snap = await getDocs(collection(fbDb, "users", window.cloudUid, "readerVocab"));
+  const out = [];
+  snap.forEach((d) => out.push(d.data()));
+  return out;
 };
 // Whole-sentence practice cards pushed to the trainer's personal pool —
 // doc id is the `source` string itself ("reader:<bookId>:<sentenceId>" or
