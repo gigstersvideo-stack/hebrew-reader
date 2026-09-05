@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.33.1
+  Hebrew Reader — v1.33.2
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -354,7 +354,7 @@
       </div>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.33.1</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.33.2</div>
   </div>
 </div>
 
@@ -1431,6 +1431,24 @@ async function fetchPealimSnippet(hebrewWord) {
     const options = [...searchText.matchAll(/Part of speech:\s*verb\s*[–-]\s*\*\*([^*]+)\*\*\s*\n+\s*([^\n]+)/g)]
       .map(m => ({ binyan: m[1].trim(), gloss: m[2].trim() }));
     if (options.length) return { ambiguous: true, searchUrl: 'https://www.pealim.com/search/?q=' + encodeURIComponent(hebrewWord), options };
+
+    // Non-verbs (nouns, adjectives, etc.) go through this same "click a word
+    // to see all forms" results page too, but their table has no "Part of
+    // speech: verb" marker and its Word/Form/Notes columns don't survive
+    // markdown conversion in a row-aligned way — so there's no reliable
+    // structured field to pull, only the English glosses themselves. Take
+    // whatever plain-text lines sit between the results heading and the
+    // page footer, drop the boilerplate/label lines, and dedupe what's left.
+    const sectionMatch = searchText.match(/###\s*Results for[^\n]*\n([\s\S]*?)(?:\n####|\n###|$)/);
+    if (sectionMatch) {
+      const skip = /^(click on a word|word|form|notes)\b/i;
+      const isLabel = /^(masculine|feminine|singular|plural|construct state|part of speech)\b/i;
+      const meanings = [...new Set(
+        sectionMatch[1].split('\n').map(l => l.trim())
+          .filter(l => l && !skip.test(l) && !isLabel.test(l))
+      )];
+      if (meanings.length) return { generic: true, meanings, searchUrl: 'https://www.pealim.com/search/?q=' + encodeURIComponent(hebrewWord) };
+    }
     throw new Error('слово не найдено на Pealim');
   }
   const detailUrl = linkMatch[1];
@@ -1465,6 +1483,12 @@ async function showPealimSnippet(hebrewWord, btn, slotEl){
       const list = info.options.map(o => `биньян <b>${escapeHtmlLite(o.binyan)}</b> — ${escapeHtmlLite(o.gloss)}`).join('<br>');
       slotEl.innerHTML = `<div class="wp-pealim-info">Нашлось несколько вариантов корня:<br>${list}<br>
         <a class="wp-link" href="${info.searchUrl}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">выбрать нужный на Pealim ↗</a></div>`;
+      btn.style.display = 'none';
+      return;
+    }
+    if (info.generic){
+      slotEl.innerHTML = `<div class="wp-pealim-info">На Pealim (англ.): ${info.meanings.map(escapeHtmlLite).join('; ')}<br>
+        <a class="wp-link" href="${info.searchUrl}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">подробнее на Pealim ↗</a></div>`;
       btn.style.display = 'none';
       return;
     }
@@ -1952,31 +1976,51 @@ async function askAiAboutWord(w, wordEl, btn){
       popoverEl.appendChild(slot);
     }
   }
-  try{
-    const body = {
-      systemInstruction: { parts: [{ text: AI_PEDAGOGY_PROMPT }] },
-      contents: [{ parts: [{ text: buildAiUserPrompt(w, wordEl) }] }],
-      generationConfig: { responseMimeType: 'application/json', responseSchema: AI_RESPONSE_SCHEMA },
-    };
-    const resp = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=' + encodeURIComponent(key),
-      { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-    );
+  const body = {
+    systemInstruction: { parts: [{ text: AI_PEDAGOGY_PROMPT }] },
+    contents: [{ parts: [{ text: buildAiUserPrompt(w, wordEl) }] }],
+    generationConfig: { responseMimeType: 'application/json', responseSchema: AI_RESPONSE_SCHEMA },
+  };
+  const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=' + encodeURIComponent(key);
+
+  async function attempt(){
+    const resp = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     if (!resp.ok){
       const errText = await resp.text();
-      throw new Error('HTTP ' + resp.status + ': ' + errText.slice(0, 300));
+      const err = new Error('HTTP ' + resp.status + ': ' + errText.slice(0, 300));
+      err.status = resp.status;
+      throw err;
     }
     const respJson = await resp.json();
     const parts = respJson.candidates && respJson.candidates[0] && respJson.candidates[0].content && respJson.candidates[0].content.parts;
     const jsonText = parts && parts[0] && parts[0].text;
     if (!jsonText) throw new Error('пустой ответ модели');
-    renderAiAnalysis(JSON.parse(jsonText), w);
-    btn.textContent = '🤖 Спросить ИИ ещё раз';
+    return JSON.parse(jsonText);
+  }
+
+  try{
+    let analysis;
+    try{
+      analysis = await attempt();
+    }catch(err){
+      // 503 = model temporarily overloaded (Google's own wording says
+      // "usually temporary") — worth one silent retry before bothering
+      // the user with an error they'd just retry themselves anyway.
+      if (err.status === 503){
+        btn.textContent = 'Модель перегружена, пробую ещё раз…';
+        await new Promise(r => setTimeout(r, 2500));
+        analysis = await attempt();
+      } else {
+        throw err;
+      }
+    }
+    renderAiAnalysis(analysis, w);
+    btn.textContent = '🎓 Разбор слова ещё раз';
   }catch(err){
     console.error('[ivrit-reader] AI word analysis failed', err);
     const slot = popoverEl && popoverEl.querySelector('.wp-ai-slot');
     if (slot) slot.innerHTML = `<div class="wp-ai-err">Не получилось: ${escapeHtmlLite(String((err && err.message) || err))}</div>`;
-    btn.textContent = '🤖 Спросить ИИ (повторить)';
+    btn.textContent = '🎓 Разбор слова (повторить)';
   }finally{
     btn.disabled = false;
   }
@@ -2003,7 +2047,7 @@ function refreshPopoverContent(w, wordEl){
     ${settings.detailed && binyanInfo ? `<div class="wp-binyan">${binyanInfo}</div>` : ''}
     <button class="wp-link wp-play-from" style="width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px;">▶ Слушать отсюда</button>
     ${milogWord ? `<a class="wp-link" href="${milogUrl}" target="_blank" rel="noopener">📖 примеры употребления на Milog ↗</a>` : ''}
-    ${isVerb && milogWord ? `<button class="wp-link wp-pealim-btn" style="border:none; background:none; cursor:pointer; font-family:inherit; text-align:left; width:100%;">📖 Показать спряжение (Pealim)</button><div class="wp-pealim-slot"></div>` : ''}
+    ${milogWord ? `<button class="wp-link wp-pealim-btn" style="border:none; background:none; cursor:pointer; font-family:inherit; text-align:left; width:100%;">📖 ${isVerb ? 'Показать спряжение' : 'Проверить'} на Pealim</button><div class="wp-pealim-slot"></div>` : ''}
     <button class="wp-ai-btn">🎓 Разбор слова (ИИ-педагог)</button>
     <div class="wp-ai-slot"></div>
   `;
