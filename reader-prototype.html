@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.34.0
+  Hebrew Reader — v1.34.1
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -143,6 +143,8 @@
   .wp-binyan{ font-size:11px; color:#8A8474; line-height:1.5; margin-top:4px; font-style:italic; }
   .wp-pealim-info{ font-size:12px; color:#C9BFA6; line-height:1.7; margin-top:6px; }
   .wp-pealim-info bdi{ font-family:'Frank Ruhl Libre', serif; font-size:14px; color:#fff; }
+  .wp-pealim-loading{ opacity:.55; font-style:italic; }
+  .wp-pealim-empty{ opacity:.7; }
   .wp-link{ display:inline-block; margin-top:8px; font-size:11.5px; color:var(--gold); text-decoration:none; border-top:1px solid #4A473F; padding-top:8px; width:100%; }
   .wp-link:hover{ text-decoration:underline; }
   .wp-ai-btn{ display:block; width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px; font-family:inherit; }
@@ -354,7 +356,7 @@
       </div>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.34.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.34.1</div>
   </div>
 </div>
 
@@ -1429,16 +1431,27 @@ function extractPealimForm(rowLine) {
   return { he: heMatch[0], gloss: glosses.length ? glosses[glosses.length - 1] : '' };
 }
 
-async function fetchPealimSnippet(hebrewWord) {
-  if (pealimCache[hebrewWord] !== undefined) return pealimCache[hebrewWord];
+// Maps this reader's own abbreviated POS tags (already in the book data) to
+// the Russian part-of-speech words Pealim uses, so that when a search turns
+// up several unrelated homograph entries with no way to link straight to
+// "the" match, we can still prefer the one the book itself agrees with
+// instead of just showing whichever came first (which, for inflected forms
+// that coincide with an unrelated verb's participle, is often wrong).
+const POS_RU = { 'гл.': 'глагол', 'сущ.': 'существительное', 'прил.': 'прилагательное', 'нареч.': 'наречие', 'мест.': 'местоимение', 'предл.': 'предлог', 'числ.': 'числительное' };
+
+async function fetchPealimSnippet(hebrewWord, expectedPos) {
+  const cacheKey = hebrewWord + '|' + (expectedPos || '');
+  if (pealimCache[cacheKey] !== undefined) return pealimCache[cacheKey];
   const promise = (async () => {
     const searchUrl = jinaProxy('https://www.pealim.com/ru/search/?q=' + encodeURIComponent(hebrewWord));
     const resp = await fetch(searchUrl);
     if (!resp.ok) throw new Error('search HTTP ' + resp.status);
     const text = await resp.text();
+    const expectedRu = POS_RU[expectedPos];
+    const bareSearchUrl = 'https://www.pealim.com/ru/search/?q=' + encodeURIComponent(hebrewWord);
 
-    // Each result "card" starts with a 🔊[слово](.../ru/dict/ID-slug/) link;
-    // the same dict id can repeat with a #h-... anchor for a specific
+    // Each result "card" normally starts with a 🔊[слово](.../ru/dict/ID-slug/)
+    // link; the same dict id can repeat with a #h-... anchor for a specific
     // inflected form mentioned inline — collapse those into one card.
     const cardRe = /🔊\[[^\]]+\]\((https:\/\/www\.pealim\.com\/ru\/dict\/(\d+)-[a-z-]+\/)[^)]*\)/g;
     const order = [];
@@ -1461,12 +1474,37 @@ async function fetchPealimSnippet(hebrewWord) {
       };
       order.push(id);
     }
-    if (!order.length) return null;
-    const card = cards[order[0]];
-    const isVerb = !!(card.pos && card.pos.toLowerCase().startsWith('глагол'));
-    card.searchUrl = 'https://www.pealim.com/ru/search/?q=' + encodeURIComponent(hebrewWord);
 
-    if (isVerb) {
+    let card;
+    if (order.length) {
+      // Prefer a card matching the book's own POS tag, if we have one and
+      // it's among the results; otherwise the first (usually exact) match.
+      const preferred = expectedRu && order.find(id => cards[id].pos && cards[id].pos.toLowerCase().startsWith(expectedRu));
+      card = cards[preferred || order[0]];
+    } else {
+      // No 🔊[word](url) link anywhere at all — happens for some inflected
+      // forms that coincide with an unrelated word's conjugated/declined
+      // form (Pealim still lists candidates as plain text, just without a
+      // per-word link in this layout). Parse those blocks by their "Часть
+      // речи:" markers instead, with the same POS-preference logic.
+      const sectionMatch = text.match(/###\s*Результаты поиска[^\n]*\n([\s\S]*?)(?:\n####|\n###|$)/);
+      if (!sectionMatch) return null;
+      const blocks = sectionMatch[1].split(/(?=Часть речи:)/).slice(1);
+      if (!blocks.length) return null;
+      const parsed = blocks.map(b => {
+        const posMatch = b.match(/Часть речи:\s*([^\n]+)/);
+        const rootMatch = b.match(/Корень:\s*\[([^\]]+)\]/);
+        const lines = b.split('\n').map(l => l.trim()).filter(Boolean);
+        const gloss = lines.find((l, i) => i > 0 && !/^(Часть речи|Мужской|Женский|Единственное|Множественное|Настоящее|Прошедшее|Будущее)/.test(l));
+        return { pos: posMatch ? stripMd(posMatch[1]).trim() : null, root: rootMatch ? rootMatch[1] : null, gloss: gloss || null };
+      });
+      card = (expectedRu && parsed.find(p => p.pos && p.pos.toLowerCase().startsWith(expectedRu))) || parsed[0];
+      card.url = bareSearchUrl;
+    }
+    const isVerb = !!(card.pos && card.pos.toLowerCase().startsWith('глагол'));
+    card.searchUrl = bareSearchUrl;
+
+    if (isVerb && card.url !== bareSearchUrl) {
       try {
         const detailText = await (await fetch(jinaProxy(card.url))).text();
         const lines = detailText.split('\n');
@@ -1476,26 +1514,38 @@ async function fetchPealimSnippet(hebrewWord) {
     }
     return card;
   })();
-  pealimCache[hebrewWord] = promise;
-  promise.catch(() => { delete pealimCache[hebrewWord]; }); // don't cache failures
+  pealimCache[cacheKey] = promise;
+  promise.catch(() => { delete pealimCache[cacheKey]; }); // don't cache failures
   return promise;
 }
 
-async function showPealimSnippet(hebrewWord, slotEl){
+async function showPealimSnippet(hebrewWord, expectedPos, slotEl){
+  slotEl.innerHTML = `<div class="wp-pealim-info wp-pealim-loading">Pealim…</div>`;
+  const fallbackUrl = 'https://www.pealim.com/ru/search/?q=' + encodeURIComponent(hebrewWord);
   try{
-    const info = await fetchPealimSnippet(hebrewWord);
-    if (!info || !slotEl.isConnected) return;
+    const info = await fetchPealimSnippet(hebrewWord, expectedPos);
+    if (!slotEl.isConnected) return;
+    if (!info){
+      slotEl.innerHTML = `<div class="wp-pealim-info wp-pealim-empty">Pealim: точного совпадения не нашлось — <a class="wp-link" href="${fallbackUrl}" target="_blank" rel="noopener" style="border:none; padding:0; margin:0; display:inline;">искать вручную ↗</a></div>`;
+      return;
+    }
     const parts = [];
     if (info.pos) parts.push(`<b>${escapeHtmlLite(info.pos)}</b>`);
     if (info.root) parts.push(`корень <b>${escapeHtmlLite(info.root)}</b>`);
     if (info.gloss) parts.push(escapeHtmlLite(info.gloss));
     if (info.infinitive) parts.push(`инфинитив: <bdi>${escapeHtmlLite(info.infinitive.he)}</bdi>${info.infinitive.gloss ? ' — ' + escapeHtmlLite(info.infinitive.gloss) : ''}`);
     if (info.present) parts.push(`наст. время (м.р. ед.ч.): <bdi>${escapeHtmlLite(info.present.he)}</bdi>${info.present.gloss ? ' — ' + escapeHtmlLite(info.present.gloss) : ''}`);
-    if (!parts.length) return;
+    if (!parts.length){
+      slotEl.innerHTML = `<div class="wp-pealim-info wp-pealim-empty">Pealim: точного совпадения не нашлось — <a class="wp-link" href="${fallbackUrl}" target="_blank" rel="noopener" style="border:none; padding:0; margin:0; display:inline;">искать вручную ↗</a></div>`;
+      return;
+    }
     slotEl.innerHTML = `<div class="wp-pealim-info">${parts.join('<br>')}<br>
       <a class="wp-link" href="${info.url}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">подробнее на Pealim ↗</a></div>`;
   }catch(err){
-    console.warn('[ivrit-reader] Pealim snippet failed (silently skipped)', err);
+    console.warn('[ivrit-reader] Pealim snippet failed', err);
+    if (slotEl.isConnected){
+      slotEl.innerHTML = `<div class="wp-pealim-info wp-pealim-empty">Pealim сейчас недоступен — <a class="wp-link" href="${fallbackUrl}" target="_blank" rel="noopener" style="border:none; padding:0; margin:0; display:inline;">попробовать напрямую ↗</a></div>`;
+    }
   }
 }
 
@@ -2055,7 +2105,7 @@ function refreshPopoverContent(w, wordEl){
   starEl.addEventListener('click', (e) => { e.stopPropagation(); toggleSaveWord(w, starEl, wordEl); });
 
   if (milogWord){
-    showPealimSnippet(milogWord, popoverEl.querySelector('.wp-pealim-slot'));
+    showPealimSnippet(milogWord, w.pos, popoverEl.querySelector('.wp-pealim-slot'));
   }
 
   const aiBtn = popoverEl.querySelector('.wp-ai-btn');
