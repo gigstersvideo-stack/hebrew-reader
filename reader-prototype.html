@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.33.0
+  Hebrew Reader — v1.33.1
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -354,7 +354,7 @@
       </div>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.33.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.33.1</div>
   </div>
 </div>
 
@@ -1422,7 +1422,17 @@ async function fetchPealimSnippet(hebrewWord) {
   if (!searchResp.ok) throw new Error('search HTTP ' + searchResp.status);
   const searchText = await searchResp.text();
   const linkMatch = searchText.match(/\((https:\/\/www\.pealim\.com\/dict\/\d+-[a-z-]+\/)\)/);
-  if (!linkMatch) throw new Error('слово не найдено на Pealim');
+  if (!linkMatch) {
+    // Ambiguous search (e.g. the same root has both a Pi'el and a Pa'al verb,
+    // like לאבד) — Pealim's results page for this case lists each match's
+    // binyan + gloss as plain text, with no per-word link at all (unlike an
+    // unambiguous single match, which links straight to its own /dict/ page).
+    // Surface that summary instead of just failing outright.
+    const options = [...searchText.matchAll(/Part of speech:\s*verb\s*[–-]\s*\*\*([^*]+)\*\*\s*\n+\s*([^\n]+)/g)]
+      .map(m => ({ binyan: m[1].trim(), gloss: m[2].trim() }));
+    if (options.length) return { ambiguous: true, searchUrl: 'https://www.pealim.com/search/?q=' + encodeURIComponent(hebrewWord), options };
+    throw new Error('слово не найдено на Pealim');
+  }
   const detailUrl = linkMatch[1];
 
   const detailResp = await fetch(jinaProxy(detailUrl));
@@ -1451,6 +1461,13 @@ async function showPealimSnippet(hebrewWord, btn, slotEl){
   btn.textContent = 'Загружаю…';
   try{
     const info = await fetchPealimSnippet(hebrewWord);
+    if (info.ambiguous){
+      const list = info.options.map(o => `биньян <b>${escapeHtmlLite(o.binyan)}</b> — ${escapeHtmlLite(o.gloss)}`).join('<br>');
+      slotEl.innerHTML = `<div class="wp-pealim-info">Нашлось несколько вариантов корня:<br>${list}<br>
+        <a class="wp-link" href="${info.searchUrl}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">выбрать нужный на Pealim ↗</a></div>`;
+      btn.style.display = 'none';
+      return;
+    }
     const parts = [];
     if (info.binyan) parts.push(`биньян <b>${escapeHtmlLite(info.binyan)}</b>`);
     if (info.root) parts.push(`корень <b>${escapeHtmlLite(info.root)}</b>`);
@@ -1463,7 +1480,9 @@ async function showPealimSnippet(hebrewWord, btn, slotEl){
     btn.style.display = 'none';
   }catch(err){
     console.warn('[ivrit-reader] Pealim snippet failed', err);
-    slotEl.innerHTML = `<div class="wp-ai-err">Не получилось загрузить (Pealim/прокси недоступны сейчас) — попробуйте ссылку ниже.</div>`;
+    const fallbackUrl = 'https://www.pealim.com/search/?q=' + encodeURIComponent(hebrewWord);
+    slotEl.innerHTML = `<div class="wp-ai-err">Не получилось загрузить сюда — Pealim или прокси сейчас недоступны.</div>
+      <a class="wp-link" href="${fallbackUrl}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">Открыть на Pealim ↗</a>`;
     btn.style.display = 'none';
   }
 }
@@ -1940,7 +1959,7 @@ async function askAiAboutWord(w, wordEl, btn){
       generationConfig: { responseMimeType: 'application/json', responseSchema: AI_RESPONSE_SCHEMA },
     };
     const resp = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + encodeURIComponent(key),
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=' + encodeURIComponent(key),
       { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
     );
     if (!resp.ok){
