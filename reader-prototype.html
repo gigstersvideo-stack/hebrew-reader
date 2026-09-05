@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.34.3
+  Hebrew Reader — v1.35.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -361,7 +361,7 @@
       </div>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.34.3</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.35.0</div>
   </div>
 </div>
 
@@ -1955,6 +1955,16 @@ function escapeHtmlLite(s){
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
+// Per-session cache of AI analyses, keyed by lemma — so re-clicking the same
+// word (this occurrence or elsewhere in the text) shows the same result
+// instantly instead of spending another API call and possibly getting a
+// slightly different answer. Deliberately in-memory only (resets on page
+// reload, never written to localStorage/Firestore) — the point is to avoid
+// redundant calls within one reading session, not to treat AI output as
+// something worth persisting as fact. Explicitly clicking "разобрать ещё
+// раз" bypasses this and asks again.
+const aiAnalysisCache = {};
+
 function buildAiUserPrompt(w, wordEl){
   const sentenceId = wordEl ? wordEl.dataset.sentence : null;
   const sentence = sentenceId ? data.sentences.find(s => s.id === sentenceId) : null;
@@ -2016,6 +2026,28 @@ async function askAiAboutWord(w, wordEl, btn){
     }
     return;
   }
+  // btn.dataset.shown is only set after this exact button has already
+  // rendered a result once — so this is true only for an explicit
+  // "разобрать ещё раз" click within the same still-open popover, never for
+  // a fresh popover on the same word (which always gets a brand-new button
+  // and should prefer the cached answer, per the user's ask not to re-query
+  // Gemini and risk a slightly different answer every time).
+  const forceRefresh = btn.dataset.shown === '1';
+  if (!forceRefresh && aiAnalysisCache[w.lemma]){
+    if (popoverEl){
+      popoverEl.classList.add('wp-expanded');
+      if (!popoverEl.querySelector('.wp-ai-slot')){
+        const slot = document.createElement('div');
+        slot.className = 'wp-ai-result wp-ai-slot';
+        popoverEl.appendChild(slot);
+      }
+    }
+    renderAiAnalysis(aiAnalysisCache[w.lemma], w);
+    btn.textContent = '🎓 Разбор слова ещё раз';
+    btn.dataset.shown = '1';
+    return;
+  }
+
   btn.disabled = true;
   btn.textContent = 'Анализирую…';
   if (popoverEl){
@@ -2077,7 +2109,9 @@ async function askAiAboutWord(w, wordEl, btn){
     }
     if (lastErr) throw lastErr;
     renderAiAnalysis(analysis, w);
+    aiAnalysisCache[w.lemma] = analysis;
     btn.textContent = '🎓 Разбор слова ещё раз';
+    btn.dataset.shown = '1';
   }catch(err){
     console.error('[ivrit-reader] AI word analysis failed', err);
     const slot = popoverEl && popoverEl.querySelector('.wp-ai-slot');
