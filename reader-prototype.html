@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.41.0
+  Hebrew Reader — v1.41.1
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -429,7 +429,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.41.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.41.1</div>
   </div>
 </div>
 
@@ -1938,6 +1938,29 @@ async function showPealimSnippet(hebrewWord, expectedPos, slotEl){
 // источник, помечать непроверенное, не выдумывать огласовку/корень/этимологию,
 // без транслита без запроса). Передаётся модели как есть, не пересказана.
 const AI_KEY_STORAGE = 'hebrew-reader-ai-key';
+// 503 = Google's shared servers are momentarily overloaded — unrelated to
+// this user's own quota, so it doesn't reset on a schedule and can recur
+// within seconds. Rather than re-trying the same congested model on every
+// single word lookup, remember which model just failed and skip straight
+// to the next one for a while — it naturally rejoins the front of the
+// queue once the cooldown lapses, no fixed "reset time" to track down.
+const AI_MODEL_COOLDOWN_KEY = 'hebrew-reader-ai-model-cooldown';
+const AI_MODEL_COOLDOWN_MS = 10 * 60 * 1000;
+function getAiModelCooldowns(){
+  try { return JSON.parse(localStorage.getItem(AI_MODEL_COOLDOWN_KEY)) || {}; } catch(e){ return {}; }
+}
+function markAiModelOverloaded(model){
+  const cd = getAiModelCooldowns();
+  cd[model] = Date.now() + AI_MODEL_COOLDOWN_MS;
+  localStorage.setItem(AI_MODEL_COOLDOWN_KEY, JSON.stringify(cd));
+}
+function orderAiModelsByCooldown(models){
+  const cd = getAiModelCooldowns();
+  const now = Date.now();
+  const fresh = models.filter(m => !cd[m] || cd[m] <= now);
+  const cooling = models.filter(m => cd[m] && cd[m] > now);
+  return fresh.concat(cooling);
+}
 const AI_PEDAGOGY_PROMPT = ` Ты работаешь со мной как строгий, внимательный педагог иврита.
 
 Когда я спрашиваю новое ивритское слово, выражение, фразу или корень, разбирай его не как быстрый переводчик, а как преподаватель языка: через значение, употребление, источник, корень, грамматику, семантическое поле и реальные языковые связи.
@@ -2448,7 +2471,7 @@ async function askAiAboutWord(w, wordEl, btn){
   // just retrying the same busy model. All are aliases (not dated version
   // numbers) so this list shouldn't need updating when Google rotates which
   // specific model each alias points to.
-  const AI_MODELS = ['gemini-flash-latest', 'gemini-flash-lite-latest'];
+  const AI_MODELS = orderAiModelsByCooldown(['gemini-flash-latest', 'gemini-flash-lite-latest']);
 
   async function attempt(model){
     const url = 'https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent?key=' + encodeURIComponent(key);
@@ -2481,6 +2504,7 @@ async function askAiAboutWord(w, wordEl, btn){
         // Any other error (bad key, quota, etc.) isn't fixed by switching
         // models, so stop immediately instead of burning more attempts.
         if (err.status !== 503) break;
+        markAiModelOverloaded(AI_MODELS[i]);
         if (i < AI_MODELS.length - 1){
           btn.textContent = 'Модель перегружена, пробую другую…';
           await new Promise(r => setTimeout(r, 1200));
