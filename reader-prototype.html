@@ -153,11 +153,21 @@
   .wp-ai-result{ margin-top:10px; padding-top:10px; border-top:1px solid #4A473F; font-size:12.5px; line-height:1.55; }
   .wp-ai-result h4{ font-size:11px; color:var(--gold); text-transform:uppercase; letter-spacing:.03em; margin:10px 0 3px; }
   .wp-ai-result h4:first-child{ margin-top:0; }
-  .wp-ai-result .wp-ai-he{ direction:rtl; text-align:right; font-family:'Frank Ruhl Libre', serif; font-size:14px; margin:2px 0; }
   .wp-ai-result .wp-ai-flag{ color:#D89A5A; font-size:11.5px; }
+  /* Each example gets its own card and a fixed corner slot for the action
+     button — previously the button sat inline with the Russian line and
+     drew the eye more than the example itself, and with no per-example
+     grouping the Hebrew/Russian pairs ran together, hard to visually
+     separate one example from the next while scanning. */
+  .wp-ai-examples{ display:flex; flex-direction:column; gap:8px; margin-top:2px; }
+  .wp-ai-example{ position:relative; background:rgba(255,255,255,.05); border:1px solid #3A382F; border-radius:8px; padding:9px 34px 8px 10px; }
+  .wp-ai-example .wp-ai-he{ direction:rtl; text-align:right; font-family:'Frank Ruhl Libre', serif; font-size:15px; margin:0 0 4px; }
+  .wp-ai-example .wp-ai-ru{ font-size:12px; color:#C9BFA6; line-height:1.4; }
+  .wp-ai-example .wp-ai-note{ font-style:italic; opacity:.8; }
   .wp-ai-result .wp-ai-add{
-    display:inline-block; margin-top:4px; font-size:10.5px; font-family:inherit; color:var(--gold);
-    cursor:pointer; border:1px solid var(--gold); border-radius:4px; padding:3px 9px; background:rgba(168,129,63,.12);
+    position:absolute; top:7px; left:7px; width:20px; height:20px; padding:0; line-height:1;
+    display:flex; align-items:center; justify-content:center; font-size:13px; font-family:inherit;
+    color:var(--gold); cursor:pointer; border:1px solid var(--gold); border-radius:50%; background:rgba(168,129,63,.12);
   }
   .wp-ai-result .wp-ai-add:hover{ background:var(--gold); color:#1a1814; }
   .wp-ai-result .wp-ai-add.on{ color:#8FBF8A; border-color:#8FBF8A; background:rgba(143,191,138,.14); }
@@ -1784,16 +1794,35 @@ async function fetchPealimSnippet(hebrewWord, expectedPos) {
       // речи:" markers instead, with the same POS-preference logic.
       const sectionMatch = text.match(/###\s*Результаты поиска[^\n]*\n([\s\S]*?)(?:\n####|\n###|$)/);
       if (!sectionMatch) return null;
-      const blocks = sectionMatch[1].split(/(?=Часть речи:)/).slice(1);
-      if (!blocks.length) return null;
-      const parsed = blocks.map(b => {
+      const rawBlocks = sectionMatch[1].split(/(?=Часть речи:)/).slice(1);
+      if (!rawBlocks.length) return null;
+      // A block can hold MORE than one sense: Pealim sometimes labels only
+      // the first ("Часть речи: ...") and lets a second sense trail after
+      // it as a bare gloss line with no label of its own (seen on קטן: the
+      // verb sense's grammar-detail lines are followed by the adjective's
+      // gloss "маленький" with nothing marking it as a separate entry).
+      // Splitting only on "Часть речи:" merges that unlabeled sense into
+      // the labeled one, so it never gets a chance to be preferred below.
+      // Every content line past the first inside a block becomes its own
+      // entry instead, honestly unlabeled (pos: null) rather than silently
+      // inheriting the first sense's tag.
+      const LABEL_RE = /^(Часть речи|Мужской|Женский|Единственное|Множественное|Настоящее|Прошедшее|Будущее|Повелительное|Инфинитив)/;
+      const parsed = [];
+      rawBlocks.forEach(b => {
         const posMatch = b.match(/Часть речи:\s*([^\n]+)/);
         const rootMatch = b.match(/Корень:\s*\[([^\]]+)\]/);
-        const lines = b.split('\n').map(l => l.trim()).filter(Boolean);
-        const gloss = lines.find((l, i) => i > 0 && !/^(Часть речи|Мужской|Женский|Единственное|Множественное|Настоящее|Прошедшее|Будущее)/.test(l));
-        return { pos: posMatch ? stripMd(posMatch[1]).trim() : null, root: rootMatch ? rootMatch[1] : null, gloss: gloss || null };
+        const pos = posMatch ? stripMd(posMatch[1]).trim() : null;
+        const root = rootMatch ? rootMatch[1] : null;
+        const contentLines = b.split('\n').map(l => l.trim()).filter(Boolean)
+          .filter((l, i) => i > 0 && !LABEL_RE.test(l));
+        if (!contentLines.length) { parsed.push({ pos, root, gloss: null }); return; }
+        parsed.push({ pos, root, gloss: contentLines[0] });
+        for (let i = 1; i < contentLines.length; i++) parsed.push({ pos: null, root, gloss: contentLines[i] });
       });
-      card = (expectedRu && parsed.find(p => p.pos && p.pos.toLowerCase().startsWith(expectedRu))) || parsed[0];
+      if (!parsed.length) return null;
+      card = (expectedRu && parsed.find(p => p.pos && p.pos.toLowerCase().startsWith(expectedRu)))
+        || (expectedRu && parsed.find(p => !p.pos))
+        || parsed[0];
       card.url = bareSearchUrl;
     }
     const isVerb = !!(card.pos && card.pos.toLowerCase().startsWith('глагол'));
@@ -2272,10 +2301,12 @@ function renderAiAnalysis(a, w){
   if (!slot) return;
   const section = (title, text) => text ? `<h4>${title}</h4><div>${escapeHtmlLite(text).replace(/\n/g, '<br>')}</div>` : '';
   const examplesHtml = (a.examples || []).map((ex, i) => `
-    <div class="wp-ai-he">${escapeHtmlLite(ex.he || '')}</div>
-    <div>${i + 1}. ${escapeHtmlLite(ex.ru || '')}${ex.note ? ` <i>(${escapeHtmlLite(ex.note)})</i>` : ''}
-      <button type="button" class="wp-ai-add" data-idx="${i}" data-he="${escapeHtmlLite(ex.he || '')}" data-ru="${escapeHtmlLite(ex.ru || '')}" data-focus="${escapeHtmlLite(ex.focusToken || '')}">+ в тренажёр</button>
+    <div class="wp-ai-example">
+      <button type="button" class="wp-ai-add" title="Добавить в тренажёр" data-idx="${i}" data-he="${escapeHtmlLite(ex.he || '')}" data-ru="${escapeHtmlLite(ex.ru || '')}" data-focus="${escapeHtmlLite(ex.focusToken || '')}">+</button>
+      <div class="wp-ai-he">${escapeHtmlLite(ex.he || '')}</div>
+      <div class="wp-ai-ru">${escapeHtmlLite(ex.ru || '')}${ex.note ? ` <span class="wp-ai-note">(${escapeHtmlLite(ex.note)})</span>` : ''}</div>
     </div>`).join('');
+  const examplesWrapped = examplesHtml ? `<div class="wp-ai-examples">${examplesHtml}</div>` : '';
   slot.innerHTML = `
     ${section('Слово и уровень', a.word_and_level)}
     ${section('Значение и употребление', a.meanings)}
@@ -2283,7 +2314,7 @@ function renderAiAnalysis(a, w){
     ${section('Синонимы', a.synonyms)}
     ${section('Корень и семантическое поле', a.root_field)}
     ${section('Грамматика', a.grammar)}
-    ${examplesHtml ? `<h4>Примеры</h4>${examplesHtml}` : ''}
+    ${examplesWrapped ? `<h4>Примеры</h4>${examplesWrapped}` : ''}
     ${section('Устойчивые выражения', a.set_expressions)}
     ${section('Частые ошибки', a.common_mistakes)}
     ${a.caveats ? `<div class="wp-ai-flag">⚠ ${escapeHtmlLite(a.caveats)}</div>` : ''}
@@ -2295,10 +2326,10 @@ function renderAiAnalysis(a, w){
       const added = btn.classList.toggle('on');
       if (added){
         if (window.cloudAddCustomCard) window.cloudAddCustomCard(source, btn.dataset.he, btn.dataset.ru, btn.dataset.focus);
-        btn.textContent = '✓ в тренажёре — убрать';
+        btn.textContent = '✓'; btn.title = 'В тренажёре — убрать';
       } else {
         if (window.cloudRemoveCustomCard) window.cloudRemoveCustomCard(source);
-        btn.textContent = '+ в тренажёр';
+        btn.textContent = '+'; btn.title = 'Добавить в тренажёр';
       }
     });
   });
