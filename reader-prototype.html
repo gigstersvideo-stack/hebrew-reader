@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.36.0
+  Hebrew Reader — v1.37.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -364,7 +364,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.36.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.37.0</div>
   </div>
 </div>
 
@@ -462,7 +462,7 @@
         <div class="settings-row settings-ai-key">
           <div>
             <div class="settings-row-label">🎓 Разбор слова (ИИ-педагог)</div>
-            <div class="settings-row-sub">свой ключ Gemini (бесплатный) — хранится только в этом браузере, не передаётся на наш сервер. <a href="ai-key-help.html" target="_blank" rel="noopener" style="color:var(--gold);">Как получить ключ ↗</a></div>
+            <div class="settings-row-sub">свой ключ Gemini (бесплатный) — используется напрямую из браузера; при входе через Google синхронизируется на ваши устройства (никому, кроме вас, не виден). <a href="ai-key-help.html" target="_blank" rel="noopener" style="color:var(--gold);">Как получить ключ ↗</a></div>
             <input type="password" id="aiKeyInput" class="ai-key-input" placeholder="вставьте ключ Gemini">
           </div>
         </div>
@@ -1412,6 +1412,19 @@ function pullCloudSettings(){
 }
 window.pullReaderCloudSettings = pullCloudSettings;
 
+function pullCloudAiKey(){
+  if (!window.cloudFetchAiKey) return Promise.resolve();
+  const local = localStorage.getItem(AI_KEY_STORAGE);
+  return window.cloudFetchAiKey().then(remote => {
+    if (remote && remote.geminiKey && remote.geminiKey !== local) {
+      localStorage.setItem(AI_KEY_STORAGE, remote.geminiKey);
+    } else if (!remote && local && window.cloudSyncAiKey) {
+      window.cloudSyncAiKey(local);
+    }
+  }).catch(err => console.error('[ivrit-reader] AI key pull failed', err));
+}
+window.pullReaderCloudAiKey = pullCloudAiKey;
+
 function stripNikud(str){ return str.replace(/[\u0591-\u05C7]/g, ''); }
 
 function applySettings(){
@@ -1439,16 +1452,23 @@ document.getElementById('swMnemonic').addEventListener('change', (e) => { settin
 document.getElementById('swEditBase').addEventListener('change', (e) => { settings.editModeBase = e.target.checked; saveSettings(); renderPage(currentPage); });
 document.getElementById('swEditMode').addEventListener('change', (e) => { settings.editMode = e.target.checked; saveSettings(); renderPage(currentPage); });
 
-// Свой ключ Gemini для AI-разбора слова — намеренно живёт только в
-// localStorage этого браузера, не проходит через saveSettings()/Firestore.
+// Свой ключ Gemini для AI-разбора слова — живёт в localStorage этого
+// браузера (не через saveSettings(), это отдельный документ), и, если
+// вы вошли через Google, зеркалится в /users/{uid}/settings/ai — тот же
+// путь, что и у тренажёра предложений, так что один ключ работает в
+// обоих приложениях и на всех устройствах после входа.
 try{
   const aiKeyInput = document.getElementById('aiKeyInput');
   const savedAiKey = localStorage.getItem('hebrew-reader-ai-key');
   if (savedAiKey) aiKeyInput.value = savedAiKey;
   aiKeyInput.addEventListener('change', (e) => {
     const v = e.target.value.trim();
-    if (v) localStorage.setItem('hebrew-reader-ai-key', v);
-    else localStorage.removeItem('hebrew-reader-ai-key');
+    if (v) {
+      localStorage.setItem('hebrew-reader-ai-key', v);
+      if (window.cloudSyncAiKey) window.cloudSyncAiKey(v);
+    } else {
+      localStorage.removeItem('hebrew-reader-ai-key');
+    }
   });
 }catch(err){ console.error('AI key input wiring failed', err); }
 
@@ -2286,6 +2306,10 @@ function renderAiAnalysis(a, w){
 
 async function askAiAboutWord(w, wordEl, btn){
   const key = localStorage.getItem(AI_KEY_STORAGE);
+  // Opportunistic push: catches a key set via ai-key-help.html (a separate
+  // page with no Firebase of its own) the first time it's actually used
+  // here, instead of requiring that page to duplicate the sync wiring.
+  if (key && window.cloudSyncAiKey) window.cloudSyncAiKey(key);
   if (!key){
     btn.style.display = 'none';
     if (popoverEl){
@@ -3152,6 +3176,21 @@ window.cloudRemoveCustomCard = function (source) {
   setDoc(doc(fbDb, "users", window.cloudUid, "customCards", source), { deleted: true }, { merge: true }).catch(() => {});
 };
 
+// Own Gemini key for "Разбор слова (ИИ-педагог)" — a separate doc from
+// readerSettings/prefs, and deliberately the SAME path+shape the ivrit
+// trainer uses, so signing in with the same Google account carries one
+// key to both apps (each still mirrors it into its own origin's
+// localStorage, since the two sites can't share storage directly).
+window.cloudSyncAiKey = function (key) {
+  if (!window.cloudUid || !key) return;
+  setDoc(doc(fbDb, "users", window.cloudUid, "settings", "ai"), { geminiKey: key }, { merge: true }).catch(() => {});
+};
+window.cloudFetchAiKey = async function () {
+  if (!window.cloudUid) return null;
+  const snap = await getDoc(doc(fbDb, "users", window.cloudUid, "settings", "ai"));
+  return snap.exists() ? snap.data() : null;
+};
+
 window.cloudSyncSettings = function (s) {
   if (!window.cloudUid) return;
   setDoc(doc(fbDb, "users", window.cloudUid, "readerSettings", "prefs"), s, { merge: true }).catch(() => {});
@@ -3199,6 +3238,7 @@ onAuthStateChanged(fbAuth, (user) => {
     const pulls = [];
     if (window.pullReaderCloudProgress) pulls.push(Promise.resolve(window.pullReaderCloudProgress()).catch((e) => console.error("[ivrit-reader] progress sync failed:", e)));
     if (window.pullReaderCloudSettings) pulls.push(Promise.resolve(window.pullReaderCloudSettings()).catch((e) => console.error("[ivrit-reader] settings sync failed:", e)));
+    if (window.pullReaderCloudAiKey) pulls.push(Promise.resolve(window.pullReaderCloudAiKey()).catch((e) => console.error("[ivrit-reader] AI key sync failed:", e)));
     Promise.all(pulls).then(() => updateCloudStatusIndicator());
   } else {
     window.cloudUid = null;
