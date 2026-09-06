@@ -45,6 +45,8 @@ except ImportError:
     print("Нужно: pip install google-genai --break-system-packages", file=sys.stderr)
     sys.exit(1)
 
+from niqud_fixes import mechanical_fix_word, strip_niqud
+
 
 LEVEL_PROFILES = {
     "alef": {
@@ -260,7 +262,7 @@ CHAPTER_PROMPT = """Ты — автор оригинальных коротки�
 
 ОГРАНИЧЕНИЯ ПО УРОВНЮ (важнее красоты слога — не выходи за них):
 {constraints}
-{context_block}
+{context_block}{beat_block}
 ТРЕБОВАНИЯ К ФОРМАТУ:
 - chapter_text — только текст ЭТОЙ главы на иврите, БЕЗ огласовок, без заголовка
   или номера главы.
@@ -281,6 +283,12 @@ CONTEXT_BLOCK_TEMPLATE = """
 {prev_tail}
 
 Продолжай сюжет естественно, без повторов и без противоречий с уже написанным.
+"""
+
+BEAT_BLOCK_TEMPLATE = """
+ЧТО ДОЛЖНО ПРОИЗОЙТИ ИМЕННО В ЭТОЙ ГЛАВЕ (план по главам — следуй ему,
+он важнее общей завязки, если они как-то расходятся в деталях):
+{beat}
 """
 
 NOT_LAST_INSTRUCTION = (
@@ -313,7 +321,7 @@ def chapter_tail(text, max_chars=500):
 
 
 def generate_chapter(client, model, level, premise, chapter_num, total_chapters,
-                      chapter_words, total_words, summary_so_far=None, prev_text=None):
+                      chapter_words, total_words, summary_so_far=None, prev_text=None, beat=None):
     profile = LEVEL_PROFILES[level]
     if chapter_num == 1:
         context_block = ""
@@ -322,6 +330,7 @@ def generate_chapter(client, model, level, premise, chapter_num, total_chapters,
             summary_so_far=summary_so_far,
             prev_tail=chapter_tail(prev_text),
         )
+    beat_block = BEAT_BLOCK_TEMPLATE.format(beat=beat) if beat else ""
     prompt = CHAPTER_PROMPT.format(
         chapter_num=chapter_num,
         total_chapters=total_chapters,
@@ -331,6 +340,7 @@ def generate_chapter(client, model, level, premise, chapter_num, total_chapters,
         total_words=total_words,
         constraints=profile["constraints"],
         context_block=context_block,
+        beat_block=beat_block,
         ending_instruction=LAST_INSTRUCTION if chapter_num == total_chapters else NOT_LAST_INSTRUCTION,
     )
     response = client.models.generate_content(
@@ -356,13 +366,26 @@ def save_progress(progress_path, progress):
         json.dump(progress, f, ensure_ascii=False, indent=2)
 
 
+def load_beats(path):
+    """Один пункт плана на строку (пустые строки игнорируются) — сколько строк,
+    столько и будет глав, вместо расчёта числа глав из word_count/chapter_words."""
+    with open(path, encoding="utf-8") as f:
+        return [line.strip() for line in f if line.strip()]
+
+
 def generate_story_chunked(client, model, level, premise, total_words, chapter_words,
-                            out_path, resume, max_chapters=30):
+                            out_path, resume, max_chapters=30, beats=None):
     """Пишет книгу по главам с сохранением прогресса после каждой (--resume
     продолжит с последней недописанной), передавая в каждый следующий вызов
     только сжатое summary_so_far + хвост предыдущей главы — а не всю книгу
-    целиком — чтобы контекст не разрастался пропорционально длине книги."""
-    total_chapters = min(max_chapters, max(1, round(total_words / chapter_words)))
+    целиком — чтобы контекст не разрастался пропорционально длине книги.
+    Если задан beats (план по главам) — число глав берётся из числа пунктов
+    плана, а не из word_count/chapter_words, и каждая глава получает свой
+    конкретный пункт вместо того, чтобы импровизировать вслепую."""
+    if beats:
+        total_chapters = min(max_chapters, len(beats))
+    else:
+        total_chapters = min(max_chapters, max(1, round(total_words / chapter_words)))
     progress_path = Path(str(out_path) + ".progress.json")
 
     progress = load_progress(progress_path) if resume else {"chapters": []}
@@ -377,12 +400,14 @@ def generate_story_chunked(client, model, level, premise, total_words, chapter_w
         print(f"Пишу главу {chapter_num}/{total_chapters} (~{chapter_words} слов)...", file=sys.stderr)
 
         prev = chapters[-1] if chapters else None
+        beat = beats[chapter_num - 1] if beats else None
         try:
             chapter = call_with_retry(
                 generate_chapter, client, model, level, premise,
                 chapter_num, total_chapters, chapter_words, total_words,
                 summary_so_far=prev["summary_so_far"] if prev else None,
                 prev_text=prev["text"] if prev else None,
+                beat=beat,
             )
 
             print(f"  Расставляю огласовки главы {chapter_num}...", file=sys.stderr)
@@ -467,25 +492,64 @@ def dropped_letters_diff(original, vocalized, limit=8):
     return diffs[:limit]
 
 
+_WORD_SPLIT_RE = re.compile(r'(\s+)')
+
+
+def apply_mechanical_fixes(original, vocalized):
+    """Точечно чинит пропавшие вав/йод в vocalized, сверяясь с original
+    слово в слово (по позиции, с сохранением исходных пробелов/переносов —
+    в отличие от dropped_letters_diff это не только ОТЧЁТ, а реальная
+    правка текста). См. niqud_fixes.mechanical_fix_word — правила выведены
+    из десятков случаев, исправленных вручную на двух книгах подряд, прежде
+    чем это было автоматизировано. Возвращает (исправленный_текст,
+    число_слов_которые_чинить_не_удалось) — второе None, если структура
+    (число токенов) разошлась настолько, что править точечно небезопасно."""
+    orig_tokens = _WORD_SPLIT_RE.split(original)
+    voc_tokens = _WORD_SPLIT_RE.split(vocalized)
+    if len(orig_tokens) != len(voc_tokens):
+        return vocalized, None
+    fixed_tokens = list(voc_tokens)
+    remaining = 0
+    for idx, (o, v) in enumerate(zip(orig_tokens, voc_tokens)):
+        if idx % 2 == 1 or not o:  # нечётные индексы — разделители (пробелы)
+            continue
+        if strip_nikud_marks(v) == o:
+            continue
+        fixed = mechanical_fix_word(o, v)
+        if fixed is not None:
+            fixed_tokens[idx] = fixed
+        else:
+            remaining += 1
+    return "".join(fixed_tokens), remaining
+
+
 def add_nikud_checked(client, model, text, retries=2):
-    """add_nikud + автосверка, что буквы (вав/йод) не пропали — если пропали,
-    просит модель переделать с конкретными примерами того, что она сломала,
-    и только если и это не помогло — отдаёт последний результат с явным
-    предупреждением в stderr, а не молча."""
+    """add_nikud + автосверка, что буквы (вав/йод) не пропали. Сначала
+    пробует механически починить (niqud_fixes) — это ловит подавляющее
+    большинство случаев без единого лишнего запроса к модели. Если что-то
+    не подошло ни под один известный паттерн, только тогда просит модель
+    переделать с конкретными примерами, и лишь если и это не помогло —
+    отдаёт последний результат с явным предупреждением в stderr."""
     extra = ""
+    vocalized = text
     for attempt in range(retries + 1):
         vocalized = call_with_retry(add_nikud, client, model, text, extra_instruction=extra)
+        fixed, remaining = apply_mechanical_fixes(text, vocalized)
+        if remaining == 0:
+            return fixed
+        vocalized = fixed if remaining is not None else vocalized
         diffs = dropped_letters_diff(text, vocalized)
         if not diffs:
             return vocalized
         if attempt < retries:
             examples = "\n".join(f"  {a} -> {b}" for a, b in diffs)
             extra = NIQUD_RETRY_SUFFIX.format(diff_examples=examples)
-            print(f"    ⚠ огласовка убрала буквы в {len(diffs)}+ слов(ах), пробую ещё раз "
-                  f"с уточнением ({attempt+1}/{retries})...", file=sys.stderr)
+            print(f"    ⚠ огласовка убрала буквы в {len(diffs)}+ слов(ах) (автопочинка "
+                  f"устранила часть, но не всё), пробую ещё раз с уточнением "
+                  f"({attempt+1}/{retries})...", file=sys.stderr)
     examples = "\n".join(f"  {a} -> {b}" for a, b in diffs)
-    print(f"    !! ПОСЛЕ {retries} ПОПЫТОК огласовка всё ещё убирает буквы, беру как есть — "
-          f"проверь вручную:\n{examples}", file=sys.stderr)
+    print(f"    !! ПОСЛЕ {retries} ПОПЫТОК И АВТОПОЧИНКИ огласовка всё ещё убирает буквы, "
+          f"беру как есть — проверь вручную:\n{examples}", file=sys.stderr)
     return vocalized
 
 
@@ -522,6 +586,11 @@ def main():
                           "после него (<out>.raw.json)")
     ap.add_argument("--max-chapters", type=int, default=30,
                      help="защитный потолок числа глав при --chapter-words")
+    ap.add_argument("--beats", default=None,
+                     help="файл с планом по главам, один пункт на строку — число строк "
+                          "определяет число глав (переопределяет расчёт через "
+                          "--chapter-words), каждая глава получает свой конкретный пункт "
+                          "плана вместо того, чтобы импровизировать вслепую")
     args = ap.parse_args()
 
     api_key = args.api_key or os.environ.get("GEMINI_API_KEY")
@@ -535,14 +604,21 @@ def main():
     out_path = args.out or f"story-{args.level}.txt"
     meta_path = out_path.rsplit(".", 1)[0] + ".meta.json"
 
-    chunked = bool(args.chapter_words and args.chapter_words < word_count)
+    beats = load_beats(args.beats) if args.beats else None
+    chunked = bool(beats) or bool(args.chapter_words and args.chapter_words < word_count)
+    # без --chapter-words, но с --beats — считаем средний объём главы от числа пунктов плана
+    effective_chapter_words = args.chapter_words or (word_count // len(beats) if beats else word_count)
 
     if chunked:
-        print(f"Пишу историю по главам (уровень {args.level}, ~{word_count} слов, "
-              f"~{args.chapter_words} слов/глава)...", file=sys.stderr)
+        if beats:
+            print(f"Пишу историю по плану из {len(beats)} глав (уровень {args.level}, ~{word_count} слов)...",
+                  file=sys.stderr)
+        else:
+            print(f"Пишу историю по главам (уровень {args.level}, ~{word_count} слов, "
+                  f"~{args.chapter_words} слов/глава)...", file=sys.stderr)
         story, progress_path = generate_story_chunked(
             client, args.model, args.level, args.premise, word_count,
-            args.chapter_words, out_path, args.resume, args.max_chapters,
+            effective_chapter_words, out_path, args.resume, args.max_chapters, beats,
         )
         vocalized = story["story_text"]  # уже с огласовками — расставлены по главам
         print(f"Готово {len(story['keywords'])} новых ключевых слов из всех глав.", file=sys.stderr)

@@ -70,6 +70,8 @@ except ImportError:
     print("Нужно: pip install google-genai --break-system-packages", file=sys.stderr)
     sys.exit(1)
 
+from niqud_fixes import fix_deficient_spelling_standalone, is_false_positive
+
 
 SENTENCE_SPLIT_RE = re.compile(r'(?<=[.!?])\s+')
 
@@ -132,33 +134,43 @@ PROMPT_TEMPLATE = """Ты — лингвист-эксперт по ивриту,
 
 
 DEFICIENT_SPELLING_RE = re.compile(r'(?<!ו)[ֹֻ]')  # холам/кубуц без вав перед ними
-# слова, где холам/кубуц законно стоит без вав в ЛЮБОМ стиле написания — не баг
-DEFICIENT_SPELLING_FALSE_POSITIVES = {
-    "לֹא", "אֵיפֹה", "כֹּל", "זֹאת", "כֹּחַ", "רֹאשׁ", "זֹה", "מִכֹּל", "הַכֹּל",
-}
 
 
 def warn_deficient_spelling(sentences):
-    """Эвристика (не строгая проверка, как у add_nikud_checked в 2_generate_story.py —
-    тут нет исходного текста без огласовок для точного сравнения): холам/кубуц без
-    вав перед ними обычно значит модель убрала букву в пользу огласовки вместо того,
-    чтобы добавить её поверх. Не блокирует — просто предупреждает, чтобы не разошлось
-    незамеченным (см. книгу бет 2026-08-29: то же самое находили в lemma отдельно от t)."""
-    seen = set()
+    """Раньше это было чисто предупреждение (см. историю ниже) — теперь
+    сначала пробует ПОЧИНИТЬ (niqud_fixes.fix_deficient_spelling_standalone,
+    механически: кубуц без вав чинится всегда, холам — если слово не входит
+    в список законных исключений типа כֹּחַ/פֹּה/הַכֹּל) прямо в w["t"]/w["lemma"],
+    и только для того, что чинить не рискнули (после исключений), выводит
+    предупреждение — таких должно остаться на порядок меньше, чем раньше.
+    В отличие от add_nikud_checked в 2_generate_story.py, здесь нет исходного
+    текста без огласовок для строгой сверки — поэтому это по-прежнему
+    эвристика, не гарантия (см. книгу бет 2026-08-29: то же самое находили
+    в lemma отдельно от t)."""
+    fixed_count = 0
+    warned = set()
     for s in sentences:
         for w in s.get("words", []):
             for field in ("t", "lemma"):
                 val = w.get(field, "")
-                bare = val.rstrip('.,:;!?"“”')
-                if bare in DEFICIENT_SPELLING_FALSE_POSITIVES or val in seen:
+                if not val or not DEFICIENT_SPELLING_RE.search(val):
                     continue
-                if DEFICIENT_SPELLING_RE.search(bare):
-                    seen.add(val)
+                fixed_val, changed = fix_deficient_spelling_standalone(val)
+                if changed:
+                    w[field] = fixed_val
+                    fixed_count += 1
+                elif is_false_positive(val):
+                    continue  # известное законное исключение — не шумим
+                elif val not in warned:
+                    warned.add(val)
                     print(f"  ⚠ похоже на неполное написание в {field}: {val!r} "
                           f"(слово {w.get('t')!r}) — проверь вручную", file=sys.stderr)
-    if seen:
-        print(f"\n⚠ Похожих случаев: {len(seen)}. Это эвристика, не всегда точная "
-              f"(некоторые слова законно без вав), но стоит свериться глазами.",
+    if fixed_count:
+        print(f"\n✓ Автоматически починено мест с пропавшей буквой (вав/кубуц): {fixed_count}.",
+              file=sys.stderr)
+    if warned:
+        print(f"⚠ Похожих случаев, которые чинить не рискнули: {len(warned)}. "
+              f"Это эвристика, не всегда точная, но стоит свериться глазами.",
               file=sys.stderr)
 
 
@@ -285,13 +297,19 @@ def main():
 
         time.sleep(1)  # вежливая пауза между запросами
 
+    # мутирует result_sentences (чинит найденные пропавшие буквы прямо в
+    # w["t"]/w["lemma"]) — обязательно ДО финальной записи файла, иначе
+    # починка на диск не попадёт
+    warn_deficient_spelling(result_sentences)
+
     if not incomplete:
         # готово целиком — убираем служебное поле next_index из финального
         # файла, дальше по пайплайну (озвучка/иллюстрации/сайт) его не ждут
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump({"sentences": result_sentences}, f, ensure_ascii=False, indent=2)
-
-    warn_deficient_spelling(result_sentences)
+    else:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump({"sentences": result_sentences, "next_index": i}, f, ensure_ascii=False, indent=2)
 
     print(f"\nГотово -> {args.out}, всего предложений в файле: {len(result_sentences)}",
           file=sys.stderr)
