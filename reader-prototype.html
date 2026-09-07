@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.41.4
+  Hebrew Reader — v1.41.5
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
@@ -463,7 +463,7 @@
     <div class="library-header">
       <p class="library-kicker">קורא · библиотека</p>
       <h1 class="library-title">Выбери книгу</h1>
-      <p class="library-sub">Свою книгу можно подгрузить прямо тут — файл остаётся только в твоём браузере, никуда не отправляется. Для отдельных фраз и грамматики — <a href="https://gigstersvideo-stack.github.io/hebrew-tasks/" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">тренажёр предложений</a>.</p>
+      <p class="library-sub">Можно подгрузить свою книгу — <a href="how-to-make-a-book.html" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">как её сделать</a>. Звёздочка у слова заодно добавляет предложение в <a href="https://gigstersvideo-stack.github.io/hebrew-tasks/" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">тренажёр</a>.</p>
       <div class="library-auth" id="libraryAuth">
         <button class="pill-btn ghost" id="readerBtnSignin">Войти через Google — синхронизировать словарь и закладки</button>
         <div class="reader-auth-user" id="readerAuthUser" style="display:none;">
@@ -477,7 +477,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.41.4</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.41.5</div>
   </div>
 </div>
 
@@ -485,6 +485,7 @@
 <div class="drawer" id="importModal">
   <div class="drawer-head"><h2>Добавить книгу</h2><button class="drawer-close" id="importClose">✕</button></div>
   <div class="drawer-body">
+    <p style="font-size:12px; color:var(--ink-soft); margin:-6px 0 14px;">Нужен файл <code>book-data.json</code> определённой структуры — <a href="how-to-make-a-book.html" target="_blank" rel="noopener" style="color:var(--gold);">как его сделать ↗</a></p>
     <label class="settings-row-label" style="display:block; margin-bottom:6px;">Название книги</label>
     <input type="text" id="importTitle" placeholder="Например: Гарри Поттер, глава 1"
       style="width:100%; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; font-size:13px; margin-bottom:14px; box-sizing:border-box;">

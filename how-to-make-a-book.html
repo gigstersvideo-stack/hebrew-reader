@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Как сделать книгу — קורא</title>
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EAE6DC; --ink: #211F1C; --ink-soft: #6B665C; --line: #D5CEBE;
+    --accent: #37564D; --accent-soft: #DCE6E2; --gold: #A8813F; --gold-soft: #F0E4CC;
+    --panel: #F8F6F0; --danger: #A3402F; --ok: #37564D; --code-bg: #211F1C; --code-ink: #EDE7D8;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    background: var(--bg); color: var(--ink); font-family:'Inter',sans-serif;
+    margin:0; padding: 0 0 80px; line-height:1.6;
+  }
+  a{ color: var(--gold); }
+  .wrap{ max-width: 760px; margin: 0 auto; padding: 48px 24px; }
+  .kicker{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin:0 0 8px; font-weight:600; }
+  .kicker a{ color: var(--gold); text-decoration:none; border-bottom:1px solid var(--gold); }
+  h1{ font-family:'Frank Ruhl Libre', serif; font-weight:500; font-size:32px; margin: 0 0 10px; }
+  .lede{ font-size:15px; color: var(--ink-soft); max-width: 58ch; }
+  h2{ font-family:'Frank Ruhl Libre', serif; font-weight:500; font-size:21px; margin: 44px 0 12px; padding-top:20px; border-top:1px solid var(--line); }
+  h2:first-of-type{ border-top:none; padding-top:0; }
+  h3{ font-family:'Inter',sans-serif; font-weight:600; font-size:14px; margin: 22px 0 8px; color: var(--ink); }
+  p{ font-size:14px; }
+  .note{
+    background: var(--gold-soft); border-radius:8px; padding:12px 16px; font-size:13px;
+    color: var(--ink); margin: 14px 0;
+  }
+  .note b{ color: var(--gold); }
+  .warn{ background: #F4E3DC; }
+  .warn b{ color: var(--danger); }
+  pre{
+    background: var(--code-bg); color: var(--code-ink); border-radius:10px; padding:16px 18px;
+    overflow-x:auto; font-family:'JetBrains Mono', monospace; font-size:12.5px; line-height:1.65;
+    margin: 10px 0 18px;
+  }
+  code{ font-family:'JetBrains Mono', monospace; font-size:12.5px; background: var(--panel); padding:1px 5px; border-radius:4px; }
+  pre code{ background:none; padding:0; }
+  table{ width:100%; border-collapse:collapse; font-size:13px; margin: 10px 0 20px; }
+  th, td{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th{ font-family:'Inter',sans-serif; font-weight:600; color: var(--ink-soft); font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
+  td code{ white-space:nowrap; }
+  .req{ display:inline-block; font-size:10px; font-weight:600; letter-spacing:.03em; padding:2px 7px; border-radius:20px; }
+  .req.yes{ background: var(--accent-soft); color: var(--accent); }
+  .req.no{ background: var(--line); color: var(--ink-soft); }
+  .checklist{ list-style:none; padding:0; margin: 10px 0 20px; }
+  .checklist li{ padding: 6px 0 6px 26px; position:relative; font-size:14px; }
+  .checklist li::before{ content:"✓"; position:absolute; left:0; color: var(--accent); font-weight:700; }
+  .back-link{ margin-top:56px; font-size:13px; }
+  .back-link a{ text-decoration:none; border-bottom:1px solid var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker"><a href="reader-prototype.html">קורא · библиотека</a> · инструкция</p>
+  <h1>Как сделать книгу</h1>
+  <p class="lede">
+    Книга для קורא — это один JSON-файл (<code>book-data.json</code>). Его можно
+    подгрузить на странице библиотеки кнопкой «+ Добавить свою книгу» — файлом,
+    выбором с диска, или просто вставить текст JSON в поле. Ничего никуда не
+    отправляется, файл остаётся в браузере.
+  </p>
+
+  <h2>Минимум, который нужен</h2>
+  <p>
+    Всего два обязательных поля на уровне книги и предложения — дальше можно
+    расширять постепенно:
+  </p>
+  <ul class="checklist">
+    <li><code>sentences</code> — массив предложений, хотя бы одно</li>
+    <li>у каждого предложения — <code>id</code> (любая уникальная строка) и <code>words</code> — массив слов</li>
+  </ul>
+  <p>Вот самая маленькая книга, которая пройдёт проверку:</p>
+  <pre><code>{
+  "title": "Моя первая книга",
+  "sentences": [
+    {
+      "id": "s1",
+      "fluent": "Это книга.",
+      "words": [
+        { "t": "זה", "lemma": "זה", "tr": "это" },
+        { "t": "ספר.", "lemma": "ספר", "tr": "книга" }
+      ]
+    }
+  ]
+}</code></pre>
+  <div class="note">
+    Огласовки (никуд) в <code>t</code>/<code>lemma</code> — не обязательны.
+    Без них текст просто покажется как есть, а тумблер «Огласовки» в
+    настройках ничего убирать не будет (убирать нечего). Добавите позже —
+    ничего пересобирать не нужно.
+  </div>
+
+  <h2>Поля предложения</h2>
+  <table>
+    <thead><tr><th>Поле</th><th>Обязательно</th><th>Что это</th></tr></thead>
+    <tbody>
+      <tr><td><code>id</code></td><td><span class="req yes">да</span></td><td>Любая уникальная строка внутри книги, например <code>"s1"</code>, <code>"s2"</code>.</td></tr>
+      <tr><td><code>words</code></td><td><span class="req yes">да</span></td><td>Массив слов предложения по порядку, см. ниже.</td></tr>
+      <tr><td><code>fluent</code></td><td><span class="req no">нет</span></td><td>Литературный перевод предложения целиком на русский. Без него просто не будет строки перевода под текстом.</td></tr>
+      <tr><td><code>literal</code></td><td><span class="req no">нет</span></td><td>Дословный перевод слово-в-слово (через тире), для поля «Дословный перевод». Необязателен, но помогает видеть структуру фразы на иврите.</td></tr>
+      <tr><td><code>audio</code></td><td><span class="req no">нет</span></td><td>Путь к mp3-файлу с озвучкой этого предложения. См. «Аудио» ниже.</td></tr>
+      <tr><td><code>illustration</code></td><td><span class="req no">нет</span></td><td>Картинка-мнемоника к одному слову предложения. См. «Иллюстрации» ниже.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Поля слова</h2>
+  <table>
+    <thead><tr><th>Поле</th><th>Обязательно</th><th>Что это</th></tr></thead>
+    <tbody>
+      <tr><td><code>t</code></td><td><span class="req yes">да</span></td><td>Текст слова как он должен показаться в предложении — с огласовками или без, знаки препинания (запятая, точка, «?») приклеены к последнему слову перед ними, как обычный текст.</td></tr>
+      <tr><td><code>lemma</code></td><td><span class="req yes">на практике</span></td><td>Словарная форма слова. Формально проверкой не требуется, но именно по <code>lemma</code> ведутся личный словарь, частотность и звёздочки — без неё эти функции путаются. Если лень нормализовать, продублируйте <code>t</code> сюда как есть.</td></tr>
+      <tr><td><code>tr</code></td><td><span class="req no">нет</span></td><td>Перевод слова на русский — то, что покажется в подсказке при клике.</td></tr>
+      <tr><td><code>pos</code></td><td><span class="req no">нет</span></td><td>Часть речи для подсказки: <code>"сущ."</code>, <code>"гл."</code>, <code>"прил."</code>, <code>"нареч."</code>, <code>"предл."</code>, <code>"мест."</code>, <code>"числ."</code>, <code>"частица"</code>, <code>"имя собств."</code> — можно своё, это просто текст.</td></tr>
+      <tr><td><code>extra</code></td><td><span class="req no">нет</span></td><td>Короткая грамматическая пометка: биньян, время, лицо, род — что угодно текстом, например <code>"биньян פעל, прош. вр., ж.р."</code>.</td></tr>
+      <tr><td><code>root</code></td><td><span class="req no">нет</span></td><td>Корень через дефис, например <code>"ק-ט-ל"</code>, или <code>"—"</code> если неприменимо.</td></tr>
+      <tr><td><code>start</code>, <code>end</code></td><td><span class="req no">нет</span></td><td>Секунды начала/конца звучания этого слова в файле <code>audio</code> — для подсветки текущего слова при прослушивании. Без аудио не нужны.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Аудио</h2>
+  <p>
+    Положите mp3-файлы рядом (или укажите полный путь/URL) и пропишите его в
+    <code>audio</code> у каждого предложения. Если хотите, чтобы слово
+    подсвечивалось в такт голосу — добавьте <code>start</code>/<code>end</code>
+    (в секундах) у каждого слова этого предложения. Без аудио плеер просто не
+    появится под соответствующим текстом — ничего не сломается.
+  </p>
+  <div class="note">
+    Готового встроенного озвучивателя в самом сайте пока нет — записывайте
+    сами или прогоняйте текст через любой TTS (например, голосовой синтез в
+    Google Translate или аналогичный сервис) и сохраняйте как mp3.
+  </div>
+
+  <h3>Как получить огласовки, если хочется</h3>
+  <p>
+    Проще всего — оставить книгу без огласовок вообще (см. выше, это
+    полноценно поддерживается). Если хочется добавить: возьмите словарную
+    форму нужного слова с готовыми огласовками из
+    <a href="https://www.pealim.com/" target="_blank" rel="noopener">Pealim</a>
+    или похожего словаря и подставьте её как <code>lemma</code>, а для
+    конкретной словоформы в <code>t</code> — либо тоже поищите в словаре форму
+    спряжения/склонения, либо оставьте <code>t</code> без огласовок, а
+    <code>lemma</code> — с ними: работать будет в любом случае, просто сам
+    текст в предложении не будет вокализован.
+  </p>
+
+  <h2>Иллюстрации (необязательно)</h2>
+  <p>
+    Можно прикрепить картинку-мнемонику к одному слову предложения — она
+    появится сворачиваемым блоком под текстом:
+  </p>
+  <pre><code>"illustration": {
+  "word": "חָלָל",              // должен ТОЧНО совпадать с lemma нужного слова
+  "tr": "космос",
+  "caption": "חלל",
+  "capTr": "space",
+  "mnemonic": "Текст подсказки-ассоциации на русском.",
+  "img": "путь/к/картинке.jpg"  // или "svg": "&lt;svg&gt;...&lt;/svg&gt;" вместо img
+}</code></pre>
+  <p>
+    <code>word</code> должен буквально совпадать со значением <code>lemma</code>
+    того слова, к которому привязана картинка — по нему ищется подсветка.
+  </p>
+
+  <h2>Частые ошибки при проверке</h2>
+  <table>
+    <thead><tr><th>Сообщение</th><th>Что значит</th></tr></thead>
+    <tbody>
+      <tr><td>Не получилось разобрать JSON</td><td>Синтаксическая ошибка в самом JSON — лишняя запятая, незакрытая кавычка. Проверьте файл в любом JSON-валидаторе.</td></tr>
+      <tr><td>Нет массива «sentences» на верхнем уровне</td><td>Корень файла — объект <code>{ }</code>, и в нём должен быть ключ <code>sentences</code>, а не, скажем, <code>text</code> или массив без обёртки.</td></tr>
+      <tr><td>Массив «sentences» пустой</td><td>Добавьте хотя бы одно предложение.</td></tr>
+      <tr><td>Предложение №N без поля id или words</td><td>У конкретного предложения нет одного из двух обязательных полей — проверьте именно его.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Дальше</h2>
+  <p>
+    Загруженная книга видна только в этом браузере (или синхронизируется
+    между вашими устройствами, если вы вошли через Google — но не публикуется
+    и никому больше не видна). Удалить её можно там же, в окне «Добавить
+    книгу», в списке «Уже добавленные книги».
+  </p>
+
+  <div class="back-link"><a href="reader-prototype.html">← Вернуться в библиотеку</a></div>
+</div>
+</body>
+</html>
