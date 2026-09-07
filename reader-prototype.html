@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.41.1
+  Hebrew Reader — v1.41.3
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>קורא — Reader Prototype</title>
 <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
 <link rel="apple-touch-icon" href="icon-180.png">
@@ -23,7 +23,7 @@
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
-  body{ background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; min-height:100vh; padding-bottom: 100px; }
+  body{ background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; min-height:100vh; padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
 
   .topline{ position: sticky; top:0; left:0; right:0; height: 3px; background: var(--line); z-index: 20; }
   .topline-fill{ height:100%; width: 0%; background: var(--gold); transition: width .3s ease; }
@@ -59,7 +59,28 @@
     box-shadow: 0 12px 30px rgba(0,0,0,.15); padding: 14px 16px; display:none;
   }
   @media (max-width: 480px) {
-    .settings-panel{ left:auto; right:0; width: min(280px, calc(100vw - 32px)); }
+    /* Was absolute + right:0, anchored to .header-actions (a content-sized
+       flex box, NOT full viewport width) with width computed from 100vw —
+       that math only balances out if the parent's right edge happens to
+       sit exactly at the viewport edge. It doesn't (header padding), so on
+       a narrower phone the panel silently overflows past the LEFT edge of
+       the screen, clipping the first few characters of every row (real
+       device report). Fixed positioning + explicit left/right margins
+       measures from the true viewport instead of that parent, so it can't
+       drift regardless of header padding or device width. `top` is set by
+       JS on open (see settingsBtn's click handler) since fixed positioning
+       can no longer inherit "just below the button" from the flow. */
+    .settings-panel{
+      position:fixed; left:16px; right:16px; width:auto;
+      /* --panel-top is set by JS alongside `top` itself (below), so the
+         cap always matches how much room is actually left under wherever
+         the button ended up — a flat "100vh minus a margin" would ignore
+         how far down `top` already sits and let the panel's bottom run
+         past the screen edge on a short viewport. */
+      max-height: calc(100vh - var(--panel-top, 100px) - 16px - env(safe-area-inset-bottom, 0px));
+      max-height: calc(100dvh - var(--panel-top, 100px) - 16px - env(safe-area-inset-bottom, 0px));
+      overflow-y:auto;
+    }
   }
   .settings-panel.open{ display:block; animation: popin .12s ease; }
   .settings-title{ font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:10px; font-weight:500; }
@@ -177,7 +198,23 @@
   footer.audiobar{
     position: fixed; bottom:0; left:0; right:0; background: var(--panel); border-top: 1px solid var(--line);
     padding: 10px 20px 14px; direction: ltr; z-index: 25;
+    /* Docked to the screen edge, so on a notched/rounded-corner phone
+       (needs viewport-fit=cover, set on the <meta viewport> tag) it should
+       clear the home-indicator strip and side curves, not just sit at the
+       raw 0/0/0. env() falls back to 0px on devices/browsers without it. */
+    padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    padding-left: calc(20px + env(safe-area-inset-left, 0px));
+    padding-right: calc(20px + env(safe-area-inset-right, 0px));
   }
+  /* The feedback bubble is always fixed bottom-left (z-index 50, above the
+     audiobar's 25) so on narrow screens, where the audiobar's controls wrap
+     to a second row and grow taller, it sits right on top of the player's
+     buttons unless pushed up while a book is open. */
+  /* !important because the button's bottom:18px is an inline style
+     attribute (kept inline since it's a one-off fixed element, not part
+     of the stylesheet's component classes) — only !important can win
+     against that from a stylesheet rule. */
+  body.reading #bugReportBtn{ bottom: calc(100px + env(safe-area-inset-bottom, 0px)) !important; }
   .audiobar-inner{ max-width: 720px; margin: 0 auto; display:flex; align-items:center; gap: 10px; flex-wrap:wrap; }
   .play-btn, .loop-btn{
     width: 36px; height:36px; border-radius:50%; background: var(--accent); color:#fff; border:none;
@@ -201,6 +238,9 @@
     position:fixed; top:0; right:0; bottom:0; width: 360px; max-width: 92vw; background: var(--panel); z-index: 41;
     direction: ltr; box-shadow: -12px 0 30px rgba(0,0,0,.15); transform: translateX(100%); transition: transform .22s ease;
     display:flex; flex-direction:column;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   .drawer.open{ transform: translateX(0); }
   .drawer-head{ padding: 18px 20px 0; display:flex; align-items:center; justify-content:space-between; }
@@ -377,7 +417,7 @@
 <div class="topline"><div class="topline-fill" id="topFill"></div></div>
 
 <button id="bugReportBtn" title="Оставить отзыв или сообщить о проблеме" style="
-  position:fixed; bottom:18px; left:18px; z-index:50; width:42px; height:42px; border-radius:50%;
+  position:fixed; bottom:calc(18px + env(safe-area-inset-bottom, 0px)); left:calc(18px + env(safe-area-inset-left, 0px)); z-index:50; width:42px; height:42px; border-radius:50%;
   background:var(--ink); color:#fff; border:none; font-size:18px; cursor:pointer;
   box-shadow:0 6px 16px rgba(0,0,0,.2); display:flex; align-items:center; justify-content:center;
 ">💬</button>
@@ -429,7 +469,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.41.1</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.41.3</div>
   </div>
 </div>
 
@@ -628,12 +668,32 @@ let activeReaderToken = 0;
 (() => {
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsPanel = document.getElementById('settingsPanel');
-  settingsBtn.addEventListener('click', (e) => { e.stopPropagation(); settingsPanel.classList.toggle('open'); });
+  settingsBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    settingsPanel.classList.toggle('open');
+    // Below 480px the panel is position:fixed (measured from the real
+    // viewport, not from .header-actions — see the media query), so it no
+    // longer inherits "just under the button" from being in-flow; compute
+    // it fresh on every open in case the header's own height changed
+    // (e.g. a book title that wrapped to two lines).
+    if (settingsPanel.classList.contains('open') && window.innerWidth <= 480){
+      const r = settingsBtn.getBoundingClientRect();
+      const top = Math.max(8, Math.round(r.bottom + 8));
+      settingsPanel.style.top = top + 'px';
+      settingsPanel.style.setProperty('--panel-top', top + 'px');
+    }
+  });
+  // Capture phase, not bubble — a tap on a word span calls its own
+  // stopPropagation() (so the popover click doesn't also register as a
+  // "click outside"), which would otherwise stop this listener from ever
+  // seeing clicks on the book text at all. Capture-phase listeners run
+  // before the target's own handler, so that stopPropagation() (called
+  // later, during bubble) can't suppress this one.
   document.addEventListener('click', (e) => {
     if (settingsPanel.classList.contains('open') && !settingsPanel.contains(e.target) && e.target !== settingsBtn){
       settingsPanel.classList.remove('open');
     }
-  });
+  }, true);
 })();
 
 // ---- FSRS-6 scheduling — verbatim port from the sentence trainer
@@ -2939,6 +2999,7 @@ async function boot(){
           const bookId = "url-" + directBookUrl.split("").reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0);
           document.getElementById("libraryView").style.display = "none";
           document.getElementById("readerView").style.display = "";
+          document.body.classList.add("reading");
           initReader(json, bookId, {
             title: params.get("title") || "Книга по ссылке",
             sub: "загружено с внешнего адреса"
@@ -2981,6 +3042,7 @@ async function boot(){
   document.getElementById('backToLibrary').addEventListener('click', () => {
     document.getElementById('readerView').style.display = 'none';
     document.getElementById('libraryView').style.display = '';
+    document.body.classList.remove('reading');
     renderLibrary(manifest); // refresh in case a book was just imported
   });
 
@@ -3065,6 +3127,7 @@ async function openBook(entry){
   }
   document.getElementById('libraryView').style.display = 'none';
   document.getElementById('readerView').style.display = '';
+  document.body.classList.add('reading');
   initReader(bookData, entry.id, entry);
 }
 
