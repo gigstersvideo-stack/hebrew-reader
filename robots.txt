@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gigstersvideo-stack.github.io/hebrew-reader/sitemap.xml
