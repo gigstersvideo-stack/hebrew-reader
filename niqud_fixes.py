@@ -92,29 +92,15 @@ def _join(units):
     return "".join(b + m for b, m in units)
 
 
-def mechanical_fix_word(orig, vocalized):
-    """orig — слово БЕЗ огласовок (как было до простановки никуда).
-    vocalized — то, что получилось (возможно, с потерянной буквой).
-    Если ровно ОДНА буква (вав или йод) пропала и её можно безопасно
-    вставить обратно — возвращает исправленное слово. Иначе None (пусть
-    решает человек — не гадаем на неоднозначных случаях)."""
-    units = _split_marks(vocalized)
-    bases = [u[0] for u in units]
-    if "".join(bases) == orig:
-        return vocalized
-
-    sm = difflib.SequenceMatcher(a=bases, b=list(orig), autojunk=False)
-    ops = [op for op in sm.get_opcodes() if op[0] != "equal"]
-    if len(ops) != 1 or ops[0][0] != "insert":
-        return None
-    _, i1, _, j1, j2 = ops[0]
-    if j2 - j1 != 1:
-        return None
-    missing = orig[j1]
+def _fix_single_insert(units, i1, missing):
+    """Пытается вставить ОДНУ недостающую букву (вав или йод) в позицию i1
+    списка units (см. _split_marks). Возвращает новый список units, или
+    None, если ни один известный паттерн не подошёл."""
+    units = [list(u) for u in units]  # не мутируем то, что передали
 
     if missing == YOD:
         # неоднозначность: когда буква повторяется дважды подряд (двойной йод,
-        # напр. ниקוד "ה-ת-י-י-ש-ב" из "התיישבה"), difflib иногда выравнивает
+        # напр. никуд "ה-ת-י-י-ש-ב" из "התיישבה"), difflib иногда выравнивает
         # существующую букву с ВТОРЫМ вхождением в оригинале и просит вставить
         # "недостающую" ПЕРЕД ней — это даёт немую букву перед вокализованной
         # вместо принятого порядка (вокализованная, потом немая). Если то, что
@@ -124,7 +110,7 @@ def mechanical_fix_word(orig, vocalized):
                 and not (i1 > 0 and units[i1 - 1][0] == YOD and units[i1 - 1][1])):
             i1 += 1
         units.insert(i1, [YOD, ""])
-        return _join(units)
+        return units
 
     if missing == VAV:
         if i1 == 0:
@@ -133,14 +119,55 @@ def mechanical_fix_word(orig, vocalized):
         if HOLAM in prev_marks:
             units[i1 - 1][1] = prev_marks.replace(HOLAM, "")
             units.insert(i1, [VAV, HOLAM])
-            return _join(units)
+            return units
         if QUBUTS in prev_marks:
             units[i1 - 1][1] = prev_marks.replace(QUBUTS, "")
             units.insert(i1, [VAV, DAGESH])
-            return _join(units)
+            return units
+        # двойной СОГЛАСНЫЙ вав (не гласная-матерь чтения): слова вроде
+        # תִּקְוָה/שַׁלְוָה/גַּאֲוָה законно пишутся с двумя вав подряд в כתיב
+        # מלא (תקווה/שלווה/גאווה) — соседняя буква тоже вав без огласовки
+        # холам/кубуц, вставлять просто немую (без своей огласовки) копию,
+        # тем же способом, что и для двойного йод.
+        if units[i1 - 1][0] == VAV or (i1 < len(units) and units[i1][0] == VAV):
+            units.insert(i1, [VAV, ""])
+            return units
         return None
 
     return None
+
+
+def mechanical_fix_word(orig, vocalized):
+    """orig — слово БЕЗ огласовок (как было до простановки никуда).
+    vocalized — то, что получилось (возможно, с потерянной буквой).
+    Если ОДНА ИЛИ НЕСКОЛЬКО букв (вав/йод) пропали и каждую по отдельности
+    можно безопасно вставить обратно — возвращает исправленное слово. Если
+    хоть один пропуск не подошёл ни под один известный паттерн (или это не
+    пропуск, а лишняя буква/что-то другое) — None, пусть решает человек, а
+    не гадаем на неоднозначных случаях."""
+    units = _split_marks(vocalized)
+    bases = [u[0] for u in units]
+    if "".join(bases) == orig:
+        return vocalized
+
+    sm = difflib.SequenceMatcher(a=bases, b=list(orig), autojunk=False)
+    ops = [op for op in sm.get_opcodes() if op[0] != "equal"]
+    if not ops or any(op[0] != "insert" for op in ops):
+        return None
+
+    # блоки (opcode'ы) — справа налево, чтобы индексы более ранних блоков
+    # не съезжали; буквы ВНУТРИ одного блока (напр. пропали сразу и йод,
+    # и вав подряд — "חיוורים" -> "חורים") — слева направо, там они как
+    # раз последовательно сдвигают друг друга на вставленную позицию.
+    for _, i1, _, j1, j2 in sorted(ops, key=lambda op: op[1], reverse=True):
+        pos = i1
+        for j in range(j1, j2):
+            fixed = _fix_single_insert(units, pos, orig[j])
+            if fixed is None:
+                return None
+            units = fixed
+            pos += 1
+    return _join(units)
 
 
 def fix_deficient_spelling_standalone(word):
