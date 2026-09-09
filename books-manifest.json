@@ -87,6 +87,17 @@
       "file": "book-data-writer-dalet.json",
       "spineColor": "#2C3E50",
       "coverSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 140\"><g stroke=\"var(--ink)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"><path d=\"M 20 118 L 280 118\"/><path d=\"M 60 112 L 150 100 L 240 112 L 240 118 L 60 118 Z\"/><path d=\"M 150 100 L 150 60\"/><path d=\"M 60 112 L 60 74 L 150 60\"/><path d=\"M 240 112 L 240 74 L 150 60\"/><path d=\"M 72 100 H 138 M 72 90 H 138 M 72 80 H 130\" stroke-width=\"1.3\"/><path d=\"M 162 100 H 228 M 162 90 H 228 M 162 80 H 220\" stroke-width=\"1.3\"/></g><g stroke=\"var(--ink)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"><path d=\"M 150 60 L 210 20 L 218 28 L 158 68 Z\"/><path d=\"M 210 20 L 222 16 L 218 28\"/></g><path d=\"M 218 28 L 222 32\" stroke=\"var(--gold)\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><circle cx=\"226\" cy=\"36\" r=\"1.6\" fill=\"var(--gold)\"/><circle cx=\"234\" cy=\"44\" r=\"1.2\" fill=\"var(--gold)\"/><g stroke=\"var(--gold)\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"><path d=\"M 40 45 L 40 30 L 66 30 L 66 45 Z\"/><path d=\"M 40 30 L 53 40 L 66 30\"/></g><circle cx=\"53\" cy=\"20\" r=\"1.3\" fill=\"var(--gold)\"/><circle cx=\"270\" cy=\"90\" r=\"1.3\" fill=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "zoo-alef",
+      "title": "נוֹעָה בְּגַן הַחַיּוֹת",
+      "kicker": "רמה א׳ · סיפור מקורי",
+      "level": "א",
+      "sub": "Ноа с папой идут в зоопарк, смотрят на обезьяну, льва, слона и медведя, но больше всего ей нравится жираф",
+      "source": "file",
+      "file": "book-data-zoo-alef.json",
+      "spineColor": "#8C6A2F",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M40 120 H260\" stroke=\"var(--ink)\" stroke-width=\"2\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M80 120 V70 Q80 40 110 40\" stroke=\"var(--ink)\" stroke-width=\"2\" stroke-linecap=\"round\" fill=\"none\"/><ellipse cx=\"122\" cy=\"40\" rx=\"14\" ry=\"8\" stroke=\"var(--ink)\" stroke-width=\"2\" fill=\"none\"/><path d=\"M130 34 L135 28 M115 34 L110 28\" stroke=\"var(--ink)\" stroke-width=\"2\" stroke-linecap=\"round\"/><circle cx=\"84\" cy=\"80\" r=\"2\" fill=\"var(--gold)\"/><circle cx=\"76\" cy=\"95\" r=\"1.5\" fill=\"var(--gold)\"/><circle cx=\"80\" cy=\"60\" r=\"2\" fill=\"var(--gold)\"/><circle cx=\"180\" cy=\"105\" r=\"6\" stroke=\"var(--ink)\" stroke-width=\"2\" fill=\"none\"/><path d=\"M180 111 V120 M180 114 L155 95\" stroke=\"var(--ink)\" stroke-width=\"2\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M155 95 C145 85 135 90 125 85\" stroke=\"var(--gold)\" stroke-width=\"2\" stroke-linecap=\"round\" fill=\"none\"/><circle cx=\"240\" cy=\"35\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"255\" cy=\"50\" r=\"1.5\" fill=\"var(--gold)\"/><circle cx=\"220\" cy=\"45\" r=\"2\" fill=\"var(--gold)\"/></svg>"
     }
   ]
 }
