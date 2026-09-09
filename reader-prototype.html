@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.43.1
+  Hebrew Reader — v1.43.2
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -474,7 +474,7 @@
   <div class="library-wrap">
     <div class="library-header">
       <h1 class="library-kicker">קורא · библиотека</h1>
-      <p class="library-sub">Можно подгрузить свою книгу — <a href="how-to-make-a-book.html" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">как её сделать</a>. Есть и отдельный <a href="https://gigstersvideo-stack.github.io/hebrew-tasks/" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">тренажёр предложений</a>.</p>
+      <p class="library-sub">Можно подгрузить свою книгу — <a href="how-to-make-a-book.html" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">как её сделать</a>. Есть и отдельный <a href="https://gigstersvideo-stack.github.io/hebrew-tasks/" id="cross-link-trainer" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">тренажёр предложений</a>.</p>
       <div class="library-auth" id="libraryAuth">
         <button class="pill-btn ghost" id="readerBtnSignin">Войти через Google — синхронизировать словарь, закладки и добавлять фразы в тренажёр</button>
         <div class="reader-auth-user" id="readerAuthUser" style="display:none;">
@@ -488,7 +488,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.43.1</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.43.2</div>
   </div>
 </div>
 
@@ -673,6 +673,20 @@
 </div>
 
 <script>
+// The trainer cross-link is a hardcoded github.io URL because that's the
+// site's one long-standing address — but now that both apps also live at
+// short readivrit.pages.dev / trainivrit.pages.dev mirrors, a github.io
+// link would yank a pages.dev visitor back to the OTHER domain family
+// mid-session. Match the sibling site's domain to whichever one this page
+// is currently being viewed from, so cross-navigation stays within the
+// same family.
+(() => {
+  const link = document.getElementById("cross-link-trainer");
+  if (link && typeof location !== "undefined" && location.hostname.endsWith(".pages.dev")) {
+    link.href = "https://trainivrit.pages.dev/";
+  }
+})();
+
 // Открытие книги (initReader) может случиться несколько раз за сессию
 // (демо -> своя книга -> обратно), а каждый вызов создаёт свой <audio>
 // и заново вешает обработчики на общие кнопки плеера. Без этого счётчика
