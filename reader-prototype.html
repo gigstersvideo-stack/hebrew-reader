@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.46.0
+  Hebrew Reader — v1.47.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -473,6 +473,10 @@
       <button class="pill-btn ghost" id="btnFeedbackReviewClose">✕ Закрыть</button>
     </div>
     <p class="library-sub" style="margin:0;">Видно только вам — жалобы и предложения от посетителей сайта.</p>
+    <div style="display:flex; align-items:center; gap:10px; margin:10px 0;">
+      <button class="pill-btn ghost" id="btnFeedbackExport" type="button">📋 Скопировать всё текстом</button>
+      <span id="fbExportStatus" style="font-size:12px; color:var(--ink-soft);"></span>
+    </div>
     <div class="fb-review-list" id="fbReviewList"></div>
   </div>
 </div>
@@ -495,7 +499,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.46.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.47.0</div>
   </div>
 </div>
 
@@ -3021,6 +3025,29 @@ async function renderFeedbackReview() {
     renderFeedbackReview(); updateFeedbackUnreadBadge();
   }));
 }
+
+// One-click plain-text export of every feedback item, so it can be pasted
+// straight into a chat with Claude for triage — no direct DB access exists
+// (or should exist) outside this owner-gated panel, so copy/paste is the
+// deliberately simple, no-new-credentials way to hand that data over.
+document.getElementById('btnFeedbackExport').addEventListener('click', async () => {
+  const statusEl = document.getElementById('fbExportStatus');
+  statusEl.textContent = 'Собираю…';
+  try {
+    if (!window.cloudFetchFeedback) throw new Error('нет соединения с базой');
+    const items = await window.cloudFetchFeedback();
+    if (!items.length) { statusEl.textContent = 'Пока пусто — нечего копировать.'; return; }
+    const text = items.map(it => {
+      const when = it.createdAt ? new Date(it.createdAt).toLocaleString('ru-RU') : '?';
+      const kind = it.type === 'bug' ? 'БАГ' : 'ПРЕДЛОЖЕНИЕ';
+      return `[${kind}] ${it.app || '?'} · ${when} · ${it.status || '?'}\n${it.text || ''}`;
+    }).join('\n\n---\n\n');
+    await navigator.clipboard.writeText(`Отзывы с сайта (${items.length}):\n\n${text}`);
+    statusEl.textContent = `Скопировано (${items.length}) — вставьте в чат.`;
+  } catch (e) {
+    statusEl.textContent = 'Не получилось: ' + ((e && e.message) || e);
+  }
+});
 
 async function updateFeedbackUnreadBadge() {
   if (!window.cloudFetchFeedback) return;
