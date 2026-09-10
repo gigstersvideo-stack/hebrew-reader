@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.48.0
+  Hebrew Reader — v1.48.1
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -499,7 +499,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.48.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.48.1</div>
   </div>
 </div>
 
@@ -2539,7 +2539,19 @@ function renderAiAnalysis(a, w){
 }
 
 async function askAiAboutWord(w, wordEl, btn){
-  const key = localStorage.getItem(AI_KEY_STORAGE);
+  let key = localStorage.getItem(AI_KEY_STORAGE);
+  // Signed in, key not in localStorage yet, but a cloud pull for it is still
+  // in flight (e.g. popover opened seconds after signing in) — wait for
+  // that pull instead of jumping straight to "no key set".
+  if (!key && window.cloudUid && window.aiKeyPullPromise) {
+    const prevText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Проверяю ключ…';
+    try { await Promise.race([window.aiKeyPullPromise, new Promise((r) => setTimeout(r, 4000))]); } catch (e) {}
+    btn.disabled = false;
+    btn.textContent = prevText;
+    key = localStorage.getItem(AI_KEY_STORAGE);
+  }
   // Opportunistic push: catches a key set via ai-key-help.html (a separate
   // page with no Firebase of its own) the first time it's actually used
   // here, instead of requiring that page to duplicate the sync wiring.
@@ -3646,7 +3658,14 @@ onAuthStateChanged(fbAuth, (user) => {
     const pulls = [];
     if (window.pullReaderCloudProgress) pulls.push(Promise.resolve(window.pullReaderCloudProgress()).catch((e) => console.error("[ivrit-reader] progress sync failed:", e)));
     if (window.pullReaderCloudSettings) pulls.push(Promise.resolve(window.pullReaderCloudSettings()).catch((e) => console.error("[ivrit-reader] settings sync failed:", e)));
-    if (window.pullReaderCloudAiKey) pulls.push(Promise.resolve(window.pullReaderCloudAiKey()).catch((e) => console.error("[ivrit-reader] AI key sync failed:", e)));
+    if (window.pullReaderCloudAiKey) {
+      // Kept on window so askAiAboutWord can wait on it — otherwise opening
+      // the word-analysis popover right after signing in can hit the "no
+      // key set" prompt purely because this cloud round-trip hasn't landed
+      // yet, even though the key is already synced under this account.
+      window.aiKeyPullPromise = Promise.resolve(window.pullReaderCloudAiKey()).catch((e) => console.error("[ivrit-reader] AI key sync failed:", e));
+      pulls.push(window.aiKeyPullPromise);
+    }
     Promise.all(pulls).then(() => updateCloudStatusIndicator());
     const feedbackBtn = document.getElementById("btnOpenFeedbackReview");
     if (user.uid === window.OWNER_UID) {
