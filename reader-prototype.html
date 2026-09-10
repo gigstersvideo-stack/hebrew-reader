@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.48.1
+  Hebrew Reader — v1.48.2
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -499,7 +499,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.48.1</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.48.2</div>
   </div>
 </div>
 
@@ -3475,28 +3475,51 @@ window.cloudSyncPage = function (bookId, page) {
   if (!window.cloudUid) return;
   setDoc(doc(fbDb, "users", window.cloudUid, "readerMeta", bookId), { page }, { merge: true }).catch(() => {});
 };
+// Firestore's auth token can take a beat to attach to outgoing requests
+// right after a fresh signInWithPopup — onAuthStateChanged can fire (and
+// trigger the pulls below) a moment before the SDK has it wired in, so the
+// very first read right after signing in can get bounced with
+// "permission-denied" even though the security rules are correct (seen
+// live: a fresh sign-in immediately followed by that exact error on the
+// first progress pull). One retry after a short delay clears it up without
+// masking a genuine rules problem, which would fail the retry too.
+async function withAuthRaceRetry(fn) {
+  try {
+    return await fn();
+  } catch (e) {
+    if (e && e.code === "permission-denied") {
+      await new Promise((r) => setTimeout(r, 1000));
+      return await fn();
+    }
+    throw e;
+  }
+}
 window.cloudFetchBookProgress = async function (bookId) {
   if (!window.cloudUid) return null;
   const uid = window.cloudUid;
-  const vocabQuery = query(collection(fbDb, "users", uid, "readerVocab"), where("bookId", "==", bookId));
-  const [vocabSnap, metaSnap] = await Promise.all([
-    getDocs(vocabQuery),
-    getDoc(doc(fbDb, "users", uid, "readerMeta", bookId)),
-  ]);
-  const vocab = {};
-  vocabSnap.forEach((d) => { const data = d.data(); vocab[data.lemma] = data; });
-  const meta = metaSnap.exists() ? metaSnap.data() : {};
-  return { vocab, seen: meta.seen || {}, page: typeof meta.page === "number" ? meta.page : null };
+  return withAuthRaceRetry(async () => {
+    const vocabQuery = query(collection(fbDb, "users", uid, "readerVocab"), where("bookId", "==", bookId));
+    const [vocabSnap, metaSnap] = await Promise.all([
+      getDocs(vocabQuery),
+      getDoc(doc(fbDb, "users", uid, "readerMeta", bookId)),
+    ]);
+    const vocab = {};
+    vocabSnap.forEach((d) => { const data = d.data(); vocab[data.lemma] = data; });
+    const meta = metaSnap.exists() ? metaSnap.data() : {};
+    return { vocab, seen: meta.seen || {}, page: typeof meta.page === "number" ? meta.page : null };
+  });
 };
 // Same collection, no bookId filter — feeds the global (across-all-books)
 // FSRS review queue with entries from books that may not even be open (or
 // imported) on this particular device.
 window.cloudFetchAllVocab = async function () {
   if (!window.cloudUid) return [];
-  const snap = await getDocs(collection(fbDb, "users", window.cloudUid, "readerVocab"));
-  const out = [];
-  snap.forEach((d) => out.push(d.data()));
-  return out;
+  return withAuthRaceRetry(async () => {
+    const snap = await getDocs(collection(fbDb, "users", window.cloudUid, "readerVocab"));
+    const out = [];
+    snap.forEach((d) => out.push(d.data()));
+    return out;
+  });
 };
 // Whole-sentence practice cards pushed to the trainer's personal pool —
 // doc id is the `source` string itself ("reader:<bookId>:<sentenceId>" or
@@ -3532,8 +3555,10 @@ window.cloudSyncAiKey = function (key) {
 };
 window.cloudFetchAiKey = async function () {
   if (!window.cloudUid) return null;
-  const snap = await getDoc(doc(fbDb, "users", window.cloudUid, "settings", "ai"));
-  return snap.exists() ? snap.data() : null;
+  return withAuthRaceRetry(async () => {
+    const snap = await getDoc(doc(fbDb, "users", window.cloudUid, "settings", "ai"));
+    return snap.exists() ? snap.data() : null;
+  });
 };
 
 // Feedback: a single top-level "feedback" collection (not under
@@ -3568,8 +3593,10 @@ window.cloudSyncSettings = function (s) {
 };
 window.cloudFetchSettings = async function () {
   if (!window.cloudUid) return null;
-  const snap = await getDoc(doc(fbDb, "users", window.cloudUid, "readerSettings", "prefs"));
-  return snap.exists() ? snap.data() : null;
+  return withAuthRaceRetry(async () => {
+    const snap = await getDoc(doc(fbDb, "users", window.cloudUid, "readerSettings", "prefs"));
+    return snap.exists() ? snap.data() : null;
+  });
 };
 
 // Persistent sync status (not just a one-off message) — reflects real
