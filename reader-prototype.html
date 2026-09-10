@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.50.0
+  Hebrew Reader — v1.51.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -153,6 +153,10 @@
     border-radius: 50%; font-size: 11px; cursor:pointer; vertical-align: middle; user-select:none; background: transparent;
   }
   .translate-toggle:hover{ background: var(--gold-soft); }
+  /* :not(.edit-toggle) — the owner-only ✎ pencil icon shares this class
+     for its circle styling but is a separate feature (sentence editing),
+     not the sentence-translation reveal this setting hides. */
+  body.translate-toggle-off .translate-toggle:not(.edit-toggle){ display:none; }
   .edit-toggle{ margin-inline-start: 4px; font-size:10px; }
   .edit-toggle:hover{ background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
 
@@ -384,6 +388,11 @@
     background: rgba(20,18,14,.6); color:#fff; font-family:'Inter',sans-serif;
     font-size:11px; font-weight:600; letter-spacing:.02em; padding:4px 9px; border-radius:20px;
   }
+  .book-completed-badge{
+    position:absolute; top:10px; right:10px; z-index:2; direction:ltr;
+    background: rgba(20,18,14,.6); color:#fff; font-family:'Inter',sans-serif;
+    font-size:11px; font-weight:600; letter-spacing:.02em; padding:4px 9px; border-radius:20px;
+  }
   .book-spine{
     height: 130px; display:flex; align-items:center; justify-content:center;
     font-family:'Frank Ruhl Libre', serif; font-size:15px; color:#fff; text-align:center; padding:10px;
@@ -508,7 +517,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.50.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.51.0</div>
   </div>
 </div>
 
@@ -583,6 +592,10 @@
         <div class="settings-row">
           <div><div class="settings-row-label">Дословный перевод предложений</div><div class="settings-row-sub">перевод слово-в-слово под текстом</div></div>
           <label class="switch"><input type="checkbox" id="swLiteral" checked><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-row-label">Значок перевода предложений</div><div class="settings-row-sub">кружок א рядом с каждым предложением — выключи, если перевод уже не нужен</div></div>
+          <label class="switch"><input type="checkbox" id="swShowTranslateToggle" checked><span class="switch-track"></span></label>
         </div>
         <div class="settings-row">
           <div><div class="settings-row-label">Подробный перевод слов</div><div class="settings-row-sub">часть речи, форма, корень</div></div>
@@ -1096,6 +1109,18 @@ try{
   if (!isNaN(s) && s >= 0 && s < data.sentences.length) savedSentenceIdx = s;
 }catch(err){}
 
+// "Прочитано" — set the first time this book's last page is opened (see
+// renderPage). Library-screen badge/sort reads this same key directly
+// (getBookProgress, top-level scope) without needing initReader to run.
+const COMPLETED_KEY = 'hebrew-reader-completed:' + bookId;
+function markBookCompleted(){
+  try{
+    if (localStorage.getItem(COMPLETED_KEY) === '1') return; // already marked, skip the redundant cloud write
+    localStorage.setItem(COMPLETED_KEY, '1');
+  }catch(err){}
+  if (window.cloudSyncCompleted) window.cloudSyncCompleted(bookId, true);
+}
+
 function renderSentence(s, container){
   const sSpan = document.createElement('span');
   sSpan.className = 'sentence';
@@ -1286,6 +1311,7 @@ function renderPage(pageIndex){
   currentPage = Math.max(0, Math.min(totalPages - 1, pageIndex));
   try{ localStorage.setItem(PAGE_KEY, String(currentPage)); }catch(err){}
   if (window.cloudSyncPage) window.cloudSyncPage(bookId, currentPage);
+  if (currentPage === totalPages - 1) markBookCompleted();
 
   reader.innerHTML = '';
   const p = document.createElement('div');
@@ -1504,6 +1530,16 @@ function pullCloudProgress(){
     } else if (remote.sentence == null && currentSentenceIdx > 0 && window.cloudSyncSentence){
       window.cloudSyncSentence(bookId, currentSentenceIdx);
     }
+
+    // Boolean OR-merge, not "prefer whichever side has a value" like page/
+    // sentence above — finished-on-either-device should read as finished
+    // everywhere, there's no "more recent" page/sentence-style tiebreak
+    // that makes sense for a flag that only ever goes false -> true.
+    if (remote.completed && localStorage.getItem(COMPLETED_KEY) !== '1'){
+      try{ localStorage.setItem(COMPLETED_KEY, '1'); }catch(err){}
+    } else if (!remote.completed && localStorage.getItem(COMPLETED_KEY) === '1' && window.cloudSyncCompleted){
+      window.cloudSyncCompleted(bookId, true);
+    }
   }).catch(err => console.error('[ivrit-reader] cloud pull failed', err));
 }
 window.pullReaderCloudProgress = pullCloudProgress;
@@ -1601,7 +1637,7 @@ function renderTrainCard(){
 // from the popover lemma — works only for books whose words already carry
 // real niqud in the data; books without it look the same either way.
 const SETTINGS_KEY = 'hebrew-reader-settings';
-let settings = { nikud:true, literal:true, detailed:true, autoscroll:true, editMode:false, editModeBase:false, mnemonic:false };
+let settings = { nikud:true, literal:true, detailed:true, autoscroll:true, editMode:false, editModeBase:false, mnemonic:false, showTranslateToggle:true };
 try{
   const saved = localStorage.getItem(SETTINGS_KEY);
   if (saved) settings = {...settings, ...JSON.parse(saved)};
@@ -1621,6 +1657,7 @@ function pullCloudSettings(){
     try{ localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); }catch(err){}
     document.getElementById('swNikud').checked = settings.nikud;
     document.getElementById('swLiteral').checked = settings.literal;
+    document.getElementById('swShowTranslateToggle').checked = settings.showTranslateToggle;
     document.getElementById('swDetailed').checked = settings.detailed;
     document.getElementById('swAutoscroll').checked = settings.autoscroll;
     document.getElementById('swMnemonic').checked = settings.mnemonic;
@@ -1648,6 +1685,7 @@ function stripNikud(str){ return str.replace(/[\u0591-\u05C7]/g, ''); }
 
 function applySettings(){
   document.body.classList.toggle('nikud-off', !settings.nikud);
+  document.body.classList.toggle('translate-toggle-off', !settings.showTranslateToggle);
   document.querySelectorAll('.sentence-tr .tr-row:first-child').forEach(row => {
     row.style.display = settings.literal ? 'flex' : 'none';
   });
@@ -1656,6 +1694,7 @@ function applySettings(){
 
 document.getElementById('swNikud').checked = settings.nikud;
 document.getElementById('swLiteral').checked = settings.literal;
+document.getElementById('swShowTranslateToggle').checked = settings.showTranslateToggle;
 document.getElementById('swDetailed').checked = settings.detailed;
 document.getElementById('swAutoscroll').checked = settings.autoscroll;
 document.getElementById('swMnemonic').checked = settings.mnemonic;
@@ -1665,6 +1704,7 @@ if (isOwner) document.getElementById('ownerEditRow').style.display = '';
 
 document.getElementById('swNikud').addEventListener('change', (e) => { settings.nikud = e.target.checked; saveSettings(); applySettings(); renderPage(currentPage); });
 document.getElementById('swLiteral').addEventListener('change', (e) => { settings.literal = e.target.checked; saveSettings(); applySettings(); });
+document.getElementById('swShowTranslateToggle').addEventListener('change', (e) => { settings.showTranslateToggle = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swDetailed').addEventListener('change', (e) => { settings.detailed = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swAutoscroll').addEventListener('change', (e) => { settings.autoscroll = e.target.checked; saveSettings(); });
 document.getElementById('swMnemonic').addEventListener('change', (e) => { settings.mnemonic = e.target.checked; saveSettings(); renderPage(currentPage); });
@@ -2930,15 +2970,6 @@ function goToSentence(idx, autoplay){
 
 // initial paint of the transport bar for the first sentence, without playing
 goToSentence(currentSentenceIdx, false);
-// Resuming to a saved spot is a deliberate one-time jump, not the
-// continuous follow-the-audio autoscroll during playback — bring it into
-// view regardless of the autoscroll setting, but only when there's an
-// actual saved position to resume to (a fresh book opens at the top with
-// nothing to scroll to).
-if (savedSentenceIdx != null){
-  const el = document.getElementById(data.sentences[savedSentenceIdx].id);
-  if (el) el.scrollIntoView({ behavior: 'auto', block: 'center' });
-}
 
 document.getElementById('playBtn').addEventListener('click', (e) => {
   e.stopPropagation();
@@ -2974,6 +3005,19 @@ document.getElementById('speedSelect').addEventListener('change', (e) => {
 
   // everything (vocab, settings, popover, playback) is declared by now -> safe to do the first paint
   renderPage(currentPage);
+  // The earlier goToSentence(currentSentenceIdx, false) call (transport-bar
+  // setup) ran before this first paint, when the reader was still empty —
+  // markSentencePlaying couldn't find the sentence element yet. Redo just
+  // the DOM-marking/scroll side of it now that sentences actually exist;
+  // only when resuming to a real saved spot (a fresh book has nothing to
+  // jump to, and this is a deliberate one-time jump, not the continuous
+  // follow-the-audio autoscroll during playback, so it ignores that setting).
+  if (savedSentenceIdx != null){
+    const s = data.sentences[savedSentenceIdx];
+    markSentencePlaying(s);
+    const el = document.getElementById(s.id);
+    if (el) el.scrollIntoView({ behavior: 'auto', block: 'center' });
+  }
   document.getElementById('pagePrev').addEventListener('click', () => {
     if (currentPage > 0) goToSentence((currentPage - 1) * PAGE_SIZE, false);
   });
@@ -3191,11 +3235,34 @@ async function boot(){
 
 const LEVEL_LABELS = { 'א': 'начальный', 'ב': 'средний', 'ג': 'продвинутый' };
 
+// "Прочитано" is set the moment renderPage() reaches a book's last page
+// (see below) — reading progress itself (PAGE_KEY) already existed per
+// book, this just adds the completion flag on top. Both live in
+// localStorage keyed by book id, readable here on the library screen
+// without opening the book (initReader/PAGE_SIZE aren't in scope yet at
+// this point — see the escapeHtmlLite comment below for the same reason).
+function getBookProgress(id){
+  let opened = false, completed = false;
+  try { opened = localStorage.getItem('hebrew-reader-page:' + id) !== null; } catch(err){}
+  try { completed = localStorage.getItem('hebrew-reader-completed:' + id) === '1'; } catch(err){}
+  return { opened, completed };
+}
+
 function renderLibrary(manifest){
   updateGlobalReviewCount();
   const grid = document.getElementById('bookGrid');
   grid.innerHTML = '';
-  manifest.forEach(entry => {
+  // Started-but-unfinished books first (what you'd actually want to open
+  // next), then untouched ones, finished ones pushed to the bottom —
+  // stable within each group, so books don't shuffle around on every
+  // visit beyond what progress actually changed.
+  const sorted = manifest.map((entry, i) => ({ entry, i, progress: getBookProgress(entry.id) }))
+    .sort((a, b) => {
+      const tier = (p) => p.completed ? 2 : (p.opened ? 0 : 1);
+      const diff = tier(a.progress) - tier(b.progress);
+      return diff !== 0 ? diff : a.i - b.i;
+    });
+  sorted.forEach(({ entry, progress }) => {
     const card = document.createElement('div');
     card.className = 'book-card';
     const spineColor = entry.spineColor || '#37564D';
@@ -3217,12 +3284,17 @@ function renderLibrary(manifest){
     const levelBadge = entry.level
       ? `<div class="book-level-badge">${entry.level} · ${LEVEL_LABELS[entry.level] || ''}</div>`
       : '';
+    const completedBadge = progress.completed ? `<div class="book-completed-badge">✓ Прочитано</div>` : '';
+    const progressNote = !progress.completed && progress.opened
+      ? `<div class="book-card-progress">↻ Продолжить чтение</div>` : '';
     card.innerHTML = `
       ${levelBadge}
+      ${completedBadge}
       <div class="${spineClass}" style="${spineStyle}">${spineContent}</div>
       <div class="book-card-body">
         <div class="book-card-title">${entry.title || entry.id}</div>
         <div class="book-card-sub">${entry.sub || ''}</div>
+        ${progressNote}
       </div>
     `;
     card.addEventListener('click', () => openBook(entry));
@@ -3519,6 +3591,10 @@ window.cloudSyncSentence = function (bookId, sentence) {
   if (!window.cloudUid) return;
   setDoc(doc(fbDb, "users", window.cloudUid, "readerMeta", bookId), { sentence }, { merge: true }).catch(() => {});
 };
+window.cloudSyncCompleted = function (bookId, completed) {
+  if (!window.cloudUid) return;
+  setDoc(doc(fbDb, "users", window.cloudUid, "readerMeta", bookId), { completed }, { merge: true }).catch(() => {});
+};
 // Firestore's auth token can take a beat to attach to outgoing requests
 // right after a fresh signInWithPopup — onAuthStateChanged can fire (and
 // trigger the pulls below) a moment before the SDK has it wired in, so the
@@ -3554,6 +3630,7 @@ window.cloudFetchBookProgress = async function (bookId) {
       vocab, seen: meta.seen || {},
       page: typeof meta.page === "number" ? meta.page : null,
       sentence: typeof meta.sentence === "number" ? meta.sentence : null,
+      completed: meta.completed === true,
     };
   });
 };
