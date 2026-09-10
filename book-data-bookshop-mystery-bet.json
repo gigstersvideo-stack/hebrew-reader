@@ -1528,7 +1528,8 @@
         "mnemonic": "Чтобы СКАЗАТЬ важную речь с трибуны, гигантский ОМАР эмоционально кричит и размахивает тяжелым ЛОМОМ. Красный лом-омар изо всех сил старается сказать громкое слово!",
         "img": "illustrations_bookshop_mystery_bet/s21.jpg",
         "imgMnemonic": "illustrations_bookshop_mystery_bet/s21-mnemonic.jpg"
-      }
+      },
+      "ttsEngine": "gtts"
     },
     {
       "id": "s22",

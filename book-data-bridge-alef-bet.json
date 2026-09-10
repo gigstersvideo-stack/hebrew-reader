@@ -2926,9 +2926,7 @@
           "tr": "они",
           "extra": "м.р. мн.ч.",
           "root": "—",
-          "fadeStage": 3,
-          "start": 0.1,
-          "end": 0.275
+          "fadeStage": 3
         },
         {
           "t": "הָיוּ",
@@ -2937,9 +2935,7 @@
           "tr": "были",
           "extra": "pa'al прош.вр. 3-е л. мн.ч.",
           "root": "ה-י-ה",
-          "fadeStage": 3,
-          "start": 0.275,
-          "end": 0.512
+          "fadeStage": 3
         },
         {
           "t": "עֲיֵיפִים",
@@ -2948,9 +2944,7 @@
           "tr": "уставшие",
           "extra": "м.р. мн.ч.",
           "root": "ע-י-ф",
-          "fadeStage": 3,
-          "start": 0.512,
-          "end": 0.95
+          "fadeStage": 3
         },
         {
           "t": "מְאוֹד",
@@ -2959,9 +2953,7 @@
           "tr": "очень",
           "extra": "",
           "root": "—",
-          "fadeStage": 3,
-          "start": 0.95,
-          "end": 1.387
+          "fadeStage": 3
         },
         {
           "t": "אֲבָל",
@@ -2970,9 +2962,7 @@
           "tr": "но",
           "extra": "",
           "root": "—",
-          "fadeStage": 3,
-          "start": 1.387,
-          "end": 1.6
+          "fadeStage": 3
         },
         {
           "t": "שְׂמֵחִים",
@@ -2981,9 +2971,7 @@
           "tr": "радостные",
           "extra": "м.р. мн.ч.",
           "root": "ש-מ-х",
-          "fadeStage": 3,
-          "start": 1.6,
-          "end": 2.05
+          "fadeStage": 3
         },
         {
           "t": "בַּלֵב",
@@ -2992,12 +2980,11 @@
           "tr": "сердце",
           "extra": "м.р. ед.ч.",
           "root": "ל-ב-ב",
-          "fadeStage": 3,
-          "start": 2.05,
-          "end": 2.6
+          "fadeStage": 3
         }
       ],
-      "audio": "audio_bridge_alef_bet/s35.mp3"
+      "audio": "audio_bridge_alef_bet/s35.mp3",
+      "ttsEngine": "gtts"
     },
     {
       "id": "s36",

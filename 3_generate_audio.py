@@ -33,6 +33,19 @@ book-data.json предложение помечено "ttsEngine": "gtts", от
 в синтезатор как часть слова. build_tts_text() ниже обрезает кавычки на
 границах собранного текста перед отправкой в любой из движков (не трогает
 сами "t" в данных — это только для звука, отображаемый текст не меняется).
+
+Автоматический список известных проблемных слов (2026-09-10, следом за
+находкой выше): те же три слова (קוֹף/שָׂמֵחַ/תּוֹדָה) обнаружились ещё в 7
+из 10 остальных опубликованных книг — тот же баг edge-tts, не специфичный
+для zoo-alef, просто раньше никто не дослушал именно эти книги до конца.
+Починены той же ручной заплаткой (см. коммит "Retroactively fix known
+mispronounced words..."). Чтобы это не всплывало заново в каждой новой
+книге по одному репорту за раз, tts_known_bad_words.json рядом со
+скриптом — общий растущий список лемм с этим багом; ЛЮБОЕ предложение,
+содержащее слово с такой леммой, теперь автоматически идёт через gTTS,
+даже без ручной пометки "ttsEngine". Дополняй этот файл по мере того, как
+будут находиться новые проблемные слова (вживую на слух или через
+Whisper-сверку, см. 8_audio_qa.py).
 """
 
 import argparse
@@ -50,6 +63,15 @@ except ImportError:
     gTTS = None
 
 TICKS_PER_SECOND = 10_000_000  # WordBoundary offset/duration units
+
+KNOWN_BAD_WORDS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tts_known_bad_words.json")
+
+
+def load_known_bad_lemmas(path=KNOWN_BAD_WORDS_PATH):
+    if not os.path.exists(path):
+        return set()
+    with open(path, encoding="utf-8") as f:
+        return {item["lemma"] for item in json.load(f)}
 
 # Straight, curly open/close, Hebrew gershayim — a quote glued directly to
 # a Hebrew letter with no space (e.g. a word opening quoted dialogue) is
@@ -100,15 +122,23 @@ async def main(args):
 
     os.makedirs(args.audio_dir, exist_ok=True)
     audio_dir_name = os.path.basename(os.path.normpath(args.audio_dir))
+    bad_lemmas = load_known_bad_lemmas()
 
     mismatches = 0
+    auto_gtts = 0
     for i, sentence in enumerate(data["sentences"]):
         words = sentence["words"]
         text = build_tts_text(words)
         clip_name = f"{sentence['id']}.mp3"
         out_path = os.path.join(args.audio_dir, clip_name)
 
-        if sentence.get("ttsEngine") == "gtts":
+        needs_gtts = sentence.get("ttsEngine") == "gtts" or any(w.get("lemma") in bad_lemmas for w in words)
+        if needs_gtts:
+            if sentence.get("ttsEngine") != "gtts":
+                auto_gtts += 1
+                print(f"[i] {sentence['id']}: содержит слово из tts_known_bad_words.json — "
+                      f"автоматически через gTTS.", file=sys.stderr)
+            sentence["ttsEngine"] = "gtts"
             boundaries = synthesize_sentence_gtts(text, out_path)
         else:
             boundaries = await synthesize_sentence(text, args.voice, out_path)
@@ -129,7 +159,8 @@ async def main(args):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
     print(f"\nГотово. Озвучено предложений: {len(data['sentences'])}. "
-          f"Расхождений по числу слов: {mismatches}.")
+          f"Расхождений по числу слов: {mismatches}. "
+          f"Автоматически на gTTS (известные проблемные слова): {auto_gtts}.")
 
 
 if __name__ == "__main__":
