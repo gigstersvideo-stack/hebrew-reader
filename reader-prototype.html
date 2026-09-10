@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.47.0
+  Hebrew Reader — v1.48.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -499,7 +499,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.47.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.48.0</div>
   </div>
 </div>
 
@@ -3419,7 +3419,7 @@ if ("serviceWorker" in navigator) {
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import {
-  getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut,
+  getAuth, GoogleAuthProvider, signInWithPopup, signInWithCredential, onAuthStateChanged, signOut,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   getFirestore, initializeFirestore, persistentLocalCache, persistentMultipleTabManager,
@@ -3576,13 +3576,62 @@ const readerAuthStatusEl = document.getElementById("readerAuthStatus");
 document.getElementById("readerBtnSignin").addEventListener("click", () => {
   readerAuthStatusEl.textContent = "";
   signInWithPopup(fbAuth, new GoogleAuthProvider())
-    .then((result) => { console.log("[ivrit-reader] signInWithPopup ok, uid:", result.user.uid); })
+    .then((result) => {
+      console.log("[ivrit-reader] signInWithPopup ok, uid:", result.user.uid);
+      stashAuthHandoffToken(result);
+    })
     .catch((e) => {
       console.error("[ivrit-reader] signInWithPopup error:", e);
       readerAuthStatusEl.textContent = "Ошибка входа: " + (e && e.code ? e.code : e);
     });
 });
 document.getElementById("readerBtnSignout").addEventListener("click", () => { signOut(fbAuth); });
+
+// ---- cross-domain login handoff ----
+// trainivrit.pages.dev and readivrit.pages.dev are different origins, so
+// Firebase Auth's local session (indexedDB) can't carry over automatically
+// when following the cross-link. Ride the short-lived Google ID token from
+// the popup sign-in across via the URL fragment instead (fragments never
+// reach a server, unlike query strings) — best-effort only: if there's no
+// fresh token, the other app just shows its normal signed-out state.
+const AUTH_HANDOFF_KEY = "hebrewAuthHandoffGoogleIdToken";
+function stashAuthHandoffToken(signInResult) {
+  try {
+    const cred = GoogleAuthProvider.credentialFromResult(signInResult);
+    if (!cred || !cred.idToken) return;
+    sessionStorage.setItem(AUTH_HANDOFF_KEY, JSON.stringify({ idToken: cred.idToken, ts: Date.now() }));
+  } catch (e) {}
+}
+function readAuthHandoffToken() {
+  try {
+    const raw = sessionStorage.getItem(AUTH_HANDOFF_KEY);
+    if (!raw) return null;
+    const { idToken, ts } = JSON.parse(raw);
+    if (!idToken || Date.now() - ts > 30 * 60 * 1000) return null;
+    return idToken;
+  } catch (e) { return null; }
+}
+const crossLinkEl = document.getElementById("cross-link-trainer");
+if (crossLinkEl) {
+  crossLinkEl.addEventListener("click", () => {
+    const idToken = readAuthHandoffToken();
+    if (!idToken) return;
+    try {
+      const url = new URL(crossLinkEl.href);
+      url.hash = "authHandoff=" + encodeURIComponent(idToken);
+      crossLinkEl.href = url.toString();
+    } catch (e) {}
+  });
+}
+(() => {
+  if (typeof location === "undefined") return;
+  const m = /authHandoff=([^&]+)/.exec(location.hash.slice(1));
+  if (!m) return;
+  history.replaceState(null, "", location.pathname + location.search);
+  signInWithCredential(fbAuth, GoogleAuthProvider.credential(decodeURIComponent(m[1])))
+    .then((result) => { console.log("[ivrit-reader] auth handoff sign-in ok, uid:", result.user.uid); })
+    .catch((e) => { console.warn("[ivrit-reader] auth handoff sign-in failed:", e); });
+})();
 
 onAuthStateChanged(fbAuth, (user) => {
   const signinBtn = document.getElementById("readerBtnSignin");
