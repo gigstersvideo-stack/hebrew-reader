@@ -9,17 +9,61 @@
 Ожидаемый формат input.json: { "sentences": [ { "id": "s1", "words": [ {"t": "..."} , ... ] }, ... ] }
 Каждому предложению дописывается "audio": "<audio_dir>/<id>.mp3", каждому
 слову — "start"/"end" в секундах (относительно начала клипа этого предложения).
+
+Точечный fallback на gTTS (2026-09-10): у edge-tts (оба голоса,
+he-IL-AvriNeural и he-IL-HilaNeural) нашлись отдельные слова, которые он
+стабильно ломает независимо от огласовок, контекста или пунктуации —
+пойманы вживую на книге zoo-alef: קוֹף читалось "kevof" вместо "kof",
+שְׂמֵחָה — с лишним слогом, תּוֹדָה — как "tevada". SSML `<phoneme>` для
+явной фонетики бесплатный эндпоинт edge-tts не поддерживает вообще (не
+только для иврита — тот же тег на английском тоже отклоняется). На тех же
+словах проверили gTTS (движок Google Translate, тоже бесплатный, без
+API-ключа) — звучит верно. Он не даёт таймингов по словам (в отличие от
+edge-tts), поэтому это НЕ замена основного движка — только точечный обход
+для отдельных предложений, отобранных вручную на слух: если в
+book-data.json предложение помечено "ttsEngine": "gtts", отдельно
+синтезируем его через gTTS без стартов/окончаний слов — читалка уже умеет
+работать без них (estimated-timer фоллбэк для несовпадения числа границ,
+см. highlightWordAtTime в reader-prototype.html — просто не подсвечивает
+слова этого предложения при проигрывании, ничего не ломает).
+
+Заодно нашли по пути: у последнего предложения книги zoo-alef к первому
+слову прямой речи (תודה) была приклеена открывающая кавычка без пробела
+(осталось от разметки "תודה, אבא!" в исходном тексте) — она целиком летит
+в синтезатор как часть слова. build_tts_text() ниже обрезает кавычки на
+границах собранного текста перед отправкой в любой из движков (не трогает
+сами "t" в данных — это только для звука, отображаемый текст не меняется).
 """
 
 import argparse
 import asyncio
 import json
 import os
+import re
 import sys
 
 import edge_tts
 
+try:
+    from gtts import gTTS
+except ImportError:
+    gTTS = None
+
 TICKS_PER_SECOND = 10_000_000  # WordBoundary offset/duration units
+
+# Straight, curly open/close, Hebrew gershayim — a quote glued directly to
+# a Hebrew letter with no space (e.g. a word opening quoted dialogue) is
+# almost always a stray markup artifact, not something a TTS needs to
+# read; a properly spaced quote elsewhere in the sentence is left alone.
+_STRAY_QUOTE_RE = re.compile(r'(?<=[א-ת])["“”״]|["“”״](?=[א-ת])')
+
+
+def build_tts_text(words):
+    """Собирает текст предложения для синтеза, вычищая кавычки, приклеенные
+    без пробела прямо к ивритской букве (см. докстринг модуля) — не трогает
+    сами w["t"], те остаются как в данных для отображения."""
+    text = " ".join(w["t"] for w in words)
+    return _STRAY_QUOTE_RE.sub("", text)
 
 
 async def synthesize_sentence(text, voice, out_path):
@@ -38,6 +82,18 @@ async def synthesize_sentence(text, voice, out_path):
     return boundaries
 
 
+def synthesize_sentence_gtts(text, out_path):
+    """Точечный fallback — см. докстринг модуля. gTTS не даёт таймингов по
+    словам, поэтому всегда возвращает пустой список границ (заведомое
+    несовпадение с числом слов — reader-prototype.html уже понимает этот
+    случай и просто не подсвечивает слова этого предложения при
+    проигрывании)."""
+    if gTTS is None:
+        raise RuntimeError("gTTS не установлен — pip install gtts")
+    gTTS(text=text, lang="iw").save(out_path)
+    return []
+
+
 async def main(args):
     with open(args.input, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -48,11 +104,14 @@ async def main(args):
     mismatches = 0
     for i, sentence in enumerate(data["sentences"]):
         words = sentence["words"]
-        text = " ".join(w["t"] for w in words)
+        text = build_tts_text(words)
         clip_name = f"{sentence['id']}.mp3"
         out_path = os.path.join(args.audio_dir, clip_name)
 
-        boundaries = await synthesize_sentence(text, args.voice, out_path)
+        if sentence.get("ttsEngine") == "gtts":
+            boundaries = synthesize_sentence_gtts(text, out_path)
+        else:
+            boundaries = await synthesize_sentence(text, args.voice, out_path)
 
         if len(boundaries) == len(words):
             for w, b in zip(words, boundaries):
