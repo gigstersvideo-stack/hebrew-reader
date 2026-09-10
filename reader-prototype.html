@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.48.2
+  Hebrew Reader — v1.49.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -139,8 +139,17 @@
   body.nikud-off .wp-lemma{ letter-spacing: 0; }
 
   .translate-toggle{
-    display:inline-flex; align-items:center; justify-content:center;
-    width: 18px; height:18px; margin-inline-end: 6px; color: var(--gold); border: 1px solid var(--gold);
+    /* display:inline (not inline-flex/inline-block — tried both) on
+       purpose: an atomic inline-level box here gets treated as
+       independently detachable by the RTL line-breaker, so the circle
+       can end up stranded at the tail of the previous line while its own
+       sentence starts fresh on the next one — confirmed live, and
+       inline-block alone (no flex) still had it. Plain inline flows with
+       the surrounding text instead, so it can't separate from its
+       sentence like that. width/height don't apply to inline elements,
+       so the circle is sized by padding + line-height instead. */
+    display:inline; padding: 0 4px; line-height:18px; text-align:center;
+    margin-inline-end: 6px; color: var(--gold); border: 1px solid var(--gold);
     border-radius: 50%; font-size: 11px; cursor:pointer; vertical-align: middle; user-select:none; background: transparent;
   }
   .translate-toggle:hover{ background: var(--gold-soft); }
@@ -499,7 +508,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.48.2</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.49.0</div>
   </div>
 </div>
 
