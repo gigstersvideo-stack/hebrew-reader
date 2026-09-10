@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.45.0
+  Hebrew Reader — v1.46.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -128,6 +128,13 @@
   .tword.saved:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--gold); }
   .tword.root-match:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--root-hl), 0 0 0 1px var(--root-hl); border-radius:3px; }
   .tword.illustration-hover:not(.speaking):not(.selected){ background: var(--gold-soft); box-shadow: 0 0 0 1px var(--gold); border-radius:3px; }
+  .tword-fade1{ font-family:'Inter', sans-serif; font-style: italic; font-weight:500; color: var(--accent); border-bottom: 1px dashed var(--accent); }
+  .tword-fade2{ padding-top: 14px; }
+  .tword-fade2 .fade-hint{
+    position:absolute; top:-2px; left:50%; transform:translateX(-50%);
+    font-family:'Inter', sans-serif; font-size:10px; font-style:normal; font-weight:500;
+    color: var(--accent); white-space:nowrap; pointer-events:none; direction: ltr;
+  }
   .illustration-chip, .illustration-media, .illustration-caption, .illustration-collapse{ cursor:pointer; }
   body.nikud-off .wp-lemma{ letter-spacing: 0; }
 
@@ -488,7 +495,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.45.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.46.0</div>
   </div>
 </div>
 
@@ -1093,7 +1100,27 @@ function renderSentence(s, container){
     wSpan.dataset.word = i;
     wSpan.dataset.lemma = w.lemma;
     wSpan.dataset.root = w.root;
-    wSpan.textContent = (settings.nikud ? w.t : stripNikud(w.t)) + (i < s.words.length - 1 ? ' ' : '');
+    const trailingSpace = i < s.words.length - 1 ? ' ' : '';
+    const fadeStage = (data.mode === 'fade') ? w.fadeStage : null;
+    const isGroupRest = w.fadeGroupRole === 'rest';
+    if (fadeStage === 1 && isGroupRest){
+      // вторая (и далее) часть устойчивого словосочетания на стадии 1:
+      // перевод всей фразы уже показан на первом слове группы, тут
+      // второй раз его дублировать не нужно — оставляем пустой span
+      // (сохраняя клик и позицию в разметке предложения).
+      wSpan.classList.add('tword-fade1', 'tword-fade-hidden');
+      wSpan.innerHTML = trailingSpace;
+    } else if (fadeStage === 1){
+      wSpan.classList.add('tword-fade1');
+      wSpan.innerHTML = `<bdi>${escapeHtmlLite(w.fadeTr || w.tr)}</bdi>` + trailingSpace;
+    } else if (fadeStage === 2){
+      wSpan.classList.add('tword-fade2');
+      const mainText = settings.nikud ? w.t : stripNikud(w.t);
+      const hintText = isGroupRest ? '' : (w.fadeHint || w.tr);
+      wSpan.innerHTML = (hintText ? `<span class="fade-hint">${escapeHtmlLite(hintText)}</span>` : '') + escapeHtmlLite(mainText) + trailingSpace;
+    } else {
+      wSpan.textContent = (settings.nikud ? w.t : stripNikud(w.t)) + trailingSpace;
+    }
     if (vocabCache[w.lemma]) wSpan.classList.add('saved');
     if (seenCache[w.lemma]) wSpan.classList.add('seen');
     wSpan.addEventListener('click', (e) => { e.stopPropagation(); showPopover(e, w, wSpan); });
