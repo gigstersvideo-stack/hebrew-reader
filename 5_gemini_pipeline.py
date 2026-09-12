@@ -63,6 +63,10 @@ import sys
 import time
 from pathlib import Path
 
+# сколько раз пересылать батч заново, если модель вернула не столько
+# предложений, сколько было отправлено (см. комментарий у места вызова)
+MISMATCH_RETRIES = 3
+
 try:
     from google import genai
     from google.genai import types
@@ -174,6 +178,52 @@ def warn_deficient_spelling(sentences):
               file=sys.stderr)
 
 
+_PREFIX_LETTERS = "הבוכלמש"
+_MAQAF = "־"
+
+
+def _bare_letters(t):
+    return re.sub(r"[^א-ת]", "", re.sub(r"[֑-ׇ]", "", t))
+
+
+def _is_prefix_fragment(w):
+    b = _bare_letters(w.get("t", ""))
+    return len(b) == 1 and b in _PREFIX_LETTERS
+
+
+def merge_prefix_fragments(sentences):
+    """Изредка модель отдаёт неотделяемые приставки (ה/ו/ב/כ/ל/מ/ש) как
+    самостоятельные "слова" — со своим словом-объектом и пробелом перед
+    корнем, хотя в иврите они пишутся слитно (поймали вживую дважды:
+    bridge-alef-bet — 132 случая из 862, seahouse-dalet — 429 из 5081).
+    Склеивает подряд идущие фрагменты с последующим словом ДО отправки в
+    озвучку/иллюстрации — там их наличие ломает и текст (лишние пробелы),
+    и тайминги (лишние токены не совпадают с границами TTS)."""
+    total_merged = 0
+    for s in sentences:
+        ws = s.get("words", [])
+        new_ws = []
+        i = 0
+        while i < len(ws):
+            if _is_prefix_fragment(ws[i]) and i + 1 < len(ws):
+                j = i
+                prefix_text = ""
+                while j < len(ws) and _is_prefix_fragment(ws[j]) and j + 1 < len(ws):
+                    prefix_text += ws[j]["t"].replace(_MAQAF, "")
+                    j += 1
+                base = dict(ws[j])
+                base["t"] = prefix_text + base["t"]
+                new_ws.append(base)
+                total_merged += (j - i)
+                i = j + 1
+            else:
+                new_ws.append(ws[i])
+                i += 1
+        s["words"] = new_ws
+    if total_merged:
+        print(f"\n✓ Склеено оторванных приставок-обрубков: {total_merged}.", file=sys.stderr)
+
+
 def split_sentences(raw_text):
     paragraphs = [p.strip() for p in raw_text.split("\n\n") if p.strip()]
     out = []
@@ -272,19 +322,34 @@ def main():
         print(f"[{i+1}-{i+len(batch)} / {len(sentences)}] обрабатываю...", file=sys.stderr)
 
         batch_result = process_batch(client, args.model, batch, i)
-        if batch_result is None:
-            print(f"\n!! Не удалось обработать этот кусок после нескольких попыток.\n"
+        got = batch_result.get("sentences", []) if batch_result else []
+
+        # Модель иногда возвращает МЕНЬШЕ предложений, чем в батче (поймали
+        # вживую: 30 отправлено, 2 получено — раньше это просто молча
+        # принималось как есть, теряя 28 предложений без единого явного
+        # сообщения об ошибке, только тихое предупреждение в логе, которое
+        # легко пропустить). Теперь — пересылаем весь батч ЗАНОВО до
+        # MISMATCH_RETRIES раз, и только если ни один повтор не дал точного
+        # совпадения — останавливаемся жёстко, как при полном отказе, а не
+        # продолжаем с недостачей.
+        mismatch_retries = 0
+        while batch_result is not None and len(got) != len(batch) and mismatch_retries < MISMATCH_RETRIES:
+            mismatch_retries += 1
+            print(f"  ⚠ ожидал {len(batch)} предложений в ответе, получил {len(got)} — "
+                  f"пересылаю батч заново ({mismatch_retries}/{MISMATCH_RETRIES})...",
+                  file=sys.stderr)
+            time.sleep(3)
+            batch_result = process_batch(client, args.model, batch, i)
+            got = batch_result.get("sentences", []) if batch_result else []
+
+        if batch_result is None or len(got) != len(batch):
+            print(f"\n!! Не удалось получить полный батч ({len(batch)} предложений) "
+                  f"даже после {MISMATCH_RETRIES} повторов — получено {len(got)}.\n"
                   f"Прогресс до предложения {i} сохранён в {args.out}.\n"
                   f"Перезапусти с флагом --resume, чтобы продолжить с этого места.",
                   file=sys.stderr)
             incomplete = True
             break
-
-        got = batch_result.get("sentences", [])
-        if len(got) != len(batch):
-            print(f"  ⚠ ожидал {len(batch)} предложений в ответе, получил {len(got)} — "
-                  f"стоит выборочно свериться с оригиналом на этом участке",
-                  file=sys.stderr)
 
         result_sentences.extend(got)
         i += args.batch_size
@@ -297,9 +362,9 @@ def main():
 
         time.sleep(1)  # вежливая пауза между запросами
 
-    # мутирует result_sentences (чинит найденные пропавшие буквы прямо в
-    # w["t"]/w["lemma"]) — обязательно ДО финальной записи файла, иначе
-    # починка на диск не попадёт
+    # оба мутируют result_sentences прямо в w["t"]/w["lemma"]/w["words"] —
+    # обязательно ДО финальной записи файла, иначе починка на диск не попадёт
+    merge_prefix_fragments(result_sentences)
     warn_deficient_spelling(result_sentences)
 
     if not incomplete:
