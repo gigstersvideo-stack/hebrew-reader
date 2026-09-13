@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.55.0
+  Hebrew Reader — v1.55.1
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -519,7 +519,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.55.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.55.1</div>
   </div>
 </div>
 
@@ -1597,19 +1597,34 @@ document.getElementById('exportBtn').addEventListener('click', () => {
 // In Anki: File -> Import, choose this .txt, field separator = Tab, map field 1 -> Front, field 2 -> Back.
 
 // ---- training / flashcards ----
+// Was a separate ephemeral binary (знал/не знал) quiz that never persisted
+// anything — now rides the same FSRS engine/state as the cross-book global
+// review (buildGlobalReviewQueue/commitGlobalReview above), just scoped to
+// this book's vocabCache so it still works as a quick in-book drill without
+// leaving the drawer. Reviewing a word here and in the global review now
+// advance the exact same schedule, instead of two disconnected mechanics.
 let trainQueue = [];
 let trainIndex = 0;
-let trainStats = {know:0, dontKnow:0};
+
+function buildBookReviewQueue(){
+  const now = Date.now();
+  const all = Object.entries(vocabCache).map(([lemma, entry]) => ({lemma, entry}));
+  const due = all.filter(x => x.entry.srs && x.entry.srs.due <= now).sort((a, b) => a.entry.srs.due - b.entry.srs.due);
+  const fresh = all.filter(x => !x.entry.srs);
+  return due.concat(fresh);
+}
+
+function commitBookReview(item, quality){
+  const entry = item.entry;
+  entry.srs = schedule(entry.srs, quality);
+  entry.updatedAt = Date.now();
+  vocabCache[item.lemma] = entry;
+  try{ localStorage.setItem(STORAGE_PREFIX + item.lemma, JSON.stringify(entry)); }catch(err){}
+  if (window.cloudSyncVocab) window.cloudSyncVocab(bookId, item.lemma, entry);
+}
 
 function startTraining(){
-  const words = Object.values(vocabCache);
-  trainStats = {know:0, dontKnow:0};
-  if (words.length === 0){
-    document.getElementById('trainProgress').textContent = '';
-    document.getElementById('trainArea').innerHTML = '<div class="train-empty">Сначала сохрани несколько слов (★) — тогда здесь появится тренировка.</div>';
-    return;
-  }
-  trainQueue = [...words].sort(() => Math.random() - 0.5);
+  trainQueue = buildBookReviewQueue();
   trainIndex = 0;
   renderTrainCard();
 }
@@ -1617,15 +1632,15 @@ function startTraining(){
 function renderTrainCard(){
   if (trainIndex >= trainQueue.length){
     document.getElementById('trainProgress').textContent = '';
-    document.getElementById('trainArea').innerHTML = `
-      <div class="train-summary">
-        Готово! Знал: ${trainStats.know} · Повторить: ${trainStats.dontKnow}
-        <div style="margin-top:14px;"><button class="pill-btn" id="trainAgain">Пройти ещё раз</button></div>
-      </div>`;
-    document.getElementById('trainAgain').addEventListener('click', startTraining);
+    document.getElementById('trainArea').innerHTML = trainQueue.length
+      ? `<div class="train-summary">Готово! Разобрано слов: ${trainQueue.length}. <div style="margin-top:14px;"><button class="pill-btn" id="trainAgain">Пройти ещё раз</button></div></div>`
+      : '<div class="train-empty">Сначала сохрани несколько слов (★) — тогда здесь появится тренировка.</div>';
+    const again = document.getElementById('trainAgain');
+    if (again) again.addEventListener('click', startTraining);
     return;
   }
-  const w = trainQueue[trainIndex];
+  const item = trainQueue[trainIndex];
+  const w = item.entry;
   document.getElementById('trainProgress').textContent = `${trainIndex+1} / ${trainQueue.length}`;
   const area = document.getElementById('trainArea');
   area.innerHTML = `
@@ -1634,17 +1649,25 @@ function renderTrainCard(){
       <div class="train-hint" id="flipHint">нажми, чтобы увидеть перевод</div>
       <div class="train-answer" id="trainAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos})</span></div>
     </div>
-    <div class="train-btns" id="trainBtns" style="display:none;">
-      <button class="train-no" id="btnDontKnow">Не знал</button>
-      <button class="train-yes" id="btnKnow">Знал</button>
+    <div class="train-btns review-btns" id="trainBtns" style="display:none;">
+      <button class="train-no" data-q="1" style="background:var(--danger); color:#fff;">Снова</button>
+      <button class="train-no" data-q="3">Трудно</button>
+      <button class="train-yes" data-q="4">Хорошо</button>
+      <button class="train-yes" data-q="5" style="background:var(--accent); color:#fff;">Легко</button>
     </div>`;
   document.getElementById('flipCard').addEventListener('click', () => {
     document.getElementById('trainAnswer').classList.add('show');
     document.getElementById('flipHint').style.display = 'none';
     document.getElementById('trainBtns').style.display = 'flex';
   });
-  document.getElementById('btnKnow').addEventListener('click', (e) => { e.stopPropagation(); trainStats.know++; trainIndex++; renderTrainCard(); });
-  document.getElementById('btnDontKnow').addEventListener('click', (e) => { e.stopPropagation(); trainStats.dontKnow++; trainIndex++; renderTrainCard(); });
+  document.getElementById('trainBtns').querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      commitBookReview(item, Number(btn.dataset.q));
+      trainIndex++;
+      renderTrainCard();
+    });
+  });
 }
 
 // ---- display settings: nikud / literal translation / detailed word info ----
