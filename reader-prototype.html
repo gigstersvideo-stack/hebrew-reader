@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.54.0
+  Hebrew Reader — v1.54.1
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -420,6 +420,7 @@
     max-width: 720px; margin: 20px auto 0; padding: 0 24px;
     display:flex; align-items:center; justify-content:center; gap:16px; direction:ltr;
   }
+  .page-nav-bottom{ margin: 0 auto 28px; }
   .page-nav-btn{
     width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:var(--panel);
     color:var(--ink); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;
@@ -518,7 +519,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.54.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.54.1</div>
   </div>
 </div>
 
@@ -639,6 +640,12 @@
 <main id="reader">
   <p id="loadingMsg" style="font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft);">Загрузка книги…</p>
 </main>
+
+<div class="page-nav page-nav-bottom">
+  <button class="page-nav-btn" id="pagePrevBottom" title="Предыдущая страница">‹</button>
+  <span class="page-indicator" id="pageIndicatorBottom">Стр. 1 / 1</span>
+  <button class="page-nav-btn" id="pageNextBottom" title="Следующая страница">›</button>
+</div>
 
 <footer class="audiobar">
   <div class="audiobar-inner">
@@ -1324,12 +1331,19 @@ function renderPage(pageIndex){
   }
   reader.appendChild(p);
 
+  const pageLabel = `Стр. ${currentPage + 1} / ${totalPages}`;
   const pageIndicator = document.getElementById('pageIndicator');
-  if (pageIndicator) pageIndicator.textContent = `Стр. ${currentPage + 1} / ${totalPages}`;
+  if (pageIndicator) pageIndicator.textContent = pageLabel;
+  const pageIndicatorBottom = document.getElementById('pageIndicatorBottom');
+  if (pageIndicatorBottom) pageIndicatorBottom.textContent = pageLabel;
   const prevBtn = document.getElementById('pagePrev');
   const nextBtn = document.getElementById('pageNext');
   if (prevBtn) prevBtn.disabled = currentPage === 0;
   if (nextBtn) nextBtn.disabled = currentPage === totalPages - 1;
+  const prevBtnBottom = document.getElementById('pagePrevBottom');
+  const nextBtnBottom = document.getElementById('pageNextBottom');
+  if (prevBtnBottom) prevBtnBottom.disabled = currentPage === 0;
+  if (nextBtnBottom) nextBtnBottom.disabled = currentPage === totalPages - 1;
   reader.scrollIntoView({ behavior: 'auto', block: 'start' });
 
   renderScrubSegments();
@@ -3023,6 +3037,12 @@ document.getElementById('speedSelect').addEventListener('change', (e) => {
     if (currentPage > 0) goToSentence((currentPage - 1) * PAGE_SIZE, false);
   });
   document.getElementById('pageNext').addEventListener('click', () => {
+    if (currentPage < totalPages - 1) goToSentence((currentPage + 1) * PAGE_SIZE, false);
+  });
+  document.getElementById('pagePrevBottom').addEventListener('click', () => {
+    if (currentPage > 0) goToSentence((currentPage - 1) * PAGE_SIZE, false);
+  });
+  document.getElementById('pageNextBottom').addEventListener('click', () => {
     if (currentPage < totalPages - 1) goToSentence((currentPage + 1) * PAGE_SIZE, false);
   });
 }
