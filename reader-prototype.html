@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.56.0
+  Hebrew Reader — v1.56.1
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -263,6 +263,30 @@
   .scrub-seg.current{ height:8px; }
   .scrub-seg-fill{ position:absolute; top:0; left:0; height:100%; width:0%; background: var(--gold); border-radius:2px; }
   .scrub-seg:hover{ background: var(--accent-soft); }
+  /* Up to PAGE_SIZE=20 segments share one row with the play/loop buttons
+     and both time labels — on a narrow portrait phone that leaves each
+     segment only a few px wide (near-impossible to tap a specific
+     sentence), while landscape's extra width makes the exact same CSS
+     comfortable — matching the "works rotated, not upright" report.
+     Fix: wrap the segments into exactly 2 rows instead of 1 — each
+     segment's WIDTH roughly doubles (the win that actually matters for
+     tap accuracy) for about the same total vertical footprint as one
+     taller row would have cost. Row count is fixed at 2 regardless of
+     how many segments the page has (down to a handful on a short page)
+     by setting --scrub-cols = ceil(segCount / 2) from JS, in
+     renderScrubSegments() — see below — then laying the segments out in
+     a grid with exactly that many columns, which forces the wrap. */
+  @media (max-width: 480px) {
+    .scrub-wrap{ flex-basis: 100%; order: 1; min-width: 0; }
+    .speed-select{ order: 2; }
+    .scrub-track{
+      height: auto; display: grid; grid-auto-flow: row;
+      grid-template-columns: repeat(var(--scrub-cols, 10), 1fr);
+      row-gap: 3px;
+    }
+    .scrub-seg{ height: 8px; }
+    .scrub-seg.current{ height: 11px; }
+  }
   .time-label{ font-size: 11px; color: var(--ink-soft); min-width: 32px; text-align:center; }
   .speed-select{ font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); background:transparent; border:1px solid var(--line); border-radius:14px; padding:4px 8px; cursor:pointer; }
 
@@ -519,7 +543,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.56.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.56.1</div>
   </div>
 </div>
 
@@ -2871,6 +2895,15 @@ function renderScrubSegments(){
   track.innerHTML = '';
   const pageStart = currentPage * PAGE_SIZE;
   const pageEnd = Math.min(data.sentences.length, pageStart + PAGE_SIZE);
+  // Read by the ≤480px grid layout in the stylesheet (see its comment) —
+  // ceil(count/2) columns always wraps the segments into exactly 2 rows,
+  // whatever the page's actual sentence count is. Harmless above 480px:
+  // that layout stays flex (flex:1 per segment), which ignores grid vars.
+  // setProperty isn't on the minimal style stub the classic script runs
+  // against inside test_harness.js's DOM-less sandbox (no real jsdom, by
+  // design — see ROADMAP.md) — guard it the same way other optional-DOM
+  // calls in this file are guarded, so the test suite stays runnable.
+  try{ track.style.setProperty('--scrub-cols', Math.max(1, Math.ceil((pageEnd - pageStart) / 2))); }catch(err){}
   for (let i = pageStart; i < pageEnd; i++){
     const seg = document.createElement('div');
     seg.className = 'scrub-seg';
