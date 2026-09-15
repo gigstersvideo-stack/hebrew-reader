@@ -285,7 +285,14 @@ def main():
         print("Получить бесплатно: https://aistudio.google.com/apikey", file=sys.stderr)
         sys.exit(1)
 
-    client = genai.Client(api_key=api_key)
+    # Таймаут на HTTP-запрос: без него зависший коннект к API может висеть
+    # часами (поймали вживую — один батч не отвечал 37+ минут без единой
+    # ошибки), и вся ротация моделей/повторов просто не срабатывает, потому
+    # что процесс застревает внутри самого первого вызова.
+    client = genai.Client(
+        api_key=api_key,
+        http_options=types.HttpOptions(timeout=120_000),
+    )
 
     with open(args.text_path, encoding="utf-8") as f:
         raw = f.read()
