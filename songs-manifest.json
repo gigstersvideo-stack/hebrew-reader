@@ -1,0 +1,15 @@
+{
+  "songs": [
+    {
+      "id": "hava-nagila",
+      "kind": "song",
+      "title": "הָבָה נָגִילָה",
+      "kicker": "רמה א׳ · שיר עממי",
+      "level": "א",
+      "sub": "народная песня, 1918 — праздничный танец, общественное достояние",
+      "source": "file",
+      "file": "song-data-hava-nagila.json",
+      "spineColor": "#A8813F"
+    }
+  ]
+}

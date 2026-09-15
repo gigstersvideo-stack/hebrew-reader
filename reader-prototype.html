@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.56.1
+  Hebrew Reader — v1.57.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -482,6 +482,21 @@
   .fb-review-badge.suggestion{ background:var(--accent-soft); color:var(--accent); }
   .fb-review-text{ font-size:14px; white-space:pre-wrap; margin-bottom:8px; }
   .fb-review-actions{ display:flex; gap:8px; }
+
+  /* ---- Songs: karaoke-style lyric sync over a YouTube embed. Lines reuse
+     .sentence-tr/.tr-row/.tword/.word-popover as-is (pure CSS, no JS
+     coupling) — only the layout wrapper and playback chrome are new. ---- */
+  .song-lines{ max-width:720px; margin:0 auto; padding:20px 24px 200px; }
+  .song-line{ display:block; padding:7px 2px; font-family:'David Libre','Frank Ruhl Libre',serif; font-size:20px; line-height:2; border-radius:4px; direction:rtl; text-align:right; transition: background .25s ease; }
+  .song-line.current{ background: var(--gold-soft); }
+  .song-audiobar{ position:fixed; left:0; right:0; bottom:0; background:var(--panel); border-top:1px solid var(--line); z-index:15; }
+  .song-audiobar-inner{ max-width:720px; margin:0 auto; padding:10px 16px; display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+  .yt-host{ position:relative; width:220px; max-width:40vw; aspect-ratio:16/9; flex-shrink:0; border-radius:8px; overflow:hidden; background:#000; }
+  .yt-host iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .yt-error{ font-size:12px; color:var(--danger); padding:8px; }
+  .song-tools{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:12px; }
+  .song-tools .pill-btn.on{ background: var(--gold); }
+  .song-calib-hint{ font-size:11.5px; color:var(--ink-soft); max-width:320px; }
 </style>
 </head>
 <body>
@@ -543,7 +558,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.56.1</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.57.0</div>
   </div>
 </div>
 
@@ -735,6 +750,31 @@
     <div id="editStatus" style="margin-top:12px;"></div>
   </div>
 </div>
+</div>
+
+<div id="songView" style="display:none;">
+<header>
+  <div class="title-block">
+    <button class="back-to-library" id="backToLibrarySong">← Библиотека</button>
+    <p class="kicker" id="songKicker"></p>
+    <h1 id="songTitleEl"></h1>
+  </div>
+  <div class="header-right">
+    <button class="pill-btn ghost" id="songBreakdownBtn" type="button">📖 Разбор песни целиком</button>
+    <span class="demo-flag" id="songSub"></span>
+  </div>
+</header>
+<main id="songLines" class="song-lines"></main>
+<footer class="audiobar song-audiobar">
+  <div class="audiobar-inner song-audiobar-inner">
+    <div id="ytPlayerHost" class="yt-host"></div>
+    <div class="song-tools">
+      <button class="pill-btn ghost" id="songCalibrateBtn" type="button">🎯 Калибровка таймкодов</button>
+      <button class="pill-btn ghost" id="songCopyTimestampsBtn" type="button" style="display:none;">📋 Скопировать</button>
+      <span class="song-calib-hint" id="songCalibHint"></span>
+    </div>
+  </div>
+</footer>
 </div>
 
 <script>
@@ -3237,6 +3277,319 @@ async function updateFeedbackUnreadBadge() {
 const OWNER_KEY = 'reader-owner-2026';
 const isOwner = new URLSearchParams(window.location.search).get('owner') === OWNER_KEY;
 
+// ---- Songs: karaoke-style lyric sync over a YouTube embed ----
+//
+// Deliberately NOT built on top of initReader(): that function (and every
+// helper it needs — showPopover, saveVocabEntry, escapeHtmlLite, the whole
+// audio/highlight engine) is declared *inside* initReader's own body, so
+// none of it is reachable from outside. Confirmed live (typeof showPopover
+// etc. from the library screen, before any book is opened, is "undefined").
+// Rather than risk the well-tested book reading path by reshaping initReader
+// to also drive a continuous YouTube timeline instead of per-sentence mp3s,
+// this is a small, self-contained parallel path that reuses only what's
+// safe to reuse without coupling: the CSS classes (.tword/.sentence-tr/
+// .word-popover/.wp-*, all pure CSS, no JS dependency) for a matching look,
+// and the top-level cloud-sync functions (window.cloudSyncVocab etc.) so a
+// saved song word lands in the exact same cross-book FSRS review queue as
+// a word saved from a book — see saveSongVocabEntry below.
+function escSongHtml(s){
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+const SONG_VOCAB_PREFIX = 'hebrew-reader-vocab:'; // same prefix/shape books use — bookId becomes 'song:'+songId
+function songVocabKey(songId, lemma){ return SONG_VOCAB_PREFIX + 'song:' + songId + ':' + lemma; }
+
+let songVocabCache = {};
+function loadSongVocabCache(songId){
+  songVocabCache = {};
+  const prefix = SONG_VOCAB_PREFIX + 'song:' + songId + ':';
+  try{
+    for (let i = 0; i < localStorage.length; i++){
+      const key = localStorage.key(i);
+      if (key && key.startsWith(prefix)){
+        const raw = localStorage.getItem(key);
+        if (raw) songVocabCache[key.slice(prefix.length)] = JSON.parse(raw);
+      }
+    }
+  }catch(err){}
+}
+
+function saveSongVocabEntry(w, songId){
+  const entry = {lemma:w.lemma, pos:w.pos, tr:w.tr, extra:w.extra, root:w.root, bookId:'song:'+songId, addedAt:Date.now(), updatedAt:Date.now()};
+  try{ localStorage.setItem(songVocabKey(songId, w.lemma), JSON.stringify(entry)); }catch(err){ return; }
+  songVocabCache[w.lemma] = entry;
+  if (window.cloudSyncVocab) window.cloudSyncVocab('song:'+songId, w.lemma, entry);
+}
+
+function deleteSongVocabEntry(lemma, songId){
+  try{ localStorage.removeItem(songVocabKey(songId, lemma)); }catch(err){}
+  delete songVocabCache[lemma];
+  if (window.cloudDeleteVocab) window.cloudDeleteVocab('song:'+songId, lemma);
+}
+
+let songPopoverEl = null;
+let songSelectedWordEl = null;
+function closeSongPopover(){
+  if (songPopoverEl){ songPopoverEl.remove(); songPopoverEl = null; }
+  if (songSelectedWordEl){ songSelectedWordEl.classList.remove('selected'); songSelectedWordEl = null; }
+}
+document.addEventListener('click', (e) => { if (songPopoverEl && !songPopoverEl.contains(e.target)) closeSongPopover(); });
+
+// Deliberately no live "🎓 Разбор слова (ИИ-педагог)" button here (unlike
+// books) — that flow is one of the functions nested inside initReader (see
+// note above); wiring it up for songs would mean either duplicating its
+// Gemini-call/schema/cooldown logic or extracting it to top-level scope,
+// both bigger changes than this pilot's scope. The per-line breakdown
+// (literal/fluent) is pre-authored content in the song JSON instead — see
+// renderSongLines below — same pattern books use for translations.
+function showSongPopover(w, wordEl, songId){
+  closeSongPopover();
+  songSelectedWordEl = wordEl;
+  wordEl.classList.add('selected');
+  songPopoverEl = document.createElement('div');
+  songPopoverEl.className = 'word-popover';
+  document.body.appendChild(songPopoverEl);
+  const isSaved = !!songVocabCache[w.lemma];
+  songPopoverEl.innerHTML = `
+    <div class="wp-top"><div class="wp-lemma">${escSongHtml(w.lemma)}</div><div class="wp-star ${isSaved ? 'on' : ''}">★</div></div>
+    <div class="wp-pos">${escSongHtml(w.pos)}</div>
+    <div class="wp-main">${escSongHtml(w.tr)}</div>
+    ${w.extra ? `<div class="wp-extra">${escSongHtml(w.extra)}</div>` : ''}
+    ${w.root && w.root !== '—' ? `<div class="wp-root">корень: ${escSongHtml(w.root)}</div>` : ''}
+  `;
+  songPopoverEl.querySelector('.wp-star').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const nowSaved = !songVocabCache[w.lemma];
+    if (nowSaved) saveSongVocabEntry(w, songId); else deleteSongVocabEntry(w.lemma, songId);
+    wordEl.classList.toggle('saved', nowSaved);
+    songPopoverEl.querySelector('.wp-star').classList.toggle('on', nowSaved);
+    if (window.updateGlobalReviewCount) window.updateGlobalReviewCount();
+  });
+  const r = wordEl.getBoundingClientRect();
+  songPopoverEl.style.top = (window.scrollY + r.bottom + 6) + 'px';
+  let left = window.scrollX + r.left;
+  const maxLeft = window.scrollX + document.documentElement.clientWidth - 280;
+  if (left > maxLeft) left = maxLeft;
+  songPopoverEl.style.left = left + 'px';
+}
+
+let currentSong = null; // {entry, data, flatWords:[{lineIdx, wordIdx, el, w}]}
+let songCalibrating = false;
+let songCalibTimestamps = [];
+
+function markCalibrationTimestamp(lineIdx, wordIdx, wordEl){
+  if (!ytPlayer || typeof ytPlayer.getCurrentTime !== 'function'){
+    document.getElementById('songCalibHint').textContent = 'Плеер YouTube ещё не готов — подожди пару секунд, пока видео загрузится, и попробуй снова.';
+    return;
+  }
+  const t = ytPlayer.getCurrentTime();
+  songCalibTimestamps.push({lineIdx, wordIdx, t: Math.round(t * 100) / 100});
+  wordEl.style.boxShadow = 'inset 0 -2px 0 var(--danger)';
+  document.getElementById('songCalibHint').textContent = 'Отмечено меток: ' + songCalibTimestamps.length + ' — жми на следующее слово в момент, когда его поют.';
+}
+
+function renderSongLines(container, songData, songId){
+  container.innerHTML = '';
+  const flatWords = [];
+  songData.lines.forEach((line, lineIdx) => {
+    const lineEl = document.createElement('div');
+    lineEl.className = 'song-line';
+    lineEl.id = 'song-line-' + line.id;
+    line.words.forEach((w, wordIdx) => {
+      const wEl = document.createElement('span');
+      wEl.className = 'tword';
+      wEl.textContent = w.t + (wordIdx < line.words.length - 1 ? ' ' : '');
+      if (songVocabCache[w.lemma]) wEl.classList.add('saved');
+      wEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (songCalibrating) markCalibrationTimestamp(lineIdx, wordIdx, wEl);
+        else showSongPopover(w, wEl, songId);
+      });
+      lineEl.appendChild(wEl);
+      flatWords.push({lineIdx, wordIdx, el: wEl, w});
+    });
+    container.appendChild(lineEl);
+    const trBlock = document.createElement('div');
+    trBlock.className = 'sentence-tr song-line-tr';
+    trBlock.innerHTML = `
+      <div class="tr-row"><span class="tr-label">Дословно</span><span class="tr-value literal">${escSongHtml(line.literal)}</span></div>
+      <div class="tr-row"><span class="tr-label">Перевод</span><span class="tr-value">${escSongHtml(line.fluent)}</span></div>
+    `;
+    container.appendChild(trBlock);
+  });
+  return flatWords;
+}
+
+// No native "timeupdate"-equivalent event on the YouTube IFrame API, same
+// gap the book player has with real timeupdate being too coarse for word-
+// level highlighting (see startHighlightLoop inside initReader) — same fix,
+// a requestAnimationFrame poll of player.getCurrentTime().
+let songSyncRAF = null;
+function startSongSyncLoop(){
+  if (songSyncRAF) return;
+  function step(){
+    if (!currentSong || !ytPlayer || typeof ytPlayer.getCurrentTime !== 'function'){ songSyncRAF = null; return; }
+    let t;
+    try{ t = ytPlayer.getCurrentTime(); }catch(err){ songSyncRAF = null; return; }
+    highlightSongWordAtTime(t);
+    songSyncRAF = requestAnimationFrame(step);
+  }
+  songSyncRAF = requestAnimationFrame(step);
+}
+function stopSongSyncLoop(){
+  if (songSyncRAF){ cancelAnimationFrame(songSyncRAF); songSyncRAF = null; }
+}
+
+let lastSongLineEl = null;
+function highlightSongWordAtTime(t){
+  if (!currentSong) return;
+  document.querySelectorAll('.song-line .tword.speaking').forEach(el => el.classList.remove('speaking'));
+  const hit = currentSong.flatWords.find(fw => typeof fw.w.start === 'number' && typeof fw.w.end === 'number' && t >= fw.w.start && t < fw.w.end);
+  if (!hit) return;
+  hit.el.classList.add('speaking');
+  const lineEl = document.getElementById('song-line-' + currentSong.data.lines[hit.lineIdx].id);
+  if (lineEl && lineEl !== lastSongLineEl){
+    document.querySelectorAll('.song-line.current').forEach(el => el.classList.remove('current'));
+    lineEl.classList.add('current');
+    lastSongLineEl = lineEl;
+    lineEl.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+
+function showSongLineTranslation(){
+  if (!lastSongLineEl) return;
+  const tr = lastSongLineEl.nextElementSibling;
+  if (tr && tr.classList.contains('song-line-tr')) tr.classList.add('open');
+}
+function hideSongLineTranslations(){
+  document.querySelectorAll('.song-line-tr.open').forEach(el => el.classList.remove('open'));
+}
+
+let ytPlayer = null;
+let ytApiReadyPromise = null;
+function loadYouTubeApi(){
+  if (window.YT && window.YT.Player) return Promise.resolve();
+  if (ytApiReadyPromise) return ytApiReadyPromise;
+  ytApiReadyPromise = new Promise((resolve, reject) => {
+    const prevCallback = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => { if (prevCallback) prevCallback(); resolve(); };
+    const script = document.createElement('script');
+    script.src = 'https://www.youtube.com/iframe_api';
+    script.onerror = () => reject(new Error('скрипт не загрузился (заблокирован сетью/расширением?)'));
+    document.head.appendChild(script);
+    setTimeout(() => reject(new Error('не ответил за 10 секунд')), 10000);
+  });
+  return ytApiReadyPromise;
+}
+
+// "Разбор песни целиком" — opens every line's literal/fluent translation at
+// once (same .sentence-tr blocks each line already has, normally revealed
+// one at a time on pause — see showSongLineTranslation) instead of a
+// separate screen, since the content is identical either way.
+document.getElementById('songBreakdownBtn').addEventListener('click', () => {
+  const btn = document.getElementById('songBreakdownBtn');
+  const showing = btn.classList.toggle('on');
+  document.querySelectorAll('.song-line-tr').forEach(el => el.classList.toggle('open', showing));
+  btn.textContent = showing ? '📖 Скрыть разбор' : '📖 Разбор песни целиком';
+});
+
+document.getElementById('songCalibrateBtn').addEventListener('click', () => {
+  songCalibrating = !songCalibrating;
+  document.getElementById('songCalibrateBtn').classList.toggle('on', songCalibrating);
+  document.getElementById('songCopyTimestampsBtn').style.display = songCalibrating ? '' : 'none';
+  if (songCalibrating){
+    songCalibTimestamps = [];
+    document.getElementById('songCalibHint').textContent = 'Режим калибровки: слушай видео и кликай на каждое слово в тот момент, когда его поют — начиная с первого.';
+  } else {
+    document.getElementById('songCalibHint').textContent = '';
+  }
+});
+document.getElementById('songCopyTimestampsBtn').addEventListener('click', async () => {
+  const sorted = songCalibTimestamps.slice().sort((a,b) => a.t - b.t);
+  const result = sorted.map((entry, i) => ({
+    lineIdx: entry.lineIdx, wordIdx: entry.wordIdx,
+    start: entry.t,
+    end: i < sorted.length - 1 ? sorted[i+1].t : entry.t + 1.5
+  }));
+  try{
+    await navigator.clipboard.writeText(JSON.stringify(result, null, 2));
+    document.getElementById('songCalibHint').textContent = 'Скопировано (' + result.length + ' меток по порядку слов) — перенеси start/end в song-data-*.json и поставь meta.calibrated=true.';
+  }catch(err){
+    document.getElementById('songCalibHint').textContent = 'Не получилось скопировать: ' + err.message;
+  }
+});
+
+async function openSong(entry){
+  let songData = null;
+  try{
+    const res = await fetch(entry.file, {cache: 'no-store'});
+    if (res.ok){
+      const json = await res.json();
+      if (json && Array.isArray(json.lines) && json.lines.length) songData = json;
+    }
+  }catch(err){}
+  if (!songData){ alert('Не смог загрузить песню ' + entry.file); return; }
+
+  document.getElementById('libraryView').style.display = 'none';
+  document.getElementById('songView').style.display = '';
+  document.body.classList.add('reading');
+
+  document.getElementById('songTitleEl').textContent = entry.title || songData.meta.titleHe;
+  document.getElementById('songKicker').textContent = entry.kicker || '';
+  document.getElementById('songSub').textContent = entry.sub || '';
+
+  loadSongVocabCache(entry.id);
+  lastSongLineEl = null;
+  const flatWords = renderSongLines(document.getElementById('songLines'), songData, entry.id);
+  currentSong = {entry, data: songData, flatWords};
+
+  const breakdownBtn = document.getElementById('songBreakdownBtn');
+  breakdownBtn.classList.remove('on');
+  breakdownBtn.textContent = '📖 Разбор песни целиком';
+
+  songCalibrating = false;
+  songCalibTimestamps = [];
+  document.getElementById('songCalibrateBtn').classList.remove('on');
+  document.getElementById('songCopyTimestampsBtn').style.display = 'none';
+  document.getElementById('songCalibHint').textContent = songData.meta && songData.meta.calibrated === false
+    ? '⚠ Таймкоды ещё не откалиброваны (плейсхолдер) — подсветка слов будет неточной, пока кто-то не пройдёт калибровку вживую.'
+    : '';
+
+  const host = document.getElementById('ytPlayerHost');
+  host.innerHTML = '<div id="ytPlayerTarget"></div>';
+  const videoId = songData.meta && songData.meta.youtubeId;
+  try{
+    if (!videoId) throw new Error('в JSON песни нет meta.youtubeId');
+    await loadYouTubeApi();
+    ytPlayer = new YT.Player('ytPlayerTarget', {
+      videoId,
+      playerVars: {rel: 0},
+      events: {
+        onStateChange: (e) => {
+          if (e.data === YT.PlayerState.PLAYING){ startSongSyncLoop(); hideSongLineTranslations(); }
+          else if (e.data === YT.PlayerState.PAUSED){ stopSongSyncLoop(); showSongLineTranslation(); }
+          else if (e.data === YT.PlayerState.ENDED){ stopSongSyncLoop(); }
+        }
+      }
+    });
+  }catch(err){
+    const watchUrl = 'https://www.youtube.com/watch?v=' + encodeURIComponent(videoId || '');
+    host.innerHTML = '<div class="yt-error">Не удалось загрузить видео с YouTube: ' + escSongHtml(err.message) + '.' + (videoId ? ' <a href="' + watchUrl + '" target="_blank" rel="noopener">Открыть на YouTube ↗</a>' : '') + '</div>';
+  }
+}
+
+document.getElementById('backToLibrarySong').addEventListener('click', () => {
+  stopSongSyncLoop();
+  closeSongPopover();
+  if (ytPlayer && ytPlayer.destroy){ try{ ytPlayer.destroy(); }catch(err){} }
+  ytPlayer = null;
+  currentSong = null;
+  document.getElementById('songView').style.display = 'none';
+  document.getElementById('libraryView').style.display = '';
+  document.body.classList.remove('reading');
+  renderLibrary(window.readerManifest || []);
+});
+
 async function boot(){
   const loadingEl = document.getElementById("loadingMsg");
 
@@ -3293,6 +3646,18 @@ async function boot(){
     }
   } catch (err) {
     // no books-manifest.json next to this file -> that's fine, skip it
+  }
+
+  try {
+    const res = await fetch("songs-manifest.json", {cache: "no-store"});
+    if (res.ok) {
+      const external = await res.json();
+      if (external && Array.isArray(external.songs)) {
+        manifest = manifest.concat(external.songs);
+      }
+    }
+  } catch (err) {
+    // no songs-manifest.json next to this file -> that's fine, skip it
   }
 
   manifest = manifest.concat(getLocalBooksIndex());
@@ -3374,7 +3739,7 @@ function renderLibrary(manifest){
         ${progressNote}
       </div>
     `;
-    card.addEventListener('click', () => openBook(entry));
+    card.addEventListener('click', () => entry.kind === 'song' ? openSong(entry) : openBook(entry));
     grid.appendChild(card);
   });
 
