@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.57.0
+  Hebrew Reader — v1.58.1
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -486,12 +486,13 @@
   /* ---- Songs: karaoke-style lyric sync over a YouTube embed. Lines reuse
      .sentence-tr/.tr-row/.tword/.word-popover as-is (pure CSS, no JS
      coupling) — only the layout wrapper and playback chrome are new. ---- */
-  .song-lines{ max-width:720px; margin:0 auto; padding:20px 24px 200px; }
+  .song-lines{ max-width:720px; margin:0 auto; padding:20px 24px 90px; }
   .song-line{ display:block; padding:7px 2px; font-family:'David Libre','Frank Ruhl Libre',serif; font-size:20px; line-height:2; border-radius:4px; direction:rtl; text-align:right; transition: background .25s ease; }
   .song-line.current{ background: var(--gold-soft); }
   .song-audiobar{ position:fixed; left:0; right:0; bottom:0; background:var(--panel); border-top:1px solid var(--line); z-index:15; }
   .song-audiobar-inner{ max-width:720px; margin:0 auto; padding:10px 16px; display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
-  .yt-host{ position:relative; width:220px; max-width:40vw; aspect-ratio:16/9; flex-shrink:0; border-radius:8px; overflow:hidden; background:#000; }
+  .yt-host-wrap{ max-width:720px; margin:0 auto; padding:16px 24px 0; }
+  .yt-host{ position:relative; width:100%; max-width:480px; aspect-ratio:16/9; margin:0 auto; border-radius:8px; overflow:hidden; background:#000; }
   .yt-host iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
   .yt-error{ font-size:12px; color:var(--danger); padding:8px; }
   .song-tools{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:12px; }
@@ -558,7 +559,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.58.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.58.1</div>
   </div>
 </div>
 
@@ -764,10 +765,10 @@
     <span class="demo-flag" id="songSub"></span>
   </div>
 </header>
+<div class="yt-host-wrap"><div id="ytPlayerHost" class="yt-host"></div></div>
 <main id="songLines" class="song-lines"></main>
 <footer class="audiobar song-audiobar">
   <div class="audiobar-inner song-audiobar-inner">
-    <div id="ytPlayerHost" class="yt-host"></div>
     <div class="song-tools">
       <button class="pill-btn ghost" id="songCalibrateBtn" type="button">🎯 Калибровка таймкодов</button>
       <button class="pill-btn ghost" id="songCopyTimestampsBtn" type="button" style="display:none;">📋 Скопировать</button>
