@@ -104,6 +104,30 @@ async def synthesize_sentence(text, voice, out_path):
     return boundaries
 
 
+EDGE_TTS_RETRIES = 3
+
+
+async def synthesize_sentence_with_retry(text, voice, out_path):
+    """edge-tts иногда роняет соединение посреди стрима (поймали вживую:
+    NoAudioReceived на предложении без ничего необычного в тексте — похоже
+    на разовый сетевой сбой сервиса). Раньше это падало необработанным
+    исключением и убивало весь прогон, теряя уже озвученные предложения
+    (JSON с таймингами сохраняется только в конце). Теперь — несколько
+    попыток, и если ни одна не помогла — тихий переход на gTTS, вместо
+    падения всего скрипта."""
+    for attempt in range(EDGE_TTS_RETRIES):
+        try:
+            return await synthesize_sentence(text, voice, out_path), False
+        except Exception as e:
+            print(f"[!] edge-tts попытка {attempt + 1}/{EDGE_TTS_RETRIES} не удалась ({e}), "
+                  f"жду и повторяю...", file=sys.stderr)
+            await asyncio.sleep(2)
+    print(f"[!] edge-tts не справился после {EDGE_TTS_RETRIES} попыток — "
+          f"перехожу на gTTS для этого предложения.", file=sys.stderr)
+    synthesize_sentence_gtts(text, out_path)
+    return [], True
+
+
 def synthesize_sentence_gtts(text, out_path):
     """Точечный fallback — см. докстринг модуля. gTTS не даёт таймингов по
     словам, поэтому всегда возвращает пустой список границ (заведомое
@@ -141,7 +165,10 @@ async def main(args):
             sentence["ttsEngine"] = "gtts"
             boundaries = synthesize_sentence_gtts(text, out_path)
         else:
-            boundaries = await synthesize_sentence(text, args.voice, out_path)
+            boundaries, fell_back = await synthesize_sentence_with_retry(text, args.voice, out_path)
+            if fell_back:
+                sentence["ttsEngine"] = "gtts"
+                auto_gtts += 1
 
         if len(boundaries) == len(words):
             for w, b in zip(words, boundaries):
@@ -155,8 +182,11 @@ async def main(args):
         sentence["audio"] = f"{audio_dir_name}/{clip_name}"
         print(f"[{i+1}/{len(data['sentences'])}] {sentence['id']} -> {out_path}")
 
-    with open(args.output, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        # Сохраняем после каждого предложения, а не только в конце — если
+        # процесс упадёт (сеть, edge-tts и т.п.), уже озвученные предложения
+        # с таймингами не потеряются.
+        with open(args.output, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
 
     print(f"\nГотово. Озвучено предложений: {len(data['sentences'])}. "
           f"Расхождений по числу слов: {mismatches}. "
