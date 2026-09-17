@@ -286,6 +286,16 @@
        расти вниз. .audiobar-inner уже flex-wrap:wrap, так что перенос на
        новую строку случится сам, только если реально не влезает. */
     .scrub-wrap{ min-width: 0; }
+    /* Keeping the scrub bar on the same row as play/loop/timers/speed (see
+       comment above) leaves very little width for it on a narrow phone —
+       measured live: only ~79px, right back to ~5px/segment, the exact
+       problem this was meant to fix. "Нужно ли два таймера?" in the same
+       report was the way out: drop the total-duration label here (the
+       segment fill already shows progress) to hand that width back to the
+       segments instead — current time alone still answers "where am I".
+       Audiobar-inner gap also trimmed a little on top of that. */
+    .audiobar-inner{ gap: 6px; }
+    #totalTime{ display: none; }
     .scrub-track{
       height: auto; display: grid; grid-auto-flow: row;
       grid-template-columns: repeat(var(--scrub-cols, 10), 1fr);
@@ -566,7 +576,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.59.1</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.60.0</div>
   </div>
 </div>
 
