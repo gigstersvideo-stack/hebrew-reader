@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.58.1
+  Hebrew Reader — v1.61.0
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -576,7 +576,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.60.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.61.0</div>
   </div>
 </div>
 
@@ -3702,10 +3702,19 @@ const LEVEL_LABELS = { 'א': 'начальный', 'ב': 'средний', 'ג':
 // without opening the book (initReader/PAGE_SIZE aren't in scope yet at
 // this point — see the escapeHtmlLite comment below for the same reason).
 function getBookProgress(id){
-  let opened = false, completed = false;
+  let opened = false, completed = false, lastOpened = 0;
   try { opened = localStorage.getItem('hebrew-reader-page:' + id) !== null; } catch(err){}
   try { completed = localStorage.getItem('hebrew-reader-completed:' + id) === '1'; } catch(err){}
-  return { opened, completed };
+  try { lastOpened = parseInt(localStorage.getItem('hebrew-reader-lastopened:' + id), 10) || 0; } catch(err){}
+  return { opened, completed, lastOpened };
+}
+// Stamped every time a book/song is actually opened (openBook/openSong) —
+// separate from the page-position key (a number 0.. rather than a real
+// timestamp) so "most recently opened first" (site feedback, 2026-09-16)
+// has something to sort by. Best-effort: a write failure just means this
+// one card won't jump to the front next time, nothing else depends on it.
+function markLastOpened(id){
+  try { localStorage.setItem('hebrew-reader-lastopened:' + id, String(Date.now())); } catch(err){}
 }
 
 function renderLibrary(manifest){
@@ -3713,14 +3722,23 @@ function renderLibrary(manifest){
   const grid = document.getElementById('bookGrid');
   grid.innerHTML = '';
   // Started-but-unfinished books first (what you'd actually want to open
-  // next), then untouched ones, finished ones pushed to the bottom —
-  // stable within each group, so books don't shuffle around on every
-  // visit beyond what progress actually changed.
+  // next), then untouched ones, finished ones pushed to the bottom. Within
+  // the "started" tier, the most recently opened comes first (site
+  // feedback, 2026-09-16) — before this, ties there fell back to the
+  // manifest's own order and never moved once opened. The other two tiers
+  // keep the old stable manifest-order tiebreak — "untouched"/"finished"
+  // don't have a meaningful recency to sort by (or, for finished, it's
+  // not what you'd want first anyway).
   const sorted = manifest.map((entry, i) => ({ entry, i, progress: getBookProgress(entry.id) }))
     .sort((a, b) => {
       const tier = (p) => p.completed ? 2 : (p.opened ? 0 : 1);
       const diff = tier(a.progress) - tier(b.progress);
-      return diff !== 0 ? diff : a.i - b.i;
+      if (diff !== 0) return diff;
+      if (tier(a.progress) === 0) {
+        const recencyDiff = b.progress.lastOpened - a.progress.lastOpened;
+        if (recencyDiff !== 0) return recencyDiff;
+      }
+      return a.i - b.i;
     });
   sorted.forEach(({ entry, progress }) => {
     const card = document.createElement('div');
@@ -3811,6 +3829,7 @@ async function openBook(entry){
   document.getElementById('libraryView').style.display = 'none';
   document.getElementById('readerView').style.display = '';
   document.body.classList.add('reading');
+  markLastOpened(entry.id);
   initReader(bookData, entry.id, entry);
 }
 
