@@ -277,8 +277,15 @@
      renderScrubSegments() — see below — then laying the segments out in
      a grid with exactly that many columns, which forces the wrap. */
   @media (max-width: 480px) {
-    .scrub-wrap{ flex-basis: 100%; order: 1; min-width: 0; }
-    .speed-select{ order: 2; }
+    /* По отзыву (2026-09-16): раньше здесь ещё стояло flex-basis:100%/
+       order — переносило весь скраббер на отдельную строку ПОД play/loop/
+       таймерами. Это осталось от более раннего варианта (один ряд на всю
+       ширину), уже не нужно теперь, когда сами сегменты и так уходят в 2
+       строки через grid ниже — просьба была оставить скраббер на той же
+       строке, что и остальные элементы управления, просто дав сегментам
+       расти вниз. .audiobar-inner уже flex-wrap:wrap, так что перенос на
+       новую строку случится сам, только если реально не влезает. */
+    .scrub-wrap{ min-width: 0; }
     .scrub-track{
       height: auto; display: grid; grid-auto-flow: row;
       grid-template-columns: repeat(var(--scrub-cols, 10), 1fr);
@@ -559,7 +566,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.59.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.59.1</div>
   </div>
 </div>
 
