@@ -243,6 +243,17 @@
       "file": "book-data-snow-alef.json",
       "spineColor": "#5E7C99",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><circle cx=\"150\" cy=\"105\" r=\"22\"/><circle cx=\"150\" cy=\"68\" r=\"16\"/><circle cx=\"150\" cy=\"40\" r=\"11\"/><path d=\"M150 42 L162 46 L150 48 Z\"/><path d=\"M128 66 L104 52 M172 66 L196 52\"/></g><g stroke=\"var(--gold)\"><path d=\"M50 30 V44 M43 37 H57 M45 32 L55 42 M55 32 L45 42\"/><path d=\"M245 60 V74 M238 67 H252 M240 62 L250 72 M250 62 L240 72\"/></g><circle cx=\"80\" cy=\"95\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"220\" cy=\"110\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"105\" cy=\"120\" r=\"2\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "picnic-alef",
+      "title": "הַפִּיקְנִיק שֶׁל מִשְׁפַּחַת רוֹתֶם",
+      "kicker": "רמה א׳ · סיפור מקורי",
+      "level": "א",
+      "sub": "Семья Ротем устраивает пикник в парке, находит муравьёв у корзины и решает не прогонять их, а просто переставить еду.",
+      "source": "file",
+      "file": "book-data-picnic-alef.json",
+      "spineColor": "#6B8E4E",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M90 70 H210 L200 115 H100 Z\"/><path d=\"M110 70 Q150 20 190 70\"/><path d=\"M105 85 H195 M108 100 H192\"/><path d=\"M40 125 H260\"/></g><g stroke=\"var(--gold)\"><circle cx=\"235\" cy=\"118\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"244\" cy=\"118\" r=\"2.2\" fill=\"var(--gold)\"/><circle cx=\"252\" cy=\"118\" r=\"3\" fill=\"var(--gold)\"/><path d=\"M232 112 L229 108 M254 112 L257 108\"/></g><circle cx=\"60\" cy=\"40\" r=\"10\" stroke=\"var(--gold)\"/><path d=\"M60 22 V27 M60 53 V58 M42 40 H47 M73 40 H78\" stroke=\"var(--gold)\"/></svg>"
     }
   ]
 }
