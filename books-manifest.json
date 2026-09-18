@@ -210,6 +210,17 @@
       "file": "book-data-sea-alef.json",
       "spineColor": "#2E6B8A",
       "coverSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 140\"><path d=\"M20 110 Q50 100 80 110 T140 110 T200 110 T260 110\" stroke=\"var(--ink)\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M10 122 Q40 112 70 122 T130 122 T190 122 T250 122\" stroke=\"var(--ink)\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/><g stroke=\"var(--ink)\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"><path d=\"M175 110 L175 75\"/><circle cx=\"175\" cy=\"65\" r=\"7\"/><path d=\"M140 110 L140 92\"/><circle cx=\"140\" cy=\"85\" r=\"5\"/><path d=\"M140 95 Q157 95 175 88\"/></g><circle cx=\"250\" cy=\"40\" r=\"10\" stroke=\"var(--gold)\" stroke-width=\"2\" fill=\"none\"/><path d=\"M250 20 V25 M250 55 V60 M230 40 H235 M265 40 H270\" stroke=\"var(--gold)\" stroke-width=\"2\" stroke-linecap=\"round\"/><circle cx=\"115\" cy=\"115\" r=\"1.5\" fill=\"var(--gold)\"/><circle cx=\"195\" cy=\"118\" r=\"1.5\" fill=\"var(--gold)\"/><circle cx=\"155\" cy=\"105\" r=\"1.2\" fill=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "dog-alef",
+      "title": "יָעֵל וְרֶקְס",
+      "kicker": "רמה א׳ · סיפור מקורי",
+      "level": "א",
+      "sub": "Девочка Яэль помогает своему пожилому соседу найти пропавшего щенка Рекса. После долгих поисков она обнаруживает его в парке и благополучно возвращает домой. Счастливый сосед благодарит Яэль и теперь она может играть с Рексом в любое время.",
+      "source": "file",
+      "file": "book-data-dog-alef.json",
+      "spineColor": "#8A5A2E",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M40 90 Q60 50 80 90\" stroke=\"var(--ink)\"/><path d=\"M110 90 Q130 50 150 90\" stroke=\"var(--ink)\"/><circle cx=\"70\" cy=\"40\" r=\"15\" stroke=\"var(--ink)\"/><path d=\"M180 80 L220 80 L200 40 Z\" stroke=\"var(--ink)\"/><circle cx=\"240\" cy=\"70\" r=\"10\" stroke=\"var(--ink)\"/><path d=\"M240 80 L235 100 M240 80 L245 100\" stroke=\"var(--ink)\"/><circle cx=\"250\" cy=\"65\" r=\"2\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"90\" cy=\"30\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"190\" cy=\"50\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
     }
   ]
 }
