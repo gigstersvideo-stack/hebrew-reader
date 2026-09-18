@@ -63,6 +63,8 @@ import sys
 import time
 from pathlib import Path
 
+import hebrew_spelling_rules as rules
+
 # сколько раз пересылать батч заново, если модель вернула не столько
 # предложений, сколько было отправлено (см. комментарий у места вызова)
 MISMATCH_RETRIES = 3
@@ -178,37 +180,34 @@ def warn_deficient_spelling(sentences):
               file=sys.stderr)
 
 
-_PREFIX_LETTERS = "הבוכלמש"
 _MAQAF = "־"
-
-
-def _bare_letters(t):
-    return re.sub(r"[^א-ת]", "", re.sub(r"[֑-ׇ]", "", t))
-
-
-def _is_prefix_fragment(w):
-    b = _bare_letters(w.get("t", ""))
-    return len(b) == 1 and b in _PREFIX_LETTERS
 
 
 def merge_prefix_fragments(sentences):
     """Изредка модель отдаёт неотделяемые приставки (ה/ו/ב/כ/ל/מ/ש) как
     самостоятельные "слова" — со своим словом-объектом и пробелом перед
     корнем, хотя в иврите они пишутся слитно (поймали вживую дважды:
-    bridge-alef-bet — 132 случая из 862, seahouse-dalet — 429 из 5081).
+    bridge-alef-bet — 132 случая из 862, seahouse-dalet — 429 из 5081;
+    ретроактивно нашлось и в quest-gimel/house-dalet — 4+61 случай,
+    созданы ДО появления этого фиксера, см. audit_corpus.py и ROADMAP).
     Склеивает подряд идущие фрагменты с последующим словом ДО отправки в
     озвучку/иллюстрации — там их наличие ломает и текст (лишние пробелы),
-    и тайминги (лишние токены не совпадают с границами TTS)."""
+    и тайминги (лишние токены не совпадают с границами TTS).
+
+    Детект (rules._is_prefix_fragment) общий с audit_corpus.py —
+    консолидировано в hebrew_spelling_rules.py, чтобы одна и та же логика
+    защищала и вперёд (здесь, при генерации), и ретроактивно (ручной
+    audit_corpus.py против всего готового корпуса)."""
     total_merged = 0
     for s in sentences:
         ws = s.get("words", [])
         new_ws = []
         i = 0
         while i < len(ws):
-            if _is_prefix_fragment(ws[i]) and i + 1 < len(ws):
+            if rules._is_prefix_fragment(ws[i]) and i + 1 < len(ws):
                 j = i
                 prefix_text = ""
-                while j < len(ws) and _is_prefix_fragment(ws[j]) and j + 1 < len(ws):
+                while j < len(ws) and rules._is_prefix_fragment(ws[j]) and j + 1 < len(ws):
                     prefix_text += ws[j]["t"].replace(_MAQAF, "")
                     j += 1
                 base = dict(ws[j])
@@ -386,10 +385,36 @@ def main():
     print(f"\nГотово -> {args.out}, всего предложений в файле: {len(result_sentences)}",
           file=sys.stderr)
 
+    # Жёсткие проверки на СВЕЖЕсгенерированном результате — forward-guard,
+    # часть консолидации QA (см. hebrew_spelling_rules.py/audit_corpus.py).
+    # Только hanging_prefix (защита на случай пробела в самом
+    # merge_prefix_fragments выше) и homoglyph (реальный, документированный
+    # прецедент именно в этом пайплайне — см. историю про "маһенький"
+    # вместо "маленький" в шапке файла). ktiv_chaser/gemination сюда
+    # намеренно НЕ добавлены — это конвенция курса "Корни" в тренажёре, не
+    # общая орфография иврита, на обычной прозе читалки даёт ложные
+    # срабатывания (см. hebrew_spelling_rules.py и audit_corpus.py).
+    qa_problems = []
+    for p, word in rules.find_hanging_prefix_violations(result_sentences):
+        qa_problems.append(f"hanging_prefix · {p} · {word!r}")
+    for i, sent in enumerate(result_sentences):
+        for j, w in enumerate(sent.get("words", [])):
+            for p, word in rules.find_homoglyph_violations(w, f"sentences[{i}].words[{j}]"):
+                qa_problems.append(f"homoglyph · {p} · {word!r}")
+    if qa_problems:
+        print(f"\n!! QA-проверка нашла {len(qa_problems)} проблем в {args.out} "
+              f"(файл уже записан, посмотри вручную перед публикацией):",
+              file=sys.stderr)
+        for line in qa_problems:
+            print(f"  {line}", file=sys.stderr)
+
     if incomplete:
         # раньше здесь молча выходили кодом 0, даже если реально обработали
         # только часть книги — retry-цикл видел "успех" и останавливался,
         # думая, что всё готово (нашли это вживую на 359 из 589 предложений)
+        sys.exit(1)
+
+    if qa_problems:
         sys.exit(1)
 
 
