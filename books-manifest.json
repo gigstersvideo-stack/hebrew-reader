@@ -221,6 +221,17 @@
       "file": "book-data-dog-alef.json",
       "spineColor": "#8A5A2E",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M40 90 Q60 50 80 90\" stroke=\"var(--ink)\"/><path d=\"M110 90 Q130 50 150 90\" stroke=\"var(--ink)\"/><circle cx=\"70\" cy=\"40\" r=\"15\" stroke=\"var(--ink)\"/><path d=\"M180 80 L220 80 L200 40 Z\" stroke=\"var(--ink)\"/><circle cx=\"240\" cy=\"70\" r=\"10\" stroke=\"var(--ink)\"/><path d=\"M240 80 L235 100 M240 80 L245 100\" stroke=\"var(--ink)\"/><circle cx=\"250\" cy=\"65\" r=\"2\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"90\" cy=\"30\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"190\" cy=\"50\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "bike-alef",
+      "title": "גִּיל וְהָאוֹפַנַּיִים",
+      "kicker": "רמה א׳ · סיפור מקורי",
+      "level": "א",
+      "sub": "Мальчик Гиль получает в подарок велосипед, но сначала у него не получается ехать самостоятельно и он падает. Старшая сестра помогает ему преодолеть страх, поддерживая велосипед, а затем незаметно отпускает его. Гиль обнаруживает, что едет сам, и к вечеру уверенно катается по двору, радуя всю свою семью.",
+      "source": "file",
+      "file": "book-data-bike-alef.json",
+      "spineColor": "#B03A3A",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\"><style>:root {--ink: #333333; --gold: #D4AF37;}</style><g fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke=\"var(--ink)\"><circle cx=\"70\" cy=\"100\" r=\"20\"/><circle cx=\"230\" cy=\"100\" r=\"20\"/><path d=\"M90 100h120M230 100l-40-30h-60l-20 30M150 70l-20 40\"/><circle cx=\"150\" cy=\"70\" r=\"8\"/><circle cx=\"148\" cy=\"68\" r=\"1\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><path d=\"M240 90l10-10M250 110l10-10\" stroke=\"var(--gold)\"/><circle cx=\"260\" cy=\"80\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"270\" cy=\"110\" r=\"4\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></g></svg>"
     }
   ]
 }
