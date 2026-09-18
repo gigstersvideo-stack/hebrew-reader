@@ -232,6 +232,17 @@
       "file": "book-data-bike-alef.json",
       "spineColor": "#B03A3A",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\"><style>:root {--ink: #333333; --gold: #D4AF37;}</style><g fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke=\"var(--ink)\"><circle cx=\"70\" cy=\"100\" r=\"20\"/><circle cx=\"230\" cy=\"100\" r=\"20\"/><path d=\"M90 100h120M230 100l-40-30h-60l-20 30M150 70l-20 40\"/><circle cx=\"150\" cy=\"70\" r=\"8\"/><circle cx=\"148\" cy=\"68\" r=\"1\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><path d=\"M240 90l10-10M250 110l10-10\" stroke=\"var(--gold)\"/><circle cx=\"260\" cy=\"80\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"270\" cy=\"110\" r=\"4\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></g></svg>"
+    },
+    {
+      "id": "snow-alef",
+      "title": "תְּהִילָּה וְהַשֶּׁלֶג",
+      "kicker": "רמה א׳ · סיפור מקורי",
+      "level": "א",
+      "sub": "Тегила впервые видит настоящий снег. Вместе с соседским мальчиком Офером она лепит снеговика, а к обеду снег начинает таять.",
+      "source": "file",
+      "file": "book-data-snow-alef.json",
+      "spineColor": "#5E7C99",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><circle cx=\"150\" cy=\"105\" r=\"22\"/><circle cx=\"150\" cy=\"68\" r=\"16\"/><circle cx=\"150\" cy=\"40\" r=\"11\"/><path d=\"M150 42 L162 46 L150 48 Z\"/><path d=\"M128 66 L104 52 M172 66 L196 52\"/></g><g stroke=\"var(--gold)\"><path d=\"M50 30 V44 M43 37 H57 M45 32 L55 42 M55 32 L45 42\"/><path d=\"M245 60 V74 M238 67 H252 M240 62 L250 72 M250 62 L240 72\"/></g><circle cx=\"80\" cy=\"95\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"220\" cy=\"110\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"105\" cy=\"120\" r=\"2\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
     }
   ]
 }
