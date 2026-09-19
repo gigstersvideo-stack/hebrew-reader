@@ -287,6 +287,17 @@
       "file": "book-data-draw-bet.json",
       "spineColor": "#C4813A",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M90 70 H210 L200 115 H100 Z\"/><path d=\"M110 70 Q150 20 190 70\"/><path d=\"M105 85 H195 M108 100 H192\"/><path d=\"M40 125 H260\"/></g><g stroke=\"var(--gold)\"><circle cx=\"235\" cy=\"118\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"244\" cy=\"118\" r=\"2.2\" fill=\"var(--gold)\"/><circle cx=\"252\" cy=\"118\" r=\"3\" fill=\"var(--gold)\"/><path d=\"M232 112 L229 108 M254 112 L257 108\"/></g><circle cx=\"60\" cy=\"40\" r=\"10\" stroke=\"var(--gold)\"/><path d=\"M60 22 V27 M60 53 V58 M42 40 H47 M73 40 H78\" stroke=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "garden-bet",
+      "title": "הַגִּנָּה שֶׁל הַכִּיתָּה",
+      "kicker": "רמה ב׳ · סיפור מקורי",
+      "level": "ב",
+      "sub": "Класс выращивает школьный огород. Группа Маора сначала отстаёт, но когда каждый занимается тем, что любит, грядка расцветает, а урожай хватает на всю школу.",
+      "source": "file",
+      "file": "book-data-garden-bet.json",
+      "spineColor": "#5E8A3A",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M90 70 H210 L200 115 H100 Z\"/><path d=\"M110 70 Q150 20 190 70\"/><path d=\"M105 85 H195 M108 100 H192\"/><path d=\"M40 125 H260\"/></g><g stroke=\"var(--gold)\"><circle cx=\"235\" cy=\"118\" r=\"3\" fill=\"var(--gold)\"/><circle cx=\"244\" cy=\"118\" r=\"2.2\" fill=\"var(--gold)\"/><circle cx=\"252\" cy=\"118\" r=\"3\" fill=\"var(--gold)\"/><path d=\"M232 112 L229 108 M254 112 L257 108\"/></g><circle cx=\"60\" cy=\"40\" r=\"10\" stroke=\"var(--gold)\"/><path d=\"M60 22 V27 M60 53 V58 M42 40 H47 M73 40 H78\" stroke=\"var(--gold)\"/></svg>"
     }
   ]
 }
