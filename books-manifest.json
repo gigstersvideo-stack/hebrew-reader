@@ -375,6 +375,17 @@
       "file": "book-data-concert-dalet.json",
       "spineColor": "#6B2E5B",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M130 30 Q100 70 130 110 Q150 130 170 110 Q200 70 170 30 Z\"/><path d=\"M150 30 V120\"/></g><g stroke=\"var(--gold)\"><path d=\"M200 50 L230 40 M200 70 L235 65\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "emigrant-dalet",
+      "title": "הַחֲזָרָה הַבַּיְתָה",
+      "kicker": "רמה ד׳ · סיפור מקורי",
+      "level": "ד",
+      "sub": "Орен двадцать лет живет за границей и возвращается домой на юбилей сестры Ронит: тяжелый разговор на кухне и старая видеозапись помогают им помириться.",
+      "source": "file",
+      "file": "book-data-emigrant-dalet.json",
+      "spineColor": "#3A6B8A",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M90 100 H210 M110 100 V70 L150 45 L190 70 V100\"/><rect x=\"138\" y=\"78\" width=\"24\" height=\"22\"/></g><g stroke=\"var(--gold)\"><path d=\"M40 60 Q60 40 80 60 M220 60 Q240 40 260 60\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
     }
   ]
 }
