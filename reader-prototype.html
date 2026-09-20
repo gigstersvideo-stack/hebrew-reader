@@ -588,7 +588,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.83.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.84.0</div>
   </div>
 </div>
 
@@ -3565,6 +3565,7 @@ async function openSong(entry, opts){
   document.body.classList.add('reading');
   markLastOpened(entry.id);
   setLastView('song', entry.id);
+  syncHistory('song', entry.id, (opts && opts.nav) || 'push');
 
   document.getElementById('songTitleEl').textContent = entry.title || songData.meta.titleHe;
   document.getElementById('songKicker').textContent = entry.kicker || '';
@@ -3610,7 +3611,41 @@ async function openSong(entry, opts){
   }
 }
 
-document.getElementById('backToLibrarySong').addEventListener('click', () => {
+// ---- Навигация и кнопка «назад» браузера ----
+// Читалка — одна страница, поэтому экраны (библиотека / книга / песня) сами
+// пишут записи в историю браузера: открытие книги или песни = pushState
+// (адрес #/book/<id>, #/song/<id>), «назад» возвращает в библиотеку, обновление
+// страницы остаётся на том же экране, ссылкой можно поделиться. Листание
+// страниц внутри книги историю НЕ засоряет. state.d — глубина: 0 у входа на
+// сайт, 1 у экрана, открытого из библиотеки (тогда предыдущая запись точно
+// наша библиотека и «← Библиотека» может честно нажать «назад»). Чужой хэш
+// (#authHandoff=… для входа из тренажёра) сюда не попадает.
+function parseRoute(hash){
+  const m = /^#\/(book|song)\/([^\/?#]+)/.exec(hash || '');
+  return m ? { view: m[1], id: decodeURIComponent(m[2]) } : null;
+}
+function routeHash(view, id){
+  return view === 'library' || !id ? '' : '#/' + view + '/' + encodeURIComponent(id);
+}
+// mode: 'push' (обычное открытие из библиотеки), 'replace' (заход по ссылке или
+// обновление на экране), 'restore' (восстановление: под ним ставим библиотеку),
+// 'pop' (пришли кнопками браузера — историю не трогаем).
+function syncHistory(view, id, mode){
+  if (mode === 'pop' || typeof history === 'undefined' || !history.pushState) return;
+  const base = location.pathname + location.search;
+  const cur = history.state || {};
+  try {
+    if (mode === 'replace' || (cur.v === view && cur.id === id)) {
+      history.replaceState({ v: view, id: id || null, d: cur.d || 0 }, '', base + routeHash(view, id));
+      return;
+    }
+    if (mode === 'restore') { history.replaceState({ v: 'library', d: 0 }, '', base); }
+    const depth = mode === 'restore' ? 0 : (cur.d || 0);
+    history.pushState({ v: view, id: id || null, d: depth + 1 }, '', base + routeHash(view, id));
+  } catch (err) {}
+}
+
+function leaveSongToLibrary(){
   stopSongSyncLoop();
   closeSongPopover();
   if (ytPlayer && ytPlayer.destroy){ try{ ytPlayer.destroy(); }catch(err){} }
@@ -3621,7 +3656,41 @@ document.getElementById('backToLibrarySong').addEventListener('click', () => {
   document.body.classList.remove('reading');
   setLastView('library');
   renderLibrary(window.readerManifest || []);
+}
+function leaveBookToLibrary(){
+  document.getElementById('readerView').style.display = 'none';
+  document.getElementById('libraryView').style.display = '';
+  document.body.classList.remove('reading');
+  setLastView('library');
+  renderLibrary(window.readerManifest || []); // refresh in case a book was just imported
+}
+function showLibrary(){
+  if (document.getElementById('songView').style.display !== 'none') leaveSongToLibrary();
+  else if (document.getElementById('readerView').style.display !== 'none') leaveBookToLibrary();
+}
+// Кнопки «← Библиотека»: если под текущим экраном наша библиотека — идём
+// «назад» (тогда история остаётся честной), иначе (заход по ссылке) просто
+// показываем библиотеку, не уводя человека с сайта.
+function goBackToLibrary(){
+  const s = typeof history !== 'undefined' ? history.state : null;
+  if (s && s.d >= 1 && (s.v === 'book' || s.v === 'song')) { history.back(); return; }
+  showLibrary();
+  syncHistory('library', null, 'replace');
+}
+window.addEventListener('popstate', () => {
+  if (!window.readerManifest) return;
+  const r = parseRoute(location.hash);
+  const entry = r && window.readerManifest.find(e => e.id === r.id);
+  if (entry) {
+    window.__readerNavigated = true;
+    if (r.view === 'song' || entry.kind === 'song') openSong(entry, { silent: true, nav: 'pop' });
+    else openBook(entry, { silent: true, nav: 'pop' });
+  } else {
+    showLibrary();
+  }
 });
+
+document.getElementById('backToLibrarySong').addEventListener('click', goBackToLibrary);
 
 async function boot(){
   const loadingEl = document.getElementById("loadingMsg");
@@ -3706,15 +3775,25 @@ async function boot(){
 
   renderLibrary(manifest);
 
-  document.getElementById('backToLibrary').addEventListener('click', () => {
-    document.getElementById('readerView').style.display = 'none';
-    document.getElementById('libraryView').style.display = '';
-    document.body.classList.remove('reading');
-    setLastView('library');
-    renderLibrary(manifest); // refresh in case a book was just imported
-  });
+  document.getElementById('backToLibrary').addEventListener('click', goBackToLibrary);
 
   setupImportModal(manifest);
+
+  // Адрес экрана (#/book/<id>, #/song/<id>) главнее запомненного места: по
+  // ссылке или после обновления открываем именно его (запись в истории
+  // заменяем, не добавляем). Без адреса — библиотека, а если в прошлый раз
+  // читали, ниже вернёмся туда (restoreLastView).
+  const route = parseRoute(location.hash);
+  const routed = route && manifest.find(e => e.id === route.id);
+  if (routed) {
+    window.__readerNavigated = true;
+    if (route.view === 'song' || routed.kind === 'song') openSong(routed, { silent: true, nav: 'replace' });
+    else openBook(routed, { silent: true, nav: 'replace' });
+    return;
+  }
+  if (!/authHandoff=/.test(location.hash)) {
+    try { history.replaceState({ v: 'library', d: 0 }, '', location.pathname + location.search); } catch (err) {}
+  }
 
   // Обновили страницу, пока читали, — возвращаемся на то же место (страницу
   // и предложение внутри книги читалка уже восстанавливает сама). Если в
@@ -3739,8 +3818,10 @@ function restoreLastView(manifest, remote){
   const entry = manifest.find(e => e.id === target.id);
   if (!entry) return;
   window.__readerNavigated = true;
-  if (target.view === 'song' || entry.kind === 'song') openSong(entry, {silent: true});
-  else openBook(entry, {silent: true});
+  // nav:'restore' — в истории сначала библиотека, поверх неё книга: «назад»
+  // из восстановленной книги ведёт в библиотеку, а не с сайта.
+  if (target.view === 'song' || entry.kind === 'song') openSong(entry, {silent: true, nav: 'restore'});
+  else openBook(entry, {silent: true, nav: 'restore'});
 }
 
 const LEVEL_LABELS = { 'א': 'начальный', 'ב': 'средний', 'ג': 'продвинутый', 'ד': 'сложный' };
@@ -3949,6 +4030,7 @@ async function openBook(entry, opts){
   document.body.classList.add('reading');
   markLastOpened(entry.id);
   setLastView('book', entry.id);
+  syncHistory('book', entry.id, (opts && opts.nav) || 'push');
   initReader(bookData, entry.id, entry);
 }
 

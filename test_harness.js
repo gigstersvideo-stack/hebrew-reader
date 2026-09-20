@@ -382,6 +382,18 @@ function makeBook(id, n) {
   win.readerPopularity = null;
 }
 
+// ---- 3c. Адреса экранов для кнопки «назад» (History API)
+{
+  const r = sandbox.parseRoute('#/book/robot-cat-alef');
+  check('route: #/book/<id> parses to a book route', r && r.view === 'book' && r.id === 'robot-cat-alef');
+  const s = sandbox.parseRoute('#/song/hava-nagila');
+  check('route: #/song/<id> parses to a song route', s && s.view === 'song' && s.id === 'hava-nagila');
+  check('route: empty hash is the library', sandbox.parseRoute('') === null && sandbox.parseRoute('#') === null);
+  check('route: the trainer sign-in handoff hash is never treated as a route', sandbox.parseRoute('#authHandoff=abc') === null);
+  check('route: percent-encoded ids round-trip', sandbox.parseRoute(sandbox.routeHash('book', 'a b')).id === 'a b');
+  check('route: the library has an empty hash', sandbox.routeHash('library', null) === '' && sandbox.routeHash('book', 'x') === '#/book/x');
+}
+
 // ---- 4. Exact-position resume — the real bug found and fixed live this
 // session: the pre-existing "initial paint of the transport bar"
 // goToSentence() call ran BEFORE the first renderPage(), so
