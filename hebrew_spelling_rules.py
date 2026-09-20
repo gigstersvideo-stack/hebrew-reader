@@ -17,6 +17,11 @@ hebrew_spelling_rules.py — единое место для всех механ�
                      полноширинные CJK-формы) внутри ивритского (или
                      русского) слова. Найдено при разборе отзыва про
                      дубли в derived_words корня ה-י-ה.
+  1б. yod_doubling — один йод вместо двух в семействе עניין (מענין вместо
+                     מעניין). Найдено по отзыву с сайта 2026-09-17.
+  1в. ktiv_male_dict — словарная проверка (Hspell): слова, которых нет в словаре,
+                     но есть вариант с одним лишним/недостающим י или ו. Отдельно:
+                     audit_corpus.py --dict.
   3. gemination   — недвоённая средняя корневая буква ו/י в биньянах
                      פִּעֵל/הִתְפַּעֵל/פֻּעַל/הֻפְעַל (מְהַוָּה вместо
                      מְהַוָּוה) — найдено по прямому вопросу пользователя,
@@ -82,7 +87,12 @@ YOD = "י"
 # не нарушение כתיב מלא (двух-трёхбуквенные слова этого типа в него не
 # разворачиваются ни в каком стиле письма)
 KTIV_CHASER_ALLOWLIST = {"לֹא", "כֹּה", "זֹאת", "פֹּה"}
-_STRIP_PUNCT = ".,!?;:\"'()«»־-־"
+# основы, где холам без вав — норма в любой форме слова (רֹאשׁ, הָרֹאשׁ, רֹאשׁוֹ,
+# רֹאשִׁית): ראש пишется без вав даже в полном написании. Раньше автоправка
+# ktiv_chaser вставляла сюда лишний вав (רוֹאשׁ) — 128 слов, найдено словарной
+# проверкой 2026-09-20.
+KTIV_CHASER_ALLOWED_STEMS = {"ראש"}
+_STRIP_PUNCT = ".,!?;:\"'()«»־-־״׳"
 
 
 def _bare_consonants(word):
@@ -97,6 +107,8 @@ def _matches_allowlist(word):
     if word in KTIV_CHASER_ALLOWLIST:
         return True
     bare = _bare_consonants(word)
+    if any(stem in bare for stem in KTIV_CHASER_ALLOWED_STEMS):
+        return True
     return any(bare.endswith(_bare_consonants(allowed)) for allowed in KTIV_CHASER_ALLOWLIST)
 
 
@@ -163,6 +175,340 @@ def fix_ktiv_chaser(obj):
             tokens[idx] = tok[:start] + _fix_ktiv_chaser_word(core) + tok[start + len(core):]
         return "".join(tokens)
     return obj
+
+
+# ============================================================
+# Правило 1б: двойной йод в семействе עניין (מעניין, עניין, התעניין...)
+# ============================================================
+# Полное написание (כתיב מלא) этих слов — с ДВУМЯ йодами: עניין, מעניין,
+# מעניינת, מעניינים, התעניין, מעוניין. Модель и старые тексты регулярно
+# писали один йод (מענין, ענין) — найдено по отзыву с сайта 2026-09-17
+# («מעניין с двумя йод пишем же!»): в корпусе тренажёра было 68 слов с одним
+# йодом против 9 с двумя, а ktiv_chaser (холам/кубуц) такое не ловит.
+YOD_DOUBLING_RE = re.compile(r"(?:ענ|מעונ)(?!יי)י[נן]")
+
+# слова, у которых огласовка испорчена настолько, что механическая вставка
+# йода дала бы бессмыслицу — исправляются целиком
+YOD_DOUBLING_OVERRIDES = {
+    "מַעֲנַיִן": "מְעַנְיֵין",
+    "הַמַּעֲנִין": "הַמְּעַנְיֵין",
+    "בָּעֶנְיָן": "בָּעִנְיָין",
+    "בַּעֲנָיִן": "בְּעִנְיָין",
+}
+
+
+def _needs_yod_doubling(word):
+    return bool(YOD_DOUBLING_RE.search(_bare_consonants(word)))
+
+
+def find_yod_doubling_violations(obj, path=""):
+    """Слова семейства עניין/מעניין/מעוניין с одним йодом вместо двух."""
+    violations = []
+    for p, s in _walk_strings(obj, path):
+        for word in s.split():
+            clean = word.strip(_STRIP_PUNCT)
+            if clean and _needs_yod_doubling(clean):
+                violations.append((p, clean, "слово семейства עניין с одним йодом — в כתיב מלא йода два"))
+    return violations
+
+
+def _fix_yod_doubling_word(word):
+    """Вставляет второй йод сразу после первого йода семейства (тот
+    сохраняет свою огласовку): מְעַנְיֵן -> מְעַנְיֵין, עִנְיָן -> עִנְיָין,
+    מְעַנְיֶנֶת -> מְעַנְיֶינֶת, מעונין -> מעוניין. Так же уже написаны
+    девять «двойных» форм, что были в корпусе до правки."""
+    if word in YOD_DOUBLING_OVERRIDES:
+        return YOD_DOUBLING_OVERRIDES[word]
+    if not _needs_yod_doubling(word):
+        return word
+    clusters = split_clusters(word)
+    bases = [cl[0] for cl in clusters]
+    for k in range(2, len(clusters) - 1):
+        if bases[k] != "י" or bases[k - 1] != "נ" or bases[k + 1] not in ("נ", "ן"):
+            continue
+        family = bases[k - 2] == "ע" or (bases[k - 2] == "ו" and k >= 3 and bases[k - 3] == "ע")
+        if family:
+            clusters.insert(k + 1, "י")
+            return "".join(clusters)
+    return word
+
+
+def fix_yod_doubling(obj):
+    """Рекурсивно чинит все строки JSON-объекта (граничная пунктуация и
+    пробелы сохраняются)."""
+    if isinstance(obj, dict):
+        return {k: fix_yod_doubling(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [fix_yod_doubling(v) for v in obj]
+    elif isinstance(obj, str):
+        tokens = re.split(r"(\s+)", obj)
+        for idx, tok in enumerate(tokens):
+            if not tok or tok.isspace():
+                continue
+            core = tok.strip(_STRIP_PUNCT)
+            if not core or not (core in YOD_DOUBLING_OVERRIDES or _needs_yod_doubling(core)):
+                continue
+            start = tok.index(core)
+            tokens[idx] = tok[:start] + _fix_yod_doubling_word(core) + tok[start + len(core):]
+        return "".join(tokens)
+    return obj
+
+
+# ============================================================
+# Правило 1г: известные ошибочные написания
+# ============================================================
+# Точечный список слов, где ошибка не укладывается в общие классы (нет
+# удвоения и нет матрес после хирика), но известна и однозначна. Ловится и
+# чинится без словаря. Найдено словарной проверкой 2026-09-20: разговорное
+# עכשו (39 вхождений) вместо עכשיו.
+KNOWN_MISSPELLINGS = {
+    "עכשו": "עכשיו",
+}
+_KNOWN_PREFIX_LETTERS = "ובהכלמש"
+
+
+def _known_misspelling(word):
+    """(число приставок, ошибочная основа, верная основа) или None."""
+    bare = _bare_consonants(word)
+    for n in range(0, 4):
+        if n > len(bare):
+            break
+        if all(c in _KNOWN_PREFIX_LETTERS for c in bare[:n]):
+            stem = bare[n:]
+            if stem in KNOWN_MISSPELLINGS:
+                return n, stem, KNOWN_MISSPELLINGS[stem]
+    return None
+
+
+def find_known_misspelling_violations(obj, path=""):
+    violations = []
+    for p, s in _walk_strings(obj, path):
+        for word in s.split():
+            clean = word.strip(_STRIP_PUNCT)
+            hit = _known_misspelling(clean) if clean else None
+            if hit:
+                violations.append((p, clean, f"известная ошибка: {hit[1]} -> {hit[2]}"))
+    return violations
+
+
+def _fix_known_misspelling_word(word):
+    hit = _known_misspelling(word)
+    if not hit:
+        return word
+    n, wrong, right = hit
+    i = next(k for k in range(min(len(wrong), len(right)) + 1)
+             if k >= len(wrong) or k >= len(right) or wrong[k] != right[k])
+    if len(right) != len(wrong) + 1 or right[i] == wrong[i:i + 1]:
+        return word  # поддерживаем только вставку одной буквы
+    clusters = split_clusters(word)
+    clusters.insert(n + i, right[i])
+    return "".join(clusters)
+
+
+def fix_known_misspellings(obj):
+    """Рекурсивно чинит все строки JSON-объекта (пунктуация и пробелы на
+    границах слов сохраняются)."""
+    if isinstance(obj, dict):
+        return {k: fix_known_misspellings(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [fix_known_misspellings(v) for v in obj]
+    elif isinstance(obj, str):
+        tokens = re.split(r"(\s+)", obj)
+        for idx, tok in enumerate(tokens):
+            if not tok or tok.isspace():
+                continue
+            core = tok.strip(_STRIP_PUNCT)
+            if not core or not _known_misspelling(core):
+                continue
+            start = tok.index(core)
+            tokens[idx] = tok[:start] + _fix_known_misspelling_word(core) + tok[start + len(core):]
+        return "".join(tokens)
+    return obj
+
+
+# ============================================================
+# Правило 1в: словарная проверка полного написания (Hspell)
+# ============================================================
+# yod_doubling ловит одно семейство слов. Общий способ найти ВСЕ слова, у
+# которых не хватает (или лишний) йод/вав, — сверять написание со словарём
+# иврита в полном написании (Hspell: тот же, что в LibreOffice, ~470 тысяч
+# записей, лицензия AGPL — в репозиторий НЕ кладём, скачивается по
+# требованию в _dict/ и лежит в .gitignore). Слово, которого нет в словаре,
+# но есть вариант с одним лишним/недостающим י или ו, — почти наверняка
+# краткое (или переполное) написание: היתה→הייתה, חיב→חייב, מקוה→מקווה,
+# קבוץ→קיבוץ, רוֹאשׁ→ראש. Найдено при разборе отзыва про מעניין.
+# Правило не входит в find_all_violations (нужен словарь, а срабатываний в
+# непочищенном корпусе тысячи) — запускается отдельно: audit_corpus.py --dict.
+
+DICT_URL = "https://raw.githubusercontent.com/LibreOffice/dictionaries/master/he_IL/he_IL.dic"
+DICT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_dict")
+DICT_PATH = os.path.join(DICT_DIR, "he_IL.dic")
+DICT_ALLOW_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ktiv_male_dict_allow.json")
+_DICT_PREFIX_LETTERS = "ובהכלמש"
+_HEB_TOKEN_RE = re.compile(r"^[\u05D0-\u05EA\u0591-\u05C7]+$")
+_dict_cache = None
+_dict_allow_cache = None
+
+
+def load_dictionary(auto_download=True):
+    """Множество слов Hspell (без флагов) или None, если словаря нет и
+    скачать не удалось."""
+    global _dict_cache
+    if _dict_cache is not None:
+        return _dict_cache
+    if not os.path.exists(DICT_PATH) and auto_download:
+        try:
+            import urllib.request
+            os.makedirs(DICT_DIR, exist_ok=True)
+            urllib.request.urlretrieve(DICT_URL, DICT_PATH)
+        except Exception as e:  # нет сети/сертификатов — проверка просто недоступна
+            print(f"[!] не удалось скачать словарь Hspell: {e}", file=sys.stderr)
+            return None
+    if not os.path.exists(DICT_PATH):
+        return None
+    words = set()
+    with open(DICT_PATH, encoding="utf-8") as f:
+        for line in f:
+            words.add(line.rstrip("\n").split("/", 1)[0])
+    _dict_cache = words
+    return words
+
+
+def load_dict_allow():
+    """Слова (по буквам без огласовок), которые сознательно считаем верными,
+    хоть их и нет в словаре (имена собственные, разговорные формы)."""
+    global _dict_allow_cache
+    if _dict_allow_cache is None:
+        _dict_allow_cache = set()
+        if os.path.exists(DICT_ALLOW_PATH):
+            _dict_allow_cache = set(json.load(open(DICT_ALLOW_PATH, encoding="utf-8")))
+    return _dict_allow_cache
+
+
+def _in_dictionary(bare, words):
+    if bare in words:
+        return True
+    # словарь хранит основы: допускаем до трёх приставок ו/ב/ה/כ/ל/מ/ש
+    for n in range(1, 4):
+        if len(bare) - n < 2:
+            break
+        if all(c in _DICT_PREFIX_LETTERS for c in bare[:n]) and bare[n:] in words:
+            return True
+    return False
+
+
+def dictionary_candidates(bare, words):
+    """Варианты слова с одним лишним/недостающим י или ו, которые есть в
+    словаре: [(вид 'ins'|'del', позиция, буква, слово)]."""
+    seen = {}
+    for i in range(len(bare), -1, -1):  # с конца: удвоение ставим ПОСЛЕ существующей буквы
+        for letter in "יו":
+            cand = bare[:i] + letter + bare[i:]
+            if cand not in seen and _in_dictionary(cand, words):
+                seen[cand] = ("ins", i, letter, cand)
+    for i, ch in enumerate(bare):
+        if ch in "יו":
+            cand = bare[:i] + bare[i + 1:]
+            if len(cand) >= 2 and cand not in seen and _in_dictionary(cand, words):
+                seen[cand] = ("del", i, ch, cand)
+    return list(seen.values())
+
+
+def find_dictionary_spelling_violations(obj, path="", words=None):
+    """[(path, слово, причина, кандидаты)] — слова, которых нет в словаре
+    Hspell, но есть вариант ±י/ו. Пусто, если словаря нет."""
+    words = words if words is not None else load_dictionary()
+    if not words:
+        return []
+    allow = load_dict_allow()
+    out = []
+    for p, s in _walk_strings(obj, path):
+        for token in re.findall(r"[\u05D0-\u05EA\u0591-\u05C7]+", s):
+            bare = _bare_consonants(token)
+            if len(bare) < 3 or bare in allow or _in_dictionary(bare, words):
+                continue
+            cands = dictionary_candidates(bare, words)
+            if cands:
+                out.append((p, token, "нет в словаре Hspell; вероятно: " + " / ".join(c[3] for c in cands[:3]), cands))
+    return out
+
+
+def _insertion_fits_niqud(clusters, i, letter):
+    """Согласуется ли вставка буквы letter перед кластером i с огласовкой.
+    Автоматом только надёжное: удвоение уже стоящей буквы с огласовкой
+    (הָיְתָה→הָיְיתָה, מְקַוֶּה→מְקַוֶּוה) и י после хирика (קִבּוּץ→קִיבּוּץ).
+    י после цере/сеголя и ו после холама слишком часто дают ДРУГОЕ слово из
+    словаря (התמלך→התמליך), поэтому такие случаи идут на ручную проверку."""
+    if i == 0 or i > len(clusters):
+        return False
+    prev = clusters[i - 1]
+    base, marks = prev[0], prev[1:]
+    if i < len(clusters) and clusters[i][0] == letter and len(clusters[i]) == 1:
+        return False  # рядом уже стоит такая же голая буква
+    if letter == "י":
+        return (base == "י" and len(prev) > 1) or "\u05B4" in marks
+    return base == "ו" and len(prev) > 1
+
+
+def _plain_duplicate(clusters, j, letter):
+    """Кластер j — голая буква letter, рядом с которой стоит такая же с
+    огласовкой (כּוֹוחַ, דִּמְיוֹון): лишний повтор, который можно убрать."""
+    return (0 <= j < len(clusters) and clusters[j][0] == letter and len(clusters[j]) == 1
+            and any(0 <= k < len(clusters) and clusters[k][0] == letter and len(clusters[k]) > 1 for k in (j - 1, j + 1)))
+
+
+def suggest_dictionary_fix(word, words=None):
+    """Пытается механически исправить слово. Возвращает ('auto', новое слово),
+    если после сверки с огласовкой остаётся ровно один вариант из словаря
+    (удвоение предпочитается вставке матрес лекционис), иначе
+    ('review', [кандидаты]) для ручной проверки; None — слово в порядке или
+    словаря нет.
+    Автоматом исправляются только надёжные классы:
+      - удвоение י/ו: הָיְתָה→הָיְיתָה, חַיָּב→חַיָּיב, מְקַוֶּה→מְקַוֶּוה;
+      - י после хирика: קִבּוּץ→קִיבּוּץ, בִּתְחִלַּת→בִּתְחִילַּת;
+      - лишний повтор буквы: כּוֹוחַ→כּוֹחַ, דִּמְיוֹון→דִּמְיוֹן;
+      - холам-вав в слове ראש: רוֹאשׁ→רֹאשׁ (откат старой автоправки
+        ktiv_chaser; ראש пишется без вав).
+    Всё остальное (в том числе слова, которых просто нет в словаре) — на
+    ручную проверку."""
+    words = words if words is not None else load_dictionary()
+    if not words or not _HEB_TOKEN_RE.match(word):
+        return None
+    bare = _bare_consonants(word)
+    if len(bare) < 3 or bare in load_dict_allow() or _in_dictionary(bare, words):
+        return None
+    cands = dictionary_candidates(bare, words)
+    if not cands:
+        return None
+    clusters = split_clusters(word)
+    fits = []
+    for kind, i, letter, cand in cands:
+        if kind == "ins":
+            if _insertion_fits_niqud(clusters, i, letter):
+                fits.append((kind, i, letter, cand))
+        else:
+            ok_plain = any(_plain_duplicate(clusters, j, letter) for j in (i, i - 1, i + 1))
+            ok_rosh = letter == "ו" and clusters[i][1:] == CHOLAM and i > 0 and "ראש" in cand
+            if ok_plain or ok_rosh:
+                fits.append((kind, i, letter, cand))
+    doubling = [c for c in fits if c[0] == "ins" and clusters[c[1] - 1][0] == c[2] and len(clusters[c[1] - 1]) > 1]
+    if doubling:
+        fits = doubling
+    elif any(c[0] == "ins" for c in fits):
+        fits = [c for c in fits if c[0] == "ins"]  # вставка надёжнее удаления
+    if len(fits) != 1:
+        return ("review", [c[3] for c in (fits or cands)])
+    kind, i, letter, cand = fits[0]
+    if kind == "ins":
+        clusters.insert(i, letter)
+        return ("auto", "".join(clusters))
+    for j in (i, i - 1, i + 1):
+        if _plain_duplicate(clusters, j, letter):
+            del clusters[j]
+            return ("auto", "".join(clusters))
+    clusters[i - 1] += CHOLAM
+    del clusters[i]
+    return ("auto", "".join(clusters))
 
 
 # ============================================================
@@ -611,6 +957,10 @@ def find_all_violations(obj, root=None, path=""):
     out = []
     for p, word, reason in find_ktiv_chaser_violations(obj, path):
         out.append({"rule": "ktiv_chaser", "path": p, "word": word, "reason": reason})
+    for p, word, reason in find_yod_doubling_violations(obj, path):
+        out.append({"rule": "yod_doubling", "path": p, "word": word, "reason": reason})
+    for p, word, reason in find_known_misspelling_violations(obj, path):
+        out.append({"rule": "known_misspelling", "path": p, "word": word, "reason": reason})
     for p, word in find_homoglyph_violations(obj, path):
         out.append({"rule": "homoglyph", "path": p, "word": word})
     for p, word, reason in find_stray_control_char_violations(obj, path):
