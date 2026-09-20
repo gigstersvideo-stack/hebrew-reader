@@ -588,7 +588,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.82.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.82.1</div>
   </div>
 </div>
 
@@ -3843,6 +3843,9 @@ function renderLibrary(manifest){
   const sorted = sortLibrary(manifest, getBookProgress, popularityOf);
   const lastView = getLastView();
   const lastReadId = lastView && lastView.id && manifest.some(e => e.id === lastView.id) ? lastView.id : null;
+  // Подпись «★ Самая популярная» — приманка для того, кто ещё ничего не
+  // выбрал: как только человек открыл любую книгу, она пропадает.
+  const nothingChosenYet = !sorted.some(x => x.progress.opened || x.progress.completed);
   sorted.forEach(({ entry, progress, pop, starterLevel }) => {
     const card = document.createElement('div');
     card.className = 'book-card' + (entry.id === lastReadId ? ' last-read' : '');
@@ -3870,8 +3873,9 @@ function renderLibrary(manifest){
       ? `<div class="book-card-progress">↻ Продолжить чтение</div>` : '';
     const lastNote = entry.id === lastReadId ? `<div class="book-card-last">Последнее чтение</div>` : '';
     // «Стартовая» книга уровня: подпись про популярность — только если
-    // рейтинг реально есть, иначе не утверждаем того, чего не знаем.
-    const popularNote = starterLevel && pop && pop.readers > 0
+    // рейтинг реально есть (иначе не утверждаем того, чего не знаем) и
+    // человек ещё не выбрал ни одной книги.
+    const popularNote = nothingChosenYet && starterLevel && pop && pop.readers > 0
       ? `<div class="book-card-popular">★ Самая популярная на уровне ${starterLevel}</div>` : '';
     card.innerHTML = `
       ${levelBadge}
