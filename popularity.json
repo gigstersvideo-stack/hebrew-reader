@@ -1,0 +1,49 @@
+{
+  "updated": "2026-09-20T08:38:02Z",
+  "books": {
+    "bookshop-mystery-bet": {
+      "readers": 2,
+      "completed": 2
+    },
+    "demo-scifi": {
+      "readers": 2,
+      "completed": 2
+    },
+    "market-alef": {
+      "readers": 2,
+      "completed": 1
+    },
+    "robot-cat-alef": {
+      "readers": 2,
+      "completed": 2
+    },
+    "swarm-bet": {
+      "readers": 2,
+      "completed": 2
+    },
+    "zoo-alef": {
+      "readers": 2,
+      "completed": 1
+    },
+    "amnesia-gimel": {
+      "readers": 1,
+      "completed": 0
+    },
+    "bridge-alef-bet": {
+      "readers": 1,
+      "completed": 0
+    },
+    "camp-bet": {
+      "readers": 1,
+      "completed": 0
+    },
+    "quest-gimel": {
+      "readers": 1,
+      "completed": 1
+    },
+    "writer-dalet": {
+      "readers": 1,
+      "completed": 0
+    }
+  }
+}

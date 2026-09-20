@@ -321,6 +321,51 @@ function makeBook(id, n) {
   check('library sort: untouched card has neither badge', !cardTitles[idxOf('Untouched')].includes('Прочитано') && !cardTitles[idxOf('Untouched')].includes('Продолжить'));
 }
 
+// ---- 3b. Popularity rating + last-read highlight + last-view memory
+{
+  const man = [{ id: 'a' }, { id: 'b' }, { id: 'c' }, { id: 'd' }, { id: 'e' }];
+  const prog = { a: {opened:false,completed:false,lastOpened:0}, b: {opened:false,completed:false,lastOpened:0},
+                 c: {opened:false,completed:false,lastOpened:0}, d: {opened:true,completed:false,lastOpened:5},
+                 e: {opened:false,completed:true,lastOpened:0} };
+  const pop = { a: {readers:1,completed:0}, b: {readers:7,completed:3}, c: {readers:7,completed:1}, d: {readers:0,completed:0}, e: {readers:9,completed:9} };
+  const ids = (m, pr, po) => sandbox.sortLibrary(m, id => pr[id], id => po[id] || {readers:0,completed:0}).map(x => x.entry.id);
+  const order = ids(man, prog, pop);
+  check('popularity: started book stays first regardless of rating', order[0] === 'd');
+  check('popularity: untouched books go by readers, then completions', order.slice(1, 4).join('') === 'bca');
+  check('popularity: completed book stays last even if the most popular', order[4] === 'e');
+  const flat = ids(man, prog, {});
+  check('popularity: no ratings -> manifest order inside each tier', flat.join('') === 'dabce');
+
+  const started = Object.assign({}, prog, { a: {opened:true,completed:false,lastOpened:50}, d: {opened:true,completed:false,lastOpened:99} });
+  check('popularity: among started books the most recently opened wins', ids(man, started, pop).slice(0, 2).join('') === 'da');
+
+  // Четыре «стартовые» книги наверху: самая популярная на каждом уровне
+  const lvl = [
+    { id: 'a1', level: 'א' }, { id: 'a2', level: 'א' }, { id: 'b1', level: 'ב' }, { id: 'b2', level: 'ב' },
+    { id: 'g1', level: 'ג' }, { id: 'd1', level: 'ד' }, { id: 'd2', level: 'ד' }, { id: 'bridge', level: 'א→ב' },
+  ];
+  const fresh = Object.fromEntries(lvl.map(e => [e.id, {opened:false,completed:false,lastOpened:0}]));
+  const lp = { a2: {readers:4,completed:1}, b1: {readers:1,completed:0}, b2: {readers:6,completed:0}, d2: {readers:3,completed:0}, bridge: {readers:99,completed:0} };
+  const lo = sandbox.sortLibrary(lvl, id => fresh[id], id => lp[id] || {readers:0,completed:0}).map(x => x.entry.id);
+  check('starters: the four first books are the most popular of each level, in level order', lo.slice(0, 4).join(',') === 'a2,b2,g1,d2');
+  check('starters: the transitional א→ב book is never a starter', lo.slice(0, 4).indexOf('bridge') === -1);
+  const withStarted = Object.assign({}, fresh, { d1: {opened:true,completed:false,lastOpened:7} });
+  const lo2 = sandbox.sortLibrary(lvl, id => withStarted[id], id => lp[id] || {readers:0,completed:0}).map(x => x.entry.id);
+  check('starters: a started book still goes above the starters', lo2[0] === 'd1' && lo2.slice(1, 5).join(',') === 'a2,b2,g1,d2');
+
+  store = {};
+  allElements = [];
+  sandbox.setLastView('book', 'mid-book');
+  sandbox.setLastView('library');
+  const lv = sandbox.getLastView();
+  check('last view: leaving to the library keeps the last book id', lv.view === 'library' && lv.id === 'mid-book');
+  sandbox.renderLibrary([{ id: 'other', title: 'Other' }, { id: 'mid-book', title: 'Mid' }]);
+  const cards = fakeDocument.getElementById('bookGrid').children.filter(c => c.classList.contains('book-card') && !c.classList.contains('add-new'));
+  const lastCard = cards.find(c => c.classList.contains('last-read'));
+  check('last read: exactly the last opened book carries the highlight', cards.filter(c => c.classList.contains('last-read')).length === 1 && lastCard && lastCard.innerHTML.includes('Mid'));
+  check('last read: highlighted card has the "Последнее чтение" label', lastCard.innerHTML.includes('Последнее чтение'));
+}
+
 // ---- 4. Exact-position resume — the real bug found and fixed live this
 // session: the pre-existing "initial paint of the transport bar"
 // goToSentence() call ran BEFORE the first renderPage(), so

@@ -446,6 +446,18 @@
   .book-card-title{ font-family:'Frank Ruhl Libre', serif; font-size:16px; color:var(--ink); direction:rtl; text-align:right; }
   .book-card-sub{ font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); margin-top:6px; }
   .book-card-progress{ font-family:'Inter',sans-serif; font-size:11px; color:var(--gold); margin-top:8px; }
+  /* Последняя читавшаяся книга: спокойное выделение в тоне читалки (тонкая
+     золотая рамка, едва заметная тёплая заливка и подпись), без свечения. */
+  .book-card.last-read{
+    border-color: var(--gold);
+    background: color-mix(in srgb, var(--panel) 90%, var(--gold));
+  }
+  .book-card-last{
+    font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:6px; direction:ltr; text-align:left;
+  }
+  .book-card-last::before{ content:""; display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--gold); margin-right:6px; vertical-align:middle; }
+  .book-card-popular{ font-family:'Inter',sans-serif; font-size:11px; color:var(--gold); margin-top:8px; }
   .book-card.add-new{
     display:flex; align-items:center; justify-content:center; min-height:150px;
     border-style:dashed; color:var(--ink-soft); font-family:'Inter',sans-serif; font-size:13px;
@@ -576,7 +588,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.81.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.82.0</div>
   </div>
 </div>
 
@@ -3537,7 +3549,7 @@ document.getElementById('songCopyTimestampsBtn').addEventListener('click', async
   }
 });
 
-async function openSong(entry){
+async function openSong(entry, opts){
   let songData = null;
   try{
     const res = await fetch(entry.file, {cache: 'no-store'});
@@ -3546,11 +3558,13 @@ async function openSong(entry){
       if (json && Array.isArray(json.lines) && json.lines.length) songData = json;
     }
   }catch(err){}
-  if (!songData){ alert('Не смог загрузить песню ' + entry.file); return; }
+  if (!songData){ if (!(opts && opts.silent)) alert('Не смог загрузить песню ' + entry.file); return; }
 
   document.getElementById('libraryView').style.display = 'none';
   document.getElementById('songView').style.display = '';
   document.body.classList.add('reading');
+  markLastOpened(entry.id);
+  setLastView('song', entry.id);
 
   document.getElementById('songTitleEl').textContent = entry.title || songData.meta.titleHe;
   document.getElementById('songKicker').textContent = entry.kicker || '';
@@ -3605,6 +3619,7 @@ document.getElementById('backToLibrarySong').addEventListener('click', () => {
   document.getElementById('songView').style.display = 'none';
   document.getElementById('libraryView').style.display = '';
   document.body.classList.remove('reading');
+  setLastView('library');
   renderLibrary(window.readerManifest || []);
 });
 
@@ -3681,19 +3696,54 @@ async function boot(){
   manifest = manifest.concat(getLocalBooksIndex());
   window.readerManifest = manifest; // lets the global review card show "из книги: ..."
 
+  // Рейтинг книг (агрегаты по вошедшим читателям). Нет файла — не беда.
+  try {
+    const res = await fetch("popularity.json", {cache: "no-store"});
+    if (res.ok) window.readerPopularity = await res.json();
+  } catch (err) {
+    // no popularity.json -> порядок как в манифесте
+  }
+
   renderLibrary(manifest);
 
   document.getElementById('backToLibrary').addEventListener('click', () => {
     document.getElementById('readerView').style.display = 'none';
     document.getElementById('libraryView').style.display = '';
     document.body.classList.remove('reading');
+    setLastView('library');
     renderLibrary(manifest); // refresh in case a book was just imported
   });
 
   setupImportModal(manifest);
+
+  // Обновили страницу, пока читали, — возвращаемся на то же место (страницу
+  // и предложение внутри книги читалка уже восстанавливает сама). Если в
+  // последний раз вышли в библиотеку — остаёмся в библиотеке.
+  restoreLastView(manifest, window.__pendingRemoteLastView);
 }
 
-const LEVEL_LABELS = { 'א': 'начальный', 'ב': 'средний', 'ג': 'продвинутый' };
+// Возврат на последний экран. Из облака (для вошедших) приходит запись с
+// другого устройства: если она новее локальной и человек ещё ничего не
+// открывал на этом экране — перекидываем его туда же.
+function restoreLastView(manifest, remote){
+  if (window.__readerNavigated) return;
+  const local = getLastView();
+  let target = local;
+  if (remote && remote.at && (!local || remote.at > (local.at || 0))) {
+    target = remote;
+    try { localStorage.setItem(LASTVIEW_KEY, JSON.stringify(remote)); } catch(err){}
+    // осталась библиотека — обновим подсветку «последнего чтения»
+    if (remote.view === 'library' && document.getElementById('libraryView').style.display !== 'none') renderLibrary(manifest);
+  }
+  if (!target || (target.view !== 'book' && target.view !== 'song') || !target.id) return;
+  const entry = manifest.find(e => e.id === target.id);
+  if (!entry) return;
+  window.__readerNavigated = true;
+  if (target.view === 'song' || entry.kind === 'song') openSong(entry, {silent: true});
+  else openBook(entry, {silent: true});
+}
+
+const LEVEL_LABELS = { 'א': 'начальный', 'ב': 'средний', 'ג': 'продвинутый', 'ד': 'сложный' };
 
 // "Прочитано" is set the moment renderPage() reaches a book's last page
 // (see below) — reading progress itself (PAGE_KEY) already existed per
@@ -3717,32 +3767,85 @@ function markLastOpened(id){
   try { localStorage.setItem('hebrew-reader-lastopened:' + id, String(Date.now())); } catch(err){}
 }
 
-function renderLibrary(manifest){
-  updateGlobalReviewCount();
-  const grid = document.getElementById('bookGrid');
-  grid.innerHTML = '';
-  // Started-but-unfinished books first (what you'd actually want to open
-  // next), then untouched ones, finished ones pushed to the bottom. Within
-  // the "started" tier, the most recently opened comes first (site
-  // feedback, 2026-09-16) — before this, ties there fell back to the
-  // manifest's own order and never moved once opened. The other two tiers
-  // keep the old stable manifest-order tiebreak — "untouched"/"finished"
-  // don't have a meaningful recency to sort by (or, for finished, it's
-  // not what you'd want first anyway).
-  const sorted = manifest.map((entry, i) => ({ entry, i, progress: getBookProgress(entry.id) }))
+// ---- Где человек остановился: книга/песня или библиотека ----
+// {view: 'book'|'song'|'library', id: последняя открытая книга/песня (не
+// стирается при возврате в библиотеку — по ней подсвечивается карточка),
+// at: время}. Локально (обновление страницы возвращает туда же) и, для
+// вошедших через Google, ещё и в облаке — тогда работает между устройствами.
+const LASTVIEW_KEY = 'hebrew-reader-lastview';
+function getLastView(){
+  try {
+    const v = JSON.parse(localStorage.getItem(LASTVIEW_KEY) || 'null');
+    if (v && typeof v === 'object') return v;
+  } catch(err){}
+  return null;
+}
+function setLastView(view, id){
+  const prev = getLastView() || {};
+  const rec = { view, id: id || prev.id || null, at: Date.now() };
+  try { localStorage.setItem(LASTVIEW_KEY, JSON.stringify(rec)); } catch(err){}
+  if (window.cloudSyncLastView) window.cloudSyncLastView(rec);
+  return rec;
+}
+
+// Рейтинг из popularity.json (только агрегаты: сколько вошедших читателей
+// открывало книгу и сколько дочитало — см. update_popularity.py). Нет
+// файла — рейтинга нет, порядок как в манифесте.
+function popularityOf(id){
+  const b = window.readerPopularity && window.readerPopularity.books && window.readerPopularity.books[id];
+  return b ? { readers: b.readers || 0, completed: b.completed || 0 } : { readers: 0, completed: 0 };
+}
+
+// Порядок в библиотеке: начатые и недочитанные — первыми, среди них самая
+// недавно открытая; потом нетронутые, потом дочитанные. Внутри нетронутых и
+// дочитанных — по популярности (число читателей, затем дочитавших), при
+// равенстве по порядку манифеста; у начатых популярность — только
+// запасной критерий после свежести.
+// Уровень читателя заранее неизвестен, поэтому среди ещё не тронутых книг
+// наверх поднимаются четыре «стартовые» — самая популярная на каждом из
+// уровней א/ב/ג/ד (по порядку уровней); дальше остальные по популярности.
+// Без рейтинга стартовой на уровне становится первая по порядку манифеста.
+// Песни, пробный текст и переходные книги (א→ב) в стартовые не берутся.
+const STARTER_LEVELS = ['א', 'ב', 'ג', 'ד'];
+function sortLibrary(manifest, progressOf, popOf){
+  const tier = (p) => p.completed ? 2 : (p.opened ? 0 : 1);
+  const sorted = manifest.map((entry, i) => ({ entry, i, progress: progressOf(entry.id), pop: popOf(entry.id) }))
     .sort((a, b) => {
-      const tier = (p) => p.completed ? 2 : (p.opened ? 0 : 1);
       const diff = tier(a.progress) - tier(b.progress);
       if (diff !== 0) return diff;
       if (tier(a.progress) === 0) {
         const recencyDiff = b.progress.lastOpened - a.progress.lastOpened;
         if (recencyDiff !== 0) return recencyDiff;
       }
+      const readersDiff = b.pop.readers - a.pop.readers;
+      if (readersDiff !== 0) return readersDiff;
+      const doneDiff = b.pop.completed - a.pop.completed;
+      if (doneDiff !== 0) return doneDiff;
       return a.i - b.i;
     });
-  sorted.forEach(({ entry, progress }) => {
+  const untouched = sorted.filter(x => tier(x.progress) === 1);
+  const starters = [];
+  STARTER_LEVELS.forEach(level => {
+    const pick = untouched.find(x => x.entry.level === level && x.entry.kind !== 'song' && x.entry.id !== 'demo-scifi');
+    if (pick) { pick.starterLevel = level; starters.push(pick); }
+  });
+  if (!starters.length) return sorted;
+  const rest = untouched.filter(x => !x.starterLevel);
+  const started = sorted.filter(x => tier(x.progress) === 0);
+  const finished = sorted.filter(x => tier(x.progress) === 2);
+  return started.concat(starters, rest, finished);
+}
+
+function renderLibrary(manifest){
+  updateGlobalReviewCount();
+  const grid = document.getElementById('bookGrid');
+  grid.innerHTML = '';
+  const sorted = sortLibrary(manifest, getBookProgress, popularityOf);
+  const lastView = getLastView();
+  const lastReadId = lastView && lastView.id && manifest.some(e => e.id === lastView.id) ? lastView.id : null;
+  sorted.forEach(({ entry, progress, pop, starterLevel }) => {
     const card = document.createElement('div');
-    card.className = 'book-card';
+    card.className = 'book-card' + (entry.id === lastReadId ? ' last-read' : '');
     const spineColor = entry.spineColor || '#37564D';
     let spineContent, spineClass = 'book-spine', spineStyle = `background:${spineColor};`;
     if (entry.coverSvg){
@@ -3765,17 +3868,24 @@ function renderLibrary(manifest){
     const completedBadge = progress.completed ? `<div class="book-completed-badge">✓ Прочитано</div>` : '';
     const progressNote = !progress.completed && progress.opened
       ? `<div class="book-card-progress">↻ Продолжить чтение</div>` : '';
+    const lastNote = entry.id === lastReadId ? `<div class="book-card-last">Последнее чтение</div>` : '';
+    // «Стартовая» книга уровня: подпись про популярность — только если
+    // рейтинг реально есть, иначе не утверждаем того, чего не знаем.
+    const popularNote = starterLevel && pop && pop.readers > 0
+      ? `<div class="book-card-popular">★ Самая популярная на уровне ${starterLevel}</div>` : '';
     card.innerHTML = `
       ${levelBadge}
       ${completedBadge}
       <div class="${spineClass}" style="${spineStyle}">${spineContent}</div>
       <div class="book-card-body">
+        ${lastNote}
         <div class="book-card-title">${entry.title || entry.id}</div>
         <div class="book-card-sub">${entry.sub || ''}</div>
         ${progressNote}
+        ${popularNote}
       </div>
     `;
-    card.addEventListener('click', () => entry.kind === 'song' ? openSong(entry) : openBook(entry));
+    card.addEventListener('click', () => { window.__readerNavigated = true; entry.kind === 'song' ? openSong(entry) : openBook(entry); });
     grid.appendChild(card);
   });
 
@@ -3786,7 +3896,11 @@ function renderLibrary(manifest){
   grid.appendChild(addCard);
 }
 
-async function openBook(entry){
+// opts.silent — при автоматическом возврате на место чтения (обновление
+// страницы) не показывать alert, если книгу не удалось загрузить: просто
+// остаёмся в библиотеке.
+async function openBook(entry, opts){
+  const warn = (msg) => { if (!(opts && opts.silent)) alert(msg); };
   let bookData = null;
   if (entry.source === 'file'){
     try{
@@ -3796,15 +3910,15 @@ async function openBook(entry){
         if (json && Array.isArray(json.sentences) && json.sentences.length){
           bookData = json;
         } else {
-          alert('Файл ' + entry.file + ' пустой или не в том формате.');
+          warn('Файл ' + entry.file + ' пустой или не в том формате.');
           return;
         }
       } else {
-        alert('Не нашёл файл ' + entry.file + ' рядом с сайтом.');
+        warn('Не нашёл файл ' + entry.file + ' рядом с сайтом.');
         return;
       }
     }catch(err){
-      alert('Не смог загрузить ' + entry.file + ': ' + err.message);
+      warn('Не смог загрузить ' + entry.file + ': ' + err.message);
       return;
     }
   } else if (entry.source === 'local'){
@@ -3814,22 +3928,23 @@ async function openBook(entry){
       if (json && Array.isArray(json.sentences) && json.sentences.length){
         bookData = json;
       } else {
-        alert('Не смог найти сохранённые данные этой книги в браузере.');
+        warn('Не смог найти сохранённые данные этой книги в браузере.');
         return;
       }
     }catch(err){
-      alert('Ошибка чтения книги: ' + err.message);
+      warn('Ошибка чтения книги: ' + err.message);
       return;
     }
   }
   if (!bookData){
-    alert('Неизвестный источник книги: ' + entry.source);
+    warn('Неизвестный источник книги: ' + entry.source);
     return;
   }
   document.getElementById('libraryView').style.display = 'none';
   document.getElementById('readerView').style.display = '';
   document.body.classList.add('reading');
   markLastOpened(entry.id);
+  setLastView('book', entry.id);
   initReader(bookData, entry.id, entry);
 }
 
@@ -4203,6 +4318,21 @@ window.cloudFetchSettings = async function () {
   });
 };
 
+// Где человек остановился (книга/песня/библиотека) — отдельный документ в
+// той же коллекции readerSettings, что и настройки, чтобы не смешивать с
+// prefs. Пишется при каждом открытии книги и выходе в библиотеку.
+window.cloudSyncLastView = function (rec) {
+  if (!window.cloudUid) return;
+  setDoc(doc(fbDb, "users", window.cloudUid, "readerSettings", "lastView"), rec).catch(() => {});
+};
+window.cloudFetchLastView = async function () {
+  if (!window.cloudUid) return null;
+  return withAuthRaceRetry(async () => {
+    const snap = await getDoc(doc(fbDb, "users", window.cloudUid, "readerSettings", "lastView"));
+    return snap.exists() ? snap.data() : null;
+  });
+};
+
 // Persistent sync status (not just a one-off message) — reflects real
 // connectivity, since the persistent Firestore cache above means writes
 // keep working offline and just queue up rather than failing outright.
@@ -4298,6 +4428,13 @@ onAuthStateChanged(fbAuth, (user) => {
       pulls.push(window.aiKeyPullPromise);
     }
     Promise.all(pulls).then(() => updateCloudStatusIndicator());
+    // Место чтения с другого устройства: если новее локального и человек
+    // ещё ничего не открывал здесь — переходим туда (см. restoreLastView).
+    Promise.resolve(window.cloudFetchLastView()).then((remote) => {
+      if (!remote) return;
+      if (window.readerManifest) restoreLastView(window.readerManifest, remote);
+      else window.__pendingRemoteLastView = remote; // boot() ещё не дошёл до библиотеки
+    }).catch(() => {});
     const feedbackBtn = document.getElementById("btnOpenFeedbackReview");
     if (user.uid === window.OWNER_UID) {
       feedbackBtn.style.display = "";
