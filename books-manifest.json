@@ -386,6 +386,17 @@
       "file": "book-data-emigrant-dalet.json",
       "spineColor": "#3A6B8A",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M90 100 H210 M110 100 V70 L150 45 L190 70 V100\"/><rect x=\"138\" y=\"78\" width=\"24\" height=\"22\"/></g><g stroke=\"var(--gold)\"><path d=\"M40 60 Q60 40 80 60 M220 60 Q240 40 260 60\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "inheritance-dalet",
+      "title": "בֵּית הַסַּבְתָּא",
+      "kicker": "רמה ד׳ · סיפור מקורי",
+      "level": "ד",
+      "sub": "Две сестры разбирают дом умершей бабушки и спорят из-за пианино, пока не находят пачку старых писем, которая меняет их взгляд на ссору.",
+      "source": "file",
+      "file": "book-data-inheritance-dalet.json",
+      "spineColor": "#7A5A3A",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><rect x=\"90\" y=\"60\" width=\"120\" height=\"50\"/><path d=\"M90 60 V50 H210 V60 M105 60 V110 M120 60 V110 M135 60 V110\"/></g><g stroke=\"var(--gold)\"><circle cx=\"240\" cy=\"40\" r=\"10\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
     }
   ]
 }
