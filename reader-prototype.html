@@ -392,6 +392,8 @@
 
   .train-card{ background:var(--bg); border-radius:10px; padding:28px 20px; text-align:center; min-height:140px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; cursor:pointer; }
   .train-lemma{ font-family:'Frank Ruhl Libre', serif; font-size:30px; direction:rtl; }
+  .train-base{ font-size:12px; color:var(--ink-soft); margin-top:-4px; }
+  .train-base .he{ font-family:'Frank Ruhl Libre', serif; font-size:14px; direction:rtl; unicode-bidi:isolate; }
   .train-hint{ font-size:11px; color:var(--ink-soft); }
   .train-answer{ font-size:15px; color:var(--accent); display:none; }
   .train-answer.show{ display:block; }
@@ -588,7 +590,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.84.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.85.0</div>
   </div>
 </div>
 
@@ -1066,7 +1068,7 @@ function commitGlobalReview(item, quality){
     progressEl.textContent = `${reviewIndex + 1} / ${reviewQueue.length}`;
     areaEl.innerHTML = `
       <div class="train-card" id="reviewFlipCard">
-        <div class="train-lemma">${w.lemma}</div>
+        ${vocabHeadHtml(w)}
         <div class="train-hint" id="reviewFlipHint">нажми, чтобы увидеть перевод</div>
         <div class="train-answer" id="reviewAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos}${w.root && w.root !== '—' ? ' · ' + w.root : ''})</span></div>
         ${bookTitle ? `<div style="font-size:11px; color:var(--ink-soft); margin-top:4px;">из книги: ${bookTitle.title}</div>` : ''}
@@ -1104,6 +1106,24 @@ function commitGlobalReview(item, quality){
   document.getElementById('reviewClose').addEventListener('click', closeReview);
   backdrop.addEventListener('click', closeReview);
 })();
+
+// Слово в словаре: `lemma` — словарная форма, а `tr` в данных книги переводит
+// ту форму, что стояла в тексте (מֵהַחַלָּלִית → «из космического корабля»,
+// אֲבָנִים → «камни»). Раньше карточка показывала лемму с этим переводом —
+// единственное число рядом со множественным. Теперь запись хранит `form` (слово
+// как в тексте), а карточка показывает её, лемму — мелко под ней.
+function vocabFormOf(w) {
+  return String((w && w.t) || '').replace(/^[^\u0590-\u05FF]+|[^\u0590-\u05FF]+$/g, '');
+}
+function vocabPlain(s) { return String(s || '').replace(/[\u0591-\u05C7]/g, ''); }
+function vocabFormDiffers(e) {
+  return !!(e && e.form && vocabPlain(e.form) !== vocabPlain(e.lemma));
+}
+function vocabHeadHtml(e) {
+  const head = e.form || e.lemma;
+  return `<div class="train-lemma">${head}</div>` +
+    (vocabFormDiffers(e) ? `<div class="train-base">начальная форма: <span class="he">${e.lemma}</span></div>` : '');
+}
 
 function initReader(data, bookId, meta) {
 activeReaderToken++;
@@ -1469,7 +1489,7 @@ function saveVocabEntry(w, wordEl){
   // updates back to. updatedAt is bumped on every touch (star OR later FSRS
   // review) — addedAt alone can't be the merge-conflict key once reviews
   // start changing srs without changing addedAt (see pullCloudProgress).
-  const entry = {lemma:w.lemma, pos:w.pos, tr:w.tr, extra:w.extra, root:w.root, bookId, addedAt:Date.now(), updatedAt:Date.now()};
+  const entry = {lemma:w.lemma, form:vocabFormOf(w), pos:w.pos, tr:w.tr, extra:w.extra, root:w.root, bookId, addedAt:Date.now(), updatedAt:Date.now()};
   try{ localStorage.setItem(STORAGE_PREFIX + w.lemma, JSON.stringify(entry)); }
   catch(err){ console.error('save failed', err); return; }
   vocabCache[w.lemma] = entry;
@@ -1549,7 +1569,7 @@ function renderMineList(){
   }
   list.innerHTML = entries.map(e => `
     <div class="drawer-item">
-      <div><div class="dlemma">${e.lemma}</div><div class="dtr">${e.pos} · ${e.tr}</div></div>
+      <div><div class="dlemma">${e.form || e.lemma}</div><div class="dtr">${e.pos} · ${e.tr}${vocabFormDiffers(e) ? ` · нач. форма ${e.lemma}` : ''}</div></div>
       <button class="drawer-remove" data-lemma="${e.lemma}">убрать</button>
     </div>`).join('');
   list.querySelectorAll('.drawer-remove').forEach(btn => {
@@ -1679,7 +1699,7 @@ document.querySelectorAll('.drawer-tab').forEach(tab => {
 document.getElementById('exportBtn').addEventListener('click', () => {
   const entries = Object.values(vocabCache);
   if (entries.length === 0){ alert('Пока нечего экспортировать — сохрани хотя бы одно слово.'); return; }
-  const rows = entries.map(e => [e.lemma, `${e.tr} (${e.pos})${e.extra ? ' — ' + e.extra : ''}`]);
+  const rows = entries.map(e => [e.form || e.lemma, `${e.tr} (${e.pos})${e.extra ? ' — ' + e.extra : ''}${vocabFormDiffers(e) ? ' [нач. форма: ' + e.lemma + ']' : ''}`]);
   const tsv = rows.map(r => r.map(v => v.replace(/\t/g,' ').replace(/\n/g,' ')).join('\t')).join('\n');
   const blob = new Blob([tsv], {type:'text/plain;charset=utf-8'});
   const a = document.createElement('a');
@@ -1739,7 +1759,7 @@ function renderTrainCard(){
   const area = document.getElementById('trainArea');
   area.innerHTML = `
     <div class="train-card" id="flipCard">
-      <div class="train-lemma">${w.lemma}</div>
+      ${vocabHeadHtml(w)}
       <div class="train-hint" id="flipHint">нажми, чтобы увидеть перевод</div>
       <div class="train-answer" id="trainAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos})</span></div>
     </div>
@@ -3345,7 +3365,7 @@ function loadSongVocabCache(songId){
 }
 
 function saveSongVocabEntry(w, songId){
-  const entry = {lemma:w.lemma, pos:w.pos, tr:w.tr, extra:w.extra, root:w.root, bookId:'song:'+songId, addedAt:Date.now(), updatedAt:Date.now()};
+  const entry = {lemma:w.lemma, form:vocabFormOf(w), pos:w.pos, tr:w.tr, extra:w.extra, root:w.root, bookId:'song:'+songId, addedAt:Date.now(), updatedAt:Date.now()};
   try{ localStorage.setItem(songVocabKey(songId, w.lemma), JSON.stringify(entry)); }catch(err){ return; }
   songVocabCache[w.lemma] = entry;
   if (window.cloudSyncVocab) window.cloudSyncVocab('song:'+songId, w.lemma, entry);

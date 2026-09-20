@@ -456,5 +456,16 @@ function makeBook(id, n) {
   check('completion: a book whose only page IS the last page is marked completed on open', store['hebrew-reader-completed:short-book'] === '1');
 }
 
+// ---- vocab cards: the form from the text, not the lemma, carries the translation ----
+{
+  check('vocab: form strips trailing punctuation', sandbox.vocabFormOf({t:'הַכּוֹכָב,'}) === 'הַכּוֹכָב');
+  check('vocab: form strips quotes/dots on both sides', sandbox.vocabFormOf({t:'«אֲבָנִים».'}) === 'אֲבָנִים');
+  check('vocab: same word (nikud aside) is not "different"', !sandbox.vocabFormDiffers({form:'אֶבֶן', lemma:'אֶבֶן'}));
+  check('vocab: inflected form differs from lemma', sandbox.vocabFormDiffers({form:'אֲבָנִים', lemma:'אֶבֶן'}));
+  check('vocab: old entry without form falls back to lemma', !sandbox.vocabFormDiffers({lemma:'אֶבֶן'}) && sandbox.vocabHeadHtml({lemma:'אֶבֶן'}).includes('>אֶבֶן<'));
+  const h = sandbox.vocabHeadHtml({form:'מֵהַחַלָּלִית', lemma:'חַלָּלִית'});
+  check('vocab: card headline is the form, lemma shown as base', h.includes('>מֵהַחַלָּלִית<') && h.includes('начальная форма') && h.includes('חַלָּלִית'));
+}
+
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
