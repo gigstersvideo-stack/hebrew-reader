@@ -408,6 +408,17 @@
       "file": "book-data-teacher-dalet.json",
       "spineColor": "#4E6B3A",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><rect x=\"100\" y=\"45\" width=\"100\" height=\"55\" rx=\"3\"/><path d=\"M110 60 H190 M110 75 H170\"/></g><g stroke=\"var(--gold)\"><path d=\"M120 115 H180 M150 100 V115\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "twins-dalet",
+      "title": "הָאַחִים הַתְּאוֹמִים",
+      "kicker": "רמה ד׳ · סיפור מקורי",
+      "level": "ד",
+      "sub": "Близнецы Игаль и Йорам управляют отцовской мебельной фабрикой, но предложение о продаже впервые ссорит их, пока не помогает честный разговор.",
+      "source": "file",
+      "file": "book-data-twins-dalet.json",
+      "spineColor": "#8A4E3A",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><rect x=\"90\" y=\"70\" width=\"50\" height=\"35\"/><rect x=\"160\" y=\"70\" width=\"50\" height=\"35\"/><path d=\"M90 70 L115 50 L140 70 M160 70 L185 50 L210 70\"/></g><g stroke=\"var(--gold)\"><path d=\"M40 115 H260\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
     }
   ]
 }
