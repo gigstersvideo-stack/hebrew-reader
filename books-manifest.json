@@ -364,6 +364,17 @@
       "file": "book-data-inventor-gimel.json",
       "spineColor": "#B0803A",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><rect x=\"115\" y=\"40\" width=\"70\" height=\"50\" rx=\"8\"/><circle cx=\"135\" cy=\"62\" r=\"6\"/><circle cx=\"165\" cy=\"62\" r=\"6\"/><path d=\"M135 80 H165 M150 40 V28\"/></g><g stroke=\"var(--gold)\"><circle cx=\"150\" cy=\"24\" r=\"4\"/><path d=\"M100 110 H200\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "concert-dalet",
+      "title": "קוֹנְצֶרְט הַפְּרֵדָה",
+      "kicker": "רמה ד׳ · סיפור מקורי",
+      "level": "ד",
+      "sub": "Виолончелистка Рут готовится к прощальному концерту, но дирижировать будет Давид, бывший ученик, публично осудивший её много лет назад.",
+      "source": "file",
+      "file": "book-data-concert-dalet.json",
+      "spineColor": "#6B2E5B",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M130 30 Q100 70 130 110 Q150 130 170 110 Q200 70 170 30 Z\"/><path d=\"M150 30 V120\"/></g><g stroke=\"var(--gold)\"><path d=\"M200 50 L230 40 M200 70 L235 65\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
     }
   ]
 }
