@@ -342,6 +342,17 @@
       "file": "book-data-vrgame-gimel.json",
       "spineColor": "#4A3A8A",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><rect x=\"105\" y=\"45\" width=\"90\" height=\"45\" rx=\"8\"/><path d=\"M120 45 V35 H180 V45\"/><circle cx=\"130\" cy=\"68\" r=\"9\"/><circle cx=\"170\" cy=\"68\" r=\"9\"/></g><g stroke=\"var(--gold)\"><path d=\"M105 110 H195 M120 120 H180\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "island-gimel",
+      "title": "לַיְלָה עַל הָאִי",
+      "kicker": "רמה ג׳ · סיפור מקורי",
+      "level": "ג",
+      "sub": "Четверо друзей отправляются в поход на каяках, шторм выбрасывает их на необитаемый остров, и им приходится пережить ночь вместе.",
+      "source": "file",
+      "file": "book-data-island-gimel.json",
+      "spineColor": "#2E7A5B",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M60 100 Q150 60 240 100\"/><path d=\"M150 80 V45 M150 45 L175 55 L150 60\"/></g><g stroke=\"var(--gold)\"><path d=\"M40 118 Q70 108 100 118 T160 118 T220 118 T280 118\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>"
     }
   ]
 }
