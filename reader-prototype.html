@@ -590,7 +590,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.85.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.86.0</div>
   </div>
 </div>
 
@@ -3952,12 +3952,14 @@ function renderLibrary(manifest){
     card.className = 'book-card' + (entry.id === lastReadId ? ' last-read' : '');
     const spineColor = entry.spineColor || '#37564D';
     let spineContent, spineClass = 'book-spine', spineStyle = `background:${spineColor};`;
-    if (entry.coverSvg){
+    // Растровая обложка (covers/<id>.webp, см. build_covers.py) главнее старого
+    // SVG; SVG остаётся запасным — если файл не загрузился, подставляется он.
+    if (entry.cover){
+      spineContent = `<img class="cover-img" src="${entry.cover}" alt="" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block;">`;
+      spineStyle += ' padding:0; overflow:hidden;';
+    } else if (entry.coverSvg){
       spineContent = entry.coverSvg;
       spineClass += ' has-cover-svg';
-    } else if (entry.cover){
-      spineContent = `<img src="${entry.cover}" alt="" style="width:100%; height:100%; object-fit:cover;">`;
-      spineStyle += ' padding:0; overflow:hidden;';
     } else {
       spineContent = entry.title || entry.id;
     }
@@ -3990,6 +3992,15 @@ function renderLibrary(manifest){
         ${popularNote}
       </div>
     `;
+    if (entry.cover && entry.coverSvg){
+      const coverImg = card.querySelector('img.cover-img');
+      if (coverImg) coverImg.addEventListener('error', () => {
+        const spine = coverImg.parentElement;
+        spine.innerHTML = entry.coverSvg;
+        spine.classList.add('has-cover-svg');
+        spine.style.padding = '';
+      }, { once: true });
+    }
     card.addEventListener('click', () => { window.__readerNavigated = true; entry.kind === 'song' ? openSong(entry) : openBook(entry); });
     grid.appendChild(card);
   });

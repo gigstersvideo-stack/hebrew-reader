@@ -108,6 +108,7 @@ def audit_manifests(total, confirmed_noise):
             entries.append((mf, e))
 
     seen_ids = {}
+    seen_covers = {}
     for mf, e in entries:
         eid = e.get("id")
         if not eid:
@@ -134,6 +135,23 @@ def audit_manifests(total, confirmed_noise):
             except ET.ParseError as ex:
                 print(f"  manifest_invalid_svg · {mf} · id={eid!r} · {ex}", file=sys.stderr)
                 total += 1
+
+        # v1.86.0: растровая обложка должна существовать, а обложки книг — не повторяться
+        # (правило памятки для добавления книг «уникальные coverSvg» раньше не проверялось:
+        # у 8 книг был один и тот же SVG). Эффективная обложка: файл cover, иначе coverSvg.
+        cover = e.get("cover")
+        if cover and not str(cover).startswith("data:"):
+            if not os.path.exists(os.path.join(HERE, cover)):
+                print(f"  manifest_missing_cover · {mf} · id={eid!r} cover={cover!r} не найден", file=sys.stderr)
+                total += 1
+        key = ("cover", cover) if cover else (("svg", svg) if svg else None)
+        if key:
+            if key in seen_covers:
+                print(f"  manifest_duplicate_cover · {mf} · id={eid!r} повторяет обложку книги {seen_covers[key]!r}",
+                      file=sys.stderr)
+                total += 1
+            else:
+                seen_covers[key] = eid
     return total, confirmed_noise
 
 
