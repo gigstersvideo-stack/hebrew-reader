@@ -467,5 +467,57 @@ function makeBook(id, n) {
   check('vocab: card headline is the form, lemma shown as base', h.includes('>מֵהַחַלָּלִית<') && h.includes('начальная форма') && h.includes('חַלָּלִית'));
 }
 
+// Общее повторение слов из разных книг (v1.87.1): одна и та же лемма+перевод,
+// сохранённая из нескольких книг, не должна повторяться в очереди дважды с
+// двумя расходящимися расписаниями (отзыв «можно добавить одно и то же слово из
+// разных книг — баг или так задумано?», 2026-09-22).
+{
+  const { mergeVocabDuplicates, commitGlobalReview, schedule } = sandbox;
+  const now = Date.now();
+  const dueA = { tr: 'не (частица)', pos: 'частица', form: 'la-form-A', srs: Object.assign({}, schedule(null, 4), { due: now - 1000 }) };
+  const dueB = { tr: 'не (частица)', pos: 'частица', form: 'la-form-B', srs: Object.assign({}, schedule(null, 4), { due: now - 500 }) };
+  const merged = mergeVocabDuplicates([
+    { bookId: 'book-a', lemma: 'lo', entry: dueA },
+    { bookId: 'book-b', lemma: 'lo', entry: dueB },
+  ]);
+  check('vocab review: same lemma+translation from two books becomes ONE queue item', merged.length === 1);
+  check('vocab review: the merged item remembers both book copies', merged[0].members.length === 2);
+  check('vocab review: the merged item shows the most overdue copy first', merged[0].entry.srs.due === dueA.srs.due);
+  check('vocab review: an ambiguous per-book inflected form is dropped on merge', merged[0].entry.form === undefined);
+
+  const diffTr = mergeVocabDuplicates([
+    { bookId: 'book-a', lemma: 'lo', entry: { tr: 'не (частица)', srs: { due: now - 1000 } } },
+    { bookId: 'book-b', lemma: 'lo', entry: { tr: 'нет', srs: { due: now - 500 } } },
+  ]);
+  check('vocab review: the same lemma with a DIFFERENT translation stays two separate cards', diffTr.length === 2);
+
+  const fresh = mergeVocabDuplicates([
+    { bookId: 'book-a', lemma: 'xyz', entry: { tr: 'т', form: 'f1' } },
+    { bookId: 'book-b', lemma: 'xyz', entry: { tr: 'т', form: 'f2' } },
+  ]);
+  check('vocab review: two never-reviewed copies also merge into one fresh card', fresh.length === 1 && !fresh[0].entry.srs);
+
+  const notYetDue = mergeVocabDuplicates([
+    { bookId: 'book-a', lemma: 'later', entry: { tr: 'т', srs: { due: now + 10 * 86400000 } } },
+  ]);
+  check('vocab review: a single copy not yet due stays out of the queue entirely', notYetDue.length === 0);
+
+  const single = mergeVocabDuplicates([{ bookId: 'book-a', lemma: 'solo', entry: { tr: 'т', form: 'kept', srs: { due: now - 1 } } }]);
+  check('vocab review: a word saved from only one book keeps its inflected form', single[0].entry.form === 'kept');
+
+  // Ответ на склеенной карточке расходится на ОБЕ книжные копии, не только на
+  // ту, что была показана представителем. due читаем ДО commitGlobalReview —
+  // schedule() мутирует srs "на месте", а merged[0].entry.srs — тот же объект,
+  // что dueA.srs, так что после вызова dueA.srs.due уже был бы НОВЫМ значением.
+  const dueABefore = dueA.srs.due;
+  store['hebrew-reader-vocab:book-a:lo'] = JSON.stringify(dueA);
+  store['hebrew-reader-vocab:book-b:lo'] = JSON.stringify(dueB);
+  commitGlobalReview(merged[0], 5);
+  const savedA = JSON.parse(store['hebrew-reader-vocab:book-a:lo']);
+  const savedB = JSON.parse(store['hebrew-reader-vocab:book-b:lo']);
+  check('vocab review: rating a merged card updates BOTH underlying book copies', savedA.srs && savedB.srs && savedA.srs.due === savedB.srs.due);
+  check('vocab review: the rating actually advanced the schedule (not just copied stale due)', savedA.srs.due > dueABefore);
+}
+
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

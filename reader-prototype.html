@@ -623,7 +623,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.87.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.87.1</div>
   </div>
 </div>
 
@@ -1055,6 +1055,45 @@ function scanAllLocalVocab(){
   return out;
 }
 
+// Одно и то же слово, сохранённое из нескольких книг (одна лемма, один перевод),
+// в общем повторении — не два разных факта для памяти, а один: без склейки
+// «לא», сохранённое и в «הספר הנעלם», и в «מיה והבלון», показывалось бы в очереди
+// ДВАЖДЫ подряд, с двумя независимыми расписаниями (отзыв пользователя,
+// 2026-09-22). Склеиваем только когда лемма И перевод совпадают — разный перевод
+// значит разный смысл в разном контексте, это стоит повторять отдельно. Внутри
+// одной книги («Мои слова», покрытие) дублей и так нет — там не по лемме+переводу,
+// а по книге+лемме, здесь трогаем только СВОДНЫЙ список.
+function mergeVocabDuplicates(all){
+  const now = Date.now();
+  const groups = new Map();
+  all.forEach(x => {
+    const key = x.lemma + '\u0000' + String(x.entry.tr || '').trim();
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(x);
+  });
+  const due = [], fresh = [];
+  groups.forEach(members => {
+    const dueMembers = members.filter(m => m.entry.srs && m.entry.srs.due <= now);
+    const freshMembers = members.filter(m => !m.entry.srs);
+    let rep, bucket;
+    if (dueMembers.length){
+      rep = dueMembers.reduce((a, b) => a.entry.srs.due <= b.entry.srs.due ? a : b);
+      bucket = due;
+    } else if (freshMembers.length){
+      rep = freshMembers[0];
+      bucket = fresh;
+    } else {
+      return; // все копии уже отревьюены, и ни у одной ещё не подошёл срок — этому слову рано в очередь
+    }
+    // .form — инфлексия из КОНКРЕТНОЙ книги (см. vocabHeadHtml выше); при нескольких
+    // членах она неоднозначна, показываем словарную лемму, а не форму одной из них.
+    const entry = members.length > 1 ? Object.assign({}, rep.entry, { form: undefined }) : rep.entry;
+    bucket.push({ bookId: rep.bookId, lemma: rep.lemma, entry, members });
+  });
+  due.sort((a, b) => a.entry.srs.due - b.entry.srs.due);
+  return due.concat(fresh);
+}
+
 async function buildGlobalReviewQueue(){
   const all = scanAllLocalVocab();
   if (window.cloudFetchAllVocab){
@@ -1067,27 +1106,29 @@ async function buildGlobalReviewQueue(){
       });
     }catch(err){ console.warn('[ivrit-reader] global vocab cloud fetch failed', err); }
   }
-  const now = Date.now();
-  const due = all.filter(x => x.entry.srs && x.entry.srs.due <= now).sort((a, b) => a.entry.srs.due - b.entry.srs.due);
-  const fresh = all.filter(x => !x.entry.srs);
-  return due.concat(fresh);
+  return mergeVocabDuplicates(all);
 }
 
 function updateGlobalReviewCount(){
-  const now = Date.now();
   const all = scanAllLocalVocab();
-  const count = all.filter(x => !x.entry.srs || x.entry.srs.due <= now).length;
   const el = document.getElementById('globalReviewCount');
-  if (el) el.textContent = count;
+  if (el) el.textContent = mergeVocabDuplicates(all).length;
 }
 
+// item.members — все book-копии этого слова (см. mergeVocabDuplicates); ответ
+// («Легко»/«Снова»/…) — один факт памяти, поэтому расходится на ВСЕ копии сразу,
+// иначе они снова разойдутся по расписанию при следующей склейке.
 function commitGlobalReview(item, quality){
-  const entry = item.entry;
-  entry.srs = schedule(entry.srs, quality);
-  entry.updatedAt = Date.now();
-  const key = 'hebrew-reader-vocab:' + item.bookId + ':' + item.lemma;
-  try{ localStorage.setItem(key, JSON.stringify(entry)); }catch(err){}
-  if (window.cloudSyncVocab) window.cloudSyncVocab(item.bookId, item.lemma, entry);
+  const srs = schedule(item.entry.srs, quality);
+  const updatedAt = Date.now();
+  const members = item.members || [{ bookId: item.bookId, lemma: item.lemma, entry: item.entry }];
+  members.forEach(m => {
+    m.entry.srs = srs;
+    m.entry.updatedAt = updatedAt;
+    const key = 'hebrew-reader-vocab:' + m.bookId + ':' + m.lemma;
+    try{ localStorage.setItem(key, JSON.stringify(m.entry)); }catch(err){}
+    if (window.cloudSyncVocab) window.cloudSyncVocab(m.bookId, m.lemma, m.entry);
+  });
 }
 
 (() => {
@@ -1116,14 +1157,19 @@ function commitGlobalReview(item, quality){
     }
     const item = reviewQueue[reviewIndex];
     const w = item.entry;
-    const bookTitle = (window.readerManifest || []).find(b => b.id === item.bookId);
+    // Слово, склеенное из нескольких книг (mergeVocabDuplicates), показывает
+    // «в N книгах», а не название какой-то одной из них.
+    const memberBookIds = Array.from(new Set((item.members || [{ bookId: item.bookId }]).map(m => m.bookId)));
+    const bookLabel = memberBookIds.length > 1
+      ? `в ${memberBookIds.length} книгах`
+      : (() => { const b = (window.readerManifest || []).find(x => x.id === memberBookIds[0]); return b ? `из книги: ${b.title}` : ''; })();
     progressEl.textContent = `${reviewIndex + 1} / ${reviewQueue.length}`;
     areaEl.innerHTML = `
       <div class="train-card" id="reviewFlipCard">
         ${vocabHeadHtml(w)}
         <div class="train-hint" id="reviewFlipHint">нажми, чтобы увидеть перевод</div>
         <div class="train-answer" id="reviewAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos}${w.root && w.root !== '—' ? ' · ' + w.root : ''})</span></div>
-        ${bookTitle ? `<div style="font-size:11px; color:var(--ink-soft); margin-top:4px;">из книги: ${bookTitle.title}</div>` : ''}
+        ${bookLabel ? `<div style="font-size:11px; color:var(--ink-soft); margin-top:4px;">${bookLabel}</div>` : ''}
       </div>
       <div class="train-btns review-btns" id="reviewBtns" style="display:none;">
         <button class="train-no" data-q="1" style="background:var(--danger); color:#fff;">Снова</button>

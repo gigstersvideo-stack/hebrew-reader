@@ -36,6 +36,7 @@ hebrew_spelling_rules.py (та же копия, синхронизируется
 import glob
 import json
 import os
+import re
 import sys
 import xml.etree.ElementTree as ET
 
@@ -57,6 +58,48 @@ def _lines_key(data):
     if "lines" in data:
         return "lines"
     return None
+
+
+# Постоянные проверки для трёх классов испорченной lemma, найденных и
+# исправленных вручную 2026-09-22 (см. scratchpad/lemma_cleanup.py той сессии
+# и CHANGELOG v1.87.1) — чтобы то же самое не пролезло незамеченным в новых
+# книгах. Гереш/гершайм/дефис/maqaf НЕ считаются "краевой пунктуацией" — они
+# бывают частью самого слова (буквенная нумерация "א'", составные через
+# дефис). pos 'пунктуация'/'пункт.' — легитимные отдельные слова-пунктуация
+# (другой, известный и намеренно не проверяемый здесь класс, см. ROADMAP).
+_EDGE_PUNCT = ".,!?;:\"'()«»[]{}…“”„‘’"
+_EDGE_PAT = re.compile(r"^[" + re.escape(_EDGE_PUNCT) + r"]+|[" + re.escape(_EDGE_PUNCT) + r"]+$")
+_HAS_HEBREW = re.compile(r"[֐-׿]")
+_LATIN_CYR = re.compile(r"[a-zA-ZЀ-ӿ]")
+_CYR_POS_LABEL = re.compile(r"^[Ѐ-ӿ]+\.?$")
+_LOOKALIKE = re.compile(r"[рР]")  # кириллическая р/Р среди иврита
+
+
+def _bare_letters(s):
+    return re.sub(r"[^א-ת]", "", s or "")
+
+
+def find_lemma_corruption_violations(w, base_path):
+    lem = w.get("lemma")
+    if not lem:
+        return []
+    out = []
+    if _CYR_POS_LABEL.fullmatch(lem):
+        out.append((base_path, lem, "лемма — русское обозначение части речи, а не само слово"))
+    elif _HAS_HEBREW.search(lem) and _LOOKALIKE.search(lem):
+        out.append((base_path, lem, "похожая по контуру кириллическая буква внутри ивритской леммы"))
+    elif (
+        _HAS_HEBREW.search(lem)
+        and _EDGE_PAT.search(lem)
+        and w.get("pos") not in ("пунктуация", "пункт.")
+        and len(_bare_letters(_EDGE_PAT.sub("", lem))) >= 2
+    ):
+        out.append((base_path, lem, "пунктуация приклеена к лемме по краю"))
+    t = w.get("t") or ""
+    core = re.sub(r"^\W+|\W+$", "", t)
+    if core and _LATIN_CYR.search(core) and not _HAS_HEBREW.search(core):
+        out.append((base_path, t, "в слове вообще нет ивритских букв (кириллица/латиница просочилась в текст)"))
+    return out
 
 
 def audit_content_file(fname, cache, total, confirmed_noise):
@@ -82,6 +125,10 @@ def audit_content_file(fname, cache, total, confirmed_noise):
             for p, word, reason in rules.find_stray_control_char_violations(w, base_path):
                 total, confirmed_noise = _report(
                     cache, "stray_control", p, word, f" ({reason})", total, confirmed_noise
+                )
+            for p, word, reason in find_lemma_corruption_violations(w, base_path):
+                total, confirmed_noise = _report(
+                    cache, "lemma_corruption", p, word, f" ({reason})", total, confirmed_noise
                 )
     return total, confirmed_noise
 
