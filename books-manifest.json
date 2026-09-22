@@ -457,6 +457,205 @@
       "spineColor": "#8A4E3A",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><rect x=\"90\" y=\"70\" width=\"50\" height=\"35\"/><rect x=\"160\" y=\"70\" width=\"50\" height=\"35\"/><path d=\"M90 70 L115 50 L140 70 M160 70 L185 50 L210 70\"/></g><g stroke=\"var(--gold)\"><path d=\"M40 115 H260\"/></g><circle cx=\"60\" cy=\"40\" r=\"3\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/><circle cx=\"240\" cy=\"35\" r=\"2.5\" fill=\"var(--gold)\" stroke=\"var(--gold)\"/></svg>",
       "cover": "covers/twins-dalet.webp"
+    },
+    {
+      "id": "epic-rubezh",
+      "kind": "series",
+      "title": "הַיָּרֶם: הַגְּבוּל",
+      "kicker": "רמה ב׳ · סדרה",
+      "level": "ב",
+      "sub": "Курсанты, боевые шагоходы и мигрирующая Стая — сериал в 200 глав; книга 1, часть 1. Главы выходят по мере готовности.",
+      "spineColor": "#4A3B63",
+      "chapters": [
+        {
+          "id": "epic-rubezh-ch01",
+          "num": 1,
+          "title": "Присоска у шахты",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch02",
+          "num": 2,
+          "title": "Шаттл",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch03",
+          "num": 3,
+          "title": "Ворота",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch04",
+          "num": 4,
+          "title": "Корешок",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "epic-rubezh-ch01",
+      "kind": "book",
+      "hiddenFromLibrary": true,
+      "title": "הַיָּרֶם: הַגְּבוּל — פרק 1",
+      "kicker": "פרק 1 · Присоска у шахты",
+      "level": "ב",
+      "sub": "Присоска у шахты",
+      "source": "file",
+      "file": "book-data-epic-ch01.json",
+      "spineColor": "#4A3B63",
+      "seriesId": "epic-rubezh",
+      "seriesTitle": "הַיָּרֶם: הַגְּבוּל",
+      "chapterNum": 1,
+      "chapters": [
+        {
+          "id": "epic-rubezh-ch01",
+          "num": 1,
+          "title": "Присоска у шахты",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch02",
+          "num": 2,
+          "title": "Шаттл",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch03",
+          "num": 3,
+          "title": "Ворота",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch04",
+          "num": 4,
+          "title": "Корешок",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "epic-rubezh-ch02",
+      "kind": "book",
+      "hiddenFromLibrary": true,
+      "title": "הַיָּרֶם: הַגְּבוּל — פרק 2",
+      "kicker": "פרק 2 · Шаттл",
+      "level": "ב",
+      "sub": "Шаттл",
+      "source": "file",
+      "file": "book-data-epic-ch02.json",
+      "spineColor": "#4A3B63",
+      "seriesId": "epic-rubezh",
+      "seriesTitle": "הַיָּרֶם: הַגְּבוּל",
+      "chapterNum": 2,
+      "chapters": [
+        {
+          "id": "epic-rubezh-ch01",
+          "num": 1,
+          "title": "Присоска у шахты",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch02",
+          "num": 2,
+          "title": "Шаттл",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch03",
+          "num": 3,
+          "title": "Ворота",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch04",
+          "num": 4,
+          "title": "Корешок",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "epic-rubezh-ch03",
+      "kind": "book",
+      "hiddenFromLibrary": true,
+      "title": "הַיָּרֶם: הַגְּבוּל — פרק 3",
+      "kicker": "פרק 3 · Ворота",
+      "level": "ב",
+      "sub": "Ворота",
+      "source": "file",
+      "file": "book-data-epic-ch03.json",
+      "spineColor": "#4A3B63",
+      "seriesId": "epic-rubezh",
+      "seriesTitle": "הַיָּרֶם: הַגְּבוּל",
+      "chapterNum": 3,
+      "chapters": [
+        {
+          "id": "epic-rubezh-ch01",
+          "num": 1,
+          "title": "Присоска у шахты",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch02",
+          "num": 2,
+          "title": "Шаттл",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch03",
+          "num": 3,
+          "title": "Ворота",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch04",
+          "num": 4,
+          "title": "Корешок",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "epic-rubezh-ch04",
+      "kind": "book",
+      "hiddenFromLibrary": true,
+      "title": "הַיָּרֶם: הַגְּבוּל — פרק 4",
+      "kicker": "פרק 4 · Корешок",
+      "level": "ב",
+      "sub": "Корешок",
+      "source": "file",
+      "file": "book-data-epic-ch04.json",
+      "spineColor": "#4A3B63",
+      "seriesId": "epic-rubezh",
+      "seriesTitle": "הַיָּרֶם: הַגְּבוּל",
+      "chapterNum": 4,
+      "chapters": [
+        {
+          "id": "epic-rubezh-ch01",
+          "num": 1,
+          "title": "Присоска у шахты",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch02",
+          "num": 2,
+          "title": "Шаттл",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch03",
+          "num": 3,
+          "title": "Ворота",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch04",
+          "num": 4,
+          "title": "Корешок",
+          "ready": true
+        }
+      ]
     }
   ]
 }

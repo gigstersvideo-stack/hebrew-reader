@@ -138,6 +138,39 @@
   }
   .illustration-chip, .illustration-media, .illustration-caption, .illustration-collapse{ cursor:pointer; }
   body.nikud-off .wp-lemma{ letter-spacing: 0; }
+  .tword.wp-name:not(.speaking):not(.selected){ color: var(--gold); font-weight:500; }
+  body.names-off .tword.wp-name{ color:inherit; font-weight:inherit; }
+
+  /* ---- серии/главы: полоска навигации под верхним page-nav, карточка
+     серии в библиотеке (переиспользует .book-card) и модалка-оглавление
+     (переиспользует .drawer) ---- */
+  .chapter-nav{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    padding:8px 20px; font-family:'Inter',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border-bottom:1px solid var(--line); direction:ltr;
+  }
+  .chapter-nav button{
+    font-family:inherit; font-size:12.5px; background:none; border:1px solid var(--line);
+    border-radius:14px; padding:4px 10px; cursor:pointer; color:var(--ink);
+  }
+  .chapter-nav button:disabled{ opacity:.4; cursor:default; }
+  .chapter-nav .chapter-nav-label{ cursor:pointer; color:var(--ink); border-bottom:1px dashed var(--ink-soft); }
+  .chapter-end{
+    margin-top:22px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Inter',sans-serif; direction:ltr;
+  }
+  .chapter-end .chapter-end-title{ font-size:13px; color:var(--ink); margin-bottom:6px; font-weight:600; }
+  .chapter-end .chapter-end-note{ font-size:12.5px; color:var(--ink-soft); }
+  .chapter-list-row{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:10px 0; border-bottom:1px solid var(--line); cursor:pointer;
+  }
+  .chapter-list-row:last-child{ border-bottom:none; }
+  .chapter-list-row.not-ready{ cursor:default; opacity:.55; }
+  .chapter-list-row .cl-num{ font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft); min-width:20px; }
+  .chapter-list-row .cl-title{ font-family:'Frank Ruhl Libre',serif; font-size:15px; color:var(--ink); flex:1; }
+  .chapter-list-row .cl-tag{ font-family:'Inter',sans-serif; font-size:10.5px; color:var(--gold); text-transform:uppercase; letter-spacing:.04em; }
+  .chapters-soon{ font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); padding:14px 0 4px; text-align:center; }
 
   .translate-toggle{
     /* display:inline (not inline-flex/inline-block — tried both) on
@@ -590,7 +623,17 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.86.1</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.87.0</div>
+  </div>
+</div>
+
+<div class="drawer-backdrop" id="chaptersBackdrop"></div>
+<div class="drawer" id="chaptersModal">
+  <div class="drawer-head"><h2 id="chaptersTitle">Оглавление</h2><button class="drawer-close" id="chaptersClose">✕</button></div>
+  <div class="drawer-body">
+    <p id="chaptersSub" style="font-size:12px; color:var(--ink-soft); margin:-6px 0 14px;"></p>
+    <div id="chaptersList"></div>
+    <div class="chapters-soon" id="chaptersSoon">Ждите новые главы — они выходят по мере готовности.</div>
   </div>
 </div>
 
@@ -663,6 +706,10 @@
           <label class="switch"><input type="checkbox" id="swNikud" checked><span class="switch-track"></span></label>
         </div>
         <div class="settings-row">
+          <div><div class="settings-row-label">Подсветка имён</div><div class="settings-row-sub">имена собственные выделены цветом — легче не путать их с обычными словами и формами глаголов</div></div>
+          <label class="switch"><input type="checkbox" id="swNames" checked><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row">
           <div><div class="settings-row-label">Дословный перевод предложений</div><div class="settings-row-sub">перевод слово-в-слово под текстом</div></div>
           <label class="switch"><input type="checkbox" id="swLiteral" checked><span class="switch-track"></span></label>
         </div>
@@ -703,6 +750,11 @@
   </div>
 </header>
 
+<div class="chapter-nav" id="chapterNav" style="display:none;">
+  <button id="chapterPrevBtn" title="Предыдущая глава">‹ глава</button>
+  <span class="chapter-nav-label" id="chapterNavLabel" title="Оглавление">Глава 1 из 1</span>
+  <button id="chapterNextBtn" title="Следующая глава">глава ›</button>
+</div>
 <div class="page-nav">
   <button class="page-nav-btn" id="pagePrev" title="Предыдущая страница">‹</button>
   <span class="page-indicator" id="pageIndicator">Стр. 1 / 1</span>
@@ -1137,6 +1189,38 @@ document.querySelectorAll('audio').forEach(el => {
 document.getElementById('bookTitle').textContent = (meta && meta.title) || 'קורא';
 document.getElementById('bookKicker').textContent = (meta && meta.kicker) || '';
 document.getElementById('bookSub').textContent = (meta && meta.sub) || '';
+
+// ---- глава сериала: полоска "‹ глава N из M ›" под верхним page-nav —
+// meta.chapters/meta.chapterNum проставлены в books-manifest.json на
+// каждой записи-главе (build_bookdata.py). Обычные книги их не несут,
+// тогда полоска просто скрыта.
+(function setupChapterNav(){
+  const nav = document.getElementById('chapterNav');
+  const chapters = meta && meta.chapters;
+  if (!chapters || !meta.chapterNum){ nav.style.display = 'none'; return; }
+  nav.style.display = '';
+  const idx = chapters.findIndex(c => c.num === meta.chapterNum);
+  const prev = idx > 0 ? chapters[idx - 1] : null;
+  const next = idx >= 0 && idx < chapters.length - 1 ? chapters[idx + 1] : null;
+  document.getElementById('chapterNavLabel').textContent = `Глава ${meta.chapterNum} из ${chapters.length}`;
+  const prevBtn = document.getElementById('chapterPrevBtn');
+  const nextBtn = document.getElementById('chapterNextBtn');
+  prevBtn.disabled = !prev;
+  nextBtn.disabled = !(next && next.ready);
+  prevBtn.onclick = () => {
+    if (!prev) return;
+    const e = (window.readerManifest || []).find(x => x.id === prev.id);
+    if (e) { window.__readerNavigated = true; openBook(e); }
+  };
+  nextBtn.onclick = () => {
+    if (!next || !next.ready) return;
+    const e = (window.readerManifest || []).find(x => x.id === next.id);
+    if (e) { window.__readerNavigated = true; openBook(e); }
+  };
+  document.getElementById('chapterNavLabel').onclick = () => openChaptersDrawer({
+    title: meta.seriesTitle || meta.title, sub: '', chapters,
+  });
+})();
 let hasUnsavedEdits = false;
 updateDownloadEditsButtonHidden();
 function updateDownloadEditsButtonHidden(){
@@ -1272,6 +1356,7 @@ function renderSentence(s, container){
     wSpan.dataset.word = i;
     wSpan.dataset.lemma = w.lemma;
     wSpan.dataset.root = w.root;
+    if (w.pos && w.pos.indexOf('имя собств') !== -1) wSpan.classList.add('wp-name');
     const trailingSpace = i < s.words.length - 1 ? ' ' : '';
     const fadeStage = (data.mode === 'fade') ? w.fadeStage : null;
     const isGroupRest = w.fadeGroupRole === 'rest';
@@ -1444,6 +1529,26 @@ function renderPage(pageIndex){
     renderSentence(data.sentences[i], p);
   }
   reader.appendChild(p);
+
+  if (currentPage === totalPages - 1 && meta && meta.chapters && meta.chapterNum){
+    const chapters = meta.chapters;
+    const next = chapters.find(c => c.num === meta.chapterNum + 1);
+    const endBox = document.createElement('div');
+    endBox.className = 'chapter-end';
+    if (next && next.ready){
+      endBox.innerHTML = `<div class="chapter-end-title">Глава ${meta.chapterNum} дописана.</div>
+        <button class="pill-btn" id="chapterEndNextBtn">Читать главу ${next.num}: ${next.title} →</button>`;
+      reader.appendChild(endBox);
+      document.getElementById('chapterEndNextBtn').addEventListener('click', () => {
+        const e = (window.readerManifest || []).find(x => x.id === next.id);
+        if (e) { window.__readerNavigated = true; openBook(e); }
+      });
+    } else {
+      endBox.innerHTML = `<div class="chapter-end-title">Глава ${meta.chapterNum} дописана.</div>
+        <div class="chapter-end-note">Ждите новые главы — они выходят по мере готовности.</div>`;
+      reader.appendChild(endBox);
+    }
+  }
 
   const pageLabel = `Стр. ${currentPage + 1} / ${totalPages}`;
   const pageIndicator = document.getElementById('pageIndicator');
@@ -1789,7 +1894,7 @@ function renderTrainCard(){
 // from the popover lemma — works only for books whose words already carry
 // real niqud in the data; books without it look the same either way.
 const SETTINGS_KEY = 'hebrew-reader-settings';
-let settings = { nikud:true, literal:true, detailed:true, autoscroll:true, editMode:false, editModeBase:false, mnemonic:false, showTranslateToggle:true };
+let settings = { nikud:true, names:true, literal:true, detailed:true, autoscroll:true, editMode:false, editModeBase:false, mnemonic:false, showTranslateToggle:true };
 try{
   const saved = localStorage.getItem(SETTINGS_KEY);
   if (saved) settings = {...settings, ...JSON.parse(saved)};
@@ -1808,6 +1913,7 @@ function pullCloudSettings(){
     settings = {...settings, ...remote};
     try{ localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); }catch(err){}
     document.getElementById('swNikud').checked = settings.nikud;
+    document.getElementById('swNames').checked = settings.names;
     document.getElementById('swLiteral').checked = settings.literal;
     document.getElementById('swShowTranslateToggle').checked = settings.showTranslateToggle;
     document.getElementById('swDetailed').checked = settings.detailed;
@@ -1837,6 +1943,7 @@ function stripNikud(str){ return str.replace(/[\u0591-\u05C7]/g, ''); }
 
 function applySettings(){
   document.body.classList.toggle('nikud-off', !settings.nikud);
+  document.body.classList.toggle('names-off', !settings.names);
   document.body.classList.toggle('translate-toggle-off', !settings.showTranslateToggle);
   document.querySelectorAll('.sentence-tr .tr-row:first-child').forEach(row => {
     row.style.display = settings.literal ? 'flex' : 'none';
@@ -1845,6 +1952,7 @@ function applySettings(){
 }
 
 document.getElementById('swNikud').checked = settings.nikud;
+document.getElementById('swNames').checked = settings.names;
 document.getElementById('swLiteral').checked = settings.literal;
 document.getElementById('swShowTranslateToggle').checked = settings.showTranslateToggle;
 document.getElementById('swDetailed').checked = settings.detailed;
@@ -1855,6 +1963,7 @@ document.getElementById('swEditMode').checked = settings.editMode;
 if (isOwner) document.getElementById('ownerEditRow').style.display = '';
 
 document.getElementById('swNikud').addEventListener('change', (e) => { settings.nikud = e.target.checked; saveSettings(); applySettings(); renderPage(currentPage); });
+document.getElementById('swNames').addEventListener('change', (e) => { settings.names = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swLiteral').addEventListener('change', (e) => { settings.literal = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swShowTranslateToggle').addEventListener('change', (e) => { settings.showTranslateToggle = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swDetailed').addEventListener('change', (e) => { settings.detailed = e.target.checked; saveSettings(); applySettings(); });
@@ -3937,11 +4046,47 @@ function sortLibrary(manifest, progressOf, popOf){
   return started.concat(starters, rest, finished);
 }
 
+// ---- серии/сериалы: одна карточка в библиотеке открывает не читалку, а
+// оглавление (модалка ниже) — сами главы лежат в манифесте как обычные
+// книги (полная история/резюм/закладки бесплатно), просто скрыты из грида
+// флагом hiddenFromLibrary, чтобы не плодить по карточке на каждую главу ----
+function openChaptersDrawer(seriesEntry){
+  document.getElementById('chaptersTitle').textContent = seriesEntry.title || seriesEntry.seriesTitle || 'Оглавление';
+  document.getElementById('chaptersSub').textContent = seriesEntry.sub || '';
+  const list = document.getElementById('chaptersList');
+  const chapters = seriesEntry.chapters || [];
+  list.innerHTML = chapters.map(ch => {
+    const p = ch.ready ? getBookProgress(ch.id) : { opened:false, completed:false };
+    const tag = !ch.ready ? 'скоро' : (p.completed ? '✓ прочитано' : (p.opened ? 'продолжить' : ''));
+    return `<div class="chapter-list-row ${ch.ready ? '' : 'not-ready'}" data-id="${ch.id}">
+      <span class="cl-num">${ch.num}</span><span class="cl-title">${ch.title}</span>
+      ${tag ? `<span class="cl-tag">${tag}</span>` : ''}
+    </div>`;
+  }).join('');
+  list.querySelectorAll('.chapter-list-row:not(.not-ready)').forEach(row => {
+    row.addEventListener('click', () => {
+      const entry = (window.readerManifest || []).find(e => e.id === row.dataset.id);
+      if (!entry) return;
+      closeChaptersDrawer();
+      window.__readerNavigated = true;
+      openBook(entry);
+    });
+  });
+  document.getElementById('chaptersModal').classList.add('open');
+  document.getElementById('chaptersBackdrop').classList.add('open');
+}
+function closeChaptersDrawer(){
+  document.getElementById('chaptersModal').classList.remove('open');
+  document.getElementById('chaptersBackdrop').classList.remove('open');
+}
+document.getElementById('chaptersClose').addEventListener('click', closeChaptersDrawer);
+document.getElementById('chaptersBackdrop').addEventListener('click', closeChaptersDrawer);
+
 function renderLibrary(manifest){
   updateGlobalReviewCount();
   const grid = document.getElementById('bookGrid');
   grid.innerHTML = '';
-  const sorted = sortLibrary(manifest, getBookProgress, popularityOf);
+  const sorted = sortLibrary(manifest.filter(e => !e.hiddenFromLibrary), getBookProgress, popularityOf);
   const lastView = getLastView();
   const lastReadId = lastView && lastView.id && manifest.some(e => e.id === lastView.id) ? lastView.id : null;
   // Подпись «★ Самая популярная» — приманка для того, кто ещё ничего не
@@ -3980,6 +4125,8 @@ function renderLibrary(manifest){
     // человек ещё не выбрал ни одной книги.
     const popularNote = nothingChosenYet && starterLevel && pop && pop.readers > 0
       ? `<div class="book-card-popular">★ Самая популярная на уровне ${starterLevel}</div>` : '';
+    const seriesNote = entry.kind === 'series'
+      ? `<div class="book-card-progress">${(entry.chapters || []).filter(c => c.ready).length} из ${(entry.chapters || []).length}+ глав</div>` : '';
     card.innerHTML = `
       ${levelBadge}
       ${completedBadge}
@@ -3990,6 +4137,7 @@ function renderLibrary(manifest){
         <div class="book-card-sub">${entry.sub || ''}</div>
         ${progressNote}
         ${popularNote}
+        ${seriesNote}
       </div>
     `;
     if (entry.cover && entry.coverSvg){
@@ -4001,7 +4149,11 @@ function renderLibrary(manifest){
         spine.style.padding = '';
       }, { once: true });
     }
-    card.addEventListener('click', () => { window.__readerNavigated = true; entry.kind === 'song' ? openSong(entry) : openBook(entry); });
+    card.addEventListener('click', () => {
+      if (entry.kind === 'series') { openChaptersDrawer(entry); return; }
+      window.__readerNavigated = true;
+      entry.kind === 'song' ? openSong(entry) : openBook(entry);
+    });
     grid.appendChild(card);
   });
 
