@@ -232,6 +232,19 @@
   .wp-pealim-info{ font-size:12px; color:#C9BFA6; line-height:1.7; margin-top:6px; }
   .wp-pealim-info bdi{ font-family:'Frank Ruhl Libre', serif; font-size:14px; color:#fff; }
   .wp-pealim-loading{ opacity:.55; font-style:italic; }
+  .wp-prep-note{ font-size:11.5px; color:#C9BFA6; line-height:1.5; margin:6px 0 8px; }
+  .wp-prep-table table{ width:100%; border-collapse:collapse; font-size:12px; }
+  .wp-prep-table td{ padding:3px 4px; color:#8A8474; }
+  .wp-prep-table td.he{ font-family:'Frank Ruhl Libre', serif; direction:rtl; text-align:right; font-size:15px; color:#C9BFA6; }
+  .wp-prep-table td:last-child{ text-align:right; color:#C9BFA6; }
+  .wp-prep-table-hit td{ color:#fff; font-weight:500; }
+  .wp-prep-table-hit td.he{ color: var(--gold); }
+  .train-prep-table{ margin-top:10px; text-align:left; }
+  .train-prep-table table{ width:100%; border-collapse:collapse; font-size:12px; }
+  .train-prep-table td{ padding:3px 4px; color:var(--ink-soft); }
+  .train-prep-table td.he{ font-family:'Frank Ruhl Libre', serif; direction:rtl; text-align:right; font-size:15px; color:var(--ink); }
+  .train-prep-table td:last-child{ text-align:right; color:var(--ink-soft); }
+  .train-prep-table-hit td{ color: var(--accent); font-weight:500; }
   .wp-pealim-empty{ opacity:.7; }
   .wp-link{ display:inline-block; margin-top:8px; font-size:11.5px; color:var(--gold); text-decoration:none; border-top:1px solid #4A473F; padding-top:8px; width:100%; }
   .wp-link:hover{ text-decoration:underline; }
@@ -623,7 +636,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.87.4</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.88.0</div>
   </div>
 </div>
 
@@ -1168,7 +1181,7 @@ function commitGlobalReview(item, quality){
       <div class="train-card" id="reviewFlipCard">
         ${vocabHeadHtml(w)}
         <div class="train-hint" id="reviewFlipHint">нажми, чтобы увидеть перевод</div>
-        <div class="train-answer" id="reviewAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos}${w.root && w.root !== '—' ? ' · ' + w.root : ''})</span></div>
+        <div class="train-answer" id="reviewAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos}${w.root && w.root !== '—' ? ' · ' + w.root : ''})</span>${prepParadigmTable(w, 'train-prep-table')}</div>
         ${bookLabel ? `<div style="font-size:11px; color:var(--ink-soft); margin-top:4px;">${bookLabel}</div>` : ''}
       </div>
       <div class="train-btns review-btns" id="reviewBtns" style="display:none;">
@@ -1912,7 +1925,7 @@ function renderTrainCard(){
     <div class="train-card" id="flipCard">
       ${vocabHeadHtml(w)}
       <div class="train-hint" id="flipHint">нажми, чтобы увидеть перевод</div>
-      <div class="train-answer" id="trainAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos})</span></div>
+      <div class="train-answer" id="trainAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos})</span>${prepParadigmTable(w, 'train-prep-table')}</div>
     </div>
     <div class="train-btns review-btns" id="trainBtns" style="display:none;">
       <button class="train-no" data-q="1" style="background:var(--danger); color:#fff;">Снова</button>
@@ -2255,6 +2268,389 @@ function findBinyanInfo(extra) {
   const low = extra.toLowerCase();
   const hit = BINYAN_INFO.find(b => b.match.some(v => low.includes(v.toLowerCase())));
   return hit ? hit.text : null;
+}
+const PREP_PARADIGMS = {
+ "לְ": {
+  "label": "к, для",
+  "rows": [
+   {
+    "person": "я",
+    "form": "לִי",
+    "tr": "мне"
+   },
+   {
+    "person": "ты (м.)",
+    "form": "לְךָ",
+    "tr": "тебе"
+   },
+   {
+    "person": "ты (ж.)",
+    "form": "לָךְ",
+    "tr": "тебе"
+   },
+   {
+    "person": "он",
+    "form": "לוֹ",
+    "tr": "ему"
+   },
+   {
+    "person": "она",
+    "form": "לָהּ",
+    "tr": "ей"
+   },
+   {
+    "person": "мы",
+    "form": "לָנוּ",
+    "tr": "нам"
+   },
+   {
+    "person": "вы (м.)",
+    "form": "לָכֶם",
+    "tr": "вам"
+   },
+   {
+    "person": "они (м.)",
+    "form": "לָהֶם",
+    "tr": "им"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "לָהֶן",
+    "tr": "им"
+   }
+  ]
+ },
+ "אֶת": {
+  "label": "прямое дополнение (винительный падеж)",
+  "rows": [
+   {
+    "person": "я",
+    "form": "אוֹתִי",
+    "tr": "меня"
+   },
+   {
+    "person": "ты (м.)",
+    "form": "אוֹתְךָ",
+    "tr": "тебя"
+   },
+   {
+    "person": "ты (ж.)",
+    "form": "אוֹתָךְ",
+    "tr": "тебя"
+   },
+   {
+    "person": "он",
+    "form": "אוֹתוֹ",
+    "tr": "его"
+   },
+   {
+    "person": "она",
+    "form": "אוֹתָהּ",
+    "tr": "её"
+   },
+   {
+    "person": "мы",
+    "form": "אוֹתָנוּ",
+    "tr": "нас"
+   },
+   {
+    "person": "вы (м.)",
+    "form": "אֶתְכֶם",
+    "tr": "вас"
+   },
+   {
+    "person": "они (м.)",
+    "form": "אוֹתָם",
+    "tr": "их"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "אוֹתָן",
+    "tr": "их"
+   }
+  ]
+ },
+ "שֶׁל": {
+  "label": "принадлежность («чей»)",
+  "rows": [
+   {
+    "person": "я",
+    "form": "שֶׁלִּי",
+    "tr": "мой"
+   },
+   {
+    "person": "ты (м.)",
+    "form": "שֶׁלְּךָ",
+    "tr": "твой"
+   },
+   {
+    "person": "ты (ж.)",
+    "form": "שֶׁלָּךְ",
+    "tr": "твой"
+   },
+   {
+    "person": "он",
+    "form": "שֶׁלּוֹ",
+    "tr": "его"
+   },
+   {
+    "person": "она",
+    "form": "שֶׁלָּהּ",
+    "tr": "её"
+   },
+   {
+    "person": "мы",
+    "form": "שֶׁלָּנוּ",
+    "tr": "наш"
+   },
+   {
+    "person": "вы (м.)",
+    "form": "שֶׁלָּכֶם",
+    "tr": "ваш"
+   },
+   {
+    "person": "они (м.)",
+    "form": "שֶׁלָּהֶם",
+    "tr": "их"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "שֶׁלָּהֶן",
+    "tr": "их"
+   }
+  ]
+ },
+ "אֶל": {
+  "label": "к, в направлении",
+  "rows": [
+   {
+    "person": "я",
+    "form": "אֵלַי",
+    "tr": "ко мне"
+   },
+   {
+    "person": "ты (ж.)",
+    "form": "אֵלַיִךְ",
+    "tr": "к тебе"
+   },
+   {
+    "person": "он",
+    "form": "אֵלָיו",
+    "tr": "к нему"
+   },
+   {
+    "person": "она",
+    "form": "אֵלֶיהָ",
+    "tr": "к ней"
+   },
+   {
+    "person": "мы",
+    "form": "אֵלֵינוּ",
+    "tr": "к нам"
+   },
+   {
+    "person": "они (м.)",
+    "form": "אֲלֵיהֶם",
+    "tr": "к ним"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "אֲלֵיהֶן",
+    "tr": "к ним"
+   }
+  ]
+ },
+ "עַל": {
+  "label": "на, о",
+  "rows": [
+   {
+    "person": "я",
+    "form": "עָלַי",
+    "tr": "обо мне"
+   },
+   {
+    "person": "ты (м.)",
+    "form": "עָלֶיךָ",
+    "tr": "о тебе"
+   },
+   {
+    "person": "ты (ж.)",
+    "form": "עָלַיִךְ",
+    "tr": "о тебе"
+   },
+   {
+    "person": "он",
+    "form": "עָלָיו",
+    "tr": "о нём"
+   },
+   {
+    "person": "она",
+    "form": "עָלֶיהָ",
+    "tr": "о ней"
+   },
+   {
+    "person": "мы",
+    "form": "עָלֵינוּ",
+    "tr": "о нас"
+   },
+   {
+    "person": "они (м.)",
+    "form": "עֲלֵיהֶם",
+    "tr": "о них"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "עֲלֵיהֶן",
+    "tr": "о них"
+   }
+  ]
+ },
+ "בְּ": {
+  "label": "в",
+  "rows": [
+   {
+    "person": "я",
+    "form": "בִּי",
+    "tr": "во мне"
+   },
+   {
+    "person": "ты (м.)",
+    "form": "בְּךָ",
+    "tr": "в тебе"
+   },
+   {
+    "person": "ты (ж.)",
+    "form": "בָּךְ",
+    "tr": "в тебе"
+   },
+   {
+    "person": "он",
+    "form": "בּוֹ",
+    "tr": "в нём"
+   },
+   {
+    "person": "она",
+    "form": "בָּהּ",
+    "tr": "в ней"
+   },
+   {
+    "person": "мы",
+    "form": "בָּנוּ",
+    "tr": "в нас"
+   },
+   {
+    "person": "они (м.)",
+    "form": "בָּהֶם",
+    "tr": "в них"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "בָּהֶן",
+    "tr": "в них"
+   }
+  ]
+ },
+ "מִן": {
+  "label": "от, из",
+  "rows": [
+   {
+    "person": "я",
+    "form": "מִמֶּנִּי",
+    "tr": "от меня"
+   },
+   {
+    "person": "ты (м.)",
+    "form": "מִמְּךָ",
+    "tr": "от тебя"
+   },
+   {
+    "person": "ты (ж.)",
+    "form": "מִמֵּךְ",
+    "tr": "от тебя"
+   },
+   {
+    "person": "он",
+    "form": "מִמֶּנּוּ",
+    "tr": "от него"
+   },
+   {
+    "person": "она",
+    "form": "מִמֶּנָּה",
+    "tr": "от неё"
+   },
+   {
+    "person": "мы",
+    "form": "מֵאִיתָּנוּ",
+    "tr": "от нас"
+   },
+   {
+    "person": "вы (м.)",
+    "form": "מִכֶּם",
+    "tr": "от вас"
+   },
+   {
+    "person": "они (м.)",
+    "form": "מֵהֶם",
+    "tr": "от них"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "מֵהֶן",
+    "tr": "от них"
+   }
+  ]
+ },
+ "עִם": {
+  "label": "с",
+  "rows": [
+   {
+    "person": "я",
+    "form": "עִמִּי",
+    "tr": "со мной"
+   },
+   {
+    "person": "он",
+    "form": "עִמּוֹ",
+    "tr": "с ним"
+   },
+   {
+    "person": "она",
+    "form": "עִמָּהּ",
+    "tr": "с ней"
+   }
+  ]
+ },
+ "כְּמוֹ": {
+  "label": "как, подобно",
+  "rows": [
+   {
+    "person": "он",
+    "form": "כָּמוֹהוּ",
+    "tr": "как он"
+   }
+  ]
+ }
+};
+
+// Слитные предлог+местоимение формы (находка №2, см. ROADMAP, решение
+// владельца 2026-09-24): вместо (или вместе с) обычного перевода — таблица
+// всех форм по лицам, текущая форма подсвечена. Формы взяты из реального
+// корпуса (не набраны руками), отсутствующие в корпусе редкие лица просто
+// не показаны, а не выдуманы.
+function prepParadigmTable(w, cellClass) {
+  const p = PREP_PARADIGMS[w.lemma];
+  if (!p) return '';
+  const bare = (w.t || w.form || '').replace(/[^\u05D0-\u05EA]/g, '');
+  let anyHit = false;
+  const rows = p.rows.map(r => {
+    const rowBare = r.form.replace(/[^\u05D0-\u05EA]/g, '');
+    const hit = rowBare === bare;
+    if (hit) anyHit = true;
+    const trCls = hit ? (cellClass + '-hit') : '';
+    return '<tr class="' + trCls + '"><td>' + r.person + '</td><td class="he">' + r.form + '</td><td>' + r.tr + '</td></tr>';
+  }).join('');
+  if (!anyHit) return '';
+  return '<div class="' + cellClass + '"><div class="wp-prep-note">слитная форма предлога <b>' + w.lemma + '</b> (' + p.label + ') + местоимение — все формы ниже это одно и то же слово</div><table>' + rows + '</table></div>';
 }
 
 // ---- Pealim snippet, fetched automatically per word (Russian pages) ----
@@ -3041,7 +3437,7 @@ async function askAiAboutWord(w, wordEl, btn){
 
 function refreshPopoverContent(w, wordEl){
   if (!popoverEl) return;
-  popoverEl.classList.remove('wp-expanded');
+  popoverEl.classList.toggle('wp-expanded', !!PREP_PARADIGMS[w.lemma]);
   const isSaved = !!vocabCache[w.lemma];
   const lemmaText = settings.nikud ? w.lemma : stripNikud(w.lemma);
   const milogWord = stripNikud(w.lemma).replace(/[^\u05D0-\u05EA]/g, '');
@@ -3054,6 +3450,7 @@ function refreshPopoverContent(w, wordEl){
     <div class="wp-top"><div class="wp-lemma">${lemmaText}</div><div class="wp-star ${isSaved ? 'on' : ''}">★</div></div>
     ${settings.detailed ? `<div class="wp-pos">${w.pos}</div>` : ''}
     <div class="wp-main">${w.tr}</div>
+    ${prepParadigmTable(w, 'wp-prep-table')}
     ${settings.detailed && w.extra ? `<div class="wp-extra">${w.extra}</div>` : ''}
     ${settings.detailed && w.root && w.root !== '—' ? `<div class="wp-root">корень: ${w.root}</div>` : ''}
     ${settings.detailed && rootInfo ? `<div class="wp-root-semantics">${rootInfo}</div>` : ''}
@@ -3552,13 +3949,14 @@ function showSongPopover(w, wordEl, songId){
   songSelectedWordEl = wordEl;
   wordEl.classList.add('selected');
   songPopoverEl = document.createElement('div');
-  songPopoverEl.className = 'word-popover';
+  songPopoverEl.className = 'word-popover' + (PREP_PARADIGMS[w.lemma] ? ' wp-expanded' : '');
   document.body.appendChild(songPopoverEl);
   const isSaved = !!songVocabCache[w.lemma];
   songPopoverEl.innerHTML = `
     <div class="wp-top"><div class="wp-lemma">${escSongHtml(w.lemma)}</div><div class="wp-star ${isSaved ? 'on' : ''}">★</div></div>
     <div class="wp-pos">${escSongHtml(w.pos)}</div>
     <div class="wp-main">${escSongHtml(w.tr)}</div>
+    ${prepParadigmTable(w, 'wp-prep-table')}
     ${w.extra ? `<div class="wp-extra">${escSongHtml(w.extra)}</div>` : ''}
     ${w.root && w.root !== '—' ? `<div class="wp-root">корень: ${escSongHtml(w.root)}</div>` : ''}
   `;
