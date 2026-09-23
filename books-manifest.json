@@ -532,6 +532,12 @@
           "num": 11,
           "title": "Связь",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
+          "ready": true
         }
       ]
     },
@@ -614,6 +620,12 @@
           "id": "epic-rubezh-ch11",
           "num": 11,
           "title": "Связь",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
           "ready": true
         }
       ]
@@ -698,6 +710,12 @@
           "num": 11,
           "title": "Связь",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
+          "ready": true
         }
       ]
     },
@@ -780,6 +798,12 @@
           "id": "epic-rubezh-ch11",
           "num": 11,
           "title": "Связь",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
           "ready": true
         }
       ]
@@ -864,6 +888,12 @@
           "num": 11,
           "title": "Связь",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
+          "ready": true
         }
       ]
     },
@@ -946,6 +976,12 @@
           "id": "epic-rubezh-ch11",
           "num": 11,
           "title": "Связь",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
           "ready": true
         }
       ]
@@ -1030,6 +1066,12 @@
           "num": 11,
           "title": "Связь",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
+          "ready": true
         }
       ]
     },
@@ -1112,6 +1154,12 @@
           "id": "epic-rubezh-ch11",
           "num": 11,
           "title": "Связь",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
           "ready": true
         }
       ]
@@ -1196,6 +1244,12 @@
           "num": 11,
           "title": "Связь",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
+          "ready": true
         }
       ]
     },
@@ -1278,6 +1332,12 @@
           "id": "epic-rubezh-ch11",
           "num": 11,
           "title": "Связь",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
           "ready": true
         }
       ]
@@ -1362,6 +1422,12 @@
           "num": 11,
           "title": "Связь",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
+          "ready": true
         }
       ]
     },
@@ -1444,6 +1510,101 @@
           "id": "epic-rubezh-ch11",
           "num": 11,
           "title": "Связь",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "epic-rubezh-ch12",
+      "kind": "book",
+      "hiddenFromLibrary": true,
+      "title": "הַיָּרֶם: הַגְּבוּל — פרק 12",
+      "kicker": "פרק 12 · Каток",
+      "level": "ב",
+      "sub": "Каток",
+      "source": "file",
+      "file": "book-data-epic-ch12.json",
+      "spineColor": "#4A3B63",
+      "seriesId": "epic-rubezh",
+      "seriesTitle": "הַיָּרֶם: הַגְּבוּל",
+      "chapterNum": 12,
+      "chapters": [
+        {
+          "id": "epic-rubezh-ch01",
+          "num": 1,
+          "title": "Присоска у шахты",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch02",
+          "num": 2,
+          "title": "Шаттл",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch03",
+          "num": 3,
+          "title": "Ворота",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch04",
+          "num": 4,
+          "title": "Корешок",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch05",
+          "num": 5,
+          "title": "Три курса",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch06",
+          "num": 6,
+          "title": "Не лги зверю",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch07",
+          "num": 7,
+          "title": "Подбор",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch08",
+          "num": 8,
+          "title": "Пустой тренажёр",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch10",
+          "num": 10,
+          "title": "Вылет",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch11",
+          "num": 11,
+          "title": "Связь",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch12",
+          "num": 12,
+          "title": "Каток",
           "ready": true
         }
       ]
