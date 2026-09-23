@@ -514,6 +514,12 @@
           "num": 8,
           "title": "Пустой тренажёр",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
+          "ready": true
         }
       ]
     },
@@ -578,6 +584,12 @@
           "id": "epic-rubezh-ch08",
           "num": 8,
           "title": "Пустой тренажёр",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
           "ready": true
         }
       ]
@@ -644,6 +656,12 @@
           "num": 8,
           "title": "Пустой тренажёр",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
+          "ready": true
         }
       ]
     },
@@ -708,6 +726,12 @@
           "id": "epic-rubezh-ch08",
           "num": 8,
           "title": "Пустой тренажёр",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
           "ready": true
         }
       ]
@@ -774,6 +798,12 @@
           "num": 8,
           "title": "Пустой тренажёр",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
+          "ready": true
         }
       ]
     },
@@ -838,6 +868,12 @@
           "id": "epic-rubezh-ch08",
           "num": 8,
           "title": "Пустой тренажёр",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
           "ready": true
         }
       ]
@@ -904,6 +940,12 @@
           "num": 8,
           "title": "Пустой тренажёр",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
+          "ready": true
         }
       ]
     },
@@ -969,6 +1011,12 @@
           "num": 8,
           "title": "Пустой тренажёр",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
+          "ready": true
         }
       ]
     },
@@ -1033,6 +1081,83 @@
           "id": "epic-rubezh-ch08",
           "num": 8,
           "title": "Пустой тренажёр",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "epic-rubezh-ch09",
+      "kind": "book",
+      "hiddenFromLibrary": true,
+      "title": "הַיָּרֶם: הַגְּבוּל — פרק 9",
+      "kicker": "פרק 9 · Первый шов",
+      "level": "ב",
+      "sub": "Первый шов",
+      "source": "file",
+      "file": "book-data-epic-ch09.json",
+      "spineColor": "#4A3B63",
+      "seriesId": "epic-rubezh",
+      "seriesTitle": "הַיָּרֶם: הַגְּבוּל",
+      "chapterNum": 9,
+      "chapters": [
+        {
+          "id": "epic-rubezh-ch01",
+          "num": 1,
+          "title": "Присоска у шахты",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch02",
+          "num": 2,
+          "title": "Шаттл",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch03",
+          "num": 3,
+          "title": "Ворота",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch04",
+          "num": 4,
+          "title": "Корешок",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch05",
+          "num": 5,
+          "title": "Три курса",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch06",
+          "num": 6,
+          "title": "Не лги зверю",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch07",
+          "num": 7,
+          "title": "Подбор",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch08",
+          "num": 8,
+          "title": "Пустой тренажёр",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch09",
+          "num": 9,
+          "title": "Первый шов",
           "ready": true
         }
       ]
