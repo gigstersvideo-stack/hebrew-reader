@@ -79,6 +79,9 @@ def _bare_letters(s):
     return re.sub(r"[^א-ת]", "", s or "")
 
 
+_COLON_GLUED_QUOTE = re.compile(r'.:["“‘\']$')  # двоеточие + кавычка(и) без пробела перед прямой речью
+
+
 def find_lemma_corruption_violations(w, base_path):
     lem = w.get("lemma")
     if not lem:
@@ -99,6 +102,21 @@ def find_lemma_corruption_violations(w, base_path):
     core = re.sub(r"^\W+|\W+$", "", t)
     if core and _LATIN_CYR.search(core) and not _HAS_HEBREW.search(core):
         out.append((base_path, t, "в слове вообще нет ивритских букв (кириллица/латиница просочилась в текст)"))
+    return out
+
+
+def find_structural_word_violations(w, base_path):
+    """Найдено и исправлено 2026-09-23 (см. CHANGELOG): пунктуация как
+    отдельное "слово" в words[] (ломает счёт TTS word-boundary — 186
+    предложений в 3 книгах озвучивались БЕЗ таймингов вообще) и двоеточие+
+    кавычка, приклеенные к слову без пробела перед прямой речью (та же
+    причина, ещё 4 предложения). Постоянная проверка — чтобы не вернулось."""
+    out = []
+    if w.get("pos") in ("пунктуация", "пункт."):
+        out.append((base_path, w.get("t"), "пунктуация как отдельное слово в words[] — ломает счёт TTS word-boundary"))
+    t = w.get("t") or ""
+    if _COLON_GLUED_QUOTE.search(t):
+        out.append((base_path, t, "двоеточие+кавычка приклеены к слову без пробела перед прямой речью"))
     return out
 
 
@@ -129,6 +147,10 @@ def audit_content_file(fname, cache, total, confirmed_noise):
             for p, word, reason in find_lemma_corruption_violations(w, base_path):
                 total, confirmed_noise = _report(
                     cache, "lemma_corruption", p, word, f" ({reason})", total, confirmed_noise
+                )
+            for p, word, reason in find_structural_word_violations(w, base_path):
+                total, confirmed_noise = _report(
+                    cache, "structural_word", p, word, f" ({reason})", total, confirmed_noise
                 )
     return total, confirmed_noise
 
