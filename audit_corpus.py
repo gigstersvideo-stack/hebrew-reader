@@ -120,6 +120,36 @@ def find_structural_word_violations(w, base_path):
     return out
 
 
+_EXTRA_SPLIT = re.compile(r"[\s+/]+")
+
+
+def find_lookalike_letter_violations(w, base_path):
+    """Найдено и исправлено 2026-09-23 (см. CHANGELOG): кириллица/латиница
+    похожая по контуру на ивритскую букву — не в самом слове (см.
+    lemma_corruption выше), а в служебных полях root (1811 случаев по
+    всему корпусу, например 'ג-д-ל' вместо 'ג-ד-ל') и extra (5554 слов,
+    например 'м.ר. ед.ч.' вместо 'м.р. ед.ч.' — токен, где кириллица и
+    иврит смешаны ВНУТРИ одного слова между пробелом/+//; легитимный
+    сплошной иврит в extra, вроде названий биньянов פעל/הפעיל или терминов
+    זכר יחיד, — не нарушение, проверяется только смешанный токен).
+    Токен длиннее 12 символов не считается: в epic-ch01.json (другой проект)
+    после запятых/точек нет пробелов, и несколько нормальных слов подряд
+    без пробела ложно похожи на "смешанный токен", хотя порчи букв там
+    нет — настоящие испорченные токены все короче. Постоянная проверка —
+    чтобы не вернулось."""
+    out = []
+    root = w.get("root") or ""
+    if root and root != "—" and _LATIN_CYR.search(root):
+        out.append((base_path, root, "кириллица/латиница вместо похожей ивритской буквы в root"))
+    extra = w.get("extra") or ""
+    if extra:
+        for chunk in _EXTRA_SPLIT.split(extra):
+            if chunk and len(chunk) <= 12 and _HAS_HEBREW.search(chunk) and _LATIN_CYR.search(chunk):
+                out.append((base_path, extra, f"смешанный токен {chunk!r} в extra — кириллица+иврит вперемешку"))
+                break
+    return out
+
+
 def audit_content_file(fname, cache, total, confirmed_noise):
     data = json.load(open(fname, encoding="utf-8"))
     key = _lines_key(data)
@@ -151,6 +181,10 @@ def audit_content_file(fname, cache, total, confirmed_noise):
             for p, word, reason in find_structural_word_violations(w, base_path):
                 total, confirmed_noise = _report(
                     cache, "structural_word", p, word, f" ({reason})", total, confirmed_noise
+                )
+            for p, word, reason in find_lookalike_letter_violations(w, base_path):
+                total, confirmed_noise = _report(
+                    cache, "lookalike_letter", p, word, f" ({reason})", total, confirmed_noise
                 )
     return total, confirmed_noise
 
