@@ -490,6 +490,12 @@
           "num": 4,
           "title": "Корешок",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch05",
+          "num": 5,
+          "title": "Три курса",
+          "ready": true
         }
       ]
     },
@@ -530,6 +536,12 @@
           "id": "epic-rubezh-ch04",
           "num": 4,
           "title": "Корешок",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch05",
+          "num": 5,
+          "title": "Три курса",
           "ready": true
         }
       ]
@@ -572,6 +584,12 @@
           "num": 4,
           "title": "Корешок",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch05",
+          "num": 5,
+          "title": "Три курса",
+          "ready": true
         }
       ]
     },
@@ -613,6 +631,12 @@
           "num": 4,
           "title": "Корешок",
           "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch05",
+          "num": 5,
+          "title": "Три курса",
+          "ready": true
         }
       ]
     },
@@ -653,6 +677,59 @@
           "id": "epic-rubezh-ch04",
           "num": 4,
           "title": "Корешок",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch05",
+          "num": 5,
+          "title": "Три курса",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "epic-rubezh-ch05",
+      "kind": "book",
+      "hiddenFromLibrary": true,
+      "title": "הַיָּרֶם: הַגְּבוּל — פרק 5",
+      "kicker": "פרק 5 · Три курса",
+      "level": "ב",
+      "sub": "Три курса",
+      "source": "file",
+      "file": "book-data-epic-ch05.json",
+      "spineColor": "#4A3B63",
+      "seriesId": "epic-rubezh",
+      "seriesTitle": "הַיָּרֶם: הַגְּבוּל",
+      "chapterNum": 5,
+      "chapters": [
+        {
+          "id": "epic-rubezh-ch01",
+          "num": 1,
+          "title": "Присоска у шахты",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch02",
+          "num": 2,
+          "title": "Шаттл",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch03",
+          "num": 3,
+          "title": "Ворота",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch04",
+          "num": 4,
+          "title": "Корешок",
+          "ready": true
+        },
+        {
+          "id": "epic-rubezh-ch05",
+          "num": 5,
+          "title": "Три курса",
           "ready": true
         }
       ]
