@@ -636,7 +636,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.88.0</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.88.1</div>
   </div>
 </div>
 
@@ -2629,6 +2629,331 @@ const PREP_PARADIGMS = {
     "tr": "как он"
    }
   ]
+ },
+ "לִפְנֵי": {
+  "label": "перед",
+  "rows": [
+   {
+    "person": "он",
+    "form": "לְפָנָיו",
+    "tr": "перед ним"
+   },
+   {
+    "person": "мы",
+    "form": "לְפָנֵינוּ",
+    "tr": "перед нами"
+   },
+   {
+    "person": "вы (м.)",
+    "form": "לִפְנֵיכֶם",
+    "tr": "перед вами"
+   },
+   {
+    "person": "они (м.)",
+    "form": "לִפְנֵיהֶם",
+    "tr": "перед ними"
+   }
+  ]
+ },
+ "בְּתוֹךְ": {
+  "label": "внутри",
+  "rows": [
+   {
+    "person": "я",
+    "form": "בְּתוֹכִי",
+    "tr": "внутри меня"
+   },
+   {
+    "person": "он",
+    "form": "בְּתוֹכוֹ",
+    "tr": "внутри него"
+   },
+   {
+    "person": "она",
+    "form": "בְּתוֹכָהּ",
+    "tr": "внутри неё"
+   }
+  ]
+ },
+ "מוּל": {
+  "label": "напротив",
+  "rows": [
+   {
+    "person": "я",
+    "form": "מוּלִי",
+    "tr": "напротив меня"
+   },
+   {
+    "person": "ты (м.)",
+    "form": "מוּלְךָ",
+    "tr": "напротив тебя"
+   },
+   {
+    "person": "он",
+    "form": "מוּלוֹ",
+    "tr": "напротив него"
+   },
+   {
+    "person": "она",
+    "form": "מוּלָהּ",
+    "tr": "напротив неё"
+   },
+   {
+    "person": "они (м.)",
+    "form": "מוּלָם",
+    "tr": "напротив них"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "מוּלָן",
+    "tr": "напротив них"
+   }
+  ]
+ },
+ "אֵצֶל": {
+  "label": "у, при",
+  "rows": [
+   {
+    "person": "я",
+    "form": "אֶצְלִי",
+    "tr": "у меня"
+   },
+   {
+    "person": "ты (м.)",
+    "form": "אֶצְלְךָ",
+    "tr": "у тебя"
+   },
+   {
+    "person": "он",
+    "form": "אֶצְלוֹ",
+    "tr": "у него"
+   },
+   {
+    "person": "она",
+    "form": "אֶצְלָהּ",
+    "tr": "у неё"
+   }
+  ]
+ },
+ "מֵאֲחוֹרֵי": {
+  "label": "за, позади",
+  "rows": [
+   {
+    "person": "он",
+    "form": "מֵאֲחוֹרָיו",
+    "tr": "за ним"
+   },
+   {
+    "person": "она",
+    "form": "מֵאֲחוֹרֶיהָ",
+    "tr": "за ней"
+   },
+   {
+    "person": "мы",
+    "form": "מֵאֲחוֹרֵינוּ",
+    "tr": "за нами"
+   },
+   {
+    "person": "они (м.)",
+    "form": "מֵאֲחוֹרֵיהֶם",
+    "tr": "за ними"
+   }
+  ]
+ },
+ "בֵּין": {
+  "label": "между",
+  "rows": [
+   {
+    "person": "я",
+    "form": "בֵּינִי",
+    "tr": "между мной"
+   },
+   {
+    "person": "он",
+    "form": "בֵּינוֹ",
+    "tr": "между ним"
+   },
+   {
+    "person": "она",
+    "form": "בֵּינָהּ",
+    "tr": "между ней"
+   },
+   {
+    "person": "мы",
+    "form": "בֵּינֵינוּ",
+    "tr": "между нами"
+   },
+   {
+    "person": "они (м.)",
+    "form": "בֵּינֵיהֶם",
+    "tr": "между ними"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "בֵּינֵיהֶן",
+    "tr": "между ними"
+   }
+  ]
+ },
+ "סָבִיב": {
+  "label": "вокруг",
+  "rows": [
+   {
+    "person": "я",
+    "form": "סְבִיבִי",
+    "tr": "вокруг меня"
+   },
+   {
+    "person": "ты (ж.)",
+    "form": "סְבִיבֵךְ",
+    "tr": "вокруг тебя"
+   },
+   {
+    "person": "он",
+    "form": "סְבִיבוֹ",
+    "tr": "вокруг него"
+   },
+   {
+    "person": "она",
+    "form": "סְבִיבָהּ",
+    "tr": "вокруг неё"
+   },
+   {
+    "person": "они (м.)",
+    "form": "סְבִיבָם",
+    "tr": "вокруг них"
+   }
+  ]
+ },
+ "אַחֲרֵי": {
+  "label": "после",
+  "rows": [
+   {
+    "person": "ты (ж.)",
+    "form": "אַחֲרַיִךְ",
+    "tr": "после тебя"
+   },
+   {
+    "person": "он",
+    "form": "אַחֲרָיו",
+    "tr": "после него"
+   },
+   {
+    "person": "она",
+    "form": "אַחֲרֶיהָ",
+    "tr": "после неё"
+   },
+   {
+    "person": "мы",
+    "form": "אַחֲרֵינוּ",
+    "tr": "после нас"
+   },
+   {
+    "person": "они (м.)",
+    "form": "אַחֲרֵיהֶם",
+    "tr": "после них"
+   }
+  ]
+ },
+ "מִתּוֹךְ": {
+  "label": "из, изнутри",
+  "rows": [
+   {
+    "person": "он",
+    "form": "מִתּוֹכוֹ",
+    "tr": "из него"
+   },
+   {
+    "person": "она",
+    "form": "מִתּוֹכָהּ",
+    "tr": "из неё"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "מִתּוֹכֶן",
+    "tr": "из них"
+   }
+  ]
+ },
+ "עֲבוּר": {
+  "label": "для, ради",
+  "rows": [
+   {
+    "person": "я",
+    "form": "עֲבוּרִי",
+    "tr": "для меня"
+   },
+   {
+    "person": "ты (м.)",
+    "form": "עֲבוּרְךָ",
+    "tr": "для тебя"
+   },
+   {
+    "person": "ты (ж.)",
+    "form": "עֲבוּרֵךְ",
+    "tr": "для тебя"
+   },
+   {
+    "person": "он",
+    "form": "עֲבוּרוֹ",
+    "tr": "для него"
+   },
+   {
+    "person": "она",
+    "form": "עֲבוּרָהּ",
+    "tr": "для неё"
+   },
+   {
+    "person": "они (м.)",
+    "form": "עֲבוּרָם",
+    "tr": "для них"
+   }
+  ]
+ },
+ "מֵעַל": {
+  "label": "над",
+  "rows": [
+   {
+    "person": "я",
+    "form": "מֵעָלַיי",
+    "tr": "над мной"
+   },
+   {
+    "person": "он",
+    "form": "מֵעָלָיו",
+    "tr": "над ним"
+   },
+   {
+    "person": "она",
+    "form": "מֵעָלֶיהָ",
+    "tr": "над ней"
+   },
+   {
+    "person": "мы",
+    "form": "מֵעָלֵינוּ",
+    "tr": "над нами"
+   },
+   {
+    "person": "они (ж.)",
+    "form": "מֵעֲלֵיהֶן",
+    "tr": "над ними"
+   }
+  ]
+ },
+ "לְתוֹךְ": {
+  "label": "внутрь",
+  "rows": [
+   {
+    "person": "он",
+    "form": "לְתוֹכוֹ",
+    "tr": "внутрь него"
+   },
+   {
+    "person": "она",
+    "form": "לְתוֹכָהּ",
+    "tr": "внутрь неё"
+   }
+  ]
  }
 };
 
@@ -3437,7 +3762,8 @@ async function askAiAboutWord(w, wordEl, btn){
 
 function refreshPopoverContent(w, wordEl){
   if (!popoverEl) return;
-  popoverEl.classList.toggle('wp-expanded', !!PREP_PARADIGMS[w.lemma]);
+  const prepTableHtml = prepParadigmTable(w, 'wp-prep-table');
+  popoverEl.classList.toggle('wp-expanded', !!prepTableHtml);
   const isSaved = !!vocabCache[w.lemma];
   const lemmaText = settings.nikud ? w.lemma : stripNikud(w.lemma);
   const milogWord = stripNikud(w.lemma).replace(/[^\u05D0-\u05EA]/g, '');
@@ -3450,7 +3776,7 @@ function refreshPopoverContent(w, wordEl){
     <div class="wp-top"><div class="wp-lemma">${lemmaText}</div><div class="wp-star ${isSaved ? 'on' : ''}">★</div></div>
     ${settings.detailed ? `<div class="wp-pos">${w.pos}</div>` : ''}
     <div class="wp-main">${w.tr}</div>
-    ${prepParadigmTable(w, 'wp-prep-table')}
+    ${prepTableHtml}
     ${settings.detailed && w.extra ? `<div class="wp-extra">${w.extra}</div>` : ''}
     ${settings.detailed && w.root && w.root !== '—' ? `<div class="wp-root">корень: ${w.root}</div>` : ''}
     ${settings.detailed && rootInfo ? `<div class="wp-root-semantics">${rootInfo}</div>` : ''}
@@ -3948,15 +4274,16 @@ function showSongPopover(w, wordEl, songId){
   closeSongPopover();
   songSelectedWordEl = wordEl;
   wordEl.classList.add('selected');
+  const songPrepTableHtml = prepParadigmTable(w, 'wp-prep-table');
   songPopoverEl = document.createElement('div');
-  songPopoverEl.className = 'word-popover' + (PREP_PARADIGMS[w.lemma] ? ' wp-expanded' : '');
+  songPopoverEl.className = 'word-popover' + (songPrepTableHtml ? ' wp-expanded' : '');
   document.body.appendChild(songPopoverEl);
   const isSaved = !!songVocabCache[w.lemma];
   songPopoverEl.innerHTML = `
     <div class="wp-top"><div class="wp-lemma">${escSongHtml(w.lemma)}</div><div class="wp-star ${isSaved ? 'on' : ''}">★</div></div>
     <div class="wp-pos">${escSongHtml(w.pos)}</div>
     <div class="wp-main">${escSongHtml(w.tr)}</div>
-    ${prepParadigmTable(w, 'wp-prep-table')}
+    ${songPrepTableHtml}
     ${w.extra ? `<div class="wp-extra">${escSongHtml(w.extra)}</div>` : ''}
     ${w.root && w.root !== '—' ? `<div class="wp-root">корень: ${escSongHtml(w.root)}</div>` : ''}
   `;
