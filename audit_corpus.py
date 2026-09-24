@@ -231,6 +231,51 @@ def find_dative_lemma_violations(w, base_path):
     return []
 
 
+# 2026-09-24: владелец поймал живьём на сайте (לפני/אחרי со снятыми
+# огласовками теряли йод) — расследование показало, что hebrew_spelling_
+# rules.py ОПИСЫВАЕТ режим "audit_corpus.py --dict" (см. докстринг модуля,
+# пункт 1в) уже давно, но он никогда не был реализован — словарная
+# проверка Hspell (suggest_dictionary_fix) существовала как функция, но
+# не подключалась к аудиту НИ РАЗУ. Разовый прогон нашёл 168+222=390
+# надёжных (огласовка+словарь совпали однозначно) слов по всему корпусу
+# — исправлены отдельным скриптом (см. CHANGELOG). Эта функция — чтобы
+# та же дыра не открылась снова: рубрика "auto" здесь ВСЕГДА обязана
+# быть пустой (это тот самый надёжный класс, что уже исправлен; новое
+# срабатывание значит новый текст добавили мимо проверки). Рубрика
+# "review" — только для СЛОВ С РЕАЛЬНЫМ pos/tr (аннотированных) — так
+# отсекается основной шум: непереведённые служебные слова эпоса и имена
+# собственные (Ярем и т.п., см. ktiv_male_dict_allow.json) почти всегда
+# идут с pos/tr пустыми. Оставшийся review-список — реальные кандидаты
+# на ручную проверку (НЕ автофикс — суффикс/приставка легко даёт другое
+# настоящее слово словаря, а не опечатку, см. историю в CHANGELOG про
+# "עוצמה"/"עצמה").
+_DICT_WORDS_CACHE = None
+
+
+def find_dict_spelling_violations(w, base_path):
+    """Только рубрика 'auto' (огласовка+словарь совпали однозначно) —
+    это ДОЛЖНО быть 0 всегда, любое срабатывание значит новый текст
+    добавили мимо проверки. Рубрика 'review' (словарь предлагает
+    вариант, но неоднозначно — легко попасть на другое настоящее слово,
+    не опечатку) СОЗНАТЕЛЬНО не включена как нарушение: это ~190 слов
+    по всему корпусу на 2026-09-24, большинство — имена/термины эпоса
+    без перевода, а не баги; список для ручного разбора отдельно, не
+    в жёстком гейте. См. CHANGELOG про "עוצמה"/"עצמה" — там review-
+    кандидат оказался ЛОЖНЫМ срабатыванием (другое настоящее слово)."""
+    global _DICT_WORDS_CACHE
+    if _DICT_WORDS_CACHE is None:
+        _DICT_WORDS_CACHE = rules.load_dictionary() or False
+    if not _DICT_WORDS_CACHE:
+        return []
+    out = []
+    for field in ("t", "lemma"):
+        val = w.get(field) or ""
+        res = rules.suggest_dictionary_fix(val, _DICT_WORDS_CACHE)
+        if res and res[0] == "auto":
+            out.append((base_path, val, f"надёжный словарный фикс не применён ({field} -> {res[1]!r})"))
+    return out
+
+
 _PREP_PARADIGMS_RE = re.compile(r"const PREP_PARADIGMS = (\{.*?\n\});", re.S)
 
 
@@ -296,6 +341,10 @@ def audit_content_file(fname, cache, total, confirmed_noise):
             for p, word, reason in find_dative_lemma_violations(w, base_path):
                 total, confirmed_noise = _report(
                     cache, "dative_lemma", p, word, f" ({reason})", total, confirmed_noise
+                )
+            for p, word, reason in find_dict_spelling_violations(w, base_path):
+                total, confirmed_noise = _report(
+                    cache, "dict_spelling", p, word, f" ({reason})", total, confirmed_noise
                 )
     return total, confirmed_noise
 
