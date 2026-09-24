@@ -26,8 +26,11 @@ hebrew_spelling_rules.py (та же копия, синхронизируется
 "Корни" нарочно требует писать двумя буквами ו для наглядности корня,
 это не общее правило иврита). На реальных книгах читалки эти два
 правила дали сотни ложных срабатываний на абсолютно правильном тексте
-— поэтому не подключены. Остальное — специфика читалки: висящие
-приставки, манифест, битый coverSvg, TTS-кросс-сверка.
+— поэтому не подключены на весь корпус. Точечно (не на весь корпус)
+ktiv_chaser всё же используется — см. audit_prep_paradigms_spelling():
+там заранее известно, что "опасных" слов (חדש/ראש/כל) нет, безопасно.
+Остальное — специфика читалки: висящие приставки, манифест, битый
+coverSvg, TTS-кросс-сверка.
 
 Запуск: python audit_corpus.py
 Ненулевой exit code, если найдено хоть одно неподтверждённое нарушение.
@@ -228,6 +231,32 @@ def find_dative_lemma_violations(w, base_path):
     return []
 
 
+_PREP_PARADIGMS_RE = re.compile(r"const PREP_PARADIGMS = (\{.*?\n\});", re.S)
+
+
+def audit_prep_paradigms_spelling():
+    """2026-09-24 (владелец, после проверки לפני/אחרי/מאחורי на слух):
+    формы в PREP_PARADIGMS (см. reader-prototype.html, находка №2/карточка
+    предлогов) попали в код через одноразовый скрипт-экстрактор из
+    корпуса, МИМО штатного add_nikud_checked — эта проверка закрывает
+    именно такой пробел на будущее, а не разбор "на глаз" по запросу.
+    ktiv_chaser НАРОЧНО не подключён на весь корпус (см. докстринг файла —
+    ложные срабатывания на חֹדֶשׁ/רֹאשׁ/כֹּל), но здесь безопасно: список
+    предлогов не содержит этих слов, проверено вручную при подключении."""
+    html_path = os.path.join(HERE, "reader-prototype.html")
+    raw = open(html_path, encoding="utf-8").read()
+    m = _PREP_PARADIGMS_RE.search(raw)
+    if not m:
+        print("  prep_paradigms_missing · PREP_PARADIGMS не найден в reader-prototype.html", file=sys.stderr)
+        return 1
+    data = json.loads(m.group(1))
+    obj = {prep: [r["form"] for r in info["rows"]] for prep, info in data.items()}
+    violations = rules.find_ktiv_chaser_violations(obj)
+    for p, word, reason in violations:
+        print(f"  prep_paradigm_spelling · {p} · {word!r} ({reason})", file=sys.stderr)
+    return len(violations)
+
+
 def audit_content_file(fname, cache, total, confirmed_noise):
     data = json.load(open(fname, encoding="utf-8"))
     key = _lines_key(data)
@@ -376,6 +405,8 @@ def main():
     total, confirmed_noise = audit_all_content(cache, total, confirmed_noise)
     total, confirmed_noise = audit_manifests(total, confirmed_noise)
     total, confirmed_noise = audit_tts_known_bad(total, confirmed_noise)
+    print("\n=== карточка предлогов (PREP_PARADIGMS в reader-prototype.html): כתיב מלא ===", file=sys.stderr)
+    total += audit_prep_paradigms_spelling()
 
     print(
         f"\nВсего нарушений: {total} "
