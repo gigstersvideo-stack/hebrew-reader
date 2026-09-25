@@ -430,8 +430,8 @@
         "caption": "עַגְבָנִיָּיה",
         "capTr": "agvaniyah",
         "mnemonic": "Представь гигантский помидор, который вдруг превращается в огромную гармонику, и из него начинает звучать мелодия 'Агабани ях', которую играет веселый музыкант. Гармоника-помидор начинает танцевать, и вокруг неё собирается целый оркестр из овощей и фруктов, которые начинают играть на своих инструментах.",
-        "img": "illustrations_market_alef/s7.jpg",
-        "imgMnemonic": "illustrations_market_alef/s7-mnemonic.jpg"
+        "img": "illustrations_market_alef/s7.webp",
+        "imgMnemonic": "illustrations_market_alef/s7-mnemonic.webp"
       }
     },
     {
@@ -1343,8 +1343,8 @@
         "caption": "לִצְחוֹק",
         "capTr": "litzchok",
         "mnemonic": "Лиса Цоха смеётся, когда видит цирковое шоу с клоунами, которые жонглируют огромными шарами и выполняют сальто, а затем все клоуны начинают смеяться вместе с лисой Цохой, создавая хор смеющихся существ.",
-        "img": "illustrations_market_alef/s21.jpg",
-        "imgMnemonic": "illustrations_market_alef/s21-mnemonic.jpg"
+        "img": "illustrations_market_alef/s21.webp",
+        "imgMnemonic": "illustrations_market_alef/s21-mnemonic.webp"
       },
       "ttsEngine": "gtts"
     },

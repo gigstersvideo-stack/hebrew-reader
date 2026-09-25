@@ -33,6 +33,7 @@ Cloudflare Workers AI (@cf/black-forest-labs/flux-1-schnell, бесплатно
 """
 
 import argparse
+import io
 import json
 import os
 import re
@@ -40,6 +41,8 @@ import sys
 import time
 import urllib.request
 import urllib.error
+
+from PIL import Image
 
 from google import genai
 from google.genai import types
@@ -252,6 +255,19 @@ def generate_image(cf_account_id, cf_api_token, prompt):
     return base64.b64decode(body["result"]["image"])
 
 
+# Вес читалки на телефоне (см. ROADMAP.md): картинки сразу пишутся как
+# 640x640 WebP quality=82, а не 1024x1024 JPEG — тот же формат, что весь
+# существующий корпус получил при разовой конвертации (см. CHANGELOG),
+# без этого следующая же новая книга откатила бы вес назад.
+IMAGE_SIZE = (640, 640)
+IMAGE_QUALITY = 82
+
+
+def save_image_webp(image_bytes, path):
+    with Image.open(io.BytesIO(image_bytes)) as im:
+        im.convert("RGB").resize(IMAGE_SIZE, Image.LANCZOS).save(path, "WEBP", quality=IMAGE_QUALITY)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("book_data", help="уже размеченный book-data.json")
@@ -320,15 +336,13 @@ def main():
         print(f"[{sid}] рисую атмосферную картинку...", file=sys.stderr)
         atmo_prompt = f"{m['atmosphere_image_prompt']} {ATMOSPHERE_STYLE}"
         atmo_bytes = generate_image(cf_account_id, cf_api_token, atmo_prompt)
-        atmo_path = os.path.join(args.images_dir, f"{sid}.jpg")
-        with open(atmo_path, "wb") as f:
-            f.write(atmo_bytes)
+        atmo_path = os.path.join(args.images_dir, f"{sid}.webp")
+        save_image_webp(atmo_bytes, atmo_path)
 
         print(f"[{sid}] рисую картинку-мнемонику...", file=sys.stderr)
         mnem_bytes = generate_image(cf_account_id, cf_api_token, m["mnemonic_image_prompt"])
-        mnem_path = os.path.join(args.images_dir, f"{sid}-mnemonic.jpg")
-        with open(mnem_path, "wb") as f:
-            f.write(mnem_bytes)
+        mnem_path = os.path.join(args.images_dir, f"{sid}-mnemonic.webp")
+        save_image_webp(mnem_bytes, mnem_path)
 
         sentence["illustration"] = {
             "word": w["lemma"],
@@ -336,8 +350,8 @@ def main():
             "caption": w["lemma"],
             "capTr": m["cap_tr"],
             "mnemonic": m["mnemonic_ru"],
-            "img": f"{args.images_dir}/{sid}.jpg",
-            "imgMnemonic": f"{args.images_dir}/{sid}-mnemonic.jpg",
+            "img": f"{args.images_dir}/{sid}.webp",
+            "imgMnemonic": f"{args.images_dir}/{sid}-mnemonic.webp",
         }
 
         # сохраняем после КАЖДОЙ страницы, а не только в конце — если прервётся
