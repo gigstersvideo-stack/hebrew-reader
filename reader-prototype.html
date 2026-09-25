@@ -636,7 +636,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.89.1</div>
+    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.89.2</div>
   </div>
 </div>
 
@@ -5157,6 +5157,62 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch((e) => {
       console.warn("[ivrit-reader] service worker registration failed:", e);
     });
+  });
+}
+
+// ---- встроенный браузер (Telegram/Instagram/FB/...): предупреждение +
+// попытка перекинуть в системный браузер ----
+// Найдено вживую (2026-09-25): друг открыл ссылку из Telegram, попап-браузер
+// Telegram сломался при попытке войти через Google-аккаунт/зайти на Gemini
+// AI Studio за API-ключом. Это НЕ баг сайта — Google сам блокирует OAuth
+// внутри встроенных webview ("disallowed_useragent"), обойти нельзя, можно
+// только заранее увести пользователя в обычный браузер. Определение не
+// 100%-надёжное (особенно на iOS, где встроенные браузеры часто неотличимы
+// от Safari по User-Agent) — это лучшее возможное на чистом JS, без сервера.
+function detectInAppBrowser() {
+  const ua = navigator.userAgent || "";
+  const checks = {
+    telegram: typeof window.TelegramWebviewProxy !== "undefined" || /\bTelegram\b/i.test(ua),
+    fbMessenger: /FBAN|FBAV|FB_IAB|\bMessenger\b/i.test(ua),
+    instagram: /\bInstagram\b/i.test(ua),
+    line: /\bLine\//i.test(ua),
+    wechat: /MicroMessenger/i.test(ua),
+    genericAndroidWebview: /Android/.test(ua) && /; wv\)/.test(ua),
+  };
+  return Object.values(checks).some(Boolean);
+}
+
+function openInSystemBrowser() {
+  const url = location.href;
+  const ua = navigator.userAgent || "";
+  if (/Android/i.test(ua)) {
+    // com.android.chrome может быть не установлен — тогда просто ничего не
+    // произойдёт, пользователь остаётся на подсказке ниже кнопки.
+    const noProto = url.replace(/^https?:\/\//, "");
+    location.href = `intent://${noProto}#Intent;scheme=https;package=com.android.chrome;end`;
+  } else if (/iPhone|iPad|iPod/i.test(ua)) {
+    // Работает не во всех версиях iOS/приложений — известный, но не
+    // гарантированный трюк, поэтому подсказка ниже кнопки не убирается.
+    location.href = url.replace(/^https?:\/\//, "x-safari-https://");
+  }
+}
+
+if (detectInAppBrowser() && !sessionStorage.getItem("iabBannerDismissed")) {
+  const banner = document.createElement("div");
+  banner.id = "iabBanner";
+  banner.setAttribute("dir", "ltr");
+  banner.style.cssText = "position:relative; z-index:50; background:var(--gold-soft); border-bottom:2px solid var(--gold); padding:10px 14px; font-family:'Inter',sans-serif; font-size:13px; color:var(--ink); display:flex; align-items:center; gap:10px; flex-wrap:wrap; text-align:left;";
+  banner.innerHTML = `
+    <span style="flex:1 1 220px;">⚠️ Вы во встроенном браузере приложения — вход через Google и некоторые другие функции здесь могут не работать.</span>
+    <button id="iabOpenBtn" style="background:var(--accent); color:#fff; border:none; border-radius:6px; padding:6px 12px; font-size:13px; cursor:pointer; white-space:nowrap;">Открыть в браузере</button>
+    <button id="iabCloseBtn" aria-label="Закрыть" style="background:none; border:none; color:var(--ink-soft); font-size:16px; cursor:pointer; padding:0 4px; line-height:1;">×</button>
+    <div style="flex:1 0 100%; font-size:11.5px; color:var(--ink-soft);">Не сработало? Откройте меню (⋯ / «Поделиться») и выберите «Открыть в браузере».</div>
+  `;
+  document.body.insertBefore(banner, document.body.firstChild);
+  document.getElementById("iabOpenBtn").addEventListener("click", openInSystemBrowser);
+  document.getElementById("iabCloseBtn").addEventListener("click", () => {
+    banner.remove();
+    sessionStorage.setItem("iabBannerDismissed", "1");
   });
 }
 </script>
