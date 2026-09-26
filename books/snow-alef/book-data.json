@@ -26,7 +26,7 @@
           "end": 1.1
         }
       ],
-      "audio": "audio_snow_alef/s1.mp3"
+      "audio": "books/snow-alef/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -74,7 +74,7 @@
           "end": 1.913
         }
       ],
-      "audio": "audio_snow_alef/s2.mp3"
+      "audio": "books/snow-alef/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -112,7 +112,7 @@
           "end": 1.6
         }
       ],
-      "audio": "audio_snow_alef/s3.mp3"
+      "audio": "books/snow-alef/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -150,7 +150,7 @@
           "end": 1.562
         }
       ],
-      "audio": "audio_snow_alef/s4.mp3"
+      "audio": "books/snow-alef/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -208,7 +208,7 @@
           "end": 2.388
         }
       ],
-      "audio": "audio_snow_alef/s5.mp3"
+      "audio": "books/snow-alef/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -246,7 +246,7 @@
           "end": 1.6
         }
       ],
-      "audio": "audio_snow_alef/s6.mp3"
+      "audio": "books/snow-alef/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -304,7 +304,7 @@
           "end": 2.087
         }
       ],
-      "audio": "audio_snow_alef/s7.mp3"
+      "audio": "books/snow-alef/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -352,15 +352,15 @@
           "end": 2.0
         }
       ],
-      "audio": "audio_snow_alef/s8.mp3",
+      "audio": "books/snow-alef/audio/s8.mp3",
       "illustration": {
         "word": "כּוֹבַע",
         "tr": "шапка",
         "caption": "כּוֹבַע",
         "capTr": "kova",
         "mnemonic": "Представь, что КОВАЛЬ в кожаном фартуке ковёт на наковальне огромную вязаную шапку: искры летят во все стороны, молот гремит, а шапка сама прыгает на голову смеющейся девочки. Ковать шапку, вот так звучит слово «ковА» по-еврейски.",
-        "img": "illustrations_snow_alef/s8.webp",
-        "imgMnemonic": "illustrations_snow_alef/s8-mnemonic.webp"
+        "img": "books/snow-alef/illustrations/s8.webp",
+        "imgMnemonic": "books/snow-alef/illustrations/s8-mnemonic.webp"
       }
     },
     {
@@ -419,7 +419,7 @@
           "end": 2.05
         }
       ],
-      "audio": "audio_snow_alef/s9.mp3"
+      "audio": "books/snow-alef/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -467,7 +467,7 @@
           "end": 2.025
         }
       ],
-      "audio": "audio_snow_alef/s10.mp3"
+      "audio": "books/snow-alef/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -505,7 +505,7 @@
           "end": 1.425
         }
       ],
-      "audio": "audio_snow_alef/s11.mp3"
+      "audio": "books/snow-alef/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -563,7 +563,7 @@
           "end": 2.05
         }
       ],
-      "audio": "audio_snow_alef/s12.mp3"
+      "audio": "books/snow-alef/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -621,7 +621,7 @@
           "end": 2.225
         }
       ],
-      "audio": "audio_snow_alef/s13.mp3"
+      "audio": "books/snow-alef/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -659,7 +659,7 @@
           "end": 1.188
         }
       ],
-      "audio": "audio_snow_alef/s14.mp3"
+      "audio": "books/snow-alef/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -707,7 +707,7 @@
           "end": 2.375
         }
       ],
-      "audio": "audio_snow_alef/s15.mp3"
+      "audio": "books/snow-alef/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -765,7 +765,7 @@
           "end": 2.6
         }
       ],
-      "audio": "audio_snow_alef/s16.mp3"
+      "audio": "books/snow-alef/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -803,7 +803,7 @@
           "end": 1.512
         }
       ],
-      "audio": "audio_snow_alef/s17.mp3"
+      "audio": "books/snow-alef/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -871,7 +871,7 @@
           "end": 2.675
         }
       ],
-      "audio": "audio_snow_alef/s18.mp3"
+      "audio": "books/snow-alef/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -949,7 +949,7 @@
           "end": 2.7
         }
       ],
-      "audio": "audio_snow_alef/s19.mp3"
+      "audio": "books/snow-alef/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -997,7 +997,7 @@
           "end": 2.212
         }
       ],
-      "audio": "audio_snow_alef/s20.mp3"
+      "audio": "books/snow-alef/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1055,7 +1055,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_snow_alef/s21.mp3"
+      "audio": "books/snow-alef/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1113,7 +1113,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_snow_alef/s22.mp3"
+      "audio": "books/snow-alef/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -1171,7 +1171,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_snow_alef/s23.mp3"
+      "audio": "books/snow-alef/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -1229,7 +1229,7 @@
           "end": 2.375
         }
       ],
-      "audio": "audio_snow_alef/s24.mp3"
+      "audio": "books/snow-alef/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -1307,7 +1307,7 @@
           "end": 3.388
         }
       ],
-      "audio": "audio_snow_alef/s25.mp3"
+      "audio": "books/snow-alef/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -1355,7 +1355,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_snow_alef/s26.mp3"
+      "audio": "books/snow-alef/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -1423,7 +1423,7 @@
           "end": 3.0
         }
       ],
-      "audio": "audio_snow_alef/s27.mp3"
+      "audio": "books/snow-alef/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -1491,7 +1491,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_snow_alef/s28.mp3"
+      "audio": "books/snow-alef/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -1559,7 +1559,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_snow_alef/s29.mp3"
+      "audio": "books/snow-alef/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -1597,7 +1597,7 @@
           "end": 1.625
         }
       ],
-      "audio": "audio_snow_alef/s30.mp3"
+      "audio": "books/snow-alef/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -1665,7 +1665,7 @@
           "end": 3.163
         }
       ],
-      "audio": "audio_snow_alef/s31.mp3"
+      "audio": "books/snow-alef/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -1713,7 +1713,7 @@
           "end": 2.025
         }
       ],
-      "audio": "audio_snow_alef/s32.mp3"
+      "audio": "books/snow-alef/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -1811,15 +1811,15 @@
           "end": 2.938
         }
       ],
-      "audio": "audio_snow_alef/s33.mp3",
+      "audio": "books/snow-alef/audio/s33.mp3",
       "illustration": {
         "word": "הַגֶּזֶר",
         "tr": "морковь",
         "caption": "הַגֶּזֶר",
         "capTr": "hagezer",
         "mnemonic": "Представь ГАЗЕЛЬ в солнцезащитных очках, которая несёт на спине гигантскую морковь, как сёрфер доску. Газель мчится по снежному склону, а вокруг подпрыгивают морковки поменьше. Газель, «гезер», морковь.",
-        "img": "illustrations_snow_alef/s33.webp",
-        "imgMnemonic": "illustrations_snow_alef/s33-mnemonic.webp"
+        "img": "books/snow-alef/illustrations/s33.webp",
+        "imgMnemonic": "books/snow-alef/illustrations/s33-mnemonic.webp"
       }
     },
     {
@@ -1858,7 +1858,7 @@
           "end": 1.3
         }
       ],
-      "audio": "audio_snow_alef/s34.mp3"
+      "audio": "books/snow-alef/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -1916,7 +1916,7 @@
           "end": 2.388
         }
       ],
-      "audio": "audio_snow_alef/s35.mp3"
+      "audio": "books/snow-alef/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -1984,7 +1984,7 @@
           "end": 2.013
         }
       ],
-      "audio": "audio_snow_alef/s36.mp3"
+      "audio": "books/snow-alef/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -2042,7 +2042,7 @@
           "end": 2.112
         }
       ],
-      "audio": "audio_snow_alef/s37.mp3"
+      "audio": "books/snow-alef/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -2090,7 +2090,7 @@
           "end": 1.75
         }
       ],
-      "audio": "audio_snow_alef/s38.mp3"
+      "audio": "books/snow-alef/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -2138,7 +2138,7 @@
           "end": 1.413
         }
       ],
-      "audio": "audio_snow_alef/s39.mp3"
+      "audio": "books/snow-alef/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -2186,7 +2186,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_snow_alef/s40.mp3"
+      "audio": "books/snow-alef/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -2234,7 +2234,7 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_snow_alef/s41.mp3"
+      "audio": "books/snow-alef/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -2262,7 +2262,7 @@
           "end": 1.675
         }
       ],
-      "audio": "audio_snow_alef/s42.mp3"
+      "audio": "books/snow-alef/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -2310,7 +2310,7 @@
           "end": 1.988
         }
       ],
-      "audio": "audio_snow_alef/s43.mp3"
+      "audio": "books/snow-alef/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -2358,7 +2358,7 @@
           "end": 2.25
         }
       ],
-      "audio": "audio_snow_alef/s44.mp3"
+      "audio": "books/snow-alef/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -2396,7 +2396,7 @@
           "end": 1.462
         }
       ],
-      "audio": "audio_snow_alef/s45.mp3"
+      "audio": "books/snow-alef/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -2424,15 +2424,15 @@
           "end": 1.25
         }
       ],
-      "audio": "audio_snow_alef/s46.mp3",
+      "audio": "books/snow-alef/audio/s46.mp3",
       "illustration": {
         "word": "הַחוֹרֶף",
         "tr": "зима",
         "caption": "הַחוֹרֶף",
         "capTr": "hachoref",
         "mnemonic": "Представь огромного ХОРЬКА в шерстяном шарфе, который катит по снегу гигантский снежный ком. Зима, хорёк, «хорэф». Хорёк гордо забирается на вершину сугроба и машет лапой всем вокруг.",
-        "img": "illustrations_snow_alef/s46.webp",
-        "imgMnemonic": "illustrations_snow_alef/s46-mnemonic.webp"
+        "img": "books/snow-alef/illustrations/s46.webp",
+        "imgMnemonic": "books/snow-alef/illustrations/s46-mnemonic.webp"
       }
     },
     {
@@ -2481,7 +2481,7 @@
           "end": 1.975
         }
       ],
-      "audio": "audio_snow_alef/s47.mp3"
+      "audio": "books/snow-alef/audio/s47.mp3"
     }
   ]
 }

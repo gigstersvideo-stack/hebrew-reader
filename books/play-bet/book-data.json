@@ -56,7 +56,7 @@
           "end": 2.112
         }
       ],
-      "audio": "audio_play_bet/s1.mp3"
+      "audio": "books/play-bet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -164,7 +164,7 @@
           "end": 3.812
         }
       ],
-      "audio": "audio_play_bet/s2.mp3"
+      "audio": "books/play-bet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -272,7 +272,7 @@
           "end": 4.85
         }
       ],
-      "audio": "audio_play_bet/s3.mp3"
+      "audio": "books/play-bet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -330,7 +330,7 @@
           "end": 2.375
         }
       ],
-      "audio": "audio_play_bet/s4.mp3"
+      "audio": "books/play-bet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -398,7 +398,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_play_bet/s5.mp3"
+      "audio": "books/play-bet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -476,7 +476,7 @@
           "end": 2.788
         }
       ],
-      "audio": "audio_play_bet/s6.mp3"
+      "audio": "books/play-bet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -534,15 +534,15 @@
           "end": 2.325
         }
       ],
-      "audio": "audio_play_bet/s7.mp3",
+      "audio": "books/play-bet/audio/s7.mp3",
       "illustration": {
         "word": "הַכִּיתָּה",
         "tr": "класс",
         "caption": "הַכִּיתָּה",
         "capTr": "hakita",
         "mnemonic": "Представь, что в классе вместо учителя стоит огромный КИТ в очках и с указкой. Он пускает фонтан из носа, а ученики за партами удивлённо поднимают руки, чтобы задать ему вопрос.",
-        "img": "illustrations_play_bet/s7.webp",
-        "imgMnemonic": "illustrations_play_bet/s7-mnemonic.webp"
+        "img": "books/play-bet/illustrations/s7.webp",
+        "imgMnemonic": "books/play-bet/illustrations/s7-mnemonic.webp"
       }
     },
     {
@@ -611,7 +611,7 @@
           "end": 2.237
         }
       ],
-      "audio": "audio_play_bet/s8.mp3"
+      "audio": "books/play-bet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -699,7 +699,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_play_bet/s9.mp3"
+      "audio": "books/play-bet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -747,7 +747,7 @@
           "end": 1.837
         }
       ],
-      "audio": "audio_play_bet/s10.mp3"
+      "audio": "books/play-bet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -865,7 +865,7 @@
           "end": 3.712
         }
       ],
-      "audio": "audio_play_bet/s11.mp3"
+      "audio": "books/play-bet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -923,7 +923,7 @@
           "end": 2.212
         }
       ],
-      "audio": "audio_play_bet/s12.mp3"
+      "audio": "books/play-bet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1001,7 +1001,7 @@
           "end": 3.587
         }
       ],
-      "audio": "audio_play_bet/s13.mp3"
+      "audio": "books/play-bet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1059,7 +1059,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_play_bet/s14.mp3"
+      "audio": "books/play-bet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1137,7 +1137,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_play_bet/s15.mp3"
+      "audio": "books/play-bet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1195,7 +1195,7 @@
           "end": 2.388
         }
       ],
-      "audio": "audio_play_bet/s16.mp3"
+      "audio": "books/play-bet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1253,7 +1253,7 @@
           "end": 2.9
         }
       ],
-      "audio": "audio_play_bet/s17.mp3"
+      "audio": "books/play-bet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1331,7 +1331,7 @@
           "end": 2.413
         }
       ],
-      "audio": "audio_play_bet/s18.mp3"
+      "audio": "books/play-bet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1389,7 +1389,7 @@
           "end": 2.425
         }
       ],
-      "audio": "audio_play_bet/s19.mp3"
+      "audio": "books/play-bet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1447,7 +1447,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_play_bet/s20.mp3"
+      "audio": "books/play-bet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1515,7 +1515,7 @@
           "end": 1.538
         }
       ],
-      "audio": "audio_play_bet/s21.mp3"
+      "audio": "books/play-bet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1573,7 +1573,7 @@
           "end": 1.9
         }
       ],
-      "audio": "audio_play_bet/s22.mp3"
+      "audio": "books/play-bet/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -1651,7 +1651,7 @@
           "end": 2.65
         }
       ],
-      "audio": "audio_play_bet/s23.mp3"
+      "audio": "books/play-bet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -1739,7 +1739,7 @@
           "end": 3.038
         }
       ],
-      "audio": "audio_play_bet/s24.mp3"
+      "audio": "books/play-bet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -1797,7 +1797,7 @@
           "end": 2.2
         }
       ],
-      "audio": "audio_play_bet/s25.mp3"
+      "audio": "books/play-bet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -1875,7 +1875,7 @@
           "end": 2.763
         }
       ],
-      "audio": "audio_play_bet/s26.mp3"
+      "audio": "books/play-bet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -1943,7 +1943,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_play_bet/s27.mp3"
+      "audio": "books/play-bet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -2001,7 +2001,7 @@
           "end": 1.913
         }
       ],
-      "audio": "audio_play_bet/s28.mp3"
+      "audio": "books/play-bet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -2059,7 +2059,7 @@
           "end": 2.763
         }
       ],
-      "audio": "audio_play_bet/s29.mp3"
+      "audio": "books/play-bet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -2137,7 +2137,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_play_bet/s30.mp3"
+      "audio": "books/play-bet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -2195,15 +2195,15 @@
           "end": 2.65
         }
       ],
-      "audio": "audio_play_bet/s31.mp3",
+      "audio": "books/play-bet/audio/s31.mp3",
       "illustration": {
         "word": "חֲזָרָה",
         "tr": "репетиция",
         "caption": "חֲזָרָה",
         "capTr": "chazara",
         "mnemonic": "Представь репетицию, на которую вместо школьников пришли настоящие ХАЗАРЫ: воины на конях в шапках гарцуют по сцене класса, размахивают саблями и репетируют королевскую пьесу, а учительница хлопает в ладоши.",
-        "img": "illustrations_play_bet/s31.webp",
-        "imgMnemonic": "illustrations_play_bet/s31-mnemonic.webp"
+        "img": "books/play-bet/illustrations/s31.webp",
+        "imgMnemonic": "books/play-bet/illustrations/s31-mnemonic.webp"
       }
     },
     {
@@ -2272,7 +2272,7 @@
           "end": 2.875
         }
       ],
-      "audio": "audio_play_bet/s32.mp3"
+      "audio": "books/play-bet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -2330,7 +2330,7 @@
           "end": 1.938
         }
       ],
-      "audio": "audio_play_bet/s33.mp3"
+      "audio": "books/play-bet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -2408,7 +2408,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_play_bet/s34.mp3"
+      "audio": "books/play-bet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -2476,7 +2476,7 @@
           "end": 2.85
         }
       ],
-      "audio": "audio_play_bet/s35.mp3"
+      "audio": "books/play-bet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -2554,7 +2554,7 @@
           "end": 2.725
         }
       ],
-      "audio": "audio_play_bet/s36.mp3"
+      "audio": "books/play-bet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -2602,7 +2602,7 @@
           "end": 1.887
         }
       ],
-      "audio": "audio_play_bet/s37.mp3"
+      "audio": "books/play-bet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -2670,7 +2670,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_play_bet/s38.mp3"
+      "audio": "books/play-bet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -2718,7 +2718,7 @@
           "end": 2.425
         }
       ],
-      "audio": "audio_play_bet/s39.mp3"
+      "audio": "books/play-bet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -2786,7 +2786,7 @@
           "end": 2.862
         }
       ],
-      "audio": "audio_play_bet/s40.mp3"
+      "audio": "books/play-bet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -2874,7 +2874,7 @@
           "end": 3.625
         }
       ],
-      "audio": "audio_play_bet/s41.mp3"
+      "audio": "books/play-bet/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -2972,7 +2972,7 @@
           "end": 3.312
         }
       ],
-      "audio": "audio_play_bet/s42.mp3"
+      "audio": "books/play-bet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -3010,7 +3010,7 @@
           "end": 1.712
         }
       ],
-      "audio": "audio_play_bet/s43.mp3"
+      "audio": "books/play-bet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -3108,7 +3108,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_play_bet/s44.mp3"
+      "audio": "books/play-bet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -3216,15 +3216,15 @@
           "end": 4.0
         }
       ],
-      "audio": "audio_play_bet/s45.mp3",
+      "audio": "books/play-bet/audio/s45.mp3",
       "illustration": {
         "word": "הַמָּסָךְ",
         "tr": "занавес (кулис)",
         "caption": "הַמָּסָךְ",
         "capTr": "hamasakh",
         "mnemonic": "Представь, что занавес на сцене вдруг превратился в огромную МАСКУ с весёлым лицом. Маска-занавес медленно открывает рот, и оттуда выходят актёры в костюмах, а зрители аплодируют.",
-        "img": "illustrations_play_bet/s45.webp",
-        "imgMnemonic": "illustrations_play_bet/s45-mnemonic.webp"
+        "img": "books/play-bet/illustrations/s45.webp",
+        "imgMnemonic": "books/play-bet/illustrations/s45-mnemonic.webp"
       }
     },
     {
@@ -3313,7 +3313,7 @@
           "end": 3.55
         }
       ],
-      "audio": "audio_play_bet/s46.mp3"
+      "audio": "books/play-bet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -3351,7 +3351,7 @@
           "end": 1.825
         }
       ],
-      "audio": "audio_play_bet/s47.mp3"
+      "audio": "books/play-bet/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -3449,7 +3449,7 @@
           "end": 3.638
         }
       ],
-      "audio": "audio_play_bet/s48.mp3"
+      "audio": "books/play-bet/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -3557,7 +3557,7 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_play_bet/s49.mp3"
+      "audio": "books/play-bet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -3665,7 +3665,7 @@
           "end": 4.638
         }
       ],
-      "audio": "audio_play_bet/s50.mp3"
+      "audio": "books/play-bet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -3723,7 +3723,7 @@
           "end": 2.513
         }
       ],
-      "audio": "audio_play_bet/s51.mp3"
+      "audio": "books/play-bet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -3811,7 +3811,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_play_bet/s52.mp3"
+      "audio": "books/play-bet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -3869,7 +3869,7 @@
           "end": 2.638
         }
       ],
-      "audio": "audio_play_bet/s53.mp3"
+      "audio": "books/play-bet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -3997,7 +3997,7 @@
           "end": 5.662
         }
       ],
-      "audio": "audio_play_bet/s54.mp3"
+      "audio": "books/play-bet/audio/s54.mp3"
     }
   ]
 }

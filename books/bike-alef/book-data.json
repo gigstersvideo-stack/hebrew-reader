@@ -36,7 +36,7 @@
           "end": 1.6
         }
       ],
-      "audio": "audio_bike_alef/s1.mp3"
+      "audio": "books/bike-alef/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -74,7 +74,7 @@
           "end": 1.788
         }
       ],
-      "audio": "audio_bike_alef/s2.mp3"
+      "audio": "books/bike-alef/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -112,15 +112,15 @@
           "end": 1.925
         }
       ],
-      "audio": "audio_bike_alef/s3.mp3",
+      "audio": "books/bike-alef/audio/s3.mp3",
       "illustration": {
         "word": "הָאוֹפַנַּיִים",
         "tr": "велосипеды",
         "caption": "הָאוֹפַנַּיִים",
         "capTr": "haofanaim",
         "mnemonic": "Представь огромного дядю по имени АФАНАСИЙ, который обожает велосипеды и решил прокатиться на велосипеде по всему городу, создавая весёлый хаос и суматоху. Все люди с улыбкой смотрят на Афанасия, а он хохочет и продолжает кататься. Велосипеды становятся всё больше и больше, и Афанасий начинает летать на них по воздуху.",
-        "img": "illustrations_bike_alef/s3.webp",
-        "imgMnemonic": "illustrations_bike_alef/s3-mnemonic.webp"
+        "img": "books/bike-alef/illustrations/s3.webp",
+        "imgMnemonic": "books/bike-alef/illustrations/s3-mnemonic.webp"
       }
     },
     {
@@ -146,7 +146,7 @@
         }
       ],
       "ttsEngine": "gtts",
-      "audio": "audio_bike_alef/s4.mp3"
+      "audio": "books/bike-alef/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -194,7 +194,7 @@
           "end": 1.738
         }
       ],
-      "audio": "audio_bike_alef/s5.mp3"
+      "audio": "books/bike-alef/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -242,7 +242,7 @@
           "end": 1.775
         }
       ],
-      "audio": "audio_bike_alef/s6.mp3"
+      "audio": "books/bike-alef/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -290,7 +290,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_bike_alef/s7.mp3"
+      "audio": "books/bike-alef/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -338,7 +338,7 @@
           "end": 1.712
         }
       ],
-      "audio": "audio_bike_alef/s8.mp3"
+      "audio": "books/bike-alef/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -366,7 +366,7 @@
           "end": 1.125
         }
       ],
-      "audio": "audio_bike_alef/s9.mp3"
+      "audio": "books/bike-alef/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -404,7 +404,7 @@
           "end": 1.475
         }
       ],
-      "audio": "audio_bike_alef/s10.mp3"
+      "audio": "books/bike-alef/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -452,7 +452,7 @@
           "end": 1.4
         }
       ],
-      "audio": "audio_bike_alef/s11.mp3"
+      "audio": "books/bike-alef/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -510,7 +510,7 @@
           "end": 1.625
         }
       ],
-      "audio": "audio_bike_alef/s12.mp3"
+      "audio": "books/bike-alef/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -568,7 +568,7 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_bike_alef/s13.mp3"
+      "audio": "books/bike-alef/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -626,7 +626,7 @@
           "end": 1.95
         }
       ],
-      "audio": "audio_bike_alef/s14.mp3"
+      "audio": "books/bike-alef/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -694,7 +694,7 @@
           "end": 2.85
         }
       ],
-      "audio": "audio_bike_alef/s15.mp3"
+      "audio": "books/bike-alef/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -742,7 +742,7 @@
           "end": 1.95
         }
       ],
-      "audio": "audio_bike_alef/s16.mp3"
+      "audio": "books/bike-alef/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -830,7 +830,7 @@
           "end": 3.825
         }
       ],
-      "audio": "audio_bike_alef/s17.mp3"
+      "audio": "books/bike-alef/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -878,7 +878,7 @@
           "end": 1.837
         }
       ],
-      "audio": "audio_bike_alef/s18.mp3"
+      "audio": "books/bike-alef/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -926,7 +926,7 @@
           "end": 1.738
         }
       ],
-      "audio": "audio_bike_alef/s19.mp3"
+      "audio": "books/bike-alef/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -984,7 +984,7 @@
           "end": 2.3
         }
       ],
-      "audio": "audio_bike_alef/s20.mp3"
+      "audio": "books/bike-alef/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1032,15 +1032,15 @@
           "end": 1.837
         }
       ],
-      "audio": "audio_bike_alef/s21.mp3",
+      "audio": "books/bike-alef/audio/s21.mp3",
       "illustration": {
         "word": "הָאוֹפַנַּיִים",
         "tr": "велосипеде",
         "caption": "הָאוֹפַנַּיִים",
         "capTr": "haofanayim",
         "mnemonic": "Представь огромного дядю АФАНАСИЯ, который от восторга запрыгнул на велосипед и покатился на нём через весь город, а вокруг него от бешеной скорости летают листья и шляпы прохожих!",
-        "img": "illustrations_bike_alef/s21.webp",
-        "imgMnemonic": "illustrations_bike_alef/s21-mnemonic.webp"
+        "img": "books/bike-alef/illustrations/s21.webp",
+        "imgMnemonic": "books/bike-alef/illustrations/s21-mnemonic.webp"
       }
     },
     {
@@ -1089,7 +1089,7 @@
           "end": 1.812
         }
       ],
-      "audio": "audio_bike_alef/s22.mp3"
+      "audio": "books/bike-alef/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -1137,7 +1137,7 @@
           "end": 1.875
         }
       ],
-      "audio": "audio_bike_alef/s23.mp3"
+      "audio": "books/bike-alef/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -1195,7 +1195,7 @@
           "end": 2.013
         }
       ],
-      "audio": "audio_bike_alef/s24.mp3"
+      "audio": "books/bike-alef/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -1253,7 +1253,7 @@
           "end": 2.35
         }
       ],
-      "audio": "audio_bike_alef/s25.mp3"
+      "audio": "books/bike-alef/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -1311,7 +1311,7 @@
           "end": 1.663
         }
       ],
-      "audio": "audio_bike_alef/s26.mp3"
+      "audio": "books/bike-alef/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -1349,7 +1349,7 @@
           "end": 1.55
         }
       ],
-      "audio": "audio_bike_alef/s27.mp3"
+      "audio": "books/bike-alef/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -1407,7 +1407,7 @@
           "end": 1.55
         }
       ],
-      "audio": "audio_bike_alef/s28.mp3"
+      "audio": "books/bike-alef/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -1445,7 +1445,7 @@
           "end": 1.488
         }
       ],
-      "audio": "audio_bike_alef/s29.mp3"
+      "audio": "books/bike-alef/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -1483,7 +1483,7 @@
           "end": 1.325
         }
       ],
-      "audio": "audio_bike_alef/s30.mp3"
+      "audio": "books/bike-alef/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -1521,7 +1521,7 @@
           "end": 1.613
         }
       ],
-      "audio": "audio_bike_alef/s31.mp3"
+      "audio": "books/bike-alef/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -1549,7 +1549,7 @@
           "end": 1.225
         }
       ],
-      "audio": "audio_bike_alef/s32.mp3"
+      "audio": "books/bike-alef/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -1587,7 +1587,7 @@
           "end": 1.238
         }
       ],
-      "audio": "audio_bike_alef/s33.mp3"
+      "audio": "books/bike-alef/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -1625,7 +1625,7 @@
           "end": 1.087
         }
       ],
-      "audio": "audio_bike_alef/s34.mp3"
+      "audio": "books/bike-alef/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -1663,7 +1663,7 @@
           "end": 1.625
         }
       ],
-      "audio": "audio_bike_alef/s35.mp3"
+      "audio": "books/bike-alef/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -1711,7 +1711,7 @@
           "end": 1.812
         }
       ],
-      "audio": "audio_bike_alef/s36.mp3"
+      "audio": "books/bike-alef/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -1759,7 +1759,7 @@
           "end": 1.825
         }
       ],
-      "audio": "audio_bike_alef/s37.mp3"
+      "audio": "books/bike-alef/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -1817,7 +1817,7 @@
           "end": 1.462
         }
       ],
-      "audio": "audio_bike_alef/s38.mp3"
+      "audio": "books/bike-alef/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -1865,7 +1865,7 @@
           "end": 1.938
         }
       ],
-      "audio": "audio_bike_alef/s39.mp3"
+      "audio": "books/bike-alef/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -1898,7 +1898,7 @@
         }
       ],
       "ttsEngine": "gtts",
-      "audio": "audio_bike_alef/s40.mp3"
+      "audio": "books/bike-alef/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -1956,15 +1956,15 @@
           "end": 2.375
         }
       ],
-      "audio": "audio_bike_alef/s41.mp3",
+      "audio": "books/bike-alef/audio/s41.mp3",
       "illustration": {
         "word": "וְאַבָּא",
         "tr": "и папа",
         "caption": "וְאַבָּא",
         "capTr": "veaba",
         "mnemonic": "Представь огромный АВТОБАН, по которому едут только семейные машины, и вдруг все они хором начинают кричать «И папа!» в унисон. Все папы выбегают из машин навстречу друг другу и обнимаются посреди дороги.",
-        "img": "illustrations_bike_alef/s41.webp",
-        "imgMnemonic": "illustrations_bike_alef/s41-mnemonic.webp"
+        "img": "books/bike-alef/illustrations/s41.webp",
+        "imgMnemonic": "books/bike-alef/illustrations/s41-mnemonic.webp"
       }
     },
     {
@@ -2003,7 +2003,7 @@
           "end": 1.5
         }
       ],
-      "audio": "audio_bike_alef/s42.mp3"
+      "audio": "books/bike-alef/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -2061,7 +2061,7 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_bike_alef/s43.mp3"
+      "audio": "books/bike-alef/audio/s43.mp3"
     }
   ]
 }

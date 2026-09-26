@@ -66,7 +66,7 @@
           "end": 2.788
         }
       ],
-      "audio": "audio_draw_bet/s1.mp3"
+      "audio": "books/draw-bet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -154,7 +154,7 @@
           "end": 3.212
         }
       ],
-      "audio": "audio_draw_bet/s2.mp3"
+      "audio": "books/draw-bet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -262,7 +262,7 @@
           "end": 4.175
         }
       ],
-      "audio": "audio_draw_bet/s3.mp3"
+      "audio": "books/draw-bet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -340,7 +340,7 @@
           "end": 3.237
         }
       ],
-      "audio": "audio_draw_bet/s4.mp3"
+      "audio": "books/draw-bet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -418,7 +418,7 @@
           "end": 3.25
         }
       ],
-      "audio": "audio_draw_bet/s5.mp3"
+      "audio": "books/draw-bet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -496,15 +496,15 @@
           "end": 2.913
         }
       ],
-      "audio": "audio_draw_bet/s6.mp3",
+      "audio": "books/draw-bet/audio/s6.mp3",
       "illustration": {
         "word": "צֶוֶות",
         "tr": "команда",
         "caption": "צֶוֶות",
         "capTr": "tsevet",
         "mnemonic": "Представь, что команда художников вся состоит из живых ЦВЕТОВ: красная роза держит кисть, синий василёк смешивает краски, а жёлтый подсолнух командует. Они вместе рисуют огромную картину на лугу.",
-        "img": "illustrations_draw_bet/s6.webp",
-        "imgMnemonic": "illustrations_draw_bet/s6-mnemonic.webp"
+        "img": "books/draw-bet/illustrations/s6.webp",
+        "imgMnemonic": "books/draw-bet/illustrations/s6-mnemonic.webp"
       }
     },
     {
@@ -563,7 +563,7 @@
           "end": 2.475
         }
       ],
-      "audio": "audio_draw_bet/s7.mp3"
+      "audio": "books/draw-bet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -661,7 +661,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_draw_bet/s8.mp3"
+      "audio": "books/draw-bet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -749,7 +749,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_draw_bet/s9.mp3"
+      "audio": "books/draw-bet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -807,7 +807,7 @@
           "end": 2.1
         }
       ],
-      "audio": "audio_draw_bet/s10.mp3"
+      "audio": "books/draw-bet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -875,7 +875,7 @@
           "end": 2.913
         }
       ],
-      "audio": "audio_draw_bet/s11.mp3"
+      "audio": "books/draw-bet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -953,7 +953,7 @@
           "end": 3.05
         }
       ],
-      "audio": "audio_draw_bet/s12.mp3"
+      "audio": "books/draw-bet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1061,7 +1061,7 @@
           "end": 4.025
         }
       ],
-      "audio": "audio_draw_bet/s13.mp3"
+      "audio": "books/draw-bet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1099,7 +1099,7 @@
           "end": 1.85
         }
       ],
-      "audio": "audio_draw_bet/s14.mp3"
+      "audio": "books/draw-bet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1147,7 +1147,7 @@
           "end": 2.15
         }
       ],
-      "audio": "audio_draw_bet/s15.mp3"
+      "audio": "books/draw-bet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1235,7 +1235,7 @@
           "end": 3.05
         }
       ],
-      "audio": "audio_draw_bet/s16.mp3"
+      "audio": "books/draw-bet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1323,7 +1323,7 @@
           "end": 3.487
         }
       ],
-      "audio": "audio_draw_bet/s17.mp3"
+      "audio": "books/draw-bet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1381,7 +1381,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_draw_bet/s18.mp3"
+      "audio": "books/draw-bet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1449,7 +1449,7 @@
           "end": 2.825
         }
       ],
-      "audio": "audio_draw_bet/s19.mp3"
+      "audio": "books/draw-bet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1517,7 +1517,7 @@
           "end": 2.35
         }
       ],
-      "audio": "audio_draw_bet/s20.mp3"
+      "audio": "books/draw-bet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1565,7 +1565,7 @@
           "end": 2.413
         }
       ],
-      "audio": "audio_draw_bet/s21.mp3"
+      "audio": "books/draw-bet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1633,7 +1633,7 @@
           "end": 2.938
         }
       ],
-      "audio": "audio_draw_bet/s22.mp3"
+      "audio": "books/draw-bet/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -1681,7 +1681,7 @@
           "end": 1.988
         }
       ],
-      "audio": "audio_draw_bet/s23.mp3"
+      "audio": "books/draw-bet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -1729,7 +1729,7 @@
           "end": 1.6
         }
       ],
-      "audio": "audio_draw_bet/s24.mp3"
+      "audio": "books/draw-bet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -1777,7 +1777,7 @@
           "end": 2.425
         }
       ],
-      "audio": "audio_draw_bet/s25.mp3"
+      "audio": "books/draw-bet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -1805,7 +1805,7 @@
           "end": 1.075
         }
       ],
-      "audio": "audio_draw_bet/s26.mp3"
+      "audio": "books/draw-bet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -1863,7 +1863,7 @@
           "end": 2.025
         }
       ],
-      "audio": "audio_draw_bet/s27.mp3"
+      "audio": "books/draw-bet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -1911,7 +1911,7 @@
           "end": 1.825
         }
       ],
-      "audio": "audio_draw_bet/s28.mp3"
+      "audio": "books/draw-bet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -1989,15 +1989,15 @@
           "end": 2.913
         }
       ],
-      "audio": "audio_draw_bet/s29.mp3",
+      "audio": "books/draw-bet/audio/s29.mp3",
       "illustration": {
         "word": "עֶרֶב",
         "tr": "вечер",
         "caption": "עֶרֶב",
         "capTr": "erev",
         "mnemonic": "Представь, что вечером ты гуляешь по городу ЕРЕВАН: розовые здания светятся в закате, над ними гора Арарат, а на площади художники рисуют прямо на асфальте разноцветными мелками.",
-        "img": "illustrations_draw_bet/s29.webp",
-        "imgMnemonic": "illustrations_draw_bet/s29-mnemonic.webp"
+        "img": "books/draw-bet/illustrations/s29.webp",
+        "imgMnemonic": "books/draw-bet/illustrations/s29-mnemonic.webp"
       }
     },
     {
@@ -2056,7 +2056,7 @@
           "end": 2.138
         }
       ],
-      "audio": "audio_draw_bet/s30.mp3"
+      "audio": "books/draw-bet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -2154,7 +2154,7 @@
           "end": 3.075
         }
       ],
-      "audio": "audio_draw_bet/s31.mp3"
+      "audio": "books/draw-bet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -2222,7 +2222,7 @@
           "end": 2.65
         }
       ],
-      "audio": "audio_draw_bet/s32.mp3"
+      "audio": "books/draw-bet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -2300,7 +2300,7 @@
           "end": 2.788
         }
       ],
-      "audio": "audio_draw_bet/s33.mp3"
+      "audio": "books/draw-bet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -2378,7 +2378,7 @@
           "end": 3.725
         }
       ],
-      "audio": "audio_draw_bet/s34.mp3"
+      "audio": "books/draw-bet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -2416,7 +2416,7 @@
           "end": 1.85
         }
       ],
-      "audio": "audio_draw_bet/s35.mp3"
+      "audio": "books/draw-bet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -2464,7 +2464,7 @@
           "end": 2.188
         }
       ],
-      "audio": "audio_draw_bet/s36.mp3"
+      "audio": "books/draw-bet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -2602,7 +2602,7 @@
           "end": 5.963
         }
       ],
-      "audio": "audio_draw_bet/s37.mp3"
+      "audio": "books/draw-bet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -2660,7 +2660,7 @@
           "end": 2.025
         }
       ],
-      "audio": "audio_draw_bet/s38.mp3"
+      "audio": "books/draw-bet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -2741,7 +2741,7 @@
         }
       ],
       "ttsEngine": "gtts",
-      "audio": "audio_draw_bet/s39.mp3"
+      "audio": "books/draw-bet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -2819,7 +2819,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_draw_bet/s40.mp3"
+      "audio": "books/draw-bet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -2877,7 +2877,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_draw_bet/s41.mp3"
+      "audio": "books/draw-bet/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -2925,7 +2925,7 @@
           "end": 2.425
         }
       ],
-      "audio": "audio_draw_bet/s42.mp3"
+      "audio": "books/draw-bet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -2973,7 +2973,7 @@
           "end": 1.288
         }
       ],
-      "audio": "audio_draw_bet/s43.mp3"
+      "audio": "books/draw-bet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -3021,7 +3021,7 @@
           "end": 1.925
         }
       ],
-      "audio": "audio_draw_bet/s44.mp3"
+      "audio": "books/draw-bet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -3089,7 +3089,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_draw_bet/s45.mp3"
+      "audio": "books/draw-bet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -3157,7 +3157,7 @@
           "end": 2.9
         }
       ],
-      "audio": "audio_draw_bet/s46.mp3"
+      "audio": "books/draw-bet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -3295,15 +3295,15 @@
           "end": 5.562
         }
       ],
-      "audio": "audio_draw_bet/s47.mp3",
+      "audio": "books/draw-bet/audio/s47.mp3",
       "illustration": {
         "word": "תְּעוּדָה",
         "tr": "грамота",
         "caption": "תְּעוּדָה",
         "capTr": "teuda",
         "mnemonic": "Представь, что грамота вдруг ожила и показывает стрелкой ТУДА: она ведёт двух девочек по красной дорожке прямо на сцену. Грамота размахивает лентами, а зрители аплодируют.",
-        "img": "illustrations_draw_bet/s47.webp",
-        "imgMnemonic": "illustrations_draw_bet/s47-mnemonic.webp"
+        "img": "books/draw-bet/illustrations/s47.webp",
+        "imgMnemonic": "books/draw-bet/illustrations/s47-mnemonic.webp"
       }
     },
     {
@@ -3372,7 +3372,7 @@
           "end": 2.375
         }
       ],
-      "audio": "audio_draw_bet/s48.mp3"
+      "audio": "books/draw-bet/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -3430,7 +3430,7 @@
           "end": 1.863
         }
       ],
-      "audio": "audio_draw_bet/s49.mp3"
+      "audio": "books/draw-bet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -3498,7 +3498,7 @@
           "end": 3.062
         }
       ],
-      "audio": "audio_draw_bet/s50.mp3"
+      "audio": "books/draw-bet/audio/s50.mp3"
     }
   ]
 }

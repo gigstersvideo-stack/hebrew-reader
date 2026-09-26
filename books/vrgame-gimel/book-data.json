@@ -156,7 +156,7 @@
           "end": 6.537
         }
       ],
-      "audio": "audio_vrgame_gimel/s1.mp3"
+      "audio": "books/vrgame-gimel/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -304,7 +304,7 @@
           "end": 5.9
         }
       ],
-      "audio": "audio_vrgame_gimel/s2.mp3"
+      "audio": "books/vrgame-gimel/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -462,7 +462,7 @@
           "end": 5.112
         }
       ],
-      "audio": "audio_vrgame_gimel/s3.mp3"
+      "audio": "books/vrgame-gimel/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -680,7 +680,7 @@
           "end": 8.2
         }
       ],
-      "audio": "audio_vrgame_gimel/s4.mp3"
+      "audio": "books/vrgame-gimel/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -798,7 +798,7 @@
           "end": 5.175
         }
       ],
-      "audio": "audio_vrgame_gimel/s5.mp3"
+      "audio": "books/vrgame-gimel/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -966,7 +966,7 @@
           "end": 5.562
         }
       ],
-      "audio": "audio_vrgame_gimel/s6.mp3"
+      "audio": "books/vrgame-gimel/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -1074,7 +1074,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_vrgame_gimel/s7.mp3"
+      "audio": "books/vrgame-gimel/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -1262,7 +1262,7 @@
           "end": 7.625
         }
       ],
-      "audio": "audio_vrgame_gimel/s8.mp3"
+      "audio": "books/vrgame-gimel/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -1340,7 +1340,7 @@
           "end": 3.275
         }
       ],
-      "audio": "audio_vrgame_gimel/s9.mp3"
+      "audio": "books/vrgame-gimel/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1478,15 +1478,15 @@
           "end": 5.112
         }
       ],
-      "audio": "audio_vrgame_gimel/s10.mp3",
+      "audio": "books/vrgame-gimel/audio/s10.mp3",
       "illustration": {
         "word": "נַעֲלַיִים",
         "tr": "обувь",
         "caption": "נַעֲלַיִים",
         "capTr": "naalayim",
         "mnemonic": "Представь, что вместо туфель на ногах девочки живые НАЛИМЫ: скользкие, сонные рыбы, которые шлёпают по камням и пузырями рассказывают про подводный мир. Она идёт по дороге, а налимы чмокают на каждом шагу.",
-        "img": "illustrations_vrgame_gimel/s10.webp",
-        "imgMnemonic": "illustrations_vrgame_gimel/s10-mnemonic.webp"
+        "img": "books/vrgame-gimel/illustrations/s10.webp",
+        "imgMnemonic": "books/vrgame-gimel/illustrations/s10-mnemonic.webp"
       }
     },
     {
@@ -1635,7 +1635,7 @@
           "end": 5.763
         }
       ],
-      "audio": "audio_vrgame_gimel/s11.mp3"
+      "audio": "books/vrgame-gimel/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1773,7 +1773,7 @@
           "end": 4.812
         }
       ],
-      "audio": "audio_vrgame_gimel/s12.mp3"
+      "audio": "books/vrgame-gimel/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1911,7 +1911,7 @@
           "end": 5.088
         }
       ],
-      "audio": "audio_vrgame_gimel/s13.mp3"
+      "audio": "books/vrgame-gimel/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -2059,7 +2059,7 @@
           "end": 5.3
         }
       ],
-      "audio": "audio_vrgame_gimel/s14.mp3"
+      "audio": "books/vrgame-gimel/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -2177,7 +2177,7 @@
           "end": 4.412
         }
       ],
-      "audio": "audio_vrgame_gimel/s15.mp3"
+      "audio": "books/vrgame-gimel/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -2235,7 +2235,7 @@
           "end": 2.4
         }
       ],
-      "audio": "audio_vrgame_gimel/s16.mp3"
+      "audio": "books/vrgame-gimel/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -2403,7 +2403,7 @@
           "end": 6.013
         }
       ],
-      "audio": "audio_vrgame_gimel/s17.mp3"
+      "audio": "books/vrgame-gimel/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -2551,7 +2551,7 @@
           "end": 5.9
         }
       ],
-      "audio": "audio_vrgame_gimel/s18.mp3"
+      "audio": "books/vrgame-gimel/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -2639,7 +2639,7 @@
           "end": 4.037
         }
       ],
-      "audio": "audio_vrgame_gimel/s19.mp3"
+      "audio": "books/vrgame-gimel/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -2777,7 +2777,7 @@
           "end": 5.188
         }
       ],
-      "audio": "audio_vrgame_gimel/s20.mp3"
+      "audio": "books/vrgame-gimel/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -2865,7 +2865,7 @@
           "end": 3.638
         }
       ],
-      "audio": "audio_vrgame_gimel/s21.mp3"
+      "audio": "books/vrgame-gimel/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -3033,7 +3033,7 @@
           "end": 6.537
         }
       ],
-      "audio": "audio_vrgame_gimel/s22.mp3"
+      "audio": "books/vrgame-gimel/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -3131,7 +3131,7 @@
           "end": 4.562
         }
       ],
-      "audio": "audio_vrgame_gimel/s23.mp3"
+      "audio": "books/vrgame-gimel/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -3309,7 +3309,7 @@
           "end": 6.475
         }
       ],
-      "audio": "audio_vrgame_gimel/s24.mp3"
+      "audio": "books/vrgame-gimel/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -3407,7 +3407,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_vrgame_gimel/s25.mp3"
+      "audio": "books/vrgame-gimel/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -3595,7 +3595,7 @@
           "end": 6.862
         }
       ],
-      "audio": "audio_vrgame_gimel/s26.mp3"
+      "audio": "books/vrgame-gimel/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -3793,7 +3793,7 @@
           "end": 6.513
         }
       ],
-      "audio": "audio_vrgame_gimel/s27.mp3"
+      "audio": "books/vrgame-gimel/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -3911,7 +3911,7 @@
           "end": 4.588
         }
       ],
-      "audio": "audio_vrgame_gimel/s28.mp3"
+      "audio": "books/vrgame-gimel/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -4029,7 +4029,7 @@
           "end": 5.175
         }
       ],
-      "audio": "audio_vrgame_gimel/s29.mp3"
+      "audio": "books/vrgame-gimel/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -4157,7 +4157,7 @@
           "end": 4.838
         }
       ],
-      "audio": "audio_vrgame_gimel/s30.mp3"
+      "audio": "books/vrgame-gimel/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -4285,7 +4285,7 @@
           "end": 4.912
         }
       ],
-      "audio": "audio_vrgame_gimel/s31.mp3"
+      "audio": "books/vrgame-gimel/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -4423,7 +4423,7 @@
           "end": 6.375
         }
       ],
-      "audio": "audio_vrgame_gimel/s32.mp3"
+      "audio": "books/vrgame-gimel/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -4531,7 +4531,7 @@
           "end": 4.45
         }
       ],
-      "audio": "audio_vrgame_gimel/s33.mp3"
+      "audio": "books/vrgame-gimel/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -4699,7 +4699,7 @@
           "end": 6.9
         }
       ],
-      "audio": "audio_vrgame_gimel/s34.mp3"
+      "audio": "books/vrgame-gimel/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -4787,7 +4787,7 @@
           "end": 3.525
         }
       ],
-      "audio": "audio_vrgame_gimel/s35.mp3"
+      "audio": "books/vrgame-gimel/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -4975,15 +4975,15 @@
           "end": 7.912
         }
       ],
-      "audio": "audio_vrgame_gimel/s36.mp3",
+      "audio": "books/vrgame-gimel/audio/s36.mp3",
       "illustration": {
         "word": "מַנְגָּנוֹן",
         "tr": "механизм",
         "caption": "מַנְגָּנוֹן",
         "capTr": "manganon",
         "mnemonic": "Представь механизм из чистого МАРГАНЦА: тёмные блестящие шестерёнки, которые вращаются с металлическим звоном, а по краям сыплются фиолетовые искры. Девочка карабкается по ним, а мальчик держит рычаг.",
-        "img": "illustrations_vrgame_gimel/s36.webp",
-        "imgMnemonic": "illustrations_vrgame_gimel/s36-mnemonic.webp"
+        "img": "books/vrgame-gimel/illustrations/s36.webp",
+        "imgMnemonic": "books/vrgame-gimel/illustrations/s36-mnemonic.webp"
       }
     },
     {
@@ -5192,7 +5192,7 @@
           "end": 8.05
         }
       ],
-      "audio": "audio_vrgame_gimel/s37.mp3"
+      "audio": "books/vrgame-gimel/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -5330,7 +5330,7 @@
           "end": 5.525
         }
       ],
-      "audio": "audio_vrgame_gimel/s38.mp3"
+      "audio": "books/vrgame-gimel/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -5448,7 +5448,7 @@
           "end": 5.987
         }
       ],
-      "audio": "audio_vrgame_gimel/s39.mp3"
+      "audio": "books/vrgame-gimel/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -5606,7 +5606,7 @@
           "end": 5.7
         }
       ],
-      "audio": "audio_vrgame_gimel/s40.mp3"
+      "audio": "books/vrgame-gimel/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -5764,15 +5764,15 @@
           "end": 6.438
         }
       ],
-      "audio": "audio_vrgame_gimel/s41.mp3",
+      "audio": "books/vrgame-gimel/audio/s41.mp3",
       "illustration": {
         "word": "מַנּוֹפִים",
         "tr": "краны",
         "caption": "מַנּוֹפִים",
         "capTr": "manofim",
         "mnemonic": "Представь, что два огромных подъёмных крана исполняют МАНЁВРЫ, как военные корабли: разворачиваются, поворачивают стрелы навстречу друг другу и синхронно опускают крюки. Между ними зияет пропасть, а на краях стоят дети и считают.",
-        "img": "illustrations_vrgame_gimel/s41.webp",
-        "imgMnemonic": "illustrations_vrgame_gimel/s41-mnemonic.webp"
+        "img": "books/vrgame-gimel/illustrations/s41.webp",
+        "imgMnemonic": "books/vrgame-gimel/illustrations/s41-mnemonic.webp"
       }
     },
     {
@@ -5951,7 +5951,7 @@
           "end": 6.85
         }
       ],
-      "audio": "audio_vrgame_gimel/s42.mp3"
+      "audio": "books/vrgame-gimel/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -6079,7 +6079,7 @@
           "end": 5.737
         }
       ],
-      "audio": "audio_vrgame_gimel/s43.mp3"
+      "audio": "books/vrgame-gimel/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -6227,7 +6227,7 @@
           "end": 6.362
         }
       ],
-      "audio": "audio_vrgame_gimel/s44.mp3"
+      "audio": "books/vrgame-gimel/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -6345,7 +6345,7 @@
           "end": 4.925
         }
       ],
-      "audio": "audio_vrgame_gimel/s45.mp3"
+      "audio": "books/vrgame-gimel/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -6523,7 +6523,7 @@
           "end": 8.113
         }
       ],
-      "audio": "audio_vrgame_gimel/s46.mp3"
+      "audio": "books/vrgame-gimel/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -6591,7 +6591,7 @@
           "end": 3.375
         }
       ],
-      "audio": "audio_vrgame_gimel/s47.mp3"
+      "audio": "books/vrgame-gimel/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -6789,7 +6789,7 @@
           "end": 8.25
         }
       ],
-      "audio": "audio_vrgame_gimel/s48.mp3"
+      "audio": "books/vrgame-gimel/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -6977,7 +6977,7 @@
           "end": 6.775
         }
       ],
-      "audio": "audio_vrgame_gimel/s49.mp3"
+      "audio": "books/vrgame-gimel/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -7085,7 +7085,7 @@
           "end": 4.013
         }
       ],
-      "audio": "audio_vrgame_gimel/s50.mp3"
+      "audio": "books/vrgame-gimel/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -7193,7 +7193,7 @@
           "end": 5.112
         }
       ],
-      "audio": "audio_vrgame_gimel/s51.mp3"
+      "audio": "books/vrgame-gimel/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -7341,7 +7341,7 @@
           "end": 5.775
         }
       ],
-      "audio": "audio_vrgame_gimel/s52.mp3"
+      "audio": "books/vrgame-gimel/audio/s52.mp3"
     }
   ]
 }

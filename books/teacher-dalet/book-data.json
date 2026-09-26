@@ -96,7 +96,7 @@
           "end": 4.037
         }
       ],
-      "audio": "audio_teacher_dalet/s1.mp3"
+      "audio": "books/teacher-dalet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -294,7 +294,7 @@
           "end": 7.463
         }
       ],
-      "audio": "audio_teacher_dalet/s2.mp3"
+      "audio": "books/teacher-dalet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -442,7 +442,7 @@
           "end": 5.912
         }
       ],
-      "audio": "audio_teacher_dalet/s3.mp3"
+      "audio": "books/teacher-dalet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -540,7 +540,7 @@
           "end": 4.175
         }
       ],
-      "audio": "audio_teacher_dalet/s4.mp3"
+      "audio": "books/teacher-dalet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -708,7 +708,7 @@
           "end": 6.625
         }
       ],
-      "audio": "audio_teacher_dalet/s5.mp3"
+      "audio": "books/teacher-dalet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -876,7 +876,7 @@
           "end": 6.825
         }
       ],
-      "audio": "audio_teacher_dalet/s6.mp3"
+      "audio": "books/teacher-dalet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -964,7 +964,7 @@
           "end": 3.85
         }
       ],
-      "audio": "audio_teacher_dalet/s7.mp3"
+      "audio": "books/teacher-dalet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -1182,15 +1182,15 @@
           "end": 8.525
         }
       ],
-      "audio": "audio_teacher_dalet/s8.mp3",
+      "audio": "books/teacher-dalet/audio/s8.mp3",
       "illustration": {
         "word": "בַּגְרוּת",
         "tr": "аттестат зрелости",
         "caption": "בַּגְרוּת",
         "capTr": "bagrut",
         "mnemonic": "Представь, что вместо экзамена на аттестат зрелости выпускники получают БАГРОВЫЙ плащ: густо-красная ткань окутывает всех в актовом зале, а директор торжественно произносит речь в багровом свете.",
-        "img": "illustrations_teacher_dalet/s8.webp",
-        "imgMnemonic": "illustrations_teacher_dalet/s8-mnemonic.webp"
+        "img": "books/teacher-dalet/illustrations/s8.webp",
+        "imgMnemonic": "books/teacher-dalet/illustrations/s8-mnemonic.webp"
       }
     },
     {
@@ -1429,7 +1429,7 @@
           "end": 8.488
         }
       ],
-      "audio": "audio_teacher_dalet/s9.mp3"
+      "audio": "books/teacher-dalet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1577,7 +1577,7 @@
           "end": 5.625
         }
       ],
-      "audio": "audio_teacher_dalet/s10.mp3"
+      "audio": "books/teacher-dalet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -1775,7 +1775,7 @@
           "end": 8.275
         }
       ],
-      "audio": "audio_teacher_dalet/s11.mp3"
+      "audio": "books/teacher-dalet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1963,7 +1963,7 @@
           "end": 7.625
         }
       ],
-      "audio": "audio_teacher_dalet/s12.mp3"
+      "audio": "books/teacher-dalet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -2051,7 +2051,7 @@
           "end": 4.1
         }
       ],
-      "audio": "audio_teacher_dalet/s13.mp3"
+      "audio": "books/teacher-dalet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -2249,7 +2249,7 @@
           "end": 8.375
         }
       ],
-      "audio": "audio_teacher_dalet/s14.mp3"
+      "audio": "books/teacher-dalet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -2397,7 +2397,7 @@
           "end": 6.112
         }
       ],
-      "audio": "audio_teacher_dalet/s15.mp3"
+      "audio": "books/teacher-dalet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -2495,7 +2495,7 @@
           "end": 4.237
         }
       ],
-      "audio": "audio_teacher_dalet/s16.mp3"
+      "audio": "books/teacher-dalet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -2643,7 +2643,7 @@
           "end": 6.412
         }
       ],
-      "audio": "audio_teacher_dalet/s17.mp3"
+      "audio": "books/teacher-dalet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -2811,7 +2811,7 @@
           "end": 7.55
         }
       ],
-      "audio": "audio_teacher_dalet/s18.mp3"
+      "audio": "books/teacher-dalet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -2919,7 +2919,7 @@
           "end": 4.662
         }
       ],
-      "audio": "audio_teacher_dalet/s19.mp3"
+      "audio": "books/teacher-dalet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -3107,7 +3107,7 @@
           "end": 7.05
         }
       ],
-      "audio": "audio_teacher_dalet/s20.mp3"
+      "audio": "books/teacher-dalet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -3245,7 +3245,7 @@
           "end": 5.888
         }
       ],
-      "audio": "audio_teacher_dalet/s21.mp3"
+      "audio": "books/teacher-dalet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -3353,7 +3353,7 @@
           "end": 4.25
         }
       ],
-      "audio": "audio_teacher_dalet/s22.mp3"
+      "audio": "books/teacher-dalet/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -3601,7 +3601,7 @@
           "end": 9.137
         }
       ],
-      "audio": "audio_teacher_dalet/s23.mp3"
+      "audio": "books/teacher-dalet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -3689,7 +3689,7 @@
           "end": 3.525
         }
       ],
-      "audio": "audio_teacher_dalet/s24.mp3"
+      "audio": "books/teacher-dalet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -3887,7 +3887,7 @@
           "end": 7.787
         }
       ],
-      "audio": "audio_teacher_dalet/s25.mp3"
+      "audio": "books/teacher-dalet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -4015,7 +4015,7 @@
           "end": 5.588
         }
       ],
-      "audio": "audio_teacher_dalet/s26.mp3"
+      "audio": "books/teacher-dalet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -4253,15 +4253,15 @@
           "end": 9.387
         }
       ],
-      "audio": "audio_teacher_dalet/s27.mp3",
+      "audio": "books/teacher-dalet/audio/s27.mp3",
       "illustration": {
         "word": "קַפְדָנִי",
         "tr": "тщательный",
         "caption": "קַפְדָנִי",
         "capTr": "kafdani",
         "mnemonic": "Представь, что тщательный поиск привёл на огромную университетскую КАФЕДРУ: за деревянной кафедрой стоит профессор-ищейка с лупой, а за ней аудитория бывших школьников с блокнотами кивает.",
-        "img": "illustrations_teacher_dalet/s27.webp",
-        "imgMnemonic": "illustrations_teacher_dalet/s27-mnemonic.webp"
+        "img": "books/teacher-dalet/illustrations/s27.webp",
+        "imgMnemonic": "books/teacher-dalet/illustrations/s27-mnemonic.webp"
       }
     },
     {
@@ -4410,7 +4410,7 @@
           "end": 6.287
         }
       ],
-      "audio": "audio_teacher_dalet/s28.mp3"
+      "audio": "books/teacher-dalet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -4548,7 +4548,7 @@
           "end": 5.7
         }
       ],
-      "audio": "audio_teacher_dalet/s29.mp3"
+      "audio": "books/teacher-dalet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -4686,7 +4686,7 @@
           "end": 6.475
         }
       ],
-      "audio": "audio_teacher_dalet/s30.mp3"
+      "audio": "books/teacher-dalet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -4924,7 +4924,7 @@
           "end": 8.925
         }
       ],
-      "audio": "audio_teacher_dalet/s31.mp3"
+      "audio": "books/teacher-dalet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -5062,7 +5062,7 @@
           "end": 5.525
         }
       ],
-      "audio": "audio_teacher_dalet/s32.mp3"
+      "audio": "books/teacher-dalet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -5240,7 +5240,7 @@
           "end": 6.662
         }
       ],
-      "audio": "audio_teacher_dalet/s33.mp3"
+      "audio": "books/teacher-dalet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -5518,7 +5518,7 @@
           "end": 11.463
         }
       ],
-      "audio": "audio_teacher_dalet/s34.mp3"
+      "audio": "books/teacher-dalet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -5696,7 +5696,7 @@
           "end": 7.575
         }
       ],
-      "audio": "audio_teacher_dalet/s35.mp3"
+      "audio": "books/teacher-dalet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -5964,7 +5964,7 @@
           "end": 10.675
         }
       ],
-      "audio": "audio_teacher_dalet/s36.mp3"
+      "audio": "books/teacher-dalet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -6142,7 +6142,7 @@
           "end": 8.625
         }
       ],
-      "audio": "audio_teacher_dalet/s37.mp3"
+      "audio": "books/teacher-dalet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -6320,7 +6320,7 @@
           "end": 6.287
         }
       ],
-      "audio": "audio_teacher_dalet/s38.mp3"
+      "audio": "books/teacher-dalet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -6448,7 +6448,7 @@
           "end": 6.225
         }
       ],
-      "audio": "audio_teacher_dalet/s39.mp3"
+      "audio": "books/teacher-dalet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -6566,7 +6566,7 @@
           "end": 5.562
         }
       ],
-      "audio": "audio_teacher_dalet/s40.mp3"
+      "audio": "books/teacher-dalet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -6734,15 +6734,15 @@
           "end": 7.112
         }
       ],
-      "audio": "audio_teacher_dalet/s41.mp3",
+      "audio": "books/teacher-dalet/audio/s41.mp3",
       "illustration": {
         "word": "גּוֹרָלִי",
         "tr": "судьбоносный",
         "caption": "גּוֹרָלִי",
         "capTr": "gorali",
         "mnemonic": "Представь судьбоносный урок, на котором в классе вдруг возникает огромное ГОРЛО: оно поёт басом, а ученики хором подпевают, забыв про контрольную. Учитель дирижирует линейкой.",
-        "img": "illustrations_teacher_dalet/s41.webp",
-        "imgMnemonic": "illustrations_teacher_dalet/s41-mnemonic.webp"
+        "img": "books/teacher-dalet/illustrations/s41.webp",
+        "imgMnemonic": "books/teacher-dalet/illustrations/s41-mnemonic.webp"
       }
     },
     {
@@ -6911,7 +6911,7 @@
           "end": 7.475
         }
       ],
-      "audio": "audio_teacher_dalet/s42.mp3"
+      "audio": "books/teacher-dalet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -7089,7 +7089,7 @@
           "end": 7.487
         }
       ],
-      "audio": "audio_teacher_dalet/s43.mp3"
+      "audio": "books/teacher-dalet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -7227,7 +7227,7 @@
           "end": 6.2
         }
       ],
-      "audio": "audio_teacher_dalet/s44.mp3"
+      "audio": "books/teacher-dalet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -7405,7 +7405,7 @@
           "end": 8.037
         }
       ],
-      "audio": "audio_teacher_dalet/s45.mp3"
+      "audio": "books/teacher-dalet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -7513,7 +7513,7 @@
           "end": 4.612
         }
       ],
-      "audio": "audio_teacher_dalet/s46.mp3"
+      "audio": "books/teacher-dalet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -7701,7 +7701,7 @@
           "end": 7.025
         }
       ],
-      "audio": "audio_teacher_dalet/s47.mp3"
+      "audio": "books/teacher-dalet/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -7919,7 +7919,7 @@
           "end": 7.8
         }
       ],
-      "audio": "audio_teacher_dalet/s48.mp3"
+      "audio": "books/teacher-dalet/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -8117,7 +8117,7 @@
           "end": 8.012
         }
       ],
-      "audio": "audio_teacher_dalet/s49.mp3"
+      "audio": "books/teacher-dalet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -8325,7 +8325,7 @@
           "end": 6.812
         }
       ],
-      "audio": "audio_teacher_dalet/s50.mp3"
+      "audio": "books/teacher-dalet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -8473,7 +8473,7 @@
           "end": 5.638
         }
       ],
-      "audio": "audio_teacher_dalet/s51.mp3"
+      "audio": "books/teacher-dalet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -8601,7 +8601,7 @@
           "end": 6.1
         }
       ],
-      "audio": "audio_teacher_dalet/s52.mp3"
+      "audio": "books/teacher-dalet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -8849,7 +8849,7 @@
           "end": 9.787
         }
       ],
-      "audio": "audio_teacher_dalet/s53.mp3"
+      "audio": "books/teacher-dalet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -8927,7 +8927,7 @@
           "end": 2.95
         }
       ],
-      "audio": "audio_teacher_dalet/s54.mp3"
+      "audio": "books/teacher-dalet/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -9205,7 +9205,7 @@
           "end": 10.325
         }
       ],
-      "audio": "audio_teacher_dalet/s55.mp3"
+      "audio": "books/teacher-dalet/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -9303,7 +9303,7 @@
           "end": 4.3
         }
       ],
-      "audio": "audio_teacher_dalet/s56.mp3"
+      "audio": "books/teacher-dalet/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -9461,7 +9461,7 @@
           "end": 5.912
         }
       ],
-      "audio": "audio_teacher_dalet/s57.mp3"
+      "audio": "books/teacher-dalet/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -9669,7 +9669,7 @@
           "end": 8.775
         }
       ],
-      "audio": "audio_teacher_dalet/s58.mp3"
+      "audio": "books/teacher-dalet/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -9777,7 +9777,7 @@
           "end": 4.463
         }
       ],
-      "audio": "audio_teacher_dalet/s59.mp3"
+      "audio": "books/teacher-dalet/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -9945,7 +9945,7 @@
           "end": 8.062
         }
       ],
-      "audio": "audio_teacher_dalet/s60.mp3"
+      "audio": "books/teacher-dalet/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -10123,7 +10123,7 @@
           "end": 7.675
         }
       ],
-      "audio": "audio_teacher_dalet/s61.mp3"
+      "audio": "books/teacher-dalet/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -10291,15 +10291,15 @@
           "end": 6.812
         }
       ],
-      "audio": "audio_teacher_dalet/s62.mp3",
+      "audio": "books/teacher-dalet/audio/s62.mp3",
       "illustration": {
         "word": "טִיסָה",
         "tr": "рейс",
         "caption": "טִיסָה",
         "capTr": "tisa",
         "mnemonic": "Представь, что билет на рейс ведёт по реке ТИСЕ: самолёт с крыльями-вёслами скользит по воде среди зелёных берегов и виноградников, а пассажиры машут из круглых окон.",
-        "img": "illustrations_teacher_dalet/s62.webp",
-        "imgMnemonic": "illustrations_teacher_dalet/s62-mnemonic.webp"
+        "img": "books/teacher-dalet/illustrations/s62.webp",
+        "imgMnemonic": "books/teacher-dalet/illustrations/s62-mnemonic.webp"
       }
     },
     {
@@ -10458,7 +10458,7 @@
           "end": 6.612
         }
       ],
-      "audio": "audio_teacher_dalet/s63.mp3"
+      "audio": "books/teacher-dalet/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -10686,7 +10686,7 @@
           "end": 8.5
         }
       ],
-      "audio": "audio_teacher_dalet/s64.mp3"
+      "audio": "books/teacher-dalet/audio/s64.mp3"
     },
     {
       "id": "s65",
@@ -10874,7 +10874,7 @@
           "end": 7.588
         }
       ],
-      "audio": "audio_teacher_dalet/s65.mp3"
+      "audio": "books/teacher-dalet/audio/s65.mp3"
     }
   ]
 }

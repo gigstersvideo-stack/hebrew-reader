@@ -66,7 +66,7 @@
           "end": 2.4
         }
       ],
-      "audio": "audio_sea_alef/s1.mp3"
+      "audio": "books/sea-alef/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -104,7 +104,7 @@
           "end": 1.337
         }
       ],
-      "audio": "audio_sea_alef/s2.mp3"
+      "audio": "books/sea-alef/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -162,7 +162,7 @@
           "end": 1.95
         }
       ],
-      "audio": "audio_sea_alef/s3.mp3"
+      "audio": "books/sea-alef/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -200,7 +200,7 @@
           "end": 1.812
         }
       ],
-      "audio": "audio_sea_alef/s4.mp3"
+      "audio": "books/sea-alef/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -268,15 +268,15 @@
           "end": 2.763
         }
       ],
-      "audio": "audio_sea_alef/s5.mp3",
+      "audio": "books/sea-alef/audio/s5.mp3",
       "illustration": {
         "word": "גַּל",
         "tr": "волны",
         "caption": "גַּל",
         "capTr": "gal",
         "mnemonic": "Представь, что ГАЛерея современного искусства вдруг начала выставлять только картины волн, и посетители в шоке от такой ГАЛИМАТЬИ! Все они бегают и размахивают руками, а волны на картинах кажутся живыми и начинают их затоплять. Вдруг ГАЛерея превращается в гигантский аквариум, и посетители плывут среди волн.",
-        "img": "illustrations_sea_alef/s5.webp",
-        "imgMnemonic": "illustrations_sea_alef/s5-mnemonic.webp"
+        "img": "books/sea-alef/illustrations/s5.webp",
+        "imgMnemonic": "books/sea-alef/illustrations/s5-mnemonic.webp"
       }
     },
     {
@@ -325,7 +325,7 @@
           "end": 1.925
         }
       ],
-      "audio": "audio_sea_alef/s6.mp3"
+      "audio": "books/sea-alef/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -403,7 +403,7 @@
           "end": 2.712
         }
       ],
-      "audio": "audio_sea_alef/s7.mp3"
+      "audio": "books/sea-alef/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -471,7 +471,7 @@
           "end": 2.275
         }
       ],
-      "audio": "audio_sea_alef/s8.mp3"
+      "audio": "books/sea-alef/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -549,7 +549,7 @@
           "end": 2.562
         }
       ],
-      "audio": "audio_sea_alef/s9.mp3"
+      "audio": "books/sea-alef/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -627,7 +627,7 @@
           "end": 2.9
         }
       ],
-      "audio": "audio_sea_alef/s10.mp3"
+      "audio": "books/sea-alef/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -675,7 +675,7 @@
           "end": 1.613
         }
       ],
-      "audio": "audio_sea_alef/s11.mp3"
+      "audio": "books/sea-alef/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -713,7 +713,7 @@
           "end": 1.15
         }
       ],
-      "audio": "audio_sea_alef/s12.mp3"
+      "audio": "books/sea-alef/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -771,7 +771,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_sea_alef/s13.mp3"
+      "audio": "books/sea-alef/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -799,7 +799,7 @@
           "end": 1.012
         }
       ],
-      "audio": "audio_sea_alef/s14.mp3"
+      "audio": "books/sea-alef/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -857,7 +857,7 @@
           "end": 1.625
         }
       ],
-      "audio": "audio_sea_alef/s15.mp3"
+      "audio": "books/sea-alef/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -925,7 +925,7 @@
           "end": 1.913
         }
       ],
-      "audio": "audio_sea_alef/s16.mp3"
+      "audio": "books/sea-alef/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -973,7 +973,7 @@
           "end": 1.55
         }
       ],
-      "audio": "audio_sea_alef/s17.mp3"
+      "audio": "books/sea-alef/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1031,7 +1031,7 @@
           "end": 2.275
         }
       ],
-      "audio": "audio_sea_alef/s18.mp3"
+      "audio": "books/sea-alef/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1059,7 +1059,7 @@
           "end": 1.2
         }
       ],
-      "audio": "audio_sea_alef/s19.mp3"
+      "audio": "books/sea-alef/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1097,7 +1097,7 @@
           "end": 1.35
         }
       ],
-      "audio": "audio_sea_alef/s20.mp3"
+      "audio": "books/sea-alef/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1155,7 +1155,7 @@
           "end": 1.613
         }
       ],
-      "audio": "audio_sea_alef/s21.mp3"
+      "audio": "books/sea-alef/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1203,15 +1203,15 @@
           "end": 2.175
         }
       ],
-      "audio": "audio_sea_alef/s22.mp3",
+      "audio": "books/sea-alef/audio/s22.mp3",
       "illustration": {
         "word": "רֶגֶל",
         "tr": "ног",
         "caption": "רֶגֶל",
         "capTr": "regel",
         "mnemonic": "Представь гигантскую РЕГУЛИРОВЩИЦУ, которая командует огромной армией ног, марширующих в унисон. Каждая нога носит яркий ботинок и шагает в такт, создавая ошеломляющий шум, который эхом разносится по всей земле. РЕГУЛИРОВЩИЦА стоит на вершине огромной горы из ботинок, дирижируя ногами с помощью магического посоха.",
-        "img": "illustrations_sea_alef/s22.webp",
-        "imgMnemonic": "illustrations_sea_alef/s22-mnemonic.webp"
+        "img": "books/sea-alef/illustrations/s22.webp",
+        "imgMnemonic": "books/sea-alef/illustrations/s22-mnemonic.webp"
       }
     },
     {
@@ -1260,7 +1260,7 @@
           "end": 1.9
         }
       ],
-      "audio": "audio_sea_alef/s23.mp3"
+      "audio": "books/sea-alef/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -1288,7 +1288,7 @@
           "end": 1.137
         }
       ],
-      "audio": "audio_sea_alef/s24.mp3"
+      "audio": "books/sea-alef/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -1326,7 +1326,7 @@
           "end": 1.55
         }
       ],
-      "audio": "audio_sea_alef/s25.mp3"
+      "audio": "books/sea-alef/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -1374,7 +1374,7 @@
           "end": 1.688
         }
       ],
-      "audio": "audio_sea_alef/s26.mp3"
+      "audio": "books/sea-alef/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -1442,7 +1442,7 @@
           "end": 2.112
         }
       ],
-      "audio": "audio_sea_alef/s27.mp3"
+      "audio": "books/sea-alef/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -1520,7 +1520,7 @@
           "end": 2.562
         }
       ],
-      "audio": "audio_sea_alef/s28.mp3"
+      "audio": "books/sea-alef/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -1558,7 +1558,7 @@
           "end": 1.637
         }
       ],
-      "audio": "audio_sea_alef/s29.mp3"
+      "audio": "books/sea-alef/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -1586,7 +1586,7 @@
           "end": 1.025
         }
       ],
-      "audio": "audio_sea_alef/s30.mp3"
+      "audio": "books/sea-alef/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -1664,7 +1664,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_sea_alef/s31.mp3"
+      "audio": "books/sea-alef/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -1712,7 +1712,7 @@
           "end": 1.413
         }
       ],
-      "audio": "audio_sea_alef/s32.mp3"
+      "audio": "books/sea-alef/audio/s32.mp3"
     }
   ]
 }

@@ -146,7 +146,7 @@
           "end": 6.838
         }
       ],
-      "audio": "audio_house_dalet/s1.mp3"
+      "audio": "books/house-dalet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -344,7 +344,7 @@
           "end": 8.412
         }
       ],
-      "audio": "audio_house_dalet/s2.mp3"
+      "audio": "books/house-dalet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -602,15 +602,15 @@
           "end": 10.037
         }
       ],
-      "audio": "audio_house_dalet/s3.mp3",
+      "audio": "books/house-dalet/audio/s3.mp3",
       "illustration": {
         "word": "שְׁתִיקָה",
         "tr": "молчания",
         "caption": "שְׁתִיקָה",
         "capTr": "shtikah",
         "mnemonic": "Представь огромную тишину, которая вдруг превратилась в ШТИКУ, и теперь все вокруг начинают танцевать под эту странную мелодию, их ноги стучат в такт, а руки размахивают в воздухе, как будто они пытаются улететь. Внезапно из этой тишины появляется гигантская гармоника, которая начинает играть эту ШТИКУ, и все вокруг начинают петь вместе с ней. Тишина больше не молчалива, она теперь музыкальна и полна жизни.",
-        "img": "illustrations_house_dalet/s3.webp",
-        "imgMnemonic": "illustrations_house_dalet/s3-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s3.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s3-mnemonic.webp"
       }
     },
     {
@@ -649,7 +649,7 @@
           "end": 2.862
         }
       ],
-      "audio": "audio_house_dalet/s4.mp3"
+      "audio": "books/house-dalet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -827,7 +827,7 @@
           "end": 7.713
         }
       ],
-      "audio": "audio_house_dalet/s5.mp3"
+      "audio": "books/house-dalet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -965,7 +965,7 @@
           "end": 6.55
         }
       ],
-      "audio": "audio_house_dalet/s6.mp3"
+      "audio": "books/house-dalet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -1043,7 +1043,7 @@
           "end": 3.25
         }
       ],
-      "audio": "audio_house_dalet/s7.mp3"
+      "audio": "books/house-dalet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -1271,7 +1271,7 @@
           "end": 9.613
         }
       ],
-      "audio": "audio_house_dalet/s8.mp3"
+      "audio": "books/house-dalet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -1379,7 +1379,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_house_dalet/s9.mp3"
+      "audio": "books/house-dalet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1697,7 +1697,7 @@
           "end": 13.6
         }
       ],
-      "audio": "audio_house_dalet/s10.mp3"
+      "audio": "books/house-dalet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -1775,7 +1775,7 @@
           "end": 2.6
         }
       ],
-      "audio": "audio_house_dalet/s11.mp3"
+      "audio": "books/house-dalet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1913,7 +1913,7 @@
           "end": 6.175
         }
       ],
-      "audio": "audio_house_dalet/s12.mp3"
+      "audio": "books/house-dalet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -2071,7 +2071,7 @@
           "end": 5.75
         }
       ],
-      "audio": "audio_house_dalet/s13.mp3"
+      "audio": "books/house-dalet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -2179,7 +2179,7 @@
           "end": 5.138
         }
       ],
-      "audio": "audio_house_dalet/s14.mp3"
+      "audio": "books/house-dalet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -2387,7 +2387,7 @@
           "end": 8.825
         }
       ],
-      "audio": "audio_house_dalet/s15.mp3"
+      "audio": "books/house-dalet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -2485,7 +2485,7 @@
           "end": 4.463
         }
       ],
-      "audio": "audio_house_dalet/s16.mp3"
+      "audio": "books/house-dalet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -2803,7 +2803,7 @@
           "end": 11.512
         }
       ],
-      "audio": "audio_house_dalet/s17.mp3"
+      "audio": "books/house-dalet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -2941,7 +2941,7 @@
           "end": 6.375
         }
       ],
-      "audio": "audio_house_dalet/s18.mp3"
+      "audio": "books/house-dalet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -3059,7 +3059,7 @@
           "end": 4.65
         }
       ],
-      "audio": "audio_house_dalet/s19.mp3"
+      "audio": "books/house-dalet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -3237,7 +3237,7 @@
           "end": 6.763
         }
       ],
-      "audio": "audio_house_dalet/s20.mp3"
+      "audio": "books/house-dalet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -3325,7 +3325,7 @@
           "end": 3.4
         }
       ],
-      "audio": "audio_house_dalet/s21.mp3"
+      "audio": "books/house-dalet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -3443,7 +3443,7 @@
           "end": 6.025
         }
       ],
-      "audio": "audio_house_dalet/s22.mp3"
+      "audio": "books/house-dalet/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -3581,15 +3581,15 @@
           "end": 6.688
         }
       ],
-      "audio": "audio_house_dalet/s23.mp3",
+      "audio": "books/house-dalet/audio/s23.mp3",
       "illustration": {
         "word": "מַפְתֵּחַ",
         "tr": "и ключ",
         "caption": "מַפְתֵּחַ",
         "capTr": "mafteach",
         "mnemonic": "Представь, что у Мафы есть огромный ключ, которым она открывает все двери в городе, и люди кричат ей: 'Мафа, ты мастер ключей!'. Мафа улыбается и говорит: 'Да, я Мафа, мастер ключей, и я открываю все двери с моим верным ключом!'. Она открывает двери с легкостью, и люди аплодируют ей.",
-        "img": "illustrations_house_dalet/s23.webp",
-        "imgMnemonic": "illustrations_house_dalet/s23-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s23.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s23-mnemonic.webp"
       }
     },
     {
@@ -3648,7 +3648,7 @@
           "end": 2.337
         }
       ],
-      "audio": "audio_house_dalet/s24.mp3"
+      "audio": "books/house-dalet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -3886,7 +3886,7 @@
           "end": 10.025
         }
       ],
-      "audio": "audio_house_dalet/s25.mp3"
+      "audio": "books/house-dalet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -3974,7 +3974,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_house_dalet/s26.mp3"
+      "audio": "books/house-dalet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -4302,7 +4302,7 @@
           "end": 11.738
         }
       ],
-      "audio": "audio_house_dalet/s27.mp3"
+      "audio": "books/house-dalet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -4480,7 +4480,7 @@
           "end": 7.175
         }
       ],
-      "audio": "audio_house_dalet/s28.mp3"
+      "audio": "books/house-dalet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -4548,7 +4548,7 @@
           "end": 2.3
         }
       ],
-      "audio": "audio_house_dalet/s29.mp3"
+      "audio": "books/house-dalet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -4626,7 +4626,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_house_dalet/s30.mp3"
+      "audio": "books/house-dalet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -4854,7 +4854,7 @@
           "end": 10.0
         }
       ],
-      "audio": "audio_house_dalet/s31.mp3"
+      "audio": "books/house-dalet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -5062,7 +5062,7 @@
           "end": 8.675
         }
       ],
-      "audio": "audio_house_dalet/s32.mp3"
+      "audio": "books/house-dalet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -5310,7 +5310,7 @@
           "end": 9.713
         }
       ],
-      "audio": "audio_house_dalet/s33.mp3"
+      "audio": "books/house-dalet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -5408,7 +5408,7 @@
           "end": 4.362
         }
       ],
-      "audio": "audio_house_dalet/s34.mp3"
+      "audio": "books/house-dalet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -5656,7 +5656,7 @@
           "end": 8.863
         }
       ],
-      "audio": "audio_house_dalet/s35.mp3"
+      "audio": "books/house-dalet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -5804,7 +5804,7 @@
           "end": 6.25
         }
       ],
-      "audio": "audio_house_dalet/s36.mp3"
+      "audio": "books/house-dalet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -6032,7 +6032,7 @@
           "end": 10.537
         }
       ],
-      "audio": "audio_house_dalet/s37.mp3"
+      "audio": "books/house-dalet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -6280,7 +6280,7 @@
           "end": 9.625
         }
       ],
-      "audio": "audio_house_dalet/s38.mp3"
+      "audio": "books/house-dalet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -6438,7 +6438,7 @@
           "end": 8.037
         }
       ],
-      "audio": "audio_house_dalet/s39.mp3"
+      "audio": "books/house-dalet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -6576,7 +6576,7 @@
           "end": 6.688
         }
       ],
-      "audio": "audio_house_dalet/s40.mp3"
+      "audio": "books/house-dalet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -6804,15 +6804,15 @@
           "end": 9.175
         }
       ],
-      "audio": "audio_house_dalet/s41.mp3",
+      "audio": "books/house-dalet/audio/s41.mp3",
       "illustration": {
         "word": "יָד",
         "tr": "руки",
         "caption": "יָד",
         "capTr": "yad",
         "mnemonic": "Представь, что ЯД — это страшный ядовитый змей, который любит ползать по рукам людей. Когда он появляется, все бросаются спасать свои руки, но ЯД слишком быстр и хитер. Он обвивает руки и начинает танцевать, заставляя людей танцевать вместе с ним.",
-        "img": "illustrations_house_dalet/s41.webp",
-        "imgMnemonic": "illustrations_house_dalet/s41-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s41.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s41-mnemonic.webp"
       }
     },
     {
@@ -7061,7 +7061,7 @@
           "end": 9.488
         }
       ],
-      "audio": "audio_house_dalet/s42.mp3"
+      "audio": "books/house-dalet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -7229,7 +7229,7 @@
           "end": 6.487
         }
       ],
-      "audio": "audio_house_dalet/s43.mp3"
+      "audio": "books/house-dalet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -7377,7 +7377,7 @@
           "end": 5.675
         }
       ],
-      "audio": "audio_house_dalet/s44.mp3"
+      "audio": "books/house-dalet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -7525,7 +7525,7 @@
           "end": 6.675
         }
       ],
-      "audio": "audio_house_dalet/s45.mp3"
+      "audio": "books/house-dalet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -7683,7 +7683,7 @@
           "end": 7.362
         }
       ],
-      "audio": "audio_house_dalet/s46.mp3"
+      "audio": "books/house-dalet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -7881,7 +7881,7 @@
           "end": 7.812
         }
       ],
-      "audio": "audio_house_dalet/s47.mp3"
+      "audio": "books/house-dalet/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -8009,7 +8009,7 @@
           "end": 4.862
         }
       ],
-      "audio": "audio_house_dalet/s48.mp3"
+      "audio": "books/house-dalet/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -8097,7 +8097,7 @@
           "end": 3.188
         }
       ],
-      "audio": "audio_house_dalet/s49.mp3"
+      "audio": "books/house-dalet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -8345,7 +8345,7 @@
           "end": 9.863
         }
       ],
-      "audio": "audio_house_dalet/s50.mp3"
+      "audio": "books/house-dalet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -8603,7 +8603,7 @@
           "end": 10.162
         }
       ],
-      "audio": "audio_house_dalet/s51.mp3"
+      "audio": "books/house-dalet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -8741,7 +8741,7 @@
           "end": 5.3
         }
       ],
-      "audio": "audio_house_dalet/s52.mp3"
+      "audio": "books/house-dalet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -8919,7 +8919,7 @@
           "end": 8.338
         }
       ],
-      "audio": "audio_house_dalet/s53.mp3"
+      "audio": "books/house-dalet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -9087,7 +9087,7 @@
           "end": 6.388
         }
       ],
-      "audio": "audio_house_dalet/s54.mp3"
+      "audio": "books/house-dalet/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -9255,7 +9255,7 @@
           "end": 7.425
         }
       ],
-      "audio": "audio_house_dalet/s55.mp3"
+      "audio": "books/house-dalet/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -9343,7 +9343,7 @@
           "end": 4.1
         }
       ],
-      "audio": "audio_house_dalet/s56.mp3"
+      "audio": "books/house-dalet/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -9651,7 +9651,7 @@
           "end": 12.113
         }
       ],
-      "audio": "audio_house_dalet/s57.mp3"
+      "audio": "books/house-dalet/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -9959,7 +9959,7 @@
           "end": 10.45
         }
       ],
-      "audio": "audio_house_dalet/s58.mp3"
+      "audio": "books/house-dalet/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -10037,7 +10037,7 @@
           "end": 3.438
         }
       ],
-      "audio": "audio_house_dalet/s59.mp3"
+      "audio": "books/house-dalet/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -10245,7 +10245,7 @@
           "end": 7.838
         }
       ],
-      "audio": "audio_house_dalet/s60.mp3"
+      "audio": "books/house-dalet/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -10443,7 +10443,7 @@
           "end": 8.425
         }
       ],
-      "audio": "audio_house_dalet/s61.mp3"
+      "audio": "books/house-dalet/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -10691,7 +10691,7 @@
           "end": 11.588
         }
       ],
-      "audio": "audio_house_dalet/s62.mp3"
+      "audio": "books/house-dalet/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -10829,7 +10829,7 @@
           "end": 5.25
         }
       ],
-      "audio": "audio_house_dalet/s63.mp3"
+      "audio": "books/house-dalet/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -10947,15 +10947,15 @@
           "end": 4.975
         }
       ],
-      "audio": "audio_house_dalet/s64.mp3",
+      "audio": "books/house-dalet/audio/s64.mp3",
       "illustration": {
         "word": "מְגֵירָה",
         "tr": "ящики",
         "caption": "מְגֵירָה",
         "capTr": "megira",
         "mnemonic": "Представь, что Мегера, знаменитая русская певица, собирает свои вещи в огромные ящики для долгого тура. Она поет про ящики, которые ей так нужны, и вдруг ящики начинают петь вместе с ней, создавая грандиозный хор. Мегера танцует среди ящиков, а они ей подпевают.",
-        "img": "illustrations_house_dalet/s64.webp",
-        "imgMnemonic": "illustrations_house_dalet/s64-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s64.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s64-mnemonic.webp"
       }
     },
     {
@@ -11174,7 +11174,7 @@
           "end": 9.175
         }
       ],
-      "audio": "audio_house_dalet/s65.mp3"
+      "audio": "books/house-dalet/audio/s65.mp3"
     },
     {
       "id": "s66",
@@ -11302,7 +11302,7 @@
           "end": 6.4
         }
       ],
-      "audio": "audio_house_dalet/s66.mp3"
+      "audio": "books/house-dalet/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -11340,7 +11340,7 @@
           "end": 1.25
         }
       ],
-      "audio": "audio_house_dalet/s67.mp3"
+      "audio": "books/house-dalet/audio/s67.mp3"
     },
     {
       "id": "s68",
@@ -11428,7 +11428,7 @@
           "end": 4.138
         }
       ],
-      "audio": "audio_house_dalet/s68.mp3"
+      "audio": "books/house-dalet/audio/s68.mp3"
     },
     {
       "id": "s69",
@@ -11576,7 +11576,7 @@
           "end": 5.875
         }
       ],
-      "audio": "audio_house_dalet/s69.mp3"
+      "audio": "books/house-dalet/audio/s69.mp3"
     },
     {
       "id": "s70",
@@ -11734,7 +11734,7 @@
           "end": 7.65
         }
       ],
-      "audio": "audio_house_dalet/s70.mp3"
+      "audio": "books/house-dalet/audio/s70.mp3"
     },
     {
       "id": "s71",
@@ -11832,7 +11832,7 @@
           "end": 4.138
         }
       ],
-      "audio": "audio_house_dalet/s71.mp3"
+      "audio": "books/house-dalet/audio/s71.mp3"
     },
     {
       "id": "s72",
@@ -12000,7 +12000,7 @@
           "end": 8.075
         }
       ],
-      "audio": "audio_house_dalet/s72.mp3"
+      "audio": "books/house-dalet/audio/s72.mp3"
     },
     {
       "id": "s73",
@@ -12108,7 +12108,7 @@
           "end": 4.612
         }
       ],
-      "audio": "audio_house_dalet/s73.mp3"
+      "audio": "books/house-dalet/audio/s73.mp3"
     },
     {
       "id": "s74",
@@ -12236,7 +12236,7 @@
           "end": 5.438
         }
       ],
-      "audio": "audio_house_dalet/s74.mp3"
+      "audio": "books/house-dalet/audio/s74.mp3"
     },
     {
       "id": "s75",
@@ -12354,7 +12354,7 @@
           "end": 4.6
         }
       ],
-      "audio": "audio_house_dalet/s75.mp3"
+      "audio": "books/house-dalet/audio/s75.mp3"
     },
     {
       "id": "s76",
@@ -12512,7 +12512,7 @@
           "end": 7.713
         }
       ],
-      "audio": "audio_house_dalet/s76.mp3"
+      "audio": "books/house-dalet/audio/s76.mp3"
     },
     {
       "id": "s77",
@@ -12590,7 +12590,7 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_house_dalet/s77.mp3"
+      "audio": "books/house-dalet/audio/s77.mp3"
     },
     {
       "id": "s78",
@@ -12678,7 +12678,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_house_dalet/s78.mp3"
+      "audio": "books/house-dalet/audio/s78.mp3"
     },
     {
       "id": "s79",
@@ -12816,7 +12816,7 @@
           "end": 5.763
         }
       ],
-      "audio": "audio_house_dalet/s79.mp3"
+      "audio": "books/house-dalet/audio/s79.mp3"
     },
     {
       "id": "s80",
@@ -12954,7 +12954,7 @@
           "end": 6.75
         }
       ],
-      "audio": "audio_house_dalet/s80.mp3"
+      "audio": "books/house-dalet/audio/s80.mp3"
     },
     {
       "id": "s81",
@@ -13142,7 +13142,7 @@
           "end": 8.175
         }
       ],
-      "audio": "audio_house_dalet/s81.mp3"
+      "audio": "books/house-dalet/audio/s81.mp3"
     },
     {
       "id": "s82",
@@ -13250,15 +13250,15 @@
           "end": 4.162
         }
       ],
-      "audio": "audio_house_dalet/s82.mp3",
+      "audio": "books/house-dalet/audio/s82.mp3",
       "illustration": {
         "word": "חוּט",
         "tr": "в нити",
         "caption": "חוּט",
         "capTr": "chut",
         "mnemonic": "Представь себе огромную, клубящуюся ХУТУ, которая внезапно оживает и начинает танцевать хуту под весёлую музыку, кружась и вертясь с разноцветными лентами, которые разлетаются во все стороны.",
-        "img": "illustrations_house_dalet/s82.webp",
-        "imgMnemonic": "illustrations_house_dalet/s82-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s82.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s82-mnemonic.webp"
       }
     },
     {
@@ -13387,7 +13387,7 @@
           "end": 5.487
         }
       ],
-      "audio": "audio_house_dalet/s83.mp3"
+      "audio": "books/house-dalet/audio/s83.mp3"
     },
     {
       "id": "s84",
@@ -13515,7 +13515,7 @@
           "end": 4.162
         }
       ],
-      "audio": "audio_house_dalet/s84.mp3"
+      "audio": "books/house-dalet/audio/s84.mp3"
     },
     {
       "id": "s85",
@@ -13633,7 +13633,7 @@
           "end": 6.438
         }
       ],
-      "audio": "audio_house_dalet/s85.mp3"
+      "audio": "books/house-dalet/audio/s85.mp3"
     },
     {
       "id": "s86",
@@ -13881,7 +13881,7 @@
           "end": 9.65
         }
       ],
-      "audio": "audio_house_dalet/s86.mp3"
+      "audio": "books/house-dalet/audio/s86.mp3"
     },
     {
       "id": "s87",
@@ -14019,7 +14019,7 @@
           "end": 5.787
         }
       ],
-      "audio": "audio_house_dalet/s87.mp3"
+      "audio": "books/house-dalet/audio/s87.mp3"
     },
     {
       "id": "s88",
@@ -14147,7 +14147,7 @@
           "end": 5.438
         }
       ],
-      "audio": "audio_house_dalet/s88.mp3"
+      "audio": "books/house-dalet/audio/s88.mp3"
     },
     {
       "id": "s89",
@@ -14363,7 +14363,7 @@
           "root": "נ-כ-ר"
         }
       ],
-      "audio": "audio_house_dalet/s89.mp3"
+      "audio": "books/house-dalet/audio/s89.mp3"
     },
     {
       "id": "s90",
@@ -14501,7 +14501,7 @@
           "end": 6.362
         }
       ],
-      "audio": "audio_house_dalet/s90.mp3"
+      "audio": "books/house-dalet/audio/s90.mp3"
     },
     {
       "id": "s91",
@@ -14639,7 +14639,7 @@
           "end": 6.188
         }
       ],
-      "audio": "audio_house_dalet/s91.mp3"
+      "audio": "books/house-dalet/audio/s91.mp3"
     },
     {
       "id": "s92",
@@ -14907,7 +14907,7 @@
           "end": 10.963
         }
       ],
-      "audio": "audio_house_dalet/s92.mp3"
+      "audio": "books/house-dalet/audio/s92.mp3"
     },
     {
       "id": "s93",
@@ -14985,7 +14985,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_house_dalet/s93.mp3"
+      "audio": "books/house-dalet/audio/s93.mp3"
     },
     {
       "id": "s94",
@@ -15213,7 +15213,7 @@
           "end": 9.412
         }
       ],
-      "audio": "audio_house_dalet/s94.mp3"
+      "audio": "books/house-dalet/audio/s94.mp3"
     },
     {
       "id": "s95",
@@ -15381,7 +15381,7 @@
           "end": 7.162
         }
       ],
-      "audio": "audio_house_dalet/s95.mp3"
+      "audio": "books/house-dalet/audio/s95.mp3"
     },
     {
       "id": "s96",
@@ -15489,7 +15489,7 @@
           "end": 4.8
         }
       ],
-      "audio": "audio_house_dalet/s96.mp3"
+      "audio": "books/house-dalet/audio/s96.mp3"
     },
     {
       "id": "s97",
@@ -15627,7 +15627,7 @@
           "end": 5.263
         }
       ],
-      "audio": "audio_house_dalet/s97.mp3"
+      "audio": "books/house-dalet/audio/s97.mp3"
     },
     {
       "id": "s98",
@@ -15885,7 +15885,7 @@
           "end": 9.887
         }
       ],
-      "audio": "audio_house_dalet/s98.mp3"
+      "audio": "books/house-dalet/audio/s98.mp3"
     },
     {
       "id": "s99",
@@ -16013,7 +16013,7 @@
           "end": 5.025
         }
       ],
-      "audio": "audio_house_dalet/s99.mp3"
+      "audio": "books/house-dalet/audio/s99.mp3"
     },
     {
       "id": "s100",
@@ -16221,7 +16221,7 @@
           "end": 8.25
         }
       ],
-      "audio": "audio_house_dalet/s100.mp3"
+      "audio": "books/house-dalet/audio/s100.mp3"
     },
     {
       "id": "s101",
@@ -16379,7 +16379,7 @@
           "end": 6.838
         }
       ],
-      "audio": "audio_house_dalet/s101.mp3"
+      "audio": "books/house-dalet/audio/s101.mp3"
     },
     {
       "id": "s102",
@@ -16577,7 +16577,7 @@
           "end": 8.137
         }
       ],
-      "audio": "audio_house_dalet/s102.mp3"
+      "audio": "books/house-dalet/audio/s102.mp3"
     },
     {
       "id": "s103",
@@ -16705,15 +16705,15 @@
           "end": 5.8
         }
       ],
-      "audio": "audio_house_dalet/s103.mp3",
+      "audio": "books/house-dalet/audio/s103.mp3",
       "illustration": {
         "word": "מִכְתָּב",
         "tr": "письмо",
         "caption": "מִכְתָּב",
         "capTr": "michtav",
         "mnemonic": "Представь, что Микита Бровкин написал письмо, но вместо того, чтобы отправить его, он решил сделать из него воздушный шарик и выпустить его в небо. Когда шарик летел высоко, он начал принимать форму огромного письма, которое парило над городом и приносило радость всем, кто его видел. Но затем шарик лопнул, и письмо упало на землю, превратившись в кучу разноцветных конфетти.",
-        "img": "illustrations_house_dalet/s103.webp",
-        "imgMnemonic": "illustrations_house_dalet/s103-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s103.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s103-mnemonic.webp"
       }
     },
     {
@@ -16792,7 +16792,7 @@
           "end": 2.175
         }
       ],
-      "audio": "audio_house_dalet/s104.mp3"
+      "audio": "books/house-dalet/audio/s104.mp3"
     },
     {
       "id": "s105",
@@ -16890,7 +16890,7 @@
           "end": 4.888
         }
       ],
-      "audio": "audio_house_dalet/s105.mp3"
+      "audio": "books/house-dalet/audio/s105.mp3"
     },
     {
       "id": "s106",
@@ -17078,7 +17078,7 @@
           "end": 7.3
         }
       ],
-      "audio": "audio_house_dalet/s106.mp3"
+      "audio": "books/house-dalet/audio/s106.mp3"
     },
     {
       "id": "s107",
@@ -17236,7 +17236,7 @@
           "end": 6.412
         }
       ],
-      "audio": "audio_house_dalet/s107.mp3"
+      "audio": "books/house-dalet/audio/s107.mp3"
     },
     {
       "id": "s108",
@@ -17314,7 +17314,7 @@
           "end": 3.013
         }
       ],
-      "audio": "audio_house_dalet/s108.mp3"
+      "audio": "books/house-dalet/audio/s108.mp3"
     },
     {
       "id": "s109",
@@ -17462,7 +17462,7 @@
           "end": 5.763
         }
       ],
-      "audio": "audio_house_dalet/s109.mp3"
+      "audio": "books/house-dalet/audio/s109.mp3"
     },
     {
       "id": "s110",
@@ -17630,7 +17630,7 @@
           "end": 7.088
         }
       ],
-      "audio": "audio_house_dalet/s110.mp3"
+      "audio": "books/house-dalet/audio/s110.mp3"
     },
     {
       "id": "s111",
@@ -17928,7 +17928,7 @@
           "end": 10.838
         }
       ],
-      "audio": "audio_house_dalet/s111.mp3"
+      "audio": "books/house-dalet/audio/s111.mp3"
     },
     {
       "id": "s112",
@@ -17996,7 +17996,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_house_dalet/s112.mp3"
+      "audio": "books/house-dalet/audio/s112.mp3"
     },
     {
       "id": "s113",
@@ -18124,7 +18124,7 @@
           "end": 5.312
         }
       ],
-      "audio": "audio_house_dalet/s113.mp3"
+      "audio": "books/house-dalet/audio/s113.mp3"
     },
     {
       "id": "s114",
@@ -18322,7 +18322,7 @@
           "end": 6.85
         }
       ],
-      "audio": "audio_house_dalet/s114.mp3"
+      "audio": "books/house-dalet/audio/s114.mp3"
     },
     {
       "id": "s115",
@@ -18560,7 +18560,7 @@
           "end": 9.287
         }
       ],
-      "audio": "audio_house_dalet/s115.mp3"
+      "audio": "books/house-dalet/audio/s115.mp3"
     },
     {
       "id": "s116",
@@ -18678,7 +18678,7 @@
           "end": 4.612
         }
       ],
-      "audio": "audio_house_dalet/s116.mp3"
+      "audio": "books/house-dalet/audio/s116.mp3"
     },
     {
       "id": "s117",
@@ -18750,7 +18750,7 @@
           "root": "ע-צ-ר"
         }
       ],
-      "audio": "audio_house_dalet/s117.mp3"
+      "audio": "books/house-dalet/audio/s117.mp3"
     },
     {
       "id": "s118",
@@ -18978,7 +18978,7 @@
           "end": 9.188
         }
       ],
-      "audio": "audio_house_dalet/s118.mp3"
+      "audio": "books/house-dalet/audio/s118.mp3"
     },
     {
       "id": "s121",
@@ -19216,7 +19216,7 @@
           "end": 10.113
         }
       ],
-      "audio": "audio_house_dalet/s121.mp3"
+      "audio": "books/house-dalet/audio/s121.mp3"
     },
     {
       "id": "s122",
@@ -19314,7 +19314,7 @@
           "end": 3.938
         }
       ],
-      "audio": "audio_house_dalet/s122.mp3"
+      "audio": "books/house-dalet/audio/s122.mp3"
     },
     {
       "id": "s123",
@@ -19482,15 +19482,15 @@
           "end": 7.1
         }
       ],
-      "audio": "audio_house_dalet/s123.mp3",
+      "audio": "books/house-dalet/audio/s123.mp3",
       "illustration": {
         "word": "שְׁתִיקָה",
         "tr": "молчаний",
         "caption": "שְׁתִיקָה",
         "capTr": "shtikah",
         "mnemonic": "Представь огромную тишину, которая вдруг превратилась в ШТИКУ — её начинает жевать гигантская говорунья-кукушка! Все вокруг в панике закрывают уши, а кукушка говорит без умолку, не останавливаясь ни на секунду.",
-        "img": "illustrations_house_dalet/s123.webp",
-        "imgMnemonic": "illustrations_house_dalet/s123-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s123.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s123-mnemonic.webp"
       }
     },
     {
@@ -19731,7 +19731,7 @@
           "root": "ס-מ-ך"
         }
       ],
-      "audio": "audio_house_dalet/s124.mp3"
+      "audio": "books/house-dalet/audio/s124.mp3"
     },
     {
       "id": "s125",
@@ -19879,7 +19879,7 @@
           "end": 7.162
         }
       ],
-      "audio": "audio_house_dalet/s125.mp3"
+      "audio": "books/house-dalet/audio/s125.mp3"
     },
     {
       "id": "s126",
@@ -19987,7 +19987,7 @@
           "end": 5.625
         }
       ],
-      "audio": "audio_house_dalet/s126.mp3"
+      "audio": "books/house-dalet/audio/s126.mp3"
     },
     {
       "id": "s127",
@@ -20095,7 +20095,7 @@
           "end": 5.138
         }
       ],
-      "audio": "audio_house_dalet/s127.mp3"
+      "audio": "books/house-dalet/audio/s127.mp3"
     },
     {
       "id": "s128",
@@ -20293,7 +20293,7 @@
           "end": 7.487
         }
       ],
-      "audio": "audio_house_dalet/s128.mp3"
+      "audio": "books/house-dalet/audio/s128.mp3"
     },
     {
       "id": "s129",
@@ -20431,7 +20431,7 @@
           "end": 6.463
         }
       ],
-      "audio": "audio_house_dalet/s129.mp3"
+      "audio": "books/house-dalet/audio/s129.mp3"
     },
     {
       "id": "s130",
@@ -20629,7 +20629,7 @@
           "end": 7.763
         }
       ],
-      "audio": "audio_house_dalet/s130.mp3"
+      "audio": "books/house-dalet/audio/s130.mp3"
     },
     {
       "id": "s131",
@@ -20797,7 +20797,7 @@
           "end": 6.388
         }
       ],
-      "audio": "audio_house_dalet/s131.mp3"
+      "audio": "books/house-dalet/audio/s131.mp3"
     },
     {
       "id": "s132",
@@ -20895,7 +20895,7 @@
           "end": 3.888
         }
       ],
-      "audio": "audio_house_dalet/s132.mp3"
+      "audio": "books/house-dalet/audio/s132.mp3"
     },
     {
       "id": "s133",
@@ -21083,7 +21083,7 @@
           "end": 7.575
         }
       ],
-      "audio": "audio_house_dalet/s133.mp3"
+      "audio": "books/house-dalet/audio/s133.mp3"
     },
     {
       "id": "s134",
@@ -21181,7 +21181,7 @@
           "end": 4.35
         }
       ],
-      "audio": "audio_house_dalet/s134.mp3"
+      "audio": "books/house-dalet/audio/s134.mp3"
     },
     {
       "id": "s135",
@@ -21319,7 +21319,7 @@
           "end": 7.237
         }
       ],
-      "audio": "audio_house_dalet/s135.mp3"
+      "audio": "books/house-dalet/audio/s135.mp3"
     },
     {
       "id": "s136",
@@ -21457,7 +21457,7 @@
           "end": 6.5
         }
       ],
-      "audio": "audio_house_dalet/s136.mp3"
+      "audio": "books/house-dalet/audio/s136.mp3"
     },
     {
       "id": "s137",
@@ -21735,7 +21735,7 @@
           "end": 10.975
         }
       ],
-      "audio": "audio_house_dalet/s137.mp3"
+      "audio": "books/house-dalet/audio/s137.mp3"
     },
     {
       "id": "s138",
@@ -21873,7 +21873,7 @@
           "end": 5.013
         }
       ],
-      "audio": "audio_house_dalet/s138.mp3"
+      "audio": "books/house-dalet/audio/s138.mp3"
     },
     {
       "id": "s139",
@@ -22031,7 +22031,7 @@
           "end": 6.987
         }
       ],
-      "audio": "audio_house_dalet/s139.mp3"
+      "audio": "books/house-dalet/audio/s139.mp3"
     },
     {
       "id": "s140",
@@ -22089,7 +22089,7 @@
           "end": 2.775
         }
       ],
-      "audio": "audio_house_dalet/s140.mp3"
+      "audio": "books/house-dalet/audio/s140.mp3"
     },
     {
       "id": "s141",
@@ -22207,7 +22207,7 @@
           "end": 4.763
         }
       ],
-      "audio": "audio_house_dalet/s141.mp3"
+      "audio": "books/house-dalet/audio/s141.mp3"
     },
     {
       "id": "s142",
@@ -22335,7 +22335,7 @@
           "end": 5.525
         }
       ],
-      "audio": "audio_house_dalet/s142.mp3"
+      "audio": "books/house-dalet/audio/s142.mp3"
     },
     {
       "id": "s143",
@@ -22563,7 +22563,7 @@
           "end": 9.037
         }
       ],
-      "audio": "audio_house_dalet/s143.mp3"
+      "audio": "books/house-dalet/audio/s143.mp3"
     },
     {
       "id": "s144",
@@ -22781,7 +22781,7 @@
           "end": 8.887
         }
       ],
-      "audio": "audio_house_dalet/s144.mp3"
+      "audio": "books/house-dalet/audio/s144.mp3"
     },
     {
       "id": "s145",
@@ -22899,7 +22899,7 @@
           "end": 5.213
         }
       ],
-      "audio": "audio_house_dalet/s145.mp3"
+      "audio": "books/house-dalet/audio/s145.mp3"
     },
     {
       "id": "s146",
@@ -22997,7 +22997,7 @@
           "end": 3.888
         }
       ],
-      "audio": "audio_house_dalet/s146.mp3"
+      "audio": "books/house-dalet/audio/s146.mp3"
     },
     {
       "id": "s147",
@@ -23145,7 +23145,7 @@
           "end": 5.438
         }
       ],
-      "audio": "audio_house_dalet/s147.mp3"
+      "audio": "books/house-dalet/audio/s147.mp3"
     },
     {
       "id": "s148",
@@ -23323,7 +23323,7 @@
           "end": 6.138
         }
       ],
-      "audio": "audio_house_dalet/s148.mp3"
+      "audio": "books/house-dalet/audio/s148.mp3"
     },
     {
       "id": "s149",
@@ -23451,7 +23451,7 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_house_dalet/s149.mp3"
+      "audio": "books/house-dalet/audio/s149.mp3"
     },
     {
       "id": "s150",
@@ -23569,7 +23569,7 @@
           "end": 5.213
         }
       ],
-      "audio": "audio_house_dalet/s150.mp3"
+      "audio": "books/house-dalet/audio/s150.mp3"
     },
     {
       "id": "s151",
@@ -23637,7 +23637,7 @@
           "end": 2.8
         }
       ],
-      "audio": "audio_house_dalet/s151.mp3"
+      "audio": "books/house-dalet/audio/s151.mp3"
     },
     {
       "id": "s152",
@@ -23755,15 +23755,15 @@
           "end": 4.35
         }
       ],
-      "audio": "audio_house_dalet/s152.mp3",
+      "audio": "books/house-dalet/audio/s152.mp3",
       "illustration": {
         "word": "יָד",
         "tr": "руки",
         "caption": "יָד",
         "capTr": "yad",
         "mnemonic": "Представь себе огромную ЯДОВИТУЮ змею, которая вдруг начала расти РУКИ и теперь может обнимать деревья. Все животные в лесу в панике бегут от змеи, а она смеется и обнимает ещё больше деревьев.",
-        "img": "illustrations_house_dalet/s152.webp",
-        "imgMnemonic": "illustrations_house_dalet/s152-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s152.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s152-mnemonic.webp"
       }
     },
     {
@@ -23872,7 +23872,7 @@
           "end": 4.713
         }
       ],
-      "audio": "audio_house_dalet/s153.mp3"
+      "audio": "books/house-dalet/audio/s153.mp3"
     },
     {
       "id": "s154",
@@ -23970,7 +23970,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_house_dalet/s154.mp3"
+      "audio": "books/house-dalet/audio/s154.mp3"
     },
     {
       "id": "s155",
@@ -24018,7 +24018,7 @@
           "end": 1.55
         }
       ],
-      "audio": "audio_house_dalet/s155.mp3"
+      "audio": "books/house-dalet/audio/s155.mp3"
     },
     {
       "id": "s156",
@@ -24116,7 +24116,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_house_dalet/s156.mp3"
+      "audio": "books/house-dalet/audio/s156.mp3"
     },
     {
       "id": "s157",
@@ -24254,7 +24254,7 @@
           "end": 5.35
         }
       ],
-      "audio": "audio_house_dalet/s157.mp3"
+      "audio": "books/house-dalet/audio/s157.mp3"
     },
     {
       "id": "s158",
@@ -24312,7 +24312,7 @@
           "end": 2.288
         }
       ],
-      "audio": "audio_house_dalet/s158.mp3"
+      "audio": "books/house-dalet/audio/s158.mp3"
     },
     {
       "id": "s159",
@@ -24460,7 +24460,7 @@
           "end": 5.987
         }
       ],
-      "audio": "audio_house_dalet/s159.mp3"
+      "audio": "books/house-dalet/audio/s159.mp3"
     },
     {
       "id": "s160",
@@ -24748,7 +24748,7 @@
           "end": 10.688
         }
       ],
-      "audio": "audio_house_dalet/s160.mp3"
+      "audio": "books/house-dalet/audio/s160.mp3"
     },
     {
       "id": "s161",
@@ -24826,7 +24826,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_house_dalet/s161.mp3"
+      "audio": "books/house-dalet/audio/s161.mp3"
     },
     {
       "id": "s162",
@@ -24944,7 +24944,7 @@
           "end": 5.513
         }
       ],
-      "audio": "audio_house_dalet/s162.mp3"
+      "audio": "books/house-dalet/audio/s162.mp3"
     },
     {
       "id": "s163",
@@ -25102,7 +25102,7 @@
           "end": 6.737
         }
       ],
-      "audio": "audio_house_dalet/s163.mp3"
+      "audio": "books/house-dalet/audio/s163.mp3"
     },
     {
       "id": "s164",
@@ -25250,7 +25250,7 @@
           "end": 5.375
         }
       ],
-      "audio": "audio_house_dalet/s164.mp3"
+      "audio": "books/house-dalet/audio/s164.mp3"
     },
     {
       "id": "s165",
@@ -25358,7 +25358,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_house_dalet/s165.mp3"
+      "audio": "books/house-dalet/audio/s165.mp3"
     },
     {
       "id": "s166",
@@ -25516,7 +25516,7 @@
           "end": 6.862
         }
       ],
-      "audio": "audio_house_dalet/s166.mp3"
+      "audio": "books/house-dalet/audio/s166.mp3"
     },
     {
       "id": "s167",
@@ -25644,7 +25644,7 @@
           "end": 4.812
         }
       ],
-      "audio": "audio_house_dalet/s167.mp3"
+      "audio": "books/house-dalet/audio/s167.mp3"
     },
     {
       "id": "s168",
@@ -25802,7 +25802,7 @@
           "end": 6.463
         }
       ],
-      "audio": "audio_house_dalet/s168.mp3"
+      "audio": "books/house-dalet/audio/s168.mp3"
     },
     {
       "id": "s169",
@@ -25920,7 +25920,7 @@
           "end": 5.45
         }
       ],
-      "audio": "audio_house_dalet/s169.mp3"
+      "audio": "books/house-dalet/audio/s169.mp3"
     },
     {
       "id": "s170",
@@ -26068,15 +26068,15 @@
           "end": 7.35
         }
       ],
-      "audio": "audio_house_dalet/s170.mp3",
+      "audio": "books/house-dalet/audio/s170.mp3",
       "illustration": {
         "word": "עֲבוֹדָה",
         "tr": "в работах",
         "caption": "עֲבוֹדָה",
         "capTr": "avoda",
         "mnemonic": "Представь, что огромная фабрика по производству игрушек названа 'Авода' и производит кукол, которые оживляются и начинают работать на фабрике, создавая замкнутый цикл труда и производства. Работающие куклы носят миниатюрные каски и фартуки, а их конвейерная лента тянется бесконечно. Когда одна кукла заканчивает свою работу, она превращается в новую, еще более сложную игрушку, и так далее.",
-        "img": "illustrations_house_dalet/s170.webp",
-        "imgMnemonic": "illustrations_house_dalet/s170-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s170.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s170-mnemonic.webp"
       }
     },
     {
@@ -26335,7 +26335,7 @@
           "end": 8.95
         }
       ],
-      "audio": "audio_house_dalet/s171.mp3"
+      "audio": "books/house-dalet/audio/s171.mp3"
     },
     {
       "id": "s172",
@@ -26433,7 +26433,7 @@
           "end": 4.1
         }
       ],
-      "audio": "audio_house_dalet/s172.mp3"
+      "audio": "books/house-dalet/audio/s172.mp3"
     },
     {
       "id": "s173",
@@ -26561,7 +26561,7 @@
           "end": 6.112
         }
       ],
-      "audio": "audio_house_dalet/s173.mp3"
+      "audio": "books/house-dalet/audio/s173.mp3"
     },
     {
       "id": "s174",
@@ -26719,7 +26719,7 @@
           "end": 7.875
         }
       ],
-      "audio": "audio_house_dalet/s174.mp3"
+      "audio": "books/house-dalet/audio/s174.mp3"
     },
     {
       "id": "s175",
@@ -26867,7 +26867,7 @@
           "end": 5.438
         }
       ],
-      "audio": "audio_house_dalet/s175.mp3"
+      "audio": "books/house-dalet/audio/s175.mp3"
     },
     {
       "id": "s176",
@@ -26975,7 +26975,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_house_dalet/s176.mp3"
+      "audio": "books/house-dalet/audio/s176.mp3"
     },
     {
       "id": "s177",
@@ -27203,7 +27203,7 @@
           "end": 7.875
         }
       ],
-      "audio": "audio_house_dalet/s177.mp3"
+      "audio": "books/house-dalet/audio/s177.mp3"
     },
     {
       "id": "s178",
@@ -27301,7 +27301,7 @@
           "end": 3.888
         }
       ],
-      "audio": "audio_house_dalet/s178.mp3"
+      "audio": "books/house-dalet/audio/s178.mp3"
     },
     {
       "id": "s179",
@@ -27359,7 +27359,7 @@
           "end": 2.325
         }
       ],
-      "audio": "audio_house_dalet/s179.mp3"
+      "audio": "books/house-dalet/audio/s179.mp3"
     },
     {
       "id": "s180",
@@ -27447,7 +27447,7 @@
           "end": 4.362
         }
       ],
-      "audio": "audio_house_dalet/s180.mp3"
+      "audio": "books/house-dalet/audio/s180.mp3"
     },
     {
       "id": "s181",
@@ -27665,7 +27665,7 @@
           "end": 8.387
         }
       ],
-      "audio": "audio_house_dalet/s181.mp3"
+      "audio": "books/house-dalet/audio/s181.mp3"
     },
     {
       "id": "s182",
@@ -27923,7 +27923,7 @@
           "end": 9.25
         }
       ],
-      "audio": "audio_house_dalet/s182.mp3"
+      "audio": "books/house-dalet/audio/s182.mp3"
     },
     {
       "id": "s183",
@@ -28031,7 +28031,7 @@
           "end": 4.65
         }
       ],
-      "audio": "audio_house_dalet/s183.mp3"
+      "audio": "books/house-dalet/audio/s183.mp3"
     },
     {
       "id": "s184",
@@ -28239,7 +28239,7 @@
           "end": 7.125
         }
       ],
-      "audio": "audio_house_dalet/s184.mp3"
+      "audio": "books/house-dalet/audio/s184.mp3"
     },
     {
       "id": "s185",
@@ -28337,7 +28337,7 @@
           "end": 4.6
         }
       ],
-      "audio": "audio_house_dalet/s185.mp3"
+      "audio": "books/house-dalet/audio/s185.mp3"
     },
     {
       "id": "s186",
@@ -28545,7 +28545,7 @@
           "end": 7.725
         }
       ],
-      "audio": "audio_house_dalet/s186.mp3"
+      "audio": "books/house-dalet/audio/s186.mp3"
     },
     {
       "id": "s187",
@@ -28663,15 +28663,15 @@
           "end": 4.838
         }
       ],
-      "audio": "audio_house_dalet/s187.mp3",
+      "audio": "books/house-dalet/audio/s187.mp3",
       "illustration": {
         "word": "פִּנְקָס",
         "tr": "блокнота",
         "caption": "פִּנְקָס",
         "capTr": "pinkas",
         "mnemonic": "Представь, что Пинкас - это знаменитый повар, который готовит вкусные блинчики на огромной сковороде, и его блокнот с рецептами является ключом к созданию этих кулинарных шедевров. Когда он открывает блокнот, из него вылетает огромное количество блинчиков, которые начинают танцевать вокруг него, и Пинкас смеется от радости, потому что его блокнот стал магическим. Блинчики начинают образовывать слова и фразы из рецептов, и Пинкас понимает, что его блокнот - это не просто книга, а ключ к созданию кулинарного чуда.",
-        "img": "illustrations_house_dalet/s187.webp",
-        "imgMnemonic": "illustrations_house_dalet/s187-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s187.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s187-mnemonic.webp"
       }
     },
     {
@@ -28830,7 +28830,7 @@
           "end": 6.05
         }
       ],
-      "audio": "audio_house_dalet/s188.mp3"
+      "audio": "books/house-dalet/audio/s188.mp3"
     },
     {
       "id": "s189",
@@ -29048,7 +29048,7 @@
           "end": 6.963
         }
       ],
-      "audio": "audio_house_dalet/s189.mp3"
+      "audio": "books/house-dalet/audio/s189.mp3"
     },
     {
       "id": "s190",
@@ -29226,7 +29226,7 @@
           "end": 5.463
         }
       ],
-      "audio": "audio_house_dalet/s190.mp3"
+      "audio": "books/house-dalet/audio/s190.mp3"
     },
     {
       "id": "s191",
@@ -29314,7 +29314,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_house_dalet/s191.mp3"
+      "audio": "books/house-dalet/audio/s191.mp3"
     },
     {
       "id": "s192",
@@ -29422,7 +29422,7 @@
           "end": 5.2
         }
       ],
-      "audio": "audio_house_dalet/s192.mp3"
+      "audio": "books/house-dalet/audio/s192.mp3"
     },
     {
       "id": "s193",
@@ -29650,7 +29650,7 @@
           "end": 9.162
         }
       ],
-      "audio": "audio_house_dalet/s193.mp3"
+      "audio": "books/house-dalet/audio/s193.mp3"
     },
     {
       "id": "s194",
@@ -29818,7 +29818,7 @@
           "end": 7.65
         }
       ],
-      "audio": "audio_house_dalet/s194.mp3"
+      "audio": "books/house-dalet/audio/s194.mp3"
     },
     {
       "id": "s195",
@@ -29876,7 +29876,7 @@
           "end": 1.875
         }
       ],
-      "audio": "audio_house_dalet/s195.mp3"
+      "audio": "books/house-dalet/audio/s195.mp3"
     },
     {
       "id": "s196",
@@ -30024,7 +30024,7 @@
           "end": 5.138
         }
       ],
-      "audio": "audio_house_dalet/s196.mp3"
+      "audio": "books/house-dalet/audio/s196.mp3"
     },
     {
       "id": "s197",
@@ -30202,7 +30202,7 @@
           "end": 7.987
         }
       ],
-      "audio": "audio_house_dalet/s197.mp3"
+      "audio": "books/house-dalet/audio/s197.mp3"
     },
     {
       "id": "s198",
@@ -30380,7 +30380,7 @@
           "end": 7.438
         }
       ],
-      "audio": "audio_house_dalet/s198.mp3"
+      "audio": "books/house-dalet/audio/s198.mp3"
     },
     {
       "id": "s199",
@@ -30478,7 +30478,7 @@
           "end": 4.088
         }
       ],
-      "audio": "audio_house_dalet/s199.mp3"
+      "audio": "books/house-dalet/audio/s199.mp3"
     },
     {
       "id": "s200",
@@ -30606,7 +30606,7 @@
           "end": 6.125
         }
       ],
-      "audio": "audio_house_dalet/s200.mp3"
+      "audio": "books/house-dalet/audio/s200.mp3"
     },
     {
       "id": "s201",
@@ -30764,7 +30764,7 @@
           "end": 6.638
         }
       ],
-      "audio": "audio_house_dalet/s201.mp3"
+      "audio": "books/house-dalet/audio/s201.mp3"
     },
     {
       "id": "s202",
@@ -30842,7 +30842,7 @@
           "end": 2.812
         }
       ],
-      "audio": "audio_house_dalet/s202.mp3"
+      "audio": "books/house-dalet/audio/s202.mp3"
     },
     {
       "id": "s203",
@@ -31020,7 +31020,7 @@
           "end": 7.938
         }
       ],
-      "audio": "audio_house_dalet/s203.mp3"
+      "audio": "books/house-dalet/audio/s203.mp3"
     },
     {
       "id": "s204",
@@ -31138,7 +31138,7 @@
           "end": 4.7
         }
       ],
-      "audio": "audio_house_dalet/s204.mp3"
+      "audio": "books/house-dalet/audio/s204.mp3"
     },
     {
       "id": "s205",
@@ -31296,7 +31296,7 @@
           "end": 6.612
         }
       ],
-      "audio": "audio_house_dalet/s205.mp3"
+      "audio": "books/house-dalet/audio/s205.mp3"
     },
     {
       "id": "s206",
@@ -31504,7 +31504,7 @@
           "end": 6.662
         }
       ],
-      "audio": "audio_house_dalet/s206.mp3"
+      "audio": "books/house-dalet/audio/s206.mp3"
     },
     {
       "id": "s207",
@@ -31602,7 +31602,7 @@
           "end": 4.588
         }
       ],
-      "audio": "audio_house_dalet/s207.mp3"
+      "audio": "books/house-dalet/audio/s207.mp3"
     },
     {
       "id": "s208",
@@ -31780,7 +31780,7 @@
           "end": 7.925
         }
       ],
-      "audio": "audio_house_dalet/s208.mp3"
+      "audio": "books/house-dalet/audio/s208.mp3"
     },
     {
       "id": "s209",
@@ -31908,7 +31908,7 @@
           "end": 5.588
         }
       ],
-      "audio": "audio_house_dalet/s209.mp3"
+      "audio": "books/house-dalet/audio/s209.mp3"
     },
     {
       "id": "s210",
@@ -32096,7 +32096,7 @@
           "end": 7.088
         }
       ],
-      "audio": "audio_house_dalet/s210.mp3"
+      "audio": "books/house-dalet/audio/s210.mp3"
     },
     {
       "id": "s211",
@@ -32164,7 +32164,7 @@
           "end": 2.413
         }
       ],
-      "audio": "audio_house_dalet/s211.mp3"
+      "audio": "books/house-dalet/audio/s211.mp3"
     },
     {
       "id": "s212",
@@ -32242,7 +32242,7 @@
           "end": 3.188
         }
       ],
-      "audio": "audio_house_dalet/s212.mp3"
+      "audio": "books/house-dalet/audio/s212.mp3"
     },
     {
       "id": "s213",
@@ -32320,7 +32320,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_house_dalet/s213.mp3"
+      "audio": "books/house-dalet/audio/s213.mp3"
     },
     {
       "id": "s214",
@@ -32468,7 +32468,7 @@
           "end": 5.588
         }
       ],
-      "audio": "audio_house_dalet/s214.mp3"
+      "audio": "books/house-dalet/audio/s214.mp3"
     },
     {
       "id": "s215",
@@ -32586,7 +32586,7 @@
           "end": 5.787
         }
       ],
-      "audio": "audio_house_dalet/s215.mp3"
+      "audio": "books/house-dalet/audio/s215.mp3"
     },
     {
       "id": "s216",
@@ -32684,15 +32684,15 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_house_dalet/s216.mp3",
+      "audio": "books/house-dalet/audio/s216.mp3",
       "illustration": {
         "word": "שְׁתִיקָה",
         "tr": "молчания",
         "caption": "שְׁתִיקָה",
         "capTr": "shtika",
         "mnemonic": "Представь себе огромную тишину, которая вдруг превратилась в ШТИКУ, пронзившую воздух и заставившую всех вокруг затаить дыхание. В эту странную тишину врывается хор шепчущих голосов, каждый из которых пытается заглушить другие, но в итоге все просто молчат в замешательстве. Тишина становится ещё более гнетущей, когда вдруг из неё вырывается звук шипящей штики, разбившей стеклянную чашу, и все обитатели тишины ахнули от неожиданности.",
-        "img": "illustrations_house_dalet/s216.webp",
-        "imgMnemonic": "illustrations_house_dalet/s216-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s216.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s216-mnemonic.webp"
       }
     },
     {
@@ -32901,7 +32901,7 @@
           "end": 7.888
         }
       ],
-      "audio": "audio_house_dalet/s217.mp3"
+      "audio": "books/house-dalet/audio/s217.mp3"
     },
     {
       "id": "s218",
@@ -33089,7 +33089,7 @@
           "end": 8.175
         }
       ],
-      "audio": "audio_house_dalet/s218.mp3"
+      "audio": "books/house-dalet/audio/s218.mp3"
     },
     {
       "id": "s219",
@@ -33187,7 +33187,7 @@
           "end": 4.675
         }
       ],
-      "audio": "audio_house_dalet/s219.mp3"
+      "audio": "books/house-dalet/audio/s219.mp3"
     },
     {
       "id": "s220",
@@ -33365,7 +33365,7 @@
           "end": 6.75
         }
       ],
-      "audio": "audio_house_dalet/s220.mp3"
+      "audio": "books/house-dalet/audio/s220.mp3"
     },
     {
       "id": "s221",
@@ -33543,7 +33543,7 @@
           "end": 7.362
         }
       ],
-      "audio": "audio_house_dalet/s221.mp3"
+      "audio": "books/house-dalet/audio/s221.mp3"
     },
     {
       "id": "s222",
@@ -33721,7 +33721,7 @@
           "end": 7.662
         }
       ],
-      "audio": "audio_house_dalet/s222.mp3"
+      "audio": "books/house-dalet/audio/s222.mp3"
     },
     {
       "id": "s223",
@@ -33939,15 +33939,15 @@
           "end": 9.238
         }
       ],
-      "audio": "audio_house_dalet/s223.mp3",
+      "audio": "books/house-dalet/audio/s223.mp3",
       "illustration": {
         "word": "שְׁתִיקָה",
         "tr": "в молчании",
         "caption": "שְׁתִיקָה",
         "capTr": "shtika",
         "mnemonic": "Представь себе огромную тишину, которая вдруг превратилась в ШТИКУ, и теперь эта штика молча и неподвижно стоит посреди оживленной городской площади, где все люди вокруг нее внезапно тоже замолчали и стали неподвижными, как будто время само остановилось.",
-        "img": "illustrations_house_dalet/s223.webp",
-        "imgMnemonic": "illustrations_house_dalet/s223-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s223.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s223-mnemonic.webp"
       }
     },
     {
@@ -34106,7 +34106,7 @@
           "end": 6.25
         }
       ],
-      "audio": "audio_house_dalet/s224.mp3"
+      "audio": "books/house-dalet/audio/s224.mp3"
     },
     {
       "id": "s225",
@@ -34224,7 +34224,7 @@
           "end": 5.2
         }
       ],
-      "audio": "audio_house_dalet/s225.mp3"
+      "audio": "books/house-dalet/audio/s225.mp3"
     },
     {
       "id": "s226",
@@ -34462,7 +34462,7 @@
           "end": 10.188
         }
       ],
-      "audio": "audio_house_dalet/s226.mp3"
+      "audio": "books/house-dalet/audio/s226.mp3"
     },
     {
       "id": "s227",
@@ -34670,7 +34670,7 @@
           "end": 9.45
         }
       ],
-      "audio": "audio_house_dalet/s227.mp3"
+      "audio": "books/house-dalet/audio/s227.mp3"
     },
     {
       "id": "s228",
@@ -34858,7 +34858,7 @@
           "end": 8.012
         }
       ],
-      "audio": "audio_house_dalet/s228.mp3"
+      "audio": "books/house-dalet/audio/s228.mp3"
     },
     {
       "id": "s229",
@@ -35016,7 +35016,7 @@
           "end": 7.112
         }
       ],
-      "audio": "audio_house_dalet/s229.mp3"
+      "audio": "books/house-dalet/audio/s229.mp3"
     },
     {
       "id": "s230",
@@ -35284,7 +35284,7 @@
           "end": 11.6
         }
       ],
-      "audio": "audio_house_dalet/s230.mp3"
+      "audio": "books/house-dalet/audio/s230.mp3"
     },
     {
       "id": "s231",
@@ -35462,7 +35462,7 @@
           "end": 5.737
         }
       ],
-      "audio": "audio_house_dalet/s231.mp3"
+      "audio": "books/house-dalet/audio/s231.mp3"
     },
     {
       "id": "s232",
@@ -35510,7 +35510,7 @@
           "end": 2.362
         }
       ],
-      "audio": "audio_house_dalet/s232.mp3"
+      "audio": "books/house-dalet/audio/s232.mp3"
     },
     {
       "id": "s233",
@@ -35798,7 +35798,7 @@
           "end": 9.85
         }
       ],
-      "audio": "audio_house_dalet/s233.mp3"
+      "audio": "books/house-dalet/audio/s233.mp3"
     },
     {
       "id": "s234",
@@ -35976,7 +35976,7 @@
           "end": 6.263
         }
       ],
-      "audio": "audio_house_dalet/s234.mp3"
+      "audio": "books/house-dalet/audio/s234.mp3"
     },
     {
       "id": "s235",
@@ -36254,7 +36254,7 @@
           "end": 10.363
         }
       ],
-      "audio": "audio_house_dalet/s235.mp3"
+      "audio": "books/house-dalet/audio/s235.mp3"
     },
     {
       "id": "s236",
@@ -36332,7 +36332,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_house_dalet/s236.mp3"
+      "audio": "books/house-dalet/audio/s236.mp3"
     },
     {
       "id": "s237",
@@ -36520,7 +36520,7 @@
           "end": 8.088
         }
       ],
-      "audio": "audio_house_dalet/s237.mp3"
+      "audio": "books/house-dalet/audio/s237.mp3"
     },
     {
       "id": "s238",
@@ -36698,7 +36698,7 @@
           "end": 7.513
         }
       ],
-      "audio": "audio_house_dalet/s238.mp3"
+      "audio": "books/house-dalet/audio/s238.mp3"
     },
     {
       "id": "s239",
@@ -36806,7 +36806,7 @@
           "end": 4.425
         }
       ],
-      "audio": "audio_house_dalet/s239.mp3"
+      "audio": "books/house-dalet/audio/s239.mp3"
     },
     {
       "id": "s240",
@@ -36934,7 +36934,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_house_dalet/s240.mp3"
+      "audio": "books/house-dalet/audio/s240.mp3"
     },
     {
       "id": "s241",
@@ -37042,7 +37042,7 @@
           "end": 4.775
         }
       ],
-      "audio": "audio_house_dalet/s241.mp3"
+      "audio": "books/house-dalet/audio/s241.mp3"
     },
     {
       "id": "s242",
@@ -37230,7 +37230,7 @@
           "end": 8.25
         }
       ],
-      "audio": "audio_house_dalet/s242.mp3"
+      "audio": "books/house-dalet/audio/s242.mp3"
     },
     {
       "id": "s243",
@@ -37438,7 +37438,7 @@
           "end": 8.15
         }
       ],
-      "audio": "audio_house_dalet/s243.mp3"
+      "audio": "books/house-dalet/audio/s243.mp3"
     },
     {
       "id": "s244",
@@ -37666,7 +37666,7 @@
           "end": 9.512
         }
       ],
-      "audio": "audio_house_dalet/s244.mp3"
+      "audio": "books/house-dalet/audio/s244.mp3"
     },
     {
       "id": "s245",
@@ -37794,7 +37794,7 @@
           "end": 5.338
         }
       ],
-      "audio": "audio_house_dalet/s245.mp3"
+      "audio": "books/house-dalet/audio/s245.mp3"
     },
     {
       "id": "s246",
@@ -37912,7 +37912,7 @@
           "end": 5.325
         }
       ],
-      "audio": "audio_house_dalet/s246.mp3"
+      "audio": "books/house-dalet/audio/s246.mp3"
     },
     {
       "id": "s247",
@@ -38140,7 +38140,7 @@
           "end": 8.787
         }
       ],
-      "audio": "audio_house_dalet/s247.mp3"
+      "audio": "books/house-dalet/audio/s247.mp3"
     },
     {
       "id": "s248",
@@ -38258,7 +38258,7 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_house_dalet/s248.mp3"
+      "audio": "books/house-dalet/audio/s248.mp3"
     },
     {
       "id": "s249",
@@ -38376,7 +38376,7 @@
           "end": 5.075
         }
       ],
-      "audio": "audio_house_dalet/s249.mp3"
+      "audio": "books/house-dalet/audio/s249.mp3"
     },
     {
       "id": "s250",
@@ -38474,15 +38474,15 @@
           "end": 3.2
         }
       ],
-      "audio": "audio_house_dalet/s250.mp3",
+      "audio": "books/house-dalet/audio/s250.mp3",
       "illustration": {
         "word": "עַיִן",
         "tr": "глаза ее",
         "caption": "עַיִן",
         "capTr": "ayin",
         "mnemonic": "Представь огромную космическую АЙНУ, которая внезапно начала танцевать под весёлую музыку и всех вокруг заражала своим ритмом, заставляя двигаться в такт. Айна была так увлечена, что начала вращаться с такой скоростью, что создала вокруг себя вихрь, который затягивал всех в танец. Вскоре вся галактика танцевала под ритм Айны.",
-        "img": "illustrations_house_dalet/s250.webp",
-        "imgMnemonic": "illustrations_house_dalet/s250-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s250.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s250-mnemonic.webp"
       }
     },
     {
@@ -38631,7 +38631,7 @@
           "end": 7.1
         }
       ],
-      "audio": "audio_house_dalet/s251.mp3"
+      "audio": "books/house-dalet/audio/s251.mp3"
     },
     {
       "id": "s252",
@@ -38879,7 +38879,7 @@
           "end": 9.9
         }
       ],
-      "audio": "audio_house_dalet/s252.mp3"
+      "audio": "books/house-dalet/audio/s252.mp3"
     },
     {
       "id": "s253",
@@ -38967,7 +38967,7 @@
           "end": 3.4
         }
       ],
-      "audio": "audio_house_dalet/s253.mp3"
+      "audio": "books/house-dalet/audio/s253.mp3"
     },
     {
       "id": "s254",
@@ -39135,7 +39135,7 @@
           "end": 6.763
         }
       ],
-      "audio": "audio_house_dalet/s254.mp3"
+      "audio": "books/house-dalet/audio/s254.mp3"
     },
     {
       "id": "s255",
@@ -39283,7 +39283,7 @@
           "end": 5.713
         }
       ],
-      "audio": "audio_house_dalet/s255.mp3"
+      "audio": "books/house-dalet/audio/s255.mp3"
     },
     {
       "id": "s256",
@@ -39471,7 +39471,7 @@
           "end": 9.162
         }
       ],
-      "audio": "audio_house_dalet/s256.mp3"
+      "audio": "books/house-dalet/audio/s256.mp3"
     },
     {
       "id": "s257",
@@ -39539,7 +39539,7 @@
           "end": 2.625
         }
       ],
-      "audio": "audio_house_dalet/s257.mp3"
+      "audio": "books/house-dalet/audio/s257.mp3"
     },
     {
       "id": "s258",
@@ -39727,7 +39727,7 @@
           "end": 7.862
         }
       ],
-      "audio": "audio_house_dalet/s258.mp3"
+      "audio": "books/house-dalet/audio/s258.mp3"
     },
     {
       "id": "s259",
@@ -40035,7 +40035,7 @@
           "end": 12.363
         }
       ],
-      "audio": "audio_house_dalet/s259.mp3"
+      "audio": "books/house-dalet/audio/s259.mp3"
     },
     {
       "id": "s260",
@@ -40123,7 +40123,7 @@
           "end": 3.212
         }
       ],
-      "audio": "audio_house_dalet/s260.mp3"
+      "audio": "books/house-dalet/audio/s260.mp3"
     },
     {
       "id": "s261",
@@ -40361,7 +40361,7 @@
           "end": 11.113
         }
       ],
-      "audio": "audio_house_dalet/s261.mp3"
+      "audio": "books/house-dalet/audio/s261.mp3"
     },
     {
       "id": "s262",
@@ -40699,7 +40699,7 @@
           "end": 12.838
         }
       ],
-      "audio": "audio_house_dalet/s262.mp3"
+      "audio": "books/house-dalet/audio/s262.mp3"
     },
     {
       "id": "s263",
@@ -40897,15 +40897,15 @@
           "end": 8.475
         }
       ],
-      "audio": "audio_house_dalet/s263.mp3",
+      "audio": "books/house-dalet/audio/s263.mp3",
       "illustration": {
         "word": "שְׁתִיקָה",
         "tr": "молчание",
         "caption": "שְׁתִיקָה",
         "capTr": "shtikah",
         "mnemonic": "Представь себя в тихой тишине, где штикает молчание, и вдруг появляется Штика, любимая кошка, которая начинает тихо мурлыкать и прижиматься к тебе, создавая атмосферу уюта и спокойствия.",
-        "img": "illustrations_house_dalet/s263.webp",
-        "imgMnemonic": "illustrations_house_dalet/s263-mnemonic.webp"
+        "img": "books/house-dalet/illustrations/s263.webp",
+        "imgMnemonic": "books/house-dalet/illustrations/s263-mnemonic.webp"
       }
     },
     {
@@ -41114,7 +41114,7 @@
           "end": 6.375
         }
       ],
-      "audio": "audio_house_dalet/s264.mp3"
+      "audio": "books/house-dalet/audio/s264.mp3"
     },
     {
       "id": "s265",
@@ -41242,7 +41242,7 @@
           "end": 5.787
         }
       ],
-      "audio": "audio_house_dalet/s265.mp3"
+      "audio": "books/house-dalet/audio/s265.mp3"
     },
     {
       "id": "s266",
@@ -41510,7 +41510,7 @@
           "end": 10.075
         }
       ],
-      "audio": "audio_house_dalet/s266.mp3"
+      "audio": "books/house-dalet/audio/s266.mp3"
     },
     {
       "id": "s267",
@@ -41678,7 +41678,7 @@
           "end": 8.188
         }
       ],
-      "audio": "audio_house_dalet/s267.mp3"
+      "audio": "books/house-dalet/audio/s267.mp3"
     },
     {
       "id": "s268",
@@ -41856,7 +41856,7 @@
           "end": 7.312
         }
       ],
-      "audio": "audio_house_dalet/s268.mp3"
+      "audio": "books/house-dalet/audio/s268.mp3"
     },
     {
       "id": "s269",
@@ -42184,7 +42184,7 @@
           "end": 12.85
         }
       ],
-      "audio": "audio_house_dalet/s269.mp3"
+      "audio": "books/house-dalet/audio/s269.mp3"
     },
     {
       "id": "s270",
@@ -42322,7 +42322,7 @@
           "end": 4.725
         }
       ],
-      "audio": "audio_house_dalet/s270.mp3"
+      "audio": "books/house-dalet/audio/s270.mp3"
     },
     {
       "id": "s271",
@@ -42630,7 +42630,7 @@
           "end": 12.488
         }
       ],
-      "audio": "audio_house_dalet/s271.mp3"
+      "audio": "books/house-dalet/audio/s271.mp3"
     },
     {
       "id": "s272",
@@ -42788,7 +42788,7 @@
           "end": 7.3
         }
       ],
-      "audio": "audio_house_dalet/s272.mp3"
+      "audio": "books/house-dalet/audio/s272.mp3"
     },
     {
       "id": "s273",
@@ -42956,7 +42956,7 @@
           "end": 6.6
         }
       ],
-      "audio": "audio_house_dalet/s273.mp3"
+      "audio": "books/house-dalet/audio/s273.mp3"
     },
     {
       "id": "s274",
@@ -43164,7 +43164,7 @@
           "end": 9.387
         }
       ],
-      "audio": "audio_house_dalet/s274.mp3"
+      "audio": "books/house-dalet/audio/s274.mp3"
     },
     {
       "id": "s275",
@@ -43292,7 +43292,7 @@
           "end": 5.275
         }
       ],
-      "audio": "audio_house_dalet/s275.mp3"
+      "audio": "books/house-dalet/audio/s275.mp3"
     },
     {
       "id": "s276",
@@ -43510,7 +43510,7 @@
           "end": 7.162
         }
       ],
-      "audio": "audio_house_dalet/s276.mp3"
+      "audio": "books/house-dalet/audio/s276.mp3"
     },
     {
       "id": "s277",
@@ -43788,7 +43788,7 @@
           "end": 10.125
         }
       ],
-      "audio": "audio_house_dalet/s277.mp3"
+      "audio": "books/house-dalet/audio/s277.mp3"
     },
     {
       "id": "s278",
@@ -44066,7 +44066,7 @@
           "end": 9.662
         }
       ],
-      "audio": "audio_house_dalet/s278.mp3"
+      "audio": "books/house-dalet/audio/s278.mp3"
     },
     {
       "id": "s279",
@@ -44304,7 +44304,7 @@
           "end": 9.075
         }
       ],
-      "audio": "audio_house_dalet/s279.mp3"
+      "audio": "books/house-dalet/audio/s279.mp3"
     }
   ]
 }

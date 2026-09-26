@@ -96,7 +96,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_champion_gimel/s1.mp3"
+      "audio": "books/champion-gimel/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -254,7 +254,7 @@
           "end": 6.588
         }
       ],
-      "audio": "audio_champion_gimel/s2.mp3"
+      "audio": "books/champion-gimel/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -462,7 +462,7 @@
           "end": 7.825
         }
       ],
-      "audio": "audio_champion_gimel/s3.mp3"
+      "audio": "books/champion-gimel/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -620,7 +620,7 @@
           "end": 7.388
         }
       ],
-      "audio": "audio_champion_gimel/s4.mp3"
+      "audio": "books/champion-gimel/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -738,7 +738,7 @@
           "end": 5.188
         }
       ],
-      "audio": "audio_champion_gimel/s5.mp3"
+      "audio": "books/champion-gimel/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -886,7 +886,7 @@
           "end": 6.55
         }
       ],
-      "audio": "audio_champion_gimel/s6.mp3"
+      "audio": "books/champion-gimel/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -1024,15 +1024,15 @@
           "end": 5.588
         }
       ],
-      "audio": "audio_champion_gimel/s7.mp3",
+      "audio": "books/champion-gimel/audio/s7.mp3",
       "illustration": {
         "word": "כַּדּוּרְסַל",
         "tr": "баскетбол",
         "caption": "כַּדּוּרְסַל",
         "capTr": "kadursal",
         "mnemonic": "Представь, что у тебя в руках старая деревянная КАДКА, до краёв набитая ДУРом и куском САЛА, и ты пытаешься забросить весь этот хлипкий груз в баскетбольную корзину — но он всё время разваливается и падает на пол с громким стуком.",
-        "img": "illustrations_champion_gimel/s7.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s7-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s7.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s7-mnemonic.webp"
       }
     },
     {
@@ -1171,7 +1171,7 @@
           "end": 6.088
         }
       ],
-      "audio": "audio_champion_gimel/s8.mp3"
+      "audio": "books/champion-gimel/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -1289,7 +1289,7 @@
           "end": 5.138
         }
       ],
-      "audio": "audio_champion_gimel/s9.mp3"
+      "audio": "books/champion-gimel/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1457,7 +1457,7 @@
           "end": 6.35
         }
       ],
-      "audio": "audio_champion_gimel/s10.mp3"
+      "audio": "books/champion-gimel/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -1545,7 +1545,7 @@
           "end": 3.525
         }
       ],
-      "audio": "audio_champion_gimel/s11.mp3"
+      "audio": "books/champion-gimel/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1733,7 +1733,7 @@
           "end": 7.412
         }
       ],
-      "audio": "audio_champion_gimel/s12.mp3"
+      "audio": "books/champion-gimel/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1871,7 +1871,7 @@
           "end": 6.2
         }
       ],
-      "audio": "audio_champion_gimel/s13.mp3"
+      "audio": "books/champion-gimel/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -2009,7 +2009,7 @@
           "end": 5.475
         }
       ],
-      "audio": "audio_champion_gimel/s14.mp3"
+      "audio": "books/champion-gimel/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -2217,7 +2217,7 @@
           "end": 7.725
         }
       ],
-      "audio": "audio_champion_gimel/s15.mp3"
+      "audio": "books/champion-gimel/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -2305,7 +2305,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_champion_gimel/s16.mp3"
+      "audio": "books/champion-gimel/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -2443,7 +2443,7 @@
           "end": 6.362
         }
       ],
-      "audio": "audio_champion_gimel/s17.mp3"
+      "audio": "books/champion-gimel/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -2601,7 +2601,7 @@
           "end": 6.975
         }
       ],
-      "audio": "audio_champion_gimel/s18.mp3"
+      "audio": "books/champion-gimel/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -2729,7 +2729,7 @@
           "end": 6.112
         }
       ],
-      "audio": "audio_champion_gimel/s19.mp3"
+      "audio": "books/champion-gimel/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -2857,7 +2857,7 @@
           "end": 5.075
         }
       ],
-      "audio": "audio_champion_gimel/s20.mp3"
+      "audio": "books/champion-gimel/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -2995,15 +2995,15 @@
           "end": 6.125
         }
       ],
-      "audio": "audio_champion_gimel/s21.mp3",
+      "audio": "books/champion-gimel/audio/s21.mp3",
       "illustration": {
         "word": "מַחְסָן",
         "tr": "склада,",
         "caption": "מַחְסָן",
         "capTr": "machsan",
         "mnemonic": "Представь огромный склад, где коробки вдруг начинают САМИ ходить и МАХАТЬ руками, как САНТЕХНИК, наводящий порядок среди хаоса — они выстраиваются в ровные ряды одна за другой.",
-        "img": "illustrations_champion_gimel/s21.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s21-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s21.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s21-mnemonic.webp"
       }
     },
     {
@@ -3242,7 +3242,7 @@
           "end": 9.75
         }
       ],
-      "audio": "audio_champion_gimel/s22.mp3"
+      "audio": "books/champion-gimel/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -3340,7 +3340,7 @@
           "end": 5.0
         }
       ],
-      "audio": "audio_champion_gimel/s23.mp3"
+      "audio": "books/champion-gimel/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -3468,7 +3468,7 @@
           "end": 6.188
         }
       ],
-      "audio": "audio_champion_gimel/s24.mp3"
+      "audio": "books/champion-gimel/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -3589,7 +3589,7 @@
         }
       ],
       "ttsEngine": "gtts",
-      "audio": "audio_champion_gimel/s25.mp3"
+      "audio": "books/champion-gimel/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -3687,7 +3687,7 @@
           "end": 4.5
         }
       ],
-      "audio": "audio_champion_gimel/s26.mp3"
+      "audio": "books/champion-gimel/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -3765,7 +3765,7 @@
           "end": 2.788
         }
       ],
-      "audio": "audio_champion_gimel/s27.mp3"
+      "audio": "books/champion-gimel/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -3883,7 +3883,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_champion_gimel/s28.mp3"
+      "audio": "books/champion-gimel/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -3931,7 +3931,7 @@
           "end": 1.525
         }
       ],
-      "audio": "audio_champion_gimel/s29.mp3"
+      "audio": "books/champion-gimel/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -4059,7 +4059,7 @@
           "end": 5.612
         }
       ],
-      "audio": "audio_champion_gimel/s30.mp3"
+      "audio": "books/champion-gimel/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -4157,7 +4157,7 @@
           "end": 4.35
         }
       ],
-      "audio": "audio_champion_gimel/s31.mp3"
+      "audio": "books/champion-gimel/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -4315,7 +4315,7 @@
           "end": 6.9
         }
       ],
-      "audio": "audio_champion_gimel/s32.mp3"
+      "audio": "books/champion-gimel/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -4453,7 +4453,7 @@
           "end": 6.138
         }
       ],
-      "audio": "audio_champion_gimel/s33.mp3"
+      "audio": "books/champion-gimel/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -4571,7 +4571,7 @@
           "end": 4.875
         }
       ],
-      "audio": "audio_champion_gimel/s34.mp3"
+      "audio": "books/champion-gimel/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -4679,7 +4679,7 @@
           "end": 4.3
         }
       ],
-      "audio": "audio_champion_gimel/s35.mp3"
+      "audio": "books/champion-gimel/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -4777,7 +4777,7 @@
           "end": 4.25
         }
       ],
-      "audio": "audio_champion_gimel/s36.mp3"
+      "audio": "books/champion-gimel/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -4875,7 +4875,7 @@
           "end": 3.938
         }
       ],
-      "audio": "audio_champion_gimel/s37.mp3"
+      "audio": "books/champion-gimel/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -4973,7 +4973,7 @@
           "end": 3.8
         }
       ],
-      "audio": "audio_champion_gimel/s38.mp3"
+      "audio": "books/champion-gimel/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -5141,7 +5141,7 @@
           "end": 8.062
         }
       ],
-      "audio": "audio_champion_gimel/s39.mp3"
+      "audio": "books/champion-gimel/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -5269,7 +5269,7 @@
           "end": 6.213
         }
       ],
-      "audio": "audio_champion_gimel/s40.mp3"
+      "audio": "books/champion-gimel/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -5477,15 +5477,15 @@
           "end": 7.862
         }
       ],
-      "audio": "audio_champion_gimel/s41.mp3",
+      "audio": "books/champion-gimel/audio/s41.mp3",
       "illustration": {
         "word": "יָד",
         "tr": "которые в руке его",
         "caption": "יָד",
         "capTr": "yad",
         "mnemonic": "Представь себя на яхте, где ядра арбуза летят во все стороны, и вдруг появляется огромная рука, которая хватает их все. Рука так велика, что может держать целый арбузный сад. Люди вокруг начинают танцевать и петь: «Яд, яд, яд, это лучший арбузный праздник!»",
-        "img": "illustrations_champion_gimel/s41.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s41-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s41.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s41-mnemonic.webp"
       }
     },
     {
@@ -5544,7 +5544,7 @@
           "end": 2.688
         }
       ],
-      "audio": "audio_champion_gimel/s42.mp3"
+      "audio": "books/champion-gimel/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -5752,7 +5752,7 @@
           "end": 7.875
         }
       ],
-      "audio": "audio_champion_gimel/s43.mp3"
+      "audio": "books/champion-gimel/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -5890,7 +5890,7 @@
           "end": 5.638
         }
       ],
-      "audio": "audio_champion_gimel/s44.mp3"
+      "audio": "books/champion-gimel/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -5978,7 +5978,7 @@
           "end": 2.8
         }
       ],
-      "audio": "audio_champion_gimel/s45.mp3"
+      "audio": "books/champion-gimel/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -6126,7 +6126,7 @@
           "end": 6.088
         }
       ],
-      "audio": "audio_champion_gimel/s46.mp3"
+      "audio": "books/champion-gimel/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -6194,7 +6194,7 @@
           "end": 2.475
         }
       ],
-      "audio": "audio_champion_gimel/s47.mp3"
+      "audio": "books/champion-gimel/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -6352,7 +6352,7 @@
           "end": 6.562
         }
       ],
-      "audio": "audio_champion_gimel/s48.mp3"
+      "audio": "books/champion-gimel/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -6440,7 +6440,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_champion_gimel/s49.mp3"
+      "audio": "books/champion-gimel/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -6498,7 +6498,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_champion_gimel/s50.mp3"
+      "audio": "books/champion-gimel/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -6896,7 +6896,7 @@
           "end": 16.425
         }
       ],
-      "audio": "audio_champion_gimel/s51.mp3"
+      "audio": "books/champion-gimel/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -7034,7 +7034,7 @@
           "end": 5.65
         }
       ],
-      "audio": "audio_champion_gimel/s52.mp3"
+      "audio": "books/champion-gimel/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -7182,7 +7182,7 @@
           "end": 5.688
         }
       ],
-      "audio": "audio_champion_gimel/s53.mp3"
+      "audio": "books/champion-gimel/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -7320,7 +7320,7 @@
           "end": 6.037
         }
       ],
-      "audio": "audio_champion_gimel/s54.mp3"
+      "audio": "books/champion-gimel/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -7518,7 +7518,7 @@
           "end": 8.387
         }
       ],
-      "audio": "audio_champion_gimel/s55.mp3"
+      "audio": "books/champion-gimel/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -7646,7 +7646,7 @@
           "end": 5.838
         }
       ],
-      "audio": "audio_champion_gimel/s56.mp3"
+      "audio": "books/champion-gimel/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -7764,7 +7764,7 @@
           "end": 4.425
         }
       ],
-      "audio": "audio_champion_gimel/s57.mp3"
+      "audio": "books/champion-gimel/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -7842,7 +7842,7 @@
           "end": 3.237
         }
       ],
-      "audio": "audio_champion_gimel/s58.mp3"
+      "audio": "books/champion-gimel/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -7910,7 +7910,7 @@
           "end": 2.9
         }
       ],
-      "audio": "audio_champion_gimel/s59.mp3"
+      "audio": "books/champion-gimel/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -8028,7 +8028,7 @@
           "end": 4.725
         }
       ],
-      "audio": "audio_champion_gimel/s60.mp3"
+      "audio": "books/champion-gimel/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -8156,15 +8156,15 @@
           "end": 5.487
         }
       ],
-      "audio": "audio_champion_gimel/s61.mp3",
+      "audio": "books/champion-gimel/audio/s61.mp3",
       "illustration": {
         "word": "שַׂחְקָן",
         "tr": "игроки",
         "caption": "שַׂחְקָן",
         "capTr": "sachkan",
         "mnemonic": "Представь, что САХАРки в огромном количестве хранятся в комнате, и вдруг все они оживили и начали играть в баскетбол, как профессиональные игроки, с захватывающими бросками и точными пасами.",
-        "img": "illustrations_champion_gimel/s61.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s61-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s61.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s61-mnemonic.webp"
       }
     },
     {
@@ -8333,7 +8333,7 @@
           "end": 7.325
         }
       ],
-      "audio": "audio_champion_gimel/s62.mp3"
+      "audio": "books/champion-gimel/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -8491,7 +8491,7 @@
           "end": 7.912
         }
       ],
-      "audio": "audio_champion_gimel/s63.mp3"
+      "audio": "books/champion-gimel/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -8599,7 +8599,7 @@
           "end": 4.487
         }
       ],
-      "audio": "audio_champion_gimel/s64.mp3"
+      "audio": "books/champion-gimel/audio/s64.mp3"
     },
     {
       "id": "s65",
@@ -8747,7 +8747,7 @@
           "end": 6.275
         }
       ],
-      "audio": "audio_champion_gimel/s65.mp3"
+      "audio": "books/champion-gimel/audio/s65.mp3"
     },
     {
       "id": "s66",
@@ -8805,7 +8805,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_champion_gimel/s66.mp3"
+      "audio": "books/champion-gimel/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -8923,7 +8923,7 @@
           "end": 5.875
         }
       ],
-      "audio": "audio_champion_gimel/s67.mp3"
+      "audio": "books/champion-gimel/audio/s67.mp3"
     },
     {
       "id": "s68",
@@ -8971,7 +8971,7 @@
           "end": 2.062
         }
       ],
-      "audio": "audio_champion_gimel/s68.mp3"
+      "audio": "books/champion-gimel/audio/s68.mp3"
     },
     {
       "id": "s69",
@@ -9049,7 +9049,7 @@
           "end": 3.4
         }
       ],
-      "audio": "audio_champion_gimel/s69.mp3"
+      "audio": "books/champion-gimel/audio/s69.mp3"
     },
     {
       "id": "s70",
@@ -9197,7 +9197,7 @@
           "end": 6.075
         }
       ],
-      "audio": "audio_champion_gimel/s70.mp3"
+      "audio": "books/champion-gimel/audio/s70.mp3"
     },
     {
       "id": "s71",
@@ -9285,7 +9285,7 @@
           "end": 4.3
         }
       ],
-      "audio": "audio_champion_gimel/s71.mp3"
+      "audio": "books/champion-gimel/audio/s71.mp3"
     },
     {
       "id": "s72",
@@ -9493,7 +9493,7 @@
           "end": 8.1
         }
       ],
-      "audio": "audio_champion_gimel/s72.mp3"
+      "audio": "books/champion-gimel/audio/s72.mp3"
     },
     {
       "id": "s73",
@@ -9611,7 +9611,7 @@
           "end": 5.525
         }
       ],
-      "audio": "audio_champion_gimel/s73.mp3"
+      "audio": "books/champion-gimel/audio/s73.mp3"
     },
     {
       "id": "s74",
@@ -9749,7 +9749,7 @@
           "end": 5.013
         }
       ],
-      "audio": "audio_champion_gimel/s74.mp3"
+      "audio": "books/champion-gimel/audio/s74.mp3"
     },
     {
       "id": "s75",
@@ -9797,7 +9797,7 @@
           "end": 2.2
         }
       ],
-      "audio": "audio_champion_gimel/s75.mp3"
+      "audio": "books/champion-gimel/audio/s75.mp3"
     },
     {
       "id": "s76",
@@ -9925,7 +9925,7 @@
           "end": 5.188
         }
       ],
-      "audio": "audio_champion_gimel/s76.mp3"
+      "audio": "books/champion-gimel/audio/s76.mp3"
     },
     {
       "id": "s77",
@@ -9993,7 +9993,7 @@
           "end": 2.837
         }
       ],
-      "audio": "audio_champion_gimel/s77.mp3"
+      "audio": "books/champion-gimel/audio/s77.mp3"
     },
     {
       "id": "s78",
@@ -10061,7 +10061,7 @@
           "end": 2.475
         }
       ],
-      "audio": "audio_champion_gimel/s78.mp3"
+      "audio": "books/champion-gimel/audio/s78.mp3"
     },
     {
       "id": "s79",
@@ -10139,7 +10139,7 @@
           "end": 3.388
         }
       ],
-      "audio": "audio_champion_gimel/s79.mp3"
+      "audio": "books/champion-gimel/audio/s79.mp3"
     },
     {
       "id": "s80",
@@ -10277,7 +10277,7 @@
           "end": 4.688
         }
       ],
-      "audio": "audio_champion_gimel/s80.mp3"
+      "audio": "books/champion-gimel/audio/s80.mp3"
     },
     {
       "id": "s81",
@@ -10335,7 +10335,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_champion_gimel/s81.mp3"
+      "audio": "books/champion-gimel/audio/s81.mp3"
     },
     {
       "id": "s82",
@@ -10373,7 +10373,7 @@
           "end": 1.663
         }
       ],
-      "audio": "audio_champion_gimel/s82.mp3"
+      "audio": "books/champion-gimel/audio/s82.mp3"
     },
     {
       "id": "s83",
@@ -10441,7 +10441,7 @@
           "end": 3.1
         }
       ],
-      "audio": "audio_champion_gimel/s83.mp3"
+      "audio": "books/champion-gimel/audio/s83.mp3"
     },
     {
       "id": "s84",
@@ -10559,15 +10559,15 @@
           "end": 4.95
         }
       ],
-      "audio": "audio_champion_gimel/s84.mp3",
+      "audio": "books/champion-gimel/audio/s84.mp3",
       "illustration": {
         "word": "מִגְרָשׁ",
         "tr": "площадке",
         "caption": "מִגְרָשׁ",
         "capTr": "migrash",
         "mnemonic": "Представь, что Миграция Рыб происходит на огромной площадке, где они устраивают грандиозный бал. Все рыбы носят костюмы и платья, и их лидер, величественный Мигратор, открывает танцевальный вечер с помощью волшебного жезла, заставляя всех танцевать в такт.",
-        "img": "illustrations_champion_gimel/s84.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s84-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s84.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s84-mnemonic.webp"
       }
     },
     {
@@ -10676,7 +10676,7 @@
           "end": 5.3
         }
       ],
-      "audio": "audio_champion_gimel/s85.mp3"
+      "audio": "books/champion-gimel/audio/s85.mp3"
     },
     {
       "id": "s86",
@@ -10884,7 +10884,7 @@
           "end": 7.95
         }
       ],
-      "audio": "audio_champion_gimel/s86.mp3"
+      "audio": "books/champion-gimel/audio/s86.mp3"
     },
     {
       "id": "s87",
@@ -10982,7 +10982,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_champion_gimel/s87.mp3"
+      "audio": "books/champion-gimel/audio/s87.mp3"
     },
     {
       "id": "s88",
@@ -11060,7 +11060,7 @@
           "end": 3.575
         }
       ],
-      "audio": "audio_champion_gimel/s88.mp3"
+      "audio": "books/champion-gimel/audio/s88.mp3"
     },
     {
       "id": "s89",
@@ -11158,7 +11158,7 @@
           "end": 4.4
         }
       ],
-      "audio": "audio_champion_gimel/s89.mp3"
+      "audio": "books/champion-gimel/audio/s89.mp3"
     },
     {
       "id": "s90",
@@ -11266,7 +11266,7 @@
           "end": 4.05
         }
       ],
-      "audio": "audio_champion_gimel/s90.mp3"
+      "audio": "books/champion-gimel/audio/s90.mp3"
     },
     {
       "id": "s91",
@@ -11444,7 +11444,7 @@
           "end": 7.7
         }
       ],
-      "audio": "audio_champion_gimel/s91.mp3"
+      "audio": "books/champion-gimel/audio/s91.mp3"
     },
     {
       "id": "s92",
@@ -11482,7 +11482,7 @@
           "end": 1.738
         }
       ],
-      "audio": "audio_champion_gimel/s92.mp3"
+      "audio": "books/champion-gimel/audio/s92.mp3"
     },
     {
       "id": "s93",
@@ -11600,7 +11600,7 @@
           "end": 4.575
         }
       ],
-      "audio": "audio_champion_gimel/s93.mp3"
+      "audio": "books/champion-gimel/audio/s93.mp3"
     },
     {
       "id": "s94",
@@ -11718,7 +11718,7 @@
           "end": 4.625
         }
       ],
-      "audio": "audio_champion_gimel/s94.mp3"
+      "audio": "books/champion-gimel/audio/s94.mp3"
     },
     {
       "id": "s95",
@@ -11816,7 +11816,7 @@
           "end": 4.562
         }
       ],
-      "audio": "audio_champion_gimel/s95.mp3"
+      "audio": "books/champion-gimel/audio/s95.mp3"
     },
     {
       "id": "s96",
@@ -12014,7 +12014,7 @@
           "end": 8.45
         }
       ],
-      "audio": "audio_champion_gimel/s96.mp3"
+      "audio": "books/champion-gimel/audio/s96.mp3"
     },
     {
       "id": "s97",
@@ -12272,7 +12272,7 @@
           "end": 9.65
         }
       ],
-      "audio": "audio_champion_gimel/s97.mp3"
+      "audio": "books/champion-gimel/audio/s97.mp3"
     },
     {
       "id": "s98",
@@ -12390,7 +12390,7 @@
           "end": 4.85
         }
       ],
-      "audio": "audio_champion_gimel/s98.mp3"
+      "audio": "books/champion-gimel/audio/s98.mp3"
     },
     {
       "id": "s99",
@@ -12508,7 +12508,7 @@
           "end": 4.638
         }
       ],
-      "audio": "audio_champion_gimel/s99.mp3"
+      "audio": "books/champion-gimel/audio/s99.mp3"
     },
     {
       "id": "s100",
@@ -12596,7 +12596,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_champion_gimel/s100.mp3"
+      "audio": "books/champion-gimel/audio/s100.mp3"
     },
     {
       "id": "s101",
@@ -12674,7 +12674,7 @@
           "end": 2.625
         }
       ],
-      "audio": "audio_champion_gimel/s101.mp3"
+      "audio": "books/champion-gimel/audio/s101.mp3"
     },
     {
       "id": "s102",
@@ -12732,15 +12732,15 @@
           "end": 2.45
         }
       ],
-      "audio": "audio_champion_gimel/s102.mp3",
+      "audio": "books/champion-gimel/audio/s102.mp3",
       "illustration": {
         "word": "מִגְרָשׁ",
         "tr": "площадку.",
         "caption": "מִגְרָשׁ",
         "capTr": "migrash",
         "mnemonic": "Представь, что Миграция Рыб происходит на огромной Площадке, где все рыбы вдруг начинают танцевать под ритмичную музыку и их чешуя начинает светиться разными цветами. Рыбы образуют огромный круг и начинают кружиться, создавая вихрь, который засасывает всех зрителей на Площадке. Когда люди пытаются выбраться из вихря, они начинают смеяться и танцевать вместе с рыбами.",
-        "img": "illustrations_champion_gimel/s102.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s102-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s102.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s102-mnemonic.webp"
       }
     },
     {
@@ -12809,7 +12809,7 @@
           "end": 3.987
         }
       ],
-      "audio": "audio_champion_gimel/s103.mp3"
+      "audio": "books/champion-gimel/audio/s103.mp3"
     },
     {
       "id": "s104",
@@ -12937,7 +12937,7 @@
           "end": 4.138
         }
       ],
-      "audio": "audio_champion_gimel/s104.mp3"
+      "audio": "books/champion-gimel/audio/s104.mp3"
     },
     {
       "id": "s105",
@@ -13035,7 +13035,7 @@
           "end": 4.0
         }
       ],
-      "audio": "audio_champion_gimel/s105.mp3"
+      "audio": "books/champion-gimel/audio/s105.mp3"
     },
     {
       "id": "s106",
@@ -13173,7 +13173,7 @@
           "end": 5.15
         }
       ],
-      "audio": "audio_champion_gimel/s106.mp3"
+      "audio": "books/champion-gimel/audio/s106.mp3"
     },
     {
       "id": "s107",
@@ -13261,7 +13261,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_champion_gimel/s107.mp3"
+      "audio": "books/champion-gimel/audio/s107.mp3"
     },
     {
       "id": "s108",
@@ -13309,7 +13309,7 @@
           "end": 1.7
         }
       ],
-      "audio": "audio_champion_gimel/s108.mp3"
+      "audio": "books/champion-gimel/audio/s108.mp3"
     },
     {
       "id": "s109",
@@ -13517,7 +13517,7 @@
           "end": 8.625
         }
       ],
-      "audio": "audio_champion_gimel/s109.mp3"
+      "audio": "books/champion-gimel/audio/s109.mp3"
     },
     {
       "id": "s110",
@@ -13645,7 +13645,7 @@
           "end": 4.85
         }
       ],
-      "audio": "audio_champion_gimel/s110.mp3"
+      "audio": "books/champion-gimel/audio/s110.mp3"
     },
     {
       "id": "s111",
@@ -13703,7 +13703,7 @@
           "end": 2.138
         }
       ],
-      "audio": "audio_champion_gimel/s111.mp3"
+      "audio": "books/champion-gimel/audio/s111.mp3"
     },
     {
       "id": "s112",
@@ -13791,7 +13791,7 @@
           "end": 3.388
         }
       ],
-      "audio": "audio_champion_gimel/s112.mp3"
+      "audio": "books/champion-gimel/audio/s112.mp3"
     },
     {
       "id": "s113",
@@ -13879,7 +13879,7 @@
           "end": 3.188
         }
       ],
-      "audio": "audio_champion_gimel/s113.mp3"
+      "audio": "books/champion-gimel/audio/s113.mp3"
     },
     {
       "id": "s114",
@@ -14047,7 +14047,7 @@
           "root": "א-מ-ן"
         }
       ],
-      "audio": "audio_champion_gimel/s114.mp3"
+      "audio": "books/champion-gimel/audio/s114.mp3"
     },
     {
       "id": "s115",
@@ -14175,7 +14175,7 @@
           "end": 5.3
         }
       ],
-      "audio": "audio_champion_gimel/s115.mp3"
+      "audio": "books/champion-gimel/audio/s115.mp3"
     },
     {
       "id": "s116",
@@ -14333,7 +14333,7 @@
           "end": 6.75
         }
       ],
-      "audio": "audio_champion_gimel/s116.mp3"
+      "audio": "books/champion-gimel/audio/s116.mp3"
     },
     {
       "id": "s117",
@@ -14541,7 +14541,7 @@
           "end": 7.3
         }
       ],
-      "audio": "audio_champion_gimel/s117.mp3"
+      "audio": "books/champion-gimel/audio/s117.mp3"
     },
     {
       "id": "s118",
@@ -14699,7 +14699,7 @@
           "end": 6.05
         }
       ],
-      "audio": "audio_champion_gimel/s118.mp3"
+      "audio": "books/champion-gimel/audio/s118.mp3"
     },
     {
       "id": "s119",
@@ -14837,7 +14837,7 @@
           "end": 5.7
         }
       ],
-      "audio": "audio_champion_gimel/s119.mp3"
+      "audio": "books/champion-gimel/audio/s119.mp3"
     },
     {
       "id": "s120",
@@ -14985,7 +14985,7 @@
           "end": 5.912
         }
       ],
-      "audio": "audio_champion_gimel/s120.mp3"
+      "audio": "books/champion-gimel/audio/s120.mp3"
     },
     {
       "id": "s121",
@@ -15113,7 +15113,7 @@
           "end": 4.237
         }
       ],
-      "audio": "audio_champion_gimel/s121.mp3"
+      "audio": "books/champion-gimel/audio/s121.mp3"
     },
     {
       "id": "s122",
@@ -15251,7 +15251,7 @@
           "end": 5.912
         }
       ],
-      "audio": "audio_champion_gimel/s122.mp3"
+      "audio": "books/champion-gimel/audio/s122.mp3"
     },
     {
       "id": "s123",
@@ -15309,7 +15309,7 @@
           "end": 2.2
         }
       ],
-      "audio": "audio_champion_gimel/s123.mp3"
+      "audio": "books/champion-gimel/audio/s123.mp3"
     },
     {
       "id": "s124",
@@ -15437,15 +15437,15 @@
           "end": 5.862
         }
       ],
-      "audio": "audio_champion_gimel/s124.mp3",
+      "audio": "books/champion-gimel/audio/s124.mp3",
       "illustration": {
         "word": "יָד",
         "tr": "из его руки",
         "caption": "יָד",
         "capTr": "yad",
         "mnemonic": "Представь, что ЯД — это не просто рука, а целый ЯДовитый змеиный ужас, который вдруг оживает и начинает танцевать чечетку на кончике пальца, его ядовитые зубы блестят от радости, а змеиный хвост размахивает в такт музыке. ЯДовый змей так увлекается танцем, что начинает кружиться и выпускать ядовитые пузыри, которые лопаются в такт музыке. Внезапно, ЯДовый змей превращается в гигантскую руку, которая начинает дирижировать оркестром, играющим веселую мелодию.",
-        "img": "illustrations_champion_gimel/s124.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s124-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s124.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s124-mnemonic.webp"
       }
     },
     {
@@ -15574,7 +15574,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_champion_gimel/s125.mp3"
+      "audio": "books/champion-gimel/audio/s125.mp3"
     },
     {
       "id": "s126",
@@ -15722,7 +15722,7 @@
           "end": 5.562
         }
       ],
-      "audio": "audio_champion_gimel/s126.mp3"
+      "audio": "books/champion-gimel/audio/s126.mp3"
     },
     {
       "id": "s127",
@@ -15940,7 +15940,7 @@
           "end": 8.075
         }
       ],
-      "audio": "audio_champion_gimel/s127.mp3"
+      "audio": "books/champion-gimel/audio/s127.mp3"
     },
     {
       "id": "s128",
@@ -16028,7 +16028,7 @@
           "end": 3.225
         }
       ],
-      "audio": "audio_champion_gimel/s128.mp3"
+      "audio": "books/champion-gimel/audio/s128.mp3"
     },
     {
       "id": "s129",
@@ -16306,7 +16306,7 @@
           "end": 10.2
         }
       ],
-      "audio": "audio_champion_gimel/s129.mp3"
+      "audio": "books/champion-gimel/audio/s129.mp3"
     },
     {
       "id": "s130",
@@ -16514,7 +16514,7 @@
           "end": 8.85
         }
       ],
-      "audio": "audio_champion_gimel/s130.mp3"
+      "audio": "books/champion-gimel/audio/s130.mp3"
     },
     {
       "id": "s131",
@@ -16572,7 +16572,7 @@
           "end": 2.825
         }
       ],
-      "audio": "audio_champion_gimel/s131.mp3"
+      "audio": "books/champion-gimel/audio/s131.mp3"
     },
     {
       "id": "s132",
@@ -16720,7 +16720,7 @@
           "end": 6.5
         }
       ],
-      "audio": "audio_champion_gimel/s132.mp3"
+      "audio": "books/champion-gimel/audio/s132.mp3"
     },
     {
       "id": "s133",
@@ -16888,7 +16888,7 @@
           "end": 7.3
         }
       ],
-      "audio": "audio_champion_gimel/s133.mp3"
+      "audio": "books/champion-gimel/audio/s133.mp3"
     },
     {
       "id": "s134",
@@ -17036,7 +17036,7 @@
           "end": 6.375
         }
       ],
-      "audio": "audio_champion_gimel/s134.mp3"
+      "audio": "books/champion-gimel/audio/s134.mp3"
     },
     {
       "id": "s135",
@@ -17054,7 +17054,7 @@
           "end": 0.887
         }
       ],
-      "audio": "audio_champion_gimel/s135.mp3"
+      "audio": "books/champion-gimel/audio/s135.mp3"
     },
     {
       "id": "s136",
@@ -17142,7 +17142,7 @@
           "end": 3.962
         }
       ],
-      "audio": "audio_champion_gimel/s136.mp3"
+      "audio": "books/champion-gimel/audio/s136.mp3"
     },
     {
       "id": "s137",
@@ -17310,7 +17310,7 @@
           "end": 6.737
         }
       ],
-      "audio": "audio_champion_gimel/s137.mp3"
+      "audio": "books/champion-gimel/audio/s137.mp3"
     },
     {
       "id": "s138",
@@ -17378,7 +17378,7 @@
           "end": 2.3
         }
       ],
-      "audio": "audio_champion_gimel/s138.mp3"
+      "audio": "books/champion-gimel/audio/s138.mp3"
     },
     {
       "id": "s139",
@@ -17616,7 +17616,7 @@
           "end": 9.312
         }
       ],
-      "audio": "audio_champion_gimel/s139.mp3"
+      "audio": "books/champion-gimel/audio/s139.mp3"
     },
     {
       "id": "s140",
@@ -17634,7 +17634,7 @@
           "end": 0.675
         }
       ],
-      "audio": "audio_champion_gimel/s140.mp3"
+      "audio": "books/champion-gimel/audio/s140.mp3"
     },
     {
       "id": "s141",
@@ -17742,7 +17742,7 @@
           "end": 4.487
         }
       ],
-      "audio": "audio_champion_gimel/s141.mp3"
+      "audio": "books/champion-gimel/audio/s141.mp3"
     },
     {
       "id": "s142",
@@ -17890,7 +17890,7 @@
           "end": 5.675
         }
       ],
-      "audio": "audio_champion_gimel/s142.mp3"
+      "audio": "books/champion-gimel/audio/s142.mp3"
     },
     {
       "id": "s143",
@@ -18118,15 +18118,15 @@
           "end": 7.987
         }
       ],
-      "audio": "audio_champion_gimel/s143.mp3",
+      "audio": "books/champion-gimel/audio/s143.mp3",
       "illustration": {
         "word": "זְאֵב",
         "tr": "«Волков»",
         "caption": "זְאֵב",
         "capTr": "ze-ev",
         "mnemonic": "Представь, что Заяц Эб вышел на баскетбольную площадку и начал играть за команду «Волков». Заяц Эб был очень быстр и умел дриблить мяч, но он всегда забывал, что нужно передавать мяч партнерам. Игроки команды «Волков» были очень удивлены, увидев зайца в их команде, но они быстро привыкли к его необычной игре. Заяц Эб стал звездой команды и помог «Волкам» выиграть много матчей.",
-        "img": "illustrations_champion_gimel/s143.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s143-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s143.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s143-mnemonic.webp"
       }
     },
     {
@@ -18225,7 +18225,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_champion_gimel/s144.mp3"
+      "audio": "books/champion-gimel/audio/s144.mp3"
     },
     {
       "id": "s145",
@@ -18333,7 +18333,7 @@
           "end": 3.9
         }
       ],
-      "audio": "audio_champion_gimel/s145.mp3"
+      "audio": "books/champion-gimel/audio/s145.mp3"
     },
     {
       "id": "s146",
@@ -18441,7 +18441,7 @@
           "end": 5.025
         }
       ],
-      "audio": "audio_champion_gimel/s146.mp3"
+      "audio": "books/champion-gimel/audio/s146.mp3"
     },
     {
       "id": "s147",
@@ -18579,7 +18579,7 @@
           "end": 6.162
         }
       ],
-      "audio": "audio_champion_gimel/s147.mp3"
+      "audio": "books/champion-gimel/audio/s147.mp3"
     },
     {
       "id": "s148",
@@ -18727,7 +18727,7 @@
           "end": 6.787
         }
       ],
-      "audio": "audio_champion_gimel/s148.mp3"
+      "audio": "books/champion-gimel/audio/s148.mp3"
     },
     {
       "id": "s149",
@@ -18795,7 +18795,7 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_champion_gimel/s149.mp3"
+      "audio": "books/champion-gimel/audio/s149.mp3"
     },
     {
       "id": "s150",
@@ -18983,7 +18983,7 @@
           "end": 6.75
         }
       ],
-      "audio": "audio_champion_gimel/s150.mp3"
+      "audio": "books/champion-gimel/audio/s150.mp3"
     },
     {
       "id": "s151",
@@ -19131,7 +19131,7 @@
           "end": 6.362
         }
       ],
-      "audio": "audio_champion_gimel/s151.mp3"
+      "audio": "books/champion-gimel/audio/s151.mp3"
     },
     {
       "id": "s152",
@@ -19289,7 +19289,7 @@
           "end": 6.025
         }
       ],
-      "audio": "audio_champion_gimel/s152.mp3"
+      "audio": "books/champion-gimel/audio/s152.mp3"
     },
     {
       "id": "s153",
@@ -19357,7 +19357,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_champion_gimel/s153.mp3"
+      "audio": "books/champion-gimel/audio/s153.mp3"
     },
     {
       "id": "s154",
@@ -19415,7 +19415,7 @@
           "end": 2.087
         }
       ],
-      "audio": "audio_champion_gimel/s154.mp3"
+      "audio": "books/champion-gimel/audio/s154.mp3"
     },
     {
       "id": "s155",
@@ -19513,7 +19513,7 @@
           "end": 4.787
         }
       ],
-      "audio": "audio_champion_gimel/s155.mp3"
+      "audio": "books/champion-gimel/audio/s155.mp3"
     },
     {
       "id": "s156",
@@ -19711,7 +19711,7 @@
           "end": 8.175
         }
       ],
-      "audio": "audio_champion_gimel/s156.mp3"
+      "audio": "books/champion-gimel/audio/s156.mp3"
     },
     {
       "id": "s157",
@@ -19859,7 +19859,7 @@
           "end": 6.688
         }
       ],
-      "audio": "audio_champion_gimel/s157.mp3"
+      "audio": "books/champion-gimel/audio/s157.mp3"
     },
     {
       "id": "s158",
@@ -19897,7 +19897,7 @@
           "end": 1.65
         }
       ],
-      "audio": "audio_champion_gimel/s158.mp3"
+      "audio": "books/champion-gimel/audio/s158.mp3"
     },
     {
       "id": "s159",
@@ -20035,7 +20035,7 @@
           "end": 5.463
         }
       ],
-      "audio": "audio_champion_gimel/s159.mp3"
+      "audio": "books/champion-gimel/audio/s159.mp3"
     },
     {
       "id": "s160",
@@ -20123,7 +20123,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_champion_gimel/s160.mp3"
+      "audio": "books/champion-gimel/audio/s160.mp3"
     },
     {
       "id": "s161",
@@ -20331,15 +20331,15 @@
           "end": 7.0
         }
       ],
-      "audio": "audio_champion_gimel/s161.mp3",
+      "audio": "books/champion-gimel/audio/s161.mp3",
       "illustration": {
         "word": "מִשְׁחָק",
         "tr": "игры",
         "caption": "מִשְׁחָק",
         "capTr": "mishchak",
         "mnemonic": "Представь, что мошенник МИШКА внезапно превратился в профессионального спортсмена и теперь участвует в самых абсурдных играх, прыгая через обруч с горящими колесами и одновременно играя на гармонике, а зрители вокруг него скандируют его имя и размахивают флагами с изображением мошенника в спортивной форме.",
-        "img": "illustrations_champion_gimel/s161.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s161-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s161.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s161-mnemonic.webp"
       }
     },
     {
@@ -20528,7 +20528,7 @@
           "end": 6.412
         }
       ],
-      "audio": "audio_champion_gimel/s162.mp3"
+      "audio": "books/champion-gimel/audio/s162.mp3"
     },
     {
       "id": "s163",
@@ -20704,7 +20704,7 @@
           "root": "י-ת-ר"
         }
       ],
-      "audio": "audio_champion_gimel/s163.mp3"
+      "audio": "books/champion-gimel/audio/s163.mp3"
     },
     {
       "id": "s164",
@@ -20862,7 +20862,7 @@
           "end": 6.875
         }
       ],
-      "audio": "audio_champion_gimel/s164.mp3"
+      "audio": "books/champion-gimel/audio/s164.mp3"
     },
     {
       "id": "s165",
@@ -20970,7 +20970,7 @@
           "end": 4.362
         }
       ],
-      "audio": "audio_champion_gimel/s165.mp3"
+      "audio": "books/champion-gimel/audio/s165.mp3"
     },
     {
       "id": "s166",
@@ -21038,7 +21038,7 @@
           "end": 3.712
         }
       ],
-      "audio": "audio_champion_gimel/s166.mp3"
+      "audio": "books/champion-gimel/audio/s166.mp3"
     },
     {
       "id": "s167",
@@ -21166,7 +21166,7 @@
           "end": 5.65
         }
       ],
-      "audio": "audio_champion_gimel/s167.mp3"
+      "audio": "books/champion-gimel/audio/s167.mp3"
     },
     {
       "id": "s168",
@@ -21264,7 +21264,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_champion_gimel/s168.mp3"
+      "audio": "books/champion-gimel/audio/s168.mp3"
     },
     {
       "id": "s169",
@@ -21382,7 +21382,7 @@
           "end": 4.8
         }
       ],
-      "audio": "audio_champion_gimel/s169.mp3"
+      "audio": "books/champion-gimel/audio/s169.mp3"
     },
     {
       "id": "s170",
@@ -21500,7 +21500,7 @@
           "end": 4.3
         }
       ],
-      "audio": "audio_champion_gimel/s170.mp3"
+      "audio": "books/champion-gimel/audio/s170.mp3"
     },
     {
       "id": "s171",
@@ -21684,7 +21684,7 @@
           "root": "א-ח-ר"
         }
       ],
-      "audio": "audio_champion_gimel/s171.mp3"
+      "audio": "books/champion-gimel/audio/s171.mp3"
     },
     {
       "id": "s172",
@@ -21812,7 +21812,7 @@
           "end": 5.575
         }
       ],
-      "audio": "audio_champion_gimel/s172.mp3"
+      "audio": "books/champion-gimel/audio/s172.mp3"
     },
     {
       "id": "s173",
@@ -21960,7 +21960,7 @@
           "end": 6.037
         }
       ],
-      "audio": "audio_champion_gimel/s173.mp3"
+      "audio": "books/champion-gimel/audio/s173.mp3"
     },
     {
       "id": "s174",
@@ -22178,7 +22178,7 @@
           "end": 8.938
         }
       ],
-      "audio": "audio_champion_gimel/s174.mp3"
+      "audio": "books/champion-gimel/audio/s174.mp3"
     },
     {
       "id": "s175",
@@ -22336,7 +22336,7 @@
           "end": 6.112
         }
       ],
-      "audio": "audio_champion_gimel/s175.mp3"
+      "audio": "books/champion-gimel/audio/s175.mp3"
     },
     {
       "id": "s176",
@@ -22464,7 +22464,7 @@
           "end": 4.3
         }
       ],
-      "audio": "audio_champion_gimel/s176.mp3"
+      "audio": "books/champion-gimel/audio/s176.mp3"
     },
     {
       "id": "s177",
@@ -22662,7 +22662,7 @@
           "end": 8.162
         }
       ],
-      "audio": "audio_champion_gimel/s177.mp3"
+      "audio": "books/champion-gimel/audio/s177.mp3"
     },
     {
       "id": "s178",
@@ -22770,7 +22770,7 @@
           "end": 5.237
         }
       ],
-      "audio": "audio_champion_gimel/s178.mp3"
+      "audio": "books/champion-gimel/audio/s178.mp3"
     },
     {
       "id": "s179",
@@ -22958,7 +22958,7 @@
           "end": 8.15
         }
       ],
-      "audio": "audio_champion_gimel/s179.mp3"
+      "audio": "books/champion-gimel/audio/s179.mp3"
     },
     {
       "id": "s180",
@@ -23196,7 +23196,7 @@
           "end": 8.8
         }
       ],
-      "audio": "audio_champion_gimel/s180.mp3"
+      "audio": "books/champion-gimel/audio/s180.mp3"
     },
     {
       "id": "s181",
@@ -23464,7 +23464,7 @@
           "end": 11.162
         }
       ],
-      "audio": "audio_champion_gimel/s181.mp3"
+      "audio": "books/champion-gimel/audio/s181.mp3"
     },
     {
       "id": "s182",
@@ -23592,7 +23592,7 @@
           "end": 3.825
         }
       ],
-      "audio": "audio_champion_gimel/s182.mp3"
+      "audio": "books/champion-gimel/audio/s182.mp3"
     },
     {
       "id": "s183",
@@ -23930,15 +23930,15 @@
           "end": 12.863
         }
       ],
-      "audio": "audio_champion_gimel/s183.mp3",
+      "audio": "books/champion-gimel/audio/s183.mp3",
       "illustration": {
         "word": "מִגְרָשׁ",
         "tr": "площадку?»",
         "caption": "מִגְרָשׁ",
         "capTr": "migrash",
         "mnemonic": "Представь себе гигантского Мигра, который любит играть в футбол на огромной площадке. Каждый раз, когда он забивает гол, он кричит «Миграш!», и его команда начинает праздновать. Но вдруг появляется злой Мигрант, который пытается украсть их мяч, и Мигра должен его остановить.",
-        "img": "illustrations_champion_gimel/s183.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s183-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s183.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s183-mnemonic.webp"
       }
     },
     {
@@ -24077,7 +24077,7 @@
           "end": 5.638
         }
       ],
-      "audio": "audio_champion_gimel/s184.mp3"
+      "audio": "books/champion-gimel/audio/s184.mp3"
     },
     {
       "id": "s185",
@@ -24305,7 +24305,7 @@
           "end": 7.575
         }
       ],
-      "audio": "audio_champion_gimel/s185.mp3"
+      "audio": "books/champion-gimel/audio/s185.mp3"
     },
     {
       "id": "s186",
@@ -24403,7 +24403,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_champion_gimel/s186.mp3"
+      "audio": "books/champion-gimel/audio/s186.mp3"
     },
     {
       "id": "s187",
@@ -24521,7 +24521,7 @@
           "end": 4.45
         }
       ],
-      "audio": "audio_champion_gimel/s187.mp3"
+      "audio": "books/champion-gimel/audio/s187.mp3"
     },
     {
       "id": "s188",
@@ -24679,7 +24679,7 @@
           "end": 6.138
         }
       ],
-      "audio": "audio_champion_gimel/s188.mp3"
+      "audio": "books/champion-gimel/audio/s188.mp3"
     },
     {
       "id": "s189",
@@ -24867,7 +24867,7 @@
           "end": 7.013
         }
       ],
-      "audio": "audio_champion_gimel/s189.mp3"
+      "audio": "books/champion-gimel/audio/s189.mp3"
     },
     {
       "id": "s190",
@@ -25003,7 +25003,7 @@
           "root": "ע-מ-ק"
         }
       ],
-      "audio": "audio_champion_gimel/s190.mp3"
+      "audio": "books/champion-gimel/audio/s190.mp3"
     },
     {
       "id": "s191",
@@ -25151,7 +25151,7 @@
           "end": 6.162
         }
       ],
-      "audio": "audio_champion_gimel/s191.mp3"
+      "audio": "books/champion-gimel/audio/s191.mp3"
     },
     {
       "id": "s192",
@@ -25269,7 +25269,7 @@
           "end": 5.537
         }
       ],
-      "audio": "audio_champion_gimel/s192.mp3"
+      "audio": "books/champion-gimel/audio/s192.mp3"
     },
     {
       "id": "s193",
@@ -25397,7 +25397,7 @@
           "end": 5.412
         }
       ],
-      "audio": "audio_champion_gimel/s193.mp3"
+      "audio": "books/champion-gimel/audio/s193.mp3"
     },
     {
       "id": "s194",
@@ -25475,7 +25475,7 @@
           "end": 3.5
         }
       ],
-      "audio": "audio_champion_gimel/s194.mp3"
+      "audio": "books/champion-gimel/audio/s194.mp3"
     },
     {
       "id": "s195",
@@ -25603,7 +25603,7 @@
           "end": 4.763
         }
       ],
-      "audio": "audio_champion_gimel/s195.mp3"
+      "audio": "books/champion-gimel/audio/s195.mp3"
     },
     {
       "id": "s196",
@@ -25701,7 +25701,7 @@
           "end": 4.625
         }
       ],
-      "audio": "audio_champion_gimel/s196.mp3"
+      "audio": "books/champion-gimel/audio/s196.mp3"
     },
     {
       "id": "s197",
@@ -25819,7 +25819,7 @@
           "end": 5.237
         }
       ],
-      "audio": "audio_champion_gimel/s197.mp3"
+      "audio": "books/champion-gimel/audio/s197.mp3"
     },
     {
       "id": "s198",
@@ -26011,7 +26011,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_champion_gimel/s198.mp3"
+      "audio": "books/champion-gimel/audio/s198.mp3"
     },
     {
       "id": "s199",
@@ -26189,7 +26189,7 @@
           "end": 6.25
         }
       ],
-      "audio": "audio_champion_gimel/s199.mp3"
+      "audio": "books/champion-gimel/audio/s199.mp3"
     },
     {
       "id": "s200",
@@ -26327,7 +26327,7 @@
           "end": 6.325
         }
       ],
-      "audio": "audio_champion_gimel/s200.mp3"
+      "audio": "books/champion-gimel/audio/s200.mp3"
     },
     {
       "id": "s201",
@@ -26475,7 +26475,7 @@
           "end": 5.787
         }
       ],
-      "audio": "audio_champion_gimel/s201.mp3"
+      "audio": "books/champion-gimel/audio/s201.mp3"
     },
     {
       "id": "s202",
@@ -26593,7 +26593,7 @@
           "end": 3.9
         }
       ],
-      "audio": "audio_champion_gimel/s202.mp3"
+      "audio": "books/champion-gimel/audio/s202.mp3"
     },
     {
       "id": "s203",
@@ -26761,15 +26761,15 @@
           "end": 6.213
         }
       ],
-      "audio": "audio_champion_gimel/s203.mp3",
+      "audio": "books/champion-gimel/audio/s203.mp3",
       "illustration": {
         "word": "קְבוּצָה",
         "tr": "команде",
         "caption": "קְבוּצָה",
         "capTr": "kvvutzah",
         "mnemonic": "Представь, что команда КВУТИХ ЗАЙЦЕВ вышла на поле и начала играть в футбол, но вместо мяча они пинали гигантский помидор, который вдруг начал расти и расти, пока не стал таким же большим, как стадион, и зайцы начали скользить по его поверхности, как по горке, смеясь и крича от радости.",
-        "img": "illustrations_champion_gimel/s203.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s203-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s203.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s203-mnemonic.webp"
       }
     },
     {
@@ -26828,7 +26828,7 @@
           "end": 3.212
         }
       ],
-      "audio": "audio_champion_gimel/s204.mp3"
+      "audio": "books/champion-gimel/audio/s204.mp3"
     },
     {
       "id": "s205",
@@ -26966,7 +26966,7 @@
           "end": 6.725
         }
       ],
-      "audio": "audio_champion_gimel/s205.mp3"
+      "audio": "books/champion-gimel/audio/s205.mp3"
     },
     {
       "id": "s206",
@@ -27044,7 +27044,7 @@
           "end": 3.15
         }
       ],
-      "audio": "audio_champion_gimel/s206.mp3"
+      "audio": "books/champion-gimel/audio/s206.mp3"
     },
     {
       "id": "s207",
@@ -27172,7 +27172,7 @@
           "end": 5.263
         }
       ],
-      "audio": "audio_champion_gimel/s207.mp3"
+      "audio": "books/champion-gimel/audio/s207.mp3"
     },
     {
       "id": "s208",
@@ -27250,7 +27250,7 @@
           "end": 3.013
         }
       ],
-      "audio": "audio_champion_gimel/s208.mp3"
+      "audio": "books/champion-gimel/audio/s208.mp3"
     },
     {
       "id": "s209",
@@ -27338,7 +27338,7 @@
           "end": 4.013
         }
       ],
-      "audio": "audio_champion_gimel/s209.mp3"
+      "audio": "books/champion-gimel/audio/s209.mp3"
     },
     {
       "id": "s210",
@@ -27466,7 +27466,7 @@
           "end": 5.225
         }
       ],
-      "audio": "audio_champion_gimel/s210.mp3"
+      "audio": "books/champion-gimel/audio/s210.mp3"
     },
     {
       "id": "s211",
@@ -27564,7 +27564,7 @@
           "end": 4.737
         }
       ],
-      "audio": "audio_champion_gimel/s211.mp3"
+      "audio": "books/champion-gimel/audio/s211.mp3"
     },
     {
       "id": "s212",
@@ -27632,7 +27632,7 @@
           "end": 3.188
         }
       ],
-      "audio": "audio_champion_gimel/s212.mp3"
+      "audio": "books/champion-gimel/audio/s212.mp3"
     },
     {
       "id": "s213",
@@ -27770,7 +27770,7 @@
           "end": 5.963
         }
       ],
-      "audio": "audio_champion_gimel/s213.mp3"
+      "audio": "books/champion-gimel/audio/s213.mp3"
     },
     {
       "id": "s214",
@@ -27828,7 +27828,7 @@
           "end": 2.35
         }
       ],
-      "audio": "audio_champion_gimel/s214.mp3"
+      "audio": "books/champion-gimel/audio/s214.mp3"
     },
     {
       "id": "s215",
@@ -27936,7 +27936,7 @@
           "end": 4.787
         }
       ],
-      "audio": "audio_champion_gimel/s215.mp3"
+      "audio": "books/champion-gimel/audio/s215.mp3"
     },
     {
       "id": "s216",
@@ -28054,7 +28054,7 @@
           "end": 4.688
         }
       ],
-      "audio": "audio_champion_gimel/s216.mp3"
+      "audio": "books/champion-gimel/audio/s216.mp3"
     },
     {
       "id": "s217",
@@ -28202,7 +28202,7 @@
           "end": 6.35
         }
       ],
-      "audio": "audio_champion_gimel/s217.mp3"
+      "audio": "books/champion-gimel/audio/s217.mp3"
     },
     {
       "id": "s218",
@@ -28330,7 +28330,7 @@
           "end": 5.55
         }
       ],
-      "audio": "audio_champion_gimel/s218.mp3"
+      "audio": "books/champion-gimel/audio/s218.mp3"
     },
     {
       "id": "s219",
@@ -28368,7 +28368,7 @@
           "end": 1.7
         }
       ],
-      "audio": "audio_champion_gimel/s219.mp3"
+      "audio": "books/champion-gimel/audio/s219.mp3"
     },
     {
       "id": "s220",
@@ -28496,7 +28496,7 @@
           "end": 6.138
         }
       ],
-      "audio": "audio_champion_gimel/s220.mp3"
+      "audio": "books/champion-gimel/audio/s220.mp3"
     },
     {
       "id": "s221",
@@ -28604,7 +28604,7 @@
           "end": 4.787
         }
       ],
-      "audio": "audio_champion_gimel/s221.mp3"
+      "audio": "books/champion-gimel/audio/s221.mp3"
     },
     {
       "id": "s222",
@@ -28802,15 +28802,15 @@
           "end": 6.713
         }
       ],
-      "audio": "audio_champion_gimel/s222.mp3",
+      "audio": "books/champion-gimel/audio/s222.mp3",
       "illustration": {
         "word": "שַׂחְקָן",
         "tr": "игроков",
         "caption": "שַׂחְקָן",
         "capTr": "sachkan",
         "mnemonic": "Представь огромный САХАРный завод, где работают игроки в костюмах, и вдруг весь сахар превращается в гигантский баскетбольный мяч, который начинает САЧКАТЬ всех игроков, заставляя их прыгать и смеяться. Все вокруг покрыто сладкой пылью, и воздух наполнен ароматом свежеиспеченных пирожных.",
-        "img": "illustrations_champion_gimel/s222.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s222-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s222.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s222-mnemonic.webp"
       }
     },
     {
@@ -28879,7 +28879,7 @@
           "end": 3.075
         }
       ],
-      "audio": "audio_champion_gimel/s223.mp3"
+      "audio": "books/champion-gimel/audio/s223.mp3"
     },
     {
       "id": "s224",
@@ -28907,7 +28907,7 @@
           "end": 1.15
         }
       ],
-      "audio": "audio_champion_gimel/s224.mp3"
+      "audio": "books/champion-gimel/audio/s224.mp3"
     },
     {
       "id": "s225",
@@ -28985,7 +28985,7 @@
           "end": 2.962
         }
       ],
-      "audio": "audio_champion_gimel/s225.mp3"
+      "audio": "books/champion-gimel/audio/s225.mp3"
     },
     {
       "id": "s226",
@@ -29113,7 +29113,7 @@
           "end": 6.3
         }
       ],
-      "audio": "audio_champion_gimel/s226.mp3"
+      "audio": "books/champion-gimel/audio/s226.mp3"
     },
     {
       "id": "s227",
@@ -29281,7 +29281,7 @@
           "root": "ש-ל-ח"
         }
       ],
-      "audio": "audio_champion_gimel/s227.mp3"
+      "audio": "books/champion-gimel/audio/s227.mp3"
     },
     {
       "id": "s228",
@@ -29409,7 +29409,7 @@
           "end": 5.812
         }
       ],
-      "audio": "audio_champion_gimel/s228.mp3"
+      "audio": "books/champion-gimel/audio/s228.mp3"
     },
     {
       "id": "s229",
@@ -29517,7 +29517,7 @@
           "end": 4.45
         }
       ],
-      "audio": "audio_champion_gimel/s229.mp3"
+      "audio": "books/champion-gimel/audio/s229.mp3"
     },
     {
       "id": "s230",
@@ -29605,7 +29605,7 @@
           "end": 3.675
         }
       ],
-      "audio": "audio_champion_gimel/s230.mp3"
+      "audio": "books/champion-gimel/audio/s230.mp3"
     },
     {
       "id": "s231",
@@ -29683,7 +29683,7 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_champion_gimel/s231.mp3"
+      "audio": "books/champion-gimel/audio/s231.mp3"
     },
     {
       "id": "s232",
@@ -29811,7 +29811,7 @@
           "end": 5.237
         }
       ],
-      "audio": "audio_champion_gimel/s232.mp3"
+      "audio": "books/champion-gimel/audio/s232.mp3"
     },
     {
       "id": "s233",
@@ -29889,7 +29889,7 @@
           "end": 3.163
         }
       ],
-      "audio": "audio_champion_gimel/s233.mp3"
+      "audio": "books/champion-gimel/audio/s233.mp3"
     },
     {
       "id": "s234",
@@ -29977,7 +29977,7 @@
           "end": 4.562
         }
       ],
-      "audio": "audio_champion_gimel/s234.mp3"
+      "audio": "books/champion-gimel/audio/s234.mp3"
     },
     {
       "id": "s235",
@@ -30035,7 +30035,7 @@
           "end": 2.95
         }
       ],
-      "audio": "audio_champion_gimel/s235.mp3"
+      "audio": "books/champion-gimel/audio/s235.mp3"
     },
     {
       "id": "s236",
@@ -30183,7 +30183,7 @@
           "end": 6.463
         }
       ],
-      "audio": "audio_champion_gimel/s236.mp3"
+      "audio": "books/champion-gimel/audio/s236.mp3"
     },
     {
       "id": "s237",
@@ -30321,7 +30321,7 @@
           "end": 5.85
         }
       ],
-      "audio": "audio_champion_gimel/s237.mp3"
+      "audio": "books/champion-gimel/audio/s237.mp3"
     },
     {
       "id": "s238",
@@ -30499,7 +30499,7 @@
           "end": 7.888
         }
       ],
-      "audio": "audio_champion_gimel/s238.mp3"
+      "audio": "books/champion-gimel/audio/s238.mp3"
     },
     {
       "id": "s239",
@@ -30637,7 +30637,7 @@
           "end": 6.0
         }
       ],
-      "audio": "audio_champion_gimel/s239.mp3"
+      "audio": "books/champion-gimel/audio/s239.mp3"
     },
     {
       "id": "s240",
@@ -30815,7 +30815,7 @@
           "end": 7.562
         }
       ],
-      "audio": "audio_champion_gimel/s240.mp3"
+      "audio": "books/champion-gimel/audio/s240.mp3"
     },
     {
       "id": "s241",
@@ -30863,7 +30863,7 @@
           "end": 1.613
         }
       ],
-      "audio": "audio_champion_gimel/s241.mp3"
+      "audio": "books/champion-gimel/audio/s241.mp3"
     },
     {
       "id": "s242",
@@ -30951,15 +30951,15 @@
           "end": 3.7
         }
       ],
-      "audio": "audio_champion_gimel/s242.mp3",
+      "audio": "books/champion-gimel/audio/s242.mp3",
       "illustration": {
         "word": "זְרִיקָה",
         "tr": "для броска",
         "caption": "זְרִיקָה",
         "capTr": "zrikah",
         "mnemonic": "Представь себя на зарядной станции, где заряжают энергию с помощью мощной ЗАРЯДКИ. Вдруг появляется гигантский робот и начинает заряжать всю станцию, создавая мощную ЗАРЯДКУ, которая разрушает все вокруг.",
-        "img": "illustrations_champion_gimel/s242.webp",
-        "imgMnemonic": "illustrations_champion_gimel/s242-mnemonic.webp"
+        "img": "books/champion-gimel/illustrations/s242.webp",
+        "imgMnemonic": "books/champion-gimel/illustrations/s242-mnemonic.webp"
       }
     },
     {
@@ -31078,7 +31078,7 @@
           "end": 5.688
         }
       ],
-      "audio": "audio_champion_gimel/s243.mp3"
+      "audio": "books/champion-gimel/audio/s243.mp3"
     },
     {
       "id": "s244",
@@ -31156,7 +31156,7 @@
           "end": 3.325
         }
       ],
-      "audio": "audio_champion_gimel/s244.mp3"
+      "audio": "books/champion-gimel/audio/s244.mp3"
     },
     {
       "id": "s245",
@@ -31274,7 +31274,7 @@
           "end": 5.175
         }
       ],
-      "audio": "audio_champion_gimel/s245.mp3"
+      "audio": "books/champion-gimel/audio/s245.mp3"
     },
     {
       "id": "s246",
@@ -31362,7 +31362,7 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_champion_gimel/s246.mp3"
+      "audio": "books/champion-gimel/audio/s246.mp3"
     },
     {
       "id": "s247",
@@ -31550,7 +31550,7 @@
           "end": 8.025
         }
       ],
-      "audio": "audio_champion_gimel/s247.mp3"
+      "audio": "books/champion-gimel/audio/s247.mp3"
     },
     {
       "id": "s248",
@@ -31668,7 +31668,7 @@
           "end": 5.787
         }
       ],
-      "audio": "audio_champion_gimel/s248.mp3"
+      "audio": "books/champion-gimel/audio/s248.mp3"
     },
     {
       "id": "s249",
@@ -31806,7 +31806,7 @@
           "end": 6.45
         }
       ],
-      "audio": "audio_champion_gimel/s249.mp3"
+      "audio": "books/champion-gimel/audio/s249.mp3"
     },
     {
       "id": "s250",
@@ -31944,7 +31944,7 @@
           "end": 5.237
         }
       ],
-      "audio": "audio_champion_gimel/s250.mp3"
+      "audio": "books/champion-gimel/audio/s250.mp3"
     },
     {
       "id": "s251",
@@ -31992,7 +31992,7 @@
           "end": 2.1
         }
       ],
-      "audio": "audio_champion_gimel/s251.mp3"
+      "audio": "books/champion-gimel/audio/s251.mp3"
     },
     {
       "id": "s252",
@@ -32040,7 +32040,7 @@
           "end": 1.637
         }
       ],
-      "audio": "audio_champion_gimel/s252.mp3"
+      "audio": "books/champion-gimel/audio/s252.mp3"
     },
     {
       "id": "s253",
@@ -32188,7 +32188,7 @@
           "end": 5.8
         }
       ],
-      "audio": "audio_champion_gimel/s253.mp3"
+      "audio": "books/champion-gimel/audio/s253.mp3"
     },
     {
       "id": "s254",
@@ -32316,7 +32316,7 @@
           "end": 5.825
         }
       ],
-      "audio": "audio_champion_gimel/s254.mp3"
+      "audio": "books/champion-gimel/audio/s254.mp3"
     },
     {
       "id": "s255",
@@ -32514,7 +32514,7 @@
           "end": 9.0
         }
       ],
-      "audio": "audio_champion_gimel/s255.mp3"
+      "audio": "books/champion-gimel/audio/s255.mp3"
     },
     {
       "id": "s256",
@@ -32682,7 +32682,7 @@
           "end": 4.95
         }
       ],
-      "audio": "audio_champion_gimel/s256.mp3"
+      "audio": "books/champion-gimel/audio/s256.mp3"
     },
     {
       "id": "s257",
@@ -32770,7 +32770,7 @@
           "end": 3.038
         }
       ],
-      "audio": "audio_champion_gimel/s257.mp3"
+      "audio": "books/champion-gimel/audio/s257.mp3"
     },
     {
       "id": "s258",
@@ -32938,7 +32938,7 @@
           "end": 5.75
         }
       ],
-      "audio": "audio_champion_gimel/s258.mp3"
+      "audio": "books/champion-gimel/audio/s258.mp3"
     },
     {
       "id": "s259",
@@ -33196,7 +33196,7 @@
           "end": 10.188
         }
       ],
-      "audio": "audio_champion_gimel/s259.mp3"
+      "audio": "books/champion-gimel/audio/s259.mp3"
     }
   ]
 }

@@ -66,7 +66,7 @@
           "end": 3.2
         }
       ],
-      "audio": "audio_swarm_bet/s1.mp3"
+      "audio": "books/swarm-bet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -144,7 +144,7 @@
           "end": 3.175
         }
       ],
-      "audio": "audio_swarm_bet/s2.mp3"
+      "audio": "books/swarm-bet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -242,7 +242,7 @@
           "end": 3.837
         }
       ],
-      "audio": "audio_swarm_bet/s3.mp3"
+      "audio": "books/swarm-bet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -350,15 +350,15 @@
           "end": 4.5
         }
       ],
-      "audio": "audio_swarm_bet/s4.mp3",
+      "audio": "books/swarm-bet/audio/s4.mp3",
       "illustration": {
         "word": "תַּחֲנָה",
         "tr": "станция",
         "caption": "תַּחֲנָה",
         "capTr": "tachanah",
         "mnemonic": "Представьте огромную космическую СТАНЦИЮ, которой пришла ТА ХАНА — её со свистом заглатывает гигантский инопланетный кот! Астронавт в панике указывает пальцем и орет: «Всё, этой СТАНЦИИ — ТА ХАНА!». Так запоминаем: תַּחֲנָה (тахана) — станция.",
-        "img": "illustrations_swarm_bet/s4.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s4-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s4.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s4-mnemonic.webp"
       }
     },
     {
@@ -417,7 +417,7 @@
           "end": 2.337
         }
       ],
-      "audio": "audio_swarm_bet/s5.mp3"
+      "audio": "books/swarm-bet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -475,7 +475,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_swarm_bet/s6.mp3"
+      "audio": "books/swarm-bet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -583,7 +583,7 @@
           "end": 4.55
         }
       ],
-      "audio": "audio_swarm_bet/s7.mp3"
+      "audio": "books/swarm-bet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -661,7 +661,7 @@
           "end": 2.6
         }
       ],
-      "audio": "audio_swarm_bet/s8.mp3"
+      "audio": "books/swarm-bet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -739,7 +739,7 @@
           "end": 2.612
         }
       ],
-      "audio": "audio_swarm_bet/s9.mp3"
+      "audio": "books/swarm-bet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -847,7 +847,7 @@
           "end": 3.95
         }
       ],
-      "audio": "audio_swarm_bet/s10.mp3"
+      "audio": "books/swarm-bet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -915,7 +915,7 @@
           "end": 3.0
         }
       ],
-      "audio": "audio_swarm_bet/s11.mp3"
+      "audio": "books/swarm-bet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -993,7 +993,7 @@
           "end": 3.362
         }
       ],
-      "audio": "audio_swarm_bet/s12.mp3"
+      "audio": "books/swarm-bet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1061,7 +1061,7 @@
           "end": 2.7
         }
       ],
-      "audio": "audio_swarm_bet/s13.mp3"
+      "audio": "books/swarm-bet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1139,7 +1139,7 @@
           "end": 3.275
         }
       ],
-      "audio": "audio_swarm_bet/s14.mp3"
+      "audio": "books/swarm-bet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1197,7 +1197,7 @@
           "end": 2.288
         }
       ],
-      "audio": "audio_swarm_bet/s15.mp3"
+      "audio": "books/swarm-bet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1275,7 +1275,7 @@
           "end": 3.4
         }
       ],
-      "audio": "audio_swarm_bet/s16.mp3"
+      "audio": "books/swarm-bet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1333,7 +1333,7 @@
           "end": 2.438
         }
       ],
-      "audio": "audio_swarm_bet/s17.mp3"
+      "audio": "books/swarm-bet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1441,7 +1441,7 @@
           "end": 4.25
         }
       ],
-      "audio": "audio_swarm_bet/s18.mp3"
+      "audio": "books/swarm-bet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1489,7 +1489,7 @@
           "end": 2.087
         }
       ],
-      "audio": "audio_swarm_bet/s19.mp3"
+      "audio": "books/swarm-bet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1637,7 +1637,7 @@
           "end": 5.688
         }
       ],
-      "audio": "audio_swarm_bet/s20.mp3"
+      "audio": "books/swarm-bet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1775,7 +1775,7 @@
           "end": 5.662
         }
       ],
-      "audio": "audio_swarm_bet/s21.mp3"
+      "audio": "books/swarm-bet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1873,7 +1873,7 @@
           "end": 4.825
         }
       ],
-      "audio": "audio_swarm_bet/s22.mp3"
+      "audio": "books/swarm-bet/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -1961,7 +1961,7 @@
           "end": 4.062
         }
       ],
-      "audio": "audio_swarm_bet/s23.mp3"
+      "audio": "books/swarm-bet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -2029,7 +2029,7 @@
           "end": 2.837
         }
       ],
-      "audio": "audio_swarm_bet/s24.mp3"
+      "audio": "books/swarm-bet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -2097,7 +2097,7 @@
           "end": 2.362
         }
       ],
-      "audio": "audio_swarm_bet/s25.mp3"
+      "audio": "books/swarm-bet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -2195,7 +2195,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_swarm_bet/s26.mp3"
+      "audio": "books/swarm-bet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -2303,7 +2303,7 @@
           "end": 3.737
         }
       ],
-      "audio": "audio_swarm_bet/s27.mp3"
+      "audio": "books/swarm-bet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -2411,7 +2411,7 @@
           "end": 4.213
         }
       ],
-      "audio": "audio_swarm_bet/s28.mp3"
+      "audio": "books/swarm-bet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -2559,7 +2559,7 @@
           "end": 6.025
         }
       ],
-      "audio": "audio_swarm_bet/s29.mp3"
+      "audio": "books/swarm-bet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -2657,7 +2657,7 @@
           "end": 4.5
         }
       ],
-      "audio": "audio_swarm_bet/s30.mp3"
+      "audio": "books/swarm-bet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -2715,15 +2715,15 @@
           "end": 2.25
         }
       ],
-      "audio": "audio_swarm_bet/s31.mp3",
+      "audio": "books/swarm-bet/audio/s31.mp3",
       "illustration": {
         "word": "מַחְלָקָה",
         "tr": "во взводе",
         "caption": "מַחְלָקָה",
         "capTr": "makhlaka",
         "mnemonic": "Чтобы запомнить, что «махлака» (מַחְלָקָה) — это «взвод», представьте, что генералом во взводе назначили огромного медведя. Он отдает боевые приказы целому взводу солдат всего одним широким МАХОМ ЛАПОЙ («мах-лака»)! Солдаты во взводе мигом отдают честь после такого маха.",
-        "img": "illustrations_swarm_bet/s31.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s31-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s31.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s31-mnemonic.webp"
       }
     },
     {
@@ -2802,7 +2802,7 @@
           "end": 2.65
         }
       ],
-      "audio": "audio_swarm_bet/s32.mp3"
+      "audio": "books/swarm-bet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -2840,7 +2840,7 @@
           "end": 1.663
         }
       ],
-      "audio": "audio_swarm_bet/s33.mp3"
+      "audio": "books/swarm-bet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -2938,7 +2938,7 @@
           "end": 4.05
         }
       ],
-      "audio": "audio_swarm_bet/s34.mp3"
+      "audio": "books/swarm-bet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -2996,7 +2996,7 @@
           "end": 3.05
         }
       ],
-      "audio": "audio_swarm_bet/s35.mp3"
+      "audio": "books/swarm-bet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -3094,7 +3094,7 @@
           "end": 3.725
         }
       ],
-      "audio": "audio_swarm_bet/s36.mp3"
+      "audio": "books/swarm-bet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -3132,7 +3132,7 @@
           "end": 1.3
         }
       ],
-      "audio": "audio_swarm_bet/s37.mp3"
+      "audio": "books/swarm-bet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -3240,7 +3240,7 @@
           "end": 4.562
         }
       ],
-      "audio": "audio_swarm_bet/s38.mp3"
+      "audio": "books/swarm-bet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -3338,7 +3338,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_swarm_bet/s39.mp3"
+      "audio": "books/swarm-bet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -3446,7 +3446,7 @@
           "end": 4.138
         }
       ],
-      "audio": "audio_swarm_bet/s40.mp3"
+      "audio": "books/swarm-bet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -3554,15 +3554,15 @@
           "end": 4.5
         }
       ],
-      "audio": "audio_swarm_bet/s41.mp3",
+      "audio": "books/swarm-bet/audio/s41.mp3",
       "illustration": {
         "word": "עֲבוֹדָה",
         "tr": "к работе",
         "caption": "עֲבוֹדָה",
         "capTr": "avoda",
         "mnemonic": "Созвучие: «А, вода!» (avoda). Офисный работник усердно делает свою РАБОТУ, как вдруг босс с криком «А, вода!» окатывает его из пожарного шланга. Работник лишь надевает маску с трубкой и с еще большей скоростью продолжает печатать underwater.",
-        "img": "illustrations_swarm_bet/s41.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s41-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s41.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s41-mnemonic.webp"
       }
     },
     {
@@ -3651,7 +3651,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_swarm_bet/s42.mp3"
+      "audio": "books/swarm-bet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -3779,7 +3779,7 @@
           "end": 4.85
         }
       ],
-      "audio": "audio_swarm_bet/s43.mp3"
+      "audio": "books/swarm-bet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -3877,7 +3877,7 @@
           "end": 4.862
         }
       ],
-      "audio": "audio_swarm_bet/s44.mp3"
+      "audio": "books/swarm-bet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -3955,7 +3955,7 @@
           "end": 3.575
         }
       ],
-      "audio": "audio_swarm_bet/s45.mp3"
+      "audio": "books/swarm-bet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -4053,7 +4053,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_swarm_bet/s46.mp3"
+      "audio": "books/swarm-bet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -4101,7 +4101,7 @@
           "end": 2.1
         }
       ],
-      "audio": "audio_swarm_bet/s47.mp3"
+      "audio": "books/swarm-bet/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -4169,7 +4169,7 @@
           "end": 2.525
         }
       ],
-      "audio": "audio_swarm_bet/s48.mp3"
+      "audio": "books/swarm-bet/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -4227,7 +4227,7 @@
           "end": 2.35
         }
       ],
-      "audio": "audio_swarm_bet/s49.mp3"
+      "audio": "books/swarm-bet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -4275,7 +4275,7 @@
           "end": 1.812
         }
       ],
-      "audio": "audio_swarm_bet/s50.mp3"
+      "audio": "books/swarm-bet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -4353,7 +4353,7 @@
           "end": 3.062
         }
       ],
-      "audio": "audio_swarm_bet/s51.mp3"
+      "audio": "books/swarm-bet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -4411,7 +4411,7 @@
           "end": 2.2
         }
       ],
-      "audio": "audio_swarm_bet/s52.mp3"
+      "audio": "books/swarm-bet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -4479,7 +4479,7 @@
           "end": 2.188
         }
       ],
-      "audio": "audio_swarm_bet/s53.mp3"
+      "audio": "books/swarm-bet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -4607,7 +4607,7 @@
           "end": 4.375
         }
       ],
-      "audio": "audio_swarm_bet/s54.mp3"
+      "audio": "books/swarm-bet/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -4735,7 +4735,7 @@
           "end": 4.388
         }
       ],
-      "audio": "audio_swarm_bet/s55.mp3"
+      "audio": "books/swarm-bet/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -4823,7 +4823,7 @@
           "end": 3.188
         }
       ],
-      "audio": "audio_swarm_bet/s56.mp3"
+      "audio": "books/swarm-bet/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -4901,7 +4901,7 @@
           "end": 3.725
         }
       ],
-      "audio": "audio_swarm_bet/s57.mp3"
+      "audio": "books/swarm-bet/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -4969,7 +4969,7 @@
           "end": 2.763
         }
       ],
-      "audio": "audio_swarm_bet/s58.mp3"
+      "audio": "books/swarm-bet/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -5127,7 +5127,7 @@
           "end": 5.35
         }
       ],
-      "audio": "audio_swarm_bet/s59.mp3"
+      "audio": "books/swarm-bet/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -5225,7 +5225,7 @@
           "end": 4.8
         }
       ],
-      "audio": "audio_swarm_bet/s60.mp3"
+      "audio": "books/swarm-bet/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -5333,7 +5333,7 @@
           "end": 3.962
         }
       ],
-      "audio": "audio_swarm_bet/s61.mp3"
+      "audio": "books/swarm-bet/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -5401,7 +5401,7 @@
           "end": 2.638
         }
       ],
-      "audio": "audio_swarm_bet/s62.mp3"
+      "audio": "books/swarm-bet/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -5459,7 +5459,7 @@
           "end": 2.625
         }
       ],
-      "audio": "audio_swarm_bet/s63.mp3"
+      "audio": "books/swarm-bet/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -5567,7 +5567,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_swarm_bet/s64.mp3"
+      "audio": "books/swarm-bet/audio/s64.mp3"
     },
     {
       "id": "s65",
@@ -5645,7 +5645,7 @@
           "end": 3.175
         }
       ],
-      "audio": "audio_swarm_bet/s65.mp3"
+      "audio": "books/swarm-bet/audio/s65.mp3"
     },
     {
       "id": "s66",
@@ -5743,7 +5743,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_swarm_bet/s66.mp3"
+      "audio": "books/swarm-bet/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -5851,15 +5851,15 @@
           "end": 4.638
         }
       ],
-      "audio": "audio_swarm_bet/s67.mp3",
+      "audio": "books/swarm-bet/audio/s67.mp3",
       "illustration": {
         "word": "מוּצָב",
         "tr": "форпоста",
         "caption": "מוּצָב",
         "capTr": "mutsav",
         "mnemonic": "Форпост по-ивритски — «муцав». Представьте, что главная защита этого ФОРПОСТА — огромная МУХА В военной каске, которая гордо стоит на карауле и отдаёт честь.",
-        "img": "illustrations_swarm_bet/s67.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s67-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s67.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s67-mnemonic.webp"
       }
     },
     {
@@ -5948,7 +5948,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_swarm_bet/s68.mp3"
+      "audio": "books/swarm-bet/audio/s68.mp3"
     },
     {
       "id": "s69",
@@ -6026,7 +6026,7 @@
           "end": 3.0
         }
       ],
-      "audio": "audio_swarm_bet/s69.mp3"
+      "audio": "books/swarm-bet/audio/s69.mp3"
     },
     {
       "id": "s70",
@@ -6054,7 +6054,7 @@
           "end": 1.163
         }
       ],
-      "audio": "audio_swarm_bet/s70.mp3"
+      "audio": "books/swarm-bet/audio/s70.mp3"
     },
     {
       "id": "s71",
@@ -6152,7 +6152,7 @@
           "end": 4.55
         }
       ],
-      "audio": "audio_swarm_bet/s71.mp3"
+      "audio": "books/swarm-bet/audio/s71.mp3"
     },
     {
       "id": "s72",
@@ -6230,7 +6230,7 @@
           "end": 3.3
         }
       ],
-      "audio": "audio_swarm_bet/s72.mp3"
+      "audio": "books/swarm-bet/audio/s72.mp3"
     },
     {
       "id": "s73",
@@ -6318,7 +6318,7 @@
           "end": 4.275
         }
       ],
-      "audio": "audio_swarm_bet/s73.mp3"
+      "audio": "books/swarm-bet/audio/s73.mp3"
     },
     {
       "id": "s74",
@@ -6406,7 +6406,7 @@
           "end": 3.675
         }
       ],
-      "audio": "audio_swarm_bet/s74.mp3"
+      "audio": "books/swarm-bet/audio/s74.mp3"
     },
     {
       "id": "s75",
@@ -6504,7 +6504,7 @@
           "end": 3.862
         }
       ],
-      "audio": "audio_swarm_bet/s75.mp3"
+      "audio": "books/swarm-bet/audio/s75.mp3"
     },
     {
       "id": "s76",
@@ -6612,7 +6612,7 @@
           "end": 3.95
         }
       ],
-      "audio": "audio_swarm_bet/s76.mp3"
+      "audio": "books/swarm-bet/audio/s76.mp3"
     },
     {
       "id": "s77",
@@ -6700,7 +6700,7 @@
           "end": 3.275
         }
       ],
-      "audio": "audio_swarm_bet/s77.mp3"
+      "audio": "books/swarm-bet/audio/s77.mp3"
     },
     {
       "id": "s78",
@@ -6788,7 +6788,7 @@
           "end": 3.225
         }
       ],
-      "audio": "audio_swarm_bet/s78.mp3"
+      "audio": "books/swarm-bet/audio/s78.mp3"
     },
     {
       "id": "s79",
@@ -6906,7 +6906,7 @@
           "end": 5.025
         }
       ],
-      "audio": "audio_swarm_bet/s79.mp3"
+      "audio": "books/swarm-bet/audio/s79.mp3"
     },
     {
       "id": "s80",
@@ -6964,7 +6964,7 @@
           "end": 1.688
         }
       ],
-      "audio": "audio_swarm_bet/s80.mp3"
+      "audio": "books/swarm-bet/audio/s80.mp3"
     },
     {
       "id": "s81",
@@ -7002,7 +7002,7 @@
           "end": 1.475
         }
       ],
-      "audio": "audio_swarm_bet/s81.mp3"
+      "audio": "books/swarm-bet/audio/s81.mp3"
     },
     {
       "id": "s82",
@@ -7050,7 +7050,7 @@
           "end": 1.837
         }
       ],
-      "audio": "audio_swarm_bet/s82.mp3"
+      "audio": "books/swarm-bet/audio/s82.mp3"
     },
     {
       "id": "s83",
@@ -7128,15 +7128,15 @@
           "end": 3.062
         }
       ],
-      "audio": "audio_swarm_bet/s83.mp3",
+      "audio": "books/swarm-bet/audio/s83.mp3",
       "illustration": {
         "word": "מַטָּרָה",
         "tr": "по мишеням",
         "caption": "מַטָּרָה",
         "capTr": "matara",
         "mnemonic": "Чтобы запомнить слово «матара» (мишень), представьте, как мама расставила стеклянную ТАРУ (МА-ТАРА) и использует её как МИШЕНИ для стрельбы. Мама с азартом пальбой разбивает каждую ТАРУ вдребезги!",
-        "img": "illustrations_swarm_bet/s83.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s83-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s83.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s83-mnemonic.webp"
       }
     },
     {
@@ -7205,7 +7205,7 @@
           "end": 2.8
         }
       ],
-      "audio": "audio_swarm_bet/s84.mp3"
+      "audio": "books/swarm-bet/audio/s84.mp3"
     },
     {
       "id": "s85",
@@ -7283,7 +7283,7 @@
           "end": 3.975
         }
       ],
-      "audio": "audio_swarm_bet/s85.mp3"
+      "audio": "books/swarm-bet/audio/s85.mp3"
     },
     {
       "id": "s86",
@@ -7321,7 +7321,7 @@
           "end": 1.337
         }
       ],
-      "audio": "audio_swarm_bet/s86.mp3"
+      "audio": "books/swarm-bet/audio/s86.mp3"
     },
     {
       "id": "s87",
@@ -7379,7 +7379,7 @@
           "end": 2.1
         }
       ],
-      "audio": "audio_swarm_bet/s87.mp3"
+      "audio": "books/swarm-bet/audio/s87.mp3"
     },
     {
       "id": "s88",
@@ -7487,7 +7487,7 @@
           "end": 4.338
         }
       ],
-      "audio": "audio_swarm_bet/s88.mp3"
+      "audio": "books/swarm-bet/audio/s88.mp3"
     },
     {
       "id": "s89",
@@ -7555,7 +7555,7 @@
           "end": 2.575
         }
       ],
-      "audio": "audio_swarm_bet/s89.mp3"
+      "audio": "books/swarm-bet/audio/s89.mp3"
     },
     {
       "id": "s90",
@@ -7683,7 +7683,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_swarm_bet/s90.mp3"
+      "audio": "books/swarm-bet/audio/s90.mp3"
     },
     {
       "id": "s91",
@@ -7841,7 +7841,7 @@
           "end": 6.362
         }
       ],
-      "audio": "audio_swarm_bet/s91.mp3"
+      "audio": "books/swarm-bet/audio/s91.mp3"
     },
     {
       "id": "s92",
@@ -7909,7 +7909,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_swarm_bet/s92.mp3"
+      "audio": "books/swarm-bet/audio/s92.mp3"
     },
     {
       "id": "s93",
@@ -7967,7 +7967,7 @@
           "end": 2.45
         }
       ],
-      "audio": "audio_swarm_bet/s93.mp3"
+      "audio": "books/swarm-bet/audio/s93.mp3"
     },
     {
       "id": "s94",
@@ -8035,7 +8035,7 @@
           "end": 2.413
         }
       ],
-      "audio": "audio_swarm_bet/s94.mp3"
+      "audio": "books/swarm-bet/audio/s94.mp3"
     },
     {
       "id": "s95",
@@ -8133,7 +8133,7 @@
           "end": 4.513
         }
       ],
-      "audio": "audio_swarm_bet/s95.mp3"
+      "audio": "books/swarm-bet/audio/s95.mp3"
     },
     {
       "id": "s96",
@@ -8241,7 +8241,7 @@
           "end": 4.575
         }
       ],
-      "audio": "audio_swarm_bet/s96.mp3"
+      "audio": "books/swarm-bet/audio/s96.mp3"
     },
     {
       "id": "s97",
@@ -8309,7 +8309,7 @@
           "end": 2.675
         }
       ],
-      "audio": "audio_swarm_bet/s97.mp3"
+      "audio": "books/swarm-bet/audio/s97.mp3"
     },
     {
       "id": "s98",
@@ -8377,7 +8377,7 @@
           "end": 2.95
         }
       ],
-      "audio": "audio_swarm_bet/s98.mp3"
+      "audio": "books/swarm-bet/audio/s98.mp3"
     },
     {
       "id": "s99",
@@ -8455,7 +8455,7 @@
           "end": 3.763
         }
       ],
-      "audio": "audio_swarm_bet/s99.mp3"
+      "audio": "books/swarm-bet/audio/s99.mp3"
     },
     {
       "id": "s100",
@@ -8593,7 +8593,7 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_swarm_bet/s100.mp3"
+      "audio": "books/swarm-bet/audio/s100.mp3"
     },
     {
       "id": "s101",
@@ -8641,7 +8641,7 @@
           "end": 1.65
         }
       ],
-      "audio": "audio_swarm_bet/s101.mp3"
+      "audio": "books/swarm-bet/audio/s101.mp3"
     },
     {
       "id": "s102",
@@ -8719,7 +8719,7 @@
           "end": 3.138
         }
       ],
-      "audio": "audio_swarm_bet/s102.mp3"
+      "audio": "books/swarm-bet/audio/s102.mp3"
     },
     {
       "id": "s103",
@@ -8817,7 +8817,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_swarm_bet/s103.mp3"
+      "audio": "books/swarm-bet/audio/s103.mp3"
     },
     {
       "id": "s104",
@@ -8885,7 +8885,7 @@
           "end": 2.337
         }
       ],
-      "audio": "audio_swarm_bet/s104.mp3"
+      "audio": "books/swarm-bet/audio/s104.mp3"
     },
     {
       "id": "s105",
@@ -9123,15 +9123,15 @@
           "end": 10.05
         }
       ],
-      "audio": "audio_swarm_bet/s105.mp3",
+      "audio": "books/swarm-bet/audio/s105.mp3",
       "illustration": {
         "word": "אֶבֶן",
         "tr": "камням",
         "caption": "אֶבֶן",
         "capTr": "EVEN",
         "mnemonic": "Слово «эвен» (камень) звучит почти как «Эй, Веня!». Представьте, как парень кричит «Эй, Веня!», прямо перед тем как на него с грохотом падает гигантский причудливый КАМЕНЬ.",
-        "img": "illustrations_swarm_bet/s105.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s105-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s105.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s105-mnemonic.webp"
       }
     },
     {
@@ -9170,7 +9170,7 @@
           "end": 1.762
         }
       ],
-      "audio": "audio_swarm_bet/s106.mp3"
+      "audio": "books/swarm-bet/audio/s106.mp3"
     },
     {
       "id": "s107",
@@ -9258,7 +9258,7 @@
           "end": 2.938
         }
       ],
-      "audio": "audio_swarm_bet/s107.mp3"
+      "audio": "books/swarm-bet/audio/s107.mp3"
     },
     {
       "id": "s108",
@@ -9336,7 +9336,7 @@
           "end": 2.862
         }
       ],
-      "audio": "audio_swarm_bet/s108.mp3"
+      "audio": "books/swarm-bet/audio/s108.mp3"
     },
     {
       "id": "s109",
@@ -9414,7 +9414,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_swarm_bet/s109.mp3"
+      "audio": "books/swarm-bet/audio/s109.mp3"
     },
     {
       "id": "s110",
@@ -9472,7 +9472,7 @@
           "end": 2.1
         }
       ],
-      "audio": "audio_swarm_bet/s110.mp3"
+      "audio": "books/swarm-bet/audio/s110.mp3"
     },
     {
       "id": "s111",
@@ -9550,7 +9550,7 @@
           "end": 3.425
         }
       ],
-      "audio": "audio_swarm_bet/s111.mp3"
+      "audio": "books/swarm-bet/audio/s111.mp3"
     },
     {
       "id": "s112",
@@ -9628,7 +9628,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_swarm_bet/s112.mp3"
+      "audio": "books/swarm-bet/audio/s112.mp3"
     },
     {
       "id": "s113",
@@ -9816,7 +9816,7 @@
           "end": 9.85
         }
       ],
-      "audio": "audio_swarm_bet/s113.mp3"
+      "audio": "books/swarm-bet/audio/s113.mp3"
     },
     {
       "id": "s114",
@@ -9914,7 +9914,7 @@
           "end": 3.775
         }
       ],
-      "audio": "audio_swarm_bet/s114.mp3"
+      "audio": "books/swarm-bet/audio/s114.mp3"
     },
     {
       "id": "s115",
@@ -10012,7 +10012,7 @@
           "end": 3.9
         }
       ],
-      "audio": "audio_swarm_bet/s115.mp3"
+      "audio": "books/swarm-bet/audio/s115.mp3"
     },
     {
       "id": "s116",
@@ -10080,7 +10080,7 @@
           "end": 2.712
         }
       ],
-      "audio": "audio_swarm_bet/s116.mp3"
+      "audio": "books/swarm-bet/audio/s116.mp3"
     },
     {
       "id": "s117",
@@ -10208,7 +10208,7 @@
           "end": 5.838
         }
       ],
-      "audio": "audio_swarm_bet/s117.mp3"
+      "audio": "books/swarm-bet/audio/s117.mp3"
     },
     {
       "id": "s118",
@@ -10286,7 +10286,7 @@
           "end": 3.487
         }
       ],
-      "audio": "audio_swarm_bet/s118.mp3"
+      "audio": "books/swarm-bet/audio/s118.mp3"
     },
     {
       "id": "s119",
@@ -10364,7 +10364,7 @@
           "end": 2.638
         }
       ],
-      "audio": "audio_swarm_bet/s119.mp3"
+      "audio": "books/swarm-bet/audio/s119.mp3"
     },
     {
       "id": "s120",
@@ -10502,7 +10502,7 @@
           "end": 4.662
         }
       ],
-      "audio": "audio_swarm_bet/s120.mp3"
+      "audio": "books/swarm-bet/audio/s120.mp3"
     },
     {
       "id": "s121",
@@ -10580,7 +10580,7 @@
           "end": 2.688
         }
       ],
-      "audio": "audio_swarm_bet/s121.mp3"
+      "audio": "books/swarm-bet/audio/s121.mp3"
     },
     {
       "id": "s122",
@@ -10648,7 +10648,7 @@
           "end": 2.737
         }
       ],
-      "audio": "audio_swarm_bet/s122.mp3"
+      "audio": "books/swarm-bet/audio/s122.mp3"
     },
     {
       "id": "s123",
@@ -10736,7 +10736,7 @@
           "end": 4.312
         }
       ],
-      "audio": "audio_swarm_bet/s123.mp3"
+      "audio": "books/swarm-bet/audio/s123.mp3"
     },
     {
       "id": "s124",
@@ -10814,15 +10814,15 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_swarm_bet/s124.mp3",
+      "audio": "books/swarm-bet/audio/s124.mp3",
       "illustration": {
         "word": "מוּצָב",
         "tr": "этот пост",
         "caption": "מוּצָב",
         "capTr": "mutzav",
         "mnemonic": "Созвучие: «МУХА ЦАП» — муцав (מוּצָב — блокпост). Представьте, как гигантская муха делает хищное «ЦАП!» и уносит в лапах целый военный блокпост прямо в небо. Испуганные солдаты с выпученными глазами вываливаются из окон, пока муха-цап грабит их пост.",
-        "img": "illustrations_swarm_bet/s124.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s124-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s124.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s124-mnemonic.webp"
       }
     },
     {
@@ -10891,7 +10891,7 @@
           "end": 2.3
         }
       ],
-      "audio": "audio_swarm_bet/s125.mp3"
+      "audio": "books/swarm-bet/audio/s125.mp3"
     },
     {
       "id": "s126",
@@ -11019,7 +11019,7 @@
           "end": 5.263
         }
       ],
-      "audio": "audio_swarm_bet/s126.mp3"
+      "audio": "books/swarm-bet/audio/s126.mp3"
     },
     {
       "id": "s127",
@@ -11157,7 +11157,7 @@
           "end": 5.45
         }
       ],
-      "audio": "audio_swarm_bet/s127.mp3"
+      "audio": "books/swarm-bet/audio/s127.mp3"
     },
     {
       "id": "s128",
@@ -11245,7 +11245,7 @@
           "end": 3.55
         }
       ],
-      "audio": "audio_swarm_bet/s128.mp3"
+      "audio": "books/swarm-bet/audio/s128.mp3"
     },
     {
       "id": "s129",
@@ -11323,7 +11323,7 @@
           "end": 3.25
         }
       ],
-      "audio": "audio_swarm_bet/s129.mp3"
+      "audio": "books/swarm-bet/audio/s129.mp3"
     },
     {
       "id": "s130",
@@ -11391,7 +11391,7 @@
           "end": 2.763
         }
       ],
-      "audio": "audio_swarm_bet/s130.mp3"
+      "audio": "books/swarm-bet/audio/s130.mp3"
     },
     {
       "id": "s131",
@@ -11479,7 +11479,7 @@
           "end": 3.362
         }
       ],
-      "audio": "audio_swarm_bet/s131.mp3"
+      "audio": "books/swarm-bet/audio/s131.mp3"
     },
     {
       "id": "s132",
@@ -11547,7 +11547,7 @@
           "end": 2.25
         }
       ],
-      "audio": "audio_swarm_bet/s132.mp3"
+      "audio": "books/swarm-bet/audio/s132.mp3"
     },
     {
       "id": "s133",
@@ -11625,7 +11625,7 @@
           "end": 3.062
         }
       ],
-      "audio": "audio_swarm_bet/s133.mp3"
+      "audio": "books/swarm-bet/audio/s133.mp3"
     },
     {
       "id": "s134",
@@ -11673,7 +11673,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_swarm_bet/s134.mp3"
+      "audio": "books/swarm-bet/audio/s134.mp3"
     },
     {
       "id": "s135",
@@ -11731,7 +11731,7 @@
           "end": 2.538
         }
       ],
-      "audio": "audio_swarm_bet/s135.mp3"
+      "audio": "books/swarm-bet/audio/s135.mp3"
     },
     {
       "id": "s136",
@@ -11789,7 +11789,7 @@
           "end": 2.638
         }
       ],
-      "audio": "audio_swarm_bet/s136.mp3"
+      "audio": "books/swarm-bet/audio/s136.mp3"
     },
     {
       "id": "s137",
@@ -11877,7 +11877,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_swarm_bet/s137.mp3"
+      "audio": "books/swarm-bet/audio/s137.mp3"
     },
     {
       "id": "s138",
@@ -11965,7 +11965,7 @@
           "end": 3.375
         }
       ],
-      "audio": "audio_swarm_bet/s138.mp3"
+      "audio": "books/swarm-bet/audio/s138.mp3"
     },
     {
       "id": "s139",
@@ -12033,7 +12033,7 @@
           "end": 2.75
         }
       ],
-      "audio": "audio_swarm_bet/s139.mp3"
+      "audio": "books/swarm-bet/audio/s139.mp3"
     },
     {
       "id": "s140",
@@ -12081,7 +12081,7 @@
           "end": 1.75
         }
       ],
-      "audio": "audio_swarm_bet/s140.mp3"
+      "audio": "books/swarm-bet/audio/s140.mp3"
     },
     {
       "id": "s141",
@@ -12119,7 +12119,7 @@
           "end": 1.3
         }
       ],
-      "audio": "audio_swarm_bet/s141.mp3"
+      "audio": "books/swarm-bet/audio/s141.mp3"
     },
     {
       "id": "s142",
@@ -12177,7 +12177,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_swarm_bet/s142.mp3"
+      "audio": "books/swarm-bet/audio/s142.mp3"
     },
     {
       "id": "s143",
@@ -12245,7 +12245,7 @@
           "end": 2.712
         }
       ],
-      "audio": "audio_swarm_bet/s143.mp3"
+      "audio": "books/swarm-bet/audio/s143.mp3"
     },
     {
       "id": "s144",
@@ -12343,7 +12343,7 @@
           "end": 4.237
         }
       ],
-      "audio": "audio_swarm_bet/s144.mp3"
+      "audio": "books/swarm-bet/audio/s144.mp3"
     },
     {
       "id": "s145",
@@ -12451,7 +12451,7 @@
           "end": 4.1
         }
       ],
-      "audio": "audio_swarm_bet/s145.mp3"
+      "audio": "books/swarm-bet/audio/s145.mp3"
     },
     {
       "id": "s146",
@@ -12569,15 +12569,15 @@
           "end": 4.075
         }
       ],
-      "audio": "audio_swarm_bet/s146.mp3",
+      "audio": "books/swarm-bet/audio/s146.mp3",
       "illustration": {
         "word": "רוֹבֶה",
         "tr": "винтовку",
         "caption": "רוֹבֶה",
         "capTr": "roveh",
         "mnemonic": "Представьте, что из вашей ВИНТОВКИ вместо пуль с грохотом вылетает космический РОВЕР (ровэ)! Вездеход выстреливает прямо из ствола и стремительно мчится во врагов.",
-        "img": "illustrations_swarm_bet/s146.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s146-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s146.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s146-mnemonic.webp"
       }
     },
     {
@@ -12656,7 +12656,7 @@
           "end": 3.737
         }
       ],
-      "audio": "audio_swarm_bet/s147.mp3"
+      "audio": "books/swarm-bet/audio/s147.mp3"
     },
     {
       "id": "s148",
@@ -12734,7 +12734,7 @@
           "end": 2.85
         }
       ],
-      "audio": "audio_swarm_bet/s148.mp3"
+      "audio": "books/swarm-bet/audio/s148.mp3"
     },
     {
       "id": "s149",
@@ -12802,7 +12802,7 @@
           "end": 3.375
         }
       ],
-      "audio": "audio_swarm_bet/s149.mp3"
+      "audio": "books/swarm-bet/audio/s149.mp3"
     },
     {
       "id": "s150",
@@ -12890,7 +12890,7 @@
           "end": 3.2
         }
       ],
-      "audio": "audio_swarm_bet/s150.mp3"
+      "audio": "books/swarm-bet/audio/s150.mp3"
     },
     {
       "id": "s151",
@@ -12948,7 +12948,7 @@
           "end": 3.25
         }
       ],
-      "audio": "audio_swarm_bet/s151.mp3"
+      "audio": "books/swarm-bet/audio/s151.mp3"
     },
     {
       "id": "s152",
@@ -13056,7 +13056,7 @@
           "end": 5.688
         }
       ],
-      "audio": "audio_swarm_bet/s152.mp3"
+      "audio": "books/swarm-bet/audio/s152.mp3"
     },
     {
       "id": "s153",
@@ -13144,7 +13144,7 @@
           "end": 4.175
         }
       ],
-      "audio": "audio_swarm_bet/s153.mp3"
+      "audio": "books/swarm-bet/audio/s153.mp3"
     },
     {
       "id": "s154",
@@ -13212,7 +13212,7 @@
           "end": 2.413
         }
       ],
-      "audio": "audio_swarm_bet/s154.mp3"
+      "audio": "books/swarm-bet/audio/s154.mp3"
     },
     {
       "id": "s155",
@@ -13290,7 +13290,7 @@
           "end": 3.087
         }
       ],
-      "audio": "audio_swarm_bet/s155.mp3"
+      "audio": "books/swarm-bet/audio/s155.mp3"
     },
     {
       "id": "s156",
@@ -13418,7 +13418,7 @@
           "end": 4.338
         }
       ],
-      "audio": "audio_swarm_bet/s156.mp3"
+      "audio": "books/swarm-bet/audio/s156.mp3"
     },
     {
       "id": "s157",
@@ -13506,7 +13506,7 @@
           "end": 4.15
         }
       ],
-      "audio": "audio_swarm_bet/s157.mp3"
+      "audio": "books/swarm-bet/audio/s157.mp3"
     },
     {
       "id": "s158",
@@ -13584,7 +13584,7 @@
           "end": 3.575
         }
       ],
-      "audio": "audio_swarm_bet/s158.mp3"
+      "audio": "books/swarm-bet/audio/s158.mp3"
     },
     {
       "id": "s159",
@@ -13672,7 +13672,7 @@
           "end": 3.225
         }
       ],
-      "audio": "audio_swarm_bet/s159.mp3"
+      "audio": "books/swarm-bet/audio/s159.mp3"
     },
     {
       "id": "s160",
@@ -13760,7 +13760,7 @@
           "end": 4.0
         }
       ],
-      "audio": "audio_swarm_bet/s160.mp3"
+      "audio": "books/swarm-bet/audio/s160.mp3"
     },
     {
       "id": "s161",
@@ -13838,7 +13838,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_swarm_bet/s161.mp3"
+      "audio": "books/swarm-bet/audio/s161.mp3"
     },
     {
       "id": "s162",
@@ -13926,7 +13926,7 @@
           "end": 4.263
         }
       ],
-      "audio": "audio_swarm_bet/s162.mp3"
+      "audio": "books/swarm-bet/audio/s162.mp3"
     },
     {
       "id": "s163",
@@ -14024,7 +14024,7 @@
           "end": 3.725
         }
       ],
-      "audio": "audio_swarm_bet/s163.mp3"
+      "audio": "books/swarm-bet/audio/s163.mp3"
     },
     {
       "id": "s164",
@@ -14072,15 +14072,15 @@
           "end": 2.575
         }
       ],
-      "audio": "audio_swarm_bet/s164.mp3",
+      "audio": "books/swarm-bet/audio/s164.mp3",
       "illustration": {
         "word": "יְצוּר",
         "tr": "существа",
         "caption": "יְצוּר",
         "capTr": "yetsur",
         "mnemonic": "Слово «ецур» (существо) созвучно фразе «яйцо урчит». Представьте, как на столе огромное яйцо громко урчит, трескается, и из него выпрыгивают смешные рогатые существа с гармошками, устраивая дикий танец.",
-        "img": "illustrations_swarm_bet/s164.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s164-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s164.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s164-mnemonic.webp"
       }
     },
     {
@@ -14179,7 +14179,7 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_swarm_bet/s165.mp3"
+      "audio": "books/swarm-bet/audio/s165.mp3"
     },
     {
       "id": "s166",
@@ -14227,7 +14227,7 @@
           "end": 2.6
         }
       ],
-      "audio": "audio_swarm_bet/s166.mp3"
+      "audio": "books/swarm-bet/audio/s166.mp3"
     },
     {
       "id": "s167",
@@ -14295,7 +14295,7 @@
           "end": 2.925
         }
       ],
-      "audio": "audio_swarm_bet/s167.mp3"
+      "audio": "books/swarm-bet/audio/s167.mp3"
     },
     {
       "id": "s168",
@@ -14343,7 +14343,7 @@
           "end": 1.913
         }
       ],
-      "audio": "audio_swarm_bet/s168.mp3"
+      "audio": "books/swarm-bet/audio/s168.mp3"
     },
     {
       "id": "s169",
@@ -14411,7 +14411,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_swarm_bet/s169.mp3"
+      "audio": "books/swarm-bet/audio/s169.mp3"
     },
     {
       "id": "s170",
@@ -14499,7 +14499,7 @@
           "end": 3.2
         }
       ],
-      "audio": "audio_swarm_bet/s170.mp3"
+      "audio": "books/swarm-bet/audio/s170.mp3"
     },
     {
       "id": "s171",
@@ -14617,7 +14617,7 @@
           "end": 4.612
         }
       ],
-      "audio": "audio_swarm_bet/s171.mp3"
+      "audio": "books/swarm-bet/audio/s171.mp3"
     },
     {
       "id": "s172",
@@ -14695,7 +14695,7 @@
           "end": 3.275
         }
       ],
-      "audio": "audio_swarm_bet/s172.mp3"
+      "audio": "books/swarm-bet/audio/s172.mp3"
     },
     {
       "id": "s173",
@@ -14793,7 +14793,7 @@
           "end": 3.725
         }
       ],
-      "audio": "audio_swarm_bet/s173.mp3"
+      "audio": "books/swarm-bet/audio/s173.mp3"
     },
     {
       "id": "s174",
@@ -14871,7 +14871,7 @@
           "end": 3.05
         }
       ],
-      "audio": "audio_swarm_bet/s174.mp3"
+      "audio": "books/swarm-bet/audio/s174.mp3"
     },
     {
       "id": "s175",
@@ -14929,7 +14929,7 @@
           "end": 2.263
         }
       ],
-      "audio": "audio_swarm_bet/s175.mp3"
+      "audio": "books/swarm-bet/audio/s175.mp3"
     },
     {
       "id": "s176",
@@ -14987,7 +14987,7 @@
           "end": 2.513
         }
       ],
-      "audio": "audio_swarm_bet/s176.mp3"
+      "audio": "books/swarm-bet/audio/s176.mp3"
     },
     {
       "id": "s177",
@@ -15095,7 +15095,7 @@
           "end": 3.888
         }
       ],
-      "audio": "audio_swarm_bet/s177.mp3"
+      "audio": "books/swarm-bet/audio/s177.mp3"
     },
     {
       "id": "s178",
@@ -15173,7 +15173,7 @@
           "end": 3.138
         }
       ],
-      "audio": "audio_swarm_bet/s178.mp3"
+      "audio": "books/swarm-bet/audio/s178.mp3"
     },
     {
       "id": "s179",
@@ -15221,7 +15221,7 @@
           "end": 2.9
         }
       ],
-      "audio": "audio_swarm_bet/s179.mp3"
+      "audio": "books/swarm-bet/audio/s179.mp3"
     },
     {
       "id": "s180",
@@ -15309,7 +15309,7 @@
           "end": 3.175
         }
       ],
-      "audio": "audio_swarm_bet/s180.mp3"
+      "audio": "books/swarm-bet/audio/s180.mp3"
     },
     {
       "id": "s181",
@@ -15377,15 +15377,15 @@
           "end": 3.112
         }
       ],
-      "audio": "audio_swarm_bet/s181.mp3",
+      "audio": "books/swarm-bet/audio/s181.mp3",
       "illustration": {
         "word": "יְצוּר",
         "tr": "в тварь",
         "caption": "יְצוּר",
         "capTr": "yeTSUR",
         "mnemonic": "Слово «ецур» (тварь, существо) созвучно фразе «ЕЩЁ БУР!». Представьте рогатую космическую тварь, которая с аппетитом грызёт строительный инструмент и с бешеными глазами требует подать ей ещё бур.",
-        "img": "illustrations_swarm_bet/s181.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s181-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s181.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s181-mnemonic.webp"
       }
     },
     {
@@ -15464,7 +15464,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_swarm_bet/s182.mp3"
+      "audio": "books/swarm-bet/audio/s182.mp3"
     },
     {
       "id": "s183",
@@ -15562,7 +15562,7 @@
           "end": 4.125
         }
       ],
-      "audio": "audio_swarm_bet/s183.mp3"
+      "audio": "books/swarm-bet/audio/s183.mp3"
     },
     {
       "id": "s184",
@@ -15620,7 +15620,7 @@
           "end": 2.663
         }
       ],
-      "audio": "audio_swarm_bet/s184.mp3"
+      "audio": "books/swarm-bet/audio/s184.mp3"
     },
     {
       "id": "s185",
@@ -15678,7 +15678,7 @@
           "end": 2.45
         }
       ],
-      "audio": "audio_swarm_bet/s185.mp3"
+      "audio": "books/swarm-bet/audio/s185.mp3"
     },
     {
       "id": "s186",
@@ -15796,7 +15796,7 @@
           "end": 5.138
         }
       ],
-      "audio": "audio_swarm_bet/s186.mp3"
+      "audio": "books/swarm-bet/audio/s186.mp3"
     },
     {
       "id": "s187",
@@ -15834,7 +15834,7 @@
           "end": 2.1
         }
       ],
-      "audio": "audio_swarm_bet/s187.mp3"
+      "audio": "books/swarm-bet/audio/s187.mp3"
     },
     {
       "id": "s188",
@@ -15872,7 +15872,7 @@
           "end": 1.938
         }
       ],
-      "audio": "audio_swarm_bet/s188.mp3"
+      "audio": "books/swarm-bet/audio/s188.mp3"
     },
     {
       "id": "s189",
@@ -15980,7 +15980,7 @@
           "end": 3.8
         }
       ],
-      "audio": "audio_swarm_bet/s189.mp3"
+      "audio": "books/swarm-bet/audio/s189.mp3"
     },
     {
       "id": "s190",
@@ -16048,7 +16048,7 @@
           "end": 2.6
         }
       ],
-      "audio": "audio_swarm_bet/s190.mp3"
+      "audio": "books/swarm-bet/audio/s190.mp3"
     },
     {
       "id": "s191",
@@ -16166,7 +16166,7 @@
           "end": 4.5
         }
       ],
-      "audio": "audio_swarm_bet/s191.mp3"
+      "audio": "books/swarm-bet/audio/s191.mp3"
     },
     {
       "id": "s192",
@@ -16304,7 +16304,7 @@
           "end": 5.05
         }
       ],
-      "audio": "audio_swarm_bet/s192.mp3"
+      "audio": "books/swarm-bet/audio/s192.mp3"
     },
     {
       "id": "s193",
@@ -16402,7 +16402,7 @@
           "end": 2.913
         }
       ],
-      "audio": "audio_swarm_bet/s193.mp3"
+      "audio": "books/swarm-bet/audio/s193.mp3"
     },
     {
       "id": "s194",
@@ -16480,7 +16480,7 @@
           "end": 4.0
         }
       ],
-      "audio": "audio_swarm_bet/s194.mp3"
+      "audio": "books/swarm-bet/audio/s194.mp3"
     },
     {
       "id": "s195",
@@ -16578,7 +16578,7 @@
           "end": 4.625
         }
       ],
-      "audio": "audio_swarm_bet/s195.mp3"
+      "audio": "books/swarm-bet/audio/s195.mp3"
     },
     {
       "id": "s196",
@@ -16676,7 +16676,7 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_swarm_bet/s196.mp3"
+      "audio": "books/swarm-bet/audio/s196.mp3"
     },
     {
       "id": "s197",
@@ -16714,7 +16714,7 @@
           "end": 1.925
         }
       ],
-      "audio": "audio_swarm_bet/s197.mp3"
+      "audio": "books/swarm-bet/audio/s197.mp3"
     },
     {
       "id": "s198",
@@ -16772,7 +16772,7 @@
           "end": 2.337
         }
       ],
-      "audio": "audio_swarm_bet/s198.mp3"
+      "audio": "books/swarm-bet/audio/s198.mp3"
     },
     {
       "id": "s199",
@@ -16830,7 +16830,7 @@
           "end": 2.237
         }
       ],
-      "audio": "audio_swarm_bet/s199.mp3"
+      "audio": "books/swarm-bet/audio/s199.mp3"
     },
     {
       "id": "s200",
@@ -16998,7 +16998,7 @@
           "end": 6.287
         }
       ],
-      "audio": "audio_swarm_bet/s200.mp3"
+      "audio": "books/swarm-bet/audio/s200.mp3"
     },
     {
       "id": "s201",
@@ -17076,15 +17076,15 @@
           "end": 3.737
         }
       ],
-      "audio": "audio_swarm_bet/s201.mp3",
+      "audio": "books/swarm-bet/audio/s201.mp3",
       "illustration": {
         "word": "שֶׁקֶט",
         "tr": "и тишина",
         "caption": "שֶׁקֶט",
         "capTr": "Sheket",
         "mnemonic": "Слово «ШЕКЕТ» (тишина) созвучно со словом «ШЕКЕЛЬ». Представьте огромный живой ШЕКЕЛЬ, который с суровым видом прикладывает палец к губам, призывая к абсолютной ТИШИНЕ. От его взгляда даже громкая роковая группа мгновенно затихает в ужасе.",
-        "img": "illustrations_swarm_bet/s201.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s201-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s201.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s201-mnemonic.webp"
       }
     },
     {
@@ -17193,7 +17193,7 @@
           "end": 4.45
         }
       ],
-      "audio": "audio_swarm_bet/s202.mp3"
+      "audio": "books/swarm-bet/audio/s202.mp3"
     },
     {
       "id": "s203",
@@ -17281,7 +17281,7 @@
           "end": 3.3
         }
       ],
-      "audio": "audio_swarm_bet/s203.mp3"
+      "audio": "books/swarm-bet/audio/s203.mp3"
     },
     {
       "id": "s204",
@@ -17359,7 +17359,7 @@
           "end": 3.312
         }
       ],
-      "audio": "audio_swarm_bet/s204.mp3"
+      "audio": "books/swarm-bet/audio/s204.mp3"
     },
     {
       "id": "s205",
@@ -17437,7 +17437,7 @@
           "end": 3.425
         }
       ],
-      "audio": "audio_swarm_bet/s205.mp3"
+      "audio": "books/swarm-bet/audio/s205.mp3"
     },
     {
       "id": "s206",
@@ -17525,7 +17525,7 @@
           "end": 3.85
         }
       ],
-      "audio": "audio_swarm_bet/s206.mp3"
+      "audio": "books/swarm-bet/audio/s206.mp3"
     },
     {
       "id": "s207",
@@ -17583,7 +17583,7 @@
           "end": 2.612
         }
       ],
-      "audio": "audio_swarm_bet/s207.mp3"
+      "audio": "books/swarm-bet/audio/s207.mp3"
     },
     {
       "id": "s208",
@@ -17691,7 +17691,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_swarm_bet/s208.mp3"
+      "audio": "books/swarm-bet/audio/s208.mp3"
     },
     {
       "id": "s209",
@@ -17779,7 +17779,7 @@
           "end": 3.538
         }
       ],
-      "audio": "audio_swarm_bet/s209.mp3"
+      "audio": "books/swarm-bet/audio/s209.mp3"
     },
     {
       "id": "s210",
@@ -17837,7 +17837,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_swarm_bet/s210.mp3"
+      "audio": "books/swarm-bet/audio/s210.mp3"
     },
     {
       "id": "s211",
@@ -17915,7 +17915,7 @@
           "end": 2.888
         }
       ],
-      "audio": "audio_swarm_bet/s211.mp3"
+      "audio": "books/swarm-bet/audio/s211.mp3"
     },
     {
       "id": "s212",
@@ -18003,7 +18003,7 @@
           "end": 3.212
         }
       ],
-      "audio": "audio_swarm_bet/s212.mp3"
+      "audio": "books/swarm-bet/audio/s212.mp3"
     },
     {
       "id": "s213",
@@ -18121,7 +18121,7 @@
           "end": 4.7
         }
       ],
-      "audio": "audio_swarm_bet/s213.mp3"
+      "audio": "books/swarm-bet/audio/s213.mp3"
     },
     {
       "id": "s214",
@@ -18209,7 +18209,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_swarm_bet/s214.mp3"
+      "audio": "books/swarm-bet/audio/s214.mp3"
     },
     {
       "id": "s215",
@@ -18277,7 +18277,7 @@
           "end": 3.175
         }
       ],
-      "audio": "audio_swarm_bet/s215.mp3"
+      "audio": "books/swarm-bet/audio/s215.mp3"
     },
     {
       "id": "s216",
@@ -18305,7 +18305,7 @@
           "end": 1.175
         }
       ],
-      "audio": "audio_swarm_bet/s216.mp3"
+      "audio": "books/swarm-bet/audio/s216.mp3"
     },
     {
       "id": "s217",
@@ -18393,7 +18393,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_swarm_bet/s217.mp3"
+      "audio": "books/swarm-bet/audio/s217.mp3"
     },
     {
       "id": "s218",
@@ -18471,7 +18471,7 @@
           "end": 3.075
         }
       ],
-      "audio": "audio_swarm_bet/s218.mp3"
+      "audio": "books/swarm-bet/audio/s218.mp3"
     },
     {
       "id": "s219",
@@ -18569,7 +18569,7 @@
           "end": 4.287
         }
       ],
-      "audio": "audio_swarm_bet/s219.mp3"
+      "audio": "books/swarm-bet/audio/s219.mp3"
     },
     {
       "id": "s220",
@@ -18617,7 +18617,7 @@
           "end": 2.013
         }
       ],
-      "audio": "audio_swarm_bet/s220.mp3"
+      "audio": "books/swarm-bet/audio/s220.mp3"
     },
     {
       "id": "s221",
@@ -18695,7 +18695,7 @@
           "end": 3.125
         }
       ],
-      "audio": "audio_swarm_bet/s221.mp3"
+      "audio": "books/swarm-bet/audio/s221.mp3"
     },
     {
       "id": "s222",
@@ -18773,7 +18773,7 @@
           "end": 3.175
         }
       ],
-      "audio": "audio_swarm_bet/s222.mp3"
+      "audio": "books/swarm-bet/audio/s222.mp3"
     },
     {
       "id": "s223",
@@ -18851,7 +18851,7 @@
           "end": 2.725
         }
       ],
-      "audio": "audio_swarm_bet/s223.mp3"
+      "audio": "books/swarm-bet/audio/s223.mp3"
     },
     {
       "id": "s224",
@@ -18929,7 +18929,7 @@
           "end": 3.263
         }
       ],
-      "audio": "audio_swarm_bet/s224.mp3"
+      "audio": "books/swarm-bet/audio/s224.mp3"
     },
     {
       "id": "s225",
@@ -19007,7 +19007,7 @@
           "end": 2.675
         }
       ],
-      "audio": "audio_swarm_bet/s225.mp3"
+      "audio": "books/swarm-bet/audio/s225.mp3"
     },
     {
       "id": "s226",
@@ -19055,7 +19055,7 @@
           "end": 2.025
         }
       ],
-      "audio": "audio_swarm_bet/s226.mp3"
+      "audio": "books/swarm-bet/audio/s226.mp3"
     },
     {
       "id": "s227",
@@ -19143,7 +19143,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_swarm_bet/s227.mp3"
+      "audio": "books/swarm-bet/audio/s227.mp3"
     },
     {
       "id": "s228",
@@ -19211,7 +19211,7 @@
           "end": 2.825
         }
       ],
-      "audio": "audio_swarm_bet/s228.mp3"
+      "audio": "books/swarm-bet/audio/s228.mp3"
     },
     {
       "id": "s229",
@@ -19269,7 +19269,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_swarm_bet/s229.mp3"
+      "audio": "books/swarm-bet/audio/s229.mp3"
     },
     {
       "id": "s230",
@@ -19347,7 +19347,7 @@
           "end": 3.587
         }
       ],
-      "audio": "audio_swarm_bet/s230.mp3"
+      "audio": "books/swarm-bet/audio/s230.mp3"
     },
     {
       "id": "s231",
@@ -19415,7 +19415,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_swarm_bet/s231.mp3"
+      "audio": "books/swarm-bet/audio/s231.mp3"
     },
     {
       "id": "s232",
@@ -19493,15 +19493,15 @@
           "end": 3.587
         }
       ],
-      "audio": "audio_swarm_bet/s232.mp3",
+      "audio": "books/swarm-bet/audio/s232.mp3",
       "illustration": {
         "word": "תַּחֲנָה",
         "tr": "станция",
         "caption": "תַּחֲנָה",
         "capTr": "Takhana",
         "mnemonic": "На космической СТАНЦИИ диспетчер в панике кричит: «Ну всё, этой СТАНЦИИ ТА ХАНА!», когда гигантский космический молот врезается в корпус. Станция разлетается на мелкие кусочки, а робот-оператор от ужаса схватился за металлическую голову.",
-        "img": "illustrations_swarm_bet/s232.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s232-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s232.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s232-mnemonic.webp"
       }
     },
     {
@@ -19550,7 +19550,7 @@
           "end": 1.35
         }
       ],
-      "audio": "audio_swarm_bet/s233.mp3"
+      "audio": "books/swarm-bet/audio/s233.mp3"
     },
     {
       "id": "s234",
@@ -19638,7 +19638,7 @@
           "end": 3.325
         }
       ],
-      "audio": "audio_swarm_bet/s234.mp3"
+      "audio": "books/swarm-bet/audio/s234.mp3"
     },
     {
       "id": "s235",
@@ -19726,7 +19726,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_swarm_bet/s235.mp3"
+      "audio": "books/swarm-bet/audio/s235.mp3"
     },
     {
       "id": "s236",
@@ -19824,7 +19824,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_swarm_bet/s236.mp3"
+      "audio": "books/swarm-bet/audio/s236.mp3"
     },
     {
       "id": "s237",
@@ -19912,7 +19912,7 @@
           "end": 3.275
         }
       ],
-      "audio": "audio_swarm_bet/s237.mp3"
+      "audio": "books/swarm-bet/audio/s237.mp3"
     },
     {
       "id": "s238",
@@ -20000,7 +20000,7 @@
           "end": 3.862
         }
       ],
-      "audio": "audio_swarm_bet/s238.mp3"
+      "audio": "books/swarm-bet/audio/s238.mp3"
     },
     {
       "id": "s239",
@@ -20088,7 +20088,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_swarm_bet/s239.mp3"
+      "audio": "books/swarm-bet/audio/s239.mp3"
     },
     {
       "id": "s240",
@@ -20146,7 +20146,7 @@
           "end": 2.388
         }
       ],
-      "audio": "audio_swarm_bet/s240.mp3"
+      "audio": "books/swarm-bet/audio/s240.mp3"
     },
     {
       "id": "s241",
@@ -20224,7 +20224,7 @@
           "end": 3.55
         }
       ],
-      "audio": "audio_swarm_bet/s241.mp3"
+      "audio": "books/swarm-bet/audio/s241.mp3"
     },
     {
       "id": "s242",
@@ -20272,7 +20272,7 @@
           "end": 2.038
         }
       ],
-      "audio": "audio_swarm_bet/s242.mp3"
+      "audio": "books/swarm-bet/audio/s242.mp3"
     },
     {
       "id": "s243",
@@ -20330,7 +20330,7 @@
           "end": 2.575
         }
       ],
-      "audio": "audio_swarm_bet/s243.mp3"
+      "audio": "books/swarm-bet/audio/s243.mp3"
     },
     {
       "id": "s244",
@@ -20388,7 +20388,7 @@
           "end": 2.675
         }
       ],
-      "audio": "audio_swarm_bet/s244.mp3"
+      "audio": "books/swarm-bet/audio/s244.mp3"
     },
     {
       "id": "s245",
@@ -20496,7 +20496,7 @@
           "end": 4.0
         }
       ],
-      "audio": "audio_swarm_bet/s245.mp3"
+      "audio": "books/swarm-bet/audio/s245.mp3"
     },
     {
       "id": "s246",
@@ -20584,15 +20584,15 @@
           "end": 3.375
         }
       ],
-      "audio": "audio_swarm_bet/s246.mp3",
+      "audio": "books/swarm-bet/audio/s246.mp3",
       "illustration": {
         "word": "מַחְסָנִית",
         "tr": "магазины",
         "caption": "מַחְסָנִית",
         "capTr": "makhsanit",
         "mnemonic": "Запоминаем через созвучие: МАХ САНЕЙ и НИТЬ. Представьте, как от резкого МАХА САНЕЙ над головой пролетает волшебная НИТЬ, на которую нанизаны тяжёлые патронные МАГАЗИНЫ. Боец с открытым ртом ловит эти магазины прямо с нити!",
-        "img": "illustrations_swarm_bet/s246.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s246-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s246.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s246-mnemonic.webp"
       }
     },
     {
@@ -20681,7 +20681,7 @@
           "end": 3.075
         }
       ],
-      "audio": "audio_swarm_bet/s247.mp3"
+      "audio": "books/swarm-bet/audio/s247.mp3"
     },
     {
       "id": "s248",
@@ -20809,7 +20809,7 @@
           "end": 4.263
         }
       ],
-      "audio": "audio_swarm_bet/s248.mp3"
+      "audio": "books/swarm-bet/audio/s248.mp3"
     },
     {
       "id": "s249",
@@ -20897,7 +20897,7 @@
           "end": 4.088
         }
       ],
-      "audio": "audio_swarm_bet/s249.mp3"
+      "audio": "books/swarm-bet/audio/s249.mp3"
     },
     {
       "id": "s250",
@@ -20955,7 +20955,7 @@
           "end": 2.8
         }
       ],
-      "audio": "audio_swarm_bet/s250.mp3"
+      "audio": "books/swarm-bet/audio/s250.mp3"
     },
     {
       "id": "s251",
@@ -20973,7 +20973,7 @@
           "end": 1.05
         }
       ],
-      "audio": "audio_swarm_bet/s251.mp3"
+      "audio": "books/swarm-bet/audio/s251.mp3"
     },
     {
       "id": "s252",
@@ -21081,7 +21081,7 @@
           "end": 4.2
         }
       ],
-      "audio": "audio_swarm_bet/s252.mp3"
+      "audio": "books/swarm-bet/audio/s252.mp3"
     },
     {
       "id": "s253",
@@ -21149,7 +21149,7 @@
           "end": 2.75
         }
       ],
-      "audio": "audio_swarm_bet/s253.mp3"
+      "audio": "books/swarm-bet/audio/s253.mp3"
     },
     {
       "id": "s254",
@@ -21207,7 +21207,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_swarm_bet/s254.mp3"
+      "audio": "books/swarm-bet/audio/s254.mp3"
     },
     {
       "id": "s255",
@@ -21335,7 +21335,7 @@
           "end": 5.938
         }
       ],
-      "audio": "audio_swarm_bet/s255.mp3"
+      "audio": "books/swarm-bet/audio/s255.mp3"
     },
     {
       "id": "s256",
@@ -21403,7 +21403,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_swarm_bet/s256.mp3"
+      "audio": "books/swarm-bet/audio/s256.mp3"
     },
     {
       "id": "s257",
@@ -21511,7 +21511,7 @@
           "end": 4.475
         }
       ],
-      "audio": "audio_swarm_bet/s257.mp3"
+      "audio": "books/swarm-bet/audio/s257.mp3"
     },
     {
       "id": "s258",
@@ -21599,7 +21599,7 @@
           "end": 3.95
         }
       ],
-      "audio": "audio_swarm_bet/s258.mp3"
+      "audio": "books/swarm-bet/audio/s258.mp3"
     },
     {
       "id": "s259",
@@ -21717,7 +21717,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_swarm_bet/s259.mp3"
+      "audio": "books/swarm-bet/audio/s259.mp3"
     },
     {
       "id": "s260",
@@ -21765,7 +21765,7 @@
           "end": 2.188
         }
       ],
-      "audio": "audio_swarm_bet/s260.mp3"
+      "audio": "books/swarm-bet/audio/s260.mp3"
     },
     {
       "id": "s261",
@@ -21873,7 +21873,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_swarm_bet/s261.mp3"
+      "audio": "books/swarm-bet/audio/s261.mp3"
     },
     {
       "id": "s262",
@@ -22001,15 +22001,15 @@
           "end": 4.85
         }
       ],
-      "audio": "audio_swarm_bet/s262.mp3",
+      "audio": "books/swarm-bet/audio/s262.mp3",
       "illustration": {
         "word": "קוֹל",
         "tr": "голосом",
         "caption": "קוֹל",
         "capTr": "kol",
         "mnemonic": "Ивритское слово «КОЛ» (голос) звучит точно как русский «КОЛ». Представьте, как огромный деревянный КОЛ с рожицей и ртом поёт мощным оперным ГОЛОСОМ прямо в микрофон.",
-        "img": "illustrations_swarm_bet/s262.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s262-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s262.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s262-mnemonic.webp"
       }
     },
     {
@@ -22188,7 +22188,7 @@
           "end": 9.15
         }
       ],
-      "audio": "audio_swarm_bet/s263.mp3"
+      "audio": "books/swarm-bet/audio/s263.mp3"
     },
     {
       "id": "s264",
@@ -22286,7 +22286,7 @@
           "end": 3.612
         }
       ],
-      "audio": "audio_swarm_bet/s264.mp3"
+      "audio": "books/swarm-bet/audio/s264.mp3"
     },
     {
       "id": "s265",
@@ -22394,7 +22394,7 @@
           "end": 4.625
         }
       ],
-      "audio": "audio_swarm_bet/s265.mp3"
+      "audio": "books/swarm-bet/audio/s265.mp3"
     },
     {
       "id": "s266",
@@ -22592,7 +22592,7 @@
           "end": 7.112
         }
       ],
-      "audio": "audio_swarm_bet/s266.mp3"
+      "audio": "books/swarm-bet/audio/s266.mp3"
     },
     {
       "id": "s267",
@@ -22690,7 +22690,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_swarm_bet/s267.mp3"
+      "audio": "books/swarm-bet/audio/s267.mp3"
     },
     {
       "id": "s268",
@@ -22788,7 +22788,7 @@
           "end": 3.475
         }
       ],
-      "audio": "audio_swarm_bet/s268.mp3"
+      "audio": "books/swarm-bet/audio/s268.mp3"
     },
     {
       "id": "s269",
@@ -22846,7 +22846,7 @@
           "end": 2.562
         }
       ],
-      "audio": "audio_swarm_bet/s269.mp3"
+      "audio": "books/swarm-bet/audio/s269.mp3"
     },
     {
       "id": "s270",
@@ -22964,7 +22964,7 @@
           "end": 4.013
         }
       ],
-      "audio": "audio_swarm_bet/s270.mp3"
+      "audio": "books/swarm-bet/audio/s270.mp3"
     },
     {
       "id": "s271",
@@ -23102,7 +23102,7 @@
           "end": 4.3
         }
       ],
-      "audio": "audio_swarm_bet/s271.mp3"
+      "audio": "books/swarm-bet/audio/s271.mp3"
     },
     {
       "id": "s272",
@@ -23230,7 +23230,7 @@
           "end": 5.1
         }
       ],
-      "audio": "audio_swarm_bet/s272.mp3"
+      "audio": "books/swarm-bet/audio/s272.mp3"
     },
     {
       "id": "s273",
@@ -23318,7 +23318,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_swarm_bet/s273.mp3"
+      "audio": "books/swarm-bet/audio/s273.mp3"
     },
     {
       "id": "s274",
@@ -23416,7 +23416,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_swarm_bet/s274.mp3"
+      "audio": "books/swarm-bet/audio/s274.mp3"
     },
     {
       "id": "s275",
@@ -23514,7 +23514,7 @@
           "end": 4.1
         }
       ],
-      "audio": "audio_swarm_bet/s275.mp3"
+      "audio": "books/swarm-bet/audio/s275.mp3"
     },
     {
       "id": "s276",
@@ -23592,7 +23592,7 @@
           "end": 3.6
         }
       ],
-      "audio": "audio_swarm_bet/s276.mp3"
+      "audio": "books/swarm-bet/audio/s276.mp3"
     },
     {
       "id": "s277",
@@ -23650,7 +23650,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_swarm_bet/s277.mp3"
+      "audio": "books/swarm-bet/audio/s277.mp3"
     },
     {
       "id": "s278",
@@ -23718,7 +23718,7 @@
           "end": 3.125
         }
       ],
-      "audio": "audio_swarm_bet/s278.mp3"
+      "audio": "books/swarm-bet/audio/s278.mp3"
     },
     {
       "id": "s279",
@@ -23796,7 +23796,7 @@
           "end": 2.788
         }
       ],
-      "audio": "audio_swarm_bet/s279.mp3"
+      "audio": "books/swarm-bet/audio/s279.mp3"
     },
     {
       "id": "s280",
@@ -23854,7 +23854,7 @@
           "end": 2.475
         }
       ],
-      "audio": "audio_swarm_bet/s280.mp3"
+      "audio": "books/swarm-bet/audio/s280.mp3"
     },
     {
       "id": "s281",
@@ -23982,15 +23982,15 @@
           "end": 5.3
         }
       ],
-      "audio": "audio_swarm_bet/s281.mp3",
+      "audio": "books/swarm-bet/audio/s281.mp3",
       "illustration": {
         "word": "סֶלַע",
         "tr": "в скале",
         "caption": "סֶלַע",
         "capTr": "SELA",
         "mnemonic": "Представьте слово СЕЛА. Огромная гигантская птица СЕЛА прямо на острую жесткую СКАЛУ. От такого удара скала с грохотом треснула и раскололась на куски, а птица подпрыгнула в полном шоке.",
-        "img": "illustrations_swarm_bet/s281.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s281-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s281.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s281-mnemonic.webp"
       }
     },
     {
@@ -24089,7 +24089,7 @@
           "end": 4.25
         }
       ],
-      "audio": "audio_swarm_bet/s282.mp3"
+      "audio": "books/swarm-bet/audio/s282.mp3"
     },
     {
       "id": "s283",
@@ -24177,7 +24177,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_swarm_bet/s283.mp3"
+      "audio": "books/swarm-bet/audio/s283.mp3"
     },
     {
       "id": "s284",
@@ -24255,7 +24255,7 @@
           "end": 3.312
         }
       ],
-      "audio": "audio_swarm_bet/s284.mp3"
+      "audio": "books/swarm-bet/audio/s284.mp3"
     },
     {
       "id": "s285",
@@ -24373,7 +24373,7 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_swarm_bet/s285.mp3"
+      "audio": "books/swarm-bet/audio/s285.mp3"
     },
     {
       "id": "s286",
@@ -24461,7 +24461,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_swarm_bet/s286.mp3"
+      "audio": "books/swarm-bet/audio/s286.mp3"
     },
     {
       "id": "s287",
@@ -24569,7 +24569,7 @@
           "end": 4.55
         }
       ],
-      "audio": "audio_swarm_bet/s287.mp3"
+      "audio": "books/swarm-bet/audio/s287.mp3"
     },
     {
       "id": "s288",
@@ -24667,7 +24667,7 @@
           "end": 3.888
         }
       ],
-      "audio": "audio_swarm_bet/s288.mp3"
+      "audio": "books/swarm-bet/audio/s288.mp3"
     },
     {
       "id": "s289",
@@ -24755,7 +24755,7 @@
           "end": 4.062
         }
       ],
-      "audio": "audio_swarm_bet/s289.mp3"
+      "audio": "books/swarm-bet/audio/s289.mp3"
     },
     {
       "id": "s290",
@@ -24843,7 +24843,7 @@
           "end": 3.312
         }
       ],
-      "audio": "audio_swarm_bet/s290.mp3"
+      "audio": "books/swarm-bet/audio/s290.mp3"
     },
     {
       "id": "s291",
@@ -25031,7 +25031,7 @@
           "end": 7.987
         }
       ],
-      "audio": "audio_swarm_bet/s291.mp3"
+      "audio": "books/swarm-bet/audio/s291.mp3"
     },
     {
       "id": "s292",
@@ -25139,7 +25139,7 @@
           "end": 3.675
         }
       ],
-      "audio": "audio_swarm_bet/s292.mp3"
+      "audio": "books/swarm-bet/audio/s292.mp3"
     },
     {
       "id": "s293",
@@ -25207,7 +25207,7 @@
           "end": 3.788
         }
       ],
-      "audio": "audio_swarm_bet/s293.mp3"
+      "audio": "books/swarm-bet/audio/s293.mp3"
     },
     {
       "id": "s294",
@@ -25265,7 +25265,7 @@
           "end": 2.4
         }
       ],
-      "audio": "audio_swarm_bet/s294.mp3"
+      "audio": "books/swarm-bet/audio/s294.mp3"
     },
     {
       "id": "s295",
@@ -25313,7 +25313,7 @@
           "end": 1.387
         }
       ],
-      "audio": "audio_swarm_bet/s295.mp3"
+      "audio": "books/swarm-bet/audio/s295.mp3"
     },
     {
       "id": "s296",
@@ -25381,7 +25381,7 @@
           "end": 2.45
         }
       ],
-      "audio": "audio_swarm_bet/s296.mp3"
+      "audio": "books/swarm-bet/audio/s296.mp3"
     },
     {
       "id": "s297",
@@ -25449,7 +25449,7 @@
           "end": 2.425
         }
       ],
-      "audio": "audio_swarm_bet/s297.mp3"
+      "audio": "books/swarm-bet/audio/s297.mp3"
     },
     {
       "id": "s298",
@@ -25567,7 +25567,7 @@
           "end": 4.7
         }
       ],
-      "audio": "audio_swarm_bet/s298.mp3"
+      "audio": "books/swarm-bet/audio/s298.mp3"
     },
     {
       "id": "s299",
@@ -25605,7 +25605,7 @@
           "end": 1.538
         }
       ],
-      "audio": "audio_swarm_bet/s299.mp3"
+      "audio": "books/swarm-bet/audio/s299.mp3"
     },
     {
       "id": "s300",
@@ -25643,7 +25643,7 @@
           "end": 1.85
         }
       ],
-      "audio": "audio_swarm_bet/s300.mp3"
+      "audio": "books/swarm-bet/audio/s300.mp3"
     },
     {
       "id": "s301",
@@ -25691,7 +25691,7 @@
           "end": 2.0
         }
       ],
-      "audio": "audio_swarm_bet/s301.mp3"
+      "audio": "books/swarm-bet/audio/s301.mp3"
     },
     {
       "id": "s302",
@@ -25789,7 +25789,7 @@
           "end": 3.812
         }
       ],
-      "audio": "audio_swarm_bet/s302.mp3"
+      "audio": "books/swarm-bet/audio/s302.mp3"
     },
     {
       "id": "s303",
@@ -25937,15 +25937,15 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_swarm_bet/s303.mp3",
+      "audio": "books/swarm-bet/audio/s303.mp3",
       "illustration": {
         "word": "תַּחֲנָה",
         "tr": "станции",
         "caption": "תַּחֲנָה",
         "capTr": "Takhana",
         "mnemonic": "Созвучие: «ТА ХАНА». Огромный гигантский монстр одной лапой сминает космическую СТАНЦИЮ в лепёшку с диким криком: «ТА ХАНА вашей станции!». Металлические конструкции станции сгибаются, как фольга, и от неё разлетаются обломки.",
-        "img": "illustrations_swarm_bet/s303.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s303-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s303.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s303-mnemonic.webp"
       }
     },
     {
@@ -25994,7 +25994,7 @@
           "end": 2.438
         }
       ],
-      "audio": "audio_swarm_bet/s304.mp3"
+      "audio": "books/swarm-bet/audio/s304.mp3"
     },
     {
       "id": "s305",
@@ -26132,7 +26132,7 @@
           "end": 4.55
         }
       ],
-      "audio": "audio_swarm_bet/s305.mp3"
+      "audio": "books/swarm-bet/audio/s305.mp3"
     },
     {
       "id": "s306",
@@ -26320,7 +26320,7 @@
           "end": 6.975
         }
       ],
-      "audio": "audio_swarm_bet/s306.mp3"
+      "audio": "books/swarm-bet/audio/s306.mp3"
     },
     {
       "id": "s307",
@@ -26478,7 +26478,7 @@
           "end": 6.225
         }
       ],
-      "audio": "audio_swarm_bet/s307.mp3"
+      "audio": "books/swarm-bet/audio/s307.mp3"
     },
     {
       "id": "s308",
@@ -26556,7 +26556,7 @@
           "end": 2.925
         }
       ],
-      "audio": "audio_swarm_bet/s308.mp3"
+      "audio": "books/swarm-bet/audio/s308.mp3"
     },
     {
       "id": "s309",
@@ -26614,7 +26614,7 @@
           "end": 2.212
         }
       ],
-      "audio": "audio_swarm_bet/s309.mp3"
+      "audio": "books/swarm-bet/audio/s309.mp3"
     },
     {
       "id": "s310",
@@ -26642,7 +26642,7 @@
           "end": 1.0
         }
       ],
-      "audio": "audio_swarm_bet/s310.mp3"
+      "audio": "books/swarm-bet/audio/s310.mp3"
     },
     {
       "id": "s311",
@@ -26700,7 +26700,7 @@
           "end": 2.938
         }
       ],
-      "audio": "audio_swarm_bet/s311.mp3"
+      "audio": "books/swarm-bet/audio/s311.mp3"
     },
     {
       "id": "s312",
@@ -26778,7 +26778,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_swarm_bet/s312.mp3"
+      "audio": "books/swarm-bet/audio/s312.mp3"
     },
     {
       "id": "s313",
@@ -26866,7 +26866,7 @@
           "end": 3.388
         }
       ],
-      "audio": "audio_swarm_bet/s313.mp3"
+      "audio": "books/swarm-bet/audio/s313.mp3"
     },
     {
       "id": "s314",
@@ -26974,7 +26974,7 @@
           "end": 4.838
         }
       ],
-      "audio": "audio_swarm_bet/s314.mp3"
+      "audio": "books/swarm-bet/audio/s314.mp3"
     },
     {
       "id": "s315",
@@ -27052,7 +27052,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_swarm_bet/s315.mp3"
+      "audio": "books/swarm-bet/audio/s315.mp3"
     },
     {
       "id": "s316",
@@ -27130,7 +27130,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_swarm_bet/s316.mp3"
+      "audio": "books/swarm-bet/audio/s316.mp3"
     },
     {
       "id": "s317",
@@ -27278,7 +27278,7 @@
           "end": 5.638
         }
       ],
-      "audio": "audio_swarm_bet/s317.mp3"
+      "audio": "books/swarm-bet/audio/s317.mp3"
     },
     {
       "id": "s318",
@@ -27356,7 +27356,7 @@
           "end": 3.1
         }
       ],
-      "audio": "audio_swarm_bet/s318.mp3"
+      "audio": "books/swarm-bet/audio/s318.mp3"
     },
     {
       "id": "s319",
@@ -27434,7 +27434,7 @@
           "end": 2.962
         }
       ],
-      "audio": "audio_swarm_bet/s319.mp3"
+      "audio": "books/swarm-bet/audio/s319.mp3"
     },
     {
       "id": "s320",
@@ -27522,7 +27522,7 @@
           "end": 3.325
         }
       ],
-      "audio": "audio_swarm_bet/s320.mp3"
+      "audio": "books/swarm-bet/audio/s320.mp3"
     },
     {
       "id": "s321",
@@ -27640,7 +27640,7 @@
           "end": 4.312
         }
       ],
-      "audio": "audio_swarm_bet/s321.mp3"
+      "audio": "books/swarm-bet/audio/s321.mp3"
     },
     {
       "id": "s322",
@@ -27808,7 +27808,7 @@
           "end": 5.8
         }
       ],
-      "audio": "audio_swarm_bet/s322.mp3"
+      "audio": "books/swarm-bet/audio/s322.mp3"
     },
     {
       "id": "s323",
@@ -27876,7 +27876,7 @@
           "end": 2.95
         }
       ],
-      "audio": "audio_swarm_bet/s323.mp3"
+      "audio": "books/swarm-bet/audio/s323.mp3"
     },
     {
       "id": "s324",
@@ -27984,7 +27984,7 @@
           "end": 4.237
         }
       ],
-      "audio": "audio_swarm_bet/s324.mp3"
+      "audio": "books/swarm-bet/audio/s324.mp3"
     },
     {
       "id": "s325",
@@ -28032,7 +28032,7 @@
           "end": 2.112
         }
       ],
-      "audio": "audio_swarm_bet/s325.mp3"
+      "audio": "books/swarm-bet/audio/s325.mp3"
     },
     {
       "id": "s326",
@@ -28150,7 +28150,7 @@
           "end": 4.737
         }
       ],
-      "audio": "audio_swarm_bet/s326.mp3"
+      "audio": "books/swarm-bet/audio/s326.mp3"
     },
     {
       "id": "s327",
@@ -28248,15 +28248,15 @@
           "end": 4.05
         }
       ],
-      "audio": "audio_swarm_bet/s327.mp3",
+      "audio": "books/swarm-bet/audio/s327.mp3",
       "illustration": {
         "word": "יְצוּר",
         "tr": "тварей",
         "caption": "יְצוּר",
         "capTr": "YETZUR",
         "mnemonic": "Созвучие: «ЯЙЦО УРчит» — ецур (יְצוּר). Представьте, что на столе гигантское ЯЙЦО УРчит и трескается, а из него вылезает рогатая зубастая ТВАРЬ в поварском колпаке. Эта дикая тварь грозит поварёшкой и снова громко урчит!",
-        "img": "illustrations_swarm_bet/s327.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s327-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s327.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s327-mnemonic.webp"
       }
     },
     {
@@ -28355,7 +28355,7 @@
           "end": 3.775
         }
       ],
-      "audio": "audio_swarm_bet/s328.mp3"
+      "audio": "books/swarm-bet/audio/s328.mp3"
     },
     {
       "id": "s329",
@@ -28403,7 +28403,7 @@
           "end": 1.762
         }
       ],
-      "audio": "audio_swarm_bet/s329.mp3"
+      "audio": "books/swarm-bet/audio/s329.mp3"
     },
     {
       "id": "s330",
@@ -28471,7 +28471,7 @@
           "end": 2.775
         }
       ],
-      "audio": "audio_swarm_bet/s330.mp3"
+      "audio": "books/swarm-bet/audio/s330.mp3"
     },
     {
       "id": "s331",
@@ -28569,7 +28569,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_swarm_bet/s331.mp3"
+      "audio": "books/swarm-bet/audio/s331.mp3"
     },
     {
       "id": "s332",
@@ -28667,7 +28667,7 @@
           "end": 3.75
         }
       ],
-      "audio": "audio_swarm_bet/s332.mp3"
+      "audio": "books/swarm-bet/audio/s332.mp3"
     },
     {
       "id": "s333",
@@ -28795,7 +28795,7 @@
           "end": 5.225
         }
       ],
-      "audio": "audio_swarm_bet/s333.mp3"
+      "audio": "books/swarm-bet/audio/s333.mp3"
     },
     {
       "id": "s334",
@@ -28903,7 +28903,7 @@
           "end": 4.862
         }
       ],
-      "audio": "audio_swarm_bet/s334.mp3"
+      "audio": "books/swarm-bet/audio/s334.mp3"
     },
     {
       "id": "s335",
@@ -28991,7 +28991,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_swarm_bet/s335.mp3"
+      "audio": "books/swarm-bet/audio/s335.mp3"
     },
     {
       "id": "s336",
@@ -29049,7 +29049,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_swarm_bet/s336.mp3"
+      "audio": "books/swarm-bet/audio/s336.mp3"
     },
     {
       "id": "s337",
@@ -29127,7 +29127,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_swarm_bet/s337.mp3"
+      "audio": "books/swarm-bet/audio/s337.mp3"
     },
     {
       "id": "s338",
@@ -29235,7 +29235,7 @@
           "end": 4.375
         }
       ],
-      "audio": "audio_swarm_bet/s338.mp3"
+      "audio": "books/swarm-bet/audio/s338.mp3"
     },
     {
       "id": "s339",
@@ -29283,7 +29283,7 @@
           "end": 2.35
         }
       ],
-      "audio": "audio_swarm_bet/s339.mp3"
+      "audio": "books/swarm-bet/audio/s339.mp3"
     },
     {
       "id": "s340",
@@ -29341,7 +29341,7 @@
           "end": 2.612
         }
       ],
-      "audio": "audio_swarm_bet/s340.mp3"
+      "audio": "books/swarm-bet/audio/s340.mp3"
     },
     {
       "id": "s341",
@@ -29429,7 +29429,7 @@
           "end": 2.712
         }
       ],
-      "audio": "audio_swarm_bet/s341.mp3"
+      "audio": "books/swarm-bet/audio/s341.mp3"
     },
     {
       "id": "s342",
@@ -29517,7 +29517,7 @@
           "end": 3.013
         }
       ],
-      "audio": "audio_swarm_bet/s342.mp3"
+      "audio": "books/swarm-bet/audio/s342.mp3"
     },
     {
       "id": "s343",
@@ -29595,7 +29595,7 @@
           "end": 3.175
         }
       ],
-      "audio": "audio_swarm_bet/s343.mp3"
+      "audio": "books/swarm-bet/audio/s343.mp3"
     },
     {
       "id": "s344",
@@ -29733,15 +29733,15 @@
           "end": 5.175
         }
       ],
-      "audio": "audio_swarm_bet/s344.mp3",
+      "audio": "books/swarm-bet/audio/s344.mp3",
       "illustration": {
         "word": "יְצוּר",
         "tr": "существо",
         "caption": "יְצוּר",
         "capTr": "yatzur",
         "mnemonic": "Представьте жуткое инопланетное существо, которое надело огромную королевскую корону и гордо заявляет: «Я ЦАРЬ!». Это несуразное существо (яцур) восседает на маленьком детском троне, грозно размахивая леденцом вместо скипетра.",
-        "img": "illustrations_swarm_bet/s344.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s344-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s344.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s344-mnemonic.webp"
       }
     },
     {
@@ -29780,7 +29780,7 @@
           "end": 1.438
         }
       ],
-      "audio": "audio_swarm_bet/s345.mp3"
+      "audio": "books/swarm-bet/audio/s345.mp3"
     },
     {
       "id": "s346",
@@ -29828,7 +29828,7 @@
           "end": 2.562
         }
       ],
-      "audio": "audio_swarm_bet/s346.mp3"
+      "audio": "books/swarm-bet/audio/s346.mp3"
     },
     {
       "id": "s347",
@@ -29926,7 +29926,7 @@
           "end": 3.475
         }
       ],
-      "audio": "audio_swarm_bet/s347.mp3"
+      "audio": "books/swarm-bet/audio/s347.mp3"
     },
     {
       "id": "s348",
@@ -30054,7 +30054,7 @@
           "end": 4.638
         }
       ],
-      "audio": "audio_swarm_bet/s348.mp3"
+      "audio": "books/swarm-bet/audio/s348.mp3"
     },
     {
       "id": "s349",
@@ -30162,7 +30162,7 @@
           "end": 3.638
         }
       ],
-      "audio": "audio_swarm_bet/s349.mp3"
+      "audio": "books/swarm-bet/audio/s349.mp3"
     },
     {
       "id": "s350",
@@ -30220,7 +30220,7 @@
           "end": 1.925
         }
       ],
-      "audio": "audio_swarm_bet/s350.mp3"
+      "audio": "books/swarm-bet/audio/s350.mp3"
     },
     {
       "id": "s351",
@@ -30288,7 +30288,7 @@
           "end": 2.9
         }
       ],
-      "audio": "audio_swarm_bet/s351.mp3"
+      "audio": "books/swarm-bet/audio/s351.mp3"
     },
     {
       "id": "s352",
@@ -30396,7 +30396,7 @@
           "end": 4.225
         }
       ],
-      "audio": "audio_swarm_bet/s352.mp3"
+      "audio": "books/swarm-bet/audio/s352.mp3"
     },
     {
       "id": "s353",
@@ -30424,7 +30424,7 @@
           "end": 1.137
         }
       ],
-      "audio": "audio_swarm_bet/s353.mp3"
+      "audio": "books/swarm-bet/audio/s353.mp3"
     },
     {
       "id": "s354",
@@ -30472,7 +30472,7 @@
           "end": 1.425
         }
       ],
-      "audio": "audio_swarm_bet/s354.mp3"
+      "audio": "books/swarm-bet/audio/s354.mp3"
     },
     {
       "id": "s355",
@@ -30560,7 +30560,7 @@
           "end": 4.35
         }
       ],
-      "audio": "audio_swarm_bet/s355.mp3"
+      "audio": "books/swarm-bet/audio/s355.mp3"
     },
     {
       "id": "s356",
@@ -30678,7 +30678,7 @@
           "end": 4.213
         }
       ],
-      "audio": "audio_swarm_bet/s356.mp3"
+      "audio": "books/swarm-bet/audio/s356.mp3"
     },
     {
       "id": "s357",
@@ -30746,7 +30746,7 @@
           "end": 3.175
         }
       ],
-      "audio": "audio_swarm_bet/s357.mp3"
+      "audio": "books/swarm-bet/audio/s357.mp3"
     },
     {
       "id": "s358",
@@ -30804,7 +30804,7 @@
           "end": 2.562
         }
       ],
-      "audio": "audio_swarm_bet/s358.mp3"
+      "audio": "books/swarm-bet/audio/s358.mp3"
     },
     {
       "id": "s359",
@@ -30902,7 +30902,7 @@
           "end": 4.025
         }
       ],
-      "audio": "audio_swarm_bet/s359.mp3"
+      "audio": "books/swarm-bet/audio/s359.mp3"
     },
     {
       "id": "s360",
@@ -31000,7 +31000,7 @@
           "end": 3.475
         }
       ],
-      "audio": "audio_swarm_bet/s360.mp3"
+      "audio": "books/swarm-bet/audio/s360.mp3"
     },
     {
       "id": "s361",
@@ -31018,7 +31018,7 @@
           "end": 0.95
         }
       ],
-      "audio": "audio_swarm_bet/s361.mp3"
+      "audio": "books/swarm-bet/audio/s361.mp3"
     },
     {
       "id": "s362",
@@ -31096,7 +31096,7 @@
           "end": 3.6
         }
       ],
-      "audio": "audio_swarm_bet/s362.mp3"
+      "audio": "books/swarm-bet/audio/s362.mp3"
     },
     {
       "id": "s363",
@@ -31144,15 +31144,15 @@
           "end": 2.513
         }
       ],
-      "audio": "audio_swarm_bet/s363.mp3",
+      "audio": "books/swarm-bet/audio/s363.mp3",
       "illustration": {
         "word": "גִּבְעָה",
         "tr": "к холму",
         "caption": "גִּבְעָה",
         "capTr": "giv'ah",
         "mnemonic": "Слово «гив’а» (холм) созвучно с фразой «ГИБКАЯ А». Представьте огромную, резиновую ГИБКУЮ букву «А», которая пытается залезть на высокий ХОЛМ. Она поскальзывается и со смешной гримасой кубарем катится обратно вниз.",
-        "img": "illustrations_swarm_bet/s363.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s363-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s363.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s363-mnemonic.webp"
       }
     },
     {
@@ -31211,7 +31211,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_swarm_bet/s364.mp3"
+      "audio": "books/swarm-bet/audio/s364.mp3"
     },
     {
       "id": "s365",
@@ -31339,7 +31339,7 @@
           "end": 5.05
         }
       ],
-      "audio": "audio_swarm_bet/s365.mp3"
+      "audio": "books/swarm-bet/audio/s365.mp3"
     },
     {
       "id": "s366",
@@ -31447,7 +31447,7 @@
           "end": 4.425
         }
       ],
-      "audio": "audio_swarm_bet/s366.mp3"
+      "audio": "books/swarm-bet/audio/s366.mp3"
     },
     {
       "id": "s367",
@@ -31585,7 +31585,7 @@
           "end": 5.5
         }
       ],
-      "audio": "audio_swarm_bet/s367.mp3"
+      "audio": "books/swarm-bet/audio/s367.mp3"
     },
     {
       "id": "s368",
@@ -31673,7 +31673,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_swarm_bet/s368.mp3"
+      "audio": "books/swarm-bet/audio/s368.mp3"
     },
     {
       "id": "s369",
@@ -31761,7 +31761,7 @@
           "end": 4.45
         }
       ],
-      "audio": "audio_swarm_bet/s369.mp3"
+      "audio": "books/swarm-bet/audio/s369.mp3"
     },
     {
       "id": "s370",
@@ -31819,7 +31819,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_swarm_bet/s370.mp3"
+      "audio": "books/swarm-bet/audio/s370.mp3"
     },
     {
       "id": "s371",
@@ -31917,7 +31917,7 @@
           "end": 3.875
         }
       ],
-      "audio": "audio_swarm_bet/s371.mp3"
+      "audio": "books/swarm-bet/audio/s371.mp3"
     },
     {
       "id": "s372",
@@ -32045,7 +32045,7 @@
           "end": 5.425
         }
       ],
-      "audio": "audio_swarm_bet/s372.mp3"
+      "audio": "books/swarm-bet/audio/s372.mp3"
     },
     {
       "id": "s373",
@@ -32103,7 +32103,7 @@
           "end": 2.013
         }
       ],
-      "audio": "audio_swarm_bet/s373.mp3"
+      "audio": "books/swarm-bet/audio/s373.mp3"
     },
     {
       "id": "s374",
@@ -32171,7 +32171,7 @@
           "end": 2.763
         }
       ],
-      "audio": "audio_swarm_bet/s374.mp3"
+      "audio": "books/swarm-bet/audio/s374.mp3"
     },
     {
       "id": "s375",
@@ -32279,7 +32279,7 @@
           "end": 4.1
         }
       ],
-      "audio": "audio_swarm_bet/s375.mp3"
+      "audio": "books/swarm-bet/audio/s375.mp3"
     },
     {
       "id": "s376",
@@ -32347,7 +32347,7 @@
           "end": 2.475
         }
       ],
-      "audio": "audio_swarm_bet/s376.mp3"
+      "audio": "books/swarm-bet/audio/s376.mp3"
     },
     {
       "id": "s377",
@@ -32435,7 +32435,7 @@
           "end": 3.812
         }
       ],
-      "audio": "audio_swarm_bet/s377.mp3"
+      "audio": "books/swarm-bet/audio/s377.mp3"
     },
     {
       "id": "s378",
@@ -32533,7 +32533,7 @@
           "end": 3.775
         }
       ],
-      "audio": "audio_swarm_bet/s378.mp3"
+      "audio": "books/swarm-bet/audio/s378.mp3"
     },
     {
       "id": "s379",
@@ -32611,7 +32611,7 @@
           "end": 3.763
         }
       ],
-      "audio": "audio_swarm_bet/s379.mp3"
+      "audio": "books/swarm-bet/audio/s379.mp3"
     },
     {
       "id": "s380",
@@ -32679,7 +32679,7 @@
           "end": 2.75
         }
       ],
-      "audio": "audio_swarm_bet/s380.mp3"
+      "audio": "books/swarm-bet/audio/s380.mp3"
     },
     {
       "id": "s381",
@@ -32747,7 +32747,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_swarm_bet/s381.mp3"
+      "audio": "books/swarm-bet/audio/s381.mp3"
     },
     {
       "id": "s382",
@@ -32825,7 +32825,7 @@
           "end": 2.725
         }
       ],
-      "audio": "audio_swarm_bet/s382.mp3"
+      "audio": "books/swarm-bet/audio/s382.mp3"
     },
     {
       "id": "s383",
@@ -32923,7 +32923,7 @@
           "end": 4.2
         }
       ],
-      "audio": "audio_swarm_bet/s383.mp3"
+      "audio": "books/swarm-bet/audio/s383.mp3"
     },
     {
       "id": "s384",
@@ -32991,7 +32991,7 @@
           "end": 2.8
         }
       ],
-      "audio": "audio_swarm_bet/s384.mp3"
+      "audio": "books/swarm-bet/audio/s384.mp3"
     },
     {
       "id": "s385",
@@ -33089,7 +33089,7 @@
           "end": 3.825
         }
       ],
-      "audio": "audio_swarm_bet/s385.mp3"
+      "audio": "books/swarm-bet/audio/s385.mp3"
     },
     {
       "id": "s386",
@@ -33177,7 +33177,7 @@
           "end": 3.612
         }
       ],
-      "audio": "audio_swarm_bet/s386.mp3"
+      "audio": "books/swarm-bet/audio/s386.mp3"
     },
     {
       "id": "s387",
@@ -33215,7 +33215,7 @@
           "end": 2.0
         }
       ],
-      "audio": "audio_swarm_bet/s387.mp3"
+      "audio": "books/swarm-bet/audio/s387.mp3"
     },
     {
       "id": "s388",
@@ -33283,7 +33283,7 @@
           "end": 2.65
         }
       ],
-      "audio": "audio_swarm_bet/s388.mp3"
+      "audio": "books/swarm-bet/audio/s388.mp3"
     },
     {
       "id": "s389",
@@ -33351,7 +33351,7 @@
           "end": 3.188
         }
       ],
-      "audio": "audio_swarm_bet/s389.mp3"
+      "audio": "books/swarm-bet/audio/s389.mp3"
     },
     {
       "id": "s390",
@@ -33399,15 +33399,15 @@
           "end": 1.9
         }
       ],
-      "audio": "audio_swarm_bet/s390.mp3",
+      "audio": "books/swarm-bet/audio/s390.mp3",
       "illustration": {
         "word": "דֶּלֶת",
         "tr": "дверь",
         "caption": "דֶּלֶת",
         "capTr": "delet",
         "mnemonic": "Слово «дэлэт» (дверь) созвучно с глаголом «ДЕЛИТ». Представьте, как огромная тяжелая ДВЕРЬ с грохотом падая сверху, ДЕЛИТ гигантский арбуз ровно пополам!",
-        "img": "illustrations_swarm_bet/s390.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s390-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s390.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s390-mnemonic.webp"
       }
     },
     {
@@ -33456,7 +33456,7 @@
           "end": 2.15
         }
       ],
-      "audio": "audio_swarm_bet/s391.mp3"
+      "audio": "books/swarm-bet/audio/s391.mp3"
     },
     {
       "id": "s392",
@@ -33584,7 +33584,7 @@
           "end": 4.65
         }
       ],
-      "audio": "audio_swarm_bet/s392.mp3"
+      "audio": "books/swarm-bet/audio/s392.mp3"
     },
     {
       "id": "s393",
@@ -33662,7 +33662,7 @@
           "end": 2.925
         }
       ],
-      "audio": "audio_swarm_bet/s393.mp3"
+      "audio": "books/swarm-bet/audio/s393.mp3"
     },
     {
       "id": "s394",
@@ -33760,7 +33760,7 @@
           "end": 3.3
         }
       ],
-      "audio": "audio_swarm_bet/s394.mp3"
+      "audio": "books/swarm-bet/audio/s394.mp3"
     },
     {
       "id": "s395",
@@ -33838,7 +33838,7 @@
           "end": 2.65
         }
       ],
-      "audio": "audio_swarm_bet/s395.mp3"
+      "audio": "books/swarm-bet/audio/s395.mp3"
     },
     {
       "id": "s396",
@@ -33876,7 +33876,7 @@
           "end": 2.25
         }
       ],
-      "audio": "audio_swarm_bet/s396.mp3"
+      "audio": "books/swarm-bet/audio/s396.mp3"
     },
     {
       "id": "s397",
@@ -33894,7 +33894,7 @@
           "end": 0.925
         }
       ],
-      "audio": "audio_swarm_bet/s397.mp3"
+      "audio": "books/swarm-bet/audio/s397.mp3"
     },
     {
       "id": "s398",
@@ -33932,7 +33932,7 @@
           "end": 1.163
         }
       ],
-      "audio": "audio_swarm_bet/s398.mp3"
+      "audio": "books/swarm-bet/audio/s398.mp3"
     },
     {
       "id": "s399",
@@ -34000,7 +34000,7 @@
           "end": 3.087
         }
       ],
-      "audio": "audio_swarm_bet/s399.mp3"
+      "audio": "books/swarm-bet/audio/s399.mp3"
     },
     {
       "id": "s400",
@@ -34098,7 +34098,7 @@
           "end": 3.25
         }
       ],
-      "audio": "audio_swarm_bet/s400.mp3"
+      "audio": "books/swarm-bet/audio/s400.mp3"
     },
     {
       "id": "s401",
@@ -34156,15 +34156,15 @@
           "end": 2.562
         }
       ],
-      "audio": "audio_swarm_bet/s401.mp3",
+      "audio": "books/swarm-bet/audio/s401.mp3",
       "illustration": {
         "word": "מִקְלָט",
         "tr": "убежище",
         "caption": "מִקְלָט",
         "capTr": "miklat",
         "mnemonic": "Забежав в УБЕЖИЩЕ от космической угрозы, рыцарь надевает МИКРО-ЛАТЫ. Эти крошечные доспехи закрывают только один его палец, но он с гордым видом прячется за бронированной дверью бункера.",
-        "img": "illustrations_swarm_bet/s401.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s401-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s401.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s401-mnemonic.webp"
       }
     },
     {
@@ -34213,7 +34213,7 @@
           "end": 1.663
         }
       ],
-      "audio": "audio_swarm_bet/s402.mp3"
+      "audio": "books/swarm-bet/audio/s402.mp3"
     },
     {
       "id": "s403",
@@ -34371,7 +34371,7 @@
           "end": 5.338
         }
       ],
-      "audio": "audio_swarm_bet/s403.mp3"
+      "audio": "books/swarm-bet/audio/s403.mp3"
     },
     {
       "id": "s404",
@@ -34409,7 +34409,7 @@
           "end": 1.3
         }
       ],
-      "audio": "audio_swarm_bet/s404.mp3"
+      "audio": "books/swarm-bet/audio/s404.mp3"
     },
     {
       "id": "s405",
@@ -34457,7 +34457,7 @@
           "end": 1.7
         }
       ],
-      "audio": "audio_swarm_bet/s405.mp3"
+      "audio": "books/swarm-bet/audio/s405.mp3"
     },
     {
       "id": "s406",
@@ -34535,7 +34535,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_swarm_bet/s406.mp3"
+      "audio": "books/swarm-bet/audio/s406.mp3"
     },
     {
       "id": "s407",
@@ -34603,7 +34603,7 @@
           "end": 2.775
         }
       ],
-      "audio": "audio_swarm_bet/s407.mp3"
+      "audio": "books/swarm-bet/audio/s407.mp3"
     },
     {
       "id": "s408",
@@ -34691,7 +34691,7 @@
           "end": 2.925
         }
       ],
-      "audio": "audio_swarm_bet/s408.mp3"
+      "audio": "books/swarm-bet/audio/s408.mp3"
     },
     {
       "id": "s409",
@@ -34759,7 +34759,7 @@
           "end": 3.163
         }
       ],
-      "audio": "audio_swarm_bet/s409.mp3"
+      "audio": "books/swarm-bet/audio/s409.mp3"
     },
     {
       "id": "s410",
@@ -34847,7 +34847,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_swarm_bet/s410.mp3"
+      "audio": "books/swarm-bet/audio/s410.mp3"
     },
     {
       "id": "s411",
@@ -34935,7 +34935,7 @@
           "end": 3.275
         }
       ],
-      "audio": "audio_swarm_bet/s411.mp3"
+      "audio": "books/swarm-bet/audio/s411.mp3"
     },
     {
       "id": "s412",
@@ -34983,7 +34983,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_swarm_bet/s412.mp3"
+      "audio": "books/swarm-bet/audio/s412.mp3"
     },
     {
       "id": "s413",
@@ -35041,7 +35041,7 @@
           "end": 1.725
         }
       ],
-      "audio": "audio_swarm_bet/s413.mp3"
+      "audio": "books/swarm-bet/audio/s413.mp3"
     },
     {
       "id": "s414",
@@ -35149,7 +35149,7 @@
           "end": 3.087
         }
       ],
-      "audio": "audio_swarm_bet/s414.mp3"
+      "audio": "books/swarm-bet/audio/s414.mp3"
     },
     {
       "id": "s415",
@@ -35227,7 +35227,7 @@
           "end": 2.688
         }
       ],
-      "audio": "audio_swarm_bet/s415.mp3"
+      "audio": "books/swarm-bet/audio/s415.mp3"
     },
     {
       "id": "s416",
@@ -35255,7 +35255,7 @@
           "end": 1.637
         }
       ],
-      "audio": "audio_swarm_bet/s416.mp3"
+      "audio": "books/swarm-bet/audio/s416.mp3"
     },
     {
       "id": "s417",
@@ -35293,7 +35293,7 @@
           "end": 1.6
         }
       ],
-      "audio": "audio_swarm_bet/s417.mp3"
+      "audio": "books/swarm-bet/audio/s417.mp3"
     },
     {
       "id": "s418",
@@ -35371,7 +35371,7 @@
           "end": 3.612
         }
       ],
-      "audio": "audio_swarm_bet/s418.mp3"
+      "audio": "books/swarm-bet/audio/s418.mp3"
     },
     {
       "id": "s419",
@@ -35409,7 +35409,7 @@
           "end": 1.275
         }
       ],
-      "audio": "audio_swarm_bet/s419.mp3"
+      "audio": "books/swarm-bet/audio/s419.mp3"
     },
     {
       "id": "s420",
@@ -35447,7 +35447,7 @@
           "end": 1.4
         }
       ],
-      "audio": "audio_swarm_bet/s420.mp3"
+      "audio": "books/swarm-bet/audio/s420.mp3"
     },
     {
       "id": "s421",
@@ -35535,7 +35535,7 @@
           "end": 2.825
         }
       ],
-      "audio": "audio_swarm_bet/s421.mp3"
+      "audio": "books/swarm-bet/audio/s421.mp3"
     },
     {
       "id": "s422",
@@ -35653,15 +35653,15 @@
           "end": 5.062
         }
       ],
-      "audio": "audio_swarm_bet/s422.mp3",
+      "audio": "books/swarm-bet/audio/s422.mp3",
       "illustration": {
         "word": "יְצוּר",
         "tr": "тварям",
         "caption": "יְצוּר",
         "capTr": "yetzur",
         "mnemonic": "Чтобы запомнить слово «йэцу́р» (тварь), представьте, как гигантское ЯЙЦО УРчит (йэцу́р) и дрожит на столе. Внезапно яйцо раскалывается, и из него вылезает жуткая многоглазая тварь, которая громко рычит!",
-        "img": "illustrations_swarm_bet/s422.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s422-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s422.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s422-mnemonic.webp"
       }
     },
     {
@@ -35680,7 +35680,7 @@
           "end": 0.925
         }
       ],
-      "audio": "audio_swarm_bet/s423.mp3"
+      "audio": "books/swarm-bet/audio/s423.mp3"
     },
     {
       "id": "s424",
@@ -35728,7 +35728,7 @@
           "end": 2.675
         }
       ],
-      "audio": "audio_swarm_bet/s424.mp3"
+      "audio": "books/swarm-bet/audio/s424.mp3"
     },
     {
       "id": "s425",
@@ -35816,7 +35816,7 @@
           "end": 2.95
         }
       ],
-      "audio": "audio_swarm_bet/s425.mp3"
+      "audio": "books/swarm-bet/audio/s425.mp3"
     },
     {
       "id": "s426",
@@ -35884,7 +35884,7 @@
           "end": 2.688
         }
       ],
-      "audio": "audio_swarm_bet/s426.mp3"
+      "audio": "books/swarm-bet/audio/s426.mp3"
     },
     {
       "id": "s427",
@@ -35922,7 +35922,7 @@
           "end": 1.95
         }
       ],
-      "audio": "audio_swarm_bet/s427.mp3"
+      "audio": "books/swarm-bet/audio/s427.mp3"
     },
     {
       "id": "s428",
@@ -36000,7 +36000,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_swarm_bet/s428.mp3"
+      "audio": "books/swarm-bet/audio/s428.mp3"
     },
     {
       "id": "s429",
@@ -36128,7 +36128,7 @@
           "end": 5.263
         }
       ],
-      "audio": "audio_swarm_bet/s429.mp3"
+      "audio": "books/swarm-bet/audio/s429.mp3"
     },
     {
       "id": "s430",
@@ -36186,7 +36186,7 @@
           "end": 3.038
         }
       ],
-      "audio": "audio_swarm_bet/s430.mp3"
+      "audio": "books/swarm-bet/audio/s430.mp3"
     },
     {
       "id": "s431",
@@ -36274,7 +36274,7 @@
           "end": 3.312
         }
       ],
-      "audio": "audio_swarm_bet/s431.mp3"
+      "audio": "books/swarm-bet/audio/s431.mp3"
     },
     {
       "id": "s432",
@@ -36342,7 +36342,7 @@
           "end": 3.062
         }
       ],
-      "audio": "audio_swarm_bet/s432.mp3"
+      "audio": "books/swarm-bet/audio/s432.mp3"
     },
     {
       "id": "s433",
@@ -36430,7 +36430,7 @@
           "root": "י-ד-ה"
         }
       ],
-      "audio": "audio_swarm_bet/s433.mp3",
+      "audio": "books/swarm-bet/audio/s433.mp3",
       "ttsEngine": "gtts"
     },
     {
@@ -36519,7 +36519,7 @@
           "end": 3.688
         }
       ],
-      "audio": "audio_swarm_bet/s434.mp3"
+      "audio": "books/swarm-bet/audio/s434.mp3"
     },
     {
       "id": "s435",
@@ -36647,7 +36647,7 @@
           "end": 4.287
         }
       ],
-      "audio": "audio_swarm_bet/s435.mp3"
+      "audio": "books/swarm-bet/audio/s435.mp3"
     },
     {
       "id": "s436",
@@ -36705,7 +36705,7 @@
           "end": 2.625
         }
       ],
-      "audio": "audio_swarm_bet/s436.mp3"
+      "audio": "books/swarm-bet/audio/s436.mp3"
     },
     {
       "id": "s437",
@@ -36783,7 +36783,7 @@
           "end": 3.85
         }
       ],
-      "audio": "audio_swarm_bet/s437.mp3"
+      "audio": "books/swarm-bet/audio/s437.mp3"
     },
     {
       "id": "s438",
@@ -36861,7 +36861,7 @@
           "end": 3.438
         }
       ],
-      "audio": "audio_swarm_bet/s438.mp3"
+      "audio": "books/swarm-bet/audio/s438.mp3"
     },
     {
       "id": "s439",
@@ -36939,7 +36939,7 @@
           "end": 3.775
         }
       ],
-      "audio": "audio_swarm_bet/s439.mp3"
+      "audio": "books/swarm-bet/audio/s439.mp3"
     },
     {
       "id": "s440",
@@ -37027,7 +37027,7 @@
           "end": 3.538
         }
       ],
-      "audio": "audio_swarm_bet/s440.mp3"
+      "audio": "books/swarm-bet/audio/s440.mp3"
     },
     {
       "id": "s441",
@@ -37135,7 +37135,7 @@
           "end": 4.088
         }
       ],
-      "audio": "audio_swarm_bet/s441.mp3"
+      "audio": "books/swarm-bet/audio/s441.mp3"
     },
     {
       "id": "s442",
@@ -37243,7 +37243,7 @@
           "end": 4.925
         }
       ],
-      "audio": "audio_swarm_bet/s442.mp3"
+      "audio": "books/swarm-bet/audio/s442.mp3"
     },
     {
       "id": "s443",
@@ -37281,7 +37281,7 @@
           "end": 1.512
         }
       ],
-      "audio": "audio_swarm_bet/s443.mp3"
+      "audio": "books/swarm-bet/audio/s443.mp3"
     },
     {
       "id": "s444",
@@ -37329,7 +37329,7 @@
           "end": 1.788
         }
       ],
-      "audio": "audio_swarm_bet/s444.mp3"
+      "audio": "books/swarm-bet/audio/s444.mp3"
     },
     {
       "id": "s445",
@@ -37407,7 +37407,7 @@
           "end": 3.1
         }
       ],
-      "audio": "audio_swarm_bet/s445.mp3"
+      "audio": "books/swarm-bet/audio/s445.mp3"
     },
     {
       "id": "s446",
@@ -37465,15 +37465,15 @@
           "end": 2.837
         }
       ],
-      "audio": "audio_swarm_bet/s446.mp3",
+      "audio": "books/swarm-bet/audio/s446.mp3",
       "illustration": {
         "word": "רוֹחֵשׁ",
         "tr": "шуршащие",
         "caption": "רוֹחֵשׁ",
         "capTr": "rochesh",
         "mnemonic": "Созвучие: «рог ешь» (רוֹחֵשׁ / rochesh). Представьте, как полчища громко шуршащих жуков облепляют огромный золотой рог единорога, а суровый шеф-повар грозно кричит им: «Рог ешь!». Жуки с аппетитом грызут рог со всех сторон.",
-        "img": "illustrations_swarm_bet/s446.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s446-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s446.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s446-mnemonic.webp"
       }
     },
     {
@@ -37562,7 +37562,7 @@
           "end": 3.487
         }
       ],
-      "audio": "audio_swarm_bet/s447.mp3"
+      "audio": "books/swarm-bet/audio/s447.mp3"
     },
     {
       "id": "s448",
@@ -37730,7 +37730,7 @@
           "end": 6.438
         }
       ],
-      "audio": "audio_swarm_bet/s448.mp3"
+      "audio": "books/swarm-bet/audio/s448.mp3"
     },
     {
       "id": "s449",
@@ -37818,7 +37818,7 @@
           "end": 3.362
         }
       ],
-      "audio": "audio_swarm_bet/s449.mp3"
+      "audio": "books/swarm-bet/audio/s449.mp3"
     },
     {
       "id": "s450",
@@ -37906,7 +37906,7 @@
           "end": 4.4
         }
       ],
-      "audio": "audio_swarm_bet/s450.mp3"
+      "audio": "books/swarm-bet/audio/s450.mp3"
     },
     {
       "id": "s451",
@@ -38014,7 +38014,7 @@
           "end": 3.888
         }
       ],
-      "audio": "audio_swarm_bet/s451.mp3"
+      "audio": "books/swarm-bet/audio/s451.mp3"
     },
     {
       "id": "s452",
@@ -38112,7 +38112,7 @@
           "end": 4.062
         }
       ],
-      "audio": "audio_swarm_bet/s452.mp3"
+      "audio": "books/swarm-bet/audio/s452.mp3"
     },
     {
       "id": "s453",
@@ -38200,7 +38200,7 @@
           "end": 4.15
         }
       ],
-      "audio": "audio_swarm_bet/s453.mp3"
+      "audio": "books/swarm-bet/audio/s453.mp3"
     },
     {
       "id": "s454",
@@ -38268,7 +38268,7 @@
           "end": 3.05
         }
       ],
-      "audio": "audio_swarm_bet/s454.mp3"
+      "audio": "books/swarm-bet/audio/s454.mp3"
     },
     {
       "id": "s455",
@@ -38316,7 +38316,7 @@
           "end": 1.488
         }
       ],
-      "audio": "audio_swarm_bet/s455.mp3"
+      "audio": "books/swarm-bet/audio/s455.mp3"
     },
     {
       "id": "s456",
@@ -38334,7 +38334,7 @@
           "end": 0.95
         }
       ],
-      "audio": "audio_swarm_bet/s456.mp3"
+      "audio": "books/swarm-bet/audio/s456.mp3"
     },
     {
       "id": "s457",
@@ -38452,7 +38452,7 @@
           "end": 4.287
         }
       ],
-      "audio": "audio_swarm_bet/s457.mp3"
+      "audio": "books/swarm-bet/audio/s457.mp3"
     },
     {
       "id": "s458",
@@ -38540,7 +38540,7 @@
           "end": 4.438
         }
       ],
-      "audio": "audio_swarm_bet/s458.mp3"
+      "audio": "books/swarm-bet/audio/s458.mp3"
     },
     {
       "id": "s459",
@@ -38608,7 +38608,7 @@
           "end": 2.65
         }
       ],
-      "audio": "audio_swarm_bet/s459.mp3"
+      "audio": "books/swarm-bet/audio/s459.mp3"
     },
     {
       "id": "s460",
@@ -38656,7 +38656,7 @@
           "end": 1.525
         }
       ],
-      "audio": "audio_swarm_bet/s460.mp3"
+      "audio": "books/swarm-bet/audio/s460.mp3"
     },
     {
       "id": "s461",
@@ -38744,7 +38744,7 @@
           "end": 3.725
         }
       ],
-      "audio": "audio_swarm_bet/s461.mp3"
+      "audio": "books/swarm-bet/audio/s461.mp3"
     },
     {
       "id": "s462",
@@ -38852,7 +38852,7 @@
           "end": 4.95
         }
       ],
-      "audio": "audio_swarm_bet/s462.mp3"
+      "audio": "books/swarm-bet/audio/s462.mp3"
     },
     {
       "id": "s463",
@@ -38920,7 +38920,7 @@
           "end": 2.65
         }
       ],
-      "audio": "audio_swarm_bet/s463.mp3"
+      "audio": "books/swarm-bet/audio/s463.mp3"
     },
     {
       "id": "s464",
@@ -38968,7 +38968,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_swarm_bet/s464.mp3"
+      "audio": "books/swarm-bet/audio/s464.mp3"
     },
     {
       "id": "s465",
@@ -39036,7 +39036,7 @@
           "end": 2.638
         }
       ],
-      "audio": "audio_swarm_bet/s465.mp3"
+      "audio": "books/swarm-bet/audio/s465.mp3"
     },
     {
       "id": "s466",
@@ -39154,7 +39154,7 @@
           "end": 4.225
         }
       ],
-      "audio": "audio_swarm_bet/s466.mp3"
+      "audio": "books/swarm-bet/audio/s466.mp3"
     },
     {
       "id": "s467",
@@ -39242,7 +39242,7 @@
           "end": 3.675
         }
       ],
-      "audio": "audio_swarm_bet/s467.mp3"
+      "audio": "books/swarm-bet/audio/s467.mp3"
     },
     {
       "id": "s468",
@@ -39340,7 +39340,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_swarm_bet/s468.mp3"
+      "audio": "books/swarm-bet/audio/s468.mp3"
     },
     {
       "id": "s469",
@@ -39488,15 +39488,15 @@
           "end": 5.487
         }
       ],
-      "audio": "audio_swarm_bet/s469.mp3",
+      "audio": "books/swarm-bet/audio/s469.mp3",
       "illustration": {
         "word": "מִפְלֶצֶת",
         "tr": "чудовища",
         "caption": "מִפְלֶצֶת",
         "capTr": "mifletzet",
         "mnemonic": "Созвучно с «МИФ ЛЕЗЕТ». Из открытой коробки порошка «МИФ» ЛЕЗЕТ гигантское сопливое ЧУДОВИЩЕ, облепленное мыльными пузырями. Оно оглушительно чихает и разбрызгивает пену во все стороны!",
-        "img": "illustrations_swarm_bet/s469.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s469-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s469.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s469-mnemonic.webp"
       }
     },
     {
@@ -39635,7 +39635,7 @@
           "end": 5.438
         }
       ],
-      "audio": "audio_swarm_bet/s470.mp3"
+      "audio": "books/swarm-bet/audio/s470.mp3"
     },
     {
       "id": "s471",
@@ -39713,7 +39713,7 @@
           "end": 2.65
         }
       ],
-      "audio": "audio_swarm_bet/s471.mp3"
+      "audio": "books/swarm-bet/audio/s471.mp3"
     },
     {
       "id": "s472",
@@ -39821,7 +39821,7 @@
           "end": 4.2
         }
       ],
-      "audio": "audio_swarm_bet/s472.mp3"
+      "audio": "books/swarm-bet/audio/s472.mp3"
     },
     {
       "id": "s473",
@@ -39889,7 +39889,7 @@
           "end": 2.0
         }
       ],
-      "audio": "audio_swarm_bet/s473.mp3"
+      "audio": "books/swarm-bet/audio/s473.mp3"
     },
     {
       "id": "s474",
@@ -39987,7 +39987,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_swarm_bet/s474.mp3"
+      "audio": "books/swarm-bet/audio/s474.mp3"
     },
     {
       "id": "s475",
@@ -40095,7 +40095,7 @@
           "end": 4.438
         }
       ],
-      "audio": "audio_swarm_bet/s475.mp3"
+      "audio": "books/swarm-bet/audio/s475.mp3"
     },
     {
       "id": "s476",
@@ -40223,7 +40223,7 @@
           "end": 5.362
         }
       ],
-      "audio": "audio_swarm_bet/s476.mp3"
+      "audio": "books/swarm-bet/audio/s476.mp3"
     },
     {
       "id": "s477",
@@ -40291,7 +40291,7 @@
           "end": 3.125
         }
       ],
-      "audio": "audio_swarm_bet/s477.mp3"
+      "audio": "books/swarm-bet/audio/s477.mp3"
     },
     {
       "id": "s478",
@@ -40359,7 +40359,7 @@
           "end": 2.825
         }
       ],
-      "audio": "audio_swarm_bet/s478.mp3"
+      "audio": "books/swarm-bet/audio/s478.mp3"
     },
     {
       "id": "s479",
@@ -40477,7 +40477,7 @@
           "end": 4.662
         }
       ],
-      "audio": "audio_swarm_bet/s479.mp3"
+      "audio": "books/swarm-bet/audio/s479.mp3"
     },
     {
       "id": "s480",
@@ -40565,7 +40565,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_swarm_bet/s480.mp3"
+      "audio": "books/swarm-bet/audio/s480.mp3"
     },
     {
       "id": "s481",
@@ -40623,7 +40623,7 @@
           "end": 1.637
         }
       ],
-      "audio": "audio_swarm_bet/s481.mp3"
+      "audio": "books/swarm-bet/audio/s481.mp3"
     },
     {
       "id": "s482",
@@ -40691,7 +40691,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_swarm_bet/s482.mp3"
+      "audio": "books/swarm-bet/audio/s482.mp3"
     },
     {
       "id": "s483",
@@ -40839,7 +40839,7 @@
           "end": 8.012
         }
       ],
-      "audio": "audio_swarm_bet/s483.mp3"
+      "audio": "books/swarm-bet/audio/s483.mp3"
     },
     {
       "id": "s484",
@@ -40947,7 +40947,7 @@
           "end": 4.737
         }
       ],
-      "audio": "audio_swarm_bet/s484.mp3"
+      "audio": "books/swarm-bet/audio/s484.mp3"
     },
     {
       "id": "s485",
@@ -41015,7 +41015,7 @@
           "end": 2.688
         }
       ],
-      "audio": "audio_swarm_bet/s485.mp3"
+      "audio": "books/swarm-bet/audio/s485.mp3"
     },
     {
       "id": "s486",
@@ -41083,15 +41083,15 @@
           "end": 2.712
         }
       ],
-      "audio": "audio_swarm_bet/s486.mp3",
+      "audio": "books/swarm-bet/audio/s486.mp3",
       "illustration": {
         "word": "מִפְלֶצֶת",
         "tr": "чудовища",
         "caption": "מִפְלֶצֶת",
         "capTr": "MIFLETZET",
         "mnemonic": "Представьте, что из гигантской стиральной машины с мыльной пеной МИФ ЛЕЗЕТ рогатое чудовище. Мохнатый монстр с мыльной шапкой на голове смешно чистит свои огромные клыки зубной щёткой. Это чудовище вылезает прямо на вас — мифлецет!",
-        "img": "illustrations_swarm_bet/s486.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s486-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s486.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s486-mnemonic.webp"
       }
     },
     {
@@ -41190,7 +41190,7 @@
           "end": 5.638
         }
       ],
-      "audio": "audio_swarm_bet/s487.mp3"
+      "audio": "books/swarm-bet/audio/s487.mp3"
     },
     {
       "id": "s488",
@@ -41278,7 +41278,7 @@
           "end": 3.013
         }
       ],
-      "audio": "audio_swarm_bet/s488.mp3"
+      "audio": "books/swarm-bet/audio/s488.mp3"
     },
     {
       "id": "s489",
@@ -41356,7 +41356,7 @@
           "end": 3.763
         }
       ],
-      "audio": "audio_swarm_bet/s489.mp3"
+      "audio": "books/swarm-bet/audio/s489.mp3"
     },
     {
       "id": "s490",
@@ -41454,7 +41454,7 @@
           "end": 3.812
         }
       ],
-      "audio": "audio_swarm_bet/s490.mp3"
+      "audio": "books/swarm-bet/audio/s490.mp3"
     },
     {
       "id": "s491",
@@ -41552,7 +41552,7 @@
           "end": 4.575
         }
       ],
-      "audio": "audio_swarm_bet/s491.mp3"
+      "audio": "books/swarm-bet/audio/s491.mp3"
     },
     {
       "id": "s492",
@@ -41620,7 +41620,7 @@
           "end": 2.388
         }
       ],
-      "audio": "audio_swarm_bet/s492.mp3"
+      "audio": "books/swarm-bet/audio/s492.mp3"
     },
     {
       "id": "s493",
@@ -41708,7 +41708,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_swarm_bet/s493.mp3"
+      "audio": "books/swarm-bet/audio/s493.mp3"
     },
     {
       "id": "s494",
@@ -41826,7 +41826,7 @@
           "end": 4.912
         }
       ],
-      "audio": "audio_swarm_bet/s494.mp3"
+      "audio": "books/swarm-bet/audio/s494.mp3"
     },
     {
       "id": "s495",
@@ -41874,7 +41874,7 @@
           "end": 2.4
         }
       ],
-      "audio": "audio_swarm_bet/s495.mp3"
+      "audio": "books/swarm-bet/audio/s495.mp3"
     },
     {
       "id": "s496",
@@ -41942,7 +41942,7 @@
           "end": 2.913
         }
       ],
-      "audio": "audio_swarm_bet/s496.mp3"
+      "audio": "books/swarm-bet/audio/s496.mp3"
     },
     {
       "id": "s497",
@@ -42020,7 +42020,7 @@
           "end": 3.487
         }
       ],
-      "audio": "audio_swarm_bet/s497.mp3"
+      "audio": "books/swarm-bet/audio/s497.mp3"
     },
     {
       "id": "s498",
@@ -42118,7 +42118,7 @@
           "end": 4.438
         }
       ],
-      "audio": "audio_swarm_bet/s498.mp3"
+      "audio": "books/swarm-bet/audio/s498.mp3"
     },
     {
       "id": "s499",
@@ -42176,7 +42176,7 @@
           "end": 4.037
         }
       ],
-      "audio": "audio_swarm_bet/s499.mp3"
+      "audio": "books/swarm-bet/audio/s499.mp3"
     },
     {
       "id": "s500",
@@ -42314,7 +42314,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_swarm_bet/s500.mp3"
+      "audio": "books/swarm-bet/audio/s500.mp3"
     },
     {
       "id": "s501",
@@ -42382,7 +42382,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_swarm_bet/s501.mp3"
+      "audio": "books/swarm-bet/audio/s501.mp3"
     },
     {
       "id": "s502",
@@ -42460,15 +42460,15 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_swarm_bet/s502.mp3",
+      "audio": "books/swarm-bet/audio/s502.mp3",
       "illustration": {
         "word": "דֶּלֶת",
         "tr": "дверь",
         "caption": "דֶּלֶת",
         "capTr": "Delet",
         "mnemonic": "Слово «дэлэт» (דֶּלֶת) созвучно с фразой «дед летит». Представьте, как безумный ДЕД ЛЕТИТ на реактивном ранце прямо головой в гигантскую стальную ДВЕРЬ, с грохотом и искрами пробивая её насквозь!",
-        "img": "illustrations_swarm_bet/s502.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s502-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s502.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s502-mnemonic.webp"
       }
     },
     {
@@ -42617,7 +42617,7 @@
           "end": 6.612
         }
       ],
-      "audio": "audio_swarm_bet/s503.mp3"
+      "audio": "books/swarm-bet/audio/s503.mp3"
     },
     {
       "id": "s504",
@@ -42755,7 +42755,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_swarm_bet/s504.mp3"
+      "audio": "books/swarm-bet/audio/s504.mp3"
     },
     {
       "id": "s505",
@@ -42823,7 +42823,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_swarm_bet/s505.mp3"
+      "audio": "books/swarm-bet/audio/s505.mp3"
     },
     {
       "id": "s506",
@@ -42901,7 +42901,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_swarm_bet/s506.mp3"
+      "audio": "books/swarm-bet/audio/s506.mp3"
     },
     {
       "id": "s507",
@@ -43049,7 +43049,7 @@
           "end": 6.612
         }
       ],
-      "audio": "audio_swarm_bet/s507.mp3"
+      "audio": "books/swarm-bet/audio/s507.mp3"
     },
     {
       "id": "s508",
@@ -43107,7 +43107,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_swarm_bet/s508.mp3"
+      "audio": "books/swarm-bet/audio/s508.mp3"
     },
     {
       "id": "s509",
@@ -43175,7 +43175,7 @@
           "end": 2.663
         }
       ],
-      "audio": "audio_swarm_bet/s509.mp3"
+      "audio": "books/swarm-bet/audio/s509.mp3"
     },
     {
       "id": "s510",
@@ -43303,7 +43303,7 @@
           "end": 4.85
         }
       ],
-      "audio": "audio_swarm_bet/s510.mp3"
+      "audio": "books/swarm-bet/audio/s510.mp3"
     },
     {
       "id": "s511",
@@ -43401,7 +43401,7 @@
           "end": 3.375
         }
       ],
-      "audio": "audio_swarm_bet/s511.mp3"
+      "audio": "books/swarm-bet/audio/s511.mp3"
     },
     {
       "id": "s512",
@@ -43499,7 +43499,7 @@
           "end": 4.0
         }
       ],
-      "audio": "audio_swarm_bet/s512.mp3"
+      "audio": "books/swarm-bet/audio/s512.mp3"
     },
     {
       "id": "s513",
@@ -43597,7 +43597,7 @@
           "end": 4.213
         }
       ],
-      "audio": "audio_swarm_bet/s513.mp3"
+      "audio": "books/swarm-bet/audio/s513.mp3"
     },
     {
       "id": "s514",
@@ -43745,7 +43745,7 @@
           "end": 5.237
         }
       ],
-      "audio": "audio_swarm_bet/s514.mp3"
+      "audio": "books/swarm-bet/audio/s514.mp3"
     },
     {
       "id": "s515",
@@ -43823,7 +43823,7 @@
           "end": 2.962
         }
       ],
-      "audio": "audio_swarm_bet/s515.mp3"
+      "audio": "books/swarm-bet/audio/s515.mp3"
     },
     {
       "id": "s516",
@@ -43901,7 +43901,7 @@
           "end": 3.55
         }
       ],
-      "audio": "audio_swarm_bet/s516.mp3"
+      "audio": "books/swarm-bet/audio/s516.mp3"
     },
     {
       "id": "s517",
@@ -44069,7 +44069,7 @@
           "end": 7.138
         }
       ],
-      "audio": "audio_swarm_bet/s517.mp3"
+      "audio": "books/swarm-bet/audio/s517.mp3"
     },
     {
       "id": "s518",
@@ -44187,7 +44187,7 @@
           "end": 4.688
         }
       ],
-      "audio": "audio_swarm_bet/s518.mp3"
+      "audio": "books/swarm-bet/audio/s518.mp3"
     },
     {
       "id": "s519",
@@ -44265,7 +44265,7 @@
           "end": 3.225
         }
       ],
-      "audio": "audio_swarm_bet/s519.mp3"
+      "audio": "books/swarm-bet/audio/s519.mp3"
     },
     {
       "id": "s520",
@@ -44343,7 +44343,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_swarm_bet/s520.mp3"
+      "audio": "books/swarm-bet/audio/s520.mp3"
     },
     {
       "id": "s521",
@@ -44461,7 +44461,7 @@
           "end": 4.575
         }
       ],
-      "audio": "audio_swarm_bet/s521.mp3"
+      "audio": "books/swarm-bet/audio/s521.mp3"
     },
     {
       "id": "s522",
@@ -44519,7 +44519,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_swarm_bet/s522.mp3"
+      "audio": "books/swarm-bet/audio/s522.mp3"
     },
     {
       "id": "s523",
@@ -44647,7 +44647,7 @@
           "end": 7.6
         }
       ],
-      "audio": "audio_swarm_bet/s523.mp3"
+      "audio": "books/swarm-bet/audio/s523.mp3"
     },
     {
       "id": "s524",
@@ -44725,7 +44725,7 @@
           "end": 3.312
         }
       ],
-      "audio": "audio_swarm_bet/s524.mp3"
+      "audio": "books/swarm-bet/audio/s524.mp3"
     },
     {
       "id": "s525",
@@ -44853,7 +44853,7 @@
           "end": 4.588
         }
       ],
-      "audio": "audio_swarm_bet/s525.mp3"
+      "audio": "books/swarm-bet/audio/s525.mp3"
     },
     {
       "id": "s526",
@@ -44961,7 +44961,7 @@
           "end": 3.475
         }
       ],
-      "audio": "audio_swarm_bet/s526.mp3"
+      "audio": "books/swarm-bet/audio/s526.mp3"
     },
     {
       "id": "s527",
@@ -45089,15 +45089,15 @@
           "end": 5.275
         }
       ],
-      "audio": "audio_swarm_bet/s527.mp3",
+      "audio": "books/swarm-bet/audio/s527.mp3",
       "illustration": {
         "word": "מַכָּה",
         "tr": "от удара",
         "caption": "מַכָּה",
         "capTr": "maka",
         "mnemonic": "Слово «мака» созвучно со словом «МАКАроны». Представьте, как гигантская варёная МАКАРОНИНА надевает боксёрскую перчатку и наносит спортсмену нокаутирующий УДАР. От этого мощного УДАРА спортсмен в ужасе отлетает на три метра!",
-        "img": "illustrations_swarm_bet/s527.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s527-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s527.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s527-mnemonic.webp"
       }
     },
     {
@@ -45216,7 +45216,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_swarm_bet/s528.mp3"
+      "audio": "books/swarm-bet/audio/s528.mp3"
     },
     {
       "id": "s529",
@@ -45254,7 +45254,7 @@
           "end": 2.025
         }
       ],
-      "audio": "audio_swarm_bet/s529.mp3"
+      "audio": "books/swarm-bet/audio/s529.mp3"
     },
     {
       "id": "s530",
@@ -45332,7 +45332,7 @@
           "end": 3.188
         }
       ],
-      "audio": "audio_swarm_bet/s530.mp3"
+      "audio": "books/swarm-bet/audio/s530.mp3"
     },
     {
       "id": "s531",
@@ -45410,7 +45410,7 @@
           "end": 3.15
         }
       ],
-      "audio": "audio_swarm_bet/s531.mp3"
+      "audio": "books/swarm-bet/audio/s531.mp3"
     },
     {
       "id": "s532",
@@ -45518,7 +45518,7 @@
           "end": 3.85
         }
       ],
-      "audio": "audio_swarm_bet/s532.mp3"
+      "audio": "books/swarm-bet/audio/s532.mp3"
     },
     {
       "id": "s533",
@@ -45596,7 +45596,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_swarm_bet/s533.mp3"
+      "audio": "books/swarm-bet/audio/s533.mp3"
     },
     {
       "id": "s534",
@@ -45694,7 +45694,7 @@
           "end": 4.112
         }
       ],
-      "audio": "audio_swarm_bet/s534.mp3"
+      "audio": "books/swarm-bet/audio/s534.mp3"
     },
     {
       "id": "s535",
@@ -45752,7 +45752,7 @@
           "end": 2.375
         }
       ],
-      "audio": "audio_swarm_bet/s535.mp3"
+      "audio": "books/swarm-bet/audio/s535.mp3"
     },
     {
       "id": "s536",
@@ -45820,7 +45820,7 @@
           "end": 3.575
         }
       ],
-      "audio": "audio_swarm_bet/s536.mp3"
+      "audio": "books/swarm-bet/audio/s536.mp3"
     },
     {
       "id": "s537",
@@ -45908,7 +45908,7 @@
           "end": 3.487
         }
       ],
-      "audio": "audio_swarm_bet/s537.mp3"
+      "audio": "books/swarm-bet/audio/s537.mp3"
     },
     {
       "id": "s538",
@@ -45986,7 +45986,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_swarm_bet/s538.mp3"
+      "audio": "books/swarm-bet/audio/s538.mp3"
     },
     {
       "id": "s539",
@@ -46054,7 +46054,7 @@
           "end": 2.888
         }
       ],
-      "audio": "audio_swarm_bet/s539.mp3"
+      "audio": "books/swarm-bet/audio/s539.mp3"
     },
     {
       "id": "s540",
@@ -46132,7 +46132,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_swarm_bet/s540.mp3"
+      "audio": "books/swarm-bet/audio/s540.mp3"
     },
     {
       "id": "s541",
@@ -46220,7 +46220,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_swarm_bet/s541.mp3"
+      "audio": "books/swarm-bet/audio/s541.mp3"
     },
     {
       "id": "s542",
@@ -46308,7 +46308,7 @@
           "end": 3.675
         }
       ],
-      "audio": "audio_swarm_bet/s542.mp3"
+      "audio": "books/swarm-bet/audio/s542.mp3"
     },
     {
       "id": "s543",
@@ -46376,7 +46376,7 @@
           "end": 2.525
         }
       ],
-      "audio": "audio_swarm_bet/s543.mp3"
+      "audio": "books/swarm-bet/audio/s543.mp3"
     },
     {
       "id": "s544",
@@ -46434,7 +46434,7 @@
           "end": 2.362
         }
       ],
-      "audio": "audio_swarm_bet/s544.mp3"
+      "audio": "books/swarm-bet/audio/s544.mp3"
     },
     {
       "id": "s545",
@@ -46492,7 +46492,7 @@
           "end": 2.3
         }
       ],
-      "audio": "audio_swarm_bet/s545.mp3"
+      "audio": "books/swarm-bet/audio/s545.mp3"
     },
     {
       "id": "s546",
@@ -46560,7 +46560,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_swarm_bet/s546.mp3"
+      "audio": "books/swarm-bet/audio/s546.mp3"
     },
     {
       "id": "s547",
@@ -46678,7 +46678,7 @@
           "end": 4.1
         }
       ],
-      "audio": "audio_swarm_bet/s547.mp3"
+      "audio": "books/swarm-bet/audio/s547.mp3"
     },
     {
       "id": "s548",
@@ -46716,15 +46716,15 @@
           "end": 1.663
         }
       ],
-      "audio": "audio_swarm_bet/s548.mp3",
+      "audio": "books/swarm-bet/audio/s548.mp3",
       "illustration": {
         "word": "מוּצָב",
         "tr": "форпост",
         "caption": "מוּצָב",
         "capTr": "MUTZAV",
         "mnemonic": "Чтобы запомнить, что «муцав» — это форпост, представьте: гигантская муха делает «ЦАП!» и с грохотом утаскивает зубами целый форпост. Муха цап (муцав) — и военный форпост уже в воздухе!",
-        "img": "illustrations_swarm_bet/s548.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s548-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s548.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s548-mnemonic.webp"
       }
     },
     {
@@ -46753,7 +46753,7 @@
           "end": 1.2
         }
       ],
-      "audio": "audio_swarm_bet/s549.mp3"
+      "audio": "books/swarm-bet/audio/s549.mp3"
     },
     {
       "id": "s550",
@@ -46791,7 +46791,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_swarm_bet/s550.mp3"
+      "audio": "books/swarm-bet/audio/s550.mp3"
     },
     {
       "id": "s551",
@@ -46899,7 +46899,7 @@
           "end": 5.1
         }
       ],
-      "audio": "audio_swarm_bet/s551.mp3"
+      "audio": "books/swarm-bet/audio/s551.mp3"
     },
     {
       "id": "s552",
@@ -46987,7 +46987,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_swarm_bet/s552.mp3"
+      "audio": "books/swarm-bet/audio/s552.mp3"
     },
     {
       "id": "s553",
@@ -47065,7 +47065,7 @@
           "end": 3.362
         }
       ],
-      "audio": "audio_swarm_bet/s553.mp3"
+      "audio": "books/swarm-bet/audio/s553.mp3"
     },
     {
       "id": "s554",
@@ -47173,7 +47173,7 @@
           "end": 4.162
         }
       ],
-      "audio": "audio_swarm_bet/s554.mp3"
+      "audio": "books/swarm-bet/audio/s554.mp3"
     },
     {
       "id": "s555",
@@ -47211,7 +47211,7 @@
           "end": 2.062
         }
       ],
-      "audio": "audio_swarm_bet/s555.mp3"
+      "audio": "books/swarm-bet/audio/s555.mp3"
     },
     {
       "id": "s556",
@@ -47339,7 +47339,7 @@
           "end": 4.438
         }
       ],
-      "audio": "audio_swarm_bet/s556.mp3"
+      "audio": "books/swarm-bet/audio/s556.mp3"
     },
     {
       "id": "s557",
@@ -47417,7 +47417,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_swarm_bet/s557.mp3"
+      "audio": "books/swarm-bet/audio/s557.mp3"
     },
     {
       "id": "s558",
@@ -47495,7 +47495,7 @@
           "end": 2.925
         }
       ],
-      "audio": "audio_swarm_bet/s558.mp3"
+      "audio": "books/swarm-bet/audio/s558.mp3"
     },
     {
       "id": "s559",
@@ -47593,7 +47593,7 @@
           "end": 3.688
         }
       ],
-      "audio": "audio_swarm_bet/s559.mp3"
+      "audio": "books/swarm-bet/audio/s559.mp3"
     },
     {
       "id": "s560",
@@ -47691,7 +47691,7 @@
           "end": 3.862
         }
       ],
-      "audio": "audio_swarm_bet/s560.mp3"
+      "audio": "books/swarm-bet/audio/s560.mp3"
     },
     {
       "id": "s561",
@@ -47749,7 +47749,7 @@
           "end": 3.175
         }
       ],
-      "audio": "audio_swarm_bet/s561.mp3"
+      "audio": "books/swarm-bet/audio/s561.mp3"
     },
     {
       "id": "s562",
@@ -47807,7 +47807,7 @@
           "end": 2.312
         }
       ],
-      "audio": "audio_swarm_bet/s562.mp3"
+      "audio": "books/swarm-bet/audio/s562.mp3"
     },
     {
       "id": "s563",
@@ -47865,7 +47865,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_swarm_bet/s563.mp3"
+      "audio": "books/swarm-bet/audio/s563.mp3"
     },
     {
       "id": "s564",
@@ -47913,7 +47913,7 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_swarm_bet/s564.mp3"
+      "audio": "books/swarm-bet/audio/s564.mp3"
     },
     {
       "id": "s565",
@@ -47971,15 +47971,15 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_swarm_bet/s565.mp3",
+      "audio": "books/swarm-bet/audio/s565.mp3",
       "illustration": {
         "word": "כָּתֵף",
         "tr": "плеча",
         "caption": "כָּתֵף",
         "capTr": "katef",
         "mnemonic": "Созвучие: КОТ В КАФЕ (катеф). Представь, что у тебя прямо на ПЛЕЧЕ открылось мини-кафе, где сидит огромный толстый КОТ и пьет кофе из чашечки. От тяжести кота твоё ПЛЕЧО перекашивается вниз, а горячий кофе проливается тебе на одежду!",
-        "img": "illustrations_swarm_bet/s565.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s565-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s565.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s565-mnemonic.webp"
       }
     },
     {
@@ -48058,7 +48058,7 @@
           "end": 3.05
         }
       ],
-      "audio": "audio_swarm_bet/s566.mp3"
+      "audio": "books/swarm-bet/audio/s566.mp3"
     },
     {
       "id": "s567",
@@ -48156,7 +48156,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_swarm_bet/s567.mp3"
+      "audio": "books/swarm-bet/audio/s567.mp3"
     },
     {
       "id": "s568",
@@ -48214,7 +48214,7 @@
           "end": 2.2
         }
       ],
-      "audio": "audio_swarm_bet/s568.mp3"
+      "audio": "books/swarm-bet/audio/s568.mp3"
     },
     {
       "id": "s569",
@@ -48252,7 +48252,7 @@
           "end": 1.413
         }
       ],
-      "audio": "audio_swarm_bet/s569.mp3"
+      "audio": "books/swarm-bet/audio/s569.mp3"
     },
     {
       "id": "s570",
@@ -48300,7 +48300,7 @@
           "end": 1.8
         }
       ],
-      "audio": "audio_swarm_bet/s570.mp3"
+      "audio": "books/swarm-bet/audio/s570.mp3"
     },
     {
       "id": "s571",
@@ -48408,7 +48408,7 @@
           "end": 3.725
         }
       ],
-      "audio": "audio_swarm_bet/s571.mp3"
+      "audio": "books/swarm-bet/audio/s571.mp3"
     },
     {
       "id": "s572",
@@ -48506,7 +48506,7 @@
           "end": 4.15
         }
       ],
-      "audio": "audio_swarm_bet/s572.mp3"
+      "audio": "books/swarm-bet/audio/s572.mp3"
     },
     {
       "id": "s573",
@@ -48554,7 +48554,7 @@
           "end": 1.837
         }
       ],
-      "audio": "audio_swarm_bet/s573.mp3"
+      "audio": "books/swarm-bet/audio/s573.mp3"
     },
     {
       "id": "s574",
@@ -48612,7 +48612,7 @@
           "end": 2.337
         }
       ],
-      "audio": "audio_swarm_bet/s574.mp3"
+      "audio": "books/swarm-bet/audio/s574.mp3"
     },
     {
       "id": "s575",
@@ -48650,7 +48650,7 @@
           "end": 1.45
         }
       ],
-      "audio": "audio_swarm_bet/s575.mp3"
+      "audio": "books/swarm-bet/audio/s575.mp3"
     },
     {
       "id": "s576",
@@ -48738,7 +48738,7 @@
           "end": 3.3
         }
       ],
-      "audio": "audio_swarm_bet/s576.mp3"
+      "audio": "books/swarm-bet/audio/s576.mp3"
     },
     {
       "id": "s577",
@@ -48806,7 +48806,7 @@
           "end": 1.938
         }
       ],
-      "audio": "audio_swarm_bet/s577.mp3"
+      "audio": "books/swarm-bet/audio/s577.mp3"
     },
     {
       "id": "s578",
@@ -48924,7 +48924,7 @@
           "end": 3.688
         }
       ],
-      "audio": "audio_swarm_bet/s578.mp3"
+      "audio": "books/swarm-bet/audio/s578.mp3"
     },
     {
       "id": "s579",
@@ -49002,7 +49002,7 @@
           "end": 2.737
         }
       ],
-      "audio": "audio_swarm_bet/s579.mp3"
+      "audio": "books/swarm-bet/audio/s579.mp3"
     },
     {
       "id": "s580",
@@ -49080,7 +49080,7 @@
           "end": 2.875
         }
       ],
-      "audio": "audio_swarm_bet/s580.mp3"
+      "audio": "books/swarm-bet/audio/s580.mp3"
     },
     {
       "id": "s581",
@@ -49218,15 +49218,15 @@
           "end": 5.237
         }
       ],
-      "audio": "audio_swarm_bet/s581.mp3",
+      "audio": "books/swarm-bet/audio/s581.mp3",
       "illustration": {
         "word": "מוּצָב",
         "tr": "форпост",
         "caption": "מוּצָב",
         "capTr": "MUTZAV",
         "mnemonic": "Представьте, что на космический форпост нападает гигантская корова, которая с диким криком «МУ!» делает «ЦАП!», хватая весь форпост зубами. Солдаты в панике наблюдают, как огромная корова му-цапает их военную базу. Этот безумный образ навсегда свяжет «му-цап» и форпост — «муцав».",
-        "img": "illustrations_swarm_bet/s581.webp",
-        "imgMnemonic": "illustrations_swarm_bet/s581-mnemonic.webp"
+        "img": "books/swarm-bet/illustrations/s581.webp",
+        "imgMnemonic": "books/swarm-bet/illustrations/s581-mnemonic.webp"
       }
     },
     {
@@ -49305,7 +49305,7 @@
           "end": 2.925
         }
       ],
-      "audio": "audio_swarm_bet/s582.mp3"
+      "audio": "books/swarm-bet/audio/s582.mp3"
     },
     {
       "id": "s583",
@@ -49443,7 +49443,7 @@
           "end": 5.162
         }
       ],
-      "audio": "audio_swarm_bet/s583.mp3"
+      "audio": "books/swarm-bet/audio/s583.mp3"
     },
     {
       "id": "s584",
@@ -49531,7 +49531,7 @@
           "end": 3.425
         }
       ],
-      "audio": "audio_swarm_bet/s584.mp3"
+      "audio": "books/swarm-bet/audio/s584.mp3"
     },
     {
       "id": "s585",
@@ -49589,7 +49589,7 @@
           "end": 2.513
         }
       ],
-      "audio": "audio_swarm_bet/s585.mp3"
+      "audio": "books/swarm-bet/audio/s585.mp3"
     },
     {
       "id": "s586",
@@ -49687,7 +49687,7 @@
           "end": 5.4
         }
       ],
-      "audio": "audio_swarm_bet/s586.mp3"
+      "audio": "books/swarm-bet/audio/s586.mp3"
     }
   ]
 }

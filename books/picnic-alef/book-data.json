@@ -36,7 +36,7 @@
           "end": 1.462
         }
       ],
-      "audio": "audio_picnic_alef/s1.mp3"
+      "audio": "books/picnic-alef/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -94,7 +94,7 @@
           "end": 2.85
         }
       ],
-      "audio": "audio_picnic_alef/s2.mp3"
+      "audio": "books/picnic-alef/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -143,7 +143,7 @@
         }
       ],
       "ttsEngine": "gtts",
-      "audio": "audio_picnic_alef/s3.mp3"
+      "audio": "books/picnic-alef/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -191,7 +191,7 @@
           "end": 1.85
         }
       ],
-      "audio": "audio_picnic_alef/s4.mp3"
+      "audio": "books/picnic-alef/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -239,7 +239,7 @@
           "end": 1.887
         }
       ],
-      "audio": "audio_picnic_alef/s5.mp3"
+      "audio": "books/picnic-alef/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -307,7 +307,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_picnic_alef/s6.mp3"
+      "audio": "books/picnic-alef/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -345,7 +345,7 @@
           "end": 1.65
         }
       ],
-      "audio": "audio_picnic_alef/s7.mp3"
+      "audio": "books/picnic-alef/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -413,7 +413,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_picnic_alef/s8.mp3"
+      "audio": "books/picnic-alef/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -471,7 +471,7 @@
           "end": 2.15
         }
       ],
-      "audio": "audio_picnic_alef/s9.mp3"
+      "audio": "books/picnic-alef/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -519,7 +519,7 @@
           "end": 2.062
         }
       ],
-      "audio": "audio_picnic_alef/s10.mp3"
+      "audio": "books/picnic-alef/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -557,7 +557,7 @@
           "end": 1.4
         }
       ],
-      "audio": "audio_picnic_alef/s11.mp3"
+      "audio": "books/picnic-alef/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -635,15 +635,15 @@
           "end": 3.237
         }
       ],
-      "audio": "audio_picnic_alef/s12.mp3",
+      "audio": "books/picnic-alef/audio/s12.mp3",
       "illustration": {
         "word": "נְמָלָה",
         "tr": "муравьи",
         "caption": "נְמָלָה",
         "capTr": "nemalim",
         "mnemonic": "Представь, что НЕМАЛО муравьёв вдруг выстроились в очередь и маршируют вверх по корзине с фруктами. Их так немало, что они несут яблоки и груши на спинах, а самый маленький муравей командует парадом.",
-        "img": "illustrations_picnic_alef/s12.webp",
-        "imgMnemonic": "illustrations_picnic_alef/s12-mnemonic.webp"
+        "img": "books/picnic-alef/illustrations/s12.webp",
+        "imgMnemonic": "books/picnic-alef/illustrations/s12-mnemonic.webp"
       }
     },
     {
@@ -702,7 +702,7 @@
           "end": 2.375
         }
       ],
-      "audio": "audio_picnic_alef/s13.mp3"
+      "audio": "books/picnic-alef/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -760,7 +760,7 @@
           "end": 1.488
         }
       ],
-      "audio": "audio_picnic_alef/s14.mp3"
+      "audio": "books/picnic-alef/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -838,7 +838,7 @@
           "end": 2.837
         }
       ],
-      "audio": "audio_picnic_alef/s15.mp3"
+      "audio": "books/picnic-alef/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -876,7 +876,7 @@
           "end": 1.812
         }
       ],
-      "audio": "audio_picnic_alef/s16.mp3"
+      "audio": "books/picnic-alef/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -924,7 +924,7 @@
           "end": 1.875
         }
       ],
-      "audio": "audio_picnic_alef/s17.mp3"
+      "audio": "books/picnic-alef/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -992,7 +992,7 @@
           "end": 2.663
         }
       ],
-      "audio": "audio_picnic_alef/s18.mp3"
+      "audio": "books/picnic-alef/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1060,7 +1060,7 @@
           "end": 2.2
         }
       ],
-      "audio": "audio_picnic_alef/s19.mp3"
+      "audio": "books/picnic-alef/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1098,7 +1098,7 @@
           "end": 1.512
         }
       ],
-      "audio": "audio_picnic_alef/s20.mp3"
+      "audio": "books/picnic-alef/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1186,7 +1186,7 @@
           "end": 2.775
         }
       ],
-      "audio": "audio_picnic_alef/s21.mp3"
+      "audio": "books/picnic-alef/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1244,7 +1244,7 @@
           "end": 2.025
         }
       ],
-      "audio": "audio_picnic_alef/s22.mp3"
+      "audio": "books/picnic-alef/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -1292,7 +1292,7 @@
           "end": 1.913
         }
       ],
-      "audio": "audio_picnic_alef/s23.mp3"
+      "audio": "books/picnic-alef/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -1350,7 +1350,7 @@
           "end": 2.0
         }
       ],
-      "audio": "audio_picnic_alef/s24.mp3"
+      "audio": "books/picnic-alef/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -1388,7 +1388,7 @@
           "end": 1.65
         }
       ],
-      "audio": "audio_picnic_alef/s25.mp3"
+      "audio": "books/picnic-alef/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -1446,15 +1446,15 @@
           "end": 2.275
         }
       ],
-      "audio": "audio_picnic_alef/s26.mp3",
+      "audio": "books/picnic-alef/audio/s26.mp3",
       "illustration": {
         "word": "פִּירּוּר",
         "tr": "крошки",
         "caption": "פִּירּוּר",
         "capTr": "hapeirurim",
         "mnemonic": "Представь ПИРУЭТ: крошечные крошки хлеба вдруг закружились в танце, как балерины на сцене. Они вертятся, прыгают и выполняют красивые пируэты, а муравьи хлопают в ладоши.",
-        "img": "illustrations_picnic_alef/s26.webp",
-        "imgMnemonic": "illustrations_picnic_alef/s26-mnemonic.webp"
+        "img": "books/picnic-alef/illustrations/s26.webp",
+        "imgMnemonic": "books/picnic-alef/illustrations/s26-mnemonic.webp"
       }
     },
     {
@@ -1504,7 +1504,7 @@
         }
       ],
       "ttsEngine": "gtts",
-      "audio": "audio_picnic_alef/s27.mp3"
+      "audio": "books/picnic-alef/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -1542,7 +1542,7 @@
           "end": 1.8
         }
       ],
-      "audio": "audio_picnic_alef/s28.mp3"
+      "audio": "books/picnic-alef/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -1600,7 +1600,7 @@
           "end": 2.825
         }
       ],
-      "audio": "audio_picnic_alef/s29.mp3"
+      "audio": "books/picnic-alef/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -1658,7 +1658,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_picnic_alef/s30.mp3"
+      "audio": "books/picnic-alef/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -1706,7 +1706,7 @@
           "end": 2.625
         }
       ],
-      "audio": "audio_picnic_alef/s31.mp3"
+      "audio": "books/picnic-alef/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -1764,7 +1764,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_picnic_alef/s32.mp3"
+      "audio": "books/picnic-alef/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -1822,7 +1822,7 @@
           "end": 2.712
         }
       ],
-      "audio": "audio_picnic_alef/s33.mp3"
+      "audio": "books/picnic-alef/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -1900,7 +1900,7 @@
           "end": 2.812
         }
       ],
-      "audio": "audio_picnic_alef/s34.mp3"
+      "audio": "books/picnic-alef/audio/s34.mp3"
     }
   ]
 }

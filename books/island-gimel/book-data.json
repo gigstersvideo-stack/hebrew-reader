@@ -116,7 +116,7 @@
           "end": 5.537
         }
       ],
-      "audio": "audio_island_gimel/s1.mp3"
+      "audio": "books/island-gimel/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -244,7 +244,7 @@
           "end": 5.525
         }
       ],
-      "audio": "audio_island_gimel/s2.mp3"
+      "audio": "books/island-gimel/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -392,7 +392,7 @@
           "end": 6.612
         }
       ],
-      "audio": "audio_island_gimel/s3.mp3"
+      "audio": "books/island-gimel/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -490,7 +490,7 @@
           "end": 4.3
         }
       ],
-      "audio": "audio_island_gimel/s4.mp3"
+      "audio": "books/island-gimel/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -638,7 +638,7 @@
           "end": 5.588
         }
       ],
-      "audio": "audio_island_gimel/s5.mp3"
+      "audio": "books/island-gimel/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -746,7 +746,7 @@
           "end": 4.65
         }
       ],
-      "audio": "audio_island_gimel/s6.mp3"
+      "audio": "books/island-gimel/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -804,7 +804,7 @@
           "end": 2.763
         }
       ],
-      "audio": "audio_island_gimel/s7.mp3"
+      "audio": "books/island-gimel/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -912,7 +912,7 @@
           "end": 5.2
         }
       ],
-      "audio": "audio_island_gimel/s8.mp3"
+      "audio": "books/island-gimel/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -1070,7 +1070,7 @@
           "end": 6.65
         }
       ],
-      "audio": "audio_island_gimel/s9.mp3"
+      "audio": "books/island-gimel/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1178,7 +1178,7 @@
           "end": 4.15
         }
       ],
-      "audio": "audio_island_gimel/s10.mp3"
+      "audio": "books/island-gimel/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -1356,7 +1356,7 @@
           "end": 7.875
         }
       ],
-      "audio": "audio_island_gimel/s11.mp3"
+      "audio": "books/island-gimel/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1444,7 +1444,7 @@
           "end": 4.1
         }
       ],
-      "audio": "audio_island_gimel/s12.mp3"
+      "audio": "books/island-gimel/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1612,15 +1612,15 @@
           "end": 7.15
         }
       ],
-      "audio": "audio_island_gimel/s13.mp3",
+      "audio": "books/island-gimel/audio/s13.mp3",
       "illustration": {
         "word": "חוֹל",
         "tr": "песок",
         "caption": "חוֹל",
         "capTr": "chol",
         "mnemonic": "Представь, что песок на берегу превратился в огромный ХОЛЛ отеля: мраморные колонны, хрустальные люстры и пол из золотого песка. Друзья входят мокрые и удивлённые, а швейцар в мундире кланяется им.",
-        "img": "illustrations_island_gimel/s13.webp",
-        "imgMnemonic": "illustrations_island_gimel/s13-mnemonic.webp"
+        "img": "books/island-gimel/illustrations/s13.webp",
+        "imgMnemonic": "books/island-gimel/illustrations/s13-mnemonic.webp"
       }
     },
     {
@@ -1719,7 +1719,7 @@
           "end": 4.412
         }
       ],
-      "audio": "audio_island_gimel/s14.mp3"
+      "audio": "books/island-gimel/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1847,7 +1847,7 @@
           "end": 4.925
         }
       ],
-      "audio": "audio_island_gimel/s15.mp3"
+      "audio": "books/island-gimel/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1975,7 +1975,7 @@
           "end": 4.575
         }
       ],
-      "audio": "audio_island_gimel/s16.mp3"
+      "audio": "books/island-gimel/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -2073,7 +2073,7 @@
           "end": 4.075
         }
       ],
-      "audio": "audio_island_gimel/s17.mp3"
+      "audio": "books/island-gimel/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -2231,7 +2231,7 @@
           "end": 6.3
         }
       ],
-      "audio": "audio_island_gimel/s18.mp3"
+      "audio": "books/island-gimel/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -2429,7 +2429,7 @@
           "end": 7.025
         }
       ],
-      "audio": "audio_island_gimel/s19.mp3"
+      "audio": "books/island-gimel/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -2557,7 +2557,7 @@
           "end": 5.55
         }
       ],
-      "audio": "audio_island_gimel/s20.mp3"
+      "audio": "books/island-gimel/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -2655,7 +2655,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_island_gimel/s21.mp3"
+      "audio": "books/island-gimel/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -2783,7 +2783,7 @@
           "end": 4.925
         }
       ],
-      "audio": "audio_island_gimel/s22.mp3"
+      "audio": "books/island-gimel/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -2941,7 +2941,7 @@
           "end": 5.237
         }
       ],
-      "audio": "audio_island_gimel/s23.mp3"
+      "audio": "books/island-gimel/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -3069,7 +3069,7 @@
           "end": 5.213
         }
       ],
-      "audio": "audio_island_gimel/s24.mp3"
+      "audio": "books/island-gimel/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -3217,7 +3217,7 @@
           "end": 5.688
         }
       ],
-      "audio": "audio_island_gimel/s25.mp3"
+      "audio": "books/island-gimel/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -3375,7 +3375,7 @@
           "end": 5.825
         }
       ],
-      "audio": "audio_island_gimel/s26.mp3"
+      "audio": "books/island-gimel/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -3563,7 +3563,7 @@
           "end": 7.638
         }
       ],
-      "audio": "audio_island_gimel/s27.mp3"
+      "audio": "books/island-gimel/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -3621,7 +3621,7 @@
           "end": 2.737
         }
       ],
-      "audio": "audio_island_gimel/s28.mp3"
+      "audio": "books/island-gimel/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -3759,15 +3759,15 @@
           "end": 5.737
         }
       ],
-      "audio": "audio_island_gimel/s29.mp3",
+      "audio": "books/island-gimel/audio/s29.mp3",
       "illustration": {
         "word": "עֲנָפִים",
         "tr": "ветки",
         "caption": "עֲנָפִים",
         "capTr": "anafim",
         "mnemonic": "Представь, что на сухих ветках вместо листьев растут АНАНАСЫ: колючие золотистые плоды на ветках висят гроздьями, а дети собирают их в лодку-корзину. Ветки гнутся и смеются.",
-        "img": "illustrations_island_gimel/s29.webp",
-        "imgMnemonic": "illustrations_island_gimel/s29-mnemonic.webp"
+        "img": "books/island-gimel/illustrations/s29.webp",
+        "imgMnemonic": "books/island-gimel/illustrations/s29-mnemonic.webp"
       }
     },
     {
@@ -3946,7 +3946,7 @@
           "end": 6.825
         }
       ],
-      "audio": "audio_island_gimel/s30.mp3"
+      "audio": "books/island-gimel/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -4094,7 +4094,7 @@
           "end": 5.85
         }
       ],
-      "audio": "audio_island_gimel/s31.mp3"
+      "audio": "books/island-gimel/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -4192,7 +4192,7 @@
           "end": 4.275
         }
       ],
-      "audio": "audio_island_gimel/s32.mp3"
+      "audio": "books/island-gimel/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -4320,7 +4320,7 @@
           "end": 4.763
         }
       ],
-      "audio": "audio_island_gimel/s33.mp3"
+      "audio": "books/island-gimel/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -4408,7 +4408,7 @@
           "end": 3.837
         }
       ],
-      "audio": "audio_island_gimel/s34.mp3"
+      "audio": "books/island-gimel/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -4566,7 +4566,7 @@
           "end": 6.175
         }
       ],
-      "audio": "audio_island_gimel/s35.mp3"
+      "audio": "books/island-gimel/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -4684,7 +4684,7 @@
           "end": 5.125
         }
       ],
-      "audio": "audio_island_gimel/s36.mp3"
+      "audio": "books/island-gimel/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -4832,7 +4832,7 @@
           "end": 6.763
         }
       ],
-      "audio": "audio_island_gimel/s37.mp3"
+      "audio": "books/island-gimel/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -4940,7 +4940,7 @@
           "end": 4.475
         }
       ],
-      "audio": "audio_island_gimel/s38.mp3"
+      "audio": "books/island-gimel/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -5058,7 +5058,7 @@
           "end": 4.963
         }
       ],
-      "audio": "audio_island_gimel/s39.mp3"
+      "audio": "books/island-gimel/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -5216,7 +5216,7 @@
           "end": 5.825
         }
       ],
-      "audio": "audio_island_gimel/s40.mp3"
+      "audio": "books/island-gimel/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -5394,7 +5394,7 @@
           "end": 7.65
         }
       ],
-      "audio": "audio_island_gimel/s41.mp3"
+      "audio": "books/island-gimel/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -5552,7 +5552,7 @@
           "end": 5.562
         }
       ],
-      "audio": "audio_island_gimel/s42.mp3"
+      "audio": "books/island-gimel/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -5680,7 +5680,7 @@
           "end": 5.475
         }
       ],
-      "audio": "audio_island_gimel/s43.mp3"
+      "audio": "books/island-gimel/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -5788,7 +5788,7 @@
           "end": 4.388
         }
       ],
-      "audio": "audio_island_gimel/s44.mp3"
+      "audio": "books/island-gimel/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -5916,7 +5916,7 @@
           "end": 5.188
         }
       ],
-      "audio": "audio_island_gimel/s45.mp3"
+      "audio": "books/island-gimel/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -6064,7 +6064,7 @@
           "end": 5.912
         }
       ],
-      "audio": "audio_island_gimel/s46.mp3"
+      "audio": "books/island-gimel/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -6222,7 +6222,7 @@
           "end": 5.9
         }
       ],
-      "audio": "audio_island_gimel/s47.mp3"
+      "audio": "books/island-gimel/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -6400,7 +6400,7 @@
           "end": 6.875
         }
       ],
-      "audio": "audio_island_gimel/s48.mp3"
+      "audio": "books/island-gimel/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -6518,7 +6518,7 @@
           "end": 5.075
         }
       ],
-      "audio": "audio_island_gimel/s49.mp3"
+      "audio": "books/island-gimel/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -6666,15 +6666,15 @@
           "end": 5.725
         }
       ],
-      "audio": "audio_island_gimel/s50.mp3",
+      "audio": "books/island-gimel/audio/s50.mp3",
       "illustration": {
         "word": "עָשָׁן",
         "tr": "дым",
         "caption": "עָשָׁן",
         "capTr": "ashan",
         "mnemonic": "Представь, что тонкий дым от костра поднимается вверх и складывается в вывеску супермаркета АШАН: Только вместо букв в дыму рисуется тележка с корзиной, а друзья с надеждой смотрят вверх.",
-        "img": "illustrations_island_gimel/s50.webp",
-        "imgMnemonic": "illustrations_island_gimel/s50-mnemonic.webp"
+        "img": "books/island-gimel/illustrations/s50.webp",
+        "imgMnemonic": "books/island-gimel/illustrations/s50-mnemonic.webp"
       }
     },
     {
@@ -6833,7 +6833,7 @@
           "end": 6.75
         }
       ],
-      "audio": "audio_island_gimel/s51.mp3"
+      "audio": "books/island-gimel/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -6931,7 +6931,7 @@
           "end": 3.5
         }
       ],
-      "audio": "audio_island_gimel/s52.mp3"
+      "audio": "books/island-gimel/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -7139,7 +7139,7 @@
           "end": 8.662
         }
       ],
-      "audio": "audio_island_gimel/s53.mp3"
+      "audio": "books/island-gimel/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -7207,7 +7207,7 @@
           "end": 3.225
         }
       ],
-      "audio": "audio_island_gimel/s54.mp3"
+      "audio": "books/island-gimel/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -7355,7 +7355,7 @@
           "end": 5.338
         }
       ],
-      "audio": "audio_island_gimel/s55.mp3"
+      "audio": "books/island-gimel/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -7453,7 +7453,7 @@
           "end": 4.25
         }
       ],
-      "audio": "audio_island_gimel/s56.mp3"
+      "audio": "books/island-gimel/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -7511,7 +7511,7 @@
           "end": 2.562
         }
       ],
-      "audio": "audio_island_gimel/s57.mp3"
+      "audio": "books/island-gimel/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -7699,7 +7699,7 @@
           "end": 8.713
         }
       ],
-      "audio": "audio_island_gimel/s58.mp3"
+      "audio": "books/island-gimel/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -7777,7 +7777,7 @@
           "end": 3.275
         }
       ],
-      "audio": "audio_island_gimel/s59.mp3"
+      "audio": "books/island-gimel/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -7905,7 +7905,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_island_gimel/s60.mp3"
+      "audio": "books/island-gimel/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -8043,15 +8043,15 @@
           "end": 5.787
         }
       ],
-      "audio": "audio_island_gimel/s61.mp3",
+      "audio": "books/island-gimel/audio/s61.mp3",
       "illustration": {
         "word": "סִירָה",
         "tr": "лодка",
         "caption": "סִירָה",
         "capTr": "sira",
         "mnemonic": "Представь лодку, которая вместо гудка издаёт вой СИРЕНЫ: розовый корпус, красная мигалка на носу и родители на борту машут руками. Лодка несётся по реке, а утки разлетаются.",
-        "img": "illustrations_island_gimel/s61.webp",
-        "imgMnemonic": "illustrations_island_gimel/s61-mnemonic.webp"
+        "img": "books/island-gimel/illustrations/s61.webp",
+        "imgMnemonic": "books/island-gimel/illustrations/s61-mnemonic.webp"
       }
     },
     {
@@ -8130,7 +8130,7 @@
           "end": 3.962
         }
       ],
-      "audio": "audio_island_gimel/s62.mp3"
+      "audio": "books/island-gimel/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -8259,7 +8259,7 @@
         }
       ],
       "ttsEngine": "gtts",
-      "audio": "audio_island_gimel/s63.mp3"
+      "audio": "books/island-gimel/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -8387,7 +8387,7 @@
           "end": 5.013
         }
       ],
-      "audio": "audio_island_gimel/s64.mp3"
+      "audio": "books/island-gimel/audio/s64.mp3"
     },
     {
       "id": "s65",
@@ -8565,7 +8565,7 @@
           "end": 7.487
         }
       ],
-      "audio": "audio_island_gimel/s65.mp3"
+      "audio": "books/island-gimel/audio/s65.mp3"
     }
   ]
 }

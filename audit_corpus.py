@@ -308,7 +308,12 @@ def audit_content_file(fname, cache, total, confirmed_noise):
     if key is None:
         return total, confirmed_noise
     sentences = data[key]
+    # books/<slug>/book-data.json — basename в одиночку теряет slug (38 книг
+    # называются одинаково после реорганизации), поэтому берём его вместе
+    # с папкой; book-data-epic-*/song-data-* в корне остаются уникальными.
     name = os.path.basename(fname)
+    if name == "book-data.json":
+        name = os.path.basename(os.path.dirname(fname)) + "/" + name
 
     for p, word in rules.find_hanging_prefix_violations(sentences, path=f"[{name}]"):
         total, confirmed_noise = _report(

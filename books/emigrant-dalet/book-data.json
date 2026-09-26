@@ -136,7 +136,7 @@
           "end": 5.4
         }
       ],
-      "audio": "audio_emigrant_dalet/s1.mp3"
+      "audio": "books/emigrant-dalet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -324,7 +324,7 @@
           "end": 7.638
         }
       ],
-      "audio": "audio_emigrant_dalet/s2.mp3"
+      "audio": "books/emigrant-dalet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -502,7 +502,7 @@
           "end": 7.263
         }
       ],
-      "audio": "audio_emigrant_dalet/s3.mp3"
+      "audio": "books/emigrant-dalet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -560,7 +560,7 @@
           "end": 2.725
         }
       ],
-      "audio": "audio_emigrant_dalet/s4.mp3"
+      "audio": "books/emigrant-dalet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -698,15 +698,15 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_emigrant_dalet/s5.mp3",
+      "audio": "books/emigrant-dalet/audio/s5.mp3",
       "illustration": {
         "word": "הוּלֶדֶת",
         "tr": "рождение",
         "caption": "הוּלֶדֶת",
         "capTr": "huledet",
         "mnemonic": "Представь, что на день рождения вместо торта подали огромное блюдо ХОЛОДЦА: дрожащий студень с морковными звёздочками и свечкой. Именинница гордо режет его ножом, а гости хлопают.",
-        "img": "illustrations_emigrant_dalet/s5.webp",
-        "imgMnemonic": "illustrations_emigrant_dalet/s5-mnemonic.webp"
+        "img": "books/emigrant-dalet/illustrations/s5.webp",
+        "imgMnemonic": "books/emigrant-dalet/illustrations/s5-mnemonic.webp"
       }
     },
     {
@@ -945,7 +945,7 @@
           "end": 9.5
         }
       ],
-      "audio": "audio_emigrant_dalet/s6.mp3"
+      "audio": "books/emigrant-dalet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -1123,7 +1123,7 @@
           "end": 6.862
         }
       ],
-      "audio": "audio_emigrant_dalet/s7.mp3"
+      "audio": "books/emigrant-dalet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -1271,7 +1271,7 @@
           "end": 6.013
         }
       ],
-      "audio": "audio_emigrant_dalet/s8.mp3"
+      "audio": "books/emigrant-dalet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -1429,7 +1429,7 @@
           "end": 7.05
         }
       ],
-      "audio": "audio_emigrant_dalet/s9.mp3"
+      "audio": "books/emigrant-dalet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1537,7 +1537,7 @@
           "end": 4.775
         }
       ],
-      "audio": "audio_emigrant_dalet/s10.mp3"
+      "audio": "books/emigrant-dalet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -1645,7 +1645,7 @@
           "end": 4.675
         }
       ],
-      "audio": "audio_emigrant_dalet/s11.mp3"
+      "audio": "books/emigrant-dalet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1873,7 +1873,7 @@
           "end": 9.625
         }
       ],
-      "audio": "audio_emigrant_dalet/s12.mp3"
+      "audio": "books/emigrant-dalet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1991,7 +1991,7 @@
           "end": 5.125
         }
       ],
-      "audio": "audio_emigrant_dalet/s13.mp3"
+      "audio": "books/emigrant-dalet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -2239,7 +2239,7 @@
           "end": 8.887
         }
       ],
-      "audio": "audio_emigrant_dalet/s14.mp3"
+      "audio": "books/emigrant-dalet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -2347,7 +2347,7 @@
           "end": 4.912
         }
       ],
-      "audio": "audio_emigrant_dalet/s15.mp3"
+      "audio": "books/emigrant-dalet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -2515,7 +2515,7 @@
           "end": 8.537
         }
       ],
-      "audio": "audio_emigrant_dalet/s16.mp3"
+      "audio": "books/emigrant-dalet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -2623,7 +2623,7 @@
           "end": 5.025
         }
       ],
-      "audio": "audio_emigrant_dalet/s17.mp3"
+      "audio": "books/emigrant-dalet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -2831,7 +2831,7 @@
           "end": 8.938
         }
       ],
-      "audio": "audio_emigrant_dalet/s18.mp3"
+      "audio": "books/emigrant-dalet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -3019,7 +3019,7 @@
           "end": 7.4
         }
       ],
-      "audio": "audio_emigrant_dalet/s19.mp3"
+      "audio": "books/emigrant-dalet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -3167,7 +3167,7 @@
           "end": 5.9
         }
       ],
-      "audio": "audio_emigrant_dalet/s20.mp3"
+      "audio": "books/emigrant-dalet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -3335,7 +3335,7 @@
           "end": 6.213
         }
       ],
-      "audio": "audio_emigrant_dalet/s21.mp3"
+      "audio": "books/emigrant-dalet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -3473,15 +3473,15 @@
           "end": 6.075
         }
       ],
-      "audio": "audio_emigrant_dalet/s22.mp3",
+      "audio": "books/emigrant-dalet/audio/s22.mp3",
       "illustration": {
         "word": "כּוּרְסָה",
         "tr": "кресло",
         "caption": "כּוּרְסָה",
         "capTr": "kursa",
         "mnemonic": "Представь, что старое кресло превратилось в аудиторию КУРСОВ: на нём сидят маленькие студенты с тетрадями, а сверху на спинке лектор-попугай читает лекцию о том, как правильно сидеть.",
-        "img": "illustrations_emigrant_dalet/s22.webp",
-        "imgMnemonic": "illustrations_emigrant_dalet/s22-mnemonic.webp"
+        "img": "books/emigrant-dalet/illustrations/s22.webp",
+        "imgMnemonic": "books/emigrant-dalet/illustrations/s22-mnemonic.webp"
       }
     },
     {
@@ -3670,7 +3670,7 @@
           "end": 7.013
         }
       ],
-      "audio": "audio_emigrant_dalet/s23.mp3"
+      "audio": "books/emigrant-dalet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -3828,7 +3828,7 @@
           "end": 6.725
         }
       ],
-      "audio": "audio_emigrant_dalet/s24.mp3"
+      "audio": "books/emigrant-dalet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -3996,7 +3996,7 @@
           "end": 6.612
         }
       ],
-      "audio": "audio_emigrant_dalet/s25.mp3"
+      "audio": "books/emigrant-dalet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -4054,7 +4054,7 @@
           "end": 3.2
         }
       ],
-      "audio": "audio_emigrant_dalet/s26.mp3"
+      "audio": "books/emigrant-dalet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -4262,7 +4262,7 @@
           "end": 8.35
         }
       ],
-      "audio": "audio_emigrant_dalet/s27.mp3"
+      "audio": "books/emigrant-dalet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -4400,7 +4400,7 @@
           "end": 5.138
         }
       ],
-      "audio": "audio_emigrant_dalet/s28.mp3"
+      "audio": "books/emigrant-dalet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -4528,7 +4528,7 @@
           "end": 5.312
         }
       ],
-      "audio": "audio_emigrant_dalet/s29.mp3"
+      "audio": "books/emigrant-dalet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -4696,7 +4696,7 @@
           "end": 6.963
         }
       ],
-      "audio": "audio_emigrant_dalet/s30.mp3"
+      "audio": "books/emigrant-dalet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -4794,7 +4794,7 @@
           "end": 3.5
         }
       ],
-      "audio": "audio_emigrant_dalet/s31.mp3"
+      "audio": "books/emigrant-dalet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -4992,7 +4992,7 @@
           "end": 7.487
         }
       ],
-      "audio": "audio_emigrant_dalet/s32.mp3"
+      "audio": "books/emigrant-dalet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -5100,7 +5100,7 @@
           "end": 4.638
         }
       ],
-      "audio": "audio_emigrant_dalet/s33.mp3"
+      "audio": "books/emigrant-dalet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -5288,7 +5288,7 @@
           "end": 7.375
         }
       ],
-      "audio": "audio_emigrant_dalet/s34.mp3"
+      "audio": "books/emigrant-dalet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -5596,7 +5596,7 @@
           "end": 10.812
         }
       ],
-      "audio": "audio_emigrant_dalet/s35.mp3"
+      "audio": "books/emigrant-dalet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -5814,7 +5814,7 @@
           "end": 7.938
         }
       ],
-      "audio": "audio_emigrant_dalet/s36.mp3"
+      "audio": "books/emigrant-dalet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -5952,7 +5952,7 @@
           "end": 4.85
         }
       ],
-      "audio": "audio_emigrant_dalet/s37.mp3"
+      "audio": "books/emigrant-dalet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -6170,7 +6170,7 @@
           "end": 7.737
         }
       ],
-      "audio": "audio_emigrant_dalet/s38.mp3"
+      "audio": "books/emigrant-dalet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -6268,7 +6268,7 @@
           "end": 3.675
         }
       ],
-      "audio": "audio_emigrant_dalet/s39.mp3"
+      "audio": "books/emigrant-dalet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -6516,7 +6516,7 @@
           "end": 8.338
         }
       ],
-      "audio": "audio_emigrant_dalet/s40.mp3"
+      "audio": "books/emigrant-dalet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -6614,7 +6614,7 @@
           "end": 3.125
         }
       ],
-      "audio": "audio_emigrant_dalet/s41.mp3"
+      "audio": "books/emigrant-dalet/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -6722,7 +6722,7 @@
           "end": 4.875
         }
       ],
-      "audio": "audio_emigrant_dalet/s42.mp3"
+      "audio": "books/emigrant-dalet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -6890,7 +6890,7 @@
           "end": 7.225
         }
       ],
-      "audio": "audio_emigrant_dalet/s43.mp3"
+      "audio": "books/emigrant-dalet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -7048,7 +7048,7 @@
           "end": 6.0
         }
       ],
-      "audio": "audio_emigrant_dalet/s44.mp3"
+      "audio": "books/emigrant-dalet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -7216,7 +7216,7 @@
           "end": 6.838
         }
       ],
-      "audio": "audio_emigrant_dalet/s45.mp3"
+      "audio": "books/emigrant-dalet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -7334,7 +7334,7 @@
           "end": 4.138
         }
       ],
-      "audio": "audio_emigrant_dalet/s46.mp3"
+      "audio": "books/emigrant-dalet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -7512,15 +7512,15 @@
           "end": 6.287
         }
       ],
-      "audio": "audio_emigrant_dalet/s47.mp3",
+      "audio": "books/emigrant-dalet/audio/s47.mp3",
       "illustration": {
         "word": "דְּמָמָה",
         "tr": "тишина",
         "caption": "דְּמָמָה",
         "capTr": "dmama",
         "mnemonic": "Представь, что тишина в кухне вдруг оживает как чопорная ДАМА в длинном платье: она прикладывает палец к губам и шикает на всех, а посуда на цыпочках прячется в шкаф.",
-        "img": "illustrations_emigrant_dalet/s47.webp",
-        "imgMnemonic": "illustrations_emigrant_dalet/s47-mnemonic.webp"
+        "img": "books/emigrant-dalet/illustrations/s47.webp",
+        "imgMnemonic": "books/emigrant-dalet/illustrations/s47-mnemonic.webp"
       }
     },
     {
@@ -7779,7 +7779,7 @@
           "end": 9.475
         }
       ],
-      "audio": "audio_emigrant_dalet/s48.mp3"
+      "audio": "books/emigrant-dalet/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -7937,7 +7937,7 @@
           "end": 5.825
         }
       ],
-      "audio": "audio_emigrant_dalet/s49.mp3"
+      "audio": "books/emigrant-dalet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -8115,7 +8115,7 @@
           "end": 6.775
         }
       ],
-      "audio": "audio_emigrant_dalet/s50.mp3"
+      "audio": "books/emigrant-dalet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -8333,7 +8333,7 @@
           "end": 7.15
         }
       ],
-      "audio": "audio_emigrant_dalet/s51.mp3"
+      "audio": "books/emigrant-dalet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -8511,7 +8511,7 @@
           "end": 7.375
         }
       ],
-      "audio": "audio_emigrant_dalet/s52.mp3"
+      "audio": "books/emigrant-dalet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -8689,7 +8689,7 @@
           "end": 6.062
         }
       ],
-      "audio": "audio_emigrant_dalet/s53.mp3"
+      "audio": "books/emigrant-dalet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -8797,7 +8797,7 @@
           "end": 5.138
         }
       ],
-      "audio": "audio_emigrant_dalet/s54.mp3"
+      "audio": "books/emigrant-dalet/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -8925,7 +8925,7 @@
           "end": 5.05
         }
       ],
-      "audio": "audio_emigrant_dalet/s55.mp3"
+      "audio": "books/emigrant-dalet/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -9113,7 +9113,7 @@
           "end": 6.862
         }
       ],
-      "audio": "audio_emigrant_dalet/s56.mp3"
+      "audio": "books/emigrant-dalet/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -9281,7 +9281,7 @@
           "end": 6.338
         }
       ],
-      "audio": "audio_emigrant_dalet/s57.mp3"
+      "audio": "books/emigrant-dalet/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -9459,7 +9459,7 @@
           "end": 7.938
         }
       ],
-      "audio": "audio_emigrant_dalet/s58.mp3"
+      "audio": "books/emigrant-dalet/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -9587,7 +9587,7 @@
           "end": 5.35
         }
       ],
-      "audio": "audio_emigrant_dalet/s59.mp3"
+      "audio": "books/emigrant-dalet/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -9785,7 +9785,7 @@
           "end": 6.912
         }
       ],
-      "audio": "audio_emigrant_dalet/s60.mp3"
+      "audio": "books/emigrant-dalet/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -9923,7 +9923,7 @@
           "end": 6.713
         }
       ],
-      "audio": "audio_emigrant_dalet/s61.mp3"
+      "audio": "books/emigrant-dalet/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -10051,7 +10051,7 @@
           "end": 6.037
         }
       ],
-      "audio": "audio_emigrant_dalet/s62.mp3"
+      "audio": "books/emigrant-dalet/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -10309,7 +10309,7 @@
           "end": 9.938
         }
       ],
-      "audio": "audio_emigrant_dalet/s63.mp3"
+      "audio": "books/emigrant-dalet/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -10457,7 +10457,7 @@
           "end": 6.987
         }
       ],
-      "audio": "audio_emigrant_dalet/s64.mp3"
+      "audio": "books/emigrant-dalet/audio/s64.mp3"
     },
     {
       "id": "s65",
@@ -10625,15 +10625,15 @@
           "end": 7.213
         }
       ],
-      "audio": "audio_emigrant_dalet/s65.mp3",
+      "audio": "books/emigrant-dalet/audio/s65.mp3",
       "illustration": {
         "word": "טִיּוּל",
         "tr": "прогулка",
         "caption": "טִיּוּל",
         "capTr": "tiyul",
         "mnemonic": "Представь прогулку по городу, где все дома завешены белым ТЮЛЕМ: воздушные занавески развеваются на ветру, а двое людей идут между ними и раздвигают ткань руками.",
-        "img": "illustrations_emigrant_dalet/s65.webp",
-        "imgMnemonic": "illustrations_emigrant_dalet/s65-mnemonic.webp"
+        "img": "books/emigrant-dalet/illustrations/s65.webp",
+        "imgMnemonic": "books/emigrant-dalet/illustrations/s65-mnemonic.webp"
       }
     },
     {
@@ -10742,7 +10742,7 @@
           "end": 4.362
         }
       ],
-      "audio": "audio_emigrant_dalet/s66.mp3"
+      "audio": "books/emigrant-dalet/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -10930,7 +10930,7 @@
           "end": 7.525
         }
       ],
-      "audio": "audio_emigrant_dalet/s67.mp3"
+      "audio": "books/emigrant-dalet/audio/s67.mp3"
     }
   ]
 }

@@ -70,7 +70,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s1.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -126,7 +126,7 @@
           "root": "ר-ב-ב"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s2.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -206,7 +206,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s3.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -278,7 +278,7 @@
           "root": "נ-ד-ר"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s4.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -342,7 +342,7 @@
           "root": "כ-ח-ל"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s5.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -422,7 +422,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s6.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -454,7 +454,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s7.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -534,7 +534,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s8.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -614,7 +614,7 @@
           "root": "ס-פ-ר"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s9.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -646,7 +646,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s10.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -790,7 +790,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s11.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -838,7 +838,7 @@
           "root": "כ-ח-ל"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s12.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -982,7 +982,7 @@
           "root": "ח-ל-ל"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s13.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1030,7 +1030,7 @@
           "root": "נ-ד-ר"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s14.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1078,7 +1078,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s15.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1216,7 +1216,7 @@
           "end": 5.763
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s16.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1256,7 +1256,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s17.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1312,7 +1312,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s18.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1400,15 +1400,15 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s19.mp3",
+      "audio": "books/bookshop-mystery-bet/audio/s19.mp3",
       "illustration": {
         "word": "שּׁוּלְחָן",
         "tr": "стол",
         "caption": "שּׁוּלְחָן",
         "capTr": "shulchan",
         "mnemonic": "Созвучие: ШУЛЕР ХАН (shulchan). Хитрый ШУЛЕР ХАН пытался спрятать карту под деревянным СТОЛОМ, но СТОЛ внезапно ожил и сбросил все карты на пол! Хан в ярости грозит кулаком взбунтовавшемуся СТОЛУ.",
-        "img": "illustrations_bookshop_mystery_bet/s19.webp",
-        "imgMnemonic": "illustrations_bookshop_mystery_bet/s19-mnemonic.webp"
+        "img": "books/bookshop-mystery-bet/illustrations/s19.webp",
+        "imgMnemonic": "books/bookshop-mystery-bet/illustrations/s19-mnemonic.webp"
       }
     },
     {
@@ -1481,7 +1481,7 @@
           "root": "ס-פ-ר"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s20.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1545,15 +1545,15 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s21.mp3",
+      "audio": "books/bookshop-mystery-bet/audio/s21.mp3",
       "illustration": {
         "word": "לוֹמַר",
         "tr": "и сказала",
         "caption": "לוֹמַר",
         "capTr": "lomar",
         "mnemonic": "Чтобы СКАЗАТЬ важную речь с трибуны, гигантский ОМАР эмоционально кричит и размахивает тяжелым ЛОМОМ. Красный лом-омар изо всех сил старается сказать громкое слово!",
-        "img": "illustrations_bookshop_mystery_bet/s21.webp",
-        "imgMnemonic": "illustrations_bookshop_mystery_bet/s21-mnemonic.webp"
+        "img": "books/bookshop-mystery-bet/illustrations/s21.webp",
+        "imgMnemonic": "books/bookshop-mystery-bet/illustrations/s21-mnemonic.webp"
       },
       "ttsEngine": "gtts"
     },
@@ -1603,7 +1603,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_bookshop_mystery_bet/s22.mp3"
+      "audio": "books/bookshop-mystery-bet/audio/s22.mp3"
     }
   ]
 }

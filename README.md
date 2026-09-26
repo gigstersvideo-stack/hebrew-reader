@@ -86,8 +86,8 @@ API расставляет огласовки (никуд):
 
 ```bash
 export GEMINI_API_KEY=твой_ключ  # бесплатно: https://aistudio.google.com/apikey
-python 2_generate_story.py alef "робот-уборщик находит на балконе кота" --out story-alef.txt
-python 5_gemini_pipeline.py story-alef.txt --out book-data-alef.json
+python tools/2_generate_story.py alef "робот-уборщик находит на балконе кота" --out story-alef.txt
+python tools/5_gemini_pipeline.py story-alef.txt --out book-data-alef.json
 ```
 
 По умолчанию история пишется одним запросом к API — этого достаточно
@@ -98,10 +98,10 @@ python 5_gemini_pipeline.py story-alef.txt --out book-data-alef.json
 главе сразу после неё, прогресс сохраняется после каждой главы:
 
 ```bash
-python 2_generate_story.py gimel "экспедиция ищет пропавший корабль в Средиземном море" \
+python tools/2_generate_story.py gimel "экспедиция ищет пропавший корабль в Средиземном море" \
   --word-count 2500 --chapter-words 400 --out story-gimel.txt
 # если прервалось (кончилась дневная квота, сеть моргнула) — тем же --out:
-python 2_generate_story.py gimel "..." --word-count 2500 --chapter-words 400 \
+python tools/2_generate_story.py gimel "..." --word-count 2500 --chapter-words 400 \
   --out story-gimel.txt --resume
 ```
 
@@ -119,7 +119,7 @@ Dicta — не наугад), пишет для каждого мнемоник�
 export GEMINI_API_KEY=твой_ключ
 export CF_ACCOUNT_ID=id_твоего_аккаунта_cloudflare
 export CF_API_TOKEN=токен_с_правом_Workers_AI
-python illustrate_book.py book-data.json --images-dir illustrations_mybook --count 3
+python tools/illustrate_book.py book-data.json --images-dir illustrations_mybook --count 3
 ```
 
 ## Как озвучить книгу без готовой аудиокниги
@@ -130,7 +130,7 @@ python illustrate_book.py book-data.json --images-dir illustrations_mybook --cou
 отдельного шага выравнивания:
 
 ```bash
-python 3_generate_audio.py book-data.json book-data-voiced.json audio_dir
+python tools/3_generate_audio.py book-data.json book-data-voiced.json audio_dir
 ```
 
 ## Баг-репорты

@@ -64,7 +64,9 @@ except ImportError:
 
 TICKS_PER_SECOND = 10_000_000  # WordBoundary offset/duration units
 
-KNOWN_BAD_WORDS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tts_known_bad_words.json")
+# tts_known_bad_words.json остался в корне репозитория при переезде
+# скрипта в tools/ — без os.pardir тут молча грузился бы пустой список.
+KNOWN_BAD_WORDS_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tts_known_bad_words.json")
 
 
 def load_known_bad_lemmas(path=KNOWN_BAD_WORDS_PATH):

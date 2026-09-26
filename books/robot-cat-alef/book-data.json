@@ -26,7 +26,7 @@
           "end": 0.912
         }
       ],
-      "audio": "audio_robot_cat_alef/s1.mp3"
+      "audio": "books/robot-cat-alef/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -84,7 +84,7 @@
           "end": 2.325
         }
       ],
-      "audio": "audio_robot_cat_alef/s2.mp3"
+      "audio": "books/robot-cat-alef/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -142,7 +142,7 @@
           "end": 2.362
         }
       ],
-      "audio": "audio_robot_cat_alef/s3.mp3"
+      "audio": "books/robot-cat-alef/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -210,7 +210,7 @@
           "end": 2.263
         }
       ],
-      "audio": "audio_robot_cat_alef/s4.mp3"
+      "audio": "books/robot-cat-alef/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -268,7 +268,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_robot_cat_alef/s5.mp3"
+      "audio": "books/robot-cat-alef/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -306,7 +306,7 @@
           "end": 1.488
         }
       ],
-      "audio": "audio_robot_cat_alef/s6.mp3"
+      "audio": "books/robot-cat-alef/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -344,7 +344,7 @@
           "end": 1.837
         }
       ],
-      "audio": "audio_robot_cat_alef/s7.mp3"
+      "audio": "books/robot-cat-alef/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -402,7 +402,7 @@
           "end": 2.263
         }
       ],
-      "audio": "audio_robot_cat_alef/s8.mp3"
+      "audio": "books/robot-cat-alef/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -450,7 +450,7 @@
           "end": 1.975
         }
       ],
-      "audio": "audio_robot_cat_alef/s9.mp3"
+      "audio": "books/robot-cat-alef/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -508,7 +508,7 @@
           "end": 2.425
         }
       ],
-      "audio": "audio_robot_cat_alef/s10.mp3"
+      "audio": "books/robot-cat-alef/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -566,7 +566,7 @@
           "end": 2.375
         }
       ],
-      "audio": "audio_robot_cat_alef/s11.mp3"
+      "audio": "books/robot-cat-alef/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -624,7 +624,7 @@
           "end": 1.913
         }
       ],
-      "audio": "audio_robot_cat_alef/s12.mp3"
+      "audio": "books/robot-cat-alef/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -682,15 +682,15 @@
           "end": 2.475
         }
       ],
-      "audio": "audio_robot_cat_alef/s13.mp3",
+      "audio": "books/robot-cat-alef/audio/s13.mp3",
       "illustration": {
         "word": "חָתוּל",
         "tr": "кот",
         "caption": "חָתוּל",
         "capTr": "Khatul",
         "mnemonic": "Представьте огромного кота, который из огромного ведра поливает деревенскую ХАТУ (хату лил — хáтуль). Кот безумно доволен и мурчит, пока домик размокает под потоками воды.",
-        "img": "illustrations_robot_cat_alef/s13.webp",
-        "imgMnemonic": "illustrations_robot_cat_alef/s13-mnemonic.webp"
+        "img": "books/robot-cat-alef/illustrations/s13.webp",
+        "imgMnemonic": "books/robot-cat-alef/illustrations/s13-mnemonic.webp"
       }
     },
     {
@@ -729,7 +729,7 @@
           "end": 1.8
         }
       ],
-      "audio": "audio_robot_cat_alef/s14.mp3"
+      "audio": "books/robot-cat-alef/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -777,7 +777,7 @@
           "end": 2.025
         }
       ],
-      "audio": "audio_robot_cat_alef/s15.mp3"
+      "audio": "books/robot-cat-alef/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -825,7 +825,7 @@
           "end": 1.625
         }
       ],
-      "audio": "audio_robot_cat_alef/s16.mp3"
+      "audio": "books/robot-cat-alef/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -893,7 +893,7 @@
           "end": 2.038
         }
       ],
-      "audio": "audio_robot_cat_alef/s17.mp3"
+      "audio": "books/robot-cat-alef/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -961,7 +961,7 @@
           "end": 2.425
         }
       ],
-      "audio": "audio_robot_cat_alef/s18.mp3"
+      "audio": "books/robot-cat-alef/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1019,7 +1019,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_robot_cat_alef/s19.mp3"
+      "audio": "books/robot-cat-alef/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1077,7 +1077,7 @@
           "end": 2.675
         }
       ],
-      "audio": "audio_robot_cat_alef/s20.mp3"
+      "audio": "books/robot-cat-alef/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1135,15 +1135,15 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_robot_cat_alef/s21.mp3",
+      "audio": "books/robot-cat-alef/audio/s21.mp3",
       "illustration": {
         "word": "חָתוּל",
         "tr": "кот",
         "caption": "חָתוּל",
         "capTr": "Khatul",
         "mnemonic": "Представь, что гигантский КОТ заворачивает деревенскую ХАТУ в прозрачный кружевной ТЮЛЬ («хату-тюль» — חָתוּל). Кот доволен и гордо обвязывает весь дом огромным бантом.",
-        "img": "illustrations_robot_cat_alef/s21.webp",
-        "imgMnemonic": "illustrations_robot_cat_alef/s21-mnemonic.webp"
+        "img": "books/robot-cat-alef/illustrations/s21.webp",
+        "imgMnemonic": "books/robot-cat-alef/illustrations/s21-mnemonic.webp"
       }
     },
     {
@@ -1192,7 +1192,7 @@
           "end": 2.25
         }
       ],
-      "audio": "audio_robot_cat_alef/s22.mp3"
+      "audio": "books/robot-cat-alef/audio/s22.mp3"
     }
   ]
 }

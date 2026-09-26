@@ -146,15 +146,15 @@
           "end": 6.237
         }
       ],
-      "audio": "audio_quest_gimel/s1.mp3",
+      "audio": "books/quest-gimel/audio/s1.mp3",
       "illustration": {
         "word": "חֶדֶר",
         "tr": "комната",
         "caption": "חֶדֶר",
         "capTr": "kheder",
         "mnemonic": "Созвучие: КЕДР. Представьте, что прямо посреди вашей КОМНАТЫ внезапно вырастает исполинский КЕДР, проламывая потолок. Мебель застревает в его ветках, а вы в панике качаетесь на сучке, пытаясь спасти любимую подушку.",
-        "img": "illustrations_quest_gimel/s1.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s1-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s1.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s1-mnemonic.webp"
       }
     },
     {
@@ -283,7 +283,7 @@
           "end": 6.787
         }
       ],
-      "audio": "audio_quest_gimel/s2.mp3"
+      "audio": "books/quest-gimel/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -431,7 +431,7 @@
           "end": 5.1
         }
       ],
-      "audio": "audio_quest_gimel/s3.mp3"
+      "audio": "books/quest-gimel/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -479,7 +479,7 @@
           "end": 1.938
         }
       ],
-      "audio": "audio_quest_gimel/s4.mp3"
+      "audio": "books/quest-gimel/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -597,7 +597,7 @@
           "end": 5.35
         }
       ],
-      "audio": "audio_quest_gimel/s5.mp3"
+      "audio": "books/quest-gimel/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -725,7 +725,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_quest_gimel/s6.mp3"
+      "audio": "books/quest-gimel/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -783,7 +783,7 @@
           "end": 2.225
         }
       ],
-      "audio": "audio_quest_gimel/s7.mp3"
+      "audio": "books/quest-gimel/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -861,7 +861,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_quest_gimel/s8.mp3"
+      "audio": "books/quest-gimel/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -989,7 +989,7 @@
           "end": 5.138
         }
       ],
-      "audio": "audio_quest_gimel/s9.mp3"
+      "audio": "books/quest-gimel/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1107,7 +1107,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_quest_gimel/s10.mp3"
+      "audio": "books/quest-gimel/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -1155,7 +1155,7 @@
           "end": 1.925
         }
       ],
-      "audio": "audio_quest_gimel/s11.mp3"
+      "audio": "books/quest-gimel/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1243,7 +1243,7 @@
           "end": 4.037
         }
       ],
-      "audio": "audio_quest_gimel/s12.mp3"
+      "audio": "books/quest-gimel/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1281,7 +1281,7 @@
           "end": 1.762
         }
       ],
-      "audio": "audio_quest_gimel/s13.mp3"
+      "audio": "books/quest-gimel/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1339,7 +1339,7 @@
           "end": 2.0
         }
       ],
-      "audio": "audio_quest_gimel/s14.mp3"
+      "audio": "books/quest-gimel/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1417,7 +1417,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_quest_gimel/s15.mp3"
+      "audio": "books/quest-gimel/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1485,7 +1485,7 @@
           "end": 3.25
         }
       ],
-      "audio": "audio_quest_gimel/s16.mp3"
+      "audio": "books/quest-gimel/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1553,7 +1553,7 @@
           "end": 2.4
         }
       ],
-      "audio": "audio_quest_gimel/s17.mp3"
+      "audio": "books/quest-gimel/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1611,7 +1611,7 @@
           "end": 2.362
         }
       ],
-      "audio": "audio_quest_gimel/s18.mp3"
+      "audio": "books/quest-gimel/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1709,7 +1709,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_quest_gimel/s19.mp3"
+      "audio": "books/quest-gimel/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1837,7 +1837,7 @@
           "end": 4.938
         }
       ],
-      "audio": "audio_quest_gimel/s20.mp3"
+      "audio": "books/quest-gimel/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1855,7 +1855,7 @@
           "end": 0.887
         }
       ],
-      "audio": "audio_quest_gimel/s21.mp3"
+      "audio": "books/quest-gimel/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1933,7 +1933,7 @@
           "end": 3.825
         }
       ],
-      "audio": "audio_quest_gimel/s22.mp3"
+      "audio": "books/quest-gimel/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -2001,7 +2001,7 @@
           "end": 2.712
         }
       ],
-      "audio": "audio_quest_gimel/s23.mp3"
+      "audio": "books/quest-gimel/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -2059,7 +2059,7 @@
           "end": 2.25
         }
       ],
-      "audio": "audio_quest_gimel/s24.mp3"
+      "audio": "books/quest-gimel/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -2147,7 +2147,7 @@
           "end": 3.9
         }
       ],
-      "audio": "audio_quest_gimel/s25.mp3"
+      "audio": "books/quest-gimel/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -2205,15 +2205,15 @@
           "end": 2.6
         }
       ],
-      "audio": "audio_quest_gimel/s26.mp3",
+      "audio": "books/quest-gimel/audio/s26.mp3",
       "illustration": {
         "word": "פֶּרַח",
         "tr": "в цветке",
         "caption": "פֶּרַח",
         "capTr": "Perach",
         "mnemonic": "Созвучие — «ПЕРА» (гусиные перья). Представьте гигантский цветок, лепестки которого — это острые ПЕРЬЯ для письма. Цветок внезапно оживает и с громким звуком «АХ!» выстреливает этими перьями в испуганного чернильного человечка.",
-        "img": "illustrations_quest_gimel/s26.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s26-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s26.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s26-mnemonic.webp"
       }
     },
     {
@@ -2262,7 +2262,7 @@
           "end": 1.913
         }
       ],
-      "audio": "audio_quest_gimel/s27.mp3"
+      "audio": "books/quest-gimel/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -2350,7 +2350,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_quest_gimel/s28.mp3"
+      "audio": "books/quest-gimel/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -2508,7 +2508,7 @@
           "end": 6.8
         }
       ],
-      "audio": "audio_quest_gimel/s29.mp3"
+      "audio": "books/quest-gimel/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -2586,7 +2586,7 @@
           "end": 3.212
         }
       ],
-      "audio": "audio_quest_gimel/s30.mp3"
+      "audio": "books/quest-gimel/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -2694,7 +2694,7 @@
           "end": 4.037
         }
       ],
-      "audio": "audio_quest_gimel/s31.mp3"
+      "audio": "books/quest-gimel/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -2752,7 +2752,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_quest_gimel/s32.mp3"
+      "audio": "books/quest-gimel/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -2840,7 +2840,7 @@
           "end": 3.212
         }
       ],
-      "audio": "audio_quest_gimel/s33.mp3"
+      "audio": "books/quest-gimel/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -2958,7 +2958,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_quest_gimel/s34.mp3"
+      "audio": "books/quest-gimel/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -3116,7 +3116,7 @@
           "end": 6.713
         }
       ],
-      "audio": "audio_quest_gimel/s35.mp3"
+      "audio": "books/quest-gimel/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -3194,7 +3194,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_quest_gimel/s36.mp3"
+      "audio": "books/quest-gimel/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -3262,7 +3262,7 @@
           "end": 3.425
         }
       ],
-      "audio": "audio_quest_gimel/s37.mp3"
+      "audio": "books/quest-gimel/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -3360,7 +3360,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_quest_gimel/s38.mp3"
+      "audio": "books/quest-gimel/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -3448,7 +3448,7 @@
           "end": 4.1
         }
       ],
-      "audio": "audio_quest_gimel/s39.mp3"
+      "audio": "books/quest-gimel/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -3568,7 +3568,7 @@
           "root": "ש-פ-ח"
         }
       ],
-      "audio": "audio_quest_gimel/s40.mp3"
+      "audio": "books/quest-gimel/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -3646,7 +3646,7 @@
           "end": 2.725
         }
       ],
-      "audio": "audio_quest_gimel/s41.mp3"
+      "audio": "books/quest-gimel/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -3694,7 +3694,7 @@
           "end": 1.637
         }
       ],
-      "audio": "audio_quest_gimel/s42.mp3"
+      "audio": "books/quest-gimel/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -3802,7 +3802,7 @@
           "end": 4.838
         }
       ],
-      "audio": "audio_quest_gimel/s43.mp3"
+      "audio": "books/quest-gimel/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -3990,15 +3990,15 @@
           "end": 7.1
         }
       ],
-      "audio": "audio_quest_gimel/s44.mp3",
+      "audio": "books/quest-gimel/audio/s44.mp3",
       "illustration": {
         "word": "תְּלִיּוֹן",
         "tr": "кулон",
         "caption": "תְּלִיּוֹן",
         "capTr": "tliyon",
         "mnemonic": "Созвучие: ТЛЯ + ИОН (тлио́н). Огромная наглая садовая ТЛЯ надела на шею гигантский золотой КУЛОН, который во все стороны стреляет сверкающими электрическими ИОНами. Теперь эта букашка с кулоном считает себя королевой сада!",
-        "img": "illustrations_quest_gimel/s44.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s44-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s44.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s44-mnemonic.webp"
       }
     },
     {
@@ -4067,7 +4067,7 @@
           "end": 2.212
         }
       ],
-      "audio": "audio_quest_gimel/s45.mp3"
+      "audio": "books/quest-gimel/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -4135,7 +4135,7 @@
           "end": 2.275
         }
       ],
-      "audio": "audio_quest_gimel/s46.mp3"
+      "audio": "books/quest-gimel/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -4213,7 +4213,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_quest_gimel/s47.mp3"
+      "audio": "books/quest-gimel/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -4321,7 +4321,7 @@
           "end": 5.6
         }
       ],
-      "audio": "audio_quest_gimel/s48.mp3"
+      "audio": "books/quest-gimel/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -4369,7 +4369,7 @@
           "end": 2.312
         }
       ],
-      "audio": "audio_quest_gimel/s49.mp3"
+      "audio": "books/quest-gimel/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -4467,7 +4467,7 @@
           "end": 4.15
         }
       ],
-      "audio": "audio_quest_gimel/s50.mp3"
+      "audio": "books/quest-gimel/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -4605,7 +4605,7 @@
           "end": 6.037
         }
       ],
-      "audio": "audio_quest_gimel/s51.mp3"
+      "audio": "books/quest-gimel/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -4803,7 +4803,7 @@
           "end": 8.125
         }
       ],
-      "audio": "audio_quest_gimel/s52.mp3"
+      "audio": "books/quest-gimel/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -4911,7 +4911,7 @@
           "end": 5.2
         }
       ],
-      "audio": "audio_quest_gimel/s53.mp3"
+      "audio": "books/quest-gimel/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -5059,7 +5059,7 @@
           "end": 6.225
         }
       ],
-      "audio": "audio_quest_gimel/s54.mp3"
+      "audio": "books/quest-gimel/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -5257,7 +5257,7 @@
           "end": 7.138
         }
       ],
-      "audio": "audio_quest_gimel/s55.mp3"
+      "audio": "books/quest-gimel/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -5385,7 +5385,7 @@
           "end": 4.737
         }
       ],
-      "audio": "audio_quest_gimel/s56.mp3"
+      "audio": "books/quest-gimel/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -5533,7 +5533,7 @@
           "end": 6.138
         }
       ],
-      "audio": "audio_quest_gimel/s57.mp3"
+      "audio": "books/quest-gimel/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -5651,7 +5651,7 @@
           "end": 5.412
         }
       ],
-      "audio": "audio_quest_gimel/s58.mp3"
+      "audio": "books/quest-gimel/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -5809,7 +5809,7 @@
           "end": 5.875
         }
       ],
-      "audio": "audio_quest_gimel/s59.mp3"
+      "audio": "books/quest-gimel/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -5887,7 +5887,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_quest_gimel/s60.mp3"
+      "audio": "books/quest-gimel/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -6105,15 +6105,15 @@
           "end": 10.075
         }
       ],
-      "audio": "audio_quest_gimel/s61.mp3",
+      "audio": "books/quest-gimel/audio/s61.mp3",
       "illustration": {
         "word": "צֶמַח",
         "tr": "и в растениях",
         "caption": "צֶמַח",
         "capTr": "tsemah",
         "mnemonic": "Созвучие: ЦЕХ + МАХ. Представьте, как в шумном заводском ЦЕХу огромный робот делает резкий МАХ манипулятором и случайно задевает горшок с комнатным РАСТЕНИЕМ. Бедное РАСТЕНИЕ с выпученными глазами летит через весь цех, разбрасывая листья.",
-        "img": "illustrations_quest_gimel/s61.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s61-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s61.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s61-mnemonic.webp"
       }
     },
     {
@@ -6262,7 +6262,7 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_quest_gimel/s62.mp3"
+      "audio": "books/quest-gimel/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -6390,7 +6390,7 @@
           "end": 6.35
         }
       ],
-      "audio": "audio_quest_gimel/s63.mp3"
+      "audio": "books/quest-gimel/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -6538,7 +6538,7 @@
           "end": 6.65
         }
       ],
-      "audio": "audio_quest_gimel/s64.mp3"
+      "audio": "books/quest-gimel/audio/s64.mp3"
     },
     {
       "id": "s65",
@@ -6656,7 +6656,7 @@
           "end": 4.225
         }
       ],
-      "audio": "audio_quest_gimel/s65.mp3"
+      "audio": "books/quest-gimel/audio/s65.mp3"
     },
     {
       "id": "s66",
@@ -6774,7 +6774,7 @@
           "end": 4.7
         }
       ],
-      "audio": "audio_quest_gimel/s66.mp3"
+      "audio": "books/quest-gimel/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -6942,7 +6942,7 @@
           "end": 6.263
         }
       ],
-      "audio": "audio_quest_gimel/s67.mp3"
+      "audio": "books/quest-gimel/audio/s67.mp3"
     },
     {
       "id": "s68",
@@ -7000,7 +7000,7 @@
           "end": 2.862
         }
       ],
-      "audio": "audio_quest_gimel/s68.mp3"
+      "audio": "books/quest-gimel/audio/s68.mp3"
     },
     {
       "id": "s69",
@@ -7128,7 +7128,7 @@
           "end": 5.6
         }
       ],
-      "audio": "audio_quest_gimel/s69.mp3"
+      "audio": "books/quest-gimel/audio/s69.mp3"
     },
     {
       "id": "s70",
@@ -7276,7 +7276,7 @@
           "end": 5.4
         }
       ],
-      "audio": "audio_quest_gimel/s70.mp3"
+      "audio": "books/quest-gimel/audio/s70.mp3"
     },
     {
       "id": "s71",
@@ -7454,7 +7454,7 @@
           "end": 6.6
         }
       ],
-      "audio": "audio_quest_gimel/s71.mp3"
+      "audio": "books/quest-gimel/audio/s71.mp3"
     },
     {
       "id": "s72",
@@ -7542,7 +7542,7 @@
           "end": 3.75
         }
       ],
-      "audio": "audio_quest_gimel/s72.mp3"
+      "audio": "books/quest-gimel/audio/s72.mp3"
     },
     {
       "id": "s73",
@@ -7610,7 +7610,7 @@
           "end": 2.875
         }
       ],
-      "audio": "audio_quest_gimel/s73.mp3"
+      "audio": "books/quest-gimel/audio/s73.mp3"
     },
     {
       "id": "s74",
@@ -7758,7 +7758,7 @@
           "end": 6.2
         }
       ],
-      "audio": "audio_quest_gimel/s74.mp3"
+      "audio": "books/quest-gimel/audio/s74.mp3"
     },
     {
       "id": "s75",
@@ -7836,7 +7836,7 @@
           "end": 2.212
         }
       ],
-      "audio": "audio_quest_gimel/s75.mp3"
+      "audio": "books/quest-gimel/audio/s75.mp3"
     },
     {
       "id": "s76",
@@ -7944,7 +7944,7 @@
           "end": 3.175
         }
       ],
-      "audio": "audio_quest_gimel/s76.mp3"
+      "audio": "books/quest-gimel/audio/s76.mp3"
     },
     {
       "id": "s77",
@@ -8082,7 +8082,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_quest_gimel/s77.mp3"
+      "audio": "books/quest-gimel/audio/s77.mp3"
     },
     {
       "id": "s78",
@@ -8240,7 +8240,7 @@
           "end": 7.088
         }
       ],
-      "audio": "audio_quest_gimel/s78.mp3"
+      "audio": "books/quest-gimel/audio/s78.mp3"
     },
     {
       "id": "s79",
@@ -8318,7 +8318,7 @@
           "end": 3.3
         }
       ],
-      "audio": "audio_quest_gimel/s79.mp3"
+      "audio": "books/quest-gimel/audio/s79.mp3"
     },
     {
       "id": "s80",
@@ -8366,7 +8366,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_quest_gimel/s80.mp3"
+      "audio": "books/quest-gimel/audio/s80.mp3"
     },
     {
       "id": "s81",
@@ -8454,7 +8454,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_quest_gimel/s81.mp3"
+      "audio": "books/quest-gimel/audio/s81.mp3"
     },
     {
       "id": "s82",
@@ -8542,7 +8542,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_quest_gimel/s82.mp3"
+      "audio": "books/quest-gimel/audio/s82.mp3"
     },
     {
       "id": "s83",
@@ -8690,15 +8690,15 @@
           "end": 5.475
         }
       ],
-      "audio": "audio_quest_gimel/s83.mp3",
+      "audio": "books/quest-gimel/audio/s83.mp3",
       "illustration": {
         "word": "צֵל",
         "tr": "тени",
         "caption": "צֵל",
         "capTr": "tsel",
         "mnemonic": "Созвучие со словом «цель». Представьте, что лучник тщательно целится в мишень (цель), но прямо из этой ЦЕЛИ вдруг выползает жуткая живая ТЕНЬ и начинает щекотать испуганного стрелка. Лучник бросает лук и смеется от страха, пока тень корчит ему рожи.",
-        "img": "illustrations_quest_gimel/s83.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s83-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s83.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s83-mnemonic.webp"
       }
     },
     {
@@ -8817,7 +8817,7 @@
           "end": 4.612
         }
       ],
-      "audio": "audio_quest_gimel/s84.mp3"
+      "audio": "books/quest-gimel/audio/s84.mp3"
     },
     {
       "id": "s85",
@@ -8975,7 +8975,7 @@
           "end": 6.525
         }
       ],
-      "audio": "audio_quest_gimel/s85.mp3"
+      "audio": "books/quest-gimel/audio/s85.mp3"
     },
     {
       "id": "s86",
@@ -9103,7 +9103,7 @@
           "end": 4.675
         }
       ],
-      "audio": "audio_quest_gimel/s86.mp3"
+      "audio": "books/quest-gimel/audio/s86.mp3"
     },
     {
       "id": "s87",
@@ -9251,7 +9251,7 @@
           "end": 5.588
         }
       ],
-      "audio": "audio_quest_gimel/s87.mp3"
+      "audio": "books/quest-gimel/audio/s87.mp3"
     },
     {
       "id": "s88",
@@ -9439,7 +9439,7 @@
           "end": 7.25
         }
       ],
-      "audio": "audio_quest_gimel/s88.mp3"
+      "audio": "books/quest-gimel/audio/s88.mp3"
     },
     {
       "id": "s89",
@@ -9627,7 +9627,7 @@
           "end": 6.888
         }
       ],
-      "audio": "audio_quest_gimel/s89.mp3"
+      "audio": "books/quest-gimel/audio/s89.mp3"
     },
     {
       "id": "s90",
@@ -9755,7 +9755,7 @@
           "end": 4.95
         }
       ],
-      "audio": "audio_quest_gimel/s90.mp3"
+      "audio": "books/quest-gimel/audio/s90.mp3"
     },
     {
       "id": "s91",
@@ -9873,7 +9873,7 @@
           "end": 5.8
         }
       ],
-      "audio": "audio_quest_gimel/s91.mp3"
+      "audio": "books/quest-gimel/audio/s91.mp3"
     },
     {
       "id": "s92",
@@ -9951,7 +9951,7 @@
           "end": 2.763
         }
       ],
-      "audio": "audio_quest_gimel/s92.mp3"
+      "audio": "books/quest-gimel/audio/s92.mp3"
     },
     {
       "id": "s93",
@@ -10129,7 +10129,7 @@
           "end": 7.275
         }
       ],
-      "audio": "audio_quest_gimel/s93.mp3"
+      "audio": "books/quest-gimel/audio/s93.mp3"
     },
     {
       "id": "s94",
@@ -10327,7 +10327,7 @@
           "end": 6.812
         }
       ],
-      "audio": "audio_quest_gimel/s94.mp3"
+      "audio": "books/quest-gimel/audio/s94.mp3"
     },
     {
       "id": "s95",
@@ -10455,7 +10455,7 @@
           "end": 5.588
         }
       ],
-      "audio": "audio_quest_gimel/s95.mp3"
+      "audio": "books/quest-gimel/audio/s95.mp3"
     },
     {
       "id": "s96",
@@ -10603,7 +10603,7 @@
           "end": 6.375
         }
       ],
-      "audio": "audio_quest_gimel/s96.mp3"
+      "audio": "books/quest-gimel/audio/s96.mp3"
     },
     {
       "id": "s97",
@@ -10811,7 +10811,7 @@
           "end": 9.162
         }
       ],
-      "audio": "audio_quest_gimel/s97.mp3"
+      "audio": "books/quest-gimel/audio/s97.mp3"
     },
     {
       "id": "s98",
@@ -10979,7 +10979,7 @@
           "end": 5.95
         }
       ],
-      "audio": "audio_quest_gimel/s98.mp3"
+      "audio": "books/quest-gimel/audio/s98.mp3"
     },
     {
       "id": "s99",
@@ -11097,7 +11097,7 @@
           "end": 5.662
         }
       ],
-      "audio": "audio_quest_gimel/s99.mp3"
+      "audio": "books/quest-gimel/audio/s99.mp3"
     },
     {
       "id": "s100",
@@ -11355,7 +11355,7 @@
           "end": 10.05
         }
       ],
-      "audio": "audio_quest_gimel/s100.mp3"
+      "audio": "books/quest-gimel/audio/s100.mp3"
     },
     {
       "id": "s101",
@@ -11463,7 +11463,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_quest_gimel/s101.mp3"
+      "audio": "books/quest-gimel/audio/s101.mp3"
     },
     {
       "id": "s102",
@@ -11521,7 +11521,7 @@
           "end": 2.288
         }
       ],
-      "audio": "audio_quest_gimel/s102.mp3"
+      "audio": "books/quest-gimel/audio/s102.mp3"
     },
     {
       "id": "s103",
@@ -11719,7 +11719,7 @@
           "end": 7.025
         }
       ],
-      "audio": "audio_quest_gimel/s103.mp3"
+      "audio": "books/quest-gimel/audio/s103.mp3"
     },
     {
       "id": "s104",
@@ -11797,15 +11797,15 @@
           "end": 3.425
         }
       ],
-      "audio": "audio_quest_gimel/s104.mp3",
+      "audio": "books/quest-gimel/audio/s104.mp3",
       "illustration": {
         "word": "קוֹל",
         "tr": "голос свой",
         "caption": "קוֹל",
         "capTr": "Kol",
         "mnemonic": "У огромного заостренного деревянного КОЛА внезапно прорезался оперный ГОЛОС. Этот КОЛ в крошечном галстуке-бабочке стоит на сцене и оглушительно поет, выпуская изо рта видимые звуковые волны.",
-        "img": "illustrations_quest_gimel/s104.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s104-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s104.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s104-mnemonic.webp"
       }
     },
     {
@@ -11914,7 +11914,7 @@
           "end": 4.35
         }
       ],
-      "audio": "audio_quest_gimel/s105.mp3"
+      "audio": "books/quest-gimel/audio/s105.mp3"
     },
     {
       "id": "s106",
@@ -12032,7 +12032,7 @@
           "end": 4.438
         }
       ],
-      "audio": "audio_quest_gimel/s106.mp3"
+      "audio": "books/quest-gimel/audio/s106.mp3"
     },
     {
       "id": "s107",
@@ -12100,7 +12100,7 @@
           "end": 2.688
         }
       ],
-      "audio": "audio_quest_gimel/s107.mp3"
+      "audio": "books/quest-gimel/audio/s107.mp3"
     },
     {
       "id": "s108",
@@ -12238,7 +12238,7 @@
           "end": 6.925
         }
       ],
-      "audio": "audio_quest_gimel/s108.mp3"
+      "audio": "books/quest-gimel/audio/s108.mp3"
     },
     {
       "id": "s109",
@@ -12276,7 +12276,7 @@
           "end": 1.4
         }
       ],
-      "audio": "audio_quest_gimel/s109.mp3"
+      "audio": "books/quest-gimel/audio/s109.mp3"
     },
     {
       "id": "s110",
@@ -12364,7 +12364,7 @@
           "end": 4.05
         }
       ],
-      "audio": "audio_quest_gimel/s110.mp3"
+      "audio": "books/quest-gimel/audio/s110.mp3"
     },
     {
       "id": "s111",
@@ -12442,7 +12442,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_quest_gimel/s111.mp3"
+      "audio": "books/quest-gimel/audio/s111.mp3"
     },
     {
       "id": "s112",
@@ -12520,7 +12520,7 @@
           "end": 3.812
         }
       ],
-      "audio": "audio_quest_gimel/s112.mp3"
+      "audio": "books/quest-gimel/audio/s112.mp3"
     },
     {
       "id": "s113",
@@ -12668,7 +12668,7 @@
           "end": 7.4
         }
       ],
-      "audio": "audio_quest_gimel/s113.mp3"
+      "audio": "books/quest-gimel/audio/s113.mp3"
     },
     {
       "id": "s114",
@@ -12846,7 +12846,7 @@
           "end": 7.225
         }
       ],
-      "audio": "audio_quest_gimel/s114.mp3"
+      "audio": "books/quest-gimel/audio/s114.mp3"
     },
     {
       "id": "s115",
@@ -13034,7 +13034,7 @@
           "end": 7.938
         }
       ],
-      "audio": "audio_quest_gimel/s115.mp3"
+      "audio": "books/quest-gimel/audio/s115.mp3"
     },
     {
       "id": "s116",
@@ -13272,7 +13272,7 @@
           "end": 10.012
         }
       ],
-      "audio": "audio_quest_gimel/s116.mp3"
+      "audio": "books/quest-gimel/audio/s116.mp3"
     },
     {
       "id": "s117",
@@ -13330,7 +13330,7 @@
           "end": 2.15
         }
       ],
-      "audio": "audio_quest_gimel/s117.mp3"
+      "audio": "books/quest-gimel/audio/s117.mp3"
     },
     {
       "id": "s118",
@@ -13418,7 +13418,7 @@
           "end": 2.638
         }
       ],
-      "audio": "audio_quest_gimel/s118.mp3"
+      "audio": "books/quest-gimel/audio/s118.mp3"
     },
     {
       "id": "s119",
@@ -13586,7 +13586,7 @@
           "end": 7.5
         }
       ],
-      "audio": "audio_quest_gimel/s119.mp3"
+      "audio": "books/quest-gimel/audio/s119.mp3"
     },
     {
       "id": "s120",
@@ -13824,7 +13824,7 @@
           "end": 8.963
         }
       ],
-      "audio": "audio_quest_gimel/s120.mp3"
+      "audio": "books/quest-gimel/audio/s120.mp3"
     },
     {
       "id": "s121",
@@ -13942,7 +13942,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_quest_gimel/s121.mp3"
+      "audio": "books/quest-gimel/audio/s121.mp3"
     },
     {
       "id": "s122",
@@ -14120,7 +14120,7 @@
           "end": 6.912
         }
       ],
-      "audio": "audio_quest_gimel/s122.mp3"
+      "audio": "books/quest-gimel/audio/s122.mp3"
     },
     {
       "id": "s123",
@@ -14298,7 +14298,7 @@
           "end": 7.325
         }
       ],
-      "audio": "audio_quest_gimel/s123.mp3"
+      "audio": "books/quest-gimel/audio/s123.mp3"
     },
     {
       "id": "s124",
@@ -14366,7 +14366,7 @@
           "end": 2.888
         }
       ],
-      "audio": "audio_quest_gimel/s124.mp3"
+      "audio": "books/quest-gimel/audio/s124.mp3"
     },
     {
       "id": "s125",
@@ -14594,7 +14594,7 @@
           "end": 8.738
         }
       ],
-      "audio": "audio_quest_gimel/s125.mp3"
+      "audio": "books/quest-gimel/audio/s125.mp3"
     },
     {
       "id": "s126",
@@ -14712,7 +14712,7 @@
           "end": 5.325
         }
       ],
-      "audio": "audio_quest_gimel/s126.mp3"
+      "audio": "books/quest-gimel/audio/s126.mp3"
     },
     {
       "id": "s127",
@@ -14840,7 +14840,7 @@
           "end": 4.925
         }
       ],
-      "audio": "audio_quest_gimel/s127.mp3"
+      "audio": "books/quest-gimel/audio/s127.mp3"
     },
     {
       "id": "s128",
@@ -14868,7 +14868,7 @@
           "end": 1.988
         }
       ],
-      "audio": "audio_quest_gimel/s128.mp3"
+      "audio": "books/quest-gimel/audio/s128.mp3"
     },
     {
       "id": "s129",
@@ -15126,15 +15126,15 @@
           "end": 8.375
         }
       ],
-      "audio": "audio_quest_gimel/s129.mp3",
+      "audio": "books/quest-gimel/audio/s129.mp3",
       "illustration": {
         "word": "תִּלְיוֹן",
         "tr": "кулон",
         "caption": "תִּלְיוֹן",
         "capTr": "Tilyon",
         "mnemonic": "Представьте детектива, который допрашивает огромный золотой кулон, подозрительно крича ему в упор: «ТЫ ЛИ ОН?!». Кулон в панике пытается убежать от него на тонких человеческих ножках, сверкая гранями.",
-        "img": "illustrations_quest_gimel/s129.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s129-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s129.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s129-mnemonic.webp"
       }
     },
     {
@@ -15183,7 +15183,7 @@
           "end": 1.425
         }
       ],
-      "audio": "audio_quest_gimel/s130.mp3"
+      "audio": "books/quest-gimel/audio/s130.mp3"
     },
     {
       "id": "s131",
@@ -15251,7 +15251,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_quest_gimel/s131.mp3"
+      "audio": "books/quest-gimel/audio/s131.mp3"
     },
     {
       "id": "s132",
@@ -15429,7 +15429,7 @@
           "end": 7.625
         }
       ],
-      "audio": "audio_quest_gimel/s132.mp3"
+      "audio": "books/quest-gimel/audio/s132.mp3"
     },
     {
       "id": "s133",
@@ -15717,7 +15717,7 @@
           "end": 11.012
         }
       ],
-      "audio": "audio_quest_gimel/s133.mp3"
+      "audio": "books/quest-gimel/audio/s133.mp3"
     },
     {
       "id": "s134",
@@ -15975,7 +15975,7 @@
           "end": 9.65
         }
       ],
-      "audio": "audio_quest_gimel/s134.mp3"
+      "audio": "books/quest-gimel/audio/s134.mp3"
     },
     {
       "id": "s135",
@@ -16113,7 +16113,7 @@
           "end": 6.475
         }
       ],
-      "audio": "audio_quest_gimel/s135.mp3"
+      "audio": "books/quest-gimel/audio/s135.mp3"
     },
     {
       "id": "s136",
@@ -16251,7 +16251,7 @@
           "end": 4.925
         }
       ],
-      "audio": "audio_quest_gimel/s136.mp3"
+      "audio": "books/quest-gimel/audio/s136.mp3"
     },
     {
       "id": "s137",
@@ -16489,7 +16489,7 @@
           "end": 8.375
         }
       ],
-      "audio": "audio_quest_gimel/s137.mp3"
+      "audio": "books/quest-gimel/audio/s137.mp3"
     },
     {
       "id": "s138",
@@ -16577,7 +16577,7 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_quest_gimel/s138.mp3"
+      "audio": "books/quest-gimel/audio/s138.mp3"
     },
     {
       "id": "s139",
@@ -16725,7 +16725,7 @@
           "end": 6.138
         }
       ],
-      "audio": "audio_quest_gimel/s139.mp3"
+      "audio": "books/quest-gimel/audio/s139.mp3"
     },
     {
       "id": "s140",
@@ -16783,7 +16783,7 @@
           "end": 2.337
         }
       ],
-      "audio": "audio_quest_gimel/s140.mp3"
+      "audio": "books/quest-gimel/audio/s140.mp3"
     },
     {
       "id": "s141",
@@ -16981,15 +16981,15 @@
           "end": 8.363
         }
       ],
-      "audio": "audio_quest_gimel/s141.mp3",
+      "audio": "books/quest-gimel/audio/s141.mp3",
       "illustration": {
         "word": "לַיְלָה",
         "tr": "ночь",
         "caption": "לַיְלָה",
         "capTr": "layla",
         "mnemonic": "Глубокая НОЧЬ, а огромная пушистая собака-ЛАЙКА звонко ЛАЯЛА на луну, требуя выключить ночник. Чтобы вспомнить «ночь», представь, как ЛАЙКА ЛАЯЛА всю ночь напролёт.",
-        "img": "illustrations_quest_gimel/s141.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s141-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s141.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s141-mnemonic.webp"
       }
     },
     {
@@ -17178,7 +17178,7 @@
           "end": 7.537
         }
       ],
-      "audio": "audio_quest_gimel/s142.mp3"
+      "audio": "books/quest-gimel/audio/s142.mp3"
     },
     {
       "id": "s143",
@@ -17366,7 +17366,7 @@
           "end": 8.037
         }
       ],
-      "audio": "audio_quest_gimel/s143.mp3"
+      "audio": "books/quest-gimel/audio/s143.mp3"
     },
     {
       "id": "s144",
@@ -17664,7 +17664,7 @@
           "end": 10.525
         }
       ],
-      "audio": "audio_quest_gimel/s144.mp3"
+      "audio": "books/quest-gimel/audio/s144.mp3"
     },
     {
       "id": "s145",
@@ -17792,7 +17792,7 @@
           "end": 6.1
         }
       ],
-      "audio": "audio_quest_gimel/s145.mp3"
+      "audio": "books/quest-gimel/audio/s145.mp3"
     },
     {
       "id": "s146",
@@ -17900,7 +17900,7 @@
           "end": 4.675
         }
       ],
-      "audio": "audio_quest_gimel/s146.mp3"
+      "audio": "books/quest-gimel/audio/s146.mp3"
     },
     {
       "id": "s147",
@@ -18038,7 +18038,7 @@
           "end": 5.75
         }
       ],
-      "audio": "audio_quest_gimel/s147.mp3"
+      "audio": "books/quest-gimel/audio/s147.mp3"
     },
     {
       "id": "s148",
@@ -18146,7 +18146,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_quest_gimel/s148.mp3"
+      "audio": "books/quest-gimel/audio/s148.mp3"
     },
     {
       "id": "s149",
@@ -18234,7 +18234,7 @@
           "end": 3.938
         }
       ],
-      "audio": "audio_quest_gimel/s149.mp3"
+      "audio": "books/quest-gimel/audio/s149.mp3"
     },
     {
       "id": "s150",
@@ -18342,7 +18342,7 @@
           "end": 4.65
         }
       ],
-      "audio": "audio_quest_gimel/s150.mp3"
+      "audio": "books/quest-gimel/audio/s150.mp3"
     },
     {
       "id": "s151",
@@ -18400,7 +18400,7 @@
           "end": 2.362
         }
       ],
-      "audio": "audio_quest_gimel/s151.mp3"
+      "audio": "books/quest-gimel/audio/s151.mp3"
     },
     {
       "id": "s152",
@@ -18498,7 +18498,7 @@
           "end": 3.975
         }
       ],
-      "audio": "audio_quest_gimel/s152.mp3"
+      "audio": "books/quest-gimel/audio/s152.mp3"
     },
     {
       "id": "s153",
@@ -18596,7 +18596,7 @@
           "end": 4.85
         }
       ],
-      "audio": "audio_quest_gimel/s153.mp3"
+      "audio": "books/quest-gimel/audio/s153.mp3"
     },
     {
       "id": "s154",
@@ -18774,7 +18774,7 @@
           "end": 7.1
         }
       ],
-      "audio": "audio_quest_gimel/s154.mp3"
+      "audio": "books/quest-gimel/audio/s154.mp3"
     },
     {
       "id": "s155",
@@ -18942,7 +18942,7 @@
           "end": 7.013
         }
       ],
-      "audio": "audio_quest_gimel/s155.mp3"
+      "audio": "books/quest-gimel/audio/s155.mp3"
     },
     {
       "id": "s156",
@@ -19080,7 +19080,7 @@
           "end": 5.862
         }
       ],
-      "audio": "audio_quest_gimel/s156.mp3"
+      "audio": "books/quest-gimel/audio/s156.mp3"
     },
     {
       "id": "s157",
@@ -19218,7 +19218,7 @@
           "end": 5.562
         }
       ],
-      "audio": "audio_quest_gimel/s157.mp3"
+      "audio": "books/quest-gimel/audio/s157.mp3"
     },
     {
       "id": "s158",
@@ -19418,7 +19418,7 @@
           "root": "פ-ג-שׁ"
         }
       ],
-      "audio": "audio_quest_gimel/s158.mp3"
+      "audio": "books/quest-gimel/audio/s158.mp3"
     },
     {
       "id": "s159",
@@ -19616,7 +19616,7 @@
           "end": 7.138
         }
       ],
-      "audio": "audio_quest_gimel/s159.mp3"
+      "audio": "books/quest-gimel/audio/s159.mp3"
     },
     {
       "id": "s160",
@@ -19784,7 +19784,7 @@
           "end": 7.162
         }
       ],
-      "audio": "audio_quest_gimel/s160.mp3"
+      "audio": "books/quest-gimel/audio/s160.mp3"
     },
     {
       "id": "s161",
@@ -19912,7 +19912,7 @@
           "end": 5.188
         }
       ],
-      "audio": "audio_quest_gimel/s161.mp3"
+      "audio": "books/quest-gimel/audio/s161.mp3"
     },
     {
       "id": "s162",
@@ -20030,7 +20030,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_quest_gimel/s162.mp3"
+      "audio": "books/quest-gimel/audio/s162.mp3"
     },
     {
       "id": "s163",
@@ -20088,7 +20088,7 @@
           "end": 2.013
         }
       ],
-      "audio": "audio_quest_gimel/s163.mp3"
+      "audio": "books/quest-gimel/audio/s163.mp3"
     },
     {
       "id": "s164",
@@ -20166,7 +20166,7 @@
           "end": 3.763
         }
       ],
-      "audio": "audio_quest_gimel/s164.mp3"
+      "audio": "books/quest-gimel/audio/s164.mp3"
     },
     {
       "id": "s165",
@@ -20224,7 +20224,7 @@
           "end": 1.887
         }
       ],
-      "audio": "audio_quest_gimel/s165.mp3"
+      "audio": "books/quest-gimel/audio/s165.mp3"
     },
     {
       "id": "s166",
@@ -20322,7 +20322,7 @@
           "end": 3.112
         }
       ],
-      "audio": "audio_quest_gimel/s166.mp3"
+      "audio": "books/quest-gimel/audio/s166.mp3"
     },
     {
       "id": "s167",
@@ -20360,7 +20360,7 @@
           "end": 1.775
         }
       ],
-      "audio": "audio_quest_gimel/s167.mp3"
+      "audio": "books/quest-gimel/audio/s167.mp3"
     },
     {
       "id": "s168",
@@ -20508,15 +20508,15 @@
           "end": 6.438
         }
       ],
-      "audio": "audio_quest_gimel/s168.mp3",
+      "audio": "books/quest-gimel/audio/s168.mp3",
       "illustration": {
         "word": "עַיִן",
         "tr": "глаза ее",
         "caption": "עַיִן",
         "capTr": "Ayin",
         "mnemonic": "«Ай! Инь!» — вскрикиваешь ты, когда летающий символ Инь-Ян острым краем врезается тебе прямо в ГЛАЗ. Пострадавший глаз мгновенно раздувается до размеров арбуза, становится ярко-зелёным и начинает испускать ослепительные лазерные лучи.",
-        "img": "illustrations_quest_gimel/s168.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s168-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s168.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s168-mnemonic.webp"
       }
     },
     {
@@ -20645,7 +20645,7 @@
           "end": 5.487
         }
       ],
-      "audio": "audio_quest_gimel/s169.mp3"
+      "audio": "books/quest-gimel/audio/s169.mp3"
     },
     {
       "id": "s170",
@@ -20753,7 +20753,7 @@
           "end": 4.2
         }
       ],
-      "audio": "audio_quest_gimel/s170.mp3"
+      "audio": "books/quest-gimel/audio/s170.mp3"
     },
     {
       "id": "s171",
@@ -20911,7 +20911,7 @@
           "end": 6.188
         }
       ],
-      "audio": "audio_quest_gimel/s171.mp3"
+      "audio": "books/quest-gimel/audio/s171.mp3"
     },
     {
       "id": "s172",
@@ -21009,7 +21009,7 @@
           "end": 4.062
         }
       ],
-      "audio": "audio_quest_gimel/s172.mp3"
+      "audio": "books/quest-gimel/audio/s172.mp3"
     },
     {
       "id": "s173",
@@ -21077,7 +21077,7 @@
           "end": 2.638
         }
       ],
-      "audio": "audio_quest_gimel/s173.mp3"
+      "audio": "books/quest-gimel/audio/s173.mp3"
     },
     {
       "id": "s174",
@@ -21265,7 +21265,7 @@
           "end": 7.412
         }
       ],
-      "audio": "audio_quest_gimel/s174.mp3"
+      "audio": "books/quest-gimel/audio/s174.mp3"
     },
     {
       "id": "s175",
@@ -21361,7 +21361,7 @@
           "root": "ת-מ-מ"
         }
       ],
-      "audio": "audio_quest_gimel/s175.mp3"
+      "audio": "books/quest-gimel/audio/s175.mp3"
     },
     {
       "id": "s176",
@@ -21469,7 +21469,7 @@
           "end": 3.75
         }
       ],
-      "audio": "audio_quest_gimel/s176.mp3"
+      "audio": "books/quest-gimel/audio/s176.mp3"
     },
     {
       "id": "s177",
@@ -21617,7 +21617,7 @@
           "end": 4.8
         }
       ],
-      "audio": "audio_quest_gimel/s177.mp3"
+      "audio": "books/quest-gimel/audio/s177.mp3"
     },
     {
       "id": "s178",
@@ -21795,7 +21795,7 @@
           "end": 5.725
         }
       ],
-      "audio": "audio_quest_gimel/s178.mp3"
+      "audio": "books/quest-gimel/audio/s178.mp3"
     },
     {
       "id": "s179",
@@ -21963,7 +21963,7 @@
           "end": 5.55
         }
       ],
-      "audio": "audio_quest_gimel/s179.mp3"
+      "audio": "books/quest-gimel/audio/s179.mp3"
     },
     {
       "id": "s180",
@@ -22021,7 +22021,7 @@
           "end": 2.2
         }
       ],
-      "audio": "audio_quest_gimel/s180.mp3"
+      "audio": "books/quest-gimel/audio/s180.mp3"
     },
     {
       "id": "s181",
@@ -22149,7 +22149,7 @@
           "end": 4.612
         }
       ],
-      "audio": "audio_quest_gimel/s181.mp3"
+      "audio": "books/quest-gimel/audio/s181.mp3"
     },
     {
       "id": "s182",
@@ -22197,7 +22197,7 @@
           "end": 2.413
         }
       ],
-      "audio": "audio_quest_gimel/s182.mp3"
+      "audio": "books/quest-gimel/audio/s182.mp3"
     },
     {
       "id": "s183",
@@ -22355,7 +22355,7 @@
           "end": 4.875
         }
       ],
-      "audio": "audio_quest_gimel/s183.mp3"
+      "audio": "books/quest-gimel/audio/s183.mp3"
     },
     {
       "id": "s184",
@@ -22493,15 +22493,15 @@
           "end": 5.912
         }
       ],
-      "audio": "audio_quest_gimel/s184.mp3",
+      "audio": "books/quest-gimel/audio/s184.mp3",
       "illustration": {
         "word": "מֶרְחָק",
         "tr": "расстояние",
         "caption": "מֶרְחָק",
         "capTr": "merkhak",
         "mnemonic": "Созвучие: мэр + хак (компьютерный взлом). Чтобы мгновенно сократить РАССТОЯНИЕ между городами, важный МЭР в цилиндре совершает гениальный ХАК: кликает гигантской мышкой, и две земли со свистом стягиваются в одну, сталкивая дома.",
-        "img": "illustrations_quest_gimel/s184.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s184-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s184.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s184-mnemonic.webp"
       }
     },
     {
@@ -22660,7 +22660,7 @@
           "end": 5.4
         }
       ],
-      "audio": "audio_quest_gimel/s185.mp3"
+      "audio": "books/quest-gimel/audio/s185.mp3"
     },
     {
       "id": "s186",
@@ -22788,7 +22788,7 @@
           "end": 5.225
         }
       ],
-      "audio": "audio_quest_gimel/s186.mp3"
+      "audio": "books/quest-gimel/audio/s186.mp3"
     },
     {
       "id": "s187",
@@ -22906,7 +22906,7 @@
           "end": 4.088
         }
       ],
-      "audio": "audio_quest_gimel/s187.mp3"
+      "audio": "books/quest-gimel/audio/s187.mp3"
     },
     {
       "id": "s188",
@@ -22984,7 +22984,7 @@
           "end": 3.425
         }
       ],
-      "audio": "audio_quest_gimel/s188.mp3"
+      "audio": "books/quest-gimel/audio/s188.mp3"
     },
     {
       "id": "s189",
@@ -23162,7 +23162,7 @@
           "end": 5.862
         }
       ],
-      "audio": "audio_quest_gimel/s189.mp3"
+      "audio": "books/quest-gimel/audio/s189.mp3"
     },
     {
       "id": "s190",
@@ -23330,7 +23330,7 @@
           "end": 7.638
         }
       ],
-      "audio": "audio_quest_gimel/s190.mp3"
+      "audio": "books/quest-gimel/audio/s190.mp3"
     },
     {
       "id": "s191",
@@ -23458,7 +23458,7 @@
           "end": 4.912
         }
       ],
-      "audio": "audio_quest_gimel/s191.mp3"
+      "audio": "books/quest-gimel/audio/s191.mp3"
     },
     {
       "id": "s192",
@@ -23586,7 +23586,7 @@
           "end": 4.875
         }
       ],
-      "audio": "audio_quest_gimel/s192.mp3"
+      "audio": "books/quest-gimel/audio/s192.mp3"
     },
     {
       "id": "s193",
@@ -23914,7 +23914,7 @@
           "end": 12.875
         }
       ],
-      "audio": "audio_quest_gimel/s193.mp3"
+      "audio": "books/quest-gimel/audio/s193.mp3"
     },
     {
       "id": "s194",
@@ -24032,7 +24032,7 @@
           "end": 4.662
         }
       ],
-      "audio": "audio_quest_gimel/s194.mp3"
+      "audio": "books/quest-gimel/audio/s194.mp3"
     },
     {
       "id": "s195",
@@ -24180,7 +24180,7 @@
           "end": 5.325
         }
       ],
-      "audio": "audio_quest_gimel/s195.mp3"
+      "audio": "books/quest-gimel/audio/s195.mp3"
     },
     {
       "id": "s196",
@@ -24248,7 +24248,7 @@
           "end": 3.15
         }
       ],
-      "audio": "audio_quest_gimel/s196.mp3"
+      "audio": "books/quest-gimel/audio/s196.mp3"
     },
     {
       "id": "s197",
@@ -24396,7 +24396,7 @@
           "end": 6.4
         }
       ],
-      "audio": "audio_quest_gimel/s197.mp3"
+      "audio": "books/quest-gimel/audio/s197.mp3"
     },
     {
       "id": "s198",
@@ -24474,7 +24474,7 @@
           "end": 3.7
         }
       ],
-      "audio": "audio_quest_gimel/s198.mp3"
+      "audio": "books/quest-gimel/audio/s198.mp3"
     },
     {
       "id": "s199",
@@ -24562,7 +24562,7 @@
           "end": 3.638
         }
       ],
-      "audio": "audio_quest_gimel/s199.mp3"
+      "audio": "books/quest-gimel/audio/s199.mp3"
     },
     {
       "id": "s200",
@@ -24630,7 +24630,7 @@
           "end": 2.7
         }
       ],
-      "audio": "audio_quest_gimel/s200.mp3"
+      "audio": "books/quest-gimel/audio/s200.mp3"
     },
     {
       "id": "s201",
@@ -24668,7 +24668,7 @@
           "end": 1.35
         }
       ],
-      "audio": "audio_quest_gimel/s201.mp3"
+      "audio": "books/quest-gimel/audio/s201.mp3"
     },
     {
       "id": "s202",
@@ -24716,7 +24716,7 @@
           "end": 1.712
         }
       ],
-      "audio": "audio_quest_gimel/s202.mp3"
+      "audio": "books/quest-gimel/audio/s202.mp3"
     },
     {
       "id": "s203",
@@ -24754,7 +24754,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_quest_gimel/s203.mp3"
+      "audio": "books/quest-gimel/audio/s203.mp3"
     },
     {
       "id": "s204",
@@ -25032,7 +25032,7 @@
           "end": 9.762
         }
       ],
-      "audio": "audio_quest_gimel/s204.mp3"
+      "audio": "books/quest-gimel/audio/s204.mp3"
     },
     {
       "id": "s205",
@@ -25170,7 +25170,7 @@
           "end": 5.1
         }
       ],
-      "audio": "audio_quest_gimel/s205.mp3"
+      "audio": "books/quest-gimel/audio/s205.mp3"
     },
     {
       "id": "s206",
@@ -25268,7 +25268,7 @@
           "end": 3.962
         }
       ],
-      "audio": "audio_quest_gimel/s206.mp3"
+      "audio": "books/quest-gimel/audio/s206.mp3"
     },
     {
       "id": "s207",
@@ -25506,15 +25506,15 @@
           "end": 10.062
         }
       ],
-      "audio": "audio_quest_gimel/s207.mp3",
+      "audio": "books/quest-gimel/audio/s207.mp3",
       "illustration": {
         "word": "בּוֹשֶׁת",
         "tr": "в позоре",
         "caption": "בּוֹשֶׁת",
         "capTr": "boshet",
         "mnemonic": "Представь огромную, позорную БОШЕТЬ, где все люди носят смешные шляпы и гоняются друг за другом, крича 'Я в позоре!' и размахивая руками. Вдруг появляется гигантская, позорная БОШЕТЬ-машина, которая начинает преследовать всех, кто носит эти шляпы, и они все убегают в ужасе. Машина становится всё больше и больше, пока не поглощает весь город.",
-        "img": "illustrations_quest_gimel/s207.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s207-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s207.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s207-mnemonic.webp"
       }
     },
     {
@@ -25623,7 +25623,7 @@
           "end": 3.987
         }
       ],
-      "audio": "audio_quest_gimel/s208.mp3"
+      "audio": "books/quest-gimel/audio/s208.mp3"
     },
     {
       "id": "s209",
@@ -25761,7 +25761,7 @@
           "end": 5.463
         }
       ],
-      "audio": "audio_quest_gimel/s209.mp3"
+      "audio": "books/quest-gimel/audio/s209.mp3"
     },
     {
       "id": "s210",
@@ -25809,7 +25809,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_quest_gimel/s210.mp3"
+      "audio": "books/quest-gimel/audio/s210.mp3"
     },
     {
       "id": "s211",
@@ -25947,7 +25947,7 @@
           "end": 5.275
         }
       ],
-      "audio": "audio_quest_gimel/s211.mp3"
+      "audio": "books/quest-gimel/audio/s211.mp3"
     },
     {
       "id": "s212",
@@ -26195,7 +26195,7 @@
           "end": 10.338
         }
       ],
-      "audio": "audio_quest_gimel/s212.mp3"
+      "audio": "books/quest-gimel/audio/s212.mp3"
     },
     {
       "id": "s213",
@@ -26303,7 +26303,7 @@
           "end": 4.975
         }
       ],
-      "audio": "audio_quest_gimel/s213.mp3"
+      "audio": "books/quest-gimel/audio/s213.mp3"
     },
     {
       "id": "s214",
@@ -26371,7 +26371,7 @@
           "end": 2.35
         }
       ],
-      "audio": "audio_quest_gimel/s214.mp3"
+      "audio": "books/quest-gimel/audio/s214.mp3"
     },
     {
       "id": "s215",
@@ -26499,7 +26499,7 @@
           "end": 5.225
         }
       ],
-      "audio": "audio_quest_gimel/s215.mp3"
+      "audio": "books/quest-gimel/audio/s215.mp3"
     },
     {
       "id": "s216",
@@ -26727,7 +26727,7 @@
           "end": 9.213
         }
       ],
-      "audio": "audio_quest_gimel/s216.mp3"
+      "audio": "books/quest-gimel/audio/s216.mp3"
     },
     {
       "id": "s217",
@@ -26845,7 +26845,7 @@
           "end": 6.225
         }
       ],
-      "audio": "audio_quest_gimel/s217.mp3"
+      "audio": "books/quest-gimel/audio/s217.mp3"
     },
     {
       "id": "s218",
@@ -26923,7 +26923,7 @@
           "end": 2.862
         }
       ],
-      "audio": "audio_quest_gimel/s218.mp3"
+      "audio": "books/quest-gimel/audio/s218.mp3"
     },
     {
       "id": "s219",
@@ -27041,7 +27041,7 @@
           "end": 4.175
         }
       ],
-      "audio": "audio_quest_gimel/s219.mp3"
+      "audio": "books/quest-gimel/audio/s219.mp3"
     },
     {
       "id": "s220",
@@ -27159,7 +27159,7 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_quest_gimel/s220.mp3"
+      "audio": "books/quest-gimel/audio/s220.mp3"
     },
     {
       "id": "s221",
@@ -27277,7 +27277,7 @@
           "end": 5.463
         }
       ],
-      "audio": "audio_quest_gimel/s221.mp3"
+      "audio": "books/quest-gimel/audio/s221.mp3"
     },
     {
       "id": "s222",
@@ -27395,7 +27395,7 @@
           "end": 5.2
         }
       ],
-      "audio": "audio_quest_gimel/s222.mp3"
+      "audio": "books/quest-gimel/audio/s222.mp3"
     },
     {
       "id": "s223",
@@ -27473,7 +27473,7 @@
           "end": 3.05
         }
       ],
-      "audio": "audio_quest_gimel/s223.mp3"
+      "audio": "books/quest-gimel/audio/s223.mp3"
     },
     {
       "id": "s224",
@@ -27621,15 +27621,15 @@
           "end": 5.612
         }
       ],
-      "audio": "audio_quest_gimel/s224.mp3",
+      "audio": "books/quest-gimel/audio/s224.mp3",
       "illustration": {
         "word": "עֶזְרָה",
         "tr": "помощь ваша",
         "caption": "עֶזְרָה",
         "capTr": "ezrah",
         "mnemonic": "Представь гигантского ЕЗДОКАТА, который внезапно начинает РАССКАЗЫВАТЬ истории о своей жизни, и все его друзья-животные собираются вокруг, чтобы послушать, а Ездокат говорит: «Я был в помощи вашей, когда нам нужно было найти потерянного кролика в лесу».",
-        "img": "illustrations_quest_gimel/s224.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s224-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s224.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s224-mnemonic.webp"
       }
     },
     {
@@ -27788,7 +27788,7 @@
           "end": 6.275
         }
       ],
-      "audio": "audio_quest_gimel/s225.mp3"
+      "audio": "books/quest-gimel/audio/s225.mp3"
     },
     {
       "id": "s226",
@@ -27896,7 +27896,7 @@
           "end": 4.425
         }
       ],
-      "audio": "audio_quest_gimel/s226.mp3"
+      "audio": "books/quest-gimel/audio/s226.mp3"
     },
     {
       "id": "s227",
@@ -27974,7 +27974,7 @@
           "end": 3.237
         }
       ],
-      "audio": "audio_quest_gimel/s227.mp3"
+      "audio": "books/quest-gimel/audio/s227.mp3"
     },
     {
       "id": "s228",
@@ -28032,7 +28032,7 @@
           "end": 2.263
         }
       ],
-      "audio": "audio_quest_gimel/s228.mp3"
+      "audio": "books/quest-gimel/audio/s228.mp3"
     },
     {
       "id": "s229",
@@ -28130,7 +28130,7 @@
           "end": 3.388
         }
       ],
-      "audio": "audio_quest_gimel/s229.mp3"
+      "audio": "books/quest-gimel/audio/s229.mp3"
     },
     {
       "id": "s230",
@@ -28358,7 +28358,7 @@
           "end": 8.338
         }
       ],
-      "audio": "audio_quest_gimel/s230.mp3"
+      "audio": "books/quest-gimel/audio/s230.mp3"
     },
     {
       "id": "s231",
@@ -28516,7 +28516,7 @@
           "end": 6.412
         }
       ],
-      "audio": "audio_quest_gimel/s231.mp3"
+      "audio": "books/quest-gimel/audio/s231.mp3"
     },
     {
       "id": "s232",
@@ -28594,7 +28594,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_quest_gimel/s232.mp3"
+      "audio": "books/quest-gimel/audio/s232.mp3"
     },
     {
       "id": "s233",
@@ -28822,7 +28822,7 @@
           "end": 10.312
         }
       ],
-      "audio": "audio_quest_gimel/s233.mp3"
+      "audio": "books/quest-gimel/audio/s233.mp3"
     },
     {
       "id": "s234",
@@ -28980,7 +28980,7 @@
           "end": 6.925
         }
       ],
-      "audio": "audio_quest_gimel/s234.mp3"
+      "audio": "books/quest-gimel/audio/s234.mp3"
     },
     {
       "id": "s235",
@@ -29198,7 +29198,7 @@
           "end": 8.863
         }
       ],
-      "audio": "audio_quest_gimel/s235.mp3"
+      "audio": "books/quest-gimel/audio/s235.mp3"
     },
     {
       "id": "s236",
@@ -29366,7 +29366,7 @@
           "end": 7.638
         }
       ],
-      "audio": "audio_quest_gimel/s236.mp3"
+      "audio": "books/quest-gimel/audio/s236.mp3"
     },
     {
       "id": "s237",
@@ -29524,7 +29524,7 @@
           "end": 5.612
         }
       ],
-      "audio": "audio_quest_gimel/s237.mp3"
+      "audio": "books/quest-gimel/audio/s237.mp3"
     },
     {
       "id": "s238",
@@ -29682,7 +29682,7 @@
           "end": 5.6
         }
       ],
-      "audio": "audio_quest_gimel/s238.mp3"
+      "audio": "books/quest-gimel/audio/s238.mp3"
     },
     {
       "id": "s239",
@@ -29830,7 +29830,7 @@
           "end": 6.013
         }
       ],
-      "audio": "audio_quest_gimel/s239.mp3"
+      "audio": "books/quest-gimel/audio/s239.mp3"
     },
     {
       "id": "s240",
@@ -29998,7 +29998,7 @@
           "end": 7.175
         }
       ],
-      "audio": "audio_quest_gimel/s240.mp3"
+      "audio": "books/quest-gimel/audio/s240.mp3"
     },
     {
       "id": "s241",
@@ -30236,7 +30236,7 @@
           "end": 9.675
         }
       ],
-      "audio": "audio_quest_gimel/s241.mp3"
+      "audio": "books/quest-gimel/audio/s241.mp3"
     },
     {
       "id": "s242",
@@ -30424,15 +30424,15 @@
           "end": 7.3
         }
       ],
-      "audio": "audio_quest_gimel/s242.mp3",
+      "audio": "books/quest-gimel/audio/s242.mp3",
       "illustration": {
         "word": "מוֹרֶה",
         "tr": "его учитель",
         "caption": "מוֹרֶה",
         "capTr": "moreh",
         "mnemonic": "Представь, что Моря, огромный океан, требует Моря, своего учителя, чтобы научить всех морских существ танцевать вальс. Моря, учитель, появляется и начинает учить рыб, дельфинов и даже медуз танцевать в совершенной гармонии. Когда музыка набирает силу, все морские существа кружатся и вертятся в идеальном вальсе, а Моря, учитель, гордо наблюдает за ними.",
-        "img": "illustrations_quest_gimel/s242.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s242-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s242.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s242-mnemonic.webp"
       }
     },
     {
@@ -30481,7 +30481,7 @@
           "end": 1.312
         }
       ],
-      "audio": "audio_quest_gimel/s243.mp3"
+      "audio": "books/quest-gimel/audio/s243.mp3"
     },
     {
       "id": "s244",
@@ -30589,7 +30589,7 @@
           "end": 4.463
         }
       ],
-      "audio": "audio_quest_gimel/s244.mp3"
+      "audio": "books/quest-gimel/audio/s244.mp3"
     },
     {
       "id": "s245",
@@ -30717,7 +30717,7 @@
           "end": 5.45
         }
       ],
-      "audio": "audio_quest_gimel/s245.mp3"
+      "audio": "books/quest-gimel/audio/s245.mp3"
     },
     {
       "id": "s246",
@@ -30785,7 +30785,7 @@
           "end": 2.388
         }
       ],
-      "audio": "audio_quest_gimel/s246.mp3"
+      "audio": "books/quest-gimel/audio/s246.mp3"
     },
     {
       "id": "s247",
@@ -31033,7 +31033,7 @@
           "end": 8.8
         }
       ],
-      "audio": "audio_quest_gimel/s247.mp3"
+      "audio": "books/quest-gimel/audio/s247.mp3"
     },
     {
       "id": "s248",
@@ -31171,7 +31171,7 @@
           "end": 6.25
         }
       ],
-      "audio": "audio_quest_gimel/s248.mp3"
+      "audio": "books/quest-gimel/audio/s248.mp3"
     },
     {
       "id": "s249",
@@ -31269,7 +31269,7 @@
           "end": 4.4
         }
       ],
-      "audio": "audio_quest_gimel/s249.mp3"
+      "audio": "books/quest-gimel/audio/s249.mp3"
     },
     {
       "id": "s250",
@@ -31317,7 +31317,7 @@
           "end": 2.75
         }
       ],
-      "audio": "audio_quest_gimel/s250.mp3"
+      "audio": "books/quest-gimel/audio/s250.mp3"
     },
     {
       "id": "s251",
@@ -31395,7 +31395,7 @@
           "end": 2.95
         }
       ],
-      "audio": "audio_quest_gimel/s251.mp3"
+      "audio": "books/quest-gimel/audio/s251.mp3"
     },
     {
       "id": "s252",
@@ -31523,7 +31523,7 @@
           "end": 6.338
         }
       ],
-      "audio": "audio_quest_gimel/s252.mp3"
+      "audio": "books/quest-gimel/audio/s252.mp3"
     },
     {
       "id": "s253",
@@ -31751,7 +31751,7 @@
           "end": 9.375
         }
       ],
-      "audio": "audio_quest_gimel/s253.mp3"
+      "audio": "books/quest-gimel/audio/s253.mp3"
     },
     {
       "id": "s254",
@@ -31899,7 +31899,7 @@
           "end": 7.263
         }
       ],
-      "audio": "audio_quest_gimel/s254.mp3"
+      "audio": "books/quest-gimel/audio/s254.mp3"
     },
     {
       "id": "s255",
@@ -32147,7 +32147,7 @@
           "end": 10.6
         }
       ],
-      "audio": "audio_quest_gimel/s255.mp3"
+      "audio": "books/quest-gimel/audio/s255.mp3"
     },
     {
       "id": "s256",
@@ -32265,7 +32265,7 @@
           "end": 4.912
         }
       ],
-      "audio": "audio_quest_gimel/s256.mp3"
+      "audio": "books/quest-gimel/audio/s256.mp3"
     },
     {
       "id": "s257",
@@ -32383,7 +32383,7 @@
           "end": 4.787
         }
       ],
-      "audio": "audio_quest_gimel/s257.mp3"
+      "audio": "books/quest-gimel/audio/s257.mp3"
     },
     {
       "id": "s258",
@@ -32431,7 +32431,7 @@
           "end": 2.188
         }
       ],
-      "audio": "audio_quest_gimel/s258.mp3"
+      "audio": "books/quest-gimel/audio/s258.mp3"
     },
     {
       "id": "s259",
@@ -32559,7 +32559,7 @@
           "end": 5.162
         }
       ],
-      "audio": "audio_quest_gimel/s259.mp3"
+      "audio": "books/quest-gimel/audio/s259.mp3"
     },
     {
       "id": "s260",
@@ -32647,7 +32647,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_quest_gimel/s260.mp3"
+      "audio": "books/quest-gimel/audio/s260.mp3"
     },
     {
       "id": "s261",
@@ -32725,7 +32725,7 @@
           "end": 2.188
         }
       ],
-      "audio": "audio_quest_gimel/s261.mp3"
+      "audio": "books/quest-gimel/audio/s261.mp3"
     },
     {
       "id": "s262",
@@ -32883,15 +32883,15 @@
           "end": 6.162
         }
       ],
-      "audio": "audio_quest_gimel/s262.mp3",
+      "audio": "books/quest-gimel/audio/s262.mp3",
       "illustration": {
         "word": "אֶבֶן",
         "tr": "камень",
         "caption": "אֶבֶן",
         "capTr": "even",
         "mnemonic": "Представь, что ЭВЕНИНГ внезапно превратился в огромный камень и теперь катится по городу, оставляя за собой след из ошеломлённых зрителей. Люди в панике разбегаются, а ЭВЕНИНГ-камень продолжает катиться, создавая хаос и суматоху. Внезапно он врезается в巨анскую каменную стену и разбивается на тысячи маленьких камней.",
-        "img": "illustrations_quest_gimel/s262.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s262-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s262.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s262-mnemonic.webp"
       }
     },
     {
@@ -33040,7 +33040,7 @@
           "end": 5.7
         }
       ],
-      "audio": "audio_quest_gimel/s263.mp3"
+      "audio": "books/quest-gimel/audio/s263.mp3"
     },
     {
       "id": "s264",
@@ -33176,7 +33176,7 @@
           "root": "א-י-ם"
         }
       ],
-      "audio": "audio_quest_gimel/s264.mp3"
+      "audio": "books/quest-gimel/audio/s264.mp3"
     },
     {
       "id": "s265",
@@ -33244,7 +33244,7 @@
           "end": 3.587
         }
       ],
-      "audio": "audio_quest_gimel/s265.mp3"
+      "audio": "books/quest-gimel/audio/s265.mp3"
     },
     {
       "id": "s266",
@@ -33322,7 +33322,7 @@
           "end": 4.275
         }
       ],
-      "audio": "audio_quest_gimel/s266.mp3"
+      "audio": "books/quest-gimel/audio/s266.mp3"
     },
     {
       "id": "s267",
@@ -33450,7 +33450,7 @@
           "end": 5.5
         }
       ],
-      "audio": "audio_quest_gimel/s267.mp3"
+      "audio": "books/quest-gimel/audio/s267.mp3"
     },
     {
       "id": "s268",
@@ -33658,7 +33658,7 @@
           "end": 8.662
         }
       ],
-      "audio": "audio_quest_gimel/s268.mp3"
+      "audio": "books/quest-gimel/audio/s268.mp3"
     },
     {
       "id": "s269",
@@ -33816,7 +33816,7 @@
           "end": 5.925
         }
       ],
-      "audio": "audio_quest_gimel/s269.mp3"
+      "audio": "books/quest-gimel/audio/s269.mp3"
     },
     {
       "id": "s270",
@@ -33994,7 +33994,7 @@
           "end": 7.35
         }
       ],
-      "audio": "audio_quest_gimel/s270.mp3"
+      "audio": "books/quest-gimel/audio/s270.mp3"
     },
     {
       "id": "s271",
@@ -34132,7 +34132,7 @@
           "end": 4.838
         }
       ],
-      "audio": "audio_quest_gimel/s271.mp3"
+      "audio": "books/quest-gimel/audio/s271.mp3"
     },
     {
       "id": "s272",
@@ -34250,7 +34250,7 @@
           "end": 4.475
         }
       ],
-      "audio": "audio_quest_gimel/s272.mp3"
+      "audio": "books/quest-gimel/audio/s272.mp3"
     },
     {
       "id": "s273",
@@ -34378,7 +34378,7 @@
           "end": 6.362
         }
       ],
-      "audio": "audio_quest_gimel/s273.mp3"
+      "audio": "books/quest-gimel/audio/s273.mp3"
     },
     {
       "id": "s274",
@@ -34546,7 +34546,7 @@
           "end": 8.4
         }
       ],
-      "audio": "audio_quest_gimel/s274.mp3"
+      "audio": "books/quest-gimel/audio/s274.mp3"
     },
     {
       "id": "s275",
@@ -34714,7 +34714,7 @@
           "end": 7.675
         }
       ],
-      "audio": "audio_quest_gimel/s275.mp3"
+      "audio": "books/quest-gimel/audio/s275.mp3"
     },
     {
       "id": "s276",
@@ -34952,7 +34952,7 @@
           "end": 9.85
         }
       ],
-      "audio": "audio_quest_gimel/s276.mp3"
+      "audio": "books/quest-gimel/audio/s276.mp3"
     },
     {
       "id": "s277",
@@ -35030,7 +35030,7 @@
           "end": 5.188
         }
       ],
-      "audio": "audio_quest_gimel/s277.mp3"
+      "audio": "books/quest-gimel/audio/s277.mp3"
     },
     {
       "id": "s278",
@@ -35318,7 +35318,7 @@
           "end": 13.225
         }
       ],
-      "audio": "audio_quest_gimel/s278.mp3"
+      "audio": "books/quest-gimel/audio/s278.mp3"
     },
     {
       "id": "s279",
@@ -35416,7 +35416,7 @@
           "end": 5.612
         }
       ],
-      "audio": "audio_quest_gimel/s279.mp3"
+      "audio": "books/quest-gimel/audio/s279.mp3"
     },
     {
       "id": "s280",
@@ -35514,7 +35514,7 @@
           "end": 3.6
         }
       ],
-      "audio": "audio_quest_gimel/s280.mp3"
+      "audio": "books/quest-gimel/audio/s280.mp3"
     },
     {
       "id": "s281",
@@ -35702,15 +35702,15 @@
           "end": 7.763
         }
       ],
-      "audio": "audio_quest_gimel/s281.mp3",
+      "audio": "books/quest-gimel/audio/s281.mp3",
       "illustration": {
         "word": "זְרוֹעַ",
         "tr": "руку её",
         "caption": "זְרוֹעַ",
         "capTr": "zroa",
         "mnemonic": "Представь, что на огромной, древней, мистической карте расположился Зверь Рожа, и он жаждет найти свою потерянную Руку. Зверь Рожа начинает танцевать под звуки волшебной флейты, и его движения так прекрасны, что небо наполняется сверкающими звёздами, которые складываются в слова 'Рука Его'. Вдруг, Зверь Рожа находит свою потерянную Руку, и они становятся неразлучными.",
-        "img": "illustrations_quest_gimel/s281.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s281-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s281.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s281-mnemonic.webp"
       }
     },
     {
@@ -35879,7 +35879,7 @@
           "end": 6.737
         }
       ],
-      "audio": "audio_quest_gimel/s282.mp3"
+      "audio": "books/quest-gimel/audio/s282.mp3"
     },
     {
       "id": "s283",
@@ -35937,7 +35937,7 @@
           "end": 2.413
         }
       ],
-      "audio": "audio_quest_gimel/s283.mp3"
+      "audio": "books/quest-gimel/audio/s283.mp3"
     },
     {
       "id": "s284",
@@ -36145,7 +36145,7 @@
           "end": 9.262
         }
       ],
-      "audio": "audio_quest_gimel/s284.mp3"
+      "audio": "books/quest-gimel/audio/s284.mp3"
     },
     {
       "id": "s285",
@@ -36293,7 +36293,7 @@
           "end": 6.638
         }
       ],
-      "audio": "audio_quest_gimel/s285.mp3"
+      "audio": "books/quest-gimel/audio/s285.mp3"
     },
     {
       "id": "s286",
@@ -36521,7 +36521,7 @@
           "end": 9.525
         }
       ],
-      "audio": "audio_quest_gimel/s286.mp3"
+      "audio": "books/quest-gimel/audio/s286.mp3"
     },
     {
       "id": "s287",
@@ -36719,7 +36719,7 @@
           "end": 7.925
         }
       ],
-      "audio": "audio_quest_gimel/s287.mp3"
+      "audio": "books/quest-gimel/audio/s287.mp3"
     },
     {
       "id": "s288",
@@ -36857,7 +36857,7 @@
           "end": 6.075
         }
       ],
-      "audio": "audio_quest_gimel/s288.mp3"
+      "audio": "books/quest-gimel/audio/s288.mp3"
     },
     {
       "id": "s289",
@@ -36955,7 +36955,7 @@
           "end": 4.912
         }
       ],
-      "audio": "audio_quest_gimel/s289.mp3"
+      "audio": "books/quest-gimel/audio/s289.mp3"
     },
     {
       "id": "s290",
@@ -37093,7 +37093,7 @@
           "end": 5.013
         }
       ],
-      "audio": "audio_quest_gimel/s290.mp3"
+      "audio": "books/quest-gimel/audio/s290.mp3"
     },
     {
       "id": "s291",
@@ -37181,7 +37181,7 @@
           "end": 3.587
         }
       ],
-      "audio": "audio_quest_gimel/s291.mp3"
+      "audio": "books/quest-gimel/audio/s291.mp3"
     },
     {
       "id": "s292",
@@ -37389,7 +37389,7 @@
           "end": 8.875
         }
       ],
-      "audio": "audio_quest_gimel/s292.mp3"
+      "audio": "books/quest-gimel/audio/s292.mp3"
     },
     {
       "id": "s293",
@@ -37497,7 +37497,7 @@
           "end": 7.237
         }
       ],
-      "audio": "audio_quest_gimel/s293.mp3"
+      "audio": "books/quest-gimel/audio/s293.mp3"
     },
     {
       "id": "s294",
@@ -37755,7 +37755,7 @@
           "end": 14.775
         }
       ],
-      "audio": "audio_quest_gimel/s294.mp3"
+      "audio": "books/quest-gimel/audio/s294.mp3"
     },
     {
       "id": "s295",
@@ -37823,7 +37823,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_quest_gimel/s295.mp3"
+      "audio": "books/quest-gimel/audio/s295.mp3"
     },
     {
       "id": "s296",
@@ -37931,7 +37931,7 @@
           "end": 4.763
         }
       ],
-      "audio": "audio_quest_gimel/s296.mp3"
+      "audio": "books/quest-gimel/audio/s296.mp3"
     },
     {
       "id": "s297",
@@ -38159,7 +38159,7 @@
           "end": 10.488
         }
       ],
-      "audio": "audio_quest_gimel/s297.mp3"
+      "audio": "books/quest-gimel/audio/s297.mp3"
     },
     {
       "id": "s298",
@@ -38407,7 +38407,7 @@
           "end": 9.55
         }
       ],
-      "audio": "audio_quest_gimel/s298.mp3"
+      "audio": "books/quest-gimel/audio/s298.mp3"
     },
     {
       "id": "s299",
@@ -38595,7 +38595,7 @@
           "end": 9.125
         }
       ],
-      "audio": "audio_quest_gimel/s299.mp3"
+      "audio": "books/quest-gimel/audio/s299.mp3"
     },
     {
       "id": "s300",
@@ -38743,7 +38743,7 @@
           "end": 6.275
         }
       ],
-      "audio": "audio_quest_gimel/s300.mp3"
+      "audio": "books/quest-gimel/audio/s300.mp3"
     },
     {
       "id": "s301",
@@ -38841,7 +38841,7 @@
           "end": 3.812
         }
       ],
-      "audio": "audio_quest_gimel/s301.mp3"
+      "audio": "books/quest-gimel/audio/s301.mp3"
     },
     {
       "id": "s302",
@@ -39009,7 +39009,7 @@
           "end": 6.963
         }
       ],
-      "audio": "audio_quest_gimel/s302.mp3"
+      "audio": "books/quest-gimel/audio/s302.mp3"
     },
     {
       "id": "s303",
@@ -39047,7 +39047,7 @@
           "end": 1.387
         }
       ],
-      "audio": "audio_quest_gimel/s303.mp3"
+      "audio": "books/quest-gimel/audio/s303.mp3"
     },
     {
       "id": "s304",
@@ -39245,15 +39245,15 @@
           "end": 8.287
         }
       ],
-      "audio": "audio_quest_gimel/s304.mp3",
+      "audio": "books/quest-gimel/audio/s304.mp3",
       "illustration": {
         "word": "דֶּרֶךְ",
         "tr": "по дороге",
         "caption": "דֶּרֶךְ",
         "capTr": "derech",
         "mnemonic": "Представь себе огромную ДЕРЕВЕНСКУЮ дорогу, по которой едет дико выглядящий ДЕРЕВО-автомобиль, а из его окон выглядывают озорные ДЕРЕВЕНЩИКИ, которые машут руками и кричат во всё горло.",
-        "img": "illustrations_quest_gimel/s304.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s304-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s304.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s304-mnemonic.webp"
       }
     },
     {
@@ -39432,7 +39432,7 @@
           "end": 7.775
         }
       ],
-      "audio": "audio_quest_gimel/s305.mp3"
+      "audio": "books/quest-gimel/audio/s305.mp3"
     },
     {
       "id": "s306",
@@ -39550,7 +39550,7 @@
           "end": 5.112
         }
       ],
-      "audio": "audio_quest_gimel/s306.mp3"
+      "audio": "books/quest-gimel/audio/s306.mp3"
     },
     {
       "id": "s307",
@@ -39568,7 +39568,7 @@
           "end": 1.062
         }
       ],
-      "audio": "audio_quest_gimel/s307.mp3"
+      "audio": "books/quest-gimel/audio/s307.mp3"
     },
     {
       "id": "s308",
@@ -39596,7 +39596,7 @@
           "end": 1.05
         }
       ],
-      "audio": "audio_quest_gimel/s308.mp3"
+      "audio": "books/quest-gimel/audio/s308.mp3"
     },
     {
       "id": "s309",
@@ -39674,7 +39674,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_quest_gimel/s309.mp3"
+      "audio": "books/quest-gimel/audio/s309.mp3"
     },
     {
       "id": "s310",
@@ -39752,7 +39752,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_quest_gimel/s310.mp3"
+      "audio": "books/quest-gimel/audio/s310.mp3"
     },
     {
       "id": "s311",
@@ -39830,7 +39830,7 @@
           "end": 4.487
         }
       ],
-      "audio": "audio_quest_gimel/s311.mp3"
+      "audio": "books/quest-gimel/audio/s311.mp3"
     },
     {
       "id": "s312",
@@ -39898,7 +39898,7 @@
           "end": 2.938
         }
       ],
-      "audio": "audio_quest_gimel/s312.mp3"
+      "audio": "books/quest-gimel/audio/s312.mp3"
     },
     {
       "id": "s313",
@@ -40006,7 +40006,7 @@
           "end": 3.712
         }
       ],
-      "audio": "audio_quest_gimel/s313.mp3"
+      "audio": "books/quest-gimel/audio/s313.mp3"
     },
     {
       "id": "s314",
@@ -40164,7 +40164,7 @@
           "end": 6.037
         }
       ],
-      "audio": "audio_quest_gimel/s314.mp3"
+      "audio": "books/quest-gimel/audio/s314.mp3"
     },
     {
       "id": "s315",
@@ -40232,7 +40232,7 @@
           "end": 3.1
         }
       ],
-      "audio": "audio_quest_gimel/s315.mp3"
+      "audio": "books/quest-gimel/audio/s315.mp3"
     },
     {
       "id": "s316",
@@ -40300,7 +40300,7 @@
           "end": 3.038
         }
       ],
-      "audio": "audio_quest_gimel/s316.mp3"
+      "audio": "books/quest-gimel/audio/s316.mp3"
     },
     {
       "id": "s317",
@@ -40458,7 +40458,7 @@
           "end": 5.912
         }
       ],
-      "audio": "audio_quest_gimel/s317.mp3"
+      "audio": "books/quest-gimel/audio/s317.mp3"
     },
     {
       "id": "s318",
@@ -40606,7 +40606,7 @@
           "end": 5.987
         }
       ],
-      "audio": "audio_quest_gimel/s318.mp3"
+      "audio": "books/quest-gimel/audio/s318.mp3"
     },
     {
       "id": "s319",
@@ -40764,7 +40764,7 @@
           "end": 6.787
         }
       ],
-      "audio": "audio_quest_gimel/s319.mp3"
+      "audio": "books/quest-gimel/audio/s319.mp3"
     },
     {
       "id": "s320",
@@ -40952,7 +40952,7 @@
           "end": 8.075
         }
       ],
-      "audio": "audio_quest_gimel/s320.mp3"
+      "audio": "books/quest-gimel/audio/s320.mp3"
     },
     {
       "id": "s321",
@@ -41260,7 +41260,7 @@
           "end": 11.35
         }
       ],
-      "audio": "audio_quest_gimel/s321.mp3"
+      "audio": "books/quest-gimel/audio/s321.mp3"
     },
     {
       "id": "s322",
@@ -41418,7 +41418,7 @@
           "end": 5.225
         }
       ],
-      "audio": "audio_quest_gimel/s322.mp3"
+      "audio": "books/quest-gimel/audio/s322.mp3"
     },
     {
       "id": "s323",
@@ -41586,7 +41586,7 @@
           "end": 5.4
         }
       ],
-      "audio": "audio_quest_gimel/s323.mp3"
+      "audio": "books/quest-gimel/audio/s323.mp3"
     },
     {
       "id": "s324",
@@ -41694,15 +41694,15 @@
           "end": 4.725
         }
       ],
-      "audio": "audio_quest_gimel/s324.mp3",
+      "audio": "books/quest-gimel/audio/s324.mp3",
       "illustration": {
         "word": "סֶלַע",
         "tr": "скалу",
         "caption": "סֶלַע",
         "capTr": "sela",
         "mnemonic": "Представь себе гигантского СЕЛЯ, который вдруг начинает ЛЕТАТЬ, и все вокруг кричат от удивления! Селя летит над городом, оставляя за собой след из разноцветных воздушных шаров, и люди на земле пытаются его поймать. Селя смеется и играет с воздушными шарами, создавая огромный радужный фонтан.",
-        "img": "illustrations_quest_gimel/s324.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s324-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s324.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s324-mnemonic.webp"
       }
     },
     {
@@ -41791,7 +41791,7 @@
           "end": 3.938
         }
       ],
-      "audio": "audio_quest_gimel/s325.mp3"
+      "audio": "books/quest-gimel/audio/s325.mp3"
     },
     {
       "id": "s326",
@@ -41889,7 +41889,7 @@
           "end": 4.0
         }
       ],
-      "audio": "audio_quest_gimel/s326.mp3"
+      "audio": "books/quest-gimel/audio/s326.mp3"
     },
     {
       "id": "s327",
@@ -42107,7 +42107,7 @@
           "end": 7.575
         }
       ],
-      "audio": "audio_quest_gimel/s327.mp3"
+      "audio": "books/quest-gimel/audio/s327.mp3"
     },
     {
       "id": "s328",
@@ -42365,7 +42365,7 @@
           "end": 10.287
         }
       ],
-      "audio": "audio_quest_gimel/s328.mp3"
+      "audio": "books/quest-gimel/audio/s328.mp3"
     },
     {
       "id": "s329",
@@ -42473,7 +42473,7 @@
           "end": 5.275
         }
       ],
-      "audio": "audio_quest_gimel/s329.mp3"
+      "audio": "books/quest-gimel/audio/s329.mp3"
     },
     {
       "id": "s330",
@@ -42551,7 +42551,7 @@
           "end": 3.487
         }
       ],
-      "audio": "audio_quest_gimel/s330.mp3"
+      "audio": "books/quest-gimel/audio/s330.mp3"
     },
     {
       "id": "s331",
@@ -42679,7 +42679,7 @@
           "end": 5.625
         }
       ],
-      "audio": "audio_quest_gimel/s331.mp3"
+      "audio": "books/quest-gimel/audio/s331.mp3"
     },
     {
       "id": "s332",
@@ -42777,7 +42777,7 @@
           "end": 3.7
         }
       ],
-      "audio": "audio_quest_gimel/s332.mp3"
+      "audio": "books/quest-gimel/audio/s332.mp3"
     },
     {
       "id": "s333",
@@ -42795,7 +42795,7 @@
           "end": 0.675
         }
       ],
-      "audio": "audio_quest_gimel/s333.mp3"
+      "audio": "books/quest-gimel/audio/s333.mp3"
     },
     {
       "id": "s334",
@@ -42853,7 +42853,7 @@
           "end": 1.575
         }
       ],
-      "audio": "audio_quest_gimel/s334.mp3"
+      "audio": "books/quest-gimel/audio/s334.mp3"
     },
     {
       "id": "s335",
@@ -43121,7 +43121,7 @@
           "end": 10.238
         }
       ],
-      "audio": "audio_quest_gimel/s335.mp3"
+      "audio": "books/quest-gimel/audio/s335.mp3"
     },
     {
       "id": "s336",
@@ -43269,7 +43269,7 @@
           "end": 5.737
         }
       ],
-      "audio": "audio_quest_gimel/s336.mp3"
+      "audio": "books/quest-gimel/audio/s336.mp3"
     },
     {
       "id": "s337",
@@ -43387,7 +43387,7 @@
           "end": 5.513
         }
       ],
-      "audio": "audio_quest_gimel/s337.mp3"
+      "audio": "books/quest-gimel/audio/s337.mp3"
     },
     {
       "id": "s338",
@@ -43525,7 +43525,7 @@
           "end": 5.438
         }
       ],
-      "audio": "audio_quest_gimel/s338.mp3"
+      "audio": "books/quest-gimel/audio/s338.mp3"
     },
     {
       "id": "s339",
@@ -43653,7 +43653,7 @@
           "end": 5.213
         }
       ],
-      "audio": "audio_quest_gimel/s339.mp3"
+      "audio": "books/quest-gimel/audio/s339.mp3"
     },
     {
       "id": "s340",
@@ -43761,7 +43761,7 @@
           "end": 4.15
         }
       ],
-      "audio": "audio_quest_gimel/s340.mp3"
+      "audio": "books/quest-gimel/audio/s340.mp3"
     },
     {
       "id": "s341",
@@ -43889,15 +43889,15 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_quest_gimel/s341.mp3",
+      "audio": "books/quest-gimel/audio/s341.mp3",
       "illustration": {
         "word": "רֶגַע",
         "tr": "и момент",
         "caption": "רֶגַע",
         "capTr": "rega",
         "mnemonic": "Представь себя в момент, когда ты делаешь РЕГУЛЯРНЫЙ ГАЗ, и вдруг это превращается в гигантский воздушный шар, который уносит тебя вверх, а ты кричишь от восторга и пытаешься управлять этим непослушным шаром.",
-        "img": "illustrations_quest_gimel/s341.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s341-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s341.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s341-mnemonic.webp"
       }
     },
     {
@@ -44046,7 +44046,7 @@
           "end": 5.825
         }
       ],
-      "audio": "audio_quest_gimel/s342.mp3"
+      "audio": "books/quest-gimel/audio/s342.mp3"
     },
     {
       "id": "s343",
@@ -44194,7 +44194,7 @@
           "end": 6.763
         }
       ],
-      "audio": "audio_quest_gimel/s343.mp3"
+      "audio": "books/quest-gimel/audio/s343.mp3"
     },
     {
       "id": "s344",
@@ -44372,7 +44372,7 @@
           "end": 7.438
         }
       ],
-      "audio": "audio_quest_gimel/s344.mp3"
+      "audio": "books/quest-gimel/audio/s344.mp3"
     },
     {
       "id": "s345",
@@ -44532,7 +44532,7 @@
           "root": "ע-מ-כ"
         }
       ],
-      "audio": "audio_quest_gimel/s345.mp3",
+      "audio": "books/quest-gimel/audio/s345.mp3",
       "ttsEngine": "gtts"
     },
     {
@@ -44661,7 +44661,7 @@
           "end": 5.0
         }
       ],
-      "audio": "audio_quest_gimel/s346.mp3"
+      "audio": "books/quest-gimel/audio/s346.mp3"
     },
     {
       "id": "s347",
@@ -44829,7 +44829,7 @@
           "end": 6.35
         }
       ],
-      "audio": "audio_quest_gimel/s347.mp3"
+      "audio": "books/quest-gimel/audio/s347.mp3"
     },
     {
       "id": "s348",
@@ -44947,7 +44947,7 @@
           "end": 4.875
         }
       ],
-      "audio": "audio_quest_gimel/s348.mp3"
+      "audio": "books/quest-gimel/audio/s348.mp3"
     },
     {
       "id": "s349",
@@ -45015,7 +45015,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_quest_gimel/s349.mp3"
+      "audio": "books/quest-gimel/audio/s349.mp3"
     },
     {
       "id": "s350",
@@ -45083,7 +45083,7 @@
           "end": 2.938
         }
       ],
-      "audio": "audio_quest_gimel/s350.mp3"
+      "audio": "books/quest-gimel/audio/s350.mp3"
     },
     {
       "id": "s351",
@@ -45281,7 +45281,7 @@
           "end": 7.562
         }
       ],
-      "audio": "audio_quest_gimel/s351.mp3"
+      "audio": "books/quest-gimel/audio/s351.mp3"
     },
     {
       "id": "s352",
@@ -45439,7 +45439,7 @@
           "end": 6.213
         }
       ],
-      "audio": "audio_quest_gimel/s352.mp3"
+      "audio": "books/quest-gimel/audio/s352.mp3"
     },
     {
       "id": "s353",
@@ -45567,7 +45567,7 @@
           "end": 5.6
         }
       ],
-      "audio": "audio_quest_gimel/s353.mp3"
+      "audio": "books/quest-gimel/audio/s353.mp3"
     },
     {
       "id": "s354",
@@ -45655,7 +45655,7 @@
           "end": 4.162
         }
       ],
-      "audio": "audio_quest_gimel/s354.mp3"
+      "audio": "books/quest-gimel/audio/s354.mp3"
     },
     {
       "id": "s355",
@@ -45863,7 +45863,7 @@
           "end": 8.213
         }
       ],
-      "audio": "audio_quest_gimel/s355.mp3"
+      "audio": "books/quest-gimel/audio/s355.mp3"
     },
     {
       "id": "s356",
@@ -46011,7 +46011,7 @@
           "end": 6.5
         }
       ],
-      "audio": "audio_quest_gimel/s356.mp3"
+      "audio": "books/quest-gimel/audio/s356.mp3"
     },
     {
       "id": "s357",
@@ -46159,7 +46159,7 @@
           "end": 6.075
         }
       ],
-      "audio": "audio_quest_gimel/s357.mp3"
+      "audio": "books/quest-gimel/audio/s357.mp3"
     },
     {
       "id": "s358",
@@ -46337,7 +46337,7 @@
           "end": 7.25
         }
       ],
-      "audio": "audio_quest_gimel/s358.mp3"
+      "audio": "books/quest-gimel/audio/s358.mp3"
     },
     {
       "id": "s359",
@@ -46465,7 +46465,7 @@
           "end": 5.662
         }
       ],
-      "audio": "audio_quest_gimel/s359.mp3"
+      "audio": "books/quest-gimel/audio/s359.mp3"
     },
     {
       "id": "s360",
@@ -46523,7 +46523,7 @@
           "end": 1.788
         }
       ],
-      "audio": "audio_quest_gimel/s360.mp3"
+      "audio": "books/quest-gimel/audio/s360.mp3"
     },
     {
       "id": "s361",
@@ -46651,7 +46651,7 @@
           "end": 5.987
         }
       ],
-      "audio": "audio_quest_gimel/s361.mp3"
+      "audio": "books/quest-gimel/audio/s361.mp3"
     },
     {
       "id": "s362",
@@ -46759,15 +46759,15 @@
           "end": 4.737
         }
       ],
-      "audio": "audio_quest_gimel/s362.mp3",
+      "audio": "books/quest-gimel/audio/s362.mp3",
       "illustration": {
         "word": "כֹּחַ",
         "tr": "его силу",
         "caption": "כֹּחַ",
         "capTr": "koach",
         "mnemonic": "Представь гигантскую, мощную КОХУ, которая внезапно оживает и начинает танцевать под зажигательную музыку, ее металлическое тело блестит и светится, когда она кружится и вертится с невероятной силой и ловкостью. Зрители ахают от удивления, наблюдая за этим невероятным зрелищем. КОХУ становится настоящей звездой шоу, и все не могут оторвать глаз от ее захватывающего выступления.",
-        "img": "illustrations_quest_gimel/s362.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s362-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s362.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s362-mnemonic.webp"
       }
     },
     {
@@ -46846,7 +46846,7 @@
           "end": 2.85
         }
       ],
-      "audio": "audio_quest_gimel/s363.mp3"
+      "audio": "books/quest-gimel/audio/s363.mp3"
     },
     {
       "id": "s364",
@@ -46934,7 +46934,7 @@
           "root": "ב-ק-ב-ק"
         }
       ],
-      "audio": "audio_quest_gimel/s364.mp3",
+      "audio": "books/quest-gimel/audio/s364.mp3",
       "ttsEngine": "gtts"
     },
     {
@@ -47073,7 +47073,7 @@
           "end": 6.013
         }
       ],
-      "audio": "audio_quest_gimel/s365.mp3"
+      "audio": "books/quest-gimel/audio/s365.mp3"
     },
     {
       "id": "s366",
@@ -47221,7 +47221,7 @@
           "end": 6.55
         }
       ],
-      "audio": "audio_quest_gimel/s366.mp3"
+      "audio": "books/quest-gimel/audio/s366.mp3"
     },
     {
       "id": "s367",
@@ -47439,7 +47439,7 @@
           "end": 9.262
         }
       ],
-      "audio": "audio_quest_gimel/s367.mp3"
+      "audio": "books/quest-gimel/audio/s367.mp3"
     },
     {
       "id": "s368",
@@ -47497,7 +47497,7 @@
           "end": 2.612
         }
       ],
-      "audio": "audio_quest_gimel/s368.mp3"
+      "audio": "books/quest-gimel/audio/s368.mp3"
     },
     {
       "id": "s369",
@@ -47615,7 +47615,7 @@
           "end": 4.938
         }
       ],
-      "audio": "audio_quest_gimel/s369.mp3"
+      "audio": "books/quest-gimel/audio/s369.mp3"
     },
     {
       "id": "s370",
@@ -47723,7 +47723,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_quest_gimel/s370.mp3"
+      "audio": "books/quest-gimel/audio/s370.mp3"
     },
     {
       "id": "s371",
@@ -47871,7 +47871,7 @@
           "end": 5.938
         }
       ],
-      "audio": "audio_quest_gimel/s371.mp3"
+      "audio": "books/quest-gimel/audio/s371.mp3"
     },
     {
       "id": "s372",
@@ -48099,7 +48099,7 @@
           "end": 9.512
         }
       ],
-      "audio": "audio_quest_gimel/s372.mp3"
+      "audio": "books/quest-gimel/audio/s372.mp3"
     },
     {
       "id": "s373",
@@ -48237,7 +48237,7 @@
           "end": 5.3
         }
       ],
-      "audio": "audio_quest_gimel/s373.mp3"
+      "audio": "books/quest-gimel/audio/s373.mp3"
     },
     {
       "id": "s374",
@@ -48305,7 +48305,7 @@
           "end": 3.263
         }
       ],
-      "audio": "audio_quest_gimel/s374.mp3"
+      "audio": "books/quest-gimel/audio/s374.mp3"
     },
     {
       "id": "s375",
@@ -48483,7 +48483,7 @@
           "end": 6.875
         }
       ],
-      "audio": "audio_quest_gimel/s375.mp3"
+      "audio": "books/quest-gimel/audio/s375.mp3"
     },
     {
       "id": "s376",
@@ -48651,7 +48651,7 @@
           "end": 7.0
         }
       ],
-      "audio": "audio_quest_gimel/s376.mp3"
+      "audio": "books/quest-gimel/audio/s376.mp3"
     },
     {
       "id": "s377",
@@ -48739,7 +48739,7 @@
           "end": 4.487
         }
       ],
-      "audio": "audio_quest_gimel/s377.mp3"
+      "audio": "books/quest-gimel/audio/s377.mp3"
     },
     {
       "id": "s378",
@@ -48847,7 +48847,7 @@
           "end": 3.725
         }
       ],
-      "audio": "audio_quest_gimel/s378.mp3"
+      "audio": "books/quest-gimel/audio/s378.mp3"
     },
     {
       "id": "s379",
@@ -48995,7 +48995,7 @@
           "end": 5.963
         }
       ],
-      "audio": "audio_quest_gimel/s379.mp3"
+      "audio": "books/quest-gimel/audio/s379.mp3"
     },
     {
       "id": "s380",
@@ -49103,7 +49103,7 @@
           "end": 4.175
         }
       ],
-      "audio": "audio_quest_gimel/s380.mp3"
+      "audio": "books/quest-gimel/audio/s380.mp3"
     },
     {
       "id": "s381",
@@ -49221,15 +49221,15 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_quest_gimel/s381.mp3",
+      "audio": "books/quest-gimel/audio/s381.mp3",
       "illustration": {
         "word": "מוֹרֶה",
         "tr": "его учителя",
         "caption": "מוֹרֶה",
         "capTr": "moreh",
         "mnemonic": "Представь, что море вдруг стало учителем и начало читать лекции по морской биологии, а все рыбы слушают внимательно и делают заметки. Но вдруг море начинает учить их морфологии русского языка и объясняет, что море и морфология созвучны слову מוֹרֶה, и все рыбы в восторге от такого неожиданного поворота.",
-        "img": "illustrations_quest_gimel/s381.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s381-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s381.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s381-mnemonic.webp"
       }
     },
     {
@@ -49338,7 +49338,7 @@
           "end": 5.263
         }
       ],
-      "audio": "audio_quest_gimel/s382.mp3"
+      "audio": "books/quest-gimel/audio/s382.mp3"
     },
     {
       "id": "s383",
@@ -49396,7 +49396,7 @@
           "end": 2.737
         }
       ],
-      "audio": "audio_quest_gimel/s383.mp3"
+      "audio": "books/quest-gimel/audio/s383.mp3"
     },
     {
       "id": "s384",
@@ -49444,7 +49444,7 @@
           "end": 1.95
         }
       ],
-      "audio": "audio_quest_gimel/s384.mp3"
+      "audio": "books/quest-gimel/audio/s384.mp3"
     },
     {
       "id": "s385",
@@ -49552,7 +49552,7 @@
           "end": 4.237
         }
       ],
-      "audio": "audio_quest_gimel/s385.mp3"
+      "audio": "books/quest-gimel/audio/s385.mp3"
     },
     {
       "id": "s386",
@@ -49630,7 +49630,7 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_quest_gimel/s386.mp3"
+      "audio": "books/quest-gimel/audio/s386.mp3"
     },
     {
       "id": "s387",
@@ -49808,7 +49808,7 @@
           "end": 7.7
         }
       ],
-      "audio": "audio_quest_gimel/s387.mp3"
+      "audio": "books/quest-gimel/audio/s387.mp3"
     },
     {
       "id": "s388",
@@ -49916,7 +49916,7 @@
           "end": 4.65
         }
       ],
-      "audio": "audio_quest_gimel/s388.mp3"
+      "audio": "books/quest-gimel/audio/s388.mp3"
     },
     {
       "id": "s389",
@@ -50114,7 +50114,7 @@
           "end": 8.213
         }
       ],
-      "audio": "audio_quest_gimel/s389.mp3"
+      "audio": "books/quest-gimel/audio/s389.mp3"
     },
     {
       "id": "s390",
@@ -50182,7 +50182,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_quest_gimel/s390.mp3"
+      "audio": "books/quest-gimel/audio/s390.mp3"
     },
     {
       "id": "s391",
@@ -50310,7 +50310,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_quest_gimel/s391.mp3"
+      "audio": "books/quest-gimel/audio/s391.mp3"
     },
     {
       "id": "s392",
@@ -50528,7 +50528,7 @@
           "end": 8.8
         }
       ],
-      "audio": "audio_quest_gimel/s392.mp3"
+      "audio": "books/quest-gimel/audio/s392.mp3"
     },
     {
       "id": "s393",
@@ -50696,7 +50696,7 @@
           "end": 7.037
         }
       ],
-      "audio": "audio_quest_gimel/s393.mp3"
+      "audio": "books/quest-gimel/audio/s393.mp3"
     },
     {
       "id": "s394",
@@ -50784,7 +50784,7 @@
           "end": 4.612
         }
       ],
-      "audio": "audio_quest_gimel/s394.mp3"
+      "audio": "books/quest-gimel/audio/s394.mp3"
     },
     {
       "id": "s395",
@@ -50902,7 +50902,7 @@
           "end": 4.638
         }
       ],
-      "audio": "audio_quest_gimel/s395.mp3"
+      "audio": "books/quest-gimel/audio/s395.mp3"
     },
     {
       "id": "s396",
@@ -51040,7 +51040,7 @@
           "end": 5.025
         }
       ],
-      "audio": "audio_quest_gimel/s396.mp3"
+      "audio": "books/quest-gimel/audio/s396.mp3"
     },
     {
       "id": "s397",
@@ -51128,7 +51128,7 @@
           "end": 3.438
         }
       ],
-      "audio": "audio_quest_gimel/s397.mp3"
+      "audio": "books/quest-gimel/audio/s397.mp3"
     },
     {
       "id": "s398",
@@ -51206,7 +51206,7 @@
           "end": 3.712
         }
       ],
-      "audio": "audio_quest_gimel/s398.mp3"
+      "audio": "books/quest-gimel/audio/s398.mp3"
     },
     {
       "id": "s399",
@@ -51314,7 +51314,7 @@
           "end": 4.513
         }
       ],
-      "audio": "audio_quest_gimel/s399.mp3"
+      "audio": "books/quest-gimel/audio/s399.mp3"
     },
     {
       "id": "s400",
@@ -51412,7 +51412,7 @@
           "end": 4.412
         }
       ],
-      "audio": "audio_quest_gimel/s400.mp3"
+      "audio": "books/quest-gimel/audio/s400.mp3"
     },
     {
       "id": "s401",
@@ -51530,7 +51530,7 @@
           "end": 5.037
         }
       ],
-      "audio": "audio_quest_gimel/s401.mp3"
+      "audio": "books/quest-gimel/audio/s401.mp3"
     },
     {
       "id": "s402",
@@ -51598,7 +51598,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_quest_gimel/s402.mp3"
+      "audio": "books/quest-gimel/audio/s402.mp3"
     },
     {
       "id": "s403",
@@ -51676,7 +51676,7 @@
           "end": 3.013
         }
       ],
-      "audio": "audio_quest_gimel/s403.mp3"
+      "audio": "books/quest-gimel/audio/s403.mp3"
     },
     {
       "id": "s404",
@@ -51784,15 +51784,15 @@
           "end": 4.575
         }
       ],
-      "audio": "audio_quest_gimel/s404.mp3",
+      "audio": "books/quest-gimel/audio/s404.mp3",
       "illustration": {
         "word": "לֵב",
         "tr": "в сердце их",
         "caption": "לֵב",
         "capTr": "lev",
         "mnemonic": "Представь, что в сердце каждого человека живёт маленький лев, и когда он рычит, все вокруг начинают танцевать левую леваду. Вдруг лев решает сделать левый поворот и всех утягивает в огромный левый вихрь, где все кружатся и смеются.",
-        "img": "illustrations_quest_gimel/s404.webp",
-        "imgMnemonic": "illustrations_quest_gimel/s404-mnemonic.webp"
+        "img": "books/quest-gimel/illustrations/s404.webp",
+        "imgMnemonic": "books/quest-gimel/illustrations/s404-mnemonic.webp"
       }
     },
     {
@@ -51901,7 +51901,7 @@
           "end": 4.425
         }
       ],
-      "audio": "audio_quest_gimel/s405.mp3"
+      "audio": "books/quest-gimel/audio/s405.mp3"
     },
     {
       "id": "s406",
@@ -52219,7 +52219,7 @@
           "end": 11.75
         }
       ],
-      "audio": "audio_quest_gimel/s406.mp3"
+      "audio": "books/quest-gimel/audio/s406.mp3"
     },
     {
       "id": "s407",
@@ -52337,7 +52337,7 @@
           "end": 4.45
         }
       ],
-      "audio": "audio_quest_gimel/s407.mp3"
+      "audio": "books/quest-gimel/audio/s407.mp3"
     },
     {
       "id": "s408",
@@ -52405,7 +52405,7 @@
           "end": 2.638
         }
       ],
-      "audio": "audio_quest_gimel/s408.mp3"
+      "audio": "books/quest-gimel/audio/s408.mp3"
     },
     {
       "id": "s409",
@@ -52553,7 +52553,7 @@
           "end": 5.938
         }
       ],
-      "audio": "audio_quest_gimel/s409.mp3"
+      "audio": "books/quest-gimel/audio/s409.mp3"
     },
     {
       "id": "s410",
@@ -52691,7 +52691,7 @@
           "end": 6.438
         }
       ],
-      "audio": "audio_quest_gimel/s410.mp3"
+      "audio": "books/quest-gimel/audio/s410.mp3"
     },
     {
       "id": "s411",
@@ -52849,7 +52849,7 @@
           "end": 6.725
         }
       ],
-      "audio": "audio_quest_gimel/s411.mp3"
+      "audio": "books/quest-gimel/audio/s411.mp3"
     },
     {
       "id": "s412",
@@ -53057,7 +53057,7 @@
           "end": 7.075
         }
       ],
-      "audio": "audio_quest_gimel/s412.mp3"
+      "audio": "books/quest-gimel/audio/s412.mp3"
     },
     {
       "id": "s413",
@@ -53175,7 +53175,7 @@
           "end": 6.25
         }
       ],
-      "audio": "audio_quest_gimel/s413.mp3"
+      "audio": "books/quest-gimel/audio/s413.mp3"
     },
     {
       "id": "s414",
@@ -53253,7 +53253,7 @@
           "end": 3.4
         }
       ],
-      "audio": "audio_quest_gimel/s414.mp3"
+      "audio": "books/quest-gimel/audio/s414.mp3"
     },
     {
       "id": "s415",
@@ -53401,7 +53401,7 @@
           "end": 4.175
         }
       ],
-      "audio": "audio_quest_gimel/s415.mp3"
+      "audio": "books/quest-gimel/audio/s415.mp3"
     },
     {
       "id": "s416",
@@ -53649,7 +53649,7 @@
           "end": 11.188
         }
       ],
-      "audio": "audio_quest_gimel/s416.mp3"
+      "audio": "books/quest-gimel/audio/s416.mp3"
     },
     {
       "id": "s417",
@@ -53867,7 +53867,7 @@
           "end": 7.763
         }
       ],
-      "audio": "audio_quest_gimel/s417.mp3"
+      "audio": "books/quest-gimel/audio/s417.mp3"
     }
   ]
 }

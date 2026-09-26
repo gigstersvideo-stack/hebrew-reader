@@ -216,7 +216,7 @@
           "end": 9.012
         }
       ],
-      "audio": "audio_restaurant_dalet/s1.mp3"
+      "audio": "books/restaurant-dalet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -534,15 +534,15 @@
           "end": 13.363
         }
       ],
-      "audio": "audio_restaurant_dalet/s2.mp3",
+      "audio": "books/restaurant-dalet/audio/s2.mp3",
       "illustration": {
         "word": "מִטְבָּח",
         "tr": "кухнях",
         "caption": "מִטְבָּח",
         "capTr": "mitbach",
         "mnemonic": "Представь, что Митя Бачок решил открыть свои собственные кухни и начал готовить огромные тарелки вкусных блюд, но его кот вдруг стал гигантским и начал помогать ему на кухне, создавая сложные соусы и нарезая километры свежих овощей.",
-        "img": "illustrations_restaurant_dalet/s2.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s2-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s2.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s2-mnemonic.webp"
       }
     },
     {
@@ -811,7 +811,7 @@
           "end": 10.262
         }
       ],
-      "audio": "audio_restaurant_dalet/s3.mp3"
+      "audio": "books/restaurant-dalet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -969,7 +969,7 @@
           "end": 5.338
         }
       ],
-      "audio": "audio_restaurant_dalet/s4.mp3"
+      "audio": "books/restaurant-dalet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -1137,7 +1137,7 @@
           "end": 7.925
         }
       ],
-      "audio": "audio_restaurant_dalet/s5.mp3"
+      "audio": "books/restaurant-dalet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -1315,7 +1315,7 @@
           "end": 8.688
         }
       ],
-      "audio": "audio_restaurant_dalet/s6.mp3"
+      "audio": "books/restaurant-dalet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -1513,7 +1513,7 @@
           "end": 7.388
         }
       ],
-      "audio": "audio_restaurant_dalet/s7.mp3"
+      "audio": "books/restaurant-dalet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -1661,7 +1661,7 @@
           "end": 6.15
         }
       ],
-      "audio": "audio_restaurant_dalet/s8.mp3"
+      "audio": "books/restaurant-dalet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -1869,7 +1869,7 @@
           "end": 8.15
         }
       ],
-      "audio": "audio_restaurant_dalet/s9.mp3"
+      "audio": "books/restaurant-dalet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -2117,7 +2117,7 @@
           "end": 10.125
         }
       ],
-      "audio": "audio_restaurant_dalet/s10.mp3"
+      "audio": "books/restaurant-dalet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -2305,7 +2305,7 @@
           "end": 8.012
         }
       ],
-      "audio": "audio_restaurant_dalet/s11.mp3"
+      "audio": "books/restaurant-dalet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -2473,7 +2473,7 @@
           "end": 7.2
         }
       ],
-      "audio": "audio_restaurant_dalet/s12.mp3"
+      "audio": "books/restaurant-dalet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -2641,7 +2641,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_restaurant_dalet/s13.mp3"
+      "audio": "books/restaurant-dalet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -2689,7 +2689,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_restaurant_dalet/s14.mp3"
+      "audio": "books/restaurant-dalet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -2897,7 +2897,7 @@
           "end": 8.475
         }
       ],
-      "audio": "audio_restaurant_dalet/s15.mp3"
+      "audio": "books/restaurant-dalet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -3035,7 +3035,7 @@
           "end": 6.65
         }
       ],
-      "audio": "audio_restaurant_dalet/s16.mp3"
+      "audio": "books/restaurant-dalet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -3343,7 +3343,7 @@
           "end": 12.2
         }
       ],
-      "audio": "audio_restaurant_dalet/s17.mp3"
+      "audio": "books/restaurant-dalet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -3631,7 +3631,7 @@
           "end": 12.325
         }
       ],
-      "audio": "audio_restaurant_dalet/s18.mp3"
+      "audio": "books/restaurant-dalet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -3679,7 +3679,7 @@
           "end": 2.175
         }
       ],
-      "audio": "audio_restaurant_dalet/s19.mp3"
+      "audio": "books/restaurant-dalet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -3787,7 +3787,7 @@
           "end": 4.588
         }
       ],
-      "audio": "audio_restaurant_dalet/s20.mp3"
+      "audio": "books/restaurant-dalet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -3845,7 +3845,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_restaurant_dalet/s21.mp3"
+      "audio": "books/restaurant-dalet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -4063,7 +4063,7 @@
           "end": 9.15
         }
       ],
-      "audio": "audio_restaurant_dalet/s22.mp3"
+      "audio": "books/restaurant-dalet/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -4261,15 +4261,15 @@
           "end": 7.925
         }
       ],
-      "audio": "audio_restaurant_dalet/s23.mp3",
+      "audio": "books/restaurant-dalet/audio/s23.mp3",
       "illustration": {
         "word": "תְּנוּעָה",
         "tr": "в движении",
         "caption": "תְּנוּעָה",
         "capTr": "tenuah",
         "mnemonic": "Представь, что в огромном цирке на арене появляется ТЕНЬ УЕХА, и все артисты начинают танцевать в движении, кружась и прыгая в разные стороны, создавая огромный вихрь, который засасывает все вокруг, включая зрителей и даже самого дрессировщика.",
-        "img": "illustrations_restaurant_dalet/s23.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s23-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s23.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s23-mnemonic.webp"
       }
     },
     {
@@ -4378,7 +4378,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s24.mp3"
+      "audio": "books/restaurant-dalet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -4516,7 +4516,7 @@
           "end": 6.025
         }
       ],
-      "audio": "audio_restaurant_dalet/s25.mp3"
+      "audio": "books/restaurant-dalet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -4824,7 +4824,7 @@
           "end": 12.575
         }
       ],
-      "audio": "audio_restaurant_dalet/s26.mp3"
+      "audio": "books/restaurant-dalet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -5012,7 +5012,7 @@
           "end": 7.725
         }
       ],
-      "audio": "audio_restaurant_dalet/s27.mp3"
+      "audio": "books/restaurant-dalet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -5240,7 +5240,7 @@
           "end": 9.062
         }
       ],
-      "audio": "audio_restaurant_dalet/s28.mp3"
+      "audio": "books/restaurant-dalet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -5408,7 +5408,7 @@
           "end": 7.25
         }
       ],
-      "audio": "audio_restaurant_dalet/s29.mp3"
+      "audio": "books/restaurant-dalet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -5666,7 +5666,7 @@
           "end": 9.45
         }
       ],
-      "audio": "audio_restaurant_dalet/s30.mp3"
+      "audio": "books/restaurant-dalet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -5774,7 +5774,7 @@
           "end": 5.6
         }
       ],
-      "audio": "audio_restaurant_dalet/s31.mp3"
+      "audio": "books/restaurant-dalet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -5942,7 +5942,7 @@
           "end": 8.225
         }
       ],
-      "audio": "audio_restaurant_dalet/s32.mp3"
+      "audio": "books/restaurant-dalet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -6140,7 +6140,7 @@
           "end": 8.363
         }
       ],
-      "audio": "audio_restaurant_dalet/s33.mp3"
+      "audio": "books/restaurant-dalet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -6198,7 +6198,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_restaurant_dalet/s34.mp3"
+      "audio": "books/restaurant-dalet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -6436,7 +6436,7 @@
           "end": 11.75
         }
       ],
-      "audio": "audio_restaurant_dalet/s35.mp3"
+      "audio": "books/restaurant-dalet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -6604,7 +6604,7 @@
           "end": 7.275
         }
       ],
-      "audio": "audio_restaurant_dalet/s36.mp3"
+      "audio": "books/restaurant-dalet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -6702,7 +6702,7 @@
           "end": 4.438
         }
       ],
-      "audio": "audio_restaurant_dalet/s37.mp3"
+      "audio": "books/restaurant-dalet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -6890,7 +6890,7 @@
           "end": 7.888
         }
       ],
-      "audio": "audio_restaurant_dalet/s38.mp3"
+      "audio": "books/restaurant-dalet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -7088,7 +7088,7 @@
           "end": 8.213
         }
       ],
-      "audio": "audio_restaurant_dalet/s39.mp3"
+      "audio": "books/restaurant-dalet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -7246,7 +7246,7 @@
           "end": 5.787
         }
       ],
-      "audio": "audio_restaurant_dalet/s40.mp3"
+      "audio": "books/restaurant-dalet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -7514,7 +7514,7 @@
           "end": 10.238
         }
       ],
-      "audio": "audio_restaurant_dalet/s41.mp3"
+      "audio": "books/restaurant-dalet/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -7692,15 +7692,15 @@
           "end": 7.45
         }
       ],
-      "audio": "audio_restaurant_dalet/s42.mp3",
+      "audio": "books/restaurant-dalet/audio/s42.mp3",
       "illustration": {
         "word": "עַיִן",
         "tr": "её глаза",
         "caption": "עַיִן",
         "capTr": "ayin",
         "mnemonic": "Представь, что у тебя есть огромная ЯНТАРНАЯ ГЛАЗУРЬ, которая вдруг начала светиться и разрастаться, и теперь она поглощает весь город, а люди бегут в ужасе от этого жуткого зрелища.",
-        "img": "illustrations_restaurant_dalet/s42.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s42-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s42.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s42-mnemonic.webp"
       }
     },
     {
@@ -7909,7 +7909,7 @@
           "end": 10.05
         }
       ],
-      "audio": "audio_restaurant_dalet/s43.mp3"
+      "audio": "books/restaurant-dalet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -8047,7 +8047,7 @@
           "end": 5.375
         }
       ],
-      "audio": "audio_restaurant_dalet/s44.mp3"
+      "audio": "books/restaurant-dalet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -8255,7 +8255,7 @@
           "end": 9.475
         }
       ],
-      "audio": "audio_restaurant_dalet/s45.mp3"
+      "audio": "books/restaurant-dalet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -8383,7 +8383,7 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_restaurant_dalet/s46.mp3"
+      "audio": "books/restaurant-dalet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -8471,7 +8471,7 @@
           "end": 4.088
         }
       ],
-      "audio": "audio_restaurant_dalet/s47.mp3"
+      "audio": "books/restaurant-dalet/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -8509,7 +8509,7 @@
           "end": 1.725
         }
       ],
-      "audio": "audio_restaurant_dalet/s48.mp3"
+      "audio": "books/restaurant-dalet/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -8597,7 +8597,7 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_restaurant_dalet/s49.mp3"
+      "audio": "books/restaurant-dalet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -8755,7 +8755,7 @@
           "end": 6.725
         }
       ],
-      "audio": "audio_restaurant_dalet/s50.mp3"
+      "audio": "books/restaurant-dalet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -8833,7 +8833,7 @@
           "end": 2.612
         }
       ],
-      "audio": "audio_restaurant_dalet/s51.mp3"
+      "audio": "books/restaurant-dalet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -8951,7 +8951,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_restaurant_dalet/s52.mp3"
+      "audio": "books/restaurant-dalet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -9069,7 +9069,7 @@
           "end": 5.525
         }
       ],
-      "audio": "audio_restaurant_dalet/s53.mp3"
+      "audio": "books/restaurant-dalet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -9327,7 +9327,7 @@
           "end": 10.45
         }
       ],
-      "audio": "audio_restaurant_dalet/s54.mp3"
+      "audio": "books/restaurant-dalet/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -9405,7 +9405,7 @@
           "end": 3.5
         }
       ],
-      "audio": "audio_restaurant_dalet/s55.mp3"
+      "audio": "books/restaurant-dalet/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -9523,7 +9523,7 @@
           "end": 4.713
         }
       ],
-      "audio": "audio_restaurant_dalet/s56.mp3"
+      "audio": "books/restaurant-dalet/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -9621,7 +9621,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s57.mp3"
+      "audio": "books/restaurant-dalet/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -9789,7 +9789,7 @@
           "end": 6.588
         }
       ],
-      "audio": "audio_restaurant_dalet/s58.mp3"
+      "audio": "books/restaurant-dalet/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -9947,7 +9947,7 @@
           "end": 7.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s59.mp3"
+      "audio": "books/restaurant-dalet/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -10125,7 +10125,7 @@
           "end": 7.575
         }
       ],
-      "audio": "audio_restaurant_dalet/s60.mp3"
+      "audio": "books/restaurant-dalet/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -10393,7 +10393,7 @@
           "end": 10.238
         }
       ],
-      "audio": "audio_restaurant_dalet/s61.mp3"
+      "audio": "books/restaurant-dalet/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -10571,7 +10571,7 @@
           "end": 7.463
         }
       ],
-      "audio": "audio_restaurant_dalet/s62.mp3"
+      "audio": "books/restaurant-dalet/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -10819,7 +10819,7 @@
           "end": 9.438
         }
       ],
-      "audio": "audio_restaurant_dalet/s63.mp3"
+      "audio": "books/restaurant-dalet/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -11037,15 +11037,15 @@
           "end": 9.325
         }
       ],
-      "audio": "audio_restaurant_dalet/s64.mp3",
+      "audio": "books/restaurant-dalet/audio/s64.mp3",
       "illustration": {
         "word": "יָד",
         "tr": "рукам их",
         "caption": "יָד",
         "capTr": "yad",
         "mnemonic": "Представь, что ЯД — это название секретного общества супергероев, которые могут контролировать любые РУКИ, превращая их в мощные инструменты для борьбы с злом. Во время одной миссии они наткнулись на гигантский робот с огромными руками, которые они смогли взять под контроль, используя свои невероятные способности. Руки робота начали танцевать под веселую музыку, и злоумышленники были так поражены, что забыли о своих злых планах.",
-        "img": "illustrations_restaurant_dalet/s64.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s64-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s64.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s64-mnemonic.webp"
       }
     },
     {
@@ -11244,7 +11244,7 @@
           "end": 7.888
         }
       ],
-      "audio": "audio_restaurant_dalet/s65.mp3"
+      "audio": "books/restaurant-dalet/audio/s65.mp3"
     },
     {
       "id": "s66",
@@ -11332,7 +11332,7 @@
           "root": "פ-נ-ם"
         }
       ],
-      "audio": "audio_restaurant_dalet/s66.mp3"
+      "audio": "books/restaurant-dalet/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -11500,7 +11500,7 @@
           "end": 6.862
         }
       ],
-      "audio": "audio_restaurant_dalet/s67.mp3"
+      "audio": "books/restaurant-dalet/audio/s67.mp3"
     },
     {
       "id": "s68",
@@ -11658,7 +11658,7 @@
           "end": 6.0
         }
       ],
-      "audio": "audio_restaurant_dalet/s68.mp3"
+      "audio": "books/restaurant-dalet/audio/s68.mp3"
     },
     {
       "id": "s69",
@@ -11756,7 +11756,7 @@
           "end": 4.237
         }
       ],
-      "audio": "audio_restaurant_dalet/s69.mp3"
+      "audio": "books/restaurant-dalet/audio/s69.mp3"
     },
     {
       "id": "s70",
@@ -11834,7 +11834,7 @@
           "end": 3.375
         }
       ],
-      "audio": "audio_restaurant_dalet/s70.mp3"
+      "audio": "books/restaurant-dalet/audio/s70.mp3"
     },
     {
       "id": "s71",
@@ -12032,7 +12032,7 @@
           "end": 7.35
         }
       ],
-      "audio": "audio_restaurant_dalet/s71.mp3"
+      "audio": "books/restaurant-dalet/audio/s71.mp3"
     },
     {
       "id": "s72",
@@ -12120,7 +12120,7 @@
           "end": 3.775
         }
       ],
-      "audio": "audio_restaurant_dalet/s72.mp3"
+      "audio": "books/restaurant-dalet/audio/s72.mp3"
     },
     {
       "id": "s73",
@@ -12348,7 +12348,7 @@
           "end": 8.675
         }
       ],
-      "audio": "audio_restaurant_dalet/s73.mp3"
+      "audio": "books/restaurant-dalet/audio/s73.mp3"
     },
     {
       "id": "s74",
@@ -12556,7 +12556,7 @@
           "end": 8.363
         }
       ],
-      "audio": "audio_restaurant_dalet/s74.mp3"
+      "audio": "books/restaurant-dalet/audio/s74.mp3"
     },
     {
       "id": "s75",
@@ -12734,7 +12734,7 @@
           "end": 7.0
         }
       ],
-      "audio": "audio_restaurant_dalet/s75.mp3"
+      "audio": "books/restaurant-dalet/audio/s75.mp3"
     },
     {
       "id": "s76",
@@ -12882,7 +12882,7 @@
           "end": 5.65
         }
       ],
-      "audio": "audio_restaurant_dalet/s76.mp3"
+      "audio": "books/restaurant-dalet/audio/s76.mp3"
     },
     {
       "id": "s77",
@@ -13070,7 +13070,7 @@
           "end": 7.013
         }
       ],
-      "audio": "audio_restaurant_dalet/s77.mp3"
+      "audio": "books/restaurant-dalet/audio/s77.mp3"
     },
     {
       "id": "s78",
@@ -13208,7 +13208,7 @@
           "end": 6.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s78.mp3"
+      "audio": "books/restaurant-dalet/audio/s78.mp3"
     },
     {
       "id": "s79",
@@ -13386,7 +13386,7 @@
           "end": 6.95
         }
       ],
-      "audio": "audio_restaurant_dalet/s79.mp3"
+      "audio": "books/restaurant-dalet/audio/s79.mp3"
     },
     {
       "id": "s80",
@@ -13484,7 +13484,7 @@
           "end": 3.525
         }
       ],
-      "audio": "audio_restaurant_dalet/s80.mp3"
+      "audio": "books/restaurant-dalet/audio/s80.mp3"
     },
     {
       "id": "s81",
@@ -13522,7 +13522,7 @@
           "end": 2.087
         }
       ],
-      "audio": "audio_restaurant_dalet/s81.mp3"
+      "audio": "books/restaurant-dalet/audio/s81.mp3"
     },
     {
       "id": "s82",
@@ -13670,7 +13670,7 @@
           "end": 6.138
         }
       ],
-      "audio": "audio_restaurant_dalet/s82.mp3"
+      "audio": "books/restaurant-dalet/audio/s82.mp3"
     },
     {
       "id": "s83",
@@ -13778,15 +13778,15 @@
           "end": 4.725
         }
       ],
-      "audio": "audio_restaurant_dalet/s83.mp3",
+      "audio": "books/restaurant-dalet/audio/s83.mp3",
       "illustration": {
         "word": "מִטְבָּח",
         "tr": "кухня",
         "caption": "מִטְבָּח",
         "capTr": "mitbach",
         "mnemonic": "Представь, что Митя Бачок решил открыть свою собственную кухню и теперь готовит там самые вкусные блюда. Но вдруг появляется гигантский кот и начинает помогать Мите на кухне, размешивая супы и салаты своими огромными лапами. Митя в восторге от такой неожиданной помощи и вместе они готовят целое меню вкусных блюд.",
-        "img": "illustrations_restaurant_dalet/s83.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s83-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s83.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s83-mnemonic.webp"
       }
     },
     {
@@ -13895,7 +13895,7 @@
           "end": 5.075
         }
       ],
-      "audio": "audio_restaurant_dalet/s84.mp3"
+      "audio": "books/restaurant-dalet/audio/s84.mp3"
     },
     {
       "id": "s85",
@@ -13993,7 +13993,7 @@
           "end": 5.375
         }
       ],
-      "audio": "audio_restaurant_dalet/s85.mp3"
+      "audio": "books/restaurant-dalet/audio/s85.mp3"
     },
     {
       "id": "s86",
@@ -14071,7 +14071,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_restaurant_dalet/s86.mp3"
+      "audio": "books/restaurant-dalet/audio/s86.mp3"
     },
     {
       "id": "s87",
@@ -14289,7 +14289,7 @@
           "end": 10.238
         }
       ],
-      "audio": "audio_restaurant_dalet/s87.mp3"
+      "audio": "books/restaurant-dalet/audio/s87.mp3"
     },
     {
       "id": "s88",
@@ -14327,7 +14327,7 @@
           "end": 1.788
         }
       ],
-      "audio": "audio_restaurant_dalet/s88.mp3"
+      "audio": "books/restaurant-dalet/audio/s88.mp3"
     },
     {
       "id": "s89",
@@ -14545,7 +14545,7 @@
           "end": 10.162
         }
       ],
-      "audio": "audio_restaurant_dalet/s89.mp3"
+      "audio": "books/restaurant-dalet/audio/s89.mp3"
     },
     {
       "id": "s90",
@@ -14633,7 +14633,7 @@
           "end": 4.588
         }
       ],
-      "audio": "audio_restaurant_dalet/s90.mp3"
+      "audio": "books/restaurant-dalet/audio/s90.mp3"
     },
     {
       "id": "s91",
@@ -14841,7 +14841,7 @@
           "end": 8.713
         }
       ],
-      "audio": "audio_restaurant_dalet/s91.mp3"
+      "audio": "books/restaurant-dalet/audio/s91.mp3"
     },
     {
       "id": "s92",
@@ -14959,7 +14959,7 @@
           "end": 5.463
         }
       ],
-      "audio": "audio_restaurant_dalet/s92.mp3"
+      "audio": "books/restaurant-dalet/audio/s92.mp3"
     },
     {
       "id": "s93",
@@ -15017,7 +15017,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_restaurant_dalet/s93.mp3"
+      "audio": "books/restaurant-dalet/audio/s93.mp3"
     },
     {
       "id": "s94",
@@ -15215,7 +15215,7 @@
           "end": 8.725
         }
       ],
-      "audio": "audio_restaurant_dalet/s94.mp3"
+      "audio": "books/restaurant-dalet/audio/s94.mp3"
     },
     {
       "id": "s95",
@@ -15273,7 +15273,7 @@
           "end": 2.438
         }
       ],
-      "audio": "audio_restaurant_dalet/s95.mp3"
+      "audio": "books/restaurant-dalet/audio/s95.mp3"
     },
     {
       "id": "s96",
@@ -15361,7 +15361,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s96.mp3"
+      "audio": "books/restaurant-dalet/audio/s96.mp3"
     },
     {
       "id": "s97",
@@ -15479,7 +15479,7 @@
           "end": 4.338
         }
       ],
-      "audio": "audio_restaurant_dalet/s97.mp3"
+      "audio": "books/restaurant-dalet/audio/s97.mp3"
     },
     {
       "id": "s98",
@@ -15677,7 +15677,7 @@
           "end": 7.487
         }
       ],
-      "audio": "audio_restaurant_dalet/s98.mp3"
+      "audio": "books/restaurant-dalet/audio/s98.mp3"
     },
     {
       "id": "s99",
@@ -15725,7 +15725,7 @@
           "end": 2.25
         }
       ],
-      "audio": "audio_restaurant_dalet/s99.mp3"
+      "audio": "books/restaurant-dalet/audio/s99.mp3"
     },
     {
       "id": "s100",
@@ -16083,7 +16083,7 @@
           "end": 13.825
         }
       ],
-      "audio": "audio_restaurant_dalet/s100.mp3"
+      "audio": "books/restaurant-dalet/audio/s100.mp3"
     },
     {
       "id": "s101",
@@ -16251,15 +16251,15 @@
           "end": 6.263
         }
       ],
-      "audio": "audio_restaurant_dalet/s101.mp3",
+      "audio": "books/restaurant-dalet/audio/s101.mp3",
       "illustration": {
         "word": "קוֹל",
         "tr": "голосом",
         "caption": "קוֹל",
         "capTr": "kol",
         "mnemonic": "Представь себе огромный КОЛБАС, который вдруг оживает и начинает петь оперу, его голосом эхом разносится по всему городу, люди останавливаются и слушают в изумлении.",
-        "img": "illustrations_restaurant_dalet/s101.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s101-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s101.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s101-mnemonic.webp"
       }
     },
     {
@@ -16348,7 +16348,7 @@
           "end": 3.85
         }
       ],
-      "audio": "audio_restaurant_dalet/s102.mp3"
+      "audio": "books/restaurant-dalet/audio/s102.mp3"
     },
     {
       "id": "s103",
@@ -16446,7 +16446,7 @@
           "end": 3.538
         }
       ],
-      "audio": "audio_restaurant_dalet/s103.mp3"
+      "audio": "books/restaurant-dalet/audio/s103.mp3"
     },
     {
       "id": "s104",
@@ -16564,7 +16564,7 @@
           "end": 4.688
         }
       ],
-      "audio": "audio_restaurant_dalet/s104.mp3"
+      "audio": "books/restaurant-dalet/audio/s104.mp3"
     },
     {
       "id": "s105",
@@ -16602,7 +16602,7 @@
           "end": 2.013
         }
       ],
-      "audio": "audio_restaurant_dalet/s105.mp3"
+      "audio": "books/restaurant-dalet/audio/s105.mp3"
     },
     {
       "id": "s106",
@@ -16722,7 +16722,7 @@
           "root": "ת-נ-ר"
         }
       ],
-      "audio": "audio_restaurant_dalet/s106.mp3"
+      "audio": "books/restaurant-dalet/audio/s106.mp3"
     },
     {
       "id": "s107",
@@ -16830,7 +16830,7 @@
           "end": 4.475
         }
       ],
-      "audio": "audio_restaurant_dalet/s107.mp3"
+      "audio": "books/restaurant-dalet/audio/s107.mp3"
     },
     {
       "id": "s108",
@@ -16868,7 +16868,7 @@
           "end": 2.4
         }
       ],
-      "audio": "audio_restaurant_dalet/s108.mp3"
+      "audio": "books/restaurant-dalet/audio/s108.mp3"
     },
     {
       "id": "s109",
@@ -16976,7 +16976,7 @@
           "end": 3.812
         }
       ],
-      "audio": "audio_restaurant_dalet/s109.mp3"
+      "audio": "books/restaurant-dalet/audio/s109.mp3"
     },
     {
       "id": "s110",
@@ -17004,7 +17004,7 @@
           "end": 1.25
         }
       ],
-      "audio": "audio_restaurant_dalet/s110.mp3"
+      "audio": "books/restaurant-dalet/audio/s110.mp3"
     },
     {
       "id": "s111",
@@ -17182,7 +17182,7 @@
           "end": 7.638
         }
       ],
-      "audio": "audio_restaurant_dalet/s111.mp3"
+      "audio": "books/restaurant-dalet/audio/s111.mp3"
     },
     {
       "id": "s112",
@@ -17340,7 +17340,7 @@
           "end": 6.862
         }
       ],
-      "audio": "audio_restaurant_dalet/s112.mp3"
+      "audio": "books/restaurant-dalet/audio/s112.mp3"
     },
     {
       "id": "s113",
@@ -17398,7 +17398,7 @@
           "end": 2.288
         }
       ],
-      "audio": "audio_restaurant_dalet/s113.mp3"
+      "audio": "books/restaurant-dalet/audio/s113.mp3"
     },
     {
       "id": "s114",
@@ -17426,7 +17426,7 @@
           "end": 1.238
         }
       ],
-      "audio": "audio_restaurant_dalet/s114.mp3"
+      "audio": "books/restaurant-dalet/audio/s114.mp3"
     },
     {
       "id": "s115",
@@ -17574,7 +17574,7 @@
           "end": 6.35
         }
       ],
-      "audio": "audio_restaurant_dalet/s115.mp3"
+      "audio": "books/restaurant-dalet/audio/s115.mp3"
     },
     {
       "id": "s116",
@@ -17692,7 +17692,7 @@
           "end": 5.162
         }
       ],
-      "audio": "audio_restaurant_dalet/s116.mp3"
+      "audio": "books/restaurant-dalet/audio/s116.mp3"
     },
     {
       "id": "s117",
@@ -17800,7 +17800,7 @@
           "end": 4.888
         }
       ],
-      "audio": "audio_restaurant_dalet/s117.mp3"
+      "audio": "books/restaurant-dalet/audio/s117.mp3"
     },
     {
       "id": "s118",
@@ -17888,7 +17888,7 @@
           "end": 4.175
         }
       ],
-      "audio": "audio_restaurant_dalet/s118.mp3"
+      "audio": "books/restaurant-dalet/audio/s118.mp3"
     },
     {
       "id": "s119",
@@ -17946,7 +17946,7 @@
           "end": 2.263
         }
       ],
-      "audio": "audio_restaurant_dalet/s119.mp3"
+      "audio": "books/restaurant-dalet/audio/s119.mp3"
     },
     {
       "id": "s120",
@@ -18014,7 +18014,7 @@
           "end": 2.1
         }
       ],
-      "audio": "audio_restaurant_dalet/s120.mp3"
+      "audio": "books/restaurant-dalet/audio/s120.mp3"
     },
     {
       "id": "s121",
@@ -18162,15 +18162,15 @@
           "end": 6.225
         }
       ],
-      "audio": "audio_restaurant_dalet/s121.mp3",
+      "audio": "books/restaurant-dalet/audio/s121.mp3",
       "illustration": {
         "word": "מָנָה",
         "tr": "порцию (блюдо)",
         "caption": "מָנָה",
         "capTr": "manah",
         "mnemonic": "Представь, что Маня, любимая бабушка, готовит огромную порцию вкусного блюда для всех своих внуков, и они все с нетерпением ждут, когда она вынесет это блюдо на стол, а Маня с гордостью говорит: 'Сегодня я приготовила настоящую МАНУ для всех!' ",
-        "img": "illustrations_restaurant_dalet/s121.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s121-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s121.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s121-mnemonic.webp"
       }
     },
     {
@@ -18279,7 +18279,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_restaurant_dalet/s122.mp3"
+      "audio": "books/restaurant-dalet/audio/s122.mp3"
     },
     {
       "id": "s123",
@@ -18377,7 +18377,7 @@
           "end": 4.3
         }
       ],
-      "audio": "audio_restaurant_dalet/s123.mp3"
+      "audio": "books/restaurant-dalet/audio/s123.mp3"
     },
     {
       "id": "s124",
@@ -18665,7 +18665,7 @@
           "end": 10.713
         }
       ],
-      "audio": "audio_restaurant_dalet/s124.mp3"
+      "audio": "books/restaurant-dalet/audio/s124.mp3"
     },
     {
       "id": "s125",
@@ -18873,7 +18873,7 @@
           "end": 9.262
         }
       ],
-      "audio": "audio_restaurant_dalet/s125.mp3"
+      "audio": "books/restaurant-dalet/audio/s125.mp3"
     },
     {
       "id": "s126",
@@ -18951,7 +18951,7 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_restaurant_dalet/s126.mp3"
+      "audio": "books/restaurant-dalet/audio/s126.mp3"
     },
     {
       "id": "s127",
@@ -19139,7 +19139,7 @@
           "end": 7.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s127.mp3"
+      "audio": "books/restaurant-dalet/audio/s127.mp3"
     },
     {
       "id": "s128",
@@ -19217,7 +19217,7 @@
           "end": 4.0
         }
       ],
-      "audio": "audio_restaurant_dalet/s128.mp3"
+      "audio": "books/restaurant-dalet/audio/s128.mp3"
     },
     {
       "id": "s129",
@@ -19315,7 +19315,7 @@
           "end": 4.35
         }
       ],
-      "audio": "audio_restaurant_dalet/s129.mp3"
+      "audio": "books/restaurant-dalet/audio/s129.mp3"
     },
     {
       "id": "s130",
@@ -19413,7 +19413,7 @@
           "end": 4.575
         }
       ],
-      "audio": "audio_restaurant_dalet/s130.mp3"
+      "audio": "books/restaurant-dalet/audio/s130.mp3"
     },
     {
       "id": "s131",
@@ -19521,7 +19521,7 @@
           "end": 4.588
         }
       ],
-      "audio": "audio_restaurant_dalet/s131.mp3"
+      "audio": "books/restaurant-dalet/audio/s131.mp3"
     },
     {
       "id": "s132",
@@ -19669,7 +19669,7 @@
           "end": 6.425
         }
       ],
-      "audio": "audio_restaurant_dalet/s132.mp3"
+      "audio": "books/restaurant-dalet/audio/s132.mp3"
     },
     {
       "id": "s133",
@@ -19787,7 +19787,7 @@
           "end": 4.638
         }
       ],
-      "audio": "audio_restaurant_dalet/s133.mp3"
+      "audio": "books/restaurant-dalet/audio/s133.mp3"
     },
     {
       "id": "s134",
@@ -19825,7 +19825,7 @@
           "end": 1.212
         }
       ],
-      "audio": "audio_restaurant_dalet/s134.mp3"
+      "audio": "books/restaurant-dalet/audio/s134.mp3"
     },
     {
       "id": "s135",
@@ -19883,7 +19883,7 @@
           "end": 2.087
         }
       ],
-      "audio": "audio_restaurant_dalet/s135.mp3"
+      "audio": "books/restaurant-dalet/audio/s135.mp3"
     },
     {
       "id": "s136",
@@ -19961,7 +19961,7 @@
           "end": 3.062
         }
       ],
-      "audio": "audio_restaurant_dalet/s136.mp3"
+      "audio": "books/restaurant-dalet/audio/s136.mp3"
     },
     {
       "id": "s137",
@@ -20159,7 +20159,7 @@
           "end": 8.375
         }
       ],
-      "audio": "audio_restaurant_dalet/s137.mp3"
+      "audio": "books/restaurant-dalet/audio/s137.mp3"
     },
     {
       "id": "s138",
@@ -20267,7 +20267,7 @@
           "end": 4.112
         }
       ],
-      "audio": "audio_restaurant_dalet/s138.mp3"
+      "audio": "books/restaurant-dalet/audio/s138.mp3"
     },
     {
       "id": "s139",
@@ -20465,7 +20465,7 @@
           "end": 7.375
         }
       ],
-      "audio": "audio_restaurant_dalet/s139.mp3"
+      "audio": "books/restaurant-dalet/audio/s139.mp3"
     },
     {
       "id": "s140",
@@ -20643,7 +20643,7 @@
           "end": 8.175
         }
       ],
-      "audio": "audio_restaurant_dalet/s140.mp3"
+      "audio": "books/restaurant-dalet/audio/s140.mp3"
     },
     {
       "id": "s141",
@@ -20871,15 +20871,15 @@
           "end": 10.825
         }
       ],
-      "audio": "audio_restaurant_dalet/s141.mp3",
+      "audio": "books/restaurant-dalet/audio/s141.mp3",
       "illustration": {
         "word": "לָקוֹחַ",
         "tr": "клиенты",
         "caption": "לָקוֹחַ",
         "capTr": "lakoch",
         "mnemonic": "Представь огромный космический корабль, на котором все пассажиры покрыты блестящим ЛАКОМ, и вдруг они все одновременно решают стать КЛИЕНТАМИ корабельного магазина и начинают покупать товары, вызывая суматоху и хаос на борту. Лакированные пассажиры в панике бегают и размахивают своими кошельками, а продавцы не знают, как справиться с таким наплывом клиентов. Корабль начинает трястись и греметь, и кажется, что он вот-вот разобьётся на миллион кусков.",
-        "img": "illustrations_restaurant_dalet/s141.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s141-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s141.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s141-mnemonic.webp"
       }
     },
     {
@@ -21008,7 +21008,7 @@
           "end": 5.175
         }
       ],
-      "audio": "audio_restaurant_dalet/s142.mp3"
+      "audio": "books/restaurant-dalet/audio/s142.mp3"
     },
     {
       "id": "s143",
@@ -21136,7 +21136,7 @@
           "end": 6.35
         }
       ],
-      "audio": "audio_restaurant_dalet/s143.mp3"
+      "audio": "books/restaurant-dalet/audio/s143.mp3"
     },
     {
       "id": "s144",
@@ -21344,7 +21344,7 @@
           "end": 8.613
         }
       ],
-      "audio": "audio_restaurant_dalet/s144.mp3"
+      "audio": "books/restaurant-dalet/audio/s144.mp3"
     },
     {
       "id": "s145",
@@ -21562,7 +21562,7 @@
           "end": 9.238
         }
       ],
-      "audio": "audio_restaurant_dalet/s145.mp3"
+      "audio": "books/restaurant-dalet/audio/s145.mp3"
     },
     {
       "id": "s146",
@@ -21650,7 +21650,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_restaurant_dalet/s146.mp3"
+      "audio": "books/restaurant-dalet/audio/s146.mp3"
     },
     {
       "id": "s147",
@@ -21868,7 +21868,7 @@
           "end": 9.988
         }
       ],
-      "audio": "audio_restaurant_dalet/s147.mp3"
+      "audio": "books/restaurant-dalet/audio/s147.mp3"
     },
     {
       "id": "s148",
@@ -21976,7 +21976,7 @@
           "end": 3.8
         }
       ],
-      "audio": "audio_restaurant_dalet/s148.mp3"
+      "audio": "books/restaurant-dalet/audio/s148.mp3"
     },
     {
       "id": "s149",
@@ -22154,7 +22154,7 @@
           "end": 8.85
         }
       ],
-      "audio": "audio_restaurant_dalet/s149.mp3"
+      "audio": "books/restaurant-dalet/audio/s149.mp3"
     },
     {
       "id": "s150",
@@ -22272,7 +22272,7 @@
           "end": 4.838
         }
       ],
-      "audio": "audio_restaurant_dalet/s150.mp3"
+      "audio": "books/restaurant-dalet/audio/s150.mp3"
     },
     {
       "id": "s151",
@@ -22370,7 +22370,7 @@
           "end": 4.362
         }
       ],
-      "audio": "audio_restaurant_dalet/s151.mp3"
+      "audio": "books/restaurant-dalet/audio/s151.mp3"
     },
     {
       "id": "s152",
@@ -22488,7 +22488,7 @@
           "end": 5.013
         }
       ],
-      "audio": "audio_restaurant_dalet/s152.mp3"
+      "audio": "books/restaurant-dalet/audio/s152.mp3"
     },
     {
       "id": "s153",
@@ -22646,7 +22646,7 @@
           "end": 6.05
         }
       ],
-      "audio": "audio_restaurant_dalet/s153.mp3"
+      "audio": "books/restaurant-dalet/audio/s153.mp3"
     },
     {
       "id": "s154",
@@ -22784,7 +22784,7 @@
           "end": 5.1
         }
       ],
-      "audio": "audio_restaurant_dalet/s154.mp3"
+      "audio": "books/restaurant-dalet/audio/s154.mp3"
     },
     {
       "id": "s155",
@@ -23042,7 +23042,7 @@
           "end": 10.45
         }
       ],
-      "audio": "audio_restaurant_dalet/s155.mp3"
+      "audio": "books/restaurant-dalet/audio/s155.mp3"
     },
     {
       "id": "s156",
@@ -23060,7 +23060,7 @@
           "end": 0.988
         }
       ],
-      "audio": "audio_restaurant_dalet/s156.mp3"
+      "audio": "books/restaurant-dalet/audio/s156.mp3"
     },
     {
       "id": "s157",
@@ -23178,7 +23178,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_restaurant_dalet/s157.mp3"
+      "audio": "books/restaurant-dalet/audio/s157.mp3"
     },
     {
       "id": "s158",
@@ -23286,7 +23286,7 @@
           "end": 4.862
         }
       ],
-      "audio": "audio_restaurant_dalet/s158.mp3"
+      "audio": "books/restaurant-dalet/audio/s158.mp3"
     },
     {
       "id": "s159",
@@ -23344,7 +23344,7 @@
           "end": 2.225
         }
       ],
-      "audio": "audio_restaurant_dalet/s159.mp3"
+      "audio": "books/restaurant-dalet/audio/s159.mp3"
     },
     {
       "id": "s160",
@@ -23412,7 +23412,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_restaurant_dalet/s160.mp3"
+      "audio": "books/restaurant-dalet/audio/s160.mp3"
     },
     {
       "id": "s161",
@@ -23490,7 +23490,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_restaurant_dalet/s161.mp3"
+      "audio": "books/restaurant-dalet/audio/s161.mp3"
     },
     {
       "id": "s162",
@@ -23568,7 +23568,7 @@
           "end": 3.2
         }
       ],
-      "audio": "audio_restaurant_dalet/s162.mp3"
+      "audio": "books/restaurant-dalet/audio/s162.mp3"
     },
     {
       "id": "s163",
@@ -23726,15 +23726,15 @@
           "end": 7.213
         }
       ],
-      "audio": "audio_restaurant_dalet/s163.mp3",
+      "audio": "books/restaurant-dalet/audio/s163.mp3",
       "illustration": {
         "word": "עַיִן",
         "tr": "глаза его",
         "caption": "עַיִן",
         "capTr": "ayin",
         "mnemonic": "Представь огромный космический корабль, на котором стоит огромная буква АЙН, и вдруг из неё вырывается целая армия космических пиратов, кричащих 'Ай, ай, капитан!', и они все начинают танцевать хоровод вокруг корабля, который начинает улетать в даль галактики.",
-        "img": "illustrations_restaurant_dalet/s163.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s163-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s163.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s163-mnemonic.webp"
       }
     },
     {
@@ -23863,7 +23863,7 @@
           "end": 5.112
         }
       ],
-      "audio": "audio_restaurant_dalet/s164.mp3"
+      "audio": "books/restaurant-dalet/audio/s164.mp3"
     },
     {
       "id": "s165",
@@ -24011,7 +24011,7 @@
           "end": 7.05
         }
       ],
-      "audio": "audio_restaurant_dalet/s165.mp3"
+      "audio": "books/restaurant-dalet/audio/s165.mp3"
     },
     {
       "id": "s166",
@@ -24109,7 +24109,7 @@
           "end": 4.088
         }
       ],
-      "audio": "audio_restaurant_dalet/s166.mp3"
+      "audio": "books/restaurant-dalet/audio/s166.mp3"
     },
     {
       "id": "s167",
@@ -24307,7 +24307,7 @@
           "end": 8.137
         }
       ],
-      "audio": "audio_restaurant_dalet/s167.mp3"
+      "audio": "books/restaurant-dalet/audio/s167.mp3"
     },
     {
       "id": "s168",
@@ -24435,7 +24435,7 @@
           "end": 5.362
         }
       ],
-      "audio": "audio_restaurant_dalet/s168.mp3"
+      "audio": "books/restaurant-dalet/audio/s168.mp3"
     },
     {
       "id": "s169",
@@ -24623,7 +24623,7 @@
           "end": 6.925
         }
       ],
-      "audio": "audio_restaurant_dalet/s169.mp3"
+      "audio": "books/restaurant-dalet/audio/s169.mp3"
     },
     {
       "id": "s170",
@@ -24711,7 +24711,7 @@
           "end": 4.162
         }
       ],
-      "audio": "audio_restaurant_dalet/s170.mp3"
+      "audio": "books/restaurant-dalet/audio/s170.mp3"
     },
     {
       "id": "s171",
@@ -24849,7 +24849,7 @@
           "end": 5.675
         }
       ],
-      "audio": "audio_restaurant_dalet/s171.mp3"
+      "audio": "books/restaurant-dalet/audio/s171.mp3"
     },
     {
       "id": "s172",
@@ -24957,7 +24957,7 @@
           "end": 4.638
         }
       ],
-      "audio": "audio_restaurant_dalet/s172.mp3"
+      "audio": "books/restaurant-dalet/audio/s172.mp3"
     },
     {
       "id": "s173",
@@ -25005,7 +25005,7 @@
           "end": 2.362
         }
       ],
-      "audio": "audio_restaurant_dalet/s173.mp3"
+      "audio": "books/restaurant-dalet/audio/s173.mp3"
     },
     {
       "id": "s174",
@@ -25133,7 +25133,7 @@
           "end": 5.825
         }
       ],
-      "audio": "audio_restaurant_dalet/s174.mp3"
+      "audio": "books/restaurant-dalet/audio/s174.mp3"
     },
     {
       "id": "s175",
@@ -25331,7 +25331,7 @@
           "end": 8.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s175.mp3"
+      "audio": "books/restaurant-dalet/audio/s175.mp3"
     },
     {
       "id": "s176",
@@ -25399,7 +25399,7 @@
           "end": 3.375
         }
       ],
-      "audio": "audio_restaurant_dalet/s176.mp3"
+      "audio": "books/restaurant-dalet/audio/s176.mp3"
     },
     {
       "id": "s177",
@@ -25577,7 +25577,7 @@
           "end": 7.312
         }
       ],
-      "audio": "audio_restaurant_dalet/s177.mp3"
+      "audio": "books/restaurant-dalet/audio/s177.mp3"
     },
     {
       "id": "s178",
@@ -25615,7 +25615,7 @@
           "end": 1.738
         }
       ],
-      "audio": "audio_restaurant_dalet/s178.mp3"
+      "audio": "books/restaurant-dalet/audio/s178.mp3"
     },
     {
       "id": "s179",
@@ -25723,7 +25723,7 @@
           "end": 5.062
         }
       ],
-      "audio": "audio_restaurant_dalet/s179.mp3"
+      "audio": "books/restaurant-dalet/audio/s179.mp3"
     },
     {
       "id": "s180",
@@ -25761,7 +25761,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_restaurant_dalet/s180.mp3"
+      "audio": "books/restaurant-dalet/audio/s180.mp3"
     },
     {
       "id": "s181",
@@ -25819,7 +25819,7 @@
           "end": 2.6
         }
       ],
-      "audio": "audio_restaurant_dalet/s181.mp3"
+      "audio": "books/restaurant-dalet/audio/s181.mp3"
     },
     {
       "id": "s182",
@@ -25877,7 +25877,7 @@
           "end": 2.725
         }
       ],
-      "audio": "audio_restaurant_dalet/s182.mp3"
+      "audio": "books/restaurant-dalet/audio/s182.mp3"
     },
     {
       "id": "s183",
@@ -26005,7 +26005,7 @@
           "end": 6.287
         }
       ],
-      "audio": "audio_restaurant_dalet/s183.mp3"
+      "audio": "books/restaurant-dalet/audio/s183.mp3"
     },
     {
       "id": "s184",
@@ -26133,7 +26133,7 @@
           "end": 5.75
         }
       ],
-      "audio": "audio_restaurant_dalet/s184.mp3"
+      "audio": "books/restaurant-dalet/audio/s184.mp3"
     },
     {
       "id": "s185",
@@ -26251,7 +26251,7 @@
           "end": 5.263
         }
       ],
-      "audio": "audio_restaurant_dalet/s185.mp3"
+      "audio": "books/restaurant-dalet/audio/s185.mp3"
     },
     {
       "id": "s186",
@@ -26459,7 +26459,7 @@
           "end": 9.3
         }
       ],
-      "audio": "audio_restaurant_dalet/s186.mp3"
+      "audio": "books/restaurant-dalet/audio/s186.mp3"
     },
     {
       "id": "s187",
@@ -26717,7 +26717,7 @@
           "end": 10.725
         }
       ],
-      "audio": "audio_restaurant_dalet/s187.mp3"
+      "audio": "books/restaurant-dalet/audio/s187.mp3"
     },
     {
       "id": "s188",
@@ -26825,7 +26825,7 @@
           "end": 5.175
         }
       ],
-      "audio": "audio_restaurant_dalet/s188.mp3"
+      "audio": "books/restaurant-dalet/audio/s188.mp3"
     },
     {
       "id": "s189",
@@ -27053,15 +27053,15 @@
           "end": 9.275
         }
       ],
-      "audio": "audio_restaurant_dalet/s189.mp3",
+      "audio": "books/restaurant-dalet/audio/s189.mp3",
       "illustration": {
         "word": "מִסְעָדָה",
         "tr": "ресторана",
         "caption": "מִסְעָדָה",
         "capTr": "misada",
         "mnemonic": "Представь себе огромный ресторан, где официанты в ярких костюмах разносят блюда на серебряных подносы, а посетители с удовольствием наслаждаются вкусной едой и напитками. Вдруг в ресторан врывается группа весёлых музыкантов и начинает играть живую музыку, заставляя всех танцевать и петь вместе. Слово 'мисада' звучит как 'место обеда', и это именно то, что происходит в этом оживлённом ресторане.",
-        "img": "illustrations_restaurant_dalet/s189.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s189-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s189.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s189-mnemonic.webp"
       }
     },
     {
@@ -27160,7 +27160,7 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_restaurant_dalet/s190.mp3"
+      "audio": "books/restaurant-dalet/audio/s190.mp3"
     },
     {
       "id": "s191",
@@ -27348,7 +27348,7 @@
           "end": 7.812
         }
       ],
-      "audio": "audio_restaurant_dalet/s191.mp3"
+      "audio": "books/restaurant-dalet/audio/s191.mp3"
     },
     {
       "id": "s192",
@@ -27426,7 +27426,7 @@
           "end": 3.5
         }
       ],
-      "audio": "audio_restaurant_dalet/s192.mp3"
+      "audio": "books/restaurant-dalet/audio/s192.mp3"
     },
     {
       "id": "s193",
@@ -27634,7 +27634,7 @@
           "end": 9.088
         }
       ],
-      "audio": "audio_restaurant_dalet/s193.mp3"
+      "audio": "books/restaurant-dalet/audio/s193.mp3"
     },
     {
       "id": "s194",
@@ -27772,7 +27772,7 @@
           "end": 6.862
         }
       ],
-      "audio": "audio_restaurant_dalet/s194.mp3"
+      "audio": "books/restaurant-dalet/audio/s194.mp3"
     },
     {
       "id": "s195",
@@ -27910,7 +27910,7 @@
           "end": 6.275
         }
       ],
-      "audio": "audio_restaurant_dalet/s195.mp3"
+      "audio": "books/restaurant-dalet/audio/s195.mp3"
     },
     {
       "id": "s196",
@@ -28108,7 +28108,7 @@
           "end": 8.562
         }
       ],
-      "audio": "audio_restaurant_dalet/s196.mp3"
+      "audio": "books/restaurant-dalet/audio/s196.mp3"
     },
     {
       "id": "s197",
@@ -28216,7 +28216,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_restaurant_dalet/s197.mp3"
+      "audio": "books/restaurant-dalet/audio/s197.mp3"
     },
     {
       "id": "s198",
@@ -28364,7 +28364,7 @@
           "end": 6.388
         }
       ],
-      "audio": "audio_restaurant_dalet/s198.mp3"
+      "audio": "books/restaurant-dalet/audio/s198.mp3"
     },
     {
       "id": "s199",
@@ -28692,7 +28692,7 @@
           "end": 14.512
         }
       ],
-      "audio": "audio_restaurant_dalet/s199.mp3"
+      "audio": "books/restaurant-dalet/audio/s199.mp3"
     },
     {
       "id": "s200",
@@ -28830,7 +28830,7 @@
           "end": 6.963
         }
       ],
-      "audio": "audio_restaurant_dalet/s200.mp3"
+      "audio": "books/restaurant-dalet/audio/s200.mp3"
     },
     {
       "id": "s201",
@@ -29048,15 +29048,15 @@
           "end": 8.825
         }
       ],
-      "audio": "audio_restaurant_dalet/s201.mp3",
+      "audio": "books/restaurant-dalet/audio/s201.mp3",
       "illustration": {
         "word": "מְבַקֵּר",
         "tr": "за критиком",
         "caption": "מְבַקֵּר",
         "capTr": "mevaker",
         "mnemonic": "Представь себе огромного МЕБЕЛЬЩИКА, который вдруг превратился в МЕБЕЛЬНОГО КРИТИКА и теперь оценивает качество всех стульев в мире. Он садится на каждый стул и дает ему оценку, а стулья, которые ему не нравятся, он тут же разбивает. МЕБЕЛЬЩИК-КРИТИК особенно придирчив к стульям с неудобными спинками.",
-        "img": "illustrations_restaurant_dalet/s201.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s201-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s201.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s201-mnemonic.webp"
       }
     },
     {
@@ -29285,7 +29285,7 @@
           "end": 9.088
         }
       ],
-      "audio": "audio_restaurant_dalet/s202.mp3"
+      "audio": "books/restaurant-dalet/audio/s202.mp3"
     },
     {
       "id": "s203",
@@ -29363,7 +29363,7 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_restaurant_dalet/s203.mp3"
+      "audio": "books/restaurant-dalet/audio/s203.mp3"
     },
     {
       "id": "s204",
@@ -29421,7 +29421,7 @@
           "end": 2.125
         }
       ],
-      "audio": "audio_restaurant_dalet/s204.mp3"
+      "audio": "books/restaurant-dalet/audio/s204.mp3"
     },
     {
       "id": "s205",
@@ -29549,7 +29549,7 @@
           "end": 6.225
         }
       ],
-      "audio": "audio_restaurant_dalet/s205.mp3"
+      "audio": "books/restaurant-dalet/audio/s205.mp3"
     },
     {
       "id": "s206",
@@ -29777,7 +29777,7 @@
           "end": 8.525
         }
       ],
-      "audio": "audio_restaurant_dalet/s206.mp3"
+      "audio": "books/restaurant-dalet/audio/s206.mp3"
     },
     {
       "id": "s207",
@@ -29945,7 +29945,7 @@
           "end": 8.137
         }
       ],
-      "audio": "audio_restaurant_dalet/s207.mp3"
+      "audio": "books/restaurant-dalet/audio/s207.mp3"
     },
     {
       "id": "s208",
@@ -30013,7 +30013,7 @@
           "end": 1.925
         }
       ],
-      "audio": "audio_restaurant_dalet/s208.mp3"
+      "audio": "books/restaurant-dalet/audio/s208.mp3"
     },
     {
       "id": "s209",
@@ -30161,7 +30161,7 @@
           "end": 6.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s209.mp3"
+      "audio": "books/restaurant-dalet/audio/s209.mp3"
     },
     {
       "id": "s210",
@@ -30419,7 +30419,7 @@
           "end": 9.838
         }
       ],
-      "audio": "audio_restaurant_dalet/s210.mp3"
+      "audio": "books/restaurant-dalet/audio/s210.mp3"
     },
     {
       "id": "s211",
@@ -30517,7 +30517,7 @@
           "end": 4.4
         }
       ],
-      "audio": "audio_restaurant_dalet/s211.mp3"
+      "audio": "books/restaurant-dalet/audio/s211.mp3"
     },
     {
       "id": "s212",
@@ -30685,7 +30685,7 @@
           "end": 5.562
         }
       ],
-      "audio": "audio_restaurant_dalet/s212.mp3"
+      "audio": "books/restaurant-dalet/audio/s212.mp3"
     },
     {
       "id": "s213",
@@ -30963,7 +30963,7 @@
           "end": 9.688
         }
       ],
-      "audio": "audio_restaurant_dalet/s213.mp3"
+      "audio": "books/restaurant-dalet/audio/s213.mp3"
     },
     {
       "id": "s214",
@@ -31031,7 +31031,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_restaurant_dalet/s214.mp3"
+      "audio": "books/restaurant-dalet/audio/s214.mp3"
     },
     {
       "id": "s215",
@@ -31179,7 +31179,7 @@
           "end": 5.1
         }
       ],
-      "audio": "audio_restaurant_dalet/s215.mp3"
+      "audio": "books/restaurant-dalet/audio/s215.mp3"
     },
     {
       "id": "s216",
@@ -31497,7 +31497,7 @@
           "end": 11.675
         }
       ],
-      "audio": "audio_restaurant_dalet/s216.mp3"
+      "audio": "books/restaurant-dalet/audio/s216.mp3"
     },
     {
       "id": "s217",
@@ -31575,7 +31575,7 @@
           "end": 4.037
         }
       ],
-      "audio": "audio_restaurant_dalet/s217.mp3"
+      "audio": "books/restaurant-dalet/audio/s217.mp3"
     },
     {
       "id": "s218",
@@ -31763,7 +31763,7 @@
           "end": 6.85
         }
       ],
-      "audio": "audio_restaurant_dalet/s218.mp3"
+      "audio": "books/restaurant-dalet/audio/s218.mp3"
     },
     {
       "id": "s219",
@@ -31881,7 +31881,7 @@
           "end": 5.513
         }
       ],
-      "audio": "audio_restaurant_dalet/s219.mp3"
+      "audio": "books/restaurant-dalet/audio/s219.mp3"
     },
     {
       "id": "s220",
@@ -32109,7 +32109,7 @@
           "end": 9.225
         }
       ],
-      "audio": "audio_restaurant_dalet/s220.mp3"
+      "audio": "books/restaurant-dalet/audio/s220.mp3"
     },
     {
       "id": "s221",
@@ -32297,7 +32297,7 @@
           "end": 7.525
         }
       ],
-      "audio": "audio_restaurant_dalet/s221.mp3"
+      "audio": "books/restaurant-dalet/audio/s221.mp3"
     },
     {
       "id": "s222",
@@ -32475,7 +32475,7 @@
           "end": 7.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s222.mp3"
+      "audio": "books/restaurant-dalet/audio/s222.mp3"
     },
     {
       "id": "s223",
@@ -32683,7 +32683,7 @@
           "end": 9.65
         }
       ],
-      "audio": "audio_restaurant_dalet/s223.mp3"
+      "audio": "books/restaurant-dalet/audio/s223.mp3"
     },
     {
       "id": "s224",
@@ -32781,7 +32781,7 @@
           "end": 4.225
         }
       ],
-      "audio": "audio_restaurant_dalet/s224.mp3"
+      "audio": "books/restaurant-dalet/audio/s224.mp3"
     },
     {
       "id": "s225",
@@ -32989,7 +32989,7 @@
           "end": 9.762
         }
       ],
-      "audio": "audio_restaurant_dalet/s225.mp3"
+      "audio": "books/restaurant-dalet/audio/s225.mp3"
     },
     {
       "id": "s226",
@@ -33137,7 +33137,7 @@
           "end": 6.888
         }
       ],
-      "audio": "audio_restaurant_dalet/s226.mp3"
+      "audio": "books/restaurant-dalet/audio/s226.mp3"
     },
     {
       "id": "s227",
@@ -33345,15 +33345,15 @@
           "end": 9.05
         }
       ],
-      "audio": "audio_restaurant_dalet/s227.mp3",
+      "audio": "books/restaurant-dalet/audio/s227.mp3",
       "illustration": {
         "word": "מָנָה",
         "tr": "порции",
         "caption": "מָנָה",
         "capTr": "manah",
         "mnemonic": "Представь огромную МАНУ, которая внезапно начала расти и разрастаться, как огромный гриб, и её стали использовать как гигантскую тарелку для порций еды, и люди начали есть с неё, как с огромного стола.",
-        "img": "illustrations_restaurant_dalet/s227.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s227-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s227.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s227-mnemonic.webp"
       }
     },
     {
@@ -33632,7 +33632,7 @@
           "end": 11.262
         }
       ],
-      "audio": "audio_restaurant_dalet/s228.mp3"
+      "audio": "books/restaurant-dalet/audio/s228.mp3"
     },
     {
       "id": "s229",
@@ -33750,7 +33750,7 @@
           "end": 5.438
         }
       ],
-      "audio": "audio_restaurant_dalet/s229.mp3"
+      "audio": "books/restaurant-dalet/audio/s229.mp3"
     },
     {
       "id": "s230",
@@ -33828,7 +33828,7 @@
           "end": 3.875
         }
       ],
-      "audio": "audio_restaurant_dalet/s230.mp3"
+      "audio": "books/restaurant-dalet/audio/s230.mp3"
     },
     {
       "id": "s231",
@@ -34026,7 +34026,7 @@
           "end": 7.7
         }
       ],
-      "audio": "audio_restaurant_dalet/s231.mp3"
+      "audio": "books/restaurant-dalet/audio/s231.mp3"
     },
     {
       "id": "s232",
@@ -34274,7 +34274,7 @@
           "end": 9.688
         }
       ],
-      "audio": "audio_restaurant_dalet/s232.mp3"
+      "audio": "books/restaurant-dalet/audio/s232.mp3"
     },
     {
       "id": "s233",
@@ -34432,7 +34432,7 @@
           "end": 7.05
         }
       ],
-      "audio": "audio_restaurant_dalet/s233.mp3"
+      "audio": "books/restaurant-dalet/audio/s233.mp3"
     },
     {
       "id": "s234",
@@ -34660,7 +34660,7 @@
           "end": 11.025
         }
       ],
-      "audio": "audio_restaurant_dalet/s234.mp3"
+      "audio": "books/restaurant-dalet/audio/s234.mp3"
     },
     {
       "id": "s235",
@@ -34878,7 +34878,7 @@
           "end": 9.425
         }
       ],
-      "audio": "audio_restaurant_dalet/s235.mp3"
+      "audio": "books/restaurant-dalet/audio/s235.mp3"
     },
     {
       "id": "s236",
@@ -35106,7 +35106,7 @@
           "end": 8.875
         }
       ],
-      "audio": "audio_restaurant_dalet/s236.mp3"
+      "audio": "books/restaurant-dalet/audio/s236.mp3"
     },
     {
       "id": "s237",
@@ -35404,7 +35404,7 @@
           "end": 12.387
         }
       ],
-      "audio": "audio_restaurant_dalet/s237.mp3"
+      "audio": "books/restaurant-dalet/audio/s237.mp3"
     },
     {
       "id": "s238",
@@ -35712,7 +35712,7 @@
           "end": 11.775
         }
       ],
-      "audio": "audio_restaurant_dalet/s238.mp3"
+      "audio": "books/restaurant-dalet/audio/s238.mp3"
     },
     {
       "id": "s239",
@@ -35881,7 +35881,7 @@
         }
       ],
       "ttsEngine": "gtts",
-      "audio": "audio_restaurant_dalet/s239.mp3"
+      "audio": "books/restaurant-dalet/audio/s239.mp3"
     },
     {
       "id": "s240",
@@ -36049,7 +36049,7 @@
           "end": 7.775
         }
       ],
-      "audio": "audio_restaurant_dalet/s240.mp3"
+      "audio": "books/restaurant-dalet/audio/s240.mp3"
     },
     {
       "id": "s241",
@@ -36227,7 +36227,7 @@
           "end": 6.875
         }
       ],
-      "audio": "audio_restaurant_dalet/s241.mp3"
+      "audio": "books/restaurant-dalet/audio/s241.mp3"
     },
     {
       "id": "s242",
@@ -36385,7 +36385,7 @@
           "end": 6.85
         }
       ],
-      "audio": "audio_restaurant_dalet/s242.mp3"
+      "audio": "books/restaurant-dalet/audio/s242.mp3"
     },
     {
       "id": "s243",
@@ -36593,15 +36593,15 @@
           "end": 8.825
         }
       ],
-      "audio": "audio_restaurant_dalet/s243.mp3",
+      "audio": "books/restaurant-dalet/audio/s243.mp3",
       "illustration": {
         "word": "עִיתּוֹן",
         "tr": "в газете",
         "caption": "עִיתּוֹן",
         "capTr": "iton",
         "mnemonic": "Представь, что ИТОН — известный диджей, который устраивает невероятную вечеринку в огромном клубе, где все танцуют под его ритмы и носят футболки с надписью 'В ГАЗЕТЕ'. Вдруг ИТОН начинает играть песню 'В ГАЗЕТЕ', и все танцующие начинают читать газеты, которые вдруг появляются в их руках. ИТОН смеётся и продолжает играть, а танцующие читают и танцуют одновременно.",
-        "img": "illustrations_restaurant_dalet/s243.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s243-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s243.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s243-mnemonic.webp"
       }
     },
     {
@@ -36840,7 +36840,7 @@
           "end": 9.925
         }
       ],
-      "audio": "audio_restaurant_dalet/s244.mp3"
+      "audio": "books/restaurant-dalet/audio/s244.mp3"
     },
     {
       "id": "s245",
@@ -37018,7 +37018,7 @@
           "end": 6.5
         }
       ],
-      "audio": "audio_restaurant_dalet/s245.mp3"
+      "audio": "books/restaurant-dalet/audio/s245.mp3"
     },
     {
       "id": "s246",
@@ -37076,7 +37076,7 @@
           "end": 2.525
         }
       ],
-      "audio": "audio_restaurant_dalet/s246.mp3"
+      "audio": "books/restaurant-dalet/audio/s246.mp3"
     },
     {
       "id": "s247",
@@ -37254,7 +37254,7 @@
           "end": 7.588
         }
       ],
-      "audio": "audio_restaurant_dalet/s247.mp3"
+      "audio": "books/restaurant-dalet/audio/s247.mp3"
     },
     {
       "id": "s248",
@@ -37442,7 +37442,7 @@
           "end": 8.512
         }
       ],
-      "audio": "audio_restaurant_dalet/s248.mp3"
+      "audio": "books/restaurant-dalet/audio/s248.mp3"
     },
     {
       "id": "s249",
@@ -37490,7 +37490,7 @@
           "end": 2.525
         }
       ],
-      "audio": "audio_restaurant_dalet/s249.mp3"
+      "audio": "books/restaurant-dalet/audio/s249.mp3"
     },
     {
       "id": "s250",
@@ -37598,7 +37598,7 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_restaurant_dalet/s250.mp3"
+      "audio": "books/restaurant-dalet/audio/s250.mp3"
     },
     {
       "id": "s251",
@@ -37766,7 +37766,7 @@
           "end": 7.263
         }
       ],
-      "audio": "audio_restaurant_dalet/s251.mp3"
+      "audio": "books/restaurant-dalet/audio/s251.mp3"
     },
     {
       "id": "s252",
@@ -37944,7 +37944,7 @@
           "end": 7.713
         }
       ],
-      "audio": "audio_restaurant_dalet/s252.mp3"
+      "audio": "books/restaurant-dalet/audio/s252.mp3"
     },
     {
       "id": "s253",
@@ -38092,7 +38092,7 @@
           "end": 5.737
         }
       ],
-      "audio": "audio_restaurant_dalet/s253.mp3"
+      "audio": "books/restaurant-dalet/audio/s253.mp3"
     },
     {
       "id": "s254",
@@ -38210,7 +38210,7 @@
           "end": 5.213
         }
       ],
-      "audio": "audio_restaurant_dalet/s254.mp3"
+      "audio": "books/restaurant-dalet/audio/s254.mp3"
     },
     {
       "id": "s255",
@@ -38268,7 +38268,7 @@
           "end": 3.2
         }
       ],
-      "audio": "audio_restaurant_dalet/s255.mp3"
+      "audio": "books/restaurant-dalet/audio/s255.mp3"
     },
     {
       "id": "s256",
@@ -38436,7 +38436,7 @@
           "end": 8.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s256.mp3"
+      "audio": "books/restaurant-dalet/audio/s256.mp3"
     },
     {
       "id": "s257",
@@ -38534,7 +38534,7 @@
           "end": 5.125
         }
       ],
-      "audio": "audio_restaurant_dalet/s257.mp3"
+      "audio": "books/restaurant-dalet/audio/s257.mp3"
     },
     {
       "id": "s258",
@@ -38662,7 +38662,7 @@
           "end": 6.287
         }
       ],
-      "audio": "audio_restaurant_dalet/s258.mp3"
+      "audio": "books/restaurant-dalet/audio/s258.mp3"
     },
     {
       "id": "s259",
@@ -38720,7 +38720,7 @@
           "end": 1.938
         }
       ],
-      "audio": "audio_restaurant_dalet/s259.mp3"
+      "audio": "books/restaurant-dalet/audio/s259.mp3"
     },
     {
       "id": "s260",
@@ -38888,7 +38888,7 @@
           "end": 7.638
         }
       ],
-      "audio": "audio_restaurant_dalet/s260.mp3"
+      "audio": "books/restaurant-dalet/audio/s260.mp3"
     },
     {
       "id": "s261",
@@ -38906,7 +38906,7 @@
           "end": 0.975
         }
       ],
-      "audio": "audio_restaurant_dalet/s261.mp3"
+      "audio": "books/restaurant-dalet/audio/s261.mp3"
     },
     {
       "id": "s262",
@@ -38974,7 +38974,7 @@
           "end": 3.5
         }
       ],
-      "audio": "audio_restaurant_dalet/s262.mp3"
+      "audio": "books/restaurant-dalet/audio/s262.mp3"
     },
     {
       "id": "s263",
@@ -39152,15 +39152,15 @@
           "end": 7.662
         }
       ],
-      "audio": "audio_restaurant_dalet/s263.mp3",
+      "audio": "books/restaurant-dalet/audio/s263.mp3",
       "illustration": {
         "word": "מִסְעָדָה",
         "tr": "ресторанов",
         "caption": "מִסְעָדָה",
         "capTr": "misada",
         "mnemonic": "Представь, что Миса внезапно превратилась в гигантскую летающую тарелку и начала облетать рестораны, оставляя за собой след из вкусных блюд и напитков. Все посетители ресторанов были поражены этим зрелищем и не могли оторвать глаз от летающей Мисы. Она летала над ресторанами, разбрасывая еду и напитки, и создавала атмосферу праздника и веселья.",
-        "img": "illustrations_restaurant_dalet/s263.webp",
-        "imgMnemonic": "illustrations_restaurant_dalet/s263-mnemonic.webp"
+        "img": "books/restaurant-dalet/illustrations/s263.webp",
+        "imgMnemonic": "books/restaurant-dalet/illustrations/s263-mnemonic.webp"
       }
     },
     {
@@ -39319,7 +39319,7 @@
           "end": 6.688
         }
       ],
-      "audio": "audio_restaurant_dalet/s264.mp3"
+      "audio": "books/restaurant-dalet/audio/s264.mp3"
     },
     {
       "id": "s265",
@@ -39497,7 +39497,7 @@
           "end": 8.25
         }
       ],
-      "audio": "audio_restaurant_dalet/s265.mp3"
+      "audio": "books/restaurant-dalet/audio/s265.mp3"
     },
     {
       "id": "s266",
@@ -39675,7 +39675,7 @@
           "end": 7.513
         }
       ],
-      "audio": "audio_restaurant_dalet/s266.mp3"
+      "audio": "books/restaurant-dalet/audio/s266.mp3"
     },
     {
       "id": "s267",
@@ -39833,7 +39833,7 @@
           "end": 7.325
         }
       ],
-      "audio": "audio_restaurant_dalet/s267.mp3"
+      "audio": "books/restaurant-dalet/audio/s267.mp3"
     },
     {
       "id": "s268",
@@ -39991,7 +39991,7 @@
           "end": 6.775
         }
       ],
-      "audio": "audio_restaurant_dalet/s268.mp3"
+      "audio": "books/restaurant-dalet/audio/s268.mp3"
     },
     {
       "id": "s269",
@@ -40169,7 +40169,7 @@
           "end": 6.662
         }
       ],
-      "audio": "audio_restaurant_dalet/s269.mp3"
+      "audio": "books/restaurant-dalet/audio/s269.mp3"
     },
     {
       "id": "s270",
@@ -40347,7 +40347,7 @@
           "end": 7.013
         }
       ],
-      "audio": "audio_restaurant_dalet/s270.mp3"
+      "audio": "books/restaurant-dalet/audio/s270.mp3"
     },
     {
       "id": "s271",
@@ -40515,7 +40515,7 @@
           "end": 7.287
         }
       ],
-      "audio": "audio_restaurant_dalet/s271.mp3"
+      "audio": "books/restaurant-dalet/audio/s271.mp3"
     },
     {
       "id": "s272",
@@ -40663,7 +40663,7 @@
           "end": 6.888
         }
       ],
-      "audio": "audio_restaurant_dalet/s272.mp3"
+      "audio": "books/restaurant-dalet/audio/s272.mp3"
     },
     {
       "id": "s273",
@@ -40791,7 +40791,7 @@
           "end": 6.062
         }
       ],
-      "audio": "audio_restaurant_dalet/s273.mp3"
+      "audio": "books/restaurant-dalet/audio/s273.mp3"
     },
     {
       "id": "s274",
@@ -41009,7 +41009,7 @@
           "end": 9.325
         }
       ],
-      "audio": "audio_restaurant_dalet/s274.mp3"
+      "audio": "books/restaurant-dalet/audio/s274.mp3"
     },
     {
       "id": "s275",
@@ -41077,7 +41077,7 @@
           "end": 2.188
         }
       ],
-      "audio": "audio_restaurant_dalet/s275.mp3"
+      "audio": "books/restaurant-dalet/audio/s275.mp3"
     },
     {
       "id": "s276",
@@ -41115,7 +41115,7 @@
           "end": 1.363
         }
       ],
-      "audio": "audio_restaurant_dalet/s276.mp3"
+      "audio": "books/restaurant-dalet/audio/s276.mp3"
     }
   ]
 }

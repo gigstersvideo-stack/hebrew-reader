@@ -96,7 +96,7 @@
           "end": 4.338
         }
       ],
-      "audio": "audio_timetravel_gimel/s1.mp3"
+      "audio": "books/timetravel-gimel/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -254,7 +254,7 @@
           "end": 7.025
         }
       ],
-      "audio": "audio_timetravel_gimel/s2.mp3"
+      "audio": "books/timetravel-gimel/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -342,7 +342,7 @@
           "end": 3.675
         }
       ],
-      "audio": "audio_timetravel_gimel/s3.mp3"
+      "audio": "books/timetravel-gimel/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -450,7 +450,7 @@
           "end": 5.05
         }
       ],
-      "audio": "audio_timetravel_gimel/s4.mp3"
+      "audio": "books/timetravel-gimel/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -548,7 +548,7 @@
           "end": 4.838
         }
       ],
-      "audio": "audio_timetravel_gimel/s5.mp3"
+      "audio": "books/timetravel-gimel/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -616,7 +616,7 @@
           "end": 3.725
         }
       ],
-      "audio": "audio_timetravel_gimel/s6.mp3"
+      "audio": "books/timetravel-gimel/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -784,7 +784,7 @@
           "end": 7.3
         }
       ],
-      "audio": "audio_timetravel_gimel/s7.mp3"
+      "audio": "books/timetravel-gimel/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -952,7 +952,7 @@
           "end": 7.037
         }
       ],
-      "audio": "audio_timetravel_gimel/s8.mp3"
+      "audio": "books/timetravel-gimel/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -1100,7 +1100,7 @@
           "end": 6.237
         }
       ],
-      "audio": "audio_timetravel_gimel/s9.mp3"
+      "audio": "books/timetravel-gimel/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1148,7 +1148,7 @@
           "end": 2.125
         }
       ],
-      "audio": "audio_timetravel_gimel/s10.mp3"
+      "audio": "books/timetravel-gimel/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -1326,7 +1326,7 @@
           "end": 8.312
         }
       ],
-      "audio": "audio_timetravel_gimel/s11.mp3"
+      "audio": "books/timetravel-gimel/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1434,7 +1434,7 @@
           "end": 4.112
         }
       ],
-      "audio": "audio_timetravel_gimel/s12.mp3"
+      "audio": "books/timetravel-gimel/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1592,7 +1592,7 @@
           "end": 6.213
         }
       ],
-      "audio": "audio_timetravel_gimel/s13.mp3"
+      "audio": "books/timetravel-gimel/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1750,7 +1750,7 @@
           "end": 6.45
         }
       ],
-      "audio": "audio_timetravel_gimel/s14.mp3"
+      "audio": "books/timetravel-gimel/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1838,7 +1838,7 @@
           "end": 4.088
         }
       ],
-      "audio": "audio_timetravel_gimel/s15.mp3"
+      "audio": "books/timetravel-gimel/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1976,7 +1976,7 @@
           "end": 5.575
         }
       ],
-      "audio": "audio_timetravel_gimel/s16.mp3"
+      "audio": "books/timetravel-gimel/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -2104,7 +2104,7 @@
           "end": 5.862
         }
       ],
-      "audio": "audio_timetravel_gimel/s17.mp3"
+      "audio": "books/timetravel-gimel/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -2232,7 +2232,7 @@
           "end": 5.138
         }
       ],
-      "audio": "audio_timetravel_gimel/s18.mp3"
+      "audio": "books/timetravel-gimel/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -2350,15 +2350,15 @@
           "end": 5.125
         }
       ],
-      "audio": "audio_timetravel_gimel/s19.mp3",
+      "audio": "books/timetravel-gimel/audio/s19.mp3",
       "illustration": {
         "word": "דִּמְיוֹן",
         "tr": "сходство",
         "caption": "דִּמְיוֹן",
         "capTr": "dimyon",
         "mnemonic": "Представь, что у двух мальчиков поразительное сходство, потому что один из них на самом деле маленький ДЕМОН в человеческой маске: рожки торчат из-под кепки, а хвостик выглядывает из штанов. Второй мальчик в шоке смотрит на своего двойника.",
-        "img": "illustrations_timetravel_gimel/s19.webp",
-        "imgMnemonic": "illustrations_timetravel_gimel/s19-mnemonic.webp"
+        "img": "books/timetravel-gimel/illustrations/s19.webp",
+        "imgMnemonic": "books/timetravel-gimel/illustrations/s19-mnemonic.webp"
       }
     },
     {
@@ -2487,7 +2487,7 @@
           "end": 6.65
         }
       ],
-      "audio": "audio_timetravel_gimel/s20.mp3"
+      "audio": "books/timetravel-gimel/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -2645,7 +2645,7 @@
           "end": 5.862
         }
       ],
-      "audio": "audio_timetravel_gimel/s21.mp3"
+      "audio": "books/timetravel-gimel/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -2793,7 +2793,7 @@
           "end": 5.125
         }
       ],
-      "audio": "audio_timetravel_gimel/s22.mp3"
+      "audio": "books/timetravel-gimel/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -3011,7 +3011,7 @@
           "end": 7.812
         }
       ],
-      "audio": "audio_timetravel_gimel/s23.mp3"
+      "audio": "books/timetravel-gimel/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -3189,7 +3189,7 @@
           "end": 7.175
         }
       ],
-      "audio": "audio_timetravel_gimel/s24.mp3"
+      "audio": "books/timetravel-gimel/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -3297,7 +3297,7 @@
           "end": 3.862
         }
       ],
-      "audio": "audio_timetravel_gimel/s25.mp3"
+      "audio": "books/timetravel-gimel/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -3425,7 +3425,7 @@
           "end": 5.188
         }
       ],
-      "audio": "audio_timetravel_gimel/s26.mp3"
+      "audio": "books/timetravel-gimel/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -3633,7 +3633,7 @@
           "end": 7.888
         }
       ],
-      "audio": "audio_timetravel_gimel/s27.mp3"
+      "audio": "books/timetravel-gimel/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -3851,7 +3851,7 @@
           "end": 7.412
         }
       ],
-      "audio": "audio_timetravel_gimel/s28.mp3"
+      "audio": "books/timetravel-gimel/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -4009,7 +4009,7 @@
           "end": 5.513
         }
       ],
-      "audio": "audio_timetravel_gimel/s29.mp3"
+      "audio": "books/timetravel-gimel/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -4167,7 +4167,7 @@
           "end": 6.388
         }
       ],
-      "audio": "audio_timetravel_gimel/s30.mp3"
+      "audio": "books/timetravel-gimel/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -4265,7 +4265,7 @@
           "end": 4.6
         }
       ],
-      "audio": "audio_timetravel_gimel/s31.mp3"
+      "audio": "books/timetravel-gimel/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -4443,7 +4443,7 @@
           "end": 6.475
         }
       ],
-      "audio": "audio_timetravel_gimel/s32.mp3"
+      "audio": "books/timetravel-gimel/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -4531,7 +4531,7 @@
           "end": 4.838
         }
       ],
-      "audio": "audio_timetravel_gimel/s33.mp3"
+      "audio": "books/timetravel-gimel/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -4619,15 +4619,15 @@
           "end": 3.388
         }
       ],
-      "audio": "audio_timetravel_gimel/s34.mp3",
+      "audio": "books/timetravel-gimel/audio/s34.mp3",
       "illustration": {
         "word": "כָּתֵף",
         "tr": "плечо",
         "caption": "כָּתֵף",
         "capTr": "katef",
         "mnemonic": "Представь, что на твоём плече стоит настоящий КАТЕР: маленький белый катер с флажком плывёт по плечу, как по морю, и пускает волны по рубашке. Ты стоишь неподвижно, чтобы он не перевернулся.",
-        "img": "illustrations_timetravel_gimel/s34.webp",
-        "imgMnemonic": "illustrations_timetravel_gimel/s34-mnemonic.webp"
+        "img": "books/timetravel-gimel/illustrations/s34.webp",
+        "imgMnemonic": "books/timetravel-gimel/illustrations/s34-mnemonic.webp"
       }
     },
     {
@@ -4756,7 +4756,7 @@
           "end": 4.688
         }
       ],
-      "audio": "audio_timetravel_gimel/s35.mp3"
+      "audio": "books/timetravel-gimel/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -4964,7 +4964,7 @@
           "end": 8.838
         }
       ],
-      "audio": "audio_timetravel_gimel/s36.mp3"
+      "audio": "books/timetravel-gimel/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -5042,7 +5042,7 @@
           "end": 3.0
         }
       ],
-      "audio": "audio_timetravel_gimel/s37.mp3"
+      "audio": "books/timetravel-gimel/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -5180,7 +5180,7 @@
           "end": 5.5
         }
       ],
-      "audio": "audio_timetravel_gimel/s38.mp3"
+      "audio": "books/timetravel-gimel/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -5348,7 +5348,7 @@
           "end": 5.487
         }
       ],
-      "audio": "audio_timetravel_gimel/s39.mp3"
+      "audio": "books/timetravel-gimel/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -5476,7 +5476,7 @@
           "end": 5.263
         }
       ],
-      "audio": "audio_timetravel_gimel/s40.mp3"
+      "audio": "books/timetravel-gimel/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -5634,7 +5634,7 @@
           "end": 6.275
         }
       ],
-      "audio": "audio_timetravel_gimel/s41.mp3"
+      "audio": "books/timetravel-gimel/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -5762,7 +5762,7 @@
           "end": 5.1
         }
       ],
-      "audio": "audio_timetravel_gimel/s42.mp3"
+      "audio": "books/timetravel-gimel/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -5880,7 +5880,7 @@
           "end": 5.662
         }
       ],
-      "audio": "audio_timetravel_gimel/s43.mp3"
+      "audio": "books/timetravel-gimel/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -6028,7 +6028,7 @@
           "end": 5.938
         }
       ],
-      "audio": "audio_timetravel_gimel/s44.mp3"
+      "audio": "books/timetravel-gimel/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -6186,7 +6186,7 @@
           "end": 6.213
         }
       ],
-      "audio": "audio_timetravel_gimel/s45.mp3"
+      "audio": "books/timetravel-gimel/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -6314,7 +6314,7 @@
           "end": 6.037
         }
       ],
-      "audio": "audio_timetravel_gimel/s46.mp3"
+      "audio": "books/timetravel-gimel/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -6412,7 +6412,7 @@
           "end": 3.862
         }
       ],
-      "audio": "audio_timetravel_gimel/s47.mp3"
+      "audio": "books/timetravel-gimel/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -6590,7 +6590,7 @@
           "end": 8.0
         }
       ],
-      "audio": "audio_timetravel_gimel/s48.mp3"
+      "audio": "books/timetravel-gimel/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -6718,7 +6718,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_timetravel_gimel/s49.mp3"
+      "audio": "books/timetravel-gimel/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -6876,7 +6876,7 @@
           "end": 7.15
         }
       ],
-      "audio": "audio_timetravel_gimel/s50.mp3"
+      "audio": "books/timetravel-gimel/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -7014,7 +7014,7 @@
           "end": 5.713
         }
       ],
-      "audio": "audio_timetravel_gimel/s51.mp3"
+      "audio": "books/timetravel-gimel/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -7142,7 +7142,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_timetravel_gimel/s52.mp3"
+      "audio": "books/timetravel-gimel/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -7270,7 +7270,7 @@
           "end": 4.825
         }
       ],
-      "audio": "audio_timetravel_gimel/s53.mp3"
+      "audio": "books/timetravel-gimel/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -7368,15 +7368,15 @@
           "end": 4.562
         }
       ],
-      "audio": "audio_timetravel_gimel/s54.mp3",
+      "audio": "books/timetravel-gimel/audio/s54.mp3",
       "illustration": {
         "word": "עֲדִינִי",
         "tr": "нежный",
         "caption": "עֲדִינִי",
         "capTr": "adini",
         "mnemonic": "Представь, что на столе часовщика ОДИН крошечный нежный винтик лежит на бархатной подушечке, как драгоценность. Вокруг него на цыпочках ходят шестерёнки и шепчутся, чтобы его не разбудить.",
-        "img": "illustrations_timetravel_gimel/s54.webp",
-        "imgMnemonic": "illustrations_timetravel_gimel/s54-mnemonic.webp"
+        "img": "books/timetravel-gimel/illustrations/s54.webp",
+        "imgMnemonic": "books/timetravel-gimel/illustrations/s54-mnemonic.webp"
       }
     },
     {
@@ -7615,7 +7615,7 @@
           "end": 8.575
         }
       ],
-      "audio": "audio_timetravel_gimel/s55.mp3"
+      "audio": "books/timetravel-gimel/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -7723,7 +7723,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_timetravel_gimel/s56.mp3"
+      "audio": "books/timetravel-gimel/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -7831,7 +7831,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_timetravel_gimel/s57.mp3"
+      "audio": "books/timetravel-gimel/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -7999,7 +7999,7 @@
           "end": 6.513
         }
       ],
-      "audio": "audio_timetravel_gimel/s58.mp3"
+      "audio": "books/timetravel-gimel/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -8067,7 +8067,7 @@
           "end": 2.75
         }
       ],
-      "audio": "audio_timetravel_gimel/s59.mp3"
+      "audio": "books/timetravel-gimel/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -8275,7 +8275,7 @@
           "end": 7.9
         }
       ],
-      "audio": "audio_timetravel_gimel/s60.mp3"
+      "audio": "books/timetravel-gimel/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -8373,15 +8373,15 @@
           "end": 4.0
         }
       ],
-      "audio": "audio_timetravel_gimel/s61.mp3",
+      "audio": "books/timetravel-gimel/audio/s61.mp3",
       "illustration": {
         "word": "מוּפְלָא",
         "tr": "чудесный",
         "caption": "מוּפְלָא",
         "capTr": "mufla",
         "mnemonic": "Представь чудесного МУФЛОНА с огромными завитыми рогами: он стоит на каменном уступе в золотом свете, а вокруг него кружатся карманные часы и парят в воздухе, как волшебные птицы.",
-        "img": "illustrations_timetravel_gimel/s61.webp",
-        "imgMnemonic": "illustrations_timetravel_gimel/s61-mnemonic.webp"
+        "img": "books/timetravel-gimel/illustrations/s61.webp",
+        "imgMnemonic": "books/timetravel-gimel/illustrations/s61-mnemonic.webp"
       }
     }
   ]

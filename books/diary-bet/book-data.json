@@ -126,7 +126,7 @@
           "end": 4.975
         }
       ],
-      "audio": "audio_diary_bet/s1.mp3"
+      "audio": "books/diary-bet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -234,7 +234,7 @@
           "end": 5.112
         }
       ],
-      "audio": "audio_diary_bet/s2.mp3"
+      "audio": "books/diary-bet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -372,7 +372,7 @@
           "end": 5.475
         }
       ],
-      "audio": "audio_diary_bet/s3.mp3"
+      "audio": "books/diary-bet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -480,7 +480,7 @@
           "end": 3.95
         }
       ],
-      "audio": "audio_diary_bet/s4.mp3"
+      "audio": "books/diary-bet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -618,15 +618,15 @@
           "end": 5.125
         }
       ],
-      "audio": "audio_diary_bet/s5.mp3",
+      "audio": "books/diary-bet/audio/s5.mp3",
       "illustration": {
         "word": "יוֹמָן",
         "tr": "дневник",
         "caption": "יוֹמָן",
         "capTr": "yoman",
         "mnemonic": "Представь, что ты держишь в руках старый ЮМОРИСТИЧЕСКИЙ МАНУАЛ, который вдруг ожил и начал рассказывать смешные истории, заставляя тебя смеяться безудержно. Юмористический мануал стал настолько смешным, что его начали читать все вокруг, и скоро весь город был охвачен смехом. Люди смеялись так сильно, что даже забыли про свои дневники.",
-        "img": "illustrations_diary_bet/s5.webp",
-        "imgMnemonic": "illustrations_diary_bet/s5-mnemonic.webp"
+        "img": "books/diary-bet/illustrations/s5.webp",
+        "imgMnemonic": "books/diary-bet/illustrations/s5-mnemonic.webp"
       }
     },
     {
@@ -715,7 +715,7 @@
           "end": 3.438
         }
       ],
-      "audio": "audio_diary_bet/s6.mp3"
+      "audio": "books/diary-bet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -783,7 +783,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_diary_bet/s7.mp3"
+      "audio": "books/diary-bet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -861,7 +861,7 @@
           "end": 3.25
         }
       ],
-      "audio": "audio_diary_bet/s8.mp3"
+      "audio": "books/diary-bet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -999,7 +999,7 @@
           "end": 5.35
         }
       ],
-      "audio": "audio_diary_bet/s9.mp3"
+      "audio": "books/diary-bet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1057,7 +1057,7 @@
           "end": 2.225
         }
       ],
-      "audio": "audio_diary_bet/s10.mp3"
+      "audio": "books/diary-bet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -1125,7 +1125,7 @@
           "end": 3.087
         }
       ],
-      "audio": "audio_diary_bet/s11.mp3"
+      "audio": "books/diary-bet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1183,7 +1183,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_diary_bet/s12.mp3"
+      "audio": "books/diary-bet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1311,7 +1311,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_diary_bet/s13.mp3"
+      "audio": "books/diary-bet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1399,7 +1399,7 @@
           "end": 3.688
         }
       ],
-      "audio": "audio_diary_bet/s14.mp3"
+      "audio": "books/diary-bet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1457,7 +1457,7 @@
           "end": 2.825
         }
       ],
-      "audio": "audio_diary_bet/s15.mp3"
+      "audio": "books/diary-bet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1535,7 +1535,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_diary_bet/s16.mp3"
+      "audio": "books/diary-bet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1583,7 +1583,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_diary_bet/s17.mp3"
+      "audio": "books/diary-bet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1651,7 +1651,7 @@
           "end": 2.175
         }
       ],
-      "audio": "audio_diary_bet/s18.mp3"
+      "audio": "books/diary-bet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1729,7 +1729,7 @@
           "end": 3.15
         }
       ],
-      "audio": "audio_diary_bet/s19.mp3"
+      "audio": "books/diary-bet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1847,7 +1847,7 @@
           "end": 3.688
         }
       ],
-      "audio": "audio_diary_bet/s20.mp3"
+      "audio": "books/diary-bet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1905,7 +1905,7 @@
           "end": 2.575
         }
       ],
-      "audio": "audio_diary_bet/s21.mp3"
+      "audio": "books/diary-bet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1953,7 +1953,7 @@
           "end": 2.45
         }
       ],
-      "audio": "audio_diary_bet/s22.mp3"
+      "audio": "books/diary-bet/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -2051,7 +2051,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_diary_bet/s23.mp3"
+      "audio": "books/diary-bet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -2129,7 +2129,7 @@
           "end": 3.487
         }
       ],
-      "audio": "audio_diary_bet/s24.mp3"
+      "audio": "books/diary-bet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -2237,7 +2237,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_diary_bet/s25.mp3"
+      "audio": "books/diary-bet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -2285,7 +2285,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_diary_bet/s26.mp3"
+      "audio": "books/diary-bet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -2393,7 +2393,7 @@
           "end": 3.975
         }
       ],
-      "audio": "audio_diary_bet/s27.mp3"
+      "audio": "books/diary-bet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -2451,7 +2451,7 @@
           "end": 1.637
         }
       ],
-      "audio": "audio_diary_bet/s28.mp3"
+      "audio": "books/diary-bet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -2519,7 +2519,7 @@
           "end": 2.575
         }
       ],
-      "audio": "audio_diary_bet/s29.mp3"
+      "audio": "books/diary-bet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -2607,7 +2607,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_diary_bet/s30.mp3"
+      "audio": "books/diary-bet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -2695,7 +2695,7 @@
           "end": 3.8
         }
       ],
-      "audio": "audio_diary_bet/s31.mp3"
+      "audio": "books/diary-bet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -2793,7 +2793,7 @@
           "end": 3.675
         }
       ],
-      "audio": "audio_diary_bet/s32.mp3"
+      "audio": "books/diary-bet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -2841,7 +2841,7 @@
           "end": 2.413
         }
       ],
-      "audio": "audio_diary_bet/s33.mp3"
+      "audio": "books/diary-bet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -2919,7 +2919,7 @@
           "end": 3.038
         }
       ],
-      "audio": "audio_diary_bet/s34.mp3"
+      "audio": "books/diary-bet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -2977,7 +2977,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_diary_bet/s35.mp3"
+      "audio": "books/diary-bet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -3035,7 +3035,7 @@
           "end": 2.188
         }
       ],
-      "audio": "audio_diary_bet/s36.mp3"
+      "audio": "books/diary-bet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -3133,15 +3133,15 @@
           "end": 5.075
         }
       ],
-      "audio": "audio_diary_bet/s37.mp3",
+      "audio": "books/diary-bet/audio/s37.mp3",
       "illustration": {
         "word": "מִכְתָּב",
         "tr": "и письмо",
         "caption": "מִכְתָּב",
         "capTr": "michtav",
         "mnemonic": "Представь себе Микрофона, который вдруг превратился в гигантское Письмо и теперь летит по воздуху, оставляя за собой след из писем и микрофонов. Все люди вокруг бегают и пытаются поймать это летящее письмо, но оно слишком быстро. Вдруг Микрофон-Письмо начинает говорить и рассказывает истории о древних цивилизациях.",
-        "img": "illustrations_diary_bet/s37.webp",
-        "imgMnemonic": "illustrations_diary_bet/s37-mnemonic.webp"
+        "img": "books/diary-bet/illustrations/s37.webp",
+        "imgMnemonic": "books/diary-bet/illustrations/s37-mnemonic.webp"
       }
     },
     {
@@ -3210,7 +3210,7 @@
           "end": 2.125
         }
       ],
-      "audio": "audio_diary_bet/s38.mp3"
+      "audio": "books/diary-bet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -3368,7 +3368,7 @@
           "end": 5.95
         }
       ],
-      "audio": "audio_diary_bet/s39.mp3"
+      "audio": "books/diary-bet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -3426,7 +3426,7 @@
           "end": 2.312
         }
       ],
-      "audio": "audio_diary_bet/s40.mp3"
+      "audio": "books/diary-bet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -3534,15 +3534,15 @@
           "end": 3.763
         }
       ],
-      "audio": "audio_diary_bet/s41.mp3",
+      "audio": "books/diary-bet/audio/s41.mp3",
       "illustration": {
         "word": "אוֹשֶׁר",
         "tr": "от счастья",
         "caption": "אוֹשֶׁר",
         "capTr": "osher",
         "mnemonic": "Представь, что огромный, улыбающийся медведь ОШАЛЕЛ от счастья, когда увидел свою любимую еду - мед, и начал танцевать на одной ноге, размахивая лапами в воздухе. Его друзья, группа смешных белок, присоединились к танцу, и вместе они создали веселую, шумную вечеринку в лесу. Медведь ОШАЛЕЛ был так счастлив, что даже начал петь глупую песенку про мед и счастье.",
-        "img": "illustrations_diary_bet/s41.webp",
-        "imgMnemonic": "illustrations_diary_bet/s41-mnemonic.webp"
+        "img": "books/diary-bet/illustrations/s41.webp",
+        "imgMnemonic": "books/diary-bet/illustrations/s41-mnemonic.webp"
       }
     },
     {
@@ -3611,7 +3611,7 @@
           "end": 2.675
         }
       ],
-      "audio": "audio_diary_bet/s42.mp3"
+      "audio": "books/diary-bet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -3679,7 +3679,7 @@
           "end": 3.163
         }
       ],
-      "audio": "audio_diary_bet/s43.mp3"
+      "audio": "books/diary-bet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -3757,7 +3757,7 @@
           "end": 3.15
         }
       ],
-      "audio": "audio_diary_bet/s44.mp3"
+      "audio": "books/diary-bet/audio/s44.mp3"
     }
   ]
 }

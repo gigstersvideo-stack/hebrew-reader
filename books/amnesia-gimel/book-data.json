@@ -56,7 +56,7 @@
           "end": 2.625
         }
       ],
-      "audio": "audio_amnesia_gimel/s1.mp3"
+      "audio": "books/amnesia-gimel/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -234,7 +234,7 @@
           "end": 6.025
         }
       ],
-      "audio": "audio_amnesia_gimel/s2.mp3"
+      "audio": "books/amnesia-gimel/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -372,7 +372,7 @@
           "end": 4.812
         }
       ],
-      "audio": "audio_amnesia_gimel/s3.mp3"
+      "audio": "books/amnesia-gimel/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -430,7 +430,7 @@
           "end": 2.663
         }
       ],
-      "audio": "audio_amnesia_gimel/s4.mp3"
+      "audio": "books/amnesia-gimel/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -508,7 +508,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_amnesia_gimel/s5.mp3"
+      "audio": "books/amnesia-gimel/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -676,15 +676,15 @@
           "end": 5.9
         }
       ],
-      "audio": "audio_amnesia_gimel/s6.mp3",
+      "audio": "books/amnesia-gimel/audio/s6.mp3",
       "illustration": {
         "word": "חֶדֶר",
         "tr": "комнаты",
         "caption": "חֶדֶר",
         "capTr": "kheder",
         "mnemonic": "Представьте, что вы заходите в новую КОМНАТУ, а в её центре летает гигантская голова, орёт «Хе, держи!» (хэдер) и бросает в вас целую миниатюрную кукольную комнату. От неожиданности вы едва успеваете ее поймать!",
-        "img": "illustrations_amnesia_gimel/s6.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s6-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s6.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s6-mnemonic.webp"
       }
     },
     {
@@ -743,7 +743,7 @@
           "end": 2.312
         }
       ],
-      "audio": "audio_amnesia_gimel/s7.mp3"
+      "audio": "books/amnesia-gimel/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -871,7 +871,7 @@
           "end": 5.675
         }
       ],
-      "audio": "audio_amnesia_gimel/s8.mp3"
+      "audio": "books/amnesia-gimel/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -919,7 +919,7 @@
           "end": 2.237
         }
       ],
-      "audio": "audio_amnesia_gimel/s9.mp3"
+      "audio": "books/amnesia-gimel/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1007,7 +1007,7 @@
           "end": 3.087
         }
       ],
-      "audio": "audio_amnesia_gimel/s10.mp3"
+      "audio": "books/amnesia-gimel/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -1145,7 +1145,7 @@
           "end": 6.763
         }
       ],
-      "audio": "audio_amnesia_gimel/s11.mp3"
+      "audio": "books/amnesia-gimel/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1213,7 +1213,7 @@
           "end": 3.212
         }
       ],
-      "audio": "audio_amnesia_gimel/s12.mp3"
+      "audio": "books/amnesia-gimel/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1321,7 +1321,7 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s13.mp3"
+      "audio": "books/amnesia-gimel/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1459,7 +1459,7 @@
           "end": 5.0
         }
       ],
-      "audio": "audio_amnesia_gimel/s14.mp3"
+      "audio": "books/amnesia-gimel/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1587,7 +1587,7 @@
           "end": 5.213
         }
       ],
-      "audio": "audio_amnesia_gimel/s15.mp3"
+      "audio": "books/amnesia-gimel/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1695,7 +1695,7 @@
           "end": 4.062
         }
       ],
-      "audio": "audio_amnesia_gimel/s16.mp3"
+      "audio": "books/amnesia-gimel/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1743,7 +1743,7 @@
           "end": 1.512
         }
       ],
-      "audio": "audio_amnesia_gimel/s17.mp3"
+      "audio": "books/amnesia-gimel/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1791,7 +1791,7 @@
           "end": 1.663
         }
       ],
-      "audio": "audio_amnesia_gimel/s18.mp3"
+      "audio": "books/amnesia-gimel/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1879,7 +1879,7 @@
           "end": 3.2
         }
       ],
-      "audio": "audio_amnesia_gimel/s19.mp3"
+      "audio": "books/amnesia-gimel/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1977,7 +1977,7 @@
           "end": 4.287
         }
       ],
-      "audio": "audio_amnesia_gimel/s20.mp3"
+      "audio": "books/amnesia-gimel/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -2075,7 +2075,7 @@
           "end": 4.938
         }
       ],
-      "audio": "audio_amnesia_gimel/s21.mp3"
+      "audio": "books/amnesia-gimel/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -2123,7 +2123,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_amnesia_gimel/s22.mp3"
+      "audio": "books/amnesia-gimel/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -2181,15 +2181,15 @@
           "end": 2.925
         }
       ],
-      "audio": "audio_amnesia_gimel/s23.mp3",
+      "audio": "books/amnesia-gimel/audio/s23.mp3",
       "illustration": {
         "word": "חֲרָדָה",
         "tr": "тревоги",
         "caption": "חֲרָדָה",
         "capTr": "kharada",
         "mnemonic": "Представь гигантскую перепуганную рожу («ХАРЮ»), охваченную панической ТРЕВОГОЙ. С выпученными от страха глазами эта ХАРЯ судорожно дрожит и испуганно кивает, соглашаясь: «ДА!». Запомни эту картину: ХАРЯ кричит «ДА!» от ТРЕВОГИ — ХАРАДА.",
-        "img": "illustrations_amnesia_gimel/s23.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s23-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s23.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s23-mnemonic.webp"
       }
     },
     {
@@ -2308,7 +2308,7 @@
           "end": 4.463
         }
       ],
-      "audio": "audio_amnesia_gimel/s24.mp3"
+      "audio": "books/amnesia-gimel/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -2436,7 +2436,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_amnesia_gimel/s25.mp3"
+      "audio": "books/amnesia-gimel/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -2504,7 +2504,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_amnesia_gimel/s26.mp3"
+      "audio": "books/amnesia-gimel/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -2608,7 +2608,7 @@
           "root": "ח-ד-ד"
         }
       ],
-      "audio": "audio_amnesia_gimel/s27.mp3"
+      "audio": "books/amnesia-gimel/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -2716,7 +2716,7 @@
           "end": 4.35
         }
       ],
-      "audio": "audio_amnesia_gimel/s28.mp3"
+      "audio": "books/amnesia-gimel/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -2864,7 +2864,7 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_amnesia_gimel/s29.mp3"
+      "audio": "books/amnesia-gimel/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -2912,7 +2912,7 @@
           "end": 1.4
         }
       ],
-      "audio": "audio_amnesia_gimel/s30.mp3"
+      "audio": "books/amnesia-gimel/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -3040,7 +3040,7 @@
           "end": 4.013
         }
       ],
-      "audio": "audio_amnesia_gimel/s31.mp3"
+      "audio": "books/amnesia-gimel/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -3188,7 +3188,7 @@
           "end": 5.55
         }
       ],
-      "audio": "audio_amnesia_gimel/s32.mp3"
+      "audio": "books/amnesia-gimel/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -3266,7 +3266,7 @@
           "end": 3.312
         }
       ],
-      "audio": "audio_amnesia_gimel/s33.mp3"
+      "audio": "books/amnesia-gimel/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -3404,7 +3404,7 @@
           "end": 5.862
         }
       ],
-      "audio": "audio_amnesia_gimel/s34.mp3"
+      "audio": "books/amnesia-gimel/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -3482,7 +3482,7 @@
           "end": 2.638
         }
       ],
-      "audio": "audio_amnesia_gimel/s35.mp3"
+      "audio": "books/amnesia-gimel/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -3620,7 +3620,7 @@
           "end": 5.737
         }
       ],
-      "audio": "audio_amnesia_gimel/s36.mp3"
+      "audio": "books/amnesia-gimel/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -3818,7 +3818,7 @@
           "end": 7.088
         }
       ],
-      "audio": "audio_amnesia_gimel/s37.mp3"
+      "audio": "books/amnesia-gimel/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -3916,7 +3916,7 @@
           "end": 3.962
         }
       ],
-      "audio": "audio_amnesia_gimel/s38.mp3"
+      "audio": "books/amnesia-gimel/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -4114,7 +4114,7 @@
           "end": 8.688
         }
       ],
-      "audio": "audio_amnesia_gimel/s39.mp3"
+      "audio": "books/amnesia-gimel/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -4242,7 +4242,7 @@
           "end": 5.287
         }
       ],
-      "audio": "audio_amnesia_gimel/s40.mp3"
+      "audio": "books/amnesia-gimel/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -4330,7 +4330,7 @@
           "end": 2.575
         }
       ],
-      "audio": "audio_amnesia_gimel/s41.mp3"
+      "audio": "books/amnesia-gimel/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -4578,7 +4578,7 @@
           "end": 8.988
         }
       ],
-      "audio": "audio_amnesia_gimel/s42.mp3"
+      "audio": "books/amnesia-gimel/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -4716,7 +4716,7 @@
           "end": 5.425
         }
       ],
-      "audio": "audio_amnesia_gimel/s43.mp3"
+      "audio": "books/amnesia-gimel/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -4894,7 +4894,7 @@
           "end": 6.525
         }
       ],
-      "audio": "audio_amnesia_gimel/s44.mp3"
+      "audio": "books/amnesia-gimel/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -4952,7 +4952,7 @@
           "end": 2.413
         }
       ],
-      "audio": "audio_amnesia_gimel/s45.mp3"
+      "audio": "books/amnesia-gimel/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -5050,15 +5050,15 @@
           "end": 4.338
         }
       ],
-      "audio": "audio_amnesia_gimel/s46.mp3",
+      "audio": "books/amnesia-gimel/audio/s46.mp3",
       "illustration": {
         "word": "טַבַּעַת",
         "tr": "кольцо",
         "caption": "טַבַּעַת",
         "capTr": "taba'at",
         "mnemonic": "Созвучие: ТАБАКА (курица табака). Представьте себе румяную жареную курицу ТАБАКА, которая с важным видом надевает на свою хрустящую ножку огромное драгоценное КОЛЬЦО. Она с восхищением любуется сверкающим камнем на кольце в зеркале.",
-        "img": "illustrations_amnesia_gimel/s46.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s46-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s46.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s46-mnemonic.webp"
       }
     },
     {
@@ -5107,7 +5107,7 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_amnesia_gimel/s47.mp3"
+      "audio": "books/amnesia-gimel/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -5305,7 +5305,7 @@
           "end": 6.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s48.mp3"
+      "audio": "books/amnesia-gimel/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -5433,7 +5433,7 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s49.mp3"
+      "audio": "books/amnesia-gimel/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -5511,7 +5511,7 @@
           "end": 3.2
         }
       ],
-      "audio": "audio_amnesia_gimel/s50.mp3"
+      "audio": "books/amnesia-gimel/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -5599,7 +5599,7 @@
           "end": 3.712
         }
       ],
-      "audio": "audio_amnesia_gimel/s51.mp3"
+      "audio": "books/amnesia-gimel/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -5637,7 +5637,7 @@
           "end": 1.4
         }
       ],
-      "audio": "audio_amnesia_gimel/s52.mp3"
+      "audio": "books/amnesia-gimel/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -5685,7 +5685,7 @@
           "end": 1.762
         }
       ],
-      "audio": "audio_amnesia_gimel/s53.mp3"
+      "audio": "books/amnesia-gimel/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -5833,7 +5833,7 @@
           "end": 6.5
         }
       ],
-      "audio": "audio_amnesia_gimel/s54.mp3"
+      "audio": "books/amnesia-gimel/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -5941,7 +5941,7 @@
           "end": 5.025
         }
       ],
-      "audio": "audio_amnesia_gimel/s55.mp3"
+      "audio": "books/amnesia-gimel/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -6029,7 +6029,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_amnesia_gimel/s56.mp3"
+      "audio": "books/amnesia-gimel/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -6157,7 +6157,7 @@
           "end": 4.65
         }
       ],
-      "audio": "audio_amnesia_gimel/s57.mp3"
+      "audio": "books/amnesia-gimel/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -6395,7 +6395,7 @@
           "end": 9.975
         }
       ],
-      "audio": "audio_amnesia_gimel/s58.mp3"
+      "audio": "books/amnesia-gimel/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -6533,7 +6533,7 @@
           "end": 5.825
         }
       ],
-      "audio": "audio_amnesia_gimel/s59.mp3"
+      "audio": "books/amnesia-gimel/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -6641,7 +6641,7 @@
           "end": 4.862
         }
       ],
-      "audio": "audio_amnesia_gimel/s60.mp3"
+      "audio": "books/amnesia-gimel/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -6699,7 +6699,7 @@
           "end": 2.062
         }
       ],
-      "audio": "audio_amnesia_gimel/s61.mp3"
+      "audio": "books/amnesia-gimel/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -6777,7 +6777,7 @@
           "end": 2.375
         }
       ],
-      "audio": "audio_amnesia_gimel/s62.mp3"
+      "audio": "books/amnesia-gimel/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -6875,7 +6875,7 @@
           "end": 4.05
         }
       ],
-      "audio": "audio_amnesia_gimel/s63.mp3"
+      "audio": "books/amnesia-gimel/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -6893,7 +6893,7 @@
           "end": 0.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s64.mp3"
+      "audio": "books/amnesia-gimel/audio/s64.mp3"
     },
     {
       "id": "s65",
@@ -6981,7 +6981,7 @@
           "end": 3.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s65.mp3"
+      "audio": "books/amnesia-gimel/audio/s65.mp3"
     },
     {
       "id": "s66",
@@ -7019,7 +7019,7 @@
           "end": 2.188
         }
       ],
-      "audio": "audio_amnesia_gimel/s66.mp3"
+      "audio": "books/amnesia-gimel/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -7047,7 +7047,7 @@
           "end": 1.0
         }
       ],
-      "audio": "audio_amnesia_gimel/s67.mp3"
+      "audio": "books/amnesia-gimel/audio/s67.mp3"
     },
     {
       "id": "s68",
@@ -7075,7 +7075,7 @@
           "end": 1.113
         }
       ],
-      "audio": "audio_amnesia_gimel/s68.mp3"
+      "audio": "books/amnesia-gimel/audio/s68.mp3"
     },
     {
       "id": "s69",
@@ -7143,15 +7143,15 @@
           "end": 3.013
         }
       ],
-      "audio": "audio_amnesia_gimel/s69.mp3",
+      "audio": "books/amnesia-gimel/audio/s69.mp3",
       "illustration": {
         "word": "שָׁבוּעַ",
         "tr": "недели!",
         "caption": "שָׁבוּעַ",
         "capTr": "SHAVUA",
         "mnemonic": "Чтобы запомнить «шаву́а» (неделя), представьте фокусника, который каждую неделю громко шипит «ША!» и сдёргивает пышную ВУАЛЬ («ша-вуаль») с гигантского календаря. Из-под вуали со свистом вылетают безумные звенящие будильники прямо ему в лицо.",
-        "img": "illustrations_amnesia_gimel/s69.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s69-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s69.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s69-mnemonic.webp"
       }
     },
     {
@@ -7230,7 +7230,7 @@
           "end": 4.175
         }
       ],
-      "audio": "audio_amnesia_gimel/s70.mp3"
+      "audio": "books/amnesia-gimel/audio/s70.mp3"
     },
     {
       "id": "s71",
@@ -7248,7 +7248,7 @@
           "end": 1.025
         }
       ],
-      "audio": "audio_amnesia_gimel/s71.mp3"
+      "audio": "books/amnesia-gimel/audio/s71.mp3"
     },
     {
       "id": "s72",
@@ -7376,7 +7376,7 @@
           "end": 5.463
         }
       ],
-      "audio": "audio_amnesia_gimel/s72.mp3"
+      "audio": "books/amnesia-gimel/audio/s72.mp3"
     },
     {
       "id": "s73",
@@ -7434,7 +7434,7 @@
           "end": 1.575
         }
       ],
-      "audio": "audio_amnesia_gimel/s73.mp3"
+      "audio": "books/amnesia-gimel/audio/s73.mp3"
     },
     {
       "id": "s74",
@@ -7482,7 +7482,7 @@
           "end": 2.362
         }
       ],
-      "audio": "audio_amnesia_gimel/s74.mp3"
+      "audio": "books/amnesia-gimel/audio/s74.mp3"
     },
     {
       "id": "s75",
@@ -7530,7 +7530,7 @@
           "end": 1.512
         }
       ],
-      "audio": "audio_amnesia_gimel/s75.mp3"
+      "audio": "books/amnesia-gimel/audio/s75.mp3"
     },
     {
       "id": "s76",
@@ -7598,7 +7598,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_amnesia_gimel/s76.mp3"
+      "audio": "books/amnesia-gimel/audio/s76.mp3"
     },
     {
       "id": "s77",
@@ -7706,7 +7706,7 @@
           "end": 4.662
         }
       ],
-      "audio": "audio_amnesia_gimel/s77.mp3"
+      "audio": "books/amnesia-gimel/audio/s77.mp3"
     },
     {
       "id": "s78",
@@ -7784,7 +7784,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_amnesia_gimel/s78.mp3"
+      "audio": "books/amnesia-gimel/audio/s78.mp3"
     },
     {
       "id": "s79",
@@ -7922,7 +7922,7 @@
           "end": 5.213
         }
       ],
-      "audio": "audio_amnesia_gimel/s79.mp3"
+      "audio": "books/amnesia-gimel/audio/s79.mp3"
     },
     {
       "id": "s80",
@@ -8090,7 +8090,7 @@
           "end": 6.838
         }
       ],
-      "audio": "audio_amnesia_gimel/s80.mp3"
+      "audio": "books/amnesia-gimel/audio/s80.mp3"
     },
     {
       "id": "s81",
@@ -8138,7 +8138,7 @@
           "end": 1.562
         }
       ],
-      "audio": "audio_amnesia_gimel/s81.mp3"
+      "audio": "books/amnesia-gimel/audio/s81.mp3"
     },
     {
       "id": "s82",
@@ -8176,7 +8176,7 @@
           "end": 1.538
         }
       ],
-      "audio": "audio_amnesia_gimel/s82.mp3"
+      "audio": "books/amnesia-gimel/audio/s82.mp3"
     },
     {
       "id": "s83",
@@ -8304,7 +8304,7 @@
           "end": 4.5
         }
       ],
-      "audio": "audio_amnesia_gimel/s83.mp3"
+      "audio": "books/amnesia-gimel/audio/s83.mp3"
     },
     {
       "id": "s84",
@@ -8382,7 +8382,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_amnesia_gimel/s84.mp3"
+      "audio": "books/amnesia-gimel/audio/s84.mp3"
     },
     {
       "id": "s85",
@@ -8550,15 +8550,15 @@
           "end": 6.175
         }
       ],
-      "audio": "audio_amnesia_gimel/s85.mp3",
+      "audio": "books/amnesia-gimel/audio/s85.mp3",
       "illustration": {
         "word": "תְּחוּשָׁה",
         "tr": "ощущении",
         "caption": "תְּחוּשָׁה",
         "capTr": "Tkhusha",
         "mnemonic": "Созвучие: תְּחוּשָׁה (тхуша) — ТУША. Представьте, что прямо вам на грудь усаживается гигантская туша бегемота, вызывая невероятно тяжелое ощущение. Вы лежите с открытым ртом, пытаясь справиться с этим диким ощущением давления!",
-        "img": "illustrations_amnesia_gimel/s85.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s85-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s85.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s85-mnemonic.webp"
       }
     },
     {
@@ -8607,7 +8607,7 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_amnesia_gimel/s86.mp3"
+      "audio": "books/amnesia-gimel/audio/s86.mp3"
     },
     {
       "id": "s87",
@@ -8655,7 +8655,7 @@
           "end": 1.55
         }
       ],
-      "audio": "audio_amnesia_gimel/s87.mp3"
+      "audio": "books/amnesia-gimel/audio/s87.mp3"
     },
     {
       "id": "s88",
@@ -8743,7 +8743,7 @@
           "end": 3.125
         }
       ],
-      "audio": "audio_amnesia_gimel/s88.mp3"
+      "audio": "books/amnesia-gimel/audio/s88.mp3"
     },
     {
       "id": "s89",
@@ -8801,7 +8801,7 @@
           "end": 2.438
         }
       ],
-      "audio": "audio_amnesia_gimel/s89.mp3"
+      "audio": "books/amnesia-gimel/audio/s89.mp3"
     },
     {
       "id": "s90",
@@ -8959,7 +8959,7 @@
           "end": 6.95
         }
       ],
-      "audio": "audio_amnesia_gimel/s90.mp3"
+      "audio": "books/amnesia-gimel/audio/s90.mp3"
     },
     {
       "id": "s91",
@@ -8997,7 +8997,7 @@
           "end": 1.212
         }
       ],
-      "audio": "audio_amnesia_gimel/s91.mp3"
+      "audio": "books/amnesia-gimel/audio/s91.mp3"
     },
     {
       "id": "s92",
@@ -9145,7 +9145,7 @@
           "end": 5.638
         }
       ],
-      "audio": "audio_amnesia_gimel/s92.mp3"
+      "audio": "books/amnesia-gimel/audio/s92.mp3"
     },
     {
       "id": "s93",
@@ -9203,7 +9203,7 @@
           "end": 2.275
         }
       ],
-      "audio": "audio_amnesia_gimel/s93.mp3"
+      "audio": "books/amnesia-gimel/audio/s93.mp3"
     },
     {
       "id": "s94",
@@ -9361,7 +9361,7 @@
           "end": 6.763
         }
       ],
-      "audio": "audio_amnesia_gimel/s94.mp3"
+      "audio": "books/amnesia-gimel/audio/s94.mp3"
     },
     {
       "id": "s95",
@@ -9399,7 +9399,7 @@
           "end": 2.225
         }
       ],
-      "audio": "audio_amnesia_gimel/s95.mp3"
+      "audio": "books/amnesia-gimel/audio/s95.mp3"
     },
     {
       "id": "s96",
@@ -9477,7 +9477,7 @@
           "end": 4.112
         }
       ],
-      "audio": "audio_amnesia_gimel/s96.mp3"
+      "audio": "books/amnesia-gimel/audio/s96.mp3"
     },
     {
       "id": "s97",
@@ -9555,7 +9555,7 @@
           "end": 3.9
         }
       ],
-      "audio": "audio_amnesia_gimel/s97.mp3"
+      "audio": "books/amnesia-gimel/audio/s97.mp3"
     },
     {
       "id": "s98",
@@ -9693,7 +9693,7 @@
           "end": 6.537
         }
       ],
-      "audio": "audio_amnesia_gimel/s98.mp3"
+      "audio": "books/amnesia-gimel/audio/s98.mp3"
     },
     {
       "id": "s99",
@@ -9781,7 +9781,7 @@
           "end": 3.688
         }
       ],
-      "audio": "audio_amnesia_gimel/s99.mp3"
+      "audio": "books/amnesia-gimel/audio/s99.mp3"
     },
     {
       "id": "s100",
@@ -9909,7 +9909,7 @@
           "end": 4.275
         }
       ],
-      "audio": "audio_amnesia_gimel/s100.mp3"
+      "audio": "books/amnesia-gimel/audio/s100.mp3"
     },
     {
       "id": "s101",
@@ -9987,7 +9987,7 @@
           "end": 2.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s101.mp3"
+      "audio": "books/amnesia-gimel/audio/s101.mp3"
     },
     {
       "id": "s102",
@@ -10015,7 +10015,7 @@
           "end": 1.175
         }
       ],
-      "audio": "audio_amnesia_gimel/s102.mp3"
+      "audio": "books/amnesia-gimel/audio/s102.mp3"
     },
     {
       "id": "s103",
@@ -10093,7 +10093,7 @@
           "end": 2.737
         }
       ],
-      "audio": "audio_amnesia_gimel/s103.mp3"
+      "audio": "books/amnesia-gimel/audio/s103.mp3"
     },
     {
       "id": "s104",
@@ -10151,7 +10151,7 @@
           "end": 2.112
         }
       ],
-      "audio": "audio_amnesia_gimel/s104.mp3"
+      "audio": "books/amnesia-gimel/audio/s104.mp3"
     },
     {
       "id": "s105",
@@ -10339,7 +10339,7 @@
           "end": 6.938
         }
       ],
-      "audio": "audio_amnesia_gimel/s105.mp3"
+      "audio": "books/amnesia-gimel/audio/s105.mp3"
     },
     {
       "id": "s106",
@@ -10417,7 +10417,7 @@
           "end": 2.9
         }
       ],
-      "audio": "audio_amnesia_gimel/s106.mp3"
+      "audio": "books/amnesia-gimel/audio/s106.mp3"
     },
     {
       "id": "s107",
@@ -10475,7 +10475,7 @@
           "end": 2.675
         }
       ],
-      "audio": "audio_amnesia_gimel/s107.mp3"
+      "audio": "books/amnesia-gimel/audio/s107.mp3"
     },
     {
       "id": "s108",
@@ -10563,7 +10563,7 @@
           "end": 3.95
         }
       ],
-      "audio": "audio_amnesia_gimel/s108.mp3"
+      "audio": "books/amnesia-gimel/audio/s108.mp3"
     },
     {
       "id": "s109",
@@ -10671,7 +10671,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_amnesia_gimel/s109.mp3"
+      "audio": "books/amnesia-gimel/audio/s109.mp3"
     },
     {
       "id": "s110",
@@ -10719,7 +10719,7 @@
           "end": 1.788
         }
       ],
-      "audio": "audio_amnesia_gimel/s110.mp3"
+      "audio": "books/amnesia-gimel/audio/s110.mp3"
     },
     {
       "id": "s111",
@@ -10917,7 +10917,7 @@
           "end": 7.875
         }
       ],
-      "audio": "audio_amnesia_gimel/s111.mp3"
+      "audio": "books/amnesia-gimel/audio/s111.mp3"
     },
     {
       "id": "s112",
@@ -10985,15 +10985,15 @@
           "end": 3.0
         }
       ],
-      "audio": "audio_amnesia_gimel/s112.mp3",
+      "audio": "books/amnesia-gimel/audio/s112.mp3",
       "illustration": {
         "word": "מַסָּךְ",
         "tr": "экран",
         "caption": "מַסָּךְ",
         "capTr": "masak",
         "mnemonic": "Слово «масак» созвучно со словом МАССАЖ. Представьте, как огромный компьютерный ЭКРАН лежит на кушетке в СПА-салоне, а усатый массажист делает ему сильный МАССАЖ, выжимая из него разноцветные пиксели. ЭКРАН от удовольствия расплывается в блаженной улыбке.",
-        "img": "illustrations_amnesia_gimel/s112.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s112-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s112.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s112-mnemonic.webp"
       }
     },
     {
@@ -11042,7 +11042,7 @@
           "end": 1.837
         }
       ],
-      "audio": "audio_amnesia_gimel/s113.mp3"
+      "audio": "books/amnesia-gimel/audio/s113.mp3"
     },
     {
       "id": "s114",
@@ -11080,7 +11080,7 @@
           "end": 1.25
         }
       ],
-      "audio": "audio_amnesia_gimel/s114.mp3"
+      "audio": "books/amnesia-gimel/audio/s114.mp3"
     },
     {
       "id": "s115",
@@ -11218,7 +11218,7 @@
           "end": 5.425
         }
       ],
-      "audio": "audio_amnesia_gimel/s115.mp3"
+      "audio": "books/amnesia-gimel/audio/s115.mp3"
     },
     {
       "id": "s116",
@@ -11316,7 +11316,7 @@
           "end": 4.475
         }
       ],
-      "audio": "audio_amnesia_gimel/s116.mp3"
+      "audio": "books/amnesia-gimel/audio/s116.mp3"
     },
     {
       "id": "s117",
@@ -11404,7 +11404,7 @@
           "end": 3.038
         }
       ],
-      "audio": "audio_amnesia_gimel/s117.mp3"
+      "audio": "books/amnesia-gimel/audio/s117.mp3"
     },
     {
       "id": "s118",
@@ -11552,7 +11552,7 @@
           "end": 5.8
         }
       ],
-      "audio": "audio_amnesia_gimel/s118.mp3"
+      "audio": "books/amnesia-gimel/audio/s118.mp3"
     },
     {
       "id": "s119",
@@ -11670,7 +11670,7 @@
           "end": 4.825
         }
       ],
-      "audio": "audio_amnesia_gimel/s119.mp3"
+      "audio": "books/amnesia-gimel/audio/s119.mp3"
     },
     {
       "id": "s120",
@@ -11750,7 +11750,7 @@
           "root": "ק-ט-ע"
         }
       ],
-      "audio": "audio_amnesia_gimel/s120.mp3",
+      "audio": "books/amnesia-gimel/audio/s120.mp3",
       "ttsEngine": "gtts"
     },
     {
@@ -11859,7 +11859,7 @@
           "end": 3.575
         }
       ],
-      "audio": "audio_amnesia_gimel/s121.mp3"
+      "audio": "books/amnesia-gimel/audio/s121.mp3"
     },
     {
       "id": "s122",
@@ -11887,7 +11887,7 @@
           "end": 0.975
         }
       ],
-      "audio": "audio_amnesia_gimel/s122.mp3"
+      "audio": "books/amnesia-gimel/audio/s122.mp3"
     },
     {
       "id": "s123",
@@ -11915,7 +11915,7 @@
           "end": 1.062
         }
       ],
-      "audio": "audio_amnesia_gimel/s123.mp3"
+      "audio": "books/amnesia-gimel/audio/s123.mp3"
     },
     {
       "id": "s124",
@@ -12053,7 +12053,7 @@
           "end": 6.65
         }
       ],
-      "audio": "audio_amnesia_gimel/s124.mp3"
+      "audio": "books/amnesia-gimel/audio/s124.mp3"
     },
     {
       "id": "s125",
@@ -12161,7 +12161,7 @@
           "end": 4.862
         }
       ],
-      "audio": "audio_amnesia_gimel/s125.mp3"
+      "audio": "books/amnesia-gimel/audio/s125.mp3"
     },
     {
       "id": "s126",
@@ -12249,7 +12249,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_amnesia_gimel/s126.mp3"
+      "audio": "books/amnesia-gimel/audio/s126.mp3"
     },
     {
       "id": "s127",
@@ -12297,7 +12297,7 @@
           "end": 1.7
         }
       ],
-      "audio": "audio_amnesia_gimel/s127.mp3"
+      "audio": "books/amnesia-gimel/audio/s127.mp3"
     },
     {
       "id": "s128",
@@ -12415,7 +12415,7 @@
           "end": 4.425
         }
       ],
-      "audio": "audio_amnesia_gimel/s128.mp3"
+      "audio": "books/amnesia-gimel/audio/s128.mp3"
     },
     {
       "id": "s129",
@@ -12493,7 +12493,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_amnesia_gimel/s129.mp3"
+      "audio": "books/amnesia-gimel/audio/s129.mp3"
     },
     {
       "id": "s130",
@@ -12611,7 +12611,7 @@
           "end": 5.112
         }
       ],
-      "audio": "audio_amnesia_gimel/s130.mp3"
+      "audio": "books/amnesia-gimel/audio/s130.mp3"
     },
     {
       "id": "s131",
@@ -12739,7 +12739,7 @@
           "end": 4.112
         }
       ],
-      "audio": "audio_amnesia_gimel/s131.mp3"
+      "audio": "books/amnesia-gimel/audio/s131.mp3"
     },
     {
       "id": "s132",
@@ -12817,7 +12817,7 @@
           "end": 3.487
         }
       ],
-      "audio": "audio_amnesia_gimel/s132.mp3"
+      "audio": "books/amnesia-gimel/audio/s132.mp3"
     },
     {
       "id": "s133",
@@ -12905,7 +12905,7 @@
           "end": 4.263
         }
       ],
-      "audio": "audio_amnesia_gimel/s133.mp3"
+      "audio": "books/amnesia-gimel/audio/s133.mp3"
     },
     {
       "id": "s134",
@@ -13033,15 +13033,15 @@
           "end": 5.537
         }
       ],
-      "audio": "audio_amnesia_gimel/s134.mp3",
+      "audio": "books/amnesia-gimel/audio/s134.mp3",
       "illustration": {
         "word": "עַיִן",
         "tr": "глаз",
         "caption": "עַיִן",
         "capTr": "ayin",
         "mnemonic": "Слово «айин» похоже на «Айнштайн» (Эйнштейн). Представьте, как учёный Айнштайн вставляет вместо очков один гигантский живой ГЛАЗ прямо себе в лоб и ошарашенно моргает. Этот огромный глаз вращается и рассматривает всё вокруг.",
-        "img": "illustrations_amnesia_gimel/s134.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s134-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s134.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s134-mnemonic.webp"
       }
     },
     {
@@ -13150,7 +13150,7 @@
           "end": 4.162
         }
       ],
-      "audio": "audio_amnesia_gimel/s135.mp3"
+      "audio": "books/amnesia-gimel/audio/s135.mp3"
     },
     {
       "id": "s136",
@@ -13308,7 +13308,7 @@
           "end": 5.8
         }
       ],
-      "audio": "audio_amnesia_gimel/s136.mp3"
+      "audio": "books/amnesia-gimel/audio/s136.mp3"
     },
     {
       "id": "s137",
@@ -13416,7 +13416,7 @@
           "end": 5.525
         }
       ],
-      "audio": "audio_amnesia_gimel/s137.mp3"
+      "audio": "books/amnesia-gimel/audio/s137.mp3"
     },
     {
       "id": "s138",
@@ -13464,7 +13464,7 @@
           "end": 2.275
         }
       ],
-      "audio": "audio_amnesia_gimel/s138.mp3"
+      "audio": "books/amnesia-gimel/audio/s138.mp3"
     },
     {
       "id": "s139",
@@ -13572,7 +13572,7 @@
           "end": 5.037
         }
       ],
-      "audio": "audio_amnesia_gimel/s139.mp3"
+      "audio": "books/amnesia-gimel/audio/s139.mp3"
     },
     {
       "id": "s140",
@@ -13670,7 +13670,7 @@
           "end": 3.987
         }
       ],
-      "audio": "audio_amnesia_gimel/s140.mp3"
+      "audio": "books/amnesia-gimel/audio/s140.mp3"
     },
     {
       "id": "s141",
@@ -13818,15 +13818,15 @@
           "end": 4.6
         }
       ],
-      "audio": "audio_amnesia_gimel/s141.mp3",
+      "audio": "books/amnesia-gimel/audio/s141.mp3",
       "illustration": {
         "word": "בּוֹשֶׂם",
         "tr": "духов",
         "caption": "בּוֹשֶׂם",
         "capTr": "bosem",
         "mnemonic": "Духи по-ивритски — «БОСЕМ», что звучит почти как БОСЫМ. Представьте человека, который бегает БОСЫМ по дозатору огромного стеклянного флакона духов, разбрызгивая парфюм во все стороны. С каждым шагом его голых ног из распылителя бьют мощные фонтаны аромата!",
-        "img": "illustrations_amnesia_gimel/s141.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s141-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s141.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s141-mnemonic.webp"
       }
     },
     {
@@ -13945,7 +13945,7 @@
           "end": 5.138
         }
       ],
-      "audio": "audio_amnesia_gimel/s142.mp3"
+      "audio": "books/amnesia-gimel/audio/s142.mp3"
     },
     {
       "id": "s143",
@@ -14063,7 +14063,7 @@
           "end": 5.338
         }
       ],
-      "audio": "audio_amnesia_gimel/s143.mp3"
+      "audio": "books/amnesia-gimel/audio/s143.mp3"
     },
     {
       "id": "s144",
@@ -14121,7 +14121,7 @@
           "end": 1.812
         }
       ],
-      "audio": "audio_amnesia_gimel/s144.mp3"
+      "audio": "books/amnesia-gimel/audio/s144.mp3"
     },
     {
       "id": "s145",
@@ -14209,7 +14209,7 @@
           "end": 3.163
         }
       ],
-      "audio": "audio_amnesia_gimel/s145.mp3"
+      "audio": "books/amnesia-gimel/audio/s145.mp3"
     },
     {
       "id": "s146",
@@ -14467,7 +14467,7 @@
           "end": 9.738
         }
       ],
-      "audio": "audio_amnesia_gimel/s146.mp3"
+      "audio": "books/amnesia-gimel/audio/s146.mp3"
     },
     {
       "id": "s147",
@@ -14565,7 +14565,7 @@
           "end": 3.812
         }
       ],
-      "audio": "audio_amnesia_gimel/s147.mp3"
+      "audio": "books/amnesia-gimel/audio/s147.mp3"
     },
     {
       "id": "s148",
@@ -14693,7 +14693,7 @@
           "end": 5.5
         }
       ],
-      "audio": "audio_amnesia_gimel/s148.mp3"
+      "audio": "books/amnesia-gimel/audio/s148.mp3"
     },
     {
       "id": "s149",
@@ -14721,7 +14721,7 @@
           "end": 1.4
         }
       ],
-      "audio": "audio_amnesia_gimel/s149.mp3"
+      "audio": "books/amnesia-gimel/audio/s149.mp3"
     },
     {
       "id": "s150",
@@ -14759,7 +14759,7 @@
           "end": 1.087
         }
       ],
-      "audio": "audio_amnesia_gimel/s150.mp3"
+      "audio": "books/amnesia-gimel/audio/s150.mp3"
     },
     {
       "id": "s151",
@@ -14847,7 +14847,7 @@
           "end": 4.037
         }
       ],
-      "audio": "audio_amnesia_gimel/s151.mp3"
+      "audio": "books/amnesia-gimel/audio/s151.mp3"
     },
     {
       "id": "s152",
@@ -14945,7 +14945,7 @@
           "end": 4.55
         }
       ],
-      "audio": "audio_amnesia_gimel/s152.mp3"
+      "audio": "books/amnesia-gimel/audio/s152.mp3"
     },
     {
       "id": "s153",
@@ -15023,7 +15023,7 @@
           "end": 3.525
         }
       ],
-      "audio": "audio_amnesia_gimel/s153.mp3"
+      "audio": "books/amnesia-gimel/audio/s153.mp3"
     },
     {
       "id": "s154",
@@ -15071,7 +15071,7 @@
           "end": 1.762
         }
       ],
-      "audio": "audio_amnesia_gimel/s154.mp3"
+      "audio": "books/amnesia-gimel/audio/s154.mp3"
     },
     {
       "id": "s155",
@@ -15239,7 +15239,7 @@
           "end": 6.763
         }
       ],
-      "audio": "audio_amnesia_gimel/s155.mp3"
+      "audio": "books/amnesia-gimel/audio/s155.mp3"
     },
     {
       "id": "s156",
@@ -15317,7 +15317,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_amnesia_gimel/s156.mp3"
+      "audio": "books/amnesia-gimel/audio/s156.mp3"
     },
     {
       "id": "s157",
@@ -15335,7 +15335,7 @@
           "end": 0.675
         }
       ],
-      "audio": "audio_amnesia_gimel/s157.mp3"
+      "audio": "books/amnesia-gimel/audio/s157.mp3"
     },
     {
       "id": "s158",
@@ -15433,7 +15433,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_amnesia_gimel/s158.mp3"
+      "audio": "books/amnesia-gimel/audio/s158.mp3"
     },
     {
       "id": "s159",
@@ -15561,7 +15561,7 @@
           "end": 4.975
         }
       ],
-      "audio": "audio_amnesia_gimel/s159.mp3"
+      "audio": "books/amnesia-gimel/audio/s159.mp3"
     },
     {
       "id": "s160",
@@ -15699,7 +15699,7 @@
           "end": 6.625
         }
       ],
-      "audio": "audio_amnesia_gimel/s160.mp3"
+      "audio": "books/amnesia-gimel/audio/s160.mp3"
     },
     {
       "id": "s161",
@@ -15857,15 +15857,15 @@
           "end": 5.638
         }
       ],
-      "audio": "audio_amnesia_gimel/s161.mp3",
+      "audio": "books/amnesia-gimel/audio/s161.mp3",
       "illustration": {
         "word": "טַבַּעַת",
         "tr": "кольцо",
         "caption": "טַבַּעַת",
         "capTr": "Taba'at",
         "mnemonic": "Созвучно с 'ТАБАК'. Представьте, как оживший гигантский лист ТАБАКА надел на себя сверкающее драгоценное КОЛЬЦО вместо пояса и сильно затянул талию. Лист в шоке вытаращил глаза от сжатия, но демонстрирует всем свое кольцо — 'табаат'.",
-        "img": "illustrations_amnesia_gimel/s161.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s161-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s161.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s161-mnemonic.webp"
       }
     },
     {
@@ -15934,7 +15934,7 @@
           "end": 3.663
         }
       ],
-      "audio": "audio_amnesia_gimel/s162.mp3"
+      "audio": "books/amnesia-gimel/audio/s162.mp3"
     },
     {
       "id": "s163",
@@ -16062,7 +16062,7 @@
           "end": 4.875
         }
       ],
-      "audio": "audio_amnesia_gimel/s163.mp3"
+      "audio": "books/amnesia-gimel/audio/s163.mp3"
     },
     {
       "id": "s164",
@@ -16180,7 +16180,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_amnesia_gimel/s164.mp3"
+      "audio": "books/amnesia-gimel/audio/s164.mp3"
     },
     {
       "id": "s165",
@@ -16288,7 +16288,7 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s165.mp3"
+      "audio": "books/amnesia-gimel/audio/s165.mp3"
     },
     {
       "id": "s166",
@@ -16486,7 +16486,7 @@
           "end": 7.95
         }
       ],
-      "audio": "audio_amnesia_gimel/s166.mp3"
+      "audio": "books/amnesia-gimel/audio/s166.mp3"
     },
     {
       "id": "s167",
@@ -16584,7 +16584,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_amnesia_gimel/s167.mp3"
+      "audio": "books/amnesia-gimel/audio/s167.mp3"
     },
     {
       "id": "s168",
@@ -16672,7 +16672,7 @@
           "end": 4.388
         }
       ],
-      "audio": "audio_amnesia_gimel/s168.mp3"
+      "audio": "books/amnesia-gimel/audio/s168.mp3"
     },
     {
       "id": "s169",
@@ -16780,7 +16780,7 @@
           "end": 4.075
         }
       ],
-      "audio": "audio_amnesia_gimel/s169.mp3"
+      "audio": "books/amnesia-gimel/audio/s169.mp3"
     },
     {
       "id": "s170",
@@ -16938,7 +16938,7 @@
           "end": 4.6
         }
       ],
-      "audio": "audio_amnesia_gimel/s170.mp3"
+      "audio": "books/amnesia-gimel/audio/s170.mp3"
     },
     {
       "id": "s171",
@@ -16986,7 +16986,7 @@
           "end": 1.562
         }
       ],
-      "audio": "audio_amnesia_gimel/s171.mp3"
+      "audio": "books/amnesia-gimel/audio/s171.mp3"
     },
     {
       "id": "s172",
@@ -17074,7 +17074,7 @@
           "end": 3.975
         }
       ],
-      "audio": "audio_amnesia_gimel/s172.mp3"
+      "audio": "books/amnesia-gimel/audio/s172.mp3"
     },
     {
       "id": "s173",
@@ -17182,7 +17182,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_amnesia_gimel/s173.mp3"
+      "audio": "books/amnesia-gimel/audio/s173.mp3"
     },
     {
       "id": "s174",
@@ -17230,7 +17230,7 @@
           "end": 1.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s174.mp3"
+      "audio": "books/amnesia-gimel/audio/s174.mp3"
     },
     {
       "id": "s175",
@@ -17448,7 +17448,7 @@
           "end": 8.912
         }
       ],
-      "audio": "audio_amnesia_gimel/s175.mp3"
+      "audio": "books/amnesia-gimel/audio/s175.mp3"
     },
     {
       "id": "s176",
@@ -17606,7 +17606,7 @@
           "end": 6.05
         }
       ],
-      "audio": "audio_amnesia_gimel/s176.mp3"
+      "audio": "books/amnesia-gimel/audio/s176.mp3"
     },
     {
       "id": "s177",
@@ -17638,7 +17638,7 @@
           "root": "ל-ח-ש"
         }
       ],
-      "audio": "audio_amnesia_gimel/s177.mp3",
+      "audio": "books/amnesia-gimel/audio/s177.mp3",
       "ttsEngine": "gtts"
     },
     {
@@ -17797,7 +17797,7 @@
           "end": 5.787
         }
       ],
-      "audio": "audio_amnesia_gimel/s178.mp3"
+      "audio": "books/amnesia-gimel/audio/s178.mp3"
     },
     {
       "id": "s179",
@@ -18075,7 +18075,7 @@
           "end": 11.762
         }
       ],
-      "audio": "audio_amnesia_gimel/s179.mp3"
+      "audio": "books/amnesia-gimel/audio/s179.mp3"
     },
     {
       "id": "s180",
@@ -18173,7 +18173,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_amnesia_gimel/s180.mp3"
+      "audio": "books/amnesia-gimel/audio/s180.mp3"
     },
     {
       "id": "s181",
@@ -18241,7 +18241,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_amnesia_gimel/s181.mp3"
+      "audio": "books/amnesia-gimel/audio/s181.mp3"
     },
     {
       "id": "s182",
@@ -18259,7 +18259,7 @@
           "end": 0.675
         }
       ],
-      "audio": "audio_amnesia_gimel/s182.mp3"
+      "audio": "books/amnesia-gimel/audio/s182.mp3"
     },
     {
       "id": "s183",
@@ -18397,7 +18397,7 @@
           "end": 5.562
         }
       ],
-      "audio": "audio_amnesia_gimel/s183.mp3"
+      "audio": "books/amnesia-gimel/audio/s183.mp3"
     },
     {
       "id": "s184",
@@ -18445,7 +18445,7 @@
           "end": 1.925
         }
       ],
-      "audio": "audio_amnesia_gimel/s184.mp3"
+      "audio": "books/amnesia-gimel/audio/s184.mp3"
     },
     {
       "id": "s185",
@@ -18543,7 +18543,7 @@
           "end": 3.763
         }
       ],
-      "audio": "audio_amnesia_gimel/s185.mp3"
+      "audio": "books/amnesia-gimel/audio/s185.mp3"
     },
     {
       "id": "s186",
@@ -18591,7 +18591,7 @@
           "end": 1.938
         }
       ],
-      "audio": "audio_amnesia_gimel/s186.mp3"
+      "audio": "books/amnesia-gimel/audio/s186.mp3"
     },
     {
       "id": "s187",
@@ -18639,7 +18639,7 @@
           "end": 2.025
         }
       ],
-      "audio": "audio_amnesia_gimel/s187.mp3"
+      "audio": "books/amnesia-gimel/audio/s187.mp3"
     },
     {
       "id": "s188",
@@ -18687,7 +18687,7 @@
           "end": 1.55
         }
       ],
-      "audio": "audio_amnesia_gimel/s188.mp3"
+      "audio": "books/amnesia-gimel/audio/s188.mp3"
     },
     {
       "id": "s189",
@@ -18835,15 +18835,15 @@
           "end": 7.325
         }
       ],
-      "audio": "audio_amnesia_gimel/s189.mp3",
+      "audio": "books/amnesia-gimel/audio/s189.mp3",
       "illustration": {
         "word": "דִּירָה",
         "tr": "из квартиры",
         "caption": "דִּירָה",
         "capTr": "dirah",
         "mnemonic": "Слово «дира» созвучно с русским «ДЫРА». Представьте, что посреди вашей КВАРТИРЫ вдруг образовалась огромная ДЫРА прямо до нижнего этажа! Хозяин в панике пытается заткнуть эту дыру диваном, но оттуда вылезает гигантский кролик.",
-        "img": "illustrations_amnesia_gimel/s189.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s189-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s189.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s189-mnemonic.webp"
       }
     },
     {
@@ -18912,7 +18912,7 @@
           "end": 3.312
         }
       ],
-      "audio": "audio_amnesia_gimel/s190.mp3"
+      "audio": "books/amnesia-gimel/audio/s190.mp3"
     },
     {
       "id": "s191",
@@ -18960,7 +18960,7 @@
           "end": 2.225
         }
       ],
-      "audio": "audio_amnesia_gimel/s191.mp3"
+      "audio": "books/amnesia-gimel/audio/s191.mp3"
     },
     {
       "id": "s192",
@@ -19098,7 +19098,7 @@
           "end": 4.513
         }
       ],
-      "audio": "audio_amnesia_gimel/s192.mp3"
+      "audio": "books/amnesia-gimel/audio/s192.mp3"
     },
     {
       "id": "s193",
@@ -19326,7 +19326,7 @@
           "end": 8.125
         }
       ],
-      "audio": "audio_amnesia_gimel/s193.mp3"
+      "audio": "books/amnesia-gimel/audio/s193.mp3"
     },
     {
       "id": "s194",
@@ -19504,7 +19504,7 @@
           "end": 6.45
         }
       ],
-      "audio": "audio_amnesia_gimel/s194.mp3"
+      "audio": "books/amnesia-gimel/audio/s194.mp3"
     },
     {
       "id": "s195",
@@ -19552,7 +19552,7 @@
           "end": 2.25
         }
       ],
-      "audio": "audio_amnesia_gimel/s195.mp3"
+      "audio": "books/amnesia-gimel/audio/s195.mp3"
     },
     {
       "id": "s196",
@@ -19610,7 +19610,7 @@
           "end": 1.913
         }
       ],
-      "audio": "audio_amnesia_gimel/s196.mp3"
+      "audio": "books/amnesia-gimel/audio/s196.mp3"
     },
     {
       "id": "s197",
@@ -19648,7 +19648,7 @@
           "end": 1.863
         }
       ],
-      "audio": "audio_amnesia_gimel/s197.mp3"
+      "audio": "books/amnesia-gimel/audio/s197.mp3"
     },
     {
       "id": "s198",
@@ -19766,7 +19766,7 @@
           "end": 4.388
         }
       ],
-      "audio": "audio_amnesia_gimel/s198.mp3"
+      "audio": "books/amnesia-gimel/audio/s198.mp3"
     },
     {
       "id": "s199",
@@ -19854,7 +19854,7 @@
           "end": 2.825
         }
       ],
-      "audio": "audio_amnesia_gimel/s199.mp3"
+      "audio": "books/amnesia-gimel/audio/s199.mp3"
     },
     {
       "id": "s200",
@@ -19894,7 +19894,7 @@
           "root": "ט-ע-ה"
         }
       ],
-      "audio": "audio_amnesia_gimel/s200.mp3"
+      "audio": "books/amnesia-gimel/audio/s200.mp3"
     },
     {
       "id": "s201",
@@ -19972,7 +19972,7 @@
           "end": 2.45
         }
       ],
-      "audio": "audio_amnesia_gimel/s201.mp3"
+      "audio": "books/amnesia-gimel/audio/s201.mp3"
     },
     {
       "id": "s202",
@@ -20000,7 +20000,7 @@
           "end": 1.413
         }
       ],
-      "audio": "audio_amnesia_gimel/s202.mp3"
+      "audio": "books/amnesia-gimel/audio/s202.mp3"
     },
     {
       "id": "s203",
@@ -20068,15 +20068,15 @@
           "end": 2.625
         }
       ],
-      "audio": "audio_amnesia_gimel/s203.mp3",
+      "audio": "books/amnesia-gimel/audio/s203.mp3",
       "illustration": {
         "word": "יִישּׂוּם",
         "tr": "приложения",
         "caption": "יִישּׂוּם",
         "capTr": "yisum",
         "mnemonic": "Созвучно с «и с сумой». Нищий странник идет и с сумой огромного размера пытается запихать в неё гигантские светящиеся иконки телефонных ПРИЛОЖЕНИЙ. Каждое приложение раздувает суму до размеров дирижабля!",
-        "img": "illustrations_amnesia_gimel/s203.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s203-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s203.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s203-mnemonic.webp"
       }
     },
     {
@@ -20205,7 +20205,7 @@
           "end": 5.8
         }
       ],
-      "audio": "audio_amnesia_gimel/s204.mp3"
+      "audio": "books/amnesia-gimel/audio/s204.mp3"
     },
     {
       "id": "s205",
@@ -20263,7 +20263,7 @@
           "end": 2.362
         }
       ],
-      "audio": "audio_amnesia_gimel/s205.mp3"
+      "audio": "books/amnesia-gimel/audio/s205.mp3"
     },
     {
       "id": "s206",
@@ -20401,7 +20401,7 @@
           "end": 6.225
         }
       ],
-      "audio": "audio_amnesia_gimel/s206.mp3"
+      "audio": "books/amnesia-gimel/audio/s206.mp3"
     },
     {
       "id": "s207",
@@ -20479,7 +20479,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_amnesia_gimel/s207.mp3"
+      "audio": "books/amnesia-gimel/audio/s207.mp3"
     },
     {
       "id": "s208",
@@ -20637,7 +20637,7 @@
           "end": 7.763
         }
       ],
-      "audio": "audio_amnesia_gimel/s208.mp3"
+      "audio": "books/amnesia-gimel/audio/s208.mp3"
     },
     {
       "id": "s209",
@@ -20845,7 +20845,7 @@
           "end": 9.3
         }
       ],
-      "audio": "audio_amnesia_gimel/s209.mp3"
+      "audio": "books/amnesia-gimel/audio/s209.mp3"
     },
     {
       "id": "s210",
@@ -20993,7 +20993,7 @@
           "end": 7.213
         }
       ],
-      "audio": "audio_amnesia_gimel/s210.mp3"
+      "audio": "books/amnesia-gimel/audio/s210.mp3"
     },
     {
       "id": "s211",
@@ -21061,7 +21061,7 @@
           "end": 2.325
         }
       ],
-      "audio": "audio_amnesia_gimel/s211.mp3"
+      "audio": "books/amnesia-gimel/audio/s211.mp3"
     },
     {
       "id": "s212",
@@ -21169,7 +21169,7 @@
           "end": 3.85
         }
       ],
-      "audio": "audio_amnesia_gimel/s212.mp3"
+      "audio": "books/amnesia-gimel/audio/s212.mp3"
     },
     {
       "id": "s213",
@@ -21297,7 +21297,7 @@
           "end": 6.112
         }
       ],
-      "audio": "audio_amnesia_gimel/s213.mp3"
+      "audio": "books/amnesia-gimel/audio/s213.mp3"
     },
     {
       "id": "s214",
@@ -21335,7 +21335,7 @@
           "end": 2.125
         }
       ],
-      "audio": "audio_amnesia_gimel/s214.mp3"
+      "audio": "books/amnesia-gimel/audio/s214.mp3"
     },
     {
       "id": "s215",
@@ -21433,7 +21433,7 @@
           "end": 3.938
         }
       ],
-      "audio": "audio_amnesia_gimel/s215.mp3"
+      "audio": "books/amnesia-gimel/audio/s215.mp3"
     },
     {
       "id": "s216",
@@ -21501,7 +21501,7 @@
           "end": 2.312
         }
       ],
-      "audio": "audio_amnesia_gimel/s216.mp3"
+      "audio": "books/amnesia-gimel/audio/s216.mp3"
     },
     {
       "id": "s217",
@@ -21569,7 +21569,7 @@
           "end": 2.3
         }
       ],
-      "audio": "audio_amnesia_gimel/s217.mp3"
+      "audio": "books/amnesia-gimel/audio/s217.mp3"
     },
     {
       "id": "s218",
@@ -21627,7 +21627,7 @@
           "end": 2.525
         }
       ],
-      "audio": "audio_amnesia_gimel/s218.mp3"
+      "audio": "books/amnesia-gimel/audio/s218.mp3"
     },
     {
       "id": "s219",
@@ -21851,7 +21851,7 @@
           "root": "ה-ל-ך"
         }
       ],
-      "audio": "audio_amnesia_gimel/s219.mp3"
+      "audio": "books/amnesia-gimel/audio/s219.mp3"
     },
     {
       "id": "s220",
@@ -21989,7 +21989,7 @@
           "end": 6.062
         }
       ],
-      "audio": "audio_amnesia_gimel/s220.mp3"
+      "audio": "books/amnesia-gimel/audio/s220.mp3"
     },
     {
       "id": "s221",
@@ -22167,7 +22167,7 @@
           "end": 8.012
         }
       ],
-      "audio": "audio_amnesia_gimel/s221.mp3"
+      "audio": "books/amnesia-gimel/audio/s221.mp3"
     },
     {
       "id": "s222",
@@ -22315,7 +22315,7 @@
           "end": 6.675
         }
       ],
-      "audio": "audio_amnesia_gimel/s222.mp3"
+      "audio": "books/amnesia-gimel/audio/s222.mp3"
     },
     {
       "id": "s223",
@@ -22403,7 +22403,7 @@
           "end": 3.688
         }
       ],
-      "audio": "audio_amnesia_gimel/s223.mp3"
+      "audio": "books/amnesia-gimel/audio/s223.mp3"
     },
     {
       "id": "s224",
@@ -22481,7 +22481,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_amnesia_gimel/s224.mp3"
+      "audio": "books/amnesia-gimel/audio/s224.mp3"
     },
     {
       "id": "s225",
@@ -22619,7 +22619,7 @@
           "end": 5.475
         }
       ],
-      "audio": "audio_amnesia_gimel/s225.mp3"
+      "audio": "books/amnesia-gimel/audio/s225.mp3"
     },
     {
       "id": "s226",
@@ -22767,7 +22767,7 @@
           "end": 5.7
         }
       ],
-      "audio": "audio_amnesia_gimel/s226.mp3"
+      "audio": "books/amnesia-gimel/audio/s226.mp3"
     },
     {
       "id": "s227",
@@ -22845,7 +22845,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_amnesia_gimel/s227.mp3"
+      "audio": "books/amnesia-gimel/audio/s227.mp3"
     },
     {
       "id": "s228",
@@ -22973,7 +22973,7 @@
           "end": 4.763
         }
       ],
-      "audio": "audio_amnesia_gimel/s228.mp3"
+      "audio": "books/amnesia-gimel/audio/s228.mp3"
     },
     {
       "id": "s229",
@@ -23031,15 +23031,15 @@
           "end": 2.763
         }
       ],
-      "audio": "audio_amnesia_gimel/s229.mp3",
+      "audio": "books/amnesia-gimel/audio/s229.mp3",
       "illustration": {
         "word": "רֹאשׁ",
         "tr": "в голове её",
         "caption": "רֹאשׁ",
         "capTr": "Rosh",
         "mnemonic": "Слово «рош» созвучно с русским словом «РОЖЬ». Представьте человека, у которого вместо ГОЛОВЫ вырос огромный пышный сноп спелой РОЖИ. Птицы весело клюют зёрна прямо из его колючей ГОЛОВЫ, пока он безуспешно пытается расчесать эти колосья.",
-        "img": "illustrations_amnesia_gimel/s229.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s229-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s229.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s229-mnemonic.webp"
       }
     },
     {
@@ -23198,7 +23198,7 @@
           "end": 6.388
         }
       ],
-      "audio": "audio_amnesia_gimel/s230.mp3"
+      "audio": "books/amnesia-gimel/audio/s230.mp3"
     },
     {
       "id": "s231",
@@ -23276,7 +23276,7 @@
           "end": 3.975
         }
       ],
-      "audio": "audio_amnesia_gimel/s231.mp3"
+      "audio": "books/amnesia-gimel/audio/s231.mp3"
     },
     {
       "id": "s232",
@@ -23454,7 +23454,7 @@
           "end": 6.875
         }
       ],
-      "audio": "audio_amnesia_gimel/s232.mp3"
+      "audio": "books/amnesia-gimel/audio/s232.mp3"
     },
     {
       "id": "s233",
@@ -23682,7 +23682,7 @@
           "end": 9.7
         }
       ],
-      "audio": "audio_amnesia_gimel/s233.mp3"
+      "audio": "books/amnesia-gimel/audio/s233.mp3"
     },
     {
       "id": "s234",
@@ -23800,7 +23800,7 @@
           "end": 4.412
         }
       ],
-      "audio": "audio_amnesia_gimel/s234.mp3"
+      "audio": "books/amnesia-gimel/audio/s234.mp3"
     },
     {
       "id": "s235",
@@ -23868,7 +23868,7 @@
           "end": 3.038
         }
       ],
-      "audio": "audio_amnesia_gimel/s235.mp3"
+      "audio": "books/amnesia-gimel/audio/s235.mp3"
     },
     {
       "id": "s236",
@@ -24026,7 +24026,7 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_amnesia_gimel/s236.mp3"
+      "audio": "books/amnesia-gimel/audio/s236.mp3"
     },
     {
       "id": "s237",
@@ -24164,7 +24164,7 @@
           "end": 5.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s237.mp3"
+      "audio": "books/amnesia-gimel/audio/s237.mp3"
     },
     {
       "id": "s238",
@@ -24312,7 +24312,7 @@
           "end": 5.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s238.mp3"
+      "audio": "books/amnesia-gimel/audio/s238.mp3"
     },
     {
       "id": "s239",
@@ -24360,7 +24360,7 @@
           "end": 1.812
         }
       ],
-      "audio": "audio_amnesia_gimel/s239.mp3"
+      "audio": "books/amnesia-gimel/audio/s239.mp3"
     },
     {
       "id": "s240",
@@ -24478,7 +24478,7 @@
           "end": 4.787
         }
       ],
-      "audio": "audio_amnesia_gimel/s240.mp3"
+      "audio": "books/amnesia-gimel/audio/s240.mp3"
     },
     {
       "id": "s241",
@@ -24534,7 +24534,7 @@
           "root": "ל-ח-ש"
         }
       ],
-      "audio": "audio_amnesia_gimel/s241.mp3",
+      "audio": "books/amnesia-gimel/audio/s241.mp3",
       "ttsEngine": "gtts"
     },
     {
@@ -24633,7 +24633,7 @@
           "end": 3.9
         }
       ],
-      "audio": "audio_amnesia_gimel/s242.mp3"
+      "audio": "books/amnesia-gimel/audio/s242.mp3"
     },
     {
       "id": "s243",
@@ -24831,15 +24831,15 @@
           "end": 8.175
         }
       ],
-      "audio": "audio_amnesia_gimel/s243.mp3",
+      "audio": "books/amnesia-gimel/audio/s243.mp3",
       "illustration": {
         "word": "תְּחוּשָׁה",
         "tr": "чувству",
         "caption": "תְּחוּשָׁה",
         "capTr": "tkhusha",
         "mnemonic": "Слово «тхуша» напоминает «ТУША» и крик «Тьфу, ша!». Представьте, как огромная говяжья ТУША на кухне ресторана испытывает глубокое ЧУВСТВО любви, плачет и кричит поварам: «Тьфу, ша! Тихо всем, я чувствую романтику!».",
-        "img": "illustrations_amnesia_gimel/s243.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s243-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s243.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s243-mnemonic.webp"
       }
     },
     {
@@ -24948,7 +24948,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_amnesia_gimel/s244.mp3"
+      "audio": "books/amnesia-gimel/audio/s244.mp3"
     },
     {
       "id": "s245",
@@ -25246,7 +25246,7 @@
           "end": 11.537
         }
       ],
-      "audio": "audio_amnesia_gimel/s245.mp3"
+      "audio": "books/amnesia-gimel/audio/s245.mp3"
     },
     {
       "id": "s246",
@@ -25414,7 +25414,7 @@
           "end": 6.463
         }
       ],
-      "audio": "audio_amnesia_gimel/s246.mp3"
+      "audio": "books/amnesia-gimel/audio/s246.mp3"
     },
     {
       "id": "s247",
@@ -25522,7 +25522,7 @@
           "end": 4.375
         }
       ],
-      "audio": "audio_amnesia_gimel/s247.mp3"
+      "audio": "books/amnesia-gimel/audio/s247.mp3"
     },
     {
       "id": "s248",
@@ -25630,7 +25630,7 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_amnesia_gimel/s248.mp3"
+      "audio": "books/amnesia-gimel/audio/s248.mp3"
     },
     {
       "id": "s249",
@@ -25658,7 +25658,7 @@
           "end": 1.562
         }
       ],
-      "audio": "audio_amnesia_gimel/s249.mp3"
+      "audio": "books/amnesia-gimel/audio/s249.mp3"
     },
     {
       "id": "s250",
@@ -25806,7 +25806,7 @@
           "end": 7.0
         }
       ],
-      "audio": "audio_amnesia_gimel/s250.mp3"
+      "audio": "books/amnesia-gimel/audio/s250.mp3"
     },
     {
       "id": "s251",
@@ -25964,7 +25964,7 @@
           "end": 6.975
         }
       ],
-      "audio": "audio_amnesia_gimel/s251.mp3"
+      "audio": "books/amnesia-gimel/audio/s251.mp3"
     },
     {
       "id": "s252",
@@ -26072,7 +26072,7 @@
           "end": 4.4
         }
       ],
-      "audio": "audio_amnesia_gimel/s252.mp3"
+      "audio": "books/amnesia-gimel/audio/s252.mp3"
     },
     {
       "id": "s253",
@@ -26100,7 +26100,7 @@
           "end": 1.3
         }
       ],
-      "audio": "audio_amnesia_gimel/s253.mp3"
+      "audio": "books/amnesia-gimel/audio/s253.mp3"
     },
     {
       "id": "s254",
@@ -26248,7 +26248,7 @@
           "end": 6.575
         }
       ],
-      "audio": "audio_amnesia_gimel/s254.mp3"
+      "audio": "books/amnesia-gimel/audio/s254.mp3"
     },
     {
       "id": "s255",
@@ -26286,7 +26286,7 @@
           "end": 1.625
         }
       ],
-      "audio": "audio_amnesia_gimel/s255.mp3"
+      "audio": "books/amnesia-gimel/audio/s255.mp3"
     },
     {
       "id": "s256",
@@ -26304,7 +26304,7 @@
           "end": 0.787
         }
       ],
-      "audio": "audio_amnesia_gimel/s256.mp3"
+      "audio": "books/amnesia-gimel/audio/s256.mp3"
     },
     {
       "id": "s257",
@@ -26332,7 +26332,7 @@
           "end": 1.0
         }
       ],
-      "audio": "audio_amnesia_gimel/s257.mp3"
+      "audio": "books/amnesia-gimel/audio/s257.mp3"
     },
     {
       "id": "s258",
@@ -26390,7 +26390,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_amnesia_gimel/s258.mp3"
+      "audio": "books/amnesia-gimel/audio/s258.mp3"
     },
     {
       "id": "s259",
@@ -26508,7 +26508,7 @@
           "end": 4.575
         }
       ],
-      "audio": "audio_amnesia_gimel/s259.mp3"
+      "audio": "books/amnesia-gimel/audio/s259.mp3"
     },
     {
       "id": "s260",
@@ -26616,7 +26616,7 @@
           "end": 4.438
         }
       ],
-      "audio": "audio_amnesia_gimel/s260.mp3"
+      "audio": "books/amnesia-gimel/audio/s260.mp3"
     },
     {
       "id": "s261",
@@ -26714,7 +26714,7 @@
           "end": 4.338
         }
       ],
-      "audio": "audio_amnesia_gimel/s261.mp3"
+      "audio": "books/amnesia-gimel/audio/s261.mp3"
     },
     {
       "id": "s262",
@@ -26822,7 +26822,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_amnesia_gimel/s262.mp3"
+      "audio": "books/amnesia-gimel/audio/s262.mp3"
     },
     {
       "id": "s263",
@@ -26870,7 +26870,7 @@
           "end": 1.738
         }
       ],
-      "audio": "audio_amnesia_gimel/s263.mp3"
+      "audio": "books/amnesia-gimel/audio/s263.mp3"
     },
     {
       "id": "s264",
@@ -27078,15 +27078,15 @@
           "end": 9.037
         }
       ],
-      "audio": "audio_amnesia_gimel/s264.mp3",
+      "audio": "books/amnesia-gimel/audio/s264.mp3",
       "illustration": {
         "word": "אָחוֹת",
         "tr": "сестры своей",
         "caption": "אָחוֹת",
         "capTr": "akhot",
         "mnemonic": "Слово «ахот» (сестра) звучит почти как «ОХОТА». Представь, что твоя СЕСТРА неожиданно объявляет безумную ОХОТУ прямо в квартире: она надевает пробковый шлем охотника и с огромным сачком гоняется за диваном!",
-        "img": "illustrations_amnesia_gimel/s264.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s264-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s264.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s264-mnemonic.webp"
       }
     },
     {
@@ -27145,7 +27145,7 @@
           "end": 1.863
         }
       ],
-      "audio": "audio_amnesia_gimel/s265.mp3"
+      "audio": "books/amnesia-gimel/audio/s265.mp3"
     },
     {
       "id": "s266",
@@ -27223,7 +27223,7 @@
           "end": 3.862
         }
       ],
-      "audio": "audio_amnesia_gimel/s266.mp3"
+      "audio": "books/amnesia-gimel/audio/s266.mp3"
     },
     {
       "id": "s267",
@@ -27271,7 +27271,7 @@
           "end": 2.225
         }
       ],
-      "audio": "audio_amnesia_gimel/s267.mp3"
+      "audio": "books/amnesia-gimel/audio/s267.mp3"
     },
     {
       "id": "s268",
@@ -27339,7 +27339,7 @@
           "end": 3.15
         }
       ],
-      "audio": "audio_amnesia_gimel/s268.mp3"
+      "audio": "books/amnesia-gimel/audio/s268.mp3"
     },
     {
       "id": "s269",
@@ -27467,7 +27467,7 @@
           "end": 5.713
         }
       ],
-      "audio": "audio_amnesia_gimel/s269.mp3"
+      "audio": "books/amnesia-gimel/audio/s269.mp3"
     },
     {
       "id": "s270",
@@ -27565,7 +27565,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_amnesia_gimel/s270.mp3"
+      "audio": "books/amnesia-gimel/audio/s270.mp3"
     },
     {
       "id": "s271",
@@ -27693,7 +27693,7 @@
           "end": 4.475
         }
       ],
-      "audio": "audio_amnesia_gimel/s271.mp3"
+      "audio": "books/amnesia-gimel/audio/s271.mp3"
     },
     {
       "id": "s272",
@@ -28051,7 +28051,7 @@
           "end": 16.025
         }
       ],
-      "audio": "audio_amnesia_gimel/s272.mp3"
+      "audio": "books/amnesia-gimel/audio/s272.mp3"
     },
     {
       "id": "s273",
@@ -28289,7 +28289,7 @@
           "end": 9.787
         }
       ],
-      "audio": "audio_amnesia_gimel/s273.mp3"
+      "audio": "books/amnesia-gimel/audio/s273.mp3"
     },
     {
       "id": "s274",
@@ -28397,7 +28397,7 @@
           "end": 4.213
         }
       ],
-      "audio": "audio_amnesia_gimel/s274.mp3"
+      "audio": "books/amnesia-gimel/audio/s274.mp3"
     },
     {
       "id": "s275",
@@ -28495,7 +28495,7 @@
           "end": 3.263
         }
       ],
-      "audio": "audio_amnesia_gimel/s275.mp3"
+      "audio": "books/amnesia-gimel/audio/s275.mp3"
     },
     {
       "id": "s276",
@@ -28663,7 +28663,7 @@
           "end": 5.987
         }
       ],
-      "audio": "audio_amnesia_gimel/s276.mp3"
+      "audio": "books/amnesia-gimel/audio/s276.mp3"
     },
     {
       "id": "s277",
@@ -28761,7 +28761,7 @@
           "end": 4.6
         }
       ],
-      "audio": "audio_amnesia_gimel/s277.mp3"
+      "audio": "books/amnesia-gimel/audio/s277.mp3"
     },
     {
       "id": "s278",
@@ -28909,7 +28909,7 @@
           "end": 7.25
         }
       ],
-      "audio": "audio_amnesia_gimel/s278.mp3"
+      "audio": "books/amnesia-gimel/audio/s278.mp3"
     },
     {
       "id": "s279",
@@ -29037,7 +29037,7 @@
           "end": 4.2
         }
       ],
-      "audio": "audio_amnesia_gimel/s279.mp3"
+      "audio": "books/amnesia-gimel/audio/s279.mp3"
     },
     {
       "id": "s280",
@@ -29115,7 +29115,7 @@
           "end": 3.4
         }
       ],
-      "audio": "audio_amnesia_gimel/s280.mp3"
+      "audio": "books/amnesia-gimel/audio/s280.mp3"
     },
     {
       "id": "s281",
@@ -29213,7 +29213,7 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_amnesia_gimel/s281.mp3"
+      "audio": "books/amnesia-gimel/audio/s281.mp3"
     },
     {
       "id": "s282",
@@ -29311,7 +29311,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_amnesia_gimel/s282.mp3"
+      "audio": "books/amnesia-gimel/audio/s282.mp3"
     },
     {
       "id": "s283",
@@ -29429,7 +29429,7 @@
           "end": 4.725
         }
       ],
-      "audio": "audio_amnesia_gimel/s283.mp3"
+      "audio": "books/amnesia-gimel/audio/s283.mp3"
     },
     {
       "id": "s284",
@@ -29507,15 +29507,15 @@
           "end": 3.625
         }
       ],
-      "audio": "audio_amnesia_gimel/s284.mp3",
+      "audio": "books/amnesia-gimel/audio/s284.mp3",
       "illustration": {
         "word": "תִּיקִיָּיה",
         "tr": "в папках",
         "caption": "תִּיקִיָּיה",
         "capTr": "Tikiyah",
         "mnemonic": "Созвучно с «ТИК И Я». Слыша громкий ТИК, И Я судорожно заталкиваю десятки гигантских тикающих будильников в огромную пластиковую папку для документов, из которой во все стороны летят шестеренки.",
-        "img": "illustrations_amnesia_gimel/s284.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s284-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s284.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s284-mnemonic.webp"
       }
     },
     {
@@ -29624,7 +29624,7 @@
           "end": 4.675
         }
       ],
-      "audio": "audio_amnesia_gimel/s285.mp3"
+      "audio": "books/amnesia-gimel/audio/s285.mp3"
     },
     {
       "id": "s286",
@@ -29692,7 +29692,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_amnesia_gimel/s286.mp3"
+      "audio": "books/amnesia-gimel/audio/s286.mp3"
     },
     {
       "id": "s287",
@@ -29900,7 +29900,7 @@
           "root": "ז-כ-ר"
         }
       ],
-      "audio": "audio_amnesia_gimel/s287.mp3"
+      "audio": "books/amnesia-gimel/audio/s287.mp3"
     },
     {
       "id": "s288",
@@ -30028,7 +30028,7 @@
           "end": 5.188
         }
       ],
-      "audio": "audio_amnesia_gimel/s288.mp3"
+      "audio": "books/amnesia-gimel/audio/s288.mp3"
     },
     {
       "id": "s289",
@@ -30206,7 +30206,7 @@
           "end": 6.388
         }
       ],
-      "audio": "audio_amnesia_gimel/s289.mp3"
+      "audio": "books/amnesia-gimel/audio/s289.mp3"
     },
     {
       "id": "s290",
@@ -30324,7 +30324,7 @@
           "end": 4.312
         }
       ],
-      "audio": "audio_amnesia_gimel/s290.mp3"
+      "audio": "books/amnesia-gimel/audio/s290.mp3"
     },
     {
       "id": "s291",
@@ -30492,7 +30492,7 @@
           "end": 5.112
         }
       ],
-      "audio": "audio_amnesia_gimel/s291.mp3"
+      "audio": "books/amnesia-gimel/audio/s291.mp3"
     },
     {
       "id": "s292",
@@ -30570,7 +30570,7 @@
           "end": 2.8
         }
       ],
-      "audio": "audio_amnesia_gimel/s292.mp3"
+      "audio": "books/amnesia-gimel/audio/s292.mp3"
     },
     {
       "id": "s293",
@@ -30668,7 +30668,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_amnesia_gimel/s293.mp3"
+      "audio": "books/amnesia-gimel/audio/s293.mp3"
     },
     {
       "id": "s294",
@@ -30756,7 +30756,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_amnesia_gimel/s294.mp3"
+      "audio": "books/amnesia-gimel/audio/s294.mp3"
     },
     {
       "id": "s295",
@@ -30884,7 +30884,7 @@
           "end": 6.062
         }
       ],
-      "audio": "audio_amnesia_gimel/s295.mp3"
+      "audio": "books/amnesia-gimel/audio/s295.mp3"
     },
     {
       "id": "s296",
@@ -31042,7 +31042,7 @@
           "end": 6.275
         }
       ],
-      "audio": "audio_amnesia_gimel/s296.mp3"
+      "audio": "books/amnesia-gimel/audio/s296.mp3"
     },
     {
       "id": "s297",
@@ -31190,7 +31190,7 @@
           "end": 5.963
         }
       ],
-      "audio": "audio_amnesia_gimel/s297.mp3"
+      "audio": "books/amnesia-gimel/audio/s297.mp3"
     },
     {
       "id": "s298",
@@ -31318,7 +31318,7 @@
           "end": 4.825
         }
       ],
-      "audio": "audio_amnesia_gimel/s298.mp3"
+      "audio": "books/amnesia-gimel/audio/s298.mp3"
     },
     {
       "id": "s299",
@@ -31356,7 +31356,7 @@
           "end": 2.05
         }
       ],
-      "audio": "audio_amnesia_gimel/s299.mp3"
+      "audio": "books/amnesia-gimel/audio/s299.mp3"
     },
     {
       "id": "s300",
@@ -31454,7 +31454,7 @@
           "end": 3.775
         }
       ],
-      "audio": "audio_amnesia_gimel/s300.mp3"
+      "audio": "books/amnesia-gimel/audio/s300.mp3"
     },
     {
       "id": "s301",
@@ -31552,7 +31552,7 @@
           "end": 3.675
         }
       ],
-      "audio": "audio_amnesia_gimel/s301.mp3"
+      "audio": "books/amnesia-gimel/audio/s301.mp3"
     },
     {
       "id": "s302",
@@ -31780,7 +31780,7 @@
           "end": 8.412
         }
       ],
-      "audio": "audio_amnesia_gimel/s302.mp3"
+      "audio": "books/amnesia-gimel/audio/s302.mp3"
     },
     {
       "id": "s303",
@@ -31928,7 +31928,7 @@
           "end": 5.925
         }
       ],
-      "audio": "audio_amnesia_gimel/s303.mp3"
+      "audio": "books/amnesia-gimel/audio/s303.mp3"
     },
     {
       "id": "s304",
@@ -32076,7 +32076,7 @@
           "end": 6.775
         }
       ],
-      "audio": "audio_amnesia_gimel/s304.mp3"
+      "audio": "books/amnesia-gimel/audio/s304.mp3"
     },
     {
       "id": "s305",
@@ -32134,7 +32134,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_amnesia_gimel/s305.mp3"
+      "audio": "books/amnesia-gimel/audio/s305.mp3"
     },
     {
       "id": "s306",
@@ -32292,7 +32292,7 @@
           "end": 6.162
         }
       ],
-      "audio": "audio_amnesia_gimel/s306.mp3"
+      "audio": "books/amnesia-gimel/audio/s306.mp3"
     },
     {
       "id": "s307",
@@ -32390,7 +32390,7 @@
           "end": 3.712
         }
       ],
-      "audio": "audio_amnesia_gimel/s307.mp3"
+      "audio": "books/amnesia-gimel/audio/s307.mp3"
     },
     {
       "id": "s308",
@@ -32548,7 +32548,7 @@
           "end": 5.312
         }
       ],
-      "audio": "audio_amnesia_gimel/s308.mp3"
+      "audio": "books/amnesia-gimel/audio/s308.mp3"
     },
     {
       "id": "s309",
@@ -32606,7 +32606,7 @@
           "end": 1.738
         }
       ],
-      "audio": "audio_amnesia_gimel/s309.mp3"
+      "audio": "books/amnesia-gimel/audio/s309.mp3"
     },
     {
       "id": "s310",
@@ -32714,7 +32714,7 @@
           "end": 3.862
         }
       ],
-      "audio": "audio_amnesia_gimel/s310.mp3"
+      "audio": "books/amnesia-gimel/audio/s310.mp3"
     },
     {
       "id": "s311",
@@ -32802,7 +32802,7 @@
           "end": 3.5
         }
       ],
-      "audio": "audio_amnesia_gimel/s311.mp3"
+      "audio": "books/amnesia-gimel/audio/s311.mp3"
     },
     {
       "id": "s312",
@@ -33100,7 +33100,7 @@
           "end": 9.762
         }
       ],
-      "audio": "audio_amnesia_gimel/s312.mp3"
+      "audio": "books/amnesia-gimel/audio/s312.mp3"
     },
     {
       "id": "s313",
@@ -33248,7 +33248,7 @@
           "end": 5.775
         }
       ],
-      "audio": "audio_amnesia_gimel/s313.mp3"
+      "audio": "books/amnesia-gimel/audio/s313.mp3"
     },
     {
       "id": "s314",
@@ -33376,15 +33376,15 @@
           "end": 6.188
         }
       ],
-      "audio": "audio_amnesia_gimel/s314.mp3",
+      "audio": "books/amnesia-gimel/audio/s314.mp3",
       "illustration": {
         "word": "דּוֹחַ",
         "tr": "отчётами",
         "caption": "דּוֹחַ",
         "capTr": "DOACH",
         "mnemonic": "Слово «ДОХА» (огромная меховая шуба) звучит очень похоже на ивритское «доах» (отчёт). Представьте бухгалтера, который надел толстую пушистую ДОХУ и судорожно строчит финансовый ОТЧЁТ. Мех застревает в клавиатуре, а листы отчёта разлетаются во все стороны!",
-        "img": "illustrations_amnesia_gimel/s314.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s314-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s314.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s314-mnemonic.webp"
       }
     },
     {
@@ -33483,7 +33483,7 @@
           "end": 4.2
         }
       ],
-      "audio": "audio_amnesia_gimel/s315.mp3"
+      "audio": "books/amnesia-gimel/audio/s315.mp3"
     },
     {
       "id": "s316",
@@ -33711,7 +33711,7 @@
           "end": 9.975
         }
       ],
-      "audio": "audio_amnesia_gimel/s316.mp3"
+      "audio": "books/amnesia-gimel/audio/s316.mp3"
     },
     {
       "id": "s317",
@@ -33859,7 +33859,7 @@
           "end": 6.05
         }
       ],
-      "audio": "audio_amnesia_gimel/s317.mp3"
+      "audio": "books/amnesia-gimel/audio/s317.mp3"
     },
     {
       "id": "s318",
@@ -33987,7 +33987,7 @@
           "end": 5.263
         }
       ],
-      "audio": "audio_amnesia_gimel/s318.mp3"
+      "audio": "books/amnesia-gimel/audio/s318.mp3"
     },
     {
       "id": "s319",
@@ -34095,7 +34095,7 @@
           "end": 4.35
         }
       ],
-      "audio": "audio_amnesia_gimel/s319.mp3"
+      "audio": "books/amnesia-gimel/audio/s319.mp3"
     },
     {
       "id": "s320",
@@ -34213,7 +34213,7 @@
           "end": 4.65
         }
       ],
-      "audio": "audio_amnesia_gimel/s320.mp3"
+      "audio": "books/amnesia-gimel/audio/s320.mp3"
     },
     {
       "id": "s321",
@@ -34341,7 +34341,7 @@
           "end": 5.4
         }
       ],
-      "audio": "audio_amnesia_gimel/s321.mp3"
+      "audio": "books/amnesia-gimel/audio/s321.mp3"
     },
     {
       "id": "s322",
@@ -34389,7 +34389,7 @@
           "end": 2.062
         }
       ],
-      "audio": "audio_amnesia_gimel/s322.mp3"
+      "audio": "books/amnesia-gimel/audio/s322.mp3"
     },
     {
       "id": "s323",
@@ -34487,7 +34487,7 @@
           "end": 4.5
         }
       ],
-      "audio": "audio_amnesia_gimel/s323.mp3"
+      "audio": "books/amnesia-gimel/audio/s323.mp3"
     },
     {
       "id": "s324",
@@ -34575,7 +34575,7 @@
           "end": 2.95
         }
       ],
-      "audio": "audio_amnesia_gimel/s324.mp3"
+      "audio": "books/amnesia-gimel/audio/s324.mp3"
     },
     {
       "id": "s325",
@@ -34613,7 +34613,7 @@
           "end": 1.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s325.mp3"
+      "audio": "books/amnesia-gimel/audio/s325.mp3"
     },
     {
       "id": "s326",
@@ -34761,7 +34761,7 @@
           "end": 6.713
         }
       ],
-      "audio": "audio_amnesia_gimel/s326.mp3"
+      "audio": "books/amnesia-gimel/audio/s326.mp3"
     },
     {
       "id": "s327",
@@ -34869,15 +34869,15 @@
           "end": 4.388
         }
       ],
-      "audio": "audio_amnesia_gimel/s327.mp3",
+      "audio": "books/amnesia-gimel/audio/s327.mp3",
       "illustration": {
         "word": "מִסְמָךְ",
         "tr": "документы",
         "caption": "מִסְמָךְ",
         "capTr": "MISMAKH",
         "mnemonic": "Созвучно с 'Мисс Мах'. На конкурсе красоты побеждает победоносная 'Мисс Мах': она делает шикарный мах рукой, и из её гигантского рукава во все стороны вылетают тысячи важных документов. Запомните: 'Мисс Мах' рассыпает документы.",
-        "img": "illustrations_amnesia_gimel/s327.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s327-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s327.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s327-mnemonic.webp"
       }
     },
     {
@@ -34996,7 +34996,7 @@
           "end": 4.65
         }
       ],
-      "audio": "audio_amnesia_gimel/s328.mp3"
+      "audio": "books/amnesia-gimel/audio/s328.mp3"
     },
     {
       "id": "s329",
@@ -35124,7 +35124,7 @@
           "root": "פ-ר-ט"
         }
       ],
-      "audio": "audio_amnesia_gimel/s329.mp3"
+      "audio": "books/amnesia-gimel/audio/s329.mp3"
     },
     {
       "id": "s330",
@@ -35222,7 +35222,7 @@
           "end": 4.275
         }
       ],
-      "audio": "audio_amnesia_gimel/s330.mp3"
+      "audio": "books/amnesia-gimel/audio/s330.mp3"
     },
     {
       "id": "s331",
@@ -35370,7 +35370,7 @@
           "end": 6.562
         }
       ],
-      "audio": "audio_amnesia_gimel/s331.mp3"
+      "audio": "books/amnesia-gimel/audio/s331.mp3"
     },
     {
       "id": "s332",
@@ -35438,7 +35438,7 @@
           "end": 3.888
         }
       ],
-      "audio": "audio_amnesia_gimel/s332.mp3"
+      "audio": "books/amnesia-gimel/audio/s332.mp3"
     },
     {
       "id": "s333",
@@ -35576,7 +35576,7 @@
           "end": 5.862
         }
       ],
-      "audio": "audio_amnesia_gimel/s333.mp3"
+      "audio": "books/amnesia-gimel/audio/s333.mp3"
     },
     {
       "id": "s334",
@@ -35684,7 +35684,7 @@
           "end": 4.662
         }
       ],
-      "audio": "audio_amnesia_gimel/s334.mp3"
+      "audio": "books/amnesia-gimel/audio/s334.mp3"
     },
     {
       "id": "s335",
@@ -35822,7 +35822,7 @@
           "end": 4.737
         }
       ],
-      "audio": "audio_amnesia_gimel/s335.mp3"
+      "audio": "books/amnesia-gimel/audio/s335.mp3"
     },
     {
       "id": "s336",
@@ -35900,7 +35900,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_amnesia_gimel/s336.mp3"
+      "audio": "books/amnesia-gimel/audio/s336.mp3"
     },
     {
       "id": "s337",
@@ -36048,7 +36048,7 @@
           "end": 5.875
         }
       ],
-      "audio": "audio_amnesia_gimel/s337.mp3"
+      "audio": "books/amnesia-gimel/audio/s337.mp3"
     },
     {
       "id": "s338",
@@ -36152,7 +36152,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_amnesia_gimel/s338.mp3"
+      "audio": "books/amnesia-gimel/audio/s338.mp3"
     },
     {
       "id": "s339",
@@ -36220,7 +36220,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_amnesia_gimel/s339.mp3"
+      "audio": "books/amnesia-gimel/audio/s339.mp3"
     },
     {
       "id": "s340",
@@ -36338,7 +36338,7 @@
           "end": 5.287
         }
       ],
-      "audio": "audio_amnesia_gimel/s340.mp3"
+      "audio": "books/amnesia-gimel/audio/s340.mp3"
     },
     {
       "id": "s341",
@@ -36386,7 +36386,7 @@
           "end": 1.663
         }
       ],
-      "audio": "audio_amnesia_gimel/s341.mp3"
+      "audio": "books/amnesia-gimel/audio/s341.mp3"
     },
     {
       "id": "s342",
@@ -36494,7 +36494,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_amnesia_gimel/s342.mp3"
+      "audio": "books/amnesia-gimel/audio/s342.mp3"
     },
     {
       "id": "s343",
@@ -36632,7 +36632,7 @@
           "end": 4.588
         }
       ],
-      "audio": "audio_amnesia_gimel/s343.mp3"
+      "audio": "books/amnesia-gimel/audio/s343.mp3"
     },
     {
       "id": "s344",
@@ -36790,15 +36790,15 @@
           "end": 6.662
         }
       ],
-      "audio": "audio_amnesia_gimel/s344.mp3",
+      "audio": "books/amnesia-gimel/audio/s344.mp3",
       "illustration": {
         "word": "דִּירָה",
         "tr": "квартиры",
         "caption": "דִּירָה",
         "capTr": "dirah",
         "mnemonic": "В полу новой КВАРТИРЫ образовалась огромная ДЫРА, сквозь которую видны соседи снизу. Хозяин пытался закрыть эту ДЫРУ маленьким ковриком, но провалился прямо в неё с криком.",
-        "img": "illustrations_amnesia_gimel/s344.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s344-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s344.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s344-mnemonic.webp"
       }
     },
     {
@@ -36907,7 +36907,7 @@
           "end": 4.513
         }
       ],
-      "audio": "audio_amnesia_gimel/s345.mp3"
+      "audio": "books/amnesia-gimel/audio/s345.mp3"
     },
     {
       "id": "s346",
@@ -37043,7 +37043,7 @@
           "root": "נ-ע-ל"
         }
       ],
-      "audio": "audio_amnesia_gimel/s346.mp3"
+      "audio": "books/amnesia-gimel/audio/s346.mp3"
     },
     {
       "id": "s347",
@@ -37171,7 +37171,7 @@
           "end": 5.475
         }
       ],
-      "audio": "audio_amnesia_gimel/s347.mp3"
+      "audio": "books/amnesia-gimel/audio/s347.mp3"
     },
     {
       "id": "s348",
@@ -37299,7 +37299,7 @@
           "end": 5.775
         }
       ],
-      "audio": "audio_amnesia_gimel/s348.mp3"
+      "audio": "books/amnesia-gimel/audio/s348.mp3"
     },
     {
       "id": "s349",
@@ -37407,7 +37407,7 @@
           "end": 5.1
         }
       ],
-      "audio": "audio_amnesia_gimel/s349.mp3"
+      "audio": "books/amnesia-gimel/audio/s349.mp3"
     },
     {
       "id": "s350",
@@ -37555,7 +37555,7 @@
           "end": 4.787
         }
       ],
-      "audio": "audio_amnesia_gimel/s350.mp3"
+      "audio": "books/amnesia-gimel/audio/s350.mp3"
     },
     {
       "id": "s351",
@@ -37683,7 +37683,7 @@
           "end": 4.45
         }
       ],
-      "audio": "audio_amnesia_gimel/s351.mp3"
+      "audio": "books/amnesia-gimel/audio/s351.mp3"
     },
     {
       "id": "s352",
@@ -37899,7 +37899,7 @@
           "root": "ב-י-ת"
         }
       ],
-      "audio": "audio_amnesia_gimel/s352.mp3"
+      "audio": "books/amnesia-gimel/audio/s352.mp3"
     },
     {
       "id": "s353",
@@ -37997,7 +37997,7 @@
           "end": 4.263
         }
       ],
-      "audio": "audio_amnesia_gimel/s353.mp3"
+      "audio": "books/amnesia-gimel/audio/s353.mp3"
     },
     {
       "id": "s354",
@@ -38165,7 +38165,7 @@
           "end": 6.875
         }
       ],
-      "audio": "audio_amnesia_gimel/s354.mp3"
+      "audio": "books/amnesia-gimel/audio/s354.mp3"
     },
     {
       "id": "s355",
@@ -38263,7 +38263,7 @@
           "end": 4.65
         }
       ],
-      "audio": "audio_amnesia_gimel/s355.mp3"
+      "audio": "books/amnesia-gimel/audio/s355.mp3"
     },
     {
       "id": "s356",
@@ -38455,7 +38455,7 @@
           "root": "ח-ב-ר"
         }
       ],
-      "audio": "audio_amnesia_gimel/s356.mp3"
+      "audio": "books/amnesia-gimel/audio/s356.mp3"
     },
     {
       "id": "s357",
@@ -38593,7 +38593,7 @@
           "end": 5.713
         }
       ],
-      "audio": "audio_amnesia_gimel/s357.mp3"
+      "audio": "books/amnesia-gimel/audio/s357.mp3"
     },
     {
       "id": "s358",
@@ -38811,7 +38811,7 @@
           "end": 8.387
         }
       ],
-      "audio": "audio_amnesia_gimel/s358.mp3"
+      "audio": "books/amnesia-gimel/audio/s358.mp3"
     },
     {
       "id": "s359",
@@ -38929,7 +38929,7 @@
           "end": 4.55
         }
       ],
-      "audio": "audio_amnesia_gimel/s359.mp3"
+      "audio": "books/amnesia-gimel/audio/s359.mp3"
     },
     {
       "id": "s360",
@@ -39017,7 +39017,7 @@
           "end": 4.112
         }
       ],
-      "audio": "audio_amnesia_gimel/s360.mp3"
+      "audio": "books/amnesia-gimel/audio/s360.mp3"
     },
     {
       "id": "s361",
@@ -39235,7 +39235,7 @@
           "end": 8.45
         }
       ],
-      "audio": "audio_amnesia_gimel/s361.mp3"
+      "audio": "books/amnesia-gimel/audio/s361.mp3"
     },
     {
       "id": "s362",
@@ -39393,7 +39393,7 @@
           "end": 6.425
         }
       ],
-      "audio": "audio_amnesia_gimel/s362.mp3"
+      "audio": "books/amnesia-gimel/audio/s362.mp3"
     },
     {
       "id": "s363",
@@ -39591,7 +39591,7 @@
           "end": 8.575
         }
       ],
-      "audio": "audio_amnesia_gimel/s363.mp3"
+      "audio": "books/amnesia-gimel/audio/s363.mp3"
     },
     {
       "id": "s364",
@@ -39709,7 +39709,7 @@
           "end": 3.987
         }
       ],
-      "audio": "audio_amnesia_gimel/s364.mp3"
+      "audio": "books/amnesia-gimel/audio/s364.mp3"
     },
     {
       "id": "s365",
@@ -39837,7 +39837,7 @@
           "end": 6.062
         }
       ],
-      "audio": "audio_amnesia_gimel/s365.mp3"
+      "audio": "books/amnesia-gimel/audio/s365.mp3"
     },
     {
       "id": "s366",
@@ -39915,15 +39915,15 @@
           "end": 3.575
         }
       ],
-      "audio": "audio_amnesia_gimel/s366.mp3",
+      "audio": "books/amnesia-gimel/audio/s366.mp3",
       "illustration": {
         "word": "דְּאָגָה",
         "tr": "от тревоги",
         "caption": "דְּאָגָה",
         "capTr": "De'aga",
         "mnemonic": "Созвучие: «де агат» (где агат). Человека охватывает дикая ТРЕВОГА, он в панике бегает и ищет драгоценный камень. От сильного беспокойства из его глаз вылетают сверкающие минералы, а голова буквально дымится от перегрева.",
-        "img": "illustrations_amnesia_gimel/s366.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s366-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s366.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s366-mnemonic.webp"
       }
     },
     {
@@ -40072,7 +40072,7 @@
           "end": 5.125
         }
       ],
-      "audio": "audio_amnesia_gimel/s367.mp3"
+      "audio": "books/amnesia-gimel/audio/s367.mp3"
     },
     {
       "id": "s368",
@@ -40190,7 +40190,7 @@
           "end": 4.55
         }
       ],
-      "audio": "audio_amnesia_gimel/s368.mp3"
+      "audio": "books/amnesia-gimel/audio/s368.mp3"
     },
     {
       "id": "s369",
@@ -40308,7 +40308,7 @@
           "end": 4.688
         }
       ],
-      "audio": "audio_amnesia_gimel/s369.mp3"
+      "audio": "books/amnesia-gimel/audio/s369.mp3"
     },
     {
       "id": "s370",
@@ -40476,7 +40476,7 @@
           "end": 6.125
         }
       ],
-      "audio": "audio_amnesia_gimel/s370.mp3"
+      "audio": "books/amnesia-gimel/audio/s370.mp3"
     },
     {
       "id": "s371",
@@ -40624,7 +40624,7 @@
           "end": 6.9
         }
       ],
-      "audio": "audio_amnesia_gimel/s371.mp3"
+      "audio": "books/amnesia-gimel/audio/s371.mp3"
     },
     {
       "id": "s372",
@@ -40792,7 +40792,7 @@
           "end": 6.162
         }
       ],
-      "audio": "audio_amnesia_gimel/s372.mp3"
+      "audio": "books/amnesia-gimel/audio/s372.mp3"
     },
     {
       "id": "s373",
@@ -40980,7 +40980,7 @@
           "end": 8.0
         }
       ],
-      "audio": "audio_amnesia_gimel/s373.mp3"
+      "audio": "books/amnesia-gimel/audio/s373.mp3"
     },
     {
       "id": "s374",
@@ -41028,7 +41028,7 @@
           "end": 2.2
         }
       ],
-      "audio": "audio_amnesia_gimel/s374.mp3"
+      "audio": "books/amnesia-gimel/audio/s374.mp3"
     },
     {
       "id": "s375",
@@ -41136,7 +41136,7 @@
           "end": 5.3
         }
       ],
-      "audio": "audio_amnesia_gimel/s375.mp3"
+      "audio": "books/amnesia-gimel/audio/s375.mp3"
     },
     {
       "id": "s376",
@@ -41284,7 +41284,7 @@
           "end": 7.713
         }
       ],
-      "audio": "audio_amnesia_gimel/s376.mp3"
+      "audio": "books/amnesia-gimel/audio/s376.mp3"
     },
     {
       "id": "s377",
@@ -41452,7 +41452,7 @@
           "end": 7.263
         }
       ],
-      "audio": "audio_amnesia_gimel/s377.mp3"
+      "audio": "books/amnesia-gimel/audio/s377.mp3"
     },
     {
       "id": "s378",
@@ -41490,7 +41490,7 @@
           "end": 2.0
         }
       ],
-      "audio": "audio_amnesia_gimel/s378.mp3"
+      "audio": "books/amnesia-gimel/audio/s378.mp3"
     },
     {
       "id": "s379",
@@ -41528,7 +41528,7 @@
           "end": 1.188
         }
       ],
-      "audio": "audio_amnesia_gimel/s379.mp3"
+      "audio": "books/amnesia-gimel/audio/s379.mp3"
     },
     {
       "id": "s380",
@@ -41616,7 +41616,7 @@
           "end": 3.538
         }
       ],
-      "audio": "audio_amnesia_gimel/s380.mp3"
+      "audio": "books/amnesia-gimel/audio/s380.mp3"
     },
     {
       "id": "s381",
@@ -41794,7 +41794,7 @@
           "end": 7.375
         }
       ],
-      "audio": "audio_amnesia_gimel/s381.mp3"
+      "audio": "books/amnesia-gimel/audio/s381.mp3"
     },
     {
       "id": "s382",
@@ -42212,7 +42212,7 @@
           "end": 16.238
         }
       ],
-      "audio": "audio_amnesia_gimel/s382.mp3"
+      "audio": "books/amnesia-gimel/audio/s382.mp3"
     },
     {
       "id": "s383",
@@ -42440,7 +42440,7 @@
           "end": 8.037
         }
       ],
-      "audio": "audio_amnesia_gimel/s383.mp3"
+      "audio": "books/amnesia-gimel/audio/s383.mp3"
     },
     {
       "id": "s384",
@@ -42648,7 +42648,7 @@
           "end": 8.062
         }
       ],
-      "audio": "audio_amnesia_gimel/s384.mp3"
+      "audio": "books/amnesia-gimel/audio/s384.mp3"
     },
     {
       "id": "s385",
@@ -42846,7 +42846,7 @@
           "end": 9.887
         }
       ],
-      "audio": "audio_amnesia_gimel/s385.mp3"
+      "audio": "books/amnesia-gimel/audio/s385.mp3"
     },
     {
       "id": "s386",
@@ -42894,7 +42894,7 @@
           "end": 1.325
         }
       ],
-      "audio": "audio_amnesia_gimel/s386.mp3"
+      "audio": "books/amnesia-gimel/audio/s386.mp3"
     },
     {
       "id": "s387",
@@ -43022,7 +43022,7 @@
           "end": 4.475
         }
       ],
-      "audio": "audio_amnesia_gimel/s387.mp3"
+      "audio": "books/amnesia-gimel/audio/s387.mp3"
     },
     {
       "id": "s388",
@@ -43130,7 +43130,7 @@
           "end": 3.737
         }
       ],
-      "audio": "audio_amnesia_gimel/s388.mp3"
+      "audio": "books/amnesia-gimel/audio/s388.mp3"
     },
     {
       "id": "s389",
@@ -43238,7 +43238,7 @@
           "end": 3.938
         }
       ],
-      "audio": "audio_amnesia_gimel/s389.mp3"
+      "audio": "books/amnesia-gimel/audio/s389.mp3"
     },
     {
       "id": "s390",
@@ -43676,15 +43676,15 @@
           "end": 17.887
         }
       ],
-      "audio": "audio_amnesia_gimel/s390.mp3",
+      "audio": "books/amnesia-gimel/audio/s390.mp3",
       "illustration": {
         "word": "מִשְׁטָרָה",
         "tr": "полиции",
         "caption": "מִשְׁטָרָה",
         "capTr": "mishtara",
         "mnemonic": "В городской ПОЛИЦИИ служебным транспортом управляет огромный плюшевый МИШКА, а вместо машины у него деревянная ТАРА с мигалкой. МИШКА из ТАРЫ строго следит за порядком в городе!",
-        "img": "illustrations_amnesia_gimel/s390.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s390-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s390.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s390-mnemonic.webp"
       }
     },
     {
@@ -43753,7 +43753,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_amnesia_gimel/s391.mp3"
+      "audio": "books/amnesia-gimel/audio/s391.mp3"
     },
     {
       "id": "s392",
@@ -43871,7 +43871,7 @@
           "end": 6.125
         }
       ],
-      "audio": "audio_amnesia_gimel/s392.mp3"
+      "audio": "books/amnesia-gimel/audio/s392.mp3"
     },
     {
       "id": "s393",
@@ -44069,7 +44069,7 @@
           "end": 8.55
         }
       ],
-      "audio": "audio_amnesia_gimel/s393.mp3"
+      "audio": "books/amnesia-gimel/audio/s393.mp3"
     },
     {
       "id": "s394",
@@ -44257,7 +44257,7 @@
           "end": 8.425
         }
       ],
-      "audio": "audio_amnesia_gimel/s394.mp3"
+      "audio": "books/amnesia-gimel/audio/s394.mp3"
     },
     {
       "id": "s395",
@@ -44425,7 +44425,7 @@
           "end": 7.4
         }
       ],
-      "audio": "audio_amnesia_gimel/s395.mp3"
+      "audio": "books/amnesia-gimel/audio/s395.mp3"
     },
     {
       "id": "s396",
@@ -44583,7 +44583,7 @@
           "end": 6.638
         }
       ],
-      "audio": "audio_amnesia_gimel/s396.mp3"
+      "audio": "books/amnesia-gimel/audio/s396.mp3"
     },
     {
       "id": "s397",
@@ -44821,7 +44821,7 @@
           "end": 8.35
         }
       ],
-      "audio": "audio_amnesia_gimel/s397.mp3"
+      "audio": "books/amnesia-gimel/audio/s397.mp3"
     },
     {
       "id": "s398",
@@ -44989,7 +44989,7 @@
           "end": 5.662
         }
       ],
-      "audio": "audio_amnesia_gimel/s398.mp3"
+      "audio": "books/amnesia-gimel/audio/s398.mp3"
     },
     {
       "id": "s399",
@@ -45189,7 +45189,7 @@
           "root": "י-ש-ר"
         }
       ],
-      "audio": "audio_amnesia_gimel/s399.mp3"
+      "audio": "books/amnesia-gimel/audio/s399.mp3"
     },
     {
       "id": "s400",
@@ -45297,7 +45297,7 @@
           "end": 5.287
         }
       ],
-      "audio": "audio_amnesia_gimel/s400.mp3"
+      "audio": "books/amnesia-gimel/audio/s400.mp3"
     },
     {
       "id": "s401",
@@ -45445,7 +45445,7 @@
           "end": 5.888
         }
       ],
-      "audio": "audio_amnesia_gimel/s401.mp3"
+      "audio": "books/amnesia-gimel/audio/s401.mp3"
     },
     {
       "id": "s402",
@@ -45523,7 +45523,7 @@
           "end": 3.7
         }
       ],
-      "audio": "audio_amnesia_gimel/s402.mp3"
+      "audio": "books/amnesia-gimel/audio/s402.mp3"
     },
     {
       "id": "s403",
@@ -45661,7 +45661,7 @@
           "end": 5.325
         }
       ],
-      "audio": "audio_amnesia_gimel/s403.mp3"
+      "audio": "books/amnesia-gimel/audio/s403.mp3"
     },
     {
       "id": "s404",
@@ -45789,15 +45789,15 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s404.mp3",
+      "audio": "books/amnesia-gimel/audio/s404.mp3",
       "illustration": {
         "word": "יָד",
         "tr": "её руки",
         "caption": "יָד",
         "capTr": "Yad",
         "mnemonic": "Слово «яд» на иврите звучит как русский «ЯД». Представьте человека, у которого на РУКАХ вместо пальцев растут гигантские колбы с шипящим зеленым ЯДОМ. Он пытается с кем-то поздороваться, но его РУКА случайно растворяет деревянный стол с дымом и брызгами!",
-        "img": "illustrations_amnesia_gimel/s404.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s404-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s404.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s404-mnemonic.webp"
       }
     },
     {
@@ -45896,7 +45896,7 @@
           "end": 4.05
         }
       ],
-      "audio": "audio_amnesia_gimel/s405.mp3"
+      "audio": "books/amnesia-gimel/audio/s405.mp3"
     },
     {
       "id": "s406",
@@ -45944,7 +45944,7 @@
           "end": 2.562
         }
       ],
-      "audio": "audio_amnesia_gimel/s406.mp3"
+      "audio": "books/amnesia-gimel/audio/s406.mp3"
     },
     {
       "id": "s407",
@@ -46052,7 +46052,7 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_amnesia_gimel/s407.mp3"
+      "audio": "books/amnesia-gimel/audio/s407.mp3"
     },
     {
       "id": "s408",
@@ -46170,7 +46170,7 @@
           "end": 5.05
         }
       ],
-      "audio": "audio_amnesia_gimel/s408.mp3"
+      "audio": "books/amnesia-gimel/audio/s408.mp3"
     },
     {
       "id": "s409",
@@ -46258,7 +46258,7 @@
           "end": 3.013
         }
       ],
-      "audio": "audio_amnesia_gimel/s409.mp3"
+      "audio": "books/amnesia-gimel/audio/s409.mp3"
     },
     {
       "id": "s410",
@@ -46296,7 +46296,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_amnesia_gimel/s410.mp3"
+      "audio": "books/amnesia-gimel/audio/s410.mp3"
     },
     {
       "id": "s411",
@@ -46434,7 +46434,7 @@
           "end": 4.825
         }
       ],
-      "audio": "audio_amnesia_gimel/s411.mp3"
+      "audio": "books/amnesia-gimel/audio/s411.mp3"
     },
     {
       "id": "s412",
@@ -46662,7 +46662,7 @@
           "end": 9.863
         }
       ],
-      "audio": "audio_amnesia_gimel/s412.mp3"
+      "audio": "books/amnesia-gimel/audio/s412.mp3"
     },
     {
       "id": "s413",
@@ -46800,7 +46800,7 @@
           "end": 5.875
         }
       ],
-      "audio": "audio_amnesia_gimel/s413.mp3"
+      "audio": "books/amnesia-gimel/audio/s413.mp3"
     },
     {
       "id": "s414",
@@ -46908,7 +46908,7 @@
           "end": 4.625
         }
       ],
-      "audio": "audio_amnesia_gimel/s414.mp3"
+      "audio": "books/amnesia-gimel/audio/s414.mp3"
     },
     {
       "id": "s415",
@@ -47076,7 +47076,7 @@
           "end": 6.662
         }
       ],
-      "audio": "audio_amnesia_gimel/s415.mp3"
+      "audio": "books/amnesia-gimel/audio/s415.mp3"
     },
     {
       "id": "s416",
@@ -47174,7 +47174,7 @@
           "end": 4.588
         }
       ],
-      "audio": "audio_amnesia_gimel/s416.mp3"
+      "audio": "books/amnesia-gimel/audio/s416.mp3"
     },
     {
       "id": "s417",
@@ -47322,7 +47322,7 @@
           "end": 5.725
         }
       ],
-      "audio": "audio_amnesia_gimel/s417.mp3"
+      "audio": "books/amnesia-gimel/audio/s417.mp3"
     },
     {
       "id": "s418",
@@ -47460,7 +47460,7 @@
           "end": 3.95
         }
       ],
-      "audio": "audio_amnesia_gimel/s418.mp3"
+      "audio": "books/amnesia-gimel/audio/s418.mp3"
     },
     {
       "id": "s419",
@@ -47558,7 +47558,7 @@
           "end": 3.362
         }
       ],
-      "audio": "audio_amnesia_gimel/s419.mp3"
+      "audio": "books/amnesia-gimel/audio/s419.mp3"
     },
     {
       "id": "s420",
@@ -47666,7 +47666,7 @@
           "end": 5.312
         }
       ],
-      "audio": "audio_amnesia_gimel/s420.mp3"
+      "audio": "books/amnesia-gimel/audio/s420.mp3"
     },
     {
       "id": "s421",
@@ -47874,7 +47874,7 @@
           "end": 7.6
         }
       ],
-      "audio": "audio_amnesia_gimel/s421.mp3"
+      "audio": "books/amnesia-gimel/audio/s421.mp3"
     },
     {
       "id": "s422",
@@ -47982,7 +47982,7 @@
           "end": 4.562
         }
       ],
-      "audio": "audio_amnesia_gimel/s422.mp3"
+      "audio": "books/amnesia-gimel/audio/s422.mp3"
     },
     {
       "id": "s423",
@@ -48160,15 +48160,15 @@
           "end": 7.175
         }
       ],
-      "audio": "audio_amnesia_gimel/s423.mp3",
+      "audio": "books/amnesia-gimel/audio/s423.mp3",
       "illustration": {
         "word": "מָקוֹם",
         "tr": "в месте",
         "caption": "מָקוֹם",
         "capTr": "makom",
         "mnemonic": "Чтобы найти идеальное МЕСТО, человек густо посыпает всё вокруг черным МАКОМ. Он с безумной улыбкой трясет гигантской маковой головкой над диваном, превращая этот уголок в самое заметное МЕСТО. Теперь абсолютно всё засыпано МАКОМ, зато это лучшее МЕСТО на свете!",
-        "img": "illustrations_amnesia_gimel/s423.webp",
-        "imgMnemonic": "illustrations_amnesia_gimel/s423-mnemonic.webp"
+        "img": "books/amnesia-gimel/illustrations/s423.webp",
+        "imgMnemonic": "books/amnesia-gimel/illustrations/s423-mnemonic.webp"
       }
     },
     {
@@ -48267,7 +48267,7 @@
           "end": 4.85
         }
       ],
-      "audio": "audio_amnesia_gimel/s424.mp3"
+      "audio": "books/amnesia-gimel/audio/s424.mp3"
     },
     {
       "id": "s425",
@@ -48525,7 +48525,7 @@
           "end": 10.1
         }
       ],
-      "audio": "audio_amnesia_gimel/s425.mp3"
+      "audio": "books/amnesia-gimel/audio/s425.mp3"
     }
   ]
 }

@@ -176,7 +176,7 @@
           "end": 6.862
         }
       ],
-      "audio": "audio_writer_dalet/s1.mp3"
+      "audio": "books/writer-dalet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -344,7 +344,7 @@
           "end": 7.75
         }
       ],
-      "audio": "audio_writer_dalet/s2.mp3"
+      "audio": "books/writer-dalet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -602,7 +602,7 @@
           "end": 11.588
         }
       ],
-      "audio": "audio_writer_dalet/s3.mp3"
+      "audio": "books/writer-dalet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -850,15 +850,15 @@
           "end": 10.825
         }
       ],
-      "audio": "audio_writer_dalet/s4.mp3",
+      "audio": "books/writer-dalet/audio/s4.mp3",
       "illustration": {
         "word": "עַיִן",
         "tr": "от глаз их",
         "caption": "עַיִן",
         "capTr": "ayin",
         "mnemonic": "Представь, что в огромной библиотеке есть секретная комната под названием АЙН, где хранятся древние тома с глазами вместо обложек. Когда ты открываешь одну из таких книг, глаза начинают моргать и рассказывать истории о магических мирах. Вдруг, все глаза одновременно открываются и начинают смотреть на тебя, создавая незабываемую атмосферу.",
-        "img": "illustrations_writer_dalet/s4.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s4-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s4.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s4-mnemonic.webp"
       }
     },
     {
@@ -1067,7 +1067,7 @@
           "end": 8.95
         }
       ],
-      "audio": "audio_writer_dalet/s5.mp3"
+      "audio": "books/writer-dalet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -1205,7 +1205,7 @@
           "end": 5.65
         }
       ],
-      "audio": "audio_writer_dalet/s6.mp3"
+      "audio": "books/writer-dalet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -1383,7 +1383,7 @@
           "end": 7.775
         }
       ],
-      "audio": "audio_writer_dalet/s7.mp3"
+      "audio": "books/writer-dalet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -1501,7 +1501,7 @@
           "end": 5.925
         }
       ],
-      "audio": "audio_writer_dalet/s8.mp3"
+      "audio": "books/writer-dalet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -1679,7 +1679,7 @@
           "end": 8.4
         }
       ],
-      "audio": "audio_writer_dalet/s9.mp3"
+      "audio": "books/writer-dalet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1817,7 +1817,7 @@
           "end": 7.7
         }
       ],
-      "audio": "audio_writer_dalet/s10.mp3"
+      "audio": "books/writer-dalet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -2005,7 +2005,7 @@
           "end": 7.75
         }
       ],
-      "audio": "audio_writer_dalet/s11.mp3"
+      "audio": "books/writer-dalet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -2223,7 +2223,7 @@
           "end": 8.512
         }
       ],
-      "audio": "audio_writer_dalet/s12.mp3"
+      "audio": "books/writer-dalet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -2381,7 +2381,7 @@
           "end": 7.737
         }
       ],
-      "audio": "audio_writer_dalet/s13.mp3"
+      "audio": "books/writer-dalet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -2597,7 +2597,7 @@
           "root": "י-ד-ד"
         }
       ],
-      "audio": "audio_writer_dalet/s14.mp3"
+      "audio": "books/writer-dalet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -2825,7 +2825,7 @@
           "end": 10.562
         }
       ],
-      "audio": "audio_writer_dalet/s15.mp3"
+      "audio": "books/writer-dalet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -2983,7 +2983,7 @@
           "end": 6.088
         }
       ],
-      "audio": "audio_writer_dalet/s16.mp3"
+      "audio": "books/writer-dalet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -3231,7 +3231,7 @@
           "end": 10.025
         }
       ],
-      "audio": "audio_writer_dalet/s17.mp3"
+      "audio": "books/writer-dalet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -3449,7 +3449,7 @@
           "end": 8.762
         }
       ],
-      "audio": "audio_writer_dalet/s18.mp3"
+      "audio": "books/writer-dalet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -3657,7 +3657,7 @@
           "end": 8.675
         }
       ],
-      "audio": "audio_writer_dalet/s19.mp3"
+      "audio": "books/writer-dalet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -3785,7 +3785,7 @@
           "end": 5.55
         }
       ],
-      "audio": "audio_writer_dalet/s20.mp3"
+      "audio": "books/writer-dalet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -3933,7 +3933,7 @@
           "end": 5.975
         }
       ],
-      "audio": "audio_writer_dalet/s21.mp3"
+      "audio": "books/writer-dalet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -4271,15 +4271,15 @@
           "end": 13.812
         }
       ],
-      "audio": "audio_writer_dalet/s22.mp3",
+      "audio": "books/writer-dalet/audio/s22.mp3",
       "illustration": {
         "word": "אֱמֶת",
         "tr": "в правду",
         "caption": "אֱמֶת",
         "capTr": "emeth",
         "mnemonic": "Представь себе огромный, древний ЭМЕТ — могилу, которую вдруг раскопал хитрый археолог, и внутри он нашёл загадочный свиток с надписью, что правда всегда победит, но сам археолог оказался в ловушке, и теперь ему приходится ориентироваться в лабиринте, чтобы найти выход, крича «Эмет, эмет!» во все горло.",
-        "img": "illustrations_writer_dalet/s22.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s22-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s22.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s22-mnemonic.webp"
       }
     },
     {
@@ -4468,7 +4468,7 @@
           "end": 8.2
         }
       ],
-      "audio": "audio_writer_dalet/s23.mp3"
+      "audio": "books/writer-dalet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -4626,7 +4626,7 @@
           "end": 6.862
         }
       ],
-      "audio": "audio_writer_dalet/s24.mp3"
+      "audio": "books/writer-dalet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -4734,7 +4734,7 @@
           "end": 4.075
         }
       ],
-      "audio": "audio_writer_dalet/s25.mp3"
+      "audio": "books/writer-dalet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -4992,7 +4992,7 @@
           "end": 9.65
         }
       ],
-      "audio": "audio_writer_dalet/s26.mp3"
+      "audio": "books/writer-dalet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -5160,7 +5160,7 @@
           "end": 5.8
         }
       ],
-      "audio": "audio_writer_dalet/s27.mp3"
+      "audio": "books/writer-dalet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -5268,7 +5268,7 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_writer_dalet/s28.mp3"
+      "audio": "books/writer-dalet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -5426,7 +5426,7 @@
           "end": 6.963
         }
       ],
-      "audio": "audio_writer_dalet/s29.mp3"
+      "audio": "books/writer-dalet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -5574,7 +5574,7 @@
           "end": 5.775
         }
       ],
-      "audio": "audio_writer_dalet/s30.mp3"
+      "audio": "books/writer-dalet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -5672,7 +5672,7 @@
           "end": 4.662
         }
       ],
-      "audio": "audio_writer_dalet/s31.mp3"
+      "audio": "books/writer-dalet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -5780,7 +5780,7 @@
           "end": 4.975
         }
       ],
-      "audio": "audio_writer_dalet/s32.mp3"
+      "audio": "books/writer-dalet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -5968,7 +5968,7 @@
           "end": 6.9
         }
       ],
-      "audio": "audio_writer_dalet/s33.mp3"
+      "audio": "books/writer-dalet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -6206,7 +6206,7 @@
           "end": 10.425
         }
       ],
-      "audio": "audio_writer_dalet/s34.mp3"
+      "audio": "books/writer-dalet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -6274,7 +6274,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_writer_dalet/s35.mp3"
+      "audio": "books/writer-dalet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -6332,7 +6332,7 @@
           "end": 2.438
         }
       ],
-      "audio": "audio_writer_dalet/s36.mp3"
+      "audio": "books/writer-dalet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -6460,7 +6460,7 @@
           "end": 5.575
         }
       ],
-      "audio": "audio_writer_dalet/s37.mp3"
+      "audio": "books/writer-dalet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -6668,7 +6668,7 @@
           "end": 9.075
         }
       ],
-      "audio": "audio_writer_dalet/s38.mp3"
+      "audio": "books/writer-dalet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -6756,7 +6756,7 @@
           "end": 3.763
         }
       ],
-      "audio": "audio_writer_dalet/s39.mp3"
+      "audio": "books/writer-dalet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -6844,7 +6844,7 @@
           "end": 4.15
         }
       ],
-      "audio": "audio_writer_dalet/s40.mp3"
+      "audio": "books/writer-dalet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -7032,7 +7032,7 @@
           "end": 8.375
         }
       ],
-      "audio": "audio_writer_dalet/s41.mp3"
+      "audio": "books/writer-dalet/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -7210,7 +7210,7 @@
           "end": 6.825
         }
       ],
-      "audio": "audio_writer_dalet/s42.mp3"
+      "audio": "books/writer-dalet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -7394,15 +7394,15 @@
           "root": "ס-פ-ר"
         }
       ],
-      "audio": "audio_writer_dalet/s43.mp3",
+      "audio": "books/writer-dalet/audio/s43.mp3",
       "illustration": {
         "word": "מִילָּה",
         "tr": "мои слова",
         "caption": "מִילָּה",
         "capTr": "mila",
         "mnemonic": "Представь, что у Милы Литы есть целый альбом моих любимых слов, и она вдруг решила сделать из них огромный буквенный пирог, который съедает гигантский говорящий слон, а Мила Лита смеётся и поёт.",
-        "img": "illustrations_writer_dalet/s43.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s43-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s43.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s43-mnemonic.webp"
       }
     },
     {
@@ -7561,7 +7561,7 @@
           "end": 6.6
         }
       ],
-      "audio": "audio_writer_dalet/s44.mp3"
+      "audio": "books/writer-dalet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -7769,7 +7769,7 @@
           "end": 8.838
         }
       ],
-      "audio": "audio_writer_dalet/s45.mp3"
+      "audio": "books/writer-dalet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -7907,7 +7907,7 @@
           "end": 6.138
         }
       ],
-      "audio": "audio_writer_dalet/s46.mp3"
+      "audio": "books/writer-dalet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -8091,7 +8091,7 @@
           "root": "צ-ר-ף"
         }
       ],
-      "audio": "audio_writer_dalet/s47.mp3"
+      "audio": "books/writer-dalet/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -8139,7 +8139,7 @@
           "end": 2.0
         }
       ],
-      "audio": "audio_writer_dalet/s48.mp3"
+      "audio": "books/writer-dalet/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -8237,7 +8237,7 @@
           "end": 3.987
         }
       ],
-      "audio": "audio_writer_dalet/s49.mp3"
+      "audio": "books/writer-dalet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -8315,7 +8315,7 @@
           "end": 3.112
         }
       ],
-      "audio": "audio_writer_dalet/s50.mp3"
+      "audio": "books/writer-dalet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -8443,7 +8443,7 @@
           "end": 4.963
         }
       ],
-      "audio": "audio_writer_dalet/s51.mp3"
+      "audio": "books/writer-dalet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -8671,7 +8671,7 @@
           "end": 8.65
         }
       ],
-      "audio": "audio_writer_dalet/s52.mp3"
+      "audio": "books/writer-dalet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -8975,7 +8975,7 @@
           "root": "ר-ב-ה"
         }
       ],
-      "audio": "audio_writer_dalet/s53.mp3"
+      "audio": "books/writer-dalet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -9143,7 +9143,7 @@
           "end": 6.675
         }
       ],
-      "audio": "audio_writer_dalet/s54.mp3"
+      "audio": "books/writer-dalet/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -9331,7 +9331,7 @@
           "end": 8.225
         }
       ],
-      "audio": "audio_writer_dalet/s55.mp3"
+      "audio": "books/writer-dalet/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -9499,7 +9499,7 @@
           "end": 7.312
         }
       ],
-      "audio": "audio_writer_dalet/s56.mp3"
+      "audio": "books/writer-dalet/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -9607,7 +9607,7 @@
           "end": 6.088
         }
       ],
-      "audio": "audio_writer_dalet/s57.mp3"
+      "audio": "books/writer-dalet/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -9835,7 +9835,7 @@
           "end": 9.15
         }
       ],
-      "audio": "audio_writer_dalet/s58.mp3"
+      "audio": "books/writer-dalet/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -9933,7 +9933,7 @@
           "end": 3.737
         }
       ],
-      "audio": "audio_writer_dalet/s59.mp3"
+      "audio": "books/writer-dalet/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -10061,7 +10061,7 @@
           "end": 5.55
         }
       ],
-      "audio": "audio_writer_dalet/s60.mp3"
+      "audio": "books/writer-dalet/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -10099,7 +10099,7 @@
           "end": 1.975
         }
       ],
-      "audio": "audio_writer_dalet/s61.mp3"
+      "audio": "books/writer-dalet/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -10387,7 +10387,7 @@
           "end": 12.35
         }
       ],
-      "audio": "audio_writer_dalet/s62.mp3"
+      "audio": "books/writer-dalet/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -10565,7 +10565,7 @@
           "end": 7.862
         }
       ],
-      "audio": "audio_writer_dalet/s63.mp3"
+      "audio": "books/writer-dalet/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -10773,15 +10773,15 @@
           "end": 9.85
         }
       ],
-      "audio": "audio_writer_dalet/s64.mp3",
+      "audio": "books/writer-dalet/audio/s64.mp3",
       "illustration": {
         "word": "רוּחַ",
         "tr": "духа (хладнокровие)",
         "caption": "רוּחַ",
         "capTr": "ruach",
         "mnemonic": "Представь гигантского РУЧНОГО робота, который с невероятным хладнокровием РУХАЕТ огромные камни, создавая из них сложные скульптуры, а вокруг него разбегаются люди, пытаясь избежать летящих обломков.",
-        "img": "illustrations_writer_dalet/s64.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s64-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s64.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s64-mnemonic.webp"
       }
     },
     {
@@ -10940,7 +10940,7 @@
           "end": 7.537
         }
       ],
-      "audio": "audio_writer_dalet/s65.mp3"
+      "audio": "books/writer-dalet/audio/s65.mp3"
     },
     {
       "id": "s66",
@@ -11048,7 +11048,7 @@
           "end": 4.812
         }
       ],
-      "audio": "audio_writer_dalet/s66.mp3"
+      "audio": "books/writer-dalet/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -11176,7 +11176,7 @@
           "end": 4.975
         }
       ],
-      "audio": "audio_writer_dalet/s67.mp3"
+      "audio": "books/writer-dalet/audio/s67.mp3"
     },
     {
       "id": "s68",
@@ -11374,7 +11374,7 @@
           "end": 7.938
         }
       ],
-      "audio": "audio_writer_dalet/s68.mp3"
+      "audio": "books/writer-dalet/audio/s68.mp3"
     },
     {
       "id": "s69",
@@ -11672,7 +11672,7 @@
           "end": 12.012
         }
       ],
-      "audio": "audio_writer_dalet/s69.mp3"
+      "audio": "books/writer-dalet/audio/s69.mp3"
     },
     {
       "id": "s70",
@@ -11840,7 +11840,7 @@
           "end": 7.213
         }
       ],
-      "audio": "audio_writer_dalet/s70.mp3"
+      "audio": "books/writer-dalet/audio/s70.mp3"
     },
     {
       "id": "s71",
@@ -12058,7 +12058,7 @@
           "end": 8.463
         }
       ],
-      "audio": "audio_writer_dalet/s71.mp3"
+      "audio": "books/writer-dalet/audio/s71.mp3"
     },
     {
       "id": "s72",
@@ -12236,7 +12236,7 @@
           "end": 6.838
         }
       ],
-      "audio": "audio_writer_dalet/s72.mp3"
+      "audio": "books/writer-dalet/audio/s72.mp3"
     },
     {
       "id": "s73",
@@ -12324,7 +12324,7 @@
           "end": 3.712
         }
       ],
-      "audio": "audio_writer_dalet/s73.mp3"
+      "audio": "books/writer-dalet/audio/s73.mp3"
     },
     {
       "id": "s74",
@@ -12532,7 +12532,7 @@
           "end": 7.812
         }
       ],
-      "audio": "audio_writer_dalet/s74.mp3"
+      "audio": "books/writer-dalet/audio/s74.mp3"
     },
     {
       "id": "s75",
@@ -12660,7 +12660,7 @@
           "end": 6.763
         }
       ],
-      "audio": "audio_writer_dalet/s75.mp3"
+      "audio": "books/writer-dalet/audio/s75.mp3"
     },
     {
       "id": "s76",
@@ -12878,7 +12878,7 @@
           "end": 10.012
         }
       ],
-      "audio": "audio_writer_dalet/s76.mp3"
+      "audio": "books/writer-dalet/audio/s76.mp3"
     },
     {
       "id": "s77",
@@ -12996,7 +12996,7 @@
           "end": 5.362
         }
       ],
-      "audio": "audio_writer_dalet/s77.mp3"
+      "audio": "books/writer-dalet/audio/s77.mp3"
     },
     {
       "id": "s78",
@@ -13084,7 +13084,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_writer_dalet/s78.mp3"
+      "audio": "books/writer-dalet/audio/s78.mp3"
     },
     {
       "id": "s79",
@@ -13332,7 +13332,7 @@
           "end": 9.025
         }
       ],
-      "audio": "audio_writer_dalet/s79.mp3"
+      "audio": "books/writer-dalet/audio/s79.mp3"
     },
     {
       "id": "s80",
@@ -13510,7 +13510,7 @@
           "end": 6.888
         }
       ],
-      "audio": "audio_writer_dalet/s80.mp3"
+      "audio": "books/writer-dalet/audio/s80.mp3"
     },
     {
       "id": "s81",
@@ -13708,7 +13708,7 @@
           "end": 7.138
         }
       ],
-      "audio": "audio_writer_dalet/s81.mp3"
+      "audio": "books/writer-dalet/audio/s81.mp3"
     },
     {
       "id": "s82",
@@ -13936,7 +13936,7 @@
           "end": 9.062
         }
       ],
-      "audio": "audio_writer_dalet/s82.mp3"
+      "audio": "books/writer-dalet/audio/s82.mp3"
     },
     {
       "id": "s83",
@@ -14064,7 +14064,7 @@
           "end": 6.037
         }
       ],
-      "audio": "audio_writer_dalet/s83.mp3"
+      "audio": "books/writer-dalet/audio/s83.mp3"
     },
     {
       "id": "s84",
@@ -14252,7 +14252,7 @@
           "end": 7.088
         }
       ],
-      "audio": "audio_writer_dalet/s84.mp3"
+      "audio": "books/writer-dalet/audio/s84.mp3"
     },
     {
       "id": "s85",
@@ -14400,7 +14400,7 @@
           "end": 7.162
         }
       ],
-      "audio": "audio_writer_dalet/s85.mp3"
+      "audio": "books/writer-dalet/audio/s85.mp3"
     },
     {
       "id": "s86",
@@ -14498,7 +14498,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_writer_dalet/s86.mp3"
+      "audio": "books/writer-dalet/audio/s86.mp3"
     },
     {
       "id": "s87",
@@ -14686,7 +14686,7 @@
           "end": 7.312
         }
       ],
-      "audio": "audio_writer_dalet/s87.mp3"
+      "audio": "books/writer-dalet/audio/s87.mp3"
     },
     {
       "id": "s88",
@@ -14844,7 +14844,7 @@
           "end": 5.525
         }
       ],
-      "audio": "audio_writer_dalet/s88.mp3"
+      "audio": "books/writer-dalet/audio/s88.mp3"
     },
     {
       "id": "s89",
@@ -14982,15 +14982,15 @@
           "end": 6.575
         }
       ],
-      "audio": "audio_writer_dalet/s89.mp3",
+      "audio": "books/writer-dalet/audio/s89.mp3",
       "illustration": {
         "word": "מִכְתָּב",
         "tr": "письма",
         "caption": "מִכְתָּב",
         "capTr": "michtav",
         "mnemonic": "Представь, что Микта, знаменитый писатель, получает огромную пачку писем от поклонников, и когда он их открывает, из них вылетают разноцветные бабочки, которые начинают танцевать вокруг него, создавая ослепительный световой спектакль. Микта не может сопротивляться и присоединяется к танцу, кружась среди писем и бабочек. Внезапно, все письма начинают светиться, и Микта понимает, что они содержат секреты и истории, которые он никогда не знал.",
-        "img": "illustrations_writer_dalet/s89.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s89-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s89.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s89-mnemonic.webp"
       }
     },
     {
@@ -15109,7 +15109,7 @@
           "end": 6.025
         }
       ],
-      "audio": "audio_writer_dalet/s90.mp3"
+      "audio": "books/writer-dalet/audio/s90.mp3"
     },
     {
       "id": "s91",
@@ -15347,7 +15347,7 @@
           "end": 9.012
         }
       ],
-      "audio": "audio_writer_dalet/s91.mp3"
+      "audio": "books/writer-dalet/audio/s91.mp3"
     },
     {
       "id": "s92",
@@ -15575,7 +15575,7 @@
           "end": 9.575
         }
       ],
-      "audio": "audio_writer_dalet/s92.mp3"
+      "audio": "books/writer-dalet/audio/s92.mp3"
     },
     {
       "id": "s93",
@@ -15793,7 +15793,7 @@
           "end": 7.3
         }
       ],
-      "audio": "audio_writer_dalet/s93.mp3"
+      "audio": "books/writer-dalet/audio/s93.mp3"
     },
     {
       "id": "s94",
@@ -16001,7 +16001,7 @@
           "end": 8.95
         }
       ],
-      "audio": "audio_writer_dalet/s94.mp3"
+      "audio": "books/writer-dalet/audio/s94.mp3"
     },
     {
       "id": "s95",
@@ -16129,7 +16129,7 @@
           "end": 5.213
         }
       ],
-      "audio": "audio_writer_dalet/s95.mp3"
+      "audio": "books/writer-dalet/audio/s95.mp3"
     },
     {
       "id": "s96",
@@ -16257,7 +16257,7 @@
           "end": 7.325
         }
       ],
-      "audio": "audio_writer_dalet/s96.mp3"
+      "audio": "books/writer-dalet/audio/s96.mp3"
     },
     {
       "id": "s97",
@@ -16525,7 +16525,7 @@
           "end": 10.688
         }
       ],
-      "audio": "audio_writer_dalet/s97.mp3"
+      "audio": "books/writer-dalet/audio/s97.mp3"
     },
     {
       "id": "s98",
@@ -16723,7 +16723,7 @@
           "end": 7.588
         }
       ],
-      "audio": "audio_writer_dalet/s98.mp3"
+      "audio": "books/writer-dalet/audio/s98.mp3"
     },
     {
       "id": "s99",
@@ -16821,7 +16821,7 @@
           "end": 4.412
         }
       ],
-      "audio": "audio_writer_dalet/s99.mp3"
+      "audio": "books/writer-dalet/audio/s99.mp3"
     },
     {
       "id": "s100",
@@ -16999,7 +16999,7 @@
           "end": 7.188
         }
       ],
-      "audio": "audio_writer_dalet/s100.mp3"
+      "audio": "books/writer-dalet/audio/s100.mp3"
     },
     {
       "id": "s101",
@@ -17137,7 +17137,7 @@
           "end": 6.438
         }
       ],
-      "audio": "audio_writer_dalet/s101.mp3"
+      "audio": "books/writer-dalet/audio/s101.mp3"
     },
     {
       "id": "s102",
@@ -17325,7 +17325,7 @@
           "end": 8.338
         }
       ],
-      "audio": "audio_writer_dalet/s102.mp3"
+      "audio": "books/writer-dalet/audio/s102.mp3"
     },
     {
       "id": "s103",
@@ -17463,7 +17463,7 @@
           "end": 6.55
         }
       ],
-      "audio": "audio_writer_dalet/s103.mp3"
+      "audio": "books/writer-dalet/audio/s103.mp3"
     },
     {
       "id": "s104",
@@ -17601,7 +17601,7 @@
           "end": 6.25
         }
       ],
-      "audio": "audio_writer_dalet/s104.mp3"
+      "audio": "books/writer-dalet/audio/s104.mp3"
     },
     {
       "id": "s105",
@@ -17819,7 +17819,7 @@
           "end": 8.775
         }
       ],
-      "audio": "audio_writer_dalet/s105.mp3"
+      "audio": "books/writer-dalet/audio/s105.mp3"
     },
     {
       "id": "s106",
@@ -17947,7 +17947,7 @@
           "end": 6.338
         }
       ],
-      "audio": "audio_writer_dalet/s106.mp3"
+      "audio": "books/writer-dalet/audio/s106.mp3"
     },
     {
       "id": "s107",
@@ -18139,15 +18139,15 @@
           "root": "ח-ב-ר"
         }
       ],
-      "audio": "audio_writer_dalet/s107.mp3",
+      "audio": "books/writer-dalet/audio/s107.mp3",
       "illustration": {
         "word": "פָּנִים",
         "tr": "что перед ним",
         "caption": "פָּנִים",
         "capTr": "panim",
         "mnemonic": "Представь гигантские зеркала, отражающие тысячи лиц, и вдруг перед каждым из них появляется знакомая фраза 'па-ним', как будто все они говорят 'па-ним' в унисон, их лица искажаются в гротескные улыбки, а зеркала начинают трескаться и разбиваться от громкого хора 'па-ним'.",
-        "img": "illustrations_writer_dalet/s107.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s107-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s107.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s107-mnemonic.webp"
       }
     },
     {
@@ -18296,7 +18296,7 @@
           "end": 6.713
         }
       ],
-      "audio": "audio_writer_dalet/s108.mp3"
+      "audio": "books/writer-dalet/audio/s108.mp3"
     },
     {
       "id": "s109",
@@ -18544,7 +18544,7 @@
           "end": 10.9
         }
       ],
-      "audio": "audio_writer_dalet/s109.mp3"
+      "audio": "books/writer-dalet/audio/s109.mp3"
     },
     {
       "id": "s110",
@@ -18752,7 +18752,7 @@
           "end": 9.575
         }
       ],
-      "audio": "audio_writer_dalet/s110.mp3"
+      "audio": "books/writer-dalet/audio/s110.mp3"
     },
     {
       "id": "s111",
@@ -18860,7 +18860,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_writer_dalet/s111.mp3"
+      "audio": "books/writer-dalet/audio/s111.mp3"
     },
     {
       "id": "s112",
@@ -19038,7 +19038,7 @@
           "end": 6.987
         }
       ],
-      "audio": "audio_writer_dalet/s112.mp3"
+      "audio": "books/writer-dalet/audio/s112.mp3"
     },
     {
       "id": "s113",
@@ -19246,7 +19246,7 @@
           "end": 9.488
         }
       ],
-      "audio": "audio_writer_dalet/s113.mp3"
+      "audio": "books/writer-dalet/audio/s113.mp3"
     },
     {
       "id": "s114",
@@ -19294,7 +19294,7 @@
           "end": 2.45
         }
       ],
-      "audio": "audio_writer_dalet/s114.mp3"
+      "audio": "books/writer-dalet/audio/s114.mp3"
     },
     {
       "id": "s115",
@@ -19522,7 +19522,7 @@
           "end": 11.787
         }
       ],
-      "audio": "audio_writer_dalet/s115.mp3"
+      "audio": "books/writer-dalet/audio/s115.mp3"
     },
     {
       "id": "s116",
@@ -19680,7 +19680,7 @@
           "end": 6.125
         }
       ],
-      "audio": "audio_writer_dalet/s116.mp3"
+      "audio": "books/writer-dalet/audio/s116.mp3"
     },
     {
       "id": "s117",
@@ -19788,7 +19788,7 @@
           "end": 5.713
         }
       ],
-      "audio": "audio_writer_dalet/s117.mp3"
+      "audio": "books/writer-dalet/audio/s117.mp3"
     },
     {
       "id": "s118",
@@ -20006,7 +20006,7 @@
           "end": 8.463
         }
       ],
-      "audio": "audio_writer_dalet/s118.mp3"
+      "audio": "books/writer-dalet/audio/s118.mp3"
     },
     {
       "id": "s119",
@@ -20124,7 +20124,7 @@
           "end": 5.213
         }
       ],
-      "audio": "audio_writer_dalet/s119.mp3"
+      "audio": "books/writer-dalet/audio/s119.mp3"
     },
     {
       "id": "s120",
@@ -20272,7 +20272,7 @@
           "end": 5.925
         }
       ],
-      "audio": "audio_writer_dalet/s120.mp3"
+      "audio": "books/writer-dalet/audio/s120.mp3"
     },
     {
       "id": "s121",
@@ -20460,7 +20460,7 @@
           "end": 6.888
         }
       ],
-      "audio": "audio_writer_dalet/s121.mp3"
+      "audio": "books/writer-dalet/audio/s121.mp3"
     },
     {
       "id": "s122",
@@ -20718,7 +20718,7 @@
           "end": 9.55
         }
       ],
-      "audio": "audio_writer_dalet/s122.mp3"
+      "audio": "books/writer-dalet/audio/s122.mp3"
     },
     {
       "id": "s123",
@@ -20826,15 +20826,15 @@
           "end": 4.537
         }
       ],
-      "audio": "audio_writer_dalet/s123.mp3",
+      "audio": "books/writer-dalet/audio/s123.mp3",
       "illustration": {
         "word": "מְצִיאוּת",
         "tr": "реальность",
         "caption": "מְצִיאוּת",
         "capTr": "metsiut",
         "mnemonic": "Представь себе реальную МЕЦИЮ ТУТ, где все живут в огромных буквах и цифрах, и вдруг появляется гигантский карандаш, который начинает стирать всю эту реальность, оставляя после себя только белое пространство. Все буквы и цифры начинают кричать и разбегаться, а карандаш продолжает стирать, создавая новую реальность. В этой новой реальности все буквы и цифры начинают жить своей собственной жизнью, и карандаш становится их лидером.",
-        "img": "illustrations_writer_dalet/s123.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s123-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s123.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s123-mnemonic.webp"
       }
     },
     {
@@ -20883,7 +20883,7 @@
           "end": 1.988
         }
       ],
-      "audio": "audio_writer_dalet/s124.mp3"
+      "audio": "books/writer-dalet/audio/s124.mp3"
     },
     {
       "id": "s125",
@@ -21071,7 +21071,7 @@
           "end": 7.45
         }
       ],
-      "audio": "audio_writer_dalet/s125.mp3"
+      "audio": "books/writer-dalet/audio/s125.mp3"
     },
     {
       "id": "s126",
@@ -21259,7 +21259,7 @@
           "end": 9.0
         }
       ],
-      "audio": "audio_writer_dalet/s126.mp3"
+      "audio": "books/writer-dalet/audio/s126.mp3"
     },
     {
       "id": "s127",
@@ -21363,7 +21363,7 @@
           "root": "ק-ל-ד"
         }
       ],
-      "audio": "audio_writer_dalet/s127.mp3"
+      "audio": "books/writer-dalet/audio/s127.mp3"
     },
     {
       "id": "s128",
@@ -21411,7 +21411,7 @@
           "end": 2.237
         }
       ],
-      "audio": "audio_writer_dalet/s128.mp3"
+      "audio": "books/writer-dalet/audio/s128.mp3"
     },
     {
       "id": "s129",
@@ -21589,7 +21589,7 @@
           "end": 6.875
         }
       ],
-      "audio": "audio_writer_dalet/s129.mp3"
+      "audio": "books/writer-dalet/audio/s129.mp3"
     },
     {
       "id": "s130",
@@ -21767,7 +21767,7 @@
           "end": 7.9
         }
       ],
-      "audio": "audio_writer_dalet/s130.mp3"
+      "audio": "books/writer-dalet/audio/s130.mp3"
     },
     {
       "id": "s131",
@@ -21925,7 +21925,7 @@
           "end": 5.325
         }
       ],
-      "audio": "audio_writer_dalet/s131.mp3"
+      "audio": "books/writer-dalet/audio/s131.mp3"
     },
     {
       "id": "s132",
@@ -22073,7 +22073,7 @@
           "end": 6.5
         }
       ],
-      "audio": "audio_writer_dalet/s132.mp3"
+      "audio": "books/writer-dalet/audio/s132.mp3"
     },
     {
       "id": "s133",
@@ -22261,7 +22261,7 @@
           "end": 7.325
         }
       ],
-      "audio": "audio_writer_dalet/s133.mp3"
+      "audio": "books/writer-dalet/audio/s133.mp3"
     },
     {
       "id": "s134",
@@ -22559,7 +22559,7 @@
           "end": 12.938
         }
       ],
-      "audio": "audio_writer_dalet/s134.mp3"
+      "audio": "books/writer-dalet/audio/s134.mp3"
     },
     {
       "id": "s135",
@@ -22817,7 +22817,7 @@
           "end": 10.863
         }
       ],
-      "audio": "audio_writer_dalet/s135.mp3"
+      "audio": "books/writer-dalet/audio/s135.mp3"
     },
     {
       "id": "s136",
@@ -23035,7 +23035,7 @@
           "end": 9.625
         }
       ],
-      "audio": "audio_writer_dalet/s136.mp3"
+      "audio": "books/writer-dalet/audio/s136.mp3"
     },
     {
       "id": "s137",
@@ -23193,7 +23193,7 @@
           "end": 5.737
         }
       ],
-      "audio": "audio_writer_dalet/s137.mp3"
+      "audio": "books/writer-dalet/audio/s137.mp3"
     },
     {
       "id": "s138",
@@ -23321,7 +23321,7 @@
           "end": 5.175
         }
       ],
-      "audio": "audio_writer_dalet/s138.mp3"
+      "audio": "books/writer-dalet/audio/s138.mp3"
     },
     {
       "id": "s139",
@@ -23379,7 +23379,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_writer_dalet/s139.mp3"
+      "audio": "books/writer-dalet/audio/s139.mp3"
     },
     {
       "id": "s140",
@@ -23487,7 +23487,7 @@
           "end": 4.388
         }
       ],
-      "audio": "audio_writer_dalet/s140.mp3"
+      "audio": "books/writer-dalet/audio/s140.mp3"
     },
     {
       "id": "s141",
@@ -23675,7 +23675,7 @@
           "end": 8.363
         }
       ],
-      "audio": "audio_writer_dalet/s141.mp3"
+      "audio": "books/writer-dalet/audio/s141.mp3"
     },
     {
       "id": "s142",
@@ -23873,7 +23873,7 @@
           "end": 8.2
         }
       ],
-      "audio": "audio_writer_dalet/s142.mp3"
+      "audio": "books/writer-dalet/audio/s142.mp3"
     },
     {
       "id": "s143",
@@ -24031,7 +24031,7 @@
           "end": 7.362
         }
       ],
-      "audio": "audio_writer_dalet/s143.mp3"
+      "audio": "books/writer-dalet/audio/s143.mp3"
     },
     {
       "id": "s144",
@@ -24139,7 +24139,7 @@
           "end": 4.375
         }
       ],
-      "audio": "audio_writer_dalet/s144.mp3"
+      "audio": "books/writer-dalet/audio/s144.mp3"
     },
     {
       "id": "s145",
@@ -24267,7 +24267,7 @@
           "end": 5.862
         }
       ],
-      "audio": "audio_writer_dalet/s145.mp3"
+      "audio": "books/writer-dalet/audio/s145.mp3"
     },
     {
       "id": "s146",
@@ -24475,7 +24475,7 @@
           "end": 9.775
         }
       ],
-      "audio": "audio_writer_dalet/s146.mp3"
+      "audio": "books/writer-dalet/audio/s146.mp3"
     },
     {
       "id": "s147",
@@ -24663,7 +24663,7 @@
           "end": 8.037
         }
       ],
-      "audio": "audio_writer_dalet/s147.mp3"
+      "audio": "books/writer-dalet/audio/s147.mp3"
     },
     {
       "id": "s148",
@@ -24871,7 +24871,7 @@
           "end": 8.525
         }
       ],
-      "audio": "audio_writer_dalet/s148.mp3"
+      "audio": "books/writer-dalet/audio/s148.mp3"
     },
     {
       "id": "s149",
@@ -24929,7 +24929,7 @@
           "end": 2.737
         }
       ],
-      "audio": "audio_writer_dalet/s149.mp3"
+      "audio": "books/writer-dalet/audio/s149.mp3"
     },
     {
       "id": "s150",
@@ -25217,15 +25217,15 @@
           "end": 12.35
         }
       ],
-      "audio": "audio_writer_dalet/s150.mp3",
+      "audio": "books/writer-dalet/audio/s150.mp3",
       "illustration": {
         "word": "אָחוֹת",
         "tr": "что сестра моя",
         "caption": "אָחוֹת",
         "capTr": "achot",
         "mnemonic": "Представь огромную, добрую АХОТУ, которая пришла на вечеринку и всех поразила своими невероятными танцевальными движениями, все гости аплодируют и танцуют вместе с ней, а она улыбается и раздаёт автографы.",
-        "img": "illustrations_writer_dalet/s150.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s150-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s150.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s150-mnemonic.webp"
       }
     },
     {
@@ -25424,7 +25424,7 @@
           "end": 8.7
         }
       ],
-      "audio": "audio_writer_dalet/s151.mp3"
+      "audio": "books/writer-dalet/audio/s151.mp3"
     },
     {
       "id": "s152",
@@ -25532,7 +25532,7 @@
           "end": 5.225
         }
       ],
-      "audio": "audio_writer_dalet/s152.mp3"
+      "audio": "books/writer-dalet/audio/s152.mp3"
     },
     {
       "id": "s153",
@@ -25610,7 +25610,7 @@
           "end": 3.638
         }
       ],
-      "audio": "audio_writer_dalet/s153.mp3"
+      "audio": "books/writer-dalet/audio/s153.mp3"
     },
     {
       "id": "s154",
@@ -25708,7 +25708,7 @@
           "end": 4.725
         }
       ],
-      "audio": "audio_writer_dalet/s154.mp3"
+      "audio": "books/writer-dalet/audio/s154.mp3"
     },
     {
       "id": "s155",
@@ -25806,7 +25806,7 @@
           "end": 4.537
         }
       ],
-      "audio": "audio_writer_dalet/s155.mp3"
+      "audio": "books/writer-dalet/audio/s155.mp3"
     },
     {
       "id": "s156",
@@ -25974,7 +25974,7 @@
           "end": 7.388
         }
       ],
-      "audio": "audio_writer_dalet/s156.mp3"
+      "audio": "books/writer-dalet/audio/s156.mp3"
     },
     {
       "id": "s157",
@@ -26172,7 +26172,7 @@
           "end": 8.812
         }
       ],
-      "audio": "audio_writer_dalet/s157.mp3"
+      "audio": "books/writer-dalet/audio/s157.mp3"
     },
     {
       "id": "s158",
@@ -26340,7 +26340,7 @@
           "end": 8.225
         }
       ],
-      "audio": "audio_writer_dalet/s158.mp3"
+      "audio": "books/writer-dalet/audio/s158.mp3"
     },
     {
       "id": "s159",
@@ -26518,7 +26518,7 @@
           "end": 6.987
         }
       ],
-      "audio": "audio_writer_dalet/s159.mp3"
+      "audio": "books/writer-dalet/audio/s159.mp3"
     },
     {
       "id": "s160",
@@ -26726,7 +26726,7 @@
           "end": 8.65
         }
       ],
-      "audio": "audio_writer_dalet/s160.mp3"
+      "audio": "books/writer-dalet/audio/s160.mp3"
     },
     {
       "id": "s161",
@@ -26944,7 +26944,7 @@
           "end": 9.375
         }
       ],
-      "audio": "audio_writer_dalet/s161.mp3"
+      "audio": "books/writer-dalet/audio/s161.mp3"
     },
     {
       "id": "s162",
@@ -26982,7 +26982,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_writer_dalet/s162.mp3"
+      "audio": "books/writer-dalet/audio/s162.mp3"
     },
     {
       "id": "s163",
@@ -27170,7 +27170,7 @@
           "end": 7.725
         }
       ],
-      "audio": "audio_writer_dalet/s163.mp3"
+      "audio": "books/writer-dalet/audio/s163.mp3"
     },
     {
       "id": "s164",
@@ -27358,15 +27358,15 @@
           "end": 8.15
         }
       ],
-      "audio": "audio_writer_dalet/s164.mp3",
+      "audio": "books/writer-dalet/audio/s164.mp3",
       "illustration": {
         "word": "רַאֲוָה",
         "tr": "витрин",
         "caption": "רַאֲוָה",
         "capTr": "raava",
         "mnemonic": "Представь себе гигантскую РАВУ, которая вдруг начала ВАХАТЬ все витрины в городе, и люди в панике разбегаются, а рава смеётся и продолжает вахать.",
-        "img": "illustrations_writer_dalet/s164.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s164-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s164.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s164-mnemonic.webp"
       }
     },
     {
@@ -27595,7 +27595,7 @@
           "end": 9.775
         }
       ],
-      "audio": "audio_writer_dalet/s165.mp3"
+      "audio": "books/writer-dalet/audio/s165.mp3"
     },
     {
       "id": "s166",
@@ -27693,7 +27693,7 @@
           "end": 4.588
         }
       ],
-      "audio": "audio_writer_dalet/s166.mp3"
+      "audio": "books/writer-dalet/audio/s166.mp3"
     },
     {
       "id": "s167",
@@ -27781,7 +27781,7 @@
           "end": 4.25
         }
       ],
-      "audio": "audio_writer_dalet/s167.mp3"
+      "audio": "books/writer-dalet/audio/s167.mp3"
     },
     {
       "id": "s168",
@@ -27929,7 +27929,7 @@
           "end": 6.35
         }
       ],
-      "audio": "audio_writer_dalet/s168.mp3"
+      "audio": "books/writer-dalet/audio/s168.mp3"
     },
     {
       "id": "s169",
@@ -28117,7 +28117,7 @@
           "end": 8.787
         }
       ],
-      "audio": "audio_writer_dalet/s169.mp3"
+      "audio": "books/writer-dalet/audio/s169.mp3"
     },
     {
       "id": "s170",
@@ -28215,7 +28215,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_writer_dalet/s170.mp3"
+      "audio": "books/writer-dalet/audio/s170.mp3"
     },
     {
       "id": "s171",
@@ -28363,7 +28363,7 @@
           "end": 5.575
         }
       ],
-      "audio": "audio_writer_dalet/s171.mp3"
+      "audio": "books/writer-dalet/audio/s171.mp3"
     },
     {
       "id": "s172",
@@ -28461,7 +28461,7 @@
           "end": 5.362
         }
       ],
-      "audio": "audio_writer_dalet/s172.mp3"
+      "audio": "books/writer-dalet/audio/s172.mp3"
     },
     {
       "id": "s173",
@@ -28679,7 +28679,7 @@
           "end": 8.675
         }
       ],
-      "audio": "audio_writer_dalet/s173.mp3"
+      "audio": "books/writer-dalet/audio/s173.mp3"
     },
     {
       "id": "s174",
@@ -28737,7 +28737,7 @@
           "end": 1.85
         }
       ],
-      "audio": "audio_writer_dalet/s174.mp3"
+      "audio": "books/writer-dalet/audio/s174.mp3"
     },
     {
       "id": "s175",
@@ -28995,7 +28995,7 @@
           "end": 11.613
         }
       ],
-      "audio": "audio_writer_dalet/s175.mp3"
+      "audio": "books/writer-dalet/audio/s175.mp3"
     },
     {
       "id": "s176",
@@ -29083,7 +29083,7 @@
           "end": 4.362
         }
       ],
-      "audio": "audio_writer_dalet/s176.mp3"
+      "audio": "books/writer-dalet/audio/s176.mp3"
     },
     {
       "id": "s177",
@@ -29171,7 +29171,7 @@
           "end": 5.55
         }
       ],
-      "audio": "audio_writer_dalet/s177.mp3"
+      "audio": "books/writer-dalet/audio/s177.mp3"
     },
     {
       "id": "s178",
@@ -29359,7 +29359,7 @@
           "end": 7.562
         }
       ],
-      "audio": "audio_writer_dalet/s178.mp3"
+      "audio": "books/writer-dalet/audio/s178.mp3"
     },
     {
       "id": "s179",
@@ -29527,7 +29527,7 @@
           "end": 8.075
         }
       ],
-      "audio": "audio_writer_dalet/s179.mp3"
+      "audio": "books/writer-dalet/audio/s179.mp3"
     },
     {
       "id": "s180",
@@ -29715,7 +29715,7 @@
           "end": 8.188
         }
       ],
-      "audio": "audio_writer_dalet/s180.mp3"
+      "audio": "books/writer-dalet/audio/s180.mp3"
     },
     {
       "id": "s181",
@@ -29853,15 +29853,15 @@
           "end": 4.838
         }
       ],
-      "audio": "audio_writer_dalet/s181.mp3",
+      "audio": "books/writer-dalet/audio/s181.mp3",
       "illustration": {
         "word": "בּוּז",
         "tr": "с презрением",
         "caption": "בּוּז",
         "capTr": "buz",
         "mnemonic": "Представь огромную БУЗину, которая вдруг начала БУЗить так громко, что всех вокруг охватило чувство презрения и отвращения. Люди начинают БУЗить друг на друга, и скоро вся улица превращается в хаос, где все БУЗят и показывают друг другу языки. В центре этого хаоса стоит огромная БУЗина, гордо демонстрирующая своё презрение ко всему миру.",
-        "img": "illustrations_writer_dalet/s181.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s181-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s181.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s181-mnemonic.webp"
       }
     },
     {
@@ -30000,7 +30000,7 @@
           "end": 4.775
         }
       ],
-      "audio": "audio_writer_dalet/s182.mp3"
+      "audio": "books/writer-dalet/audio/s182.mp3"
     },
     {
       "id": "s183",
@@ -30158,7 +30158,7 @@
           "end": 5.6
         }
       ],
-      "audio": "audio_writer_dalet/s183.mp3"
+      "audio": "books/writer-dalet/audio/s183.mp3"
     },
     {
       "id": "s184",
@@ -30226,7 +30226,7 @@
           "end": 2.475
         }
       ],
-      "audio": "audio_writer_dalet/s184.mp3"
+      "audio": "books/writer-dalet/audio/s184.mp3"
     },
     {
       "id": "s185",
@@ -30404,7 +30404,7 @@
           "end": 6.5
         }
       ],
-      "audio": "audio_writer_dalet/s185.mp3"
+      "audio": "books/writer-dalet/audio/s185.mp3"
     },
     {
       "id": "s186",
@@ -30612,7 +30612,7 @@
           "end": 8.275
         }
       ],
-      "audio": "audio_writer_dalet/s186.mp3"
+      "audio": "books/writer-dalet/audio/s186.mp3"
     },
     {
       "id": "s187",
@@ -30780,7 +30780,7 @@
           "end": 7.05
         }
       ],
-      "audio": "audio_writer_dalet/s187.mp3"
+      "audio": "books/writer-dalet/audio/s187.mp3"
     },
     {
       "id": "s188",
@@ -30948,7 +30948,7 @@
           "end": 6.612
         }
       ],
-      "audio": "audio_writer_dalet/s188.mp3"
+      "audio": "books/writer-dalet/audio/s188.mp3"
     },
     {
       "id": "s189",
@@ -31036,7 +31036,7 @@
           "end": 3.575
         }
       ],
-      "audio": "audio_writer_dalet/s189.mp3"
+      "audio": "books/writer-dalet/audio/s189.mp3"
     },
     {
       "id": "s190",
@@ -31164,7 +31164,7 @@
           "end": 5.65
         }
       ],
-      "audio": "audio_writer_dalet/s190.mp3"
+      "audio": "books/writer-dalet/audio/s190.mp3"
     },
     {
       "id": "s191",
@@ -31402,7 +31402,7 @@
           "end": 8.262
         }
       ],
-      "audio": "audio_writer_dalet/s191.mp3"
+      "audio": "books/writer-dalet/audio/s191.mp3"
     },
     {
       "id": "s192",
@@ -31580,7 +31580,7 @@
           "end": 6.8
         }
       ],
-      "audio": "audio_writer_dalet/s192.mp3"
+      "audio": "books/writer-dalet/audio/s192.mp3"
     },
     {
       "id": "s193",
@@ -31818,7 +31818,7 @@
           "end": 9.125
         }
       ],
-      "audio": "audio_writer_dalet/s193.mp3"
+      "audio": "books/writer-dalet/audio/s193.mp3"
     },
     {
       "id": "s194",
@@ -31936,7 +31936,7 @@
           "end": 4.8
         }
       ],
-      "audio": "audio_writer_dalet/s194.mp3"
+      "audio": "books/writer-dalet/audio/s194.mp3"
     },
     {
       "id": "s195",
@@ -32104,7 +32104,7 @@
           "end": 6.825
         }
       ],
-      "audio": "audio_writer_dalet/s195.mp3"
+      "audio": "books/writer-dalet/audio/s195.mp3"
     },
     {
       "id": "s196",
@@ -32332,7 +32332,7 @@
           "end": 9.037
         }
       ],
-      "audio": "audio_writer_dalet/s196.mp3"
+      "audio": "books/writer-dalet/audio/s196.mp3"
     },
     {
       "id": "s197",
@@ -32510,7 +32510,7 @@
           "end": 7.375
         }
       ],
-      "audio": "audio_writer_dalet/s197.mp3"
+      "audio": "books/writer-dalet/audio/s197.mp3"
     },
     {
       "id": "s198",
@@ -32678,7 +32678,7 @@
           "end": 6.487
         }
       ],
-      "audio": "audio_writer_dalet/s198.mp3"
+      "audio": "books/writer-dalet/audio/s198.mp3"
     },
     {
       "id": "s199",
@@ -32806,7 +32806,7 @@
           "end": 5.662
         }
       ],
-      "audio": "audio_writer_dalet/s199.mp3"
+      "audio": "books/writer-dalet/audio/s199.mp3"
     },
     {
       "id": "s200",
@@ -32994,7 +32994,7 @@
           "end": 7.463
         }
       ],
-      "audio": "audio_writer_dalet/s200.mp3"
+      "audio": "books/writer-dalet/audio/s200.mp3"
     },
     {
       "id": "s201",
@@ -33072,7 +33072,7 @@
           "end": 2.875
         }
       ],
-      "audio": "audio_writer_dalet/s201.mp3"
+      "audio": "books/writer-dalet/audio/s201.mp3"
     },
     {
       "id": "s202",
@@ -33230,7 +33230,7 @@
           "end": 5.975
         }
       ],
-      "audio": "audio_writer_dalet/s202.mp3"
+      "audio": "books/writer-dalet/audio/s202.mp3"
     },
     {
       "id": "s203",
@@ -33428,7 +33428,7 @@
           "end": 7.325
         }
       ],
-      "audio": "audio_writer_dalet/s203.mp3"
+      "audio": "books/writer-dalet/audio/s203.mp3"
     },
     {
       "id": "s204",
@@ -33606,15 +33606,15 @@
           "end": 6.975
         }
       ],
-      "audio": "audio_writer_dalet/s204.mp3",
+      "audio": "books/writer-dalet/audio/s204.mp3",
       "illustration": {
         "word": "מַבָּט",
         "tr": "от взгляда её",
         "caption": "מַבָּט",
         "capTr": "mabat",
         "mnemonic": "Представь себе Маву Бату, которая катается на огромном воздушном шаре, парящем над городом, и смотрит на все происходящее внизу с высоты птичьего полета. Внезапно шар начинает падать, и Мава Бата хватается за корзину, а люди внизу смотрят на нее с удивлением и страхом. Мава Бата улыбается и машет рукой, как будто говорит: «Не волнуйтесь, я все под контролем!»",
-        "img": "illustrations_writer_dalet/s204.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s204-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s204.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s204-mnemonic.webp"
       }
     },
     {
@@ -33683,7 +33683,7 @@
           "end": 2.8
         }
       ],
-      "audio": "audio_writer_dalet/s205.mp3"
+      "audio": "books/writer-dalet/audio/s205.mp3"
     },
     {
       "id": "s206",
@@ -33761,7 +33761,7 @@
           "end": 3.312
         }
       ],
-      "audio": "audio_writer_dalet/s206.mp3"
+      "audio": "books/writer-dalet/audio/s206.mp3"
     },
     {
       "id": "s207",
@@ -33959,7 +33959,7 @@
           "end": 8.488
         }
       ],
-      "audio": "audio_writer_dalet/s207.mp3"
+      "audio": "books/writer-dalet/audio/s207.mp3"
     },
     {
       "id": "s208",
@@ -34127,7 +34127,7 @@
           "end": 6.575
         }
       ],
-      "audio": "audio_writer_dalet/s208.mp3"
+      "audio": "books/writer-dalet/audio/s208.mp3"
     },
     {
       "id": "s209",
@@ -34265,7 +34265,7 @@
           "end": 5.4
         }
       ],
-      "audio": "audio_writer_dalet/s209.mp3"
+      "audio": "books/writer-dalet/audio/s209.mp3"
     },
     {
       "id": "s210",
@@ -34483,7 +34483,7 @@
           "end": 8.988
         }
       ],
-      "audio": "audio_writer_dalet/s210.mp3"
+      "audio": "books/writer-dalet/audio/s210.mp3"
     },
     {
       "id": "s211",
@@ -34551,7 +34551,7 @@
           "end": 2.75
         }
       ],
-      "audio": "audio_writer_dalet/s211.mp3"
+      "audio": "books/writer-dalet/audio/s211.mp3"
     },
     {
       "id": "s212",
@@ -34729,7 +34729,7 @@
           "end": 6.912
         }
       ],
-      "audio": "audio_writer_dalet/s212.mp3"
+      "audio": "books/writer-dalet/audio/s212.mp3"
     },
     {
       "id": "s213",
@@ -34847,7 +34847,7 @@
           "end": 5.0
         }
       ],
-      "audio": "audio_writer_dalet/s213.mp3"
+      "audio": "books/writer-dalet/audio/s213.mp3"
     },
     {
       "id": "s214",
@@ -35075,7 +35075,7 @@
           "end": 9.325
         }
       ],
-      "audio": "audio_writer_dalet/s214.mp3"
+      "audio": "books/writer-dalet/audio/s214.mp3"
     },
     {
       "id": "s215",
@@ -35403,7 +35403,7 @@
           "end": 11.787
         }
       ],
-      "audio": "audio_writer_dalet/s215.mp3"
+      "audio": "books/writer-dalet/audio/s215.mp3"
     },
     {
       "id": "s216",
@@ -35541,7 +35541,7 @@
           "end": 6.525
         }
       ],
-      "audio": "audio_writer_dalet/s216.mp3"
+      "audio": "books/writer-dalet/audio/s216.mp3"
     },
     {
       "id": "s217",
@@ -35689,7 +35689,7 @@
           "end": 5.85
         }
       ],
-      "audio": "audio_writer_dalet/s217.mp3"
+      "audio": "books/writer-dalet/audio/s217.mp3"
     },
     {
       "id": "s218",
@@ -35767,7 +35767,7 @@
           "end": 3.612
         }
       ],
-      "audio": "audio_writer_dalet/s218.mp3"
+      "audio": "books/writer-dalet/audio/s218.mp3"
     },
     {
       "id": "s219",
@@ -35885,7 +35885,7 @@
           "end": 5.263
         }
       ],
-      "audio": "audio_writer_dalet/s219.mp3"
+      "audio": "books/writer-dalet/audio/s219.mp3"
     },
     {
       "id": "s220",
@@ -36125,7 +36125,7 @@
           "root": "א-מ-נ"
         }
       ],
-      "audio": "audio_writer_dalet/s220.mp3",
+      "audio": "books/writer-dalet/audio/s220.mp3",
       "ttsEngine": "gtts"
     },
     {
@@ -36214,7 +36214,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_writer_dalet/s221.mp3"
+      "audio": "books/writer-dalet/audio/s221.mp3"
     },
     {
       "id": "s222",
@@ -36342,7 +36342,7 @@
           "end": 5.425
         }
       ],
-      "audio": "audio_writer_dalet/s222.mp3"
+      "audio": "books/writer-dalet/audio/s222.mp3"
     },
     {
       "id": "s223",
@@ -36520,7 +36520,7 @@
           "end": 7.875
         }
       ],
-      "audio": "audio_writer_dalet/s223.mp3"
+      "audio": "books/writer-dalet/audio/s223.mp3"
     },
     {
       "id": "s224",
@@ -36628,7 +36628,7 @@
           "end": 5.475
         }
       ],
-      "audio": "audio_writer_dalet/s224.mp3"
+      "audio": "books/writer-dalet/audio/s224.mp3"
     },
     {
       "id": "s225",
@@ -36856,7 +36856,7 @@
           "end": 9.062
         }
       ],
-      "audio": "audio_writer_dalet/s225.mp3"
+      "audio": "books/writer-dalet/audio/s225.mp3"
     },
     {
       "id": "s226",
@@ -37024,7 +37024,7 @@
           "end": 6.975
         }
       ],
-      "audio": "audio_writer_dalet/s226.mp3"
+      "audio": "books/writer-dalet/audio/s226.mp3"
     },
     {
       "id": "s227",
@@ -37182,7 +37182,7 @@
           "end": 7.175
         }
       ],
-      "audio": "audio_writer_dalet/s227.mp3"
+      "audio": "books/writer-dalet/audio/s227.mp3"
     },
     {
       "id": "s228",
@@ -37270,7 +37270,7 @@
           "end": 4.575
         }
       ],
-      "audio": "audio_writer_dalet/s228.mp3"
+      "audio": "books/writer-dalet/audio/s228.mp3"
     },
     {
       "id": "s229",
@@ -37388,15 +37388,15 @@
           "end": 5.237
         }
       ],
-      "audio": "audio_writer_dalet/s229.mp3",
+      "audio": "books/writer-dalet/audio/s229.mp3",
       "illustration": {
         "word": "עַיִן",
         "tr": "глазами",
         "caption": "עַיִן",
         "capTr": "ayin",
         "mnemonic": "Представь огромный, древний АЙН РЕЙН, который вдруг оживает и начинает танцевать под весёлую музыку, его глаза блестят яркими огоньками, а из его рук растут разноцветные цветы, которые расцветают и начинают петь в унисон с музыкой.",
-        "img": "illustrations_writer_dalet/s229.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s229-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s229.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s229-mnemonic.webp"
       }
     },
     {
@@ -37535,7 +37535,7 @@
           "end": 6.025
         }
       ],
-      "audio": "audio_writer_dalet/s230.mp3"
+      "audio": "books/writer-dalet/audio/s230.mp3"
     },
     {
       "id": "s231",
@@ -37603,7 +37603,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_writer_dalet/s231.mp3"
+      "audio": "books/writer-dalet/audio/s231.mp3"
     },
     {
       "id": "s232",
@@ -37701,7 +37701,7 @@
           "end": 4.25
         }
       ],
-      "audio": "audio_writer_dalet/s232.mp3"
+      "audio": "books/writer-dalet/audio/s232.mp3"
     },
     {
       "id": "s233",
@@ -37819,7 +37819,7 @@
           "end": 5.225
         }
       ],
-      "audio": "audio_writer_dalet/s233.mp3"
+      "audio": "books/writer-dalet/audio/s233.mp3"
     },
     {
       "id": "s234",
@@ -37967,7 +37967,7 @@
           "end": 6.15
         }
       ],
-      "audio": "audio_writer_dalet/s234.mp3"
+      "audio": "books/writer-dalet/audio/s234.mp3"
     },
     {
       "id": "s235",
@@ -38055,7 +38055,7 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_writer_dalet/s235.mp3"
+      "audio": "books/writer-dalet/audio/s235.mp3"
     },
     {
       "id": "s236",
@@ -38163,7 +38163,7 @@
           "end": 5.45
         }
       ],
-      "audio": "audio_writer_dalet/s236.mp3"
+      "audio": "books/writer-dalet/audio/s236.mp3"
     },
     {
       "id": "s237",
@@ -38261,7 +38261,7 @@
           "end": 4.375
         }
       ],
-      "audio": "audio_writer_dalet/s237.mp3"
+      "audio": "books/writer-dalet/audio/s237.mp3"
     },
     {
       "id": "s238",
@@ -38349,7 +38349,7 @@
           "end": 3.825
         }
       ],
-      "audio": "audio_writer_dalet/s238.mp3"
+      "audio": "books/writer-dalet/audio/s238.mp3"
     },
     {
       "id": "s239",
@@ -38507,7 +38507,7 @@
           "end": 7.9
         }
       ],
-      "audio": "audio_writer_dalet/s239.mp3"
+      "audio": "books/writer-dalet/audio/s239.mp3"
     },
     {
       "id": "s240",
@@ -38535,7 +38535,7 @@
           "end": 1.863
         }
       ],
-      "audio": "audio_writer_dalet/s240.mp3"
+      "audio": "books/writer-dalet/audio/s240.mp3"
     },
     {
       "id": "s241",
@@ -38583,7 +38583,7 @@
           "end": 1.837
         }
       ],
-      "audio": "audio_writer_dalet/s241.mp3"
+      "audio": "books/writer-dalet/audio/s241.mp3"
     },
     {
       "id": "s242",
@@ -38721,15 +38721,15 @@
           "end": 5.638
         }
       ],
-      "audio": "audio_writer_dalet/s242.mp3",
+      "audio": "books/writer-dalet/audio/s242.mp3",
       "illustration": {
         "word": "שְׁתִיקָה",
         "tr": "в молчание",
         "caption": "שְׁתִיקָה",
         "capTr": "shtikah",
         "mnemonic": "Представь огромный, древний ТИХИЙ океан, где вдруг появляется гигантская, говорящая РЫБА по имени ШТИКА, которая начинает рассказывать истории о молчании и тайнах глубин. Рыба Штика плавает среди кораллов, окружённая стайкой меньших рыб, которые слушают её истории с широко открытыми ртами. Когда Штика говорит, из её рта выходят пузыри, которые превращаются в маленькие, светящиеся шары, наполняющие океан мягким, эфирным светом.",
-        "img": "illustrations_writer_dalet/s242.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s242-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s242.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s242-mnemonic.webp"
       }
     },
     {
@@ -38818,7 +38818,7 @@
           "end": 3.3
         }
       ],
-      "audio": "audio_writer_dalet/s243.mp3"
+      "audio": "books/writer-dalet/audio/s243.mp3"
     },
     {
       "id": "s244",
@@ -39006,7 +39006,7 @@
           "end": 7.013
         }
       ],
-      "audio": "audio_writer_dalet/s244.mp3"
+      "audio": "books/writer-dalet/audio/s244.mp3"
     },
     {
       "id": "s245",
@@ -39084,7 +39084,7 @@
           "end": 2.862
         }
       ],
-      "audio": "audio_writer_dalet/s245.mp3"
+      "audio": "books/writer-dalet/audio/s245.mp3"
     },
     {
       "id": "s246",
@@ -39142,7 +39142,7 @@
           "end": 2.538
         }
       ],
-      "audio": "audio_writer_dalet/s246.mp3"
+      "audio": "books/writer-dalet/audio/s246.mp3"
     },
     {
       "id": "s247",
@@ -39300,7 +39300,7 @@
           "end": 7.425
         }
       ],
-      "audio": "audio_writer_dalet/s247.mp3"
+      "audio": "books/writer-dalet/audio/s247.mp3"
     },
     {
       "id": "s248",
@@ -39368,7 +39368,7 @@
           "end": 2.612
         }
       ],
-      "audio": "audio_writer_dalet/s248.mp3"
+      "audio": "books/writer-dalet/audio/s248.mp3"
     },
     {
       "id": "s249",
@@ -39506,7 +39506,7 @@
           "end": 6.15
         }
       ],
-      "audio": "audio_writer_dalet/s249.mp3"
+      "audio": "books/writer-dalet/audio/s249.mp3"
     },
     {
       "id": "s250",
@@ -39594,7 +39594,7 @@
           "end": 3.575
         }
       ],
-      "audio": "audio_writer_dalet/s250.mp3"
+      "audio": "books/writer-dalet/audio/s250.mp3"
     },
     {
       "id": "s251",
@@ -39672,7 +39672,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_writer_dalet/s251.mp3"
+      "audio": "books/writer-dalet/audio/s251.mp3"
     },
     {
       "id": "s252",
@@ -39800,7 +39800,7 @@
           "end": 4.625
         }
       ],
-      "audio": "audio_writer_dalet/s252.mp3"
+      "audio": "books/writer-dalet/audio/s252.mp3"
     },
     {
       "id": "s253",
@@ -39848,7 +39848,7 @@
           "end": 1.875
         }
       ],
-      "audio": "audio_writer_dalet/s253.mp3"
+      "audio": "books/writer-dalet/audio/s253.mp3"
     },
     {
       "id": "s254",
@@ -39946,7 +39946,7 @@
           "end": 4.75
         }
       ],
-      "audio": "audio_writer_dalet/s254.mp3"
+      "audio": "books/writer-dalet/audio/s254.mp3"
     },
     {
       "id": "s255",
@@ -40034,7 +40034,7 @@
           "end": 4.775
         }
       ],
-      "audio": "audio_writer_dalet/s255.mp3"
+      "audio": "books/writer-dalet/audio/s255.mp3"
     },
     {
       "id": "s256",
@@ -40172,7 +40172,7 @@
           "end": 6.025
         }
       ],
-      "audio": "audio_writer_dalet/s256.mp3"
+      "audio": "books/writer-dalet/audio/s256.mp3"
     },
     {
       "id": "s257",
@@ -40340,7 +40340,7 @@
           "end": 6.787
         }
       ],
-      "audio": "audio_writer_dalet/s257.mp3"
+      "audio": "books/writer-dalet/audio/s257.mp3"
     },
     {
       "id": "s258",
@@ -40548,7 +40548,7 @@
           "end": 8.5
         }
       ],
-      "audio": "audio_writer_dalet/s258.mp3"
+      "audio": "books/writer-dalet/audio/s258.mp3"
     },
     {
       "id": "s259",
@@ -40656,7 +40656,7 @@
           "end": 4.225
         }
       ],
-      "audio": "audio_writer_dalet/s259.mp3"
+      "audio": "books/writer-dalet/audio/s259.mp3"
     },
     {
       "id": "s260",
@@ -40704,7 +40704,7 @@
           "end": 2.475
         }
       ],
-      "audio": "audio_writer_dalet/s260.mp3"
+      "audio": "books/writer-dalet/audio/s260.mp3"
     },
     {
       "id": "s261",
@@ -40752,7 +40752,7 @@
           "end": 2.275
         }
       ],
-      "audio": "audio_writer_dalet/s261.mp3"
+      "audio": "books/writer-dalet/audio/s261.mp3"
     },
     {
       "id": "s262",
@@ -40870,7 +40870,7 @@
           "end": 4.862
         }
       ],
-      "audio": "audio_writer_dalet/s262.mp3"
+      "audio": "books/writer-dalet/audio/s262.mp3"
     },
     {
       "id": "s263",
@@ -40968,7 +40968,7 @@
           "end": 4.888
         }
       ],
-      "audio": "audio_writer_dalet/s263.mp3"
+      "audio": "books/writer-dalet/audio/s263.mp3"
     },
     {
       "id": "s264",
@@ -41156,7 +41156,7 @@
           "end": 7.763
         }
       ],
-      "audio": "audio_writer_dalet/s264.mp3"
+      "audio": "books/writer-dalet/audio/s264.mp3"
     },
     {
       "id": "s265",
@@ -41334,15 +41334,15 @@
           "end": 7.338
         }
       ],
-      "audio": "audio_writer_dalet/s265.mp3",
+      "audio": "books/writer-dalet/audio/s265.mp3",
       "illustration": {
         "word": "חֶדֶר",
         "tr": "из комнаты ее",
         "caption": "חֶדֶר",
         "capTr": "cheder",
         "mnemonic": "Представь себя в огромном ХОРОШЕМ ДЕРЕВЕНСКОМ доме, где каждый ХЕДЕР — это целая комната, полная причудливых безделушек и странных гаджетов, и вдруг все эти комнаты начинают кружиться и сливаться в одну большую ХЕДЕР-комнату, где все вещи и гаджеты смешиваются в хаотичном танце.",
-        "img": "illustrations_writer_dalet/s265.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s265-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s265.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s265-mnemonic.webp"
       }
     },
     {
@@ -41561,7 +41561,7 @@
           "end": 7.888
         }
       ],
-      "audio": "audio_writer_dalet/s266.mp3"
+      "audio": "books/writer-dalet/audio/s266.mp3"
     },
     {
       "id": "s267",
@@ -41639,7 +41639,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_writer_dalet/s267.mp3"
+      "audio": "books/writer-dalet/audio/s267.mp3"
     },
     {
       "id": "s268",
@@ -41827,7 +41827,7 @@
           "end": 8.162
         }
       ],
-      "audio": "audio_writer_dalet/s268.mp3"
+      "audio": "books/writer-dalet/audio/s268.mp3"
     },
     {
       "id": "s269",
@@ -41975,7 +41975,7 @@
           "end": 5.987
         }
       ],
-      "audio": "audio_writer_dalet/s269.mp3"
+      "audio": "books/writer-dalet/audio/s269.mp3"
     },
     {
       "id": "s270",
@@ -42083,7 +42083,7 @@
           "end": 3.85
         }
       ],
-      "audio": "audio_writer_dalet/s270.mp3"
+      "audio": "books/writer-dalet/audio/s270.mp3"
     },
     {
       "id": "s271",
@@ -42201,7 +42201,7 @@
           "end": 4.388
         }
       ],
-      "audio": "audio_writer_dalet/s271.mp3"
+      "audio": "books/writer-dalet/audio/s271.mp3"
     },
     {
       "id": "s272",
@@ -42449,7 +42449,7 @@
           "end": 9.275
         }
       ],
-      "audio": "audio_writer_dalet/s272.mp3"
+      "audio": "books/writer-dalet/audio/s272.mp3"
     },
     {
       "id": "s273",
@@ -42507,7 +42507,7 @@
           "end": 2.362
         }
       ],
-      "audio": "audio_writer_dalet/s273.mp3"
+      "audio": "books/writer-dalet/audio/s273.mp3"
     },
     {
       "id": "s274",
@@ -42665,7 +42665,7 @@
           "end": 7.3
         }
       ],
-      "audio": "audio_writer_dalet/s274.mp3"
+      "audio": "books/writer-dalet/audio/s274.mp3"
     },
     {
       "id": "s275",
@@ -42833,7 +42833,7 @@
           "end": 7.65
         }
       ],
-      "audio": "audio_writer_dalet/s275.mp3"
+      "audio": "books/writer-dalet/audio/s275.mp3"
     },
     {
       "id": "s276",
@@ -42991,7 +42991,7 @@
           "end": 5.875
         }
       ],
-      "audio": "audio_writer_dalet/s276.mp3"
+      "audio": "books/writer-dalet/audio/s276.mp3"
     },
     {
       "id": "s277",
@@ -43119,7 +43119,7 @@
           "end": 5.275
         }
       ],
-      "audio": "audio_writer_dalet/s277.mp3"
+      "audio": "books/writer-dalet/audio/s277.mp3"
     },
     {
       "id": "s278",
@@ -43147,7 +43147,7 @@
           "end": 1.462
         }
       ],
-      "audio": "audio_writer_dalet/s278.mp3"
+      "audio": "books/writer-dalet/audio/s278.mp3"
     },
     {
       "id": "s279",
@@ -43305,7 +43305,7 @@
           "end": 6.812
         }
       ],
-      "audio": "audio_writer_dalet/s279.mp3"
+      "audio": "books/writer-dalet/audio/s279.mp3"
     },
     {
       "id": "s280",
@@ -43473,7 +43473,7 @@
           "end": 6.55
         }
       ],
-      "audio": "audio_writer_dalet/s280.mp3"
+      "audio": "books/writer-dalet/audio/s280.mp3"
     },
     {
       "id": "s281",
@@ -43511,7 +43511,7 @@
           "end": 2.45
         }
       ],
-      "audio": "audio_writer_dalet/s281.mp3"
+      "audio": "books/writer-dalet/audio/s281.mp3"
     },
     {
       "id": "s282",
@@ -43589,7 +43589,7 @@
           "end": 3.312
         }
       ],
-      "audio": "audio_writer_dalet/s282.mp3"
+      "audio": "books/writer-dalet/audio/s282.mp3"
     },
     {
       "id": "s283",
@@ -43717,7 +43717,7 @@
           "end": 4.763
         }
       ],
-      "audio": "audio_writer_dalet/s283.mp3"
+      "audio": "books/writer-dalet/audio/s283.mp3"
     },
     {
       "id": "s284",
@@ -43855,7 +43855,7 @@
           "end": 5.65
         }
       ],
-      "audio": "audio_writer_dalet/s284.mp3"
+      "audio": "books/writer-dalet/audio/s284.mp3"
     },
     {
       "id": "s285",
@@ -43903,7 +43903,7 @@
           "end": 2.513
         }
       ],
-      "audio": "audio_writer_dalet/s285.mp3"
+      "audio": "books/writer-dalet/audio/s285.mp3"
     },
     {
       "id": "s286",
@@ -44041,7 +44041,7 @@
           "end": 5.638
         }
       ],
-      "audio": "audio_writer_dalet/s286.mp3"
+      "audio": "books/writer-dalet/audio/s286.mp3"
     },
     {
       "id": "s287",
@@ -44219,7 +44219,7 @@
           "end": 7.6
         }
       ],
-      "audio": "audio_writer_dalet/s287.mp3"
+      "audio": "books/writer-dalet/audio/s287.mp3"
     },
     {
       "id": "s288",
@@ -44427,7 +44427,7 @@
           "root": "ע-צ-מ"
         }
       ],
-      "audio": "audio_writer_dalet/s288.mp3"
+      "audio": "books/writer-dalet/audio/s288.mp3"
     },
     {
       "id": "s289",
@@ -44515,7 +44515,7 @@
           "end": 4.112
         }
       ],
-      "audio": "audio_writer_dalet/s289.mp3"
+      "audio": "books/writer-dalet/audio/s289.mp3"
     },
     {
       "id": "s290",
@@ -44573,7 +44573,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_writer_dalet/s290.mp3"
+      "audio": "books/writer-dalet/audio/s290.mp3"
     },
     {
       "id": "s291",
@@ -44641,15 +44641,15 @@
           "end": 3.938
         }
       ],
-      "audio": "audio_writer_dalet/s291.mp3",
+      "audio": "books/writer-dalet/audio/s291.mp3",
       "illustration": {
         "word": "יָד",
         "tr": "руки",
         "caption": "יָד",
         "capTr": "yad",
         "mnemonic": "Представь огромный ЯД, где все посетители держатся за руки и танцуют в огромном круге, а в центре яда стоит гигантская, светящаяся рука, которая начинает вращаться и тянет всех танцующих за собой.",
-        "img": "illustrations_writer_dalet/s291.webp",
-        "imgMnemonic": "illustrations_writer_dalet/s291-mnemonic.webp"
+        "img": "books/writer-dalet/illustrations/s291.webp",
+        "imgMnemonic": "books/writer-dalet/illustrations/s291-mnemonic.webp"
       }
     },
     {
@@ -44838,7 +44838,7 @@
           "end": 6.85
         }
       ],
-      "audio": "audio_writer_dalet/s292.mp3"
+      "audio": "books/writer-dalet/audio/s292.mp3"
     },
     {
       "id": "s293",
@@ -45026,7 +45026,7 @@
           "end": 8.012
         }
       ],
-      "audio": "audio_writer_dalet/s293.mp3"
+      "audio": "books/writer-dalet/audio/s293.mp3"
     },
     {
       "id": "s294",
@@ -45104,7 +45104,7 @@
           "end": 4.0
         }
       ],
-      "audio": "audio_writer_dalet/s294.mp3"
+      "audio": "books/writer-dalet/audio/s294.mp3"
     },
     {
       "id": "s295",
@@ -45152,7 +45152,7 @@
           "end": 2.225
         }
       ],
-      "audio": "audio_writer_dalet/s295.mp3"
+      "audio": "books/writer-dalet/audio/s295.mp3"
     },
     {
       "id": "s296",
@@ -45280,7 +45280,7 @@
           "end": 5.037
         }
       ],
-      "audio": "audio_writer_dalet/s296.mp3"
+      "audio": "books/writer-dalet/audio/s296.mp3"
     },
     {
       "id": "s297",
@@ -45398,7 +45398,7 @@
           "end": 4.525
         }
       ],
-      "audio": "audio_writer_dalet/s297.mp3"
+      "audio": "books/writer-dalet/audio/s297.mp3"
     },
     {
       "id": "s298",
@@ -45526,7 +45526,7 @@
           "end": 4.5
         }
       ],
-      "audio": "audio_writer_dalet/s298.mp3"
+      "audio": "books/writer-dalet/audio/s298.mp3"
     },
     {
       "id": "s299",
@@ -45664,7 +45664,7 @@
           "end": 6.4
         }
       ],
-      "audio": "audio_writer_dalet/s299.mp3"
+      "audio": "books/writer-dalet/audio/s299.mp3"
     },
     {
       "id": "s300",
@@ -45812,7 +45812,7 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_writer_dalet/s300.mp3"
+      "audio": "books/writer-dalet/audio/s300.mp3"
     }
   ]
 }

@@ -56,7 +56,7 @@
           "end": 2.775
         }
       ],
-      "audio": "audio_garden_bet/s1.mp3"
+      "audio": "books/garden-bet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -174,7 +174,7 @@
           "end": 4.475
         }
       ],
-      "audio": "audio_garden_bet/s2.mp3"
+      "audio": "books/garden-bet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -242,7 +242,7 @@
           "end": 2.837
         }
       ],
-      "audio": "audio_garden_bet/s3.mp3"
+      "audio": "books/garden-bet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -310,7 +310,7 @@
           "end": 2.812
         }
       ],
-      "audio": "audio_garden_bet/s4.mp3"
+      "audio": "books/garden-bet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -428,7 +428,7 @@
           "end": 3.938
         }
       ],
-      "audio": "audio_garden_bet/s5.mp3"
+      "audio": "books/garden-bet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -506,7 +506,7 @@
           "end": 3.0
         }
       ],
-      "audio": "audio_garden_bet/s6.mp3"
+      "audio": "books/garden-bet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -564,7 +564,7 @@
           "end": 2.15
         }
       ],
-      "audio": "audio_garden_bet/s7.mp3"
+      "audio": "books/garden-bet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -612,7 +612,7 @@
           "end": 2.525
         }
       ],
-      "audio": "audio_garden_bet/s8.mp3"
+      "audio": "books/garden-bet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -660,7 +660,7 @@
           "end": 2.275
         }
       ],
-      "audio": "audio_garden_bet/s9.mp3"
+      "audio": "books/garden-bet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -768,15 +768,15 @@
           "end": 3.625
         }
       ],
-      "audio": "audio_garden_bet/s10.mp3",
+      "audio": "books/garden-bet/audio/s10.mp3",
       "illustration": {
         "word": "בֶּרֶז",
         "tr": "кран",
         "caption": "בֶּרֶז",
         "capTr": "berez",
         "mnemonic": "Представь, что из водопроводного крана в школьном дворе растёт настоящая БЕРЁЗА: белый ствол, зелёные листья, а вместо сока из ветвей течёт вода. Дети подставляют вёдра и удивлённо смеются.",
-        "img": "illustrations_garden_bet/s10.webp",
-        "imgMnemonic": "illustrations_garden_bet/s10-mnemonic.webp"
+        "img": "books/garden-bet/illustrations/s10.webp",
+        "imgMnemonic": "books/garden-bet/illustrations/s10-mnemonic.webp"
       }
     },
     {
@@ -865,7 +865,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_garden_bet/s11.mp3"
+      "audio": "books/garden-bet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -913,7 +913,7 @@
           "end": 2.2
         }
       ],
-      "audio": "audio_garden_bet/s12.mp3"
+      "audio": "books/garden-bet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1021,7 +1021,7 @@
           "end": 4.275
         }
       ],
-      "audio": "audio_garden_bet/s13.mp3"
+      "audio": "books/garden-bet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1079,7 +1079,7 @@
           "end": 2.337
         }
       ],
-      "audio": "audio_garden_bet/s14.mp3"
+      "audio": "books/garden-bet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1147,7 +1147,7 @@
           "end": 2.8
         }
       ],
-      "audio": "audio_garden_bet/s15.mp3"
+      "audio": "books/garden-bet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1185,7 +1185,7 @@
           "end": 1.7
         }
       ],
-      "audio": "audio_garden_bet/s16.mp3"
+      "audio": "books/garden-bet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1253,7 +1253,7 @@
           "end": 2.712
         }
       ],
-      "audio": "audio_garden_bet/s17.mp3"
+      "audio": "books/garden-bet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1341,7 +1341,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_garden_bet/s18.mp3"
+      "audio": "books/garden-bet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1439,7 +1439,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_garden_bet/s19.mp3"
+      "audio": "books/garden-bet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1507,7 +1507,7 @@
           "end": 2.438
         }
       ],
-      "audio": "audio_garden_bet/s20.mp3"
+      "audio": "books/garden-bet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1575,7 +1575,7 @@
           "end": 2.188
         }
       ],
-      "audio": "audio_garden_bet/s21.mp3"
+      "audio": "books/garden-bet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1633,7 +1633,7 @@
           "end": 1.988
         }
       ],
-      "audio": "audio_garden_bet/s22.mp3"
+      "audio": "books/garden-bet/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -1751,7 +1751,7 @@
           "end": 3.8
         }
       ],
-      "audio": "audio_garden_bet/s23.mp3"
+      "audio": "books/garden-bet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -1849,7 +1849,7 @@
           "end": 3.425
         }
       ],
-      "audio": "audio_garden_bet/s24.mp3"
+      "audio": "books/garden-bet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -1917,7 +1917,7 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_garden_bet/s25.mp3"
+      "audio": "books/garden-bet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -1955,7 +1955,7 @@
           "end": 1.788
         }
       ],
-      "audio": "audio_garden_bet/s26.mp3"
+      "audio": "books/garden-bet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -2073,7 +2073,7 @@
           "end": 4.263
         }
       ],
-      "audio": "audio_garden_bet/s27.mp3"
+      "audio": "books/garden-bet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -2121,7 +2121,7 @@
           "end": 2.138
         }
       ],
-      "audio": "audio_garden_bet/s28.mp3"
+      "audio": "books/garden-bet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -2239,7 +2239,7 @@
           "end": 4.438
         }
       ],
-      "audio": "audio_garden_bet/s29.mp3"
+      "audio": "books/garden-bet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -2297,7 +2297,7 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_garden_bet/s30.mp3"
+      "audio": "books/garden-bet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -2405,7 +2405,7 @@
           "end": 3.737
         }
       ],
-      "audio": "audio_garden_bet/s31.mp3"
+      "audio": "books/garden-bet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -2443,7 +2443,7 @@
           "end": 1.65
         }
       ],
-      "audio": "audio_garden_bet/s32.mp3"
+      "audio": "books/garden-bet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -2531,15 +2531,15 @@
           "end": 3.362
         }
       ],
-      "audio": "audio_garden_bet/s33.mp3",
+      "audio": "books/garden-bet/audio/s33.mp3",
       "illustration": {
         "word": "שָׁתַל",
         "tr": "сажал",
         "caption": "שָׁתַל",
         "capTr": "shatal",
         "mnemonic": "Представь великана ШАТАЛ (шатал-шатал): он так раскачивал землю огромными руками, что сажал семена прямо на ходу. Из-под его ног выскакивали ростки, а дети бежали следом и поливали их.",
-        "img": "illustrations_garden_bet/s33.webp",
-        "imgMnemonic": "illustrations_garden_bet/s33-mnemonic.webp"
+        "img": "books/garden-bet/illustrations/s33.webp",
+        "imgMnemonic": "books/garden-bet/illustrations/s33-mnemonic.webp"
       }
     },
     {
@@ -2588,7 +2588,7 @@
           "end": 2.212
         }
       ],
-      "audio": "audio_garden_bet/s34.mp3"
+      "audio": "books/garden-bet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -2646,7 +2646,7 @@
           "end": 2.913
         }
       ],
-      "audio": "audio_garden_bet/s35.mp3"
+      "audio": "books/garden-bet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -2714,7 +2714,7 @@
           "end": 2.925
         }
       ],
-      "audio": "audio_garden_bet/s36.mp3"
+      "audio": "books/garden-bet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -2822,7 +2822,7 @@
           "end": 4.3
         }
       ],
-      "audio": "audio_garden_bet/s37.mp3"
+      "audio": "books/garden-bet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -2900,7 +2900,7 @@
           "end": 4.013
         }
       ],
-      "audio": "audio_garden_bet/s38.mp3"
+      "audio": "books/garden-bet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -2948,7 +2948,7 @@
           "end": 2.263
         }
       ],
-      "audio": "audio_garden_bet/s39.mp3"
+      "audio": "books/garden-bet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -3046,7 +3046,7 @@
           "end": 2.888
         }
       ],
-      "audio": "audio_garden_bet/s40.mp3"
+      "audio": "books/garden-bet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -3114,7 +3114,7 @@
           "end": 3.125
         }
       ],
-      "audio": "audio_garden_bet/s41.mp3"
+      "audio": "books/garden-bet/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -3222,7 +3222,7 @@
           "end": 4.562
         }
       ],
-      "audio": "audio_garden_bet/s42.mp3"
+      "audio": "books/garden-bet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -3310,7 +3310,7 @@
           "end": 3.325
         }
       ],
-      "audio": "audio_garden_bet/s43.mp3"
+      "audio": "books/garden-bet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -3368,15 +3368,15 @@
           "end": 2.3
         }
       ],
-      "audio": "audio_garden_bet/s44.mp3",
+      "audio": "books/garden-bet/audio/s44.mp3",
       "illustration": {
         "word": "סַלִּים",
         "tr": "корзины",
         "caption": "סַלִּים",
         "capTr": "salim",
         "mnemonic": "Представь корзины, полные САЛА: на грядке вместо овощей выросли круглые куски сала, а дети складывают их в корзины и морщатся от смеха. Рядом огурцы обиженно прячутся в листьях.",
-        "img": "illustrations_garden_bet/s44.webp",
-        "imgMnemonic": "illustrations_garden_bet/s44-mnemonic.webp"
+        "img": "books/garden-bet/illustrations/s44.webp",
+        "imgMnemonic": "books/garden-bet/illustrations/s44-mnemonic.webp"
       }
     },
     {
@@ -3455,7 +3455,7 @@
           "end": 3.487
         }
       ],
-      "audio": "audio_garden_bet/s45.mp3"
+      "audio": "books/garden-bet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -3533,7 +3533,7 @@
           "end": 3.388
         }
       ],
-      "audio": "audio_garden_bet/s46.mp3"
+      "audio": "books/garden-bet/audio/s46.mp3"
     }
   ]
 }

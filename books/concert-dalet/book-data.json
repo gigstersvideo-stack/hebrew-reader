@@ -136,7 +136,7 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_concert_dalet/s1.mp3"
+      "audio": "books/concert-dalet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -314,7 +314,7 @@
           "end": 6.438
         }
       ],
-      "audio": "audio_concert_dalet/s2.mp3"
+      "audio": "books/concert-dalet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -472,7 +472,7 @@
           "end": 5.787
         }
       ],
-      "audio": "audio_concert_dalet/s3.mp3"
+      "audio": "books/concert-dalet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -560,7 +560,7 @@
           "end": 4.088
         }
       ],
-      "audio": "audio_concert_dalet/s4.mp3"
+      "audio": "books/concert-dalet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -698,15 +698,15 @@
           "end": 5.388
         }
       ],
-      "audio": "audio_concert_dalet/s5.mp3",
+      "audio": "books/concert-dalet/audio/s5.mp3",
       "illustration": {
         "word": "קָהָל",
         "tr": "публика",
         "caption": "קָהָל",
         "capTr": "kahal",
         "mnemonic": "Представь, что вместо публики в зале сидит старинный КАГАЛ: бородатые мудрецы в чёрных шляпах, которые степенно кивают в такт виолончели и обсуждают исполнение, поглаживая бороды. Один из них даже подпевает.",
-        "img": "illustrations_concert_dalet/s5.webp",
-        "imgMnemonic": "illustrations_concert_dalet/s5-mnemonic.webp"
+        "img": "books/concert-dalet/illustrations/s5.webp",
+        "imgMnemonic": "books/concert-dalet/illustrations/s5-mnemonic.webp"
       }
     },
     {
@@ -945,7 +945,7 @@
           "end": 9.062
         }
       ],
-      "audio": "audio_concert_dalet/s6.mp3"
+      "audio": "books/concert-dalet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -1023,7 +1023,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_concert_dalet/s7.mp3"
+      "audio": "books/concert-dalet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -1171,7 +1171,7 @@
           "end": 5.787
         }
       ],
-      "audio": "audio_concert_dalet/s8.mp3"
+      "audio": "books/concert-dalet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -1349,7 +1349,7 @@
           "end": 7.062
         }
       ],
-      "audio": "audio_concert_dalet/s9.mp3"
+      "audio": "books/concert-dalet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1397,7 +1397,7 @@
           "end": 1.613
         }
       ],
-      "audio": "audio_concert_dalet/s10.mp3"
+      "audio": "books/concert-dalet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -1635,7 +1635,7 @@
           "end": 8.45
         }
       ],
-      "audio": "audio_concert_dalet/s11.mp3"
+      "audio": "books/concert-dalet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -1813,7 +1813,7 @@
           "end": 7.2
         }
       ],
-      "audio": "audio_concert_dalet/s12.mp3"
+      "audio": "books/concert-dalet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1981,7 +1981,7 @@
           "end": 5.812
         }
       ],
-      "audio": "audio_concert_dalet/s13.mp3"
+      "audio": "books/concert-dalet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -2249,7 +2249,7 @@
           "end": 8.762
         }
       ],
-      "audio": "audio_concert_dalet/s14.mp3"
+      "audio": "books/concert-dalet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -2317,7 +2317,7 @@
           "end": 2.962
         }
       ],
-      "audio": "audio_concert_dalet/s15.mp3"
+      "audio": "books/concert-dalet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -2475,7 +2475,7 @@
           "end": 6.787
         }
       ],
-      "audio": "audio_concert_dalet/s16.mp3"
+      "audio": "books/concert-dalet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -2713,7 +2713,7 @@
           "end": 9.363
         }
       ],
-      "audio": "audio_concert_dalet/s17.mp3"
+      "audio": "books/concert-dalet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -2841,7 +2841,7 @@
           "end": 5.75
         }
       ],
-      "audio": "audio_concert_dalet/s18.mp3"
+      "audio": "books/concert-dalet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -3019,7 +3019,7 @@
           "end": 7.25
         }
       ],
-      "audio": "audio_concert_dalet/s19.mp3"
+      "audio": "books/concert-dalet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -3117,7 +3117,7 @@
           "end": 4.325
         }
       ],
-      "audio": "audio_concert_dalet/s20.mp3"
+      "audio": "books/concert-dalet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -3265,7 +3265,7 @@
           "end": 6.825
         }
       ],
-      "audio": "audio_concert_dalet/s21.mp3"
+      "audio": "books/concert-dalet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -3483,7 +3483,7 @@
           "end": 8.588
         }
       ],
-      "audio": "audio_concert_dalet/s22.mp3"
+      "audio": "books/concert-dalet/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -3591,7 +3591,7 @@
           "end": 4.562
         }
       ],
-      "audio": "audio_concert_dalet/s23.mp3"
+      "audio": "books/concert-dalet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -3779,7 +3779,7 @@
           "end": 6.85
         }
       ],
-      "audio": "audio_concert_dalet/s24.mp3"
+      "audio": "books/concert-dalet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -3987,7 +3987,7 @@
           "end": 7.925
         }
       ],
-      "audio": "audio_concert_dalet/s25.mp3"
+      "audio": "books/concert-dalet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -4155,7 +4155,7 @@
           "end": 6.713
         }
       ],
-      "audio": "audio_concert_dalet/s26.mp3"
+      "audio": "books/concert-dalet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -4343,15 +4343,15 @@
           "end": 7.338
         }
       ],
-      "audio": "audio_concert_dalet/s27.mp3",
+      "audio": "books/concert-dalet/audio/s27.mp3",
       "illustration": {
         "word": "בִּטּוּל",
         "tr": "отмена",
         "caption": "בִּטּוּל",
         "capTr": "bitul",
         "mnemonic": "Представь, что отмена концерта оборачивается выступлением легендарного ансамбля БИТЛЗ: четыре мопсиков-музыканта в костюмах играют на крыше театра, а толпа под ним визжит от восторга.",
-        "img": "illustrations_concert_dalet/s27.webp",
-        "imgMnemonic": "illustrations_concert_dalet/s27-mnemonic.webp"
+        "img": "books/concert-dalet/illustrations/s27.webp",
+        "imgMnemonic": "books/concert-dalet/illustrations/s27-mnemonic.webp"
       }
     },
     {
@@ -4530,7 +4530,7 @@
           "end": 6.55
         }
       ],
-      "audio": "audio_concert_dalet/s28.mp3"
+      "audio": "books/concert-dalet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -4588,7 +4588,7 @@
           "end": 2.75
         }
       ],
-      "audio": "audio_concert_dalet/s29.mp3"
+      "audio": "books/concert-dalet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -4746,7 +4746,7 @@
           "end": 6.338
         }
       ],
-      "audio": "audio_concert_dalet/s30.mp3"
+      "audio": "books/concert-dalet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -4884,7 +4884,7 @@
           "end": 5.675
         }
       ],
-      "audio": "audio_concert_dalet/s31.mp3"
+      "audio": "books/concert-dalet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -5002,7 +5002,7 @@
           "end": 4.95
         }
       ],
-      "audio": "audio_concert_dalet/s32.mp3"
+      "audio": "books/concert-dalet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -5230,7 +5230,7 @@
           "end": 8.512
         }
       ],
-      "audio": "audio_concert_dalet/s33.mp3"
+      "audio": "books/concert-dalet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -5338,7 +5338,7 @@
           "end": 4.638
         }
       ],
-      "audio": "audio_concert_dalet/s34.mp3"
+      "audio": "books/concert-dalet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -5516,7 +5516,7 @@
           "end": 6.263
         }
       ],
-      "audio": "audio_concert_dalet/s35.mp3"
+      "audio": "books/concert-dalet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -5634,7 +5634,7 @@
           "end": 5.175
         }
       ],
-      "audio": "audio_concert_dalet/s36.mp3"
+      "audio": "books/concert-dalet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -5842,7 +5842,7 @@
           "end": 8.9
         }
       ],
-      "audio": "audio_concert_dalet/s37.mp3"
+      "audio": "books/concert-dalet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -6010,7 +6010,7 @@
           "end": 6.5
         }
       ],
-      "audio": "audio_concert_dalet/s38.mp3"
+      "audio": "books/concert-dalet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -6138,7 +6138,7 @@
           "end": 5.85
         }
       ],
-      "audio": "audio_concert_dalet/s39.mp3"
+      "audio": "books/concert-dalet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -6286,7 +6286,7 @@
           "end": 6.35
         }
       ],
-      "audio": "audio_concert_dalet/s40.mp3"
+      "audio": "books/concert-dalet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -6554,7 +6554,7 @@
           "end": 9.975
         }
       ],
-      "audio": "audio_concert_dalet/s41.mp3"
+      "audio": "books/concert-dalet/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -6652,7 +6652,7 @@
           "end": 4.912
         }
       ],
-      "audio": "audio_concert_dalet/s42.mp3"
+      "audio": "books/concert-dalet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -6810,7 +6810,7 @@
           "end": 7.287
         }
       ],
-      "audio": "audio_concert_dalet/s43.mp3"
+      "audio": "books/concert-dalet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -6988,7 +6988,7 @@
           "end": 7.325
         }
       ],
-      "audio": "audio_concert_dalet/s44.mp3"
+      "audio": "books/concert-dalet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -7106,7 +7106,7 @@
           "end": 4.975
         }
       ],
-      "audio": "audio_concert_dalet/s45.mp3"
+      "audio": "books/concert-dalet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -7324,7 +7324,7 @@
           "end": 7.688
         }
       ],
-      "audio": "audio_concert_dalet/s46.mp3"
+      "audio": "books/concert-dalet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -7432,7 +7432,7 @@
           "end": 4.7
         }
       ],
-      "audio": "audio_concert_dalet/s47.mp3"
+      "audio": "books/concert-dalet/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -7550,15 +7550,15 @@
           "end": 5.0
         }
       ],
-      "audio": "audio_concert_dalet/s48.mp3",
+      "audio": "books/concert-dalet/audio/s48.mp3",
       "illustration": {
         "word": "חוֹמָה",
         "tr": "стена",
         "caption": "חוֹמָה",
         "capTr": "choma",
         "mnemonic": "Представь, что стена между двумя музыкантами превращается в семинариста ХОМУ БРУТА: он стоит на кирпичной стене и читает толстую книгу, а вокруг него мелом нарисован круг. Стена смущённо расступается.",
-        "img": "illustrations_concert_dalet/s48.webp",
-        "imgMnemonic": "illustrations_concert_dalet/s48-mnemonic.webp"
+        "img": "books/concert-dalet/illustrations/s48.webp",
+        "imgMnemonic": "books/concert-dalet/illustrations/s48-mnemonic.webp"
       }
     },
     {
@@ -7767,7 +7767,7 @@
           "end": 7.737
         }
       ],
-      "audio": "audio_concert_dalet/s49.mp3"
+      "audio": "books/concert-dalet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -7885,7 +7885,7 @@
           "end": 4.9
         }
       ],
-      "audio": "audio_concert_dalet/s50.mp3"
+      "audio": "books/concert-dalet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -8153,7 +8153,7 @@
           "end": 10.113
         }
       ],
-      "audio": "audio_concert_dalet/s51.mp3"
+      "audio": "books/concert-dalet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -8331,7 +8331,7 @@
           "end": 7.075
         }
       ],
-      "audio": "audio_concert_dalet/s52.mp3"
+      "audio": "books/concert-dalet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -8539,7 +8539,7 @@
           "end": 6.838
         }
       ],
-      "audio": "audio_concert_dalet/s53.mp3"
+      "audio": "books/concert-dalet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -8637,7 +8637,7 @@
           "end": 4.625
         }
       ],
-      "audio": "audio_concert_dalet/s54.mp3"
+      "audio": "books/concert-dalet/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -8835,7 +8835,7 @@
           "end": 8.738
         }
       ],
-      "audio": "audio_concert_dalet/s55.mp3"
+      "audio": "books/concert-dalet/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -8943,7 +8943,7 @@
           "end": 4.438
         }
       ],
-      "audio": "audio_concert_dalet/s56.mp3"
+      "audio": "books/concert-dalet/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -9161,7 +9161,7 @@
           "end": 8.588
         }
       ],
-      "audio": "audio_concert_dalet/s57.mp3"
+      "audio": "books/concert-dalet/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -9359,7 +9359,7 @@
           "end": 8.137
         }
       ],
-      "audio": "audio_concert_dalet/s58.mp3"
+      "audio": "books/concert-dalet/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -9497,7 +9497,7 @@
           "end": 6.088
         }
       ],
-      "audio": "audio_concert_dalet/s59.mp3"
+      "audio": "books/concert-dalet/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -9625,7 +9625,7 @@
           "end": 6.412
         }
       ],
-      "audio": "audio_concert_dalet/s60.mp3"
+      "audio": "books/concert-dalet/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -9793,7 +9793,7 @@
           "end": 6.987
         }
       ],
-      "audio": "audio_concert_dalet/s61.mp3"
+      "audio": "books/concert-dalet/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -9931,7 +9931,7 @@
           "end": 7.263
         }
       ],
-      "audio": "audio_concert_dalet/s62.mp3"
+      "audio": "books/concert-dalet/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -10199,7 +10199,7 @@
           "end": 11.162
         }
       ],
-      "audio": "audio_concert_dalet/s63.mp3"
+      "audio": "books/concert-dalet/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -10407,15 +10407,15 @@
           "end": 8.262
         }
       ],
-      "audio": "audio_concert_dalet/s64.mp3",
+      "audio": "books/concert-dalet/audio/s64.mp3",
       "illustration": {
         "word": "כְּרִיכָה",
         "tr": "обложка",
         "caption": "כְּרִיכָה",
         "capTr": "kricha",
         "mnemonic": "Представь, что обложка старой нотной тетради вдруг издаёт громкий КРИК: она раскрывает рот-корешок и кричит радостное «браво!», а ноты подпрыгивают на страницах. Все вокруг смеются.",
-        "img": "illustrations_concert_dalet/s64.webp",
-        "imgMnemonic": "illustrations_concert_dalet/s64-mnemonic.webp"
+        "img": "books/concert-dalet/illustrations/s64.webp",
+        "imgMnemonic": "books/concert-dalet/illustrations/s64-mnemonic.webp"
       }
     },
     {
@@ -10524,7 +10524,7 @@
           "end": 4.775
         }
       ],
-      "audio": "audio_concert_dalet/s65.mp3"
+      "audio": "books/concert-dalet/audio/s65.mp3"
     },
     {
       "id": "s66",
@@ -10722,7 +10722,7 @@
           "end": 6.875
         }
       ],
-      "audio": "audio_concert_dalet/s66.mp3"
+      "audio": "books/concert-dalet/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -11020,7 +11020,7 @@
           "end": 11.9
         }
       ],
-      "audio": "audio_concert_dalet/s67.mp3"
+      "audio": "books/concert-dalet/audio/s67.mp3"
     }
   ]
 }

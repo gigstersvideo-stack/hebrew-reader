@@ -83,7 +83,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_bridge_alef_bet/s1.mp3"
+      "audio": "books/bridge-alef-bet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -157,7 +157,7 @@
           "end": 3.362
         }
       ],
-      "audio": "audio_bridge_alef_bet/s2.mp3"
+      "audio": "books/bridge-alef-bet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -231,7 +231,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_bridge_alef_bet/s3.mp3"
+      "audio": "books/bridge-alef-bet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -305,7 +305,7 @@
           "end": 3.263
         }
       ],
-      "audio": "audio_bridge_alef_bet/s4.mp3"
+      "audio": "books/bridge-alef-bet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -390,7 +390,7 @@
           "end": 3.062
         }
       ],
-      "audio": "audio_bridge_alef_bet/s5.mp3"
+      "audio": "books/bridge-alef-bet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -475,7 +475,7 @@
           "end": 3.062
         }
       ],
-      "audio": "audio_bridge_alef_bet/s6.mp3"
+      "audio": "books/bridge-alef-bet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -572,7 +572,7 @@
           "end": 3.388
         }
       ],
-      "audio": "audio_bridge_alef_bet/s7.mp3"
+      "audio": "books/bridge-alef-bet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -658,7 +658,7 @@
           "end": 2.987
         }
       ],
-      "audio": "audio_bridge_alef_bet/s8.mp3"
+      "audio": "books/bridge-alef-bet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -744,7 +744,7 @@
           "end": 3.225
         }
       ],
-      "audio": "audio_bridge_alef_bet/s9.mp3"
+      "audio": "books/bridge-alef-bet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -841,7 +841,7 @@
           "end": 3.4
         }
       ],
-      "audio": "audio_bridge_alef_bet/s10.mp3"
+      "audio": "books/bridge-alef-bet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -927,15 +927,15 @@
           "end": 3.212
         }
       ],
-      "audio": "audio_bridge_alef_bet/s11.mp3",
+      "audio": "books/bridge-alef-bet/audio/s11.mp3",
       "illustration": {
         "word": "רָהִיט",
         "tr": "предмет мебели",
         "caption": "רָהִיט",
         "capTr": "rahait",
         "mnemonic": "Представь гигантскую, разумную РАХИТУ, которая начала танцевать на столе, а ее ножки сделаны из ножек стула, она крутится и вертится, а ее сиденье превратилось в огромный, крутящийся пропеллер, который создает мощный вихрь, засасывающий все вокруг, включая удивленных зрителей, которые пытаются схватиться за что-нибудь, чтобы не быть унесенными.",
-        "img": "illustrations_bridge_alef_bet/s11.webp",
-        "imgMnemonic": "illustrations_bridge_alef_bet/s11-mnemonic.webp"
+        "img": "books/bridge-alef-bet/illustrations/s11.webp",
+        "imgMnemonic": "books/bridge-alef-bet/illustrations/s11-mnemonic.webp"
       }
     },
     {
@@ -1033,7 +1033,7 @@
           "end": 3.3
         }
       ],
-      "audio": "audio_bridge_alef_bet/s12.mp3"
+      "audio": "books/bridge-alef-bet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1119,7 +1119,7 @@
           "end": 3.35
         }
       ],
-      "audio": "audio_bridge_alef_bet/s13.mp3"
+      "audio": "books/bridge-alef-bet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1204,7 +1204,7 @@
           "end": 2.875
         }
       ],
-      "audio": "audio_bridge_alef_bet/s14.mp3"
+      "audio": "books/bridge-alef-bet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1289,7 +1289,7 @@
           "end": 2.862
         }
       ],
-      "audio": "audio_bridge_alef_bet/s15.mp3"
+      "audio": "books/bridge-alef-bet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1374,7 +1374,7 @@
           "end": 3.1
         }
       ],
-      "audio": "audio_bridge_alef_bet/s16.mp3"
+      "audio": "books/bridge-alef-bet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1460,7 +1460,7 @@
           "end": 2.562
         }
       ],
-      "audio": "audio_bridge_alef_bet/s17.mp3"
+      "audio": "books/bridge-alef-bet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1546,7 +1546,7 @@
           "end": 3.325
         }
       ],
-      "audio": "audio_bridge_alef_bet/s18.mp3"
+      "audio": "books/bridge-alef-bet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1621,7 +1621,7 @@
           "end": 3.3
         }
       ],
-      "audio": "audio_bridge_alef_bet/s19.mp3"
+      "audio": "books/bridge-alef-bet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1707,7 +1707,7 @@
           "end": 3.6
         }
       ],
-      "audio": "audio_bridge_alef_bet/s20.mp3"
+      "audio": "books/bridge-alef-bet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1803,7 +1803,7 @@
           "end": 3.388
         }
       ],
-      "audio": "audio_bridge_alef_bet/s21.mp3"
+      "audio": "books/bridge-alef-bet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1877,7 +1877,7 @@
           "end": 2.7
         }
       ],
-      "audio": "audio_bridge_alef_bet/s22.mp3"
+      "audio": "books/bridge-alef-bet/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -1951,7 +1951,7 @@
           "end": 3.575
         }
       ],
-      "audio": "audio_bridge_alef_bet/s23.mp3"
+      "audio": "books/bridge-alef-bet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -2036,7 +2036,7 @@
           "end": 2.925
         }
       ],
-      "audio": "audio_bridge_alef_bet/s24.mp3"
+      "audio": "books/bridge-alef-bet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -2121,7 +2121,7 @@
           "end": 3.0
         }
       ],
-      "audio": "audio_bridge_alef_bet/s25.mp3"
+      "audio": "books/bridge-alef-bet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -2218,7 +2218,7 @@
           "end": 3.675
         }
       ],
-      "audio": "audio_bridge_alef_bet/s26.mp3"
+      "audio": "books/bridge-alef-bet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -2304,7 +2304,7 @@
           "end": 3.375
         }
       ],
-      "audio": "audio_bridge_alef_bet/s27.mp3"
+      "audio": "books/bridge-alef-bet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -2390,7 +2390,7 @@
           "end": 3.0
         }
       ],
-      "audio": "audio_bridge_alef_bet/s28.mp3"
+      "audio": "books/bridge-alef-bet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -2476,7 +2476,7 @@
           "end": 3.038
         }
       ],
-      "audio": "audio_bridge_alef_bet/s29.mp3"
+      "audio": "books/bridge-alef-bet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -2561,7 +2561,7 @@
           "end": 3.1
         }
       ],
-      "audio": "audio_bridge_alef_bet/s30.mp3"
+      "audio": "books/bridge-alef-bet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -2646,7 +2646,7 @@
           "end": 2.575
         }
       ],
-      "audio": "audio_bridge_alef_bet/s31.mp3"
+      "audio": "books/bridge-alef-bet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -2731,7 +2731,7 @@
           "end": 2.688
         }
       ],
-      "audio": "audio_bridge_alef_bet/s32.mp3"
+      "audio": "books/bridge-alef-bet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -2816,7 +2816,7 @@
           "end": 3.638
         }
       ],
-      "audio": "audio_bridge_alef_bet/s33.mp3"
+      "audio": "books/bridge-alef-bet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -2912,7 +2912,7 @@
           "end": 3.212
         }
       ],
-      "audio": "audio_bridge_alef_bet/s34.mp3"
+      "audio": "books/bridge-alef-bet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -2983,7 +2983,7 @@
           "fadeStage": 3
         }
       ],
-      "audio": "audio_bridge_alef_bet/s35.mp3",
+      "audio": "books/bridge-alef-bet/audio/s35.mp3",
       "ttsEngine": "gtts"
     },
     {
@@ -3070,7 +3070,7 @@
           "end": 3.237
         }
       ],
-      "audio": "audio_bridge_alef_bet/s36.mp3"
+      "audio": "books/bridge-alef-bet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -3145,15 +3145,15 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_bridge_alef_bet/s37.mp3",
+      "audio": "books/bridge-alef-bet/audio/s37.mp3",
       "illustration": {
         "word": "קוּפְסָה",
         "tr": "коробки",
         "caption": "קוּפְסָה",
         "capTr": "kufsa",
         "mnemonic": "Представь, что твоя любимая КОФТА вдруг превратилась в огромную картонную коробку с рукавами. Ты пытаешься её надеть, но вместо рук в рукава лезут игрушки, книги и подушки — коробка-кофта раздувается всё больше и никак не может застегнуться.",
-        "img": "illustrations_bridge_alef_bet/s37.webp",
-        "imgMnemonic": "illustrations_bridge_alef_bet/s37-mnemonic.webp"
+        "img": "books/bridge-alef-bet/illustrations/s37.webp",
+        "imgMnemonic": "books/bridge-alef-bet/illustrations/s37-mnemonic.webp"
       }
     },
     {
@@ -3240,7 +3240,7 @@
           "end": 3.25
         }
       ],
-      "audio": "audio_bridge_alef_bet/s38.mp3"
+      "audio": "books/bridge-alef-bet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -3325,7 +3325,7 @@
           "end": 2.725
         }
       ],
-      "audio": "audio_bridge_alef_bet/s39.mp3"
+      "audio": "books/bridge-alef-bet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -3399,7 +3399,7 @@
           "end": 2.5
         }
       ],
-      "audio": "audio_bridge_alef_bet/s40.mp3"
+      "audio": "books/bridge-alef-bet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -3485,7 +3485,7 @@
           "end": 2.95
         }
       ],
-      "audio": "audio_bridge_alef_bet/s41.mp3"
+      "audio": "books/bridge-alef-bet/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -3560,7 +3560,7 @@
           "end": 3.0
         }
       ],
-      "audio": "audio_bridge_alef_bet/s42.mp3"
+      "audio": "books/bridge-alef-bet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -3645,7 +3645,7 @@
           "end": 2.962
         }
       ],
-      "audio": "audio_bridge_alef_bet/s43.mp3"
+      "audio": "books/bridge-alef-bet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -3730,7 +3730,7 @@
           "end": 2.862
         }
       ],
-      "audio": "audio_bridge_alef_bet/s44.mp3"
+      "audio": "books/bridge-alef-bet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -3815,7 +3815,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_bridge_alef_bet/s45.mp3"
+      "audio": "books/bridge-alef-bet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -3905,7 +3905,7 @@
           "end": 2.688
         }
       ],
-      "audio": "audio_bridge_alef_bet/s46.mp3"
+      "audio": "books/bridge-alef-bet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -4006,7 +4006,7 @@
           "end": 2.8
         }
       ],
-      "audio": "audio_bridge_alef_bet/s47.mp3"
+      "audio": "books/bridge-alef-bet/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -4118,15 +4118,15 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_bridge_alef_bet/s48.mp3",
+      "audio": "books/bridge-alef-bet/audio/s48.mp3",
       "illustration": {
         "word": "מִזְרוֹן",
         "tr": "матрас",
         "caption": "מִזְרוֹן",
         "capTr": "mizron",
         "mnemonic": "Представь себя на Мизерном Рону, где все вынуждены спать на огромном матрасе, который вдруг начинает расти и катиться по городу, сбивая все на своем пути, а люди на нем держатся изо всех сил, чтобы не слететь. Матрас катится в парк, где его встречают с улыбками и открытыми объятиями, как долгожданного гостя. Все начинают прыгать на матрасе, как на батуте, и он начинает светиться яркими цветами, создавая незабываемую вечеринку.",
-        "img": "illustrations_bridge_alef_bet/s48.webp",
-        "imgMnemonic": "illustrations_bridge_alef_bet/s48-mnemonic.webp"
+        "img": "books/bridge-alef-bet/illustrations/s48.webp",
+        "imgMnemonic": "books/bridge-alef-bet/illustrations/s48-mnemonic.webp"
       }
     },
     {
@@ -4217,7 +4217,7 @@
           "end": 3.125
         }
       ],
-      "audio": "audio_bridge_alef_bet/s49.mp3"
+      "audio": "books/bridge-alef-bet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -4307,7 +4307,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_bridge_alef_bet/s50.mp3"
+      "audio": "books/bridge-alef-bet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -4382,7 +4382,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_bridge_alef_bet/s51.mp3"
+      "audio": "books/bridge-alef-bet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -4468,7 +4468,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_bridge_alef_bet/s52.mp3"
+      "audio": "books/bridge-alef-bet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -4565,7 +4565,7 @@
           "end": 3.175
         }
       ],
-      "audio": "audio_bridge_alef_bet/s53.mp3"
+      "audio": "books/bridge-alef-bet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -4650,7 +4650,7 @@
           "end": 3.388
         }
       ],
-      "audio": "audio_bridge_alef_bet/s54.mp3"
+      "audio": "books/bridge-alef-bet/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -4735,7 +4735,7 @@
           "end": 2.725
         }
       ],
-      "audio": "audio_bridge_alef_bet/s55.mp3"
+      "audio": "books/bridge-alef-bet/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -4809,7 +4809,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_bridge_alef_bet/s56.mp3"
+      "audio": "books/bridge-alef-bet/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -4894,7 +4894,7 @@
           "end": 2.913
         }
       ],
-      "audio": "audio_bridge_alef_bet/s57.mp3"
+      "audio": "books/bridge-alef-bet/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -4969,7 +4969,7 @@
           "end": 3.325
         }
       ],
-      "audio": "audio_bridge_alef_bet/s58.mp3"
+      "audio": "books/bridge-alef-bet/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -5055,7 +5055,7 @@
           "end": 3.425
         }
       ],
-      "audio": "audio_bridge_alef_bet/s59.mp3"
+      "audio": "books/bridge-alef-bet/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -5140,7 +5140,7 @@
           "end": 4.088
         }
       ],
-      "audio": "audio_bridge_alef_bet/s60.mp3"
+      "audio": "books/bridge-alef-bet/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -5225,7 +5225,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_bridge_alef_bet/s61.mp3"
+      "audio": "books/bridge-alef-bet/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -5299,7 +5299,7 @@
           "end": 3.163
         }
       ],
-      "audio": "audio_bridge_alef_bet/s62.mp3"
+      "audio": "books/bridge-alef-bet/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -5384,15 +5384,15 @@
           "end": 3.263
         }
       ],
-      "audio": "audio_bridge_alef_bet/s63.mp3",
+      "audio": "books/bridge-alef-bet/audio/s63.mp3",
       "illustration": {
         "word": "בִּנְיָין",
         "tr": "в здании",
         "caption": "בִּנְיָין",
         "capTr": "binyan",
         "mnemonic": "Представь гигантское дерево БАНЬЯН, чьи бесчисленные стволы-корни превратились в стены и окна настоящего многоэтажного здания. Птицы вьют гнёзда прямо в окнах, а жители поднимаются по веткам-лестницам вместо ступенек.",
-        "img": "illustrations_bridge_alef_bet/s63.webp",
-        "imgMnemonic": "illustrations_bridge_alef_bet/s63-mnemonic.webp"
+        "img": "books/bridge-alef-bet/illustrations/s63.webp",
+        "imgMnemonic": "books/bridge-alef-bet/illustrations/s63-mnemonic.webp"
       }
     },
     {
@@ -5489,7 +5489,7 @@
           "end": 2.962
         }
       ],
-      "audio": "audio_bridge_alef_bet/s64.mp3"
+      "audio": "books/bridge-alef-bet/audio/s64.mp3"
     },
     {
       "id": "s65",
@@ -5563,7 +5563,7 @@
           "end": 2.888
         }
       ],
-      "audio": "audio_bridge_alef_bet/s65.mp3"
+      "audio": "books/bridge-alef-bet/audio/s65.mp3"
     },
     {
       "id": "s66",
@@ -5637,7 +5637,7 @@
           "end": 2.938
         }
       ],
-      "audio": "audio_bridge_alef_bet/s66.mp3"
+      "audio": "books/bridge-alef-bet/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -5722,7 +5722,7 @@
           "end": 3.575
         }
       ],
-      "audio": "audio_bridge_alef_bet/s67.mp3"
+      "audio": "books/bridge-alef-bet/audio/s67.mp3"
     },
     {
       "id": "s68",
@@ -5818,7 +5818,7 @@
           "end": 3.325
         }
       ],
-      "audio": "audio_bridge_alef_bet/s68.mp3"
+      "audio": "books/bridge-alef-bet/audio/s68.mp3"
     },
     {
       "id": "s69",
@@ -5903,7 +5903,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_bridge_alef_bet/s69.mp3"
+      "audio": "books/bridge-alef-bet/audio/s69.mp3"
     },
     {
       "id": "s70",
@@ -5988,7 +5988,7 @@
           "end": 2.9
         }
       ],
-      "audio": "audio_bridge_alef_bet/s70.mp3"
+      "audio": "books/bridge-alef-bet/audio/s70.mp3"
     },
     {
       "id": "s71",
@@ -6073,7 +6073,7 @@
           "end": 3.05
         }
       ],
-      "audio": "audio_bridge_alef_bet/s71.mp3"
+      "audio": "books/bridge-alef-bet/audio/s71.mp3"
     },
     {
       "id": "s72",
@@ -6158,7 +6158,7 @@
           "end": 3.2
         }
       ],
-      "audio": "audio_bridge_alef_bet/s72.mp3"
+      "audio": "books/bridge-alef-bet/audio/s72.mp3"
     },
     {
       "id": "s73",
@@ -6254,7 +6254,7 @@
           "end": 2.688
         }
       ],
-      "audio": "audio_bridge_alef_bet/s73.mp3"
+      "audio": "books/bridge-alef-bet/audio/s73.mp3"
     },
     {
       "id": "s74",
@@ -6339,7 +6339,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_bridge_alef_bet/s74.mp3"
+      "audio": "books/bridge-alef-bet/audio/s74.mp3"
     },
     {
       "id": "s75",
@@ -6413,7 +6413,7 @@
           "end": 3.475
         }
       ],
-      "audio": "audio_bridge_alef_bet/s75.mp3"
+      "audio": "books/bridge-alef-bet/audio/s75.mp3"
     },
     {
       "id": "s76",
@@ -6498,7 +6498,7 @@
           "end": 2.788
         }
       ],
-      "audio": "audio_bridge_alef_bet/s76.mp3"
+      "audio": "books/bridge-alef-bet/audio/s76.mp3"
     },
     {
       "id": "s77",
@@ -6572,7 +6572,7 @@
           "end": 2.725
         }
       ],
-      "audio": "audio_bridge_alef_bet/s77.mp3"
+      "audio": "books/bridge-alef-bet/audio/s77.mp3"
     },
     {
       "id": "s78",
@@ -6657,7 +6657,7 @@
           "end": 3.375
         }
       ],
-      "audio": "audio_bridge_alef_bet/s78.mp3"
+      "audio": "books/bridge-alef-bet/audio/s78.mp3"
     },
     {
       "id": "s79",
@@ -6747,7 +6747,7 @@
           "end": 2.9
         }
       ],
-      "audio": "audio_bridge_alef_bet/s79.mp3"
+      "audio": "books/bridge-alef-bet/audio/s79.mp3"
     },
     {
       "id": "s80",
@@ -6837,7 +6837,7 @@
           "end": 3.888
         }
       ],
-      "audio": "audio_bridge_alef_bet/s80.mp3"
+      "audio": "books/bridge-alef-bet/audio/s80.mp3"
     },
     {
       "id": "s81",
@@ -6938,7 +6938,7 @@
           "end": 3.275
         }
       ],
-      "audio": "audio_bridge_alef_bet/s81.mp3"
+      "audio": "books/bridge-alef-bet/audio/s81.mp3"
     },
     {
       "id": "s82",
@@ -7028,7 +7028,7 @@
           "end": 3.263
         }
       ],
-      "audio": "audio_bridge_alef_bet/s82.mp3"
+      "audio": "books/bridge-alef-bet/audio/s82.mp3"
     },
     {
       "id": "s83",
@@ -7117,7 +7117,7 @@
           "end": 3.325
         }
       ],
-      "audio": "audio_bridge_alef_bet/s83.mp3"
+      "audio": "books/bridge-alef-bet/audio/s83.mp3"
     },
     {
       "id": "s84",
@@ -7202,7 +7202,7 @@
           "end": 3.688
         }
       ],
-      "audio": "audio_bridge_alef_bet/s84.mp3"
+      "audio": "books/bridge-alef-bet/audio/s84.mp3"
     },
     {
       "id": "s85",
@@ -7288,15 +7288,15 @@
           "end": 3.438
         }
       ],
-      "audio": "audio_bridge_alef_bet/s85.mp3",
+      "audio": "books/bridge-alef-bet/audio/s85.mp3",
       "illustration": {
         "word": "כְּתוֹבֶת",
         "tr": "адрес",
         "caption": "כְּתוֹבֶת",
         "capTr": "ktovet",
         "mnemonic": "Представь, что у КОТА есть ОБЕТ: он должен найти очень важный адрес, и для этого читает старую загадочную Книгу с Обетом. Кот внимательно листает книгу лапой, и вдруг на страницах сами собой загораются подсказки, ведущие его к нужному адресу.",
-        "img": "illustrations_bridge_alef_bet/s85.webp",
-        "imgMnemonic": "illustrations_bridge_alef_bet/s85-mnemonic.webp"
+        "img": "books/bridge-alef-bet/illustrations/s85.webp",
+        "imgMnemonic": "books/bridge-alef-bet/illustrations/s85-mnemonic.webp"
       }
     },
     {
@@ -7384,7 +7384,7 @@
           "end": 3.275
         }
       ],
-      "audio": "audio_bridge_alef_bet/s86.mp3"
+      "audio": "books/bridge-alef-bet/audio/s86.mp3"
     },
     {
       "id": "s87",
@@ -7469,7 +7469,7 @@
           "end": 3.087
         }
       ],
-      "audio": "audio_bridge_alef_bet/s87.mp3"
+      "audio": "books/bridge-alef-bet/audio/s87.mp3"
     },
     {
       "id": "s88",
@@ -7554,7 +7554,7 @@
           "end": 2.962
         }
       ],
-      "audio": "audio_bridge_alef_bet/s88.mp3"
+      "audio": "books/bridge-alef-bet/audio/s88.mp3"
     },
     {
       "id": "s89",
@@ -7628,7 +7628,7 @@
           "end": 2.812
         }
       ],
-      "audio": "audio_bridge_alef_bet/s89.mp3"
+      "audio": "books/bridge-alef-bet/audio/s89.mp3"
     },
     {
       "id": "s90",
@@ -7702,7 +7702,7 @@
           "end": 2.925
         }
       ],
-      "audio": "audio_bridge_alef_bet/s90.mp3"
+      "audio": "books/bridge-alef-bet/audio/s90.mp3"
     },
     {
       "id": "s91",
@@ -7787,7 +7787,7 @@
           "end": 3.4
         }
       ],
-      "audio": "audio_bridge_alef_bet/s91.mp3"
+      "audio": "books/bridge-alef-bet/audio/s91.mp3"
     },
     {
       "id": "s92",
@@ -7872,7 +7872,7 @@
           "end": 3.163
         }
       ],
-      "audio": "audio_bridge_alef_bet/s92.mp3"
+      "audio": "books/bridge-alef-bet/audio/s92.mp3"
     },
     {
       "id": "s93",
@@ -7946,7 +7946,7 @@
           "end": 3.163
         }
       ],
-      "audio": "audio_bridge_alef_bet/s93.mp3"
+      "audio": "books/bridge-alef-bet/audio/s93.mp3"
     },
     {
       "id": "s94",
@@ -8031,7 +8031,7 @@
           "end": 3.062
         }
       ],
-      "audio": "audio_bridge_alef_bet/s94.mp3"
+      "audio": "books/bridge-alef-bet/audio/s94.mp3"
     },
     {
       "id": "s95",
@@ -8116,7 +8116,7 @@
           "end": 3.3
         }
       ],
-      "audio": "audio_bridge_alef_bet/s95.mp3"
+      "audio": "books/bridge-alef-bet/audio/s95.mp3"
     },
     {
       "id": "s96",
@@ -8201,7 +8201,7 @@
           "end": 2.712
         }
       ],
-      "audio": "audio_bridge_alef_bet/s96.mp3"
+      "audio": "books/bridge-alef-bet/audio/s96.mp3"
     },
     {
       "id": "s97",
@@ -8286,7 +8286,7 @@
           "end": 3.7
         }
       ],
-      "audio": "audio_bridge_alef_bet/s97.mp3"
+      "audio": "books/bridge-alef-bet/audio/s97.mp3"
     },
     {
       "id": "s98",
@@ -8360,7 +8360,7 @@
           "end": 3.263
         }
       ],
-      "audio": "audio_bridge_alef_bet/s98.mp3"
+      "audio": "books/bridge-alef-bet/audio/s98.mp3"
     },
     {
       "id": "s99",
@@ -8434,7 +8434,7 @@
           "end": 3.275
         }
       ],
-      "audio": "audio_bridge_alef_bet/s99.mp3"
+      "audio": "books/bridge-alef-bet/audio/s99.mp3"
     },
     {
       "id": "s100",
@@ -8534,7 +8534,7 @@
           "end": 2.975
         }
       ],
-      "audio": "audio_bridge_alef_bet/s100.mp3"
+      "audio": "books/bridge-alef-bet/audio/s100.mp3"
     },
     {
       "id": "s101",
@@ -8623,7 +8623,7 @@
           "end": 3.612
         }
       ],
-      "audio": "audio_bridge_alef_bet/s101.mp3"
+      "audio": "books/bridge-alef-bet/audio/s101.mp3"
     },
     {
       "id": "s102",
@@ -8709,15 +8709,15 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_bridge_alef_bet/s102.mp3",
+      "audio": "books/bridge-alef-bet/audio/s102.mp3",
       "illustration": {
         "word": "לְהִתְרַגֵּל",
         "tr": "привыкнуть",
         "caption": "לְהִתְרַגֵּל",
         "capTr": "lehitragel",
         "mnemonic": "Представь гигантского Регеля, который прилетел на Землю и начал привыкать к новым условиям, он стал есть гигантские пиццы и пить литры газировки, и теперь он стал огромным шаром с лицом и руками, который катится по улицам и привыкает к новым вкусам.",
-        "img": "illustrations_bridge_alef_bet/s102.webp",
-        "imgMnemonic": "illustrations_bridge_alef_bet/s102-mnemonic.webp"
+        "img": "books/bridge-alef-bet/illustrations/s102.webp",
+        "imgMnemonic": "books/bridge-alef-bet/illustrations/s102-mnemonic.webp"
       }
     },
     {
@@ -8815,7 +8815,7 @@
           "end": 3.6
         }
       ],
-      "audio": "audio_bridge_alef_bet/s103.mp3"
+      "audio": "books/bridge-alef-bet/audio/s103.mp3"
     },
     {
       "id": "s104",
@@ -8900,7 +8900,7 @@
           "end": 3.263
         }
       ],
-      "audio": "audio_bridge_alef_bet/s104.mp3"
+      "audio": "books/bridge-alef-bet/audio/s104.mp3"
     },
     {
       "id": "s105",
@@ -8996,7 +8996,7 @@
           "end": 3.288
         }
       ],
-      "audio": "audio_bridge_alef_bet/s105.mp3"
+      "audio": "books/bridge-alef-bet/audio/s105.mp3"
     }
   ],
   "mode": "fade",

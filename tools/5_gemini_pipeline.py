@@ -63,6 +63,12 @@ import sys
 import time
 from pathlib import Path
 
+# hebrew_spelling_rules.py и tts_known_bad_words.json остались в корне
+# репозитория при переезде пронумерованных скриптов в tools/ (см. commit
+# "Реорганизация: книги переезжают в books/<slug>/") — без этого import
+# падает ModuleNotFoundError, если скрипт лежит не в корне.
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import hebrew_spelling_rules as rules
 
 # сколько раз пересылать батч заново, если модель вернула не столько

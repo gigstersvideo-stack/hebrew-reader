@@ -36,7 +36,7 @@
           "end": 1.387
         }
       ],
-      "audio": "audio_market_alef/s1.mp3"
+      "audio": "books/market-alef/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -84,7 +84,7 @@
           "end": 2.15
         }
       ],
-      "audio": "audio_market_alef/s2.mp3"
+      "audio": "books/market-alef/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -152,7 +152,7 @@
           "end": 2.25
         }
       ],
-      "audio": "audio_market_alef/s3.mp3"
+      "audio": "books/market-alef/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -208,7 +208,7 @@
           "root": "א-נ-ש"
         }
       ],
-      "audio": "audio_market_alef/s4.mp3",
+      "audio": "books/market-alef/audio/s4.mp3",
       "ttsEngine": "gtts"
     },
     {
@@ -267,7 +267,7 @@
           "end": 2.837
         }
       ],
-      "audio": "audio_market_alef/s5.mp3"
+      "audio": "books/market-alef/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -355,7 +355,7 @@
           "end": 3.925
         }
       ],
-      "audio": "audio_market_alef/s6.mp3"
+      "audio": "books/market-alef/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -423,15 +423,15 @@
           "end": 2.9
         }
       ],
-      "audio": "audio_market_alef/s7.mp3",
+      "audio": "books/market-alef/audio/s7.mp3",
       "illustration": {
         "word": "עַגְבָנִיָּיה",
         "tr": "и помидор",
         "caption": "עַגְבָנִיָּיה",
         "capTr": "agvaniyah",
         "mnemonic": "Представь гигантский помидор, который вдруг превращается в огромную гармонику, и из него начинает звучать мелодия 'Агабани ях', которую играет веселый музыкант. Гармоника-помидор начинает танцевать, и вокруг неё собирается целый оркестр из овощей и фруктов, которые начинают играть на своих инструментах.",
-        "img": "illustrations_market_alef/s7.webp",
-        "imgMnemonic": "illustrations_market_alef/s7-mnemonic.webp"
+        "img": "books/market-alef/illustrations/s7.webp",
+        "imgMnemonic": "books/market-alef/illustrations/s7-mnemonic.webp"
       }
     },
     {
@@ -510,7 +510,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_market_alef/s8.mp3"
+      "audio": "books/market-alef/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -588,7 +588,7 @@
           "end": 2.85
         }
       ],
-      "audio": "audio_market_alef/s9.mp3"
+      "audio": "books/market-alef/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -636,7 +636,7 @@
           "end": 1.863
         }
       ],
-      "audio": "audio_market_alef/s10.mp3"
+      "audio": "books/market-alef/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -694,7 +694,7 @@
           "end": 2.0
         }
       ],
-      "audio": "audio_market_alef/s11.mp3"
+      "audio": "books/market-alef/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -772,7 +772,7 @@
           "end": 2.388
         }
       ],
-      "audio": "audio_market_alef/s12.mp3"
+      "audio": "books/market-alef/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -840,7 +840,7 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_market_alef/s13.mp3"
+      "audio": "books/market-alef/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -908,7 +908,7 @@
           "end": 2.55
         }
       ],
-      "audio": "audio_market_alef/s14.mp3"
+      "audio": "books/market-alef/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1006,7 +1006,7 @@
           "end": 3.8
         }
       ],
-      "audio": "audio_market_alef/s15.mp3"
+      "audio": "books/market-alef/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1064,7 +1064,7 @@
           "end": 2.225
         }
       ],
-      "audio": "audio_market_alef/s16.mp3"
+      "audio": "books/market-alef/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1102,7 +1102,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_market_alef/s17.mp3"
+      "audio": "books/market-alef/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1180,7 +1180,7 @@
           "end": 3.038
         }
       ],
-      "audio": "audio_market_alef/s18.mp3"
+      "audio": "books/market-alef/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1238,7 +1238,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_market_alef/s19.mp3"
+      "audio": "books/market-alef/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1296,7 +1296,7 @@
           "end": 2.325
         }
       ],
-      "audio": "audio_market_alef/s20.mp3"
+      "audio": "books/market-alef/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1336,15 +1336,15 @@
           "root": "צ-ח-ק"
         }
       ],
-      "audio": "audio_market_alef/s21.mp3",
+      "audio": "books/market-alef/audio/s21.mp3",
       "illustration": {
         "word": "לִצְחוֹק",
         "tr": "и смеется",
         "caption": "לִצְחוֹק",
         "capTr": "litzchok",
         "mnemonic": "Лиса Цоха смеётся, когда видит цирковое шоу с клоунами, которые жонглируют огромными шарами и выполняют сальто, а затем все клоуны начинают смеяться вместе с лисой Цохой, создавая хор смеющихся существ.",
-        "img": "illustrations_market_alef/s21.webp",
-        "imgMnemonic": "illustrations_market_alef/s21-mnemonic.webp"
+        "img": "books/market-alef/illustrations/s21.webp",
+        "imgMnemonic": "books/market-alef/illustrations/s21-mnemonic.webp"
       },
       "ttsEngine": "gtts"
     },
@@ -1394,7 +1394,7 @@
           "root": "מ-כ-ר"
         }
       ],
-      "audio": "audio_market_alef/s22.mp3",
+      "audio": "books/market-alef/audio/s22.mp3",
       "ttsEngine": "gtts"
     },
     {
@@ -1483,7 +1483,7 @@
           "end": 4.713
         }
       ],
-      "audio": "audio_market_alef/s23.mp3"
+      "audio": "books/market-alef/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -1523,7 +1523,7 @@
           "root": "י-ח-ד"
         }
       ],
-      "audio": "audio_market_alef/s24.mp3",
+      "audio": "books/market-alef/audio/s24.mp3",
       "ttsEngine": "gtts"
     }
   ]

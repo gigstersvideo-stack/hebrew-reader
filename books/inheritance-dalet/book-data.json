@@ -136,7 +136,7 @@
           "end": 6.188
         }
       ],
-      "audio": "audio_inheritance_dalet/s1.mp3"
+      "audio": "books/inheritance-dalet/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -324,7 +324,7 @@
           "end": 9.238
         }
       ],
-      "audio": "audio_inheritance_dalet/s2.mp3"
+      "audio": "books/inheritance-dalet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -442,15 +442,15 @@
           "end": 6.7
         }
       ],
-      "audio": "audio_inheritance_dalet/s3.mp3",
+      "audio": "books/inheritance-dalet/audio/s3.mp3",
       "illustration": {
         "word": "חֲלוּקָּה",
         "tr": "раздел",
         "caption": "חֲלוּקָּה",
         "capTr": "chaluka",
         "mnemonic": "Представь, что при разделе наследства сёстрам досталась только покосившаяся ХАЛУПА на курьих ножках: она приседает, кланяется и ворчит, а обе женщины с чемоданами удивлённо смотрят на неё.",
-        "img": "illustrations_inheritance_dalet/s3.webp",
-        "imgMnemonic": "illustrations_inheritance_dalet/s3-mnemonic.webp"
+        "img": "books/inheritance-dalet/illustrations/s3.webp",
+        "imgMnemonic": "books/inheritance-dalet/illustrations/s3-mnemonic.webp"
       }
     },
     {
@@ -669,7 +669,7 @@
           "end": 10.662
         }
       ],
-      "audio": "audio_inheritance_dalet/s4.mp3"
+      "audio": "books/inheritance-dalet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -927,7 +927,7 @@
           "end": 8.45
         }
       ],
-      "audio": "audio_inheritance_dalet/s5.mp3"
+      "audio": "books/inheritance-dalet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -1095,7 +1095,7 @@
           "end": 7.312
         }
       ],
-      "audio": "audio_inheritance_dalet/s6.mp3"
+      "audio": "books/inheritance-dalet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -1293,7 +1293,7 @@
           "end": 7.862
         }
       ],
-      "audio": "audio_inheritance_dalet/s7.mp3"
+      "audio": "books/inheritance-dalet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -1521,7 +1521,7 @@
           "end": 9.387
         }
       ],
-      "audio": "audio_inheritance_dalet/s8.mp3"
+      "audio": "books/inheritance-dalet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -1649,7 +1649,7 @@
           "end": 5.688
         }
       ],
-      "audio": "audio_inheritance_dalet/s9.mp3"
+      "audio": "books/inheritance-dalet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -1917,7 +1917,7 @@
           "end": 11.488
         }
       ],
-      "audio": "audio_inheritance_dalet/s10.mp3"
+      "audio": "books/inheritance-dalet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -2065,7 +2065,7 @@
           "end": 5.888
         }
       ],
-      "audio": "audio_inheritance_dalet/s11.mp3"
+      "audio": "books/inheritance-dalet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -2253,7 +2253,7 @@
           "end": 8.125
         }
       ],
-      "audio": "audio_inheritance_dalet/s12.mp3"
+      "audio": "books/inheritance-dalet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -2441,7 +2441,7 @@
           "end": 7.225
         }
       ],
-      "audio": "audio_inheritance_dalet/s13.mp3"
+      "audio": "books/inheritance-dalet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -2649,7 +2649,7 @@
           "end": 8.363
         }
       ],
-      "audio": "audio_inheritance_dalet/s14.mp3"
+      "audio": "books/inheritance-dalet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -2727,7 +2727,7 @@
           "end": 2.6
         }
       ],
-      "audio": "audio_inheritance_dalet/s15.mp3"
+      "audio": "books/inheritance-dalet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -2935,7 +2935,7 @@
           "end": 8.575
         }
       ],
-      "audio": "audio_inheritance_dalet/s16.mp3"
+      "audio": "books/inheritance-dalet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -3113,7 +3113,7 @@
           "end": 7.55
         }
       ],
-      "audio": "audio_inheritance_dalet/s17.mp3"
+      "audio": "books/inheritance-dalet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -3221,7 +3221,7 @@
           "end": 4.787
         }
       ],
-      "audio": "audio_inheritance_dalet/s18.mp3"
+      "audio": "books/inheritance-dalet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -3379,7 +3379,7 @@
           "end": 6.662
         }
       ],
-      "audio": "audio_inheritance_dalet/s19.mp3"
+      "audio": "books/inheritance-dalet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -3577,7 +3577,7 @@
           "end": 7.787
         }
       ],
-      "audio": "audio_inheritance_dalet/s20.mp3"
+      "audio": "books/inheritance-dalet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -3705,7 +3705,7 @@
           "end": 5.625
         }
       ],
-      "audio": "audio_inheritance_dalet/s21.mp3"
+      "audio": "books/inheritance-dalet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -3893,15 +3893,15 @@
           "end": 8.05
         }
       ],
-      "audio": "audio_inheritance_dalet/s22.mp3",
+      "audio": "books/inheritance-dalet/audio/s22.mp3",
       "illustration": {
         "word": "מְגֵרָה",
         "tr": "ящик стола",
         "caption": "מְגֵרָה",
         "capTr": "megera",
         "mnemonic": "Представь, что из ящика старого стола вылезает сердитая МЕГЕРА в бигуди: она ворчит на сестёр, размахивая пачкой писем, а бумаги кружатся у неё над головой.",
-        "img": "illustrations_inheritance_dalet/s22.webp",
-        "imgMnemonic": "illustrations_inheritance_dalet/s22-mnemonic.webp"
+        "img": "books/inheritance-dalet/illustrations/s22.webp",
+        "imgMnemonic": "books/inheritance-dalet/illustrations/s22-mnemonic.webp"
       }
     },
     {
@@ -4050,7 +4050,7 @@
           "end": 6.562
         }
       ],
-      "audio": "audio_inheritance_dalet/s23.mp3"
+      "audio": "books/inheritance-dalet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -4118,7 +4118,7 @@
           "end": 2.612
         }
       ],
-      "audio": "audio_inheritance_dalet/s24.mp3"
+      "audio": "books/inheritance-dalet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -4316,7 +4316,7 @@
           "end": 8.475
         }
       ],
-      "audio": "audio_inheritance_dalet/s25.mp3"
+      "audio": "books/inheritance-dalet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -4514,7 +4514,7 @@
           "end": 8.562
         }
       ],
-      "audio": "audio_inheritance_dalet/s26.mp3"
+      "audio": "books/inheritance-dalet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -4602,7 +4602,7 @@
           "end": 4.487
         }
       ],
-      "audio": "audio_inheritance_dalet/s27.mp3"
+      "audio": "books/inheritance-dalet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -4820,7 +4820,7 @@
           "end": 7.85
         }
       ],
-      "audio": "audio_inheritance_dalet/s28.mp3"
+      "audio": "books/inheritance-dalet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -4958,7 +4958,7 @@
           "end": 4.362
         }
       ],
-      "audio": "audio_inheritance_dalet/s29.mp3"
+      "audio": "books/inheritance-dalet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -5186,7 +5186,7 @@
           "end": 9.15
         }
       ],
-      "audio": "audio_inheritance_dalet/s30.mp3"
+      "audio": "books/inheritance-dalet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -5224,7 +5224,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_inheritance_dalet/s31.mp3"
+      "audio": "books/inheritance-dalet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -5462,7 +5462,7 @@
           "end": 8.95
         }
       ],
-      "audio": "audio_inheritance_dalet/s32.mp3"
+      "audio": "books/inheritance-dalet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -5600,7 +5600,7 @@
           "end": 5.5
         }
       ],
-      "audio": "audio_inheritance_dalet/s33.mp3"
+      "audio": "books/inheritance-dalet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -5828,7 +5828,7 @@
           "end": 8.062
         }
       ],
-      "audio": "audio_inheritance_dalet/s34.mp3"
+      "audio": "books/inheritance-dalet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -6026,7 +6026,7 @@
           "end": 7.062
         }
       ],
-      "audio": "audio_inheritance_dalet/s35.mp3"
+      "audio": "books/inheritance-dalet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -6244,7 +6244,7 @@
           "end": 8.863
         }
       ],
-      "audio": "audio_inheritance_dalet/s36.mp3"
+      "audio": "books/inheritance-dalet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -6412,7 +6412,7 @@
           "end": 6.388
         }
       ],
-      "audio": "audio_inheritance_dalet/s37.mp3"
+      "audio": "books/inheritance-dalet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -6700,7 +6700,7 @@
           "end": 9.95
         }
       ],
-      "audio": "audio_inheritance_dalet/s38.mp3"
+      "audio": "books/inheritance-dalet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -6908,7 +6908,7 @@
           "end": 7.513
         }
       ],
-      "audio": "audio_inheritance_dalet/s39.mp3"
+      "audio": "books/inheritance-dalet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -7056,7 +7056,7 @@
           "end": 5.9
         }
       ],
-      "audio": "audio_inheritance_dalet/s40.mp3"
+      "audio": "books/inheritance-dalet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -7134,7 +7134,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_inheritance_dalet/s41.mp3"
+      "audio": "books/inheritance-dalet/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -7242,7 +7242,7 @@
           "end": 4.35
         }
       ],
-      "audio": "audio_inheritance_dalet/s42.mp3"
+      "audio": "books/inheritance-dalet/audio/s42.mp3"
     },
     {
       "id": "s43",
@@ -7410,7 +7410,7 @@
           "end": 6.7
         }
       ],
-      "audio": "audio_inheritance_dalet/s43.mp3"
+      "audio": "books/inheritance-dalet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -7598,7 +7598,7 @@
           "end": 7.388
         }
       ],
-      "audio": "audio_inheritance_dalet/s44.mp3"
+      "audio": "books/inheritance-dalet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -7756,7 +7756,7 @@
           "end": 6.575
         }
       ],
-      "audio": "audio_inheritance_dalet/s45.mp3"
+      "audio": "books/inheritance-dalet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -7934,15 +7934,15 @@
           "end": 7.425
         }
       ],
-      "audio": "audio_inheritance_dalet/s46.mp3",
+      "audio": "books/inheritance-dalet/audio/s46.mp3",
       "illustration": {
         "word": "מִשְׁקָע",
         "tr": "осадок",
         "caption": "מִשְׁקָע",
         "capTr": "mishkaa",
         "mnemonic": "Представь, что на дне чашки вместо осадка сидит маленький МИШКА: он щурится, чешет затылок и лениво лижет лапу, а вокруг него всплывают пузырьки старых обид, которые тут же лопаются.",
-        "img": "illustrations_inheritance_dalet/s46.webp",
-        "imgMnemonic": "illustrations_inheritance_dalet/s46-mnemonic.webp"
+        "img": "books/inheritance-dalet/illustrations/s46.webp",
+        "imgMnemonic": "books/inheritance-dalet/illustrations/s46-mnemonic.webp"
       }
     },
     {
@@ -8151,7 +8151,7 @@
           "end": 8.325
         }
       ],
-      "audio": "audio_inheritance_dalet/s47.mp3"
+      "audio": "books/inheritance-dalet/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -8239,7 +8239,7 @@
           "end": 3.975
         }
       ],
-      "audio": "audio_inheritance_dalet/s48.mp3"
+      "audio": "books/inheritance-dalet/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -8377,7 +8377,7 @@
           "end": 5.0
         }
       ],
-      "audio": "audio_inheritance_dalet/s49.mp3"
+      "audio": "books/inheritance-dalet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -8515,7 +8515,7 @@
           "end": 5.75
         }
       ],
-      "audio": "audio_inheritance_dalet/s50.mp3"
+      "audio": "books/inheritance-dalet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -8653,7 +8653,7 @@
           "end": 4.975
         }
       ],
-      "audio": "audio_inheritance_dalet/s51.mp3"
+      "audio": "books/inheritance-dalet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -8881,7 +8881,7 @@
           "end": 8.175
         }
       ],
-      "audio": "audio_inheritance_dalet/s52.mp3"
+      "audio": "books/inheritance-dalet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -9029,7 +9029,7 @@
           "end": 6.2
         }
       ],
-      "audio": "audio_inheritance_dalet/s53.mp3"
+      "audio": "books/inheritance-dalet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -9217,7 +9217,7 @@
           "end": 8.05
         }
       ],
-      "audio": "audio_inheritance_dalet/s54.mp3"
+      "audio": "books/inheritance-dalet/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -9275,7 +9275,7 @@
           "end": 2.175
         }
       ],
-      "audio": "audio_inheritance_dalet/s55.mp3"
+      "audio": "books/inheritance-dalet/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -9533,7 +9533,7 @@
           "end": 8.725
         }
       ],
-      "audio": "audio_inheritance_dalet/s56.mp3"
+      "audio": "books/inheritance-dalet/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -9721,7 +9721,7 @@
           "end": 7.312
         }
       ],
-      "audio": "audio_inheritance_dalet/s57.mp3"
+      "audio": "books/inheritance-dalet/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -9899,7 +9899,7 @@
           "end": 7.537
         }
       ],
-      "audio": "audio_inheritance_dalet/s58.mp3"
+      "audio": "books/inheritance-dalet/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -9967,7 +9967,7 @@
           "end": 2.575
         }
       ],
-      "audio": "audio_inheritance_dalet/s59.mp3"
+      "audio": "books/inheritance-dalet/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -10125,7 +10125,7 @@
           "end": 6.463
         }
       ],
-      "audio": "audio_inheritance_dalet/s60.mp3"
+      "audio": "books/inheritance-dalet/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -10303,7 +10303,7 @@
           "end": 7.312
         }
       ],
-      "audio": "audio_inheritance_dalet/s61.mp3"
+      "audio": "books/inheritance-dalet/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -10441,7 +10441,7 @@
           "end": 5.25
         }
       ],
-      "audio": "audio_inheritance_dalet/s62.mp3"
+      "audio": "books/inheritance-dalet/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -10539,15 +10539,15 @@
           "end": 4.775
         }
       ],
-      "audio": "audio_inheritance_dalet/s63.mp3",
+      "audio": "books/inheritance-dalet/audio/s63.mp3",
       "illustration": {
         "word": "מַהוּת",
         "tr": "суть",
         "caption": "מַהוּת",
         "capTr": "mahut",
         "mnemonic": "Представь, что суть отношений заключается в том, чтобы просто МАХАТЬ: две сестры стоят на берегу и машут друг другу руками, шляпами и платками, пока их обе не заметят с другого берега.",
-        "img": "illustrations_inheritance_dalet/s63.webp",
-        "imgMnemonic": "illustrations_inheritance_dalet/s63-mnemonic.webp"
+        "img": "books/inheritance-dalet/illustrations/s63.webp",
+        "imgMnemonic": "books/inheritance-dalet/illustrations/s63-mnemonic.webp"
       }
     },
     {
@@ -10716,7 +10716,7 @@
           "end": 6.3
         }
       ],
-      "audio": "audio_inheritance_dalet/s64.mp3"
+      "audio": "books/inheritance-dalet/audio/s64.mp3"
     },
     {
       "id": "s65",
@@ -10844,7 +10844,7 @@
           "end": 5.825
         }
       ],
-      "audio": "audio_inheritance_dalet/s65.mp3"
+      "audio": "books/inheritance-dalet/audio/s65.mp3"
     },
     {
       "id": "s66",
@@ -11002,7 +11002,7 @@
           "end": 6.675
         }
       ],
-      "audio": "audio_inheritance_dalet/s66.mp3"
+      "audio": "books/inheritance-dalet/audio/s66.mp3"
     }
   ]
 }

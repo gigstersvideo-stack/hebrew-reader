@@ -56,15 +56,15 @@
           "end": 2.65
         }
       ],
-      "audio": "audio_camp_bet/s1.mp3",
+      "audio": "books/camp-bet/audio/s1.mp3",
       "illustration": {
         "word": "מַחֲנֶה",
         "tr": "в лагерь (сопр.)",
         "caption": "מַחֲנֶה",
         "capTr": "machaneh",
         "mnemonic": "Представь гигантскую МАХИНУ на огромных гусеницах — а на самом деле это весь летний лагерь целиком, который разъезжает по полям и лугам, оставляя за собой облако пыли.",
-        "img": "illustrations_camp_bet/s1.webp",
-        "imgMnemonic": "illustrations_camp_bet/s1-mnemonic.webp"
+        "img": "books/camp-bet/illustrations/s1.webp",
+        "imgMnemonic": "books/camp-bet/illustrations/s1-mnemonic.webp"
       }
     },
     {
@@ -163,7 +163,7 @@
           "end": 3.6
         }
       ],
-      "audio": "audio_camp_bet/s2.mp3"
+      "audio": "books/camp-bet/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -231,7 +231,7 @@
           "end": 2.05
         }
       ],
-      "audio": "audio_camp_bet/s3.mp3"
+      "audio": "books/camp-bet/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -319,7 +319,7 @@
           "end": 3.25
         }
       ],
-      "audio": "audio_camp_bet/s4.mp3"
+      "audio": "books/camp-bet/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -437,7 +437,7 @@
           "end": 3.9
         }
       ],
-      "audio": "audio_camp_bet/s5.mp3"
+      "audio": "books/camp-bet/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -495,7 +495,7 @@
           "end": 2.475
         }
       ],
-      "audio": "audio_camp_bet/s6.mp3"
+      "audio": "books/camp-bet/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -593,7 +593,7 @@
           "end": 3.538
         }
       ],
-      "audio": "audio_camp_bet/s7.mp3"
+      "audio": "books/camp-bet/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -661,7 +661,7 @@
           "end": 2.462
         }
       ],
-      "audio": "audio_camp_bet/s8.mp3"
+      "audio": "books/camp-bet/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -749,7 +749,7 @@
           "end": 4.05
         }
       ],
-      "audio": "audio_camp_bet/s9.mp3"
+      "audio": "books/camp-bet/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -837,7 +837,7 @@
           "end": 3.425
         }
       ],
-      "audio": "audio_camp_bet/s10.mp3"
+      "audio": "books/camp-bet/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -915,7 +915,7 @@
           "end": 2.95
         }
       ],
-      "audio": "audio_camp_bet/s11.mp3"
+      "audio": "books/camp-bet/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -993,7 +993,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_camp_bet/s12.mp3"
+      "audio": "books/camp-bet/audio/s12.mp3"
     },
     {
       "id": "s13",
@@ -1041,7 +1041,7 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_camp_bet/s13.mp3"
+      "audio": "books/camp-bet/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -1130,7 +1130,7 @@
         }
       ],
       "ttsEngine": "gtts",
-      "audio": "audio_camp_bet/s14.mp3"
+      "audio": "books/camp-bet/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -1208,7 +1208,7 @@
           "end": 2.788
         }
       ],
-      "audio": "audio_camp_bet/s15.mp3"
+      "audio": "books/camp-bet/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -1266,7 +1266,7 @@
           "end": 2.125
         }
       ],
-      "audio": "audio_camp_bet/s16.mp3"
+      "audio": "books/camp-bet/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -1354,7 +1354,7 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_camp_bet/s17.mp3"
+      "audio": "books/camp-bet/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1442,7 +1442,7 @@
           "end": 3.413
         }
       ],
-      "audio": "audio_camp_bet/s18.mp3"
+      "audio": "books/camp-bet/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1530,7 +1530,7 @@
           "end": 3.763
         }
       ],
-      "audio": "audio_camp_bet/s19.mp3"
+      "audio": "books/camp-bet/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1618,7 +1618,7 @@
           "end": 3.0
         }
       ],
-      "audio": "audio_camp_bet/s20.mp3"
+      "audio": "books/camp-bet/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1716,7 +1716,7 @@
           "end": 4.5
         }
       ],
-      "audio": "audio_camp_bet/s21.mp3"
+      "audio": "books/camp-bet/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1914,15 +1914,15 @@
           "end": 8.637
         }
       ],
-      "audio": "audio_camp_bet/s22.mp3",
+      "audio": "books/camp-bet/audio/s22.mp3",
       "illustration": {
         "word": "תַּחֲרוּת",
         "tr": "соревнование",
         "caption": "תַּחֲרוּת",
         "capTr": "tacharut",
         "mnemonic": "Представь, что вместо соревнования все участники просто улеглись отдыхать на одной огромной ТАХТЕ, и растерянные судьи бегают вокруг с секундомерами, не понимая, кто вообще победил.",
-        "img": "illustrations_camp_bet/s22.webp",
-        "imgMnemonic": "illustrations_camp_bet/s22-mnemonic.webp"
+        "img": "books/camp-bet/illustrations/s22.webp",
+        "imgMnemonic": "books/camp-bet/illustrations/s22-mnemonic.webp"
       }
     },
     {
@@ -2021,7 +2021,7 @@
           "end": 4.062
         }
       ],
-      "audio": "audio_camp_bet/s23.mp3"
+      "audio": "books/camp-bet/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -2099,7 +2099,7 @@
           "end": 3.75
         }
       ],
-      "audio": "audio_camp_bet/s24.mp3"
+      "audio": "books/camp-bet/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -2187,7 +2187,7 @@
           "end": 3.763
         }
       ],
-      "audio": "audio_camp_bet/s25.mp3"
+      "audio": "books/camp-bet/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -2255,7 +2255,7 @@
           "end": 3.4
         }
       ],
-      "audio": "audio_camp_bet/s26.mp3"
+      "audio": "books/camp-bet/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -2363,7 +2363,7 @@
           "end": 4.112
         }
       ],
-      "audio": "audio_camp_bet/s27.mp3"
+      "audio": "books/camp-bet/audio/s27.mp3"
     },
     {
       "id": "s28",
@@ -2441,7 +2441,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_camp_bet/s28.mp3"
+      "audio": "books/camp-bet/audio/s28.mp3"
     },
     {
       "id": "s29",
@@ -2519,7 +2519,7 @@
           "end": 3.525
         }
       ],
-      "audio": "audio_camp_bet/s29.mp3"
+      "audio": "books/camp-bet/audio/s29.mp3"
     },
     {
       "id": "s30",
@@ -2627,7 +2627,7 @@
           "end": 4.375
         }
       ],
-      "audio": "audio_camp_bet/s30.mp3"
+      "audio": "books/camp-bet/audio/s30.mp3"
     },
     {
       "id": "s31",
@@ -2715,7 +2715,7 @@
           "end": 3.525
         }
       ],
-      "audio": "audio_camp_bet/s31.mp3"
+      "audio": "books/camp-bet/audio/s31.mp3"
     },
     {
       "id": "s32",
@@ -2783,7 +2783,7 @@
           "end": 2.837
         }
       ],
-      "audio": "audio_camp_bet/s32.mp3"
+      "audio": "books/camp-bet/audio/s32.mp3"
     },
     {
       "id": "s33",
@@ -2891,7 +2891,7 @@
           "end": 4.237
         }
       ],
-      "audio": "audio_camp_bet/s33.mp3"
+      "audio": "books/camp-bet/audio/s33.mp3"
     },
     {
       "id": "s34",
@@ -2959,7 +2959,7 @@
           "end": 3.05
         }
       ],
-      "audio": "audio_camp_bet/s34.mp3"
+      "audio": "books/camp-bet/audio/s34.mp3"
     },
     {
       "id": "s35",
@@ -3027,7 +3027,7 @@
           "end": 2.025
         }
       ],
-      "audio": "audio_camp_bet/s35.mp3"
+      "audio": "books/camp-bet/audio/s35.mp3"
     },
     {
       "id": "s36",
@@ -3125,7 +3125,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_camp_bet/s36.mp3"
+      "audio": "books/camp-bet/audio/s36.mp3"
     },
     {
       "id": "s37",
@@ -3183,7 +3183,7 @@
           "end": 2.6
         }
       ],
-      "audio": "audio_camp_bet/s37.mp3"
+      "audio": "books/camp-bet/audio/s37.mp3"
     },
     {
       "id": "s38",
@@ -3221,7 +3221,7 @@
           "end": 1.525
         }
       ],
-      "audio": "audio_camp_bet/s38.mp3"
+      "audio": "books/camp-bet/audio/s38.mp3"
     },
     {
       "id": "s39",
@@ -3279,7 +3279,7 @@
           "end": 1.812
         }
       ],
-      "audio": "audio_camp_bet/s39.mp3"
+      "audio": "books/camp-bet/audio/s39.mp3"
     },
     {
       "id": "s40",
@@ -3357,7 +3357,7 @@
           "end": 3.337
         }
       ],
-      "audio": "audio_camp_bet/s40.mp3"
+      "audio": "books/camp-bet/audio/s40.mp3"
     },
     {
       "id": "s41",
@@ -3445,7 +3445,7 @@
           "end": 3.462
         }
       ],
-      "audio": "audio_camp_bet/s41.mp3"
+      "audio": "books/camp-bet/audio/s41.mp3"
     },
     {
       "id": "s42",
@@ -3523,15 +3523,15 @@
           "end": 3.825
         }
       ],
-      "audio": "audio_camp_bet/s42.mp3",
+      "audio": "books/camp-bet/audio/s42.mp3",
       "illustration": {
         "word": "מַחֲנֶה",
         "tr": "в лагере",
         "caption": "מַחֲנֶה",
         "capTr": "machaneh",
         "mnemonic": "Представь огромную МАХИНУ из палаток и флагов на колёсах, которая с грохотом едет через лес, а дети из лагеря весело катаются на ней верхом.",
-        "img": "illustrations_camp_bet/s42.webp",
-        "imgMnemonic": "illustrations_camp_bet/s42-mnemonic.webp"
+        "img": "books/camp-bet/illustrations/s42.webp",
+        "imgMnemonic": "books/camp-bet/illustrations/s42-mnemonic.webp"
       }
     },
     {
@@ -3590,7 +3590,7 @@
           "end": 2.962
         }
       ],
-      "audio": "audio_camp_bet/s43.mp3"
+      "audio": "books/camp-bet/audio/s43.mp3"
     },
     {
       "id": "s44",
@@ -3688,7 +3688,7 @@
           "end": 4.138
         }
       ],
-      "audio": "audio_camp_bet/s44.mp3"
+      "audio": "books/camp-bet/audio/s44.mp3"
     },
     {
       "id": "s45",
@@ -3766,7 +3766,7 @@
           "end": 3.562
         }
       ],
-      "audio": "audio_camp_bet/s45.mp3"
+      "audio": "books/camp-bet/audio/s45.mp3"
     },
     {
       "id": "s46",
@@ -3854,7 +3854,7 @@
           "end": 3.612
         }
       ],
-      "audio": "audio_camp_bet/s46.mp3"
+      "audio": "books/camp-bet/audio/s46.mp3"
     },
     {
       "id": "s47",
@@ -3912,7 +3912,7 @@
           "end": 2.812
         }
       ],
-      "audio": "audio_camp_bet/s47.mp3"
+      "audio": "books/camp-bet/audio/s47.mp3"
     },
     {
       "id": "s48",
@@ -4050,7 +4050,7 @@
           "end": 6.15
         }
       ],
-      "audio": "audio_camp_bet/s48.mp3"
+      "audio": "books/camp-bet/audio/s48.mp3"
     },
     {
       "id": "s49",
@@ -4138,7 +4138,7 @@
           "end": 3.837
         }
       ],
-      "audio": "audio_camp_bet/s49.mp3"
+      "audio": "books/camp-bet/audio/s49.mp3"
     },
     {
       "id": "s50",
@@ -4216,7 +4216,7 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_camp_bet/s50.mp3"
+      "audio": "books/camp-bet/audio/s50.mp3"
     },
     {
       "id": "s51",
@@ -4324,7 +4324,7 @@
           "end": 4.825
         }
       ],
-      "audio": "audio_camp_bet/s51.mp3"
+      "audio": "books/camp-bet/audio/s51.mp3"
     },
     {
       "id": "s52",
@@ -4422,7 +4422,7 @@
           "end": 3.862
         }
       ],
-      "audio": "audio_camp_bet/s52.mp3"
+      "audio": "books/camp-bet/audio/s52.mp3"
     },
     {
       "id": "s53",
@@ -4480,7 +4480,7 @@
           "end": 2.587
         }
       ],
-      "audio": "audio_camp_bet/s53.mp3"
+      "audio": "books/camp-bet/audio/s53.mp3"
     },
     {
       "id": "s54",
@@ -4558,7 +4558,7 @@
           "end": 3.55
         }
       ],
-      "audio": "audio_camp_bet/s54.mp3"
+      "audio": "books/camp-bet/audio/s54.mp3"
     },
     {
       "id": "s55",
@@ -4646,7 +4646,7 @@
           "end": 4.188
         }
       ],
-      "audio": "audio_camp_bet/s55.mp3"
+      "audio": "books/camp-bet/audio/s55.mp3"
     },
     {
       "id": "s56",
@@ -4734,7 +4734,7 @@
           "end": 3.85
         }
       ],
-      "audio": "audio_camp_bet/s56.mp3"
+      "audio": "books/camp-bet/audio/s56.mp3"
     },
     {
       "id": "s57",
@@ -4822,7 +4822,7 @@
           "end": 3.65
         }
       ],
-      "audio": "audio_camp_bet/s57.mp3"
+      "audio": "books/camp-bet/audio/s57.mp3"
     },
     {
       "id": "s58",
@@ -4870,7 +4870,7 @@
           "end": 1.887
         }
       ],
-      "audio": "audio_camp_bet/s58.mp3"
+      "audio": "books/camp-bet/audio/s58.mp3"
     },
     {
       "id": "s59",
@@ -4938,7 +4938,7 @@
           "end": 2.288
         }
       ],
-      "audio": "audio_camp_bet/s59.mp3"
+      "audio": "books/camp-bet/audio/s59.mp3"
     },
     {
       "id": "s60",
@@ -5056,7 +5056,7 @@
           "end": 4.3
         }
       ],
-      "audio": "audio_camp_bet/s60.mp3"
+      "audio": "books/camp-bet/audio/s60.mp3"
     },
     {
       "id": "s61",
@@ -5124,7 +5124,7 @@
           "end": 2.913
         }
       ],
-      "audio": "audio_camp_bet/s61.mp3"
+      "audio": "books/camp-bet/audio/s61.mp3"
     },
     {
       "id": "s62",
@@ -5172,7 +5172,7 @@
           "end": 2.013
         }
       ],
-      "audio": "audio_camp_bet/s62.mp3"
+      "audio": "books/camp-bet/audio/s62.mp3"
     },
     {
       "id": "s63",
@@ -5220,7 +5220,7 @@
           "end": 1.837
         }
       ],
-      "audio": "audio_camp_bet/s63.mp3"
+      "audio": "books/camp-bet/audio/s63.mp3"
     },
     {
       "id": "s64",
@@ -5258,7 +5258,7 @@
           "end": 1.8
         }
       ],
-      "audio": "audio_camp_bet/s64.mp3"
+      "audio": "books/camp-bet/audio/s64.mp3"
     },
     {
       "id": "s65",
@@ -5336,15 +5336,15 @@
           "end": 3.913
         }
       ],
-      "audio": "audio_camp_bet/s65.mp3",
+      "audio": "books/camp-bet/audio/s65.mp3",
       "illustration": {
         "word": "תֵּיבָה",
         "tr": "и-сундук",
         "caption": "תֵּיבָה",
         "capTr": "teiva",
         "mnemonic": "Представь, что из старого деревянного сундука вдруг начинает разматываться бесконечный рулон липкого ТЕЙПА, который обматывает всё вокруг — стол, стулья и даже соседей.",
-        "img": "illustrations_camp_bet/s65.webp",
-        "imgMnemonic": "illustrations_camp_bet/s65-mnemonic.webp"
+        "img": "books/camp-bet/illustrations/s65.webp",
+        "imgMnemonic": "books/camp-bet/illustrations/s65-mnemonic.webp"
       }
     },
     {
@@ -5433,7 +5433,7 @@
           "end": 4.15
         }
       ],
-      "audio": "audio_camp_bet/s66.mp3"
+      "audio": "books/camp-bet/audio/s66.mp3"
     },
     {
       "id": "s67",
@@ -5491,7 +5491,7 @@
           "end": 2.487
         }
       ],
-      "audio": "audio_camp_bet/s67.mp3"
+      "audio": "books/camp-bet/audio/s67.mp3"
     },
     {
       "id": "s68",
@@ -5579,7 +5579,7 @@
           "end": 3.212
         }
       ],
-      "audio": "audio_camp_bet/s68.mp3"
+      "audio": "books/camp-bet/audio/s68.mp3"
     },
     {
       "id": "s69",
@@ -5637,7 +5637,7 @@
           "end": 2.125
         }
       ],
-      "audio": "audio_camp_bet/s69.mp3"
+      "audio": "books/camp-bet/audio/s69.mp3"
     },
     {
       "id": "s70",
@@ -5715,7 +5715,7 @@
           "end": 3.112
         }
       ],
-      "audio": "audio_camp_bet/s70.mp3"
+      "audio": "books/camp-bet/audio/s70.mp3"
     },
     {
       "id": "s71",
@@ -5793,7 +5793,7 @@
           "end": 3.513
         }
       ],
-      "audio": "audio_camp_bet/s71.mp3"
+      "audio": "books/camp-bet/audio/s71.mp3"
     },
     {
       "id": "s72",
@@ -5911,7 +5911,7 @@
           "end": 4.312
         }
       ],
-      "audio": "audio_camp_bet/s72.mp3"
+      "audio": "books/camp-bet/audio/s72.mp3"
     },
     {
       "id": "s73",
@@ -6009,7 +6009,7 @@
           "end": 4.362
         }
       ],
-      "audio": "audio_camp_bet/s73.mp3"
+      "audio": "books/camp-bet/audio/s73.mp3"
     },
     {
       "id": "s74",
@@ -6047,7 +6047,7 @@
           "end": 1.55
         }
       ],
-      "audio": "audio_camp_bet/s74.mp3"
+      "audio": "books/camp-bet/audio/s74.mp3"
     },
     {
       "id": "s75",
@@ -6085,7 +6085,7 @@
           "end": 1.762
         }
       ],
-      "audio": "audio_camp_bet/s75.mp3"
+      "audio": "books/camp-bet/audio/s75.mp3"
     },
     {
       "id": "s76",
@@ -6133,7 +6133,7 @@
           "end": 1.962
         }
       ],
-      "audio": "audio_camp_bet/s76.mp3"
+      "audio": "books/camp-bet/audio/s76.mp3"
     },
     {
       "id": "s77",
@@ -6241,7 +6241,7 @@
           "end": 4.4
         }
       ],
-      "audio": "audio_camp_bet/s77.mp3"
+      "audio": "books/camp-bet/audio/s77.mp3"
     },
     {
       "id": "s78",
@@ -6259,7 +6259,7 @@
           "end": 0.65
         }
       ],
-      "audio": "audio_camp_bet/s78.mp3"
+      "audio": "books/camp-bet/audio/s78.mp3"
     },
     {
       "id": "s79",
@@ -6317,7 +6317,7 @@
           "end": 2.3
         }
       ],
-      "audio": "audio_camp_bet/s79.mp3"
+      "audio": "books/camp-bet/audio/s79.mp3"
     },
     {
       "id": "s80",
@@ -6385,7 +6385,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_camp_bet/s80.mp3"
+      "audio": "books/camp-bet/audio/s80.mp3"
     },
     {
       "id": "s81",
@@ -6593,15 +6593,15 @@
           "end": 9.037
         }
       ],
-      "audio": "audio_camp_bet/s81.mp3",
+      "audio": "books/camp-bet/audio/s81.mp3",
       "illustration": {
         "word": "מַנְעוּל",
         "tr": "замок",
         "caption": "מַנְעוּל",
         "capTr": "manul",
         "mnemonic": "Представь, что МАНЯ НУЛЯ, огромный и страшный, пришёл на вечеринку и начал открывать все замки на дверях и сундуках, создавая хаос и суматоху. Все гости были шокированы и пытались остановить МАНЯ НУЛЯ, но он был слишком силён. В итоге, все замки были открыты, и вечеринка превратилась в беспорядок.",
-        "img": "illustrations_camp_bet/s81.webp",
-        "imgMnemonic": "illustrations_camp_bet/s81-mnemonic.webp"
+        "img": "books/camp-bet/illustrations/s81.webp",
+        "imgMnemonic": "books/camp-bet/illustrations/s81-mnemonic.webp"
       }
     },
     {
@@ -6660,7 +6660,7 @@
           "end": 1.85
         }
       ],
-      "audio": "audio_camp_bet/s82.mp3"
+      "audio": "books/camp-bet/audio/s82.mp3"
     },
     {
       "id": "s83",
@@ -6738,7 +6738,7 @@
           "end": 2.95
         }
       ],
-      "audio": "audio_camp_bet/s83.mp3"
+      "audio": "books/camp-bet/audio/s83.mp3"
     },
     {
       "id": "s84",
@@ -6818,7 +6818,7 @@
           "root": "—"
         }
       ],
-      "audio": "audio_camp_bet/s84.mp3"
+      "audio": "books/camp-bet/audio/s84.mp3"
     },
     {
       "id": "s85",
@@ -6856,7 +6856,7 @@
           "end": 2.125
         }
       ],
-      "audio": "audio_camp_bet/s85.mp3"
+      "audio": "books/camp-bet/audio/s85.mp3"
     },
     {
       "id": "s86",
@@ -6914,7 +6914,7 @@
           "end": 2.125
         }
       ],
-      "audio": "audio_camp_bet/s86.mp3"
+      "audio": "books/camp-bet/audio/s86.mp3"
     },
     {
       "id": "s87",
@@ -7002,7 +7002,7 @@
           "end": 3.45
         }
       ],
-      "audio": "audio_camp_bet/s87.mp3"
+      "audio": "books/camp-bet/audio/s87.mp3"
     },
     {
       "id": "s88",
@@ -7020,7 +7020,7 @@
           "end": 0.787
         }
       ],
-      "audio": "audio_camp_bet/s88.mp3"
+      "audio": "books/camp-bet/audio/s88.mp3"
     },
     {
       "id": "s89",
@@ -7098,7 +7098,7 @@
           "end": 3.487
         }
       ],
-      "audio": "audio_camp_bet/s89.mp3"
+      "audio": "books/camp-bet/audio/s89.mp3"
     },
     {
       "id": "s90",
@@ -7206,7 +7206,7 @@
           "end": 4.237
         }
       ],
-      "audio": "audio_camp_bet/s90.mp3"
+      "audio": "books/camp-bet/audio/s90.mp3"
     },
     {
       "id": "s91",
@@ -7284,7 +7284,7 @@
           "end": 3.875
         }
       ],
-      "audio": "audio_camp_bet/s91.mp3"
+      "audio": "books/camp-bet/audio/s91.mp3"
     },
     {
       "id": "s92",
@@ -7372,7 +7372,7 @@
           "end": 4.812
         }
       ],
-      "audio": "audio_camp_bet/s92.mp3"
+      "audio": "books/camp-bet/audio/s92.mp3"
     },
     {
       "id": "s93",
@@ -7480,7 +7480,7 @@
           "end": 5.362
         }
       ],
-      "audio": "audio_camp_bet/s93.mp3"
+      "audio": "books/camp-bet/audio/s93.mp3"
     },
     {
       "id": "s94",
@@ -7528,7 +7528,7 @@
           "end": 2.388
         }
       ],
-      "audio": "audio_camp_bet/s94.mp3"
+      "audio": "books/camp-bet/audio/s94.mp3"
     },
     {
       "id": "s95",
@@ -7636,7 +7636,7 @@
           "end": 4.987
         }
       ],
-      "audio": "audio_camp_bet/s95.mp3"
+      "audio": "books/camp-bet/audio/s95.mp3"
     },
     {
       "id": "s96",
@@ -7694,7 +7694,7 @@
           "end": 2.6
         }
       ],
-      "audio": "audio_camp_bet/s96.mp3"
+      "audio": "books/camp-bet/audio/s96.mp3"
     },
     {
       "id": "s97",
@@ -7802,7 +7802,7 @@
           "end": 4.713
         }
       ],
-      "audio": "audio_camp_bet/s97.mp3"
+      "audio": "books/camp-bet/audio/s97.mp3"
     },
     {
       "id": "s98",
@@ -7910,7 +7910,7 @@
           "end": 4.338
         }
       ],
-      "audio": "audio_camp_bet/s98.mp3"
+      "audio": "books/camp-bet/audio/s98.mp3"
     },
     {
       "id": "s99",
@@ -8008,7 +8008,7 @@
           "end": 3.938
         }
       ],
-      "audio": "audio_camp_bet/s99.mp3"
+      "audio": "books/camp-bet/audio/s99.mp3"
     },
     {
       "id": "s100",
@@ -8096,7 +8096,7 @@
           "end": 4.2
         }
       ],
-      "audio": "audio_camp_bet/s100.mp3"
+      "audio": "books/camp-bet/audio/s100.mp3"
     },
     {
       "id": "s101",
@@ -8164,7 +8164,7 @@
           "end": 2.188
         }
       ],
-      "audio": "audio_camp_bet/s101.mp3"
+      "audio": "books/camp-bet/audio/s101.mp3"
     },
     {
       "id": "s102",
@@ -8292,15 +8292,15 @@
           "end": 5.075
         }
       ],
-      "audio": "audio_camp_bet/s102.mp3",
+      "audio": "books/camp-bet/audio/s102.mp3",
       "illustration": {
         "word": "קְבוּצָה",
         "tr": "от группы",
         "caption": "קְבוּצָה",
         "capTr": "kвуtsa",
         "mnemonic": "Представь, что у входа в лагерь висит огромная табличка «КВОТА мест закончилась!», и целая толпа детей из одной команды пытается протиснуться внутрь одновременно, толкаясь локтями.",
-        "img": "illustrations_camp_bet/s102.webp",
-        "imgMnemonic": "illustrations_camp_bet/s102-mnemonic.webp"
+        "img": "books/camp-bet/illustrations/s102.webp",
+        "imgMnemonic": "books/camp-bet/illustrations/s102-mnemonic.webp"
       }
     },
     {
@@ -8379,7 +8379,7 @@
           "end": 2.538
         }
       ],
-      "audio": "audio_camp_bet/s103.mp3"
+      "audio": "books/camp-bet/audio/s103.mp3"
     }
   ]
 }

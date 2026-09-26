@@ -16,7 +16,7 @@
           "end": 0.925
         }
       ],
-      "audio": "audio_rainyday_alef/s1.mp3"
+      "audio": "books/rainyday-alef/audio/s1.mp3"
     },
     {
       "id": "s2",
@@ -54,7 +54,7 @@
           "end": 1.812
         }
       ],
-      "audio": "audio_rainyday_alef/s2.mp3"
+      "audio": "books/rainyday-alef/audio/s2.mp3"
     },
     {
       "id": "s3",
@@ -102,7 +102,7 @@
           "end": 1.762
         }
       ],
-      "audio": "audio_rainyday_alef/s3.mp3"
+      "audio": "books/rainyday-alef/audio/s3.mp3"
     },
     {
       "id": "s4",
@@ -150,7 +150,7 @@
           "end": 2.0
         }
       ],
-      "audio": "audio_rainyday_alef/s4.mp3"
+      "audio": "books/rainyday-alef/audio/s4.mp3"
     },
     {
       "id": "s5",
@@ -208,7 +208,7 @@
           "end": 2.888
         }
       ],
-      "audio": "audio_rainyday_alef/s5.mp3"
+      "audio": "books/rainyday-alef/audio/s5.mp3"
     },
     {
       "id": "s6",
@@ -256,7 +256,7 @@
           "end": 1.625
         }
       ],
-      "audio": "audio_rainyday_alef/s6.mp3"
+      "audio": "books/rainyday-alef/audio/s6.mp3"
     },
     {
       "id": "s7",
@@ -334,7 +334,7 @@
           "end": 3.025
         }
       ],
-      "audio": "audio_rainyday_alef/s7.mp3"
+      "audio": "books/rainyday-alef/audio/s7.mp3"
     },
     {
       "id": "s8",
@@ -382,7 +382,7 @@
           "end": 2.375
         }
       ],
-      "audio": "audio_rainyday_alef/s8.mp3"
+      "audio": "books/rainyday-alef/audio/s8.mp3"
     },
     {
       "id": "s9",
@@ -460,7 +460,7 @@
           "end": 2.913
         }
       ],
-      "audio": "audio_rainyday_alef/s9.mp3"
+      "audio": "books/rainyday-alef/audio/s9.mp3"
     },
     {
       "id": "s10",
@@ -518,7 +518,7 @@
           "end": 2.675
         }
       ],
-      "audio": "audio_rainyday_alef/s10.mp3"
+      "audio": "books/rainyday-alef/audio/s10.mp3"
     },
     {
       "id": "s11",
@@ -586,7 +586,7 @@
           "end": 3.15
         }
       ],
-      "audio": "audio_rainyday_alef/s11.mp3"
+      "audio": "books/rainyday-alef/audio/s11.mp3"
     },
     {
       "id": "s12",
@@ -664,15 +664,15 @@
           "end": 3.362
         }
       ],
-      "audio": "audio_rainyday_alef/s12.mp3",
+      "audio": "books/rainyday-alef/audio/s12.mp3",
       "illustration": {
         "word": "שְׂמִיכָה",
         "tr": "из одеял",
         "caption": "שְׂמִיכָה",
         "capTr": "smichah",
         "mnemonic": "Представь себе гигантскую семью, которая хранит все свои вещи в шкафу, и вдруг появляется огромная шкаф-машина, которая съедает все одеяла, и семья в ужасе кричит: «Семья хранит одеяла!»",
-        "img": "illustrations_rainyday_alef/s12.webp",
-        "imgMnemonic": "illustrations_rainyday_alef/s12-mnemonic.webp"
+        "img": "books/rainyday-alef/illustrations/s12.webp",
+        "imgMnemonic": "books/rainyday-alef/illustrations/s12-mnemonic.webp"
       }
     },
     {
@@ -721,7 +721,7 @@
           "end": 1.675
         }
       ],
-      "audio": "audio_rainyday_alef/s13.mp3"
+      "audio": "books/rainyday-alef/audio/s13.mp3"
     },
     {
       "id": "s14",
@@ -779,7 +779,7 @@
           "end": 2.962
         }
       ],
-      "audio": "audio_rainyday_alef/s14.mp3"
+      "audio": "books/rainyday-alef/audio/s14.mp3"
     },
     {
       "id": "s15",
@@ -837,7 +837,7 @@
           "end": 2.163
         }
       ],
-      "audio": "audio_rainyday_alef/s15.mp3"
+      "audio": "books/rainyday-alef/audio/s15.mp3"
     },
     {
       "id": "s16",
@@ -905,7 +905,7 @@
           "end": 2.938
         }
       ],
-      "audio": "audio_rainyday_alef/s16.mp3"
+      "audio": "books/rainyday-alef/audio/s16.mp3"
     },
     {
       "id": "s17",
@@ -973,7 +973,7 @@
           "end": 2.8
         }
       ],
-      "audio": "audio_rainyday_alef/s17.mp3"
+      "audio": "books/rainyday-alef/audio/s17.mp3"
     },
     {
       "id": "s18",
@@ -1031,7 +1031,7 @@
           "end": 2.125
         }
       ],
-      "audio": "audio_rainyday_alef/s18.mp3"
+      "audio": "books/rainyday-alef/audio/s18.mp3"
     },
     {
       "id": "s19",
@@ -1069,7 +1069,7 @@
           "end": 1.425
         }
       ],
-      "audio": "audio_rainyday_alef/s19.mp3"
+      "audio": "books/rainyday-alef/audio/s19.mp3"
     },
     {
       "id": "s20",
@@ -1117,7 +1117,7 @@
           "end": 1.725
         }
       ],
-      "audio": "audio_rainyday_alef/s20.mp3"
+      "audio": "books/rainyday-alef/audio/s20.mp3"
     },
     {
       "id": "s21",
@@ -1175,15 +1175,15 @@
           "end": 2.075
         }
       ],
-      "audio": "audio_rainyday_alef/s21.mp3",
+      "audio": "books/rainyday-alef/audio/s21.mp3",
       "illustration": {
         "word": "מְעָרָה",
         "tr": "пещера",
         "caption": "מְעָרָה",
         "capTr": "me'arah",
         "mnemonic": "Представь огромную космическую МАШИНУ, которая внезапно превращается в гигантское МОРЕ — она начинает плавать и нырять в океане, преследуя школу рыб, которые в ужасе разбегаются во все стороны, а морская пещера рядом наблюдает за этим зрелищем с удивлением.",
-        "img": "illustrations_rainyday_alef/s21.webp",
-        "imgMnemonic": "illustrations_rainyday_alef/s21-mnemonic.webp"
+        "img": "books/rainyday-alef/illustrations/s21.webp",
+        "imgMnemonic": "books/rainyday-alef/illustrations/s21-mnemonic.webp"
       }
     },
     {
@@ -1232,7 +1232,7 @@
           "end": 1.925
         }
       ],
-      "audio": "audio_rainyday_alef/s22.mp3"
+      "audio": "books/rainyday-alef/audio/s22.mp3"
     },
     {
       "id": "s23",
@@ -1280,7 +1280,7 @@
           "end": 2.112
         }
       ],
-      "audio": "audio_rainyday_alef/s23.mp3"
+      "audio": "books/rainyday-alef/audio/s23.mp3"
     },
     {
       "id": "s24",
@@ -1318,7 +1318,7 @@
           "end": 1.988
         }
       ],
-      "audio": "audio_rainyday_alef/s24.mp3"
+      "audio": "books/rainyday-alef/audio/s24.mp3"
     },
     {
       "id": "s25",
@@ -1426,7 +1426,7 @@
           "end": 3.712
         }
       ],
-      "audio": "audio_rainyday_alef/s25.mp3"
+      "audio": "books/rainyday-alef/audio/s25.mp3"
     },
     {
       "id": "s26",
@@ -1464,7 +1464,7 @@
           "end": 1.9
         }
       ],
-      "audio": "audio_rainyday_alef/s26.mp3"
+      "audio": "books/rainyday-alef/audio/s26.mp3"
     },
     {
       "id": "s27",
@@ -1552,7 +1552,7 @@
           "end": 4.15
         }
       ],
-      "audio": "audio_rainyday_alef/s27.mp3"
+      "audio": "books/rainyday-alef/audio/s27.mp3"
     }
   ]
 }
