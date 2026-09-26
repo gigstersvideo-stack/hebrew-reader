@@ -350,7 +350,9 @@ def audit_content_file(fname, cache, total, confirmed_noise):
 
 
 def audit_all_content(cache, total, confirmed_noise):
-    files = sorted(glob.glob(os.path.join(HERE, "book-data-*.json"))) + sorted(
+    files = sorted(glob.glob(os.path.join(HERE, "books", "*", "book-data.json"))) + sorted(
+        glob.glob(os.path.join(HERE, "book-data-epic-*.json"))
+    ) + sorted(
         glob.glob(os.path.join(HERE, "song-data-*.json"))
     )
     print(f"\n=== контент: {len(files)} файлов (book-data-*/song-data-*) ===", file=sys.stderr)
@@ -430,7 +432,9 @@ def audit_tts_known_bad(total, confirmed_noise):
         return total, confirmed_noise
     print("\n=== кросс-сверка с tts_known_bad_words.json (информационно) ===", file=sys.stderr)
     hits = 0
-    for f in sorted(glob.glob(os.path.join(HERE, "book-data-*.json"))) + sorted(
+    for f in sorted(glob.glob(os.path.join(HERE, "books", "*", "book-data.json"))) + sorted(
+        glob.glob(os.path.join(HERE, "book-data-epic-*.json"))
+    ) + sorted(
         glob.glob(os.path.join(HERE, "song-data-*.json"))
     ):
         data = json.load(open(f, encoding="utf-8"))

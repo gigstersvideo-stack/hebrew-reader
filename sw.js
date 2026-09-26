@@ -9,14 +9,11 @@ const ASSETS = [SHELL_URL, "./manifest.json", "./icon-192.png", "./icon-512.png"
 // (bookIdFromUrl вернёт null) и остаётся в кэше всегда, как раньше.
 const MAX_BOOKS_CACHED = 2;
 const META_KEY = new URL("__sw-meta__", self.location).toString();
-const BOOK_URL_RE = /\/(?:audio|illustrations)_([^/]+)\/|\/book-data-([^/.]+)\.json/;
+const BOOK_URL_RE = /\/books\/([^/]+)\//;
 
 function bookIdFromUrl(url) {
   const m = url.match(BOOK_URL_RE);
-  // audio_/illustrations_ используют подчёркивание в имени папки
-  // (audio_house_dalet), book-data-*.json — дефис (book-data-house-dalet) —
-  // без нормализации одна и та же книга считалась бы двумя разными.
-  return m ? (m[1] || m[2]).replace(/_/g, "-") : null;
+  return m ? m[1] : null;
 }
 
 async function getRecentBooks(cache) {
