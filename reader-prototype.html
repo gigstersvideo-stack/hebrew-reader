@@ -201,6 +201,15 @@
   body.translate-toggle-off .translate-toggle:not(.edit-toggle){ display:none; }
   .edit-toggle{ margin-inline-start: 4px; font-size:10px; }
   .edit-toggle:hover{ background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  /* "+ В тренажёр" — off by default (settings.suggestAddToTrainer), shown
+     via a body class rather than skipped at render time so it appears
+     retroactively on already-rendered sentences the moment the setting
+     turns on (auto-enable after sign-in, or the manual Settings toggle) —
+     same trick .translate-toggle-off already uses above. */
+  .add-toggle{ display:none; margin-inline-start: 4px; font-size:10px; color: var(--accent); border-color: var(--accent); }
+  .add-toggle:hover{ background: var(--accent-soft); }
+  .add-toggle.on{ background: var(--accent); color:#fff; }
+  body.suggest-add-trainer-on .add-toggle{ display:inline; }
 
   .sentence-tr{
     display:none; font-family:'Inter', sans-serif; direction: ltr; text-align: left;
@@ -648,7 +657,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.93.5</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.95.0</div>
   </div>
 </div>
 
@@ -754,6 +763,14 @@
         <div class="settings-row">
           <div><div class="settings-row-label">Мнемоника</div><div class="settings-row-sub">яркие гротескные картинки-подсказки вместо спокойных атмосферных</div></div>
           <label class="switch"><input type="checkbox" id="swMnemonic"><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-row-label">Автоозвучка при повторе слов</div><div class="settings-row-sub">иврит проговаривается вслух при показе карточки в «Мои слова» и в тренировке книги</div></div>
+          <label class="switch"><input type="checkbox" id="swAutoPlayAudio" checked><span class="switch-track"></span></label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-row-label">«+ В тренажёр» у предложений</div><div class="settings-row-sub">кнопка рядом с א — добавить целое предложение в личный пул тренажёра предложений (нужен вход через Google)</div></div>
+          <label class="switch"><input type="checkbox" id="swSuggestAddToTrainer"><span class="switch-track"></span></label>
         </div>
         <div class="settings-row">
           <div><div class="settings-row-label">Режим редактирования</div><div class="settings-row-sub">показывает значок ✎ у предложений твоих книг</div></div>
@@ -1203,6 +1220,7 @@ function commitGlobalReview(item, quality){
         <div class="train-answer" id="reviewAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos}${w.root && w.root !== '—' ? ' · ' + w.root : ''})</span>${prepParadigmTable(w, 'train-prep-table')}</div>
         ${bookLabel ? `<div style="font-size:11px; color:var(--ink-soft); margin-top:4px;">${bookLabel}</div>` : ''}
       </div>
+      <div class="tts-notice" id="reviewTtsNotice" hidden style="font-size:12px; color:var(--ink-soft); margin-top:6px;"></div>
       <div class="train-btns review-btns" id="reviewBtns" style="display:none;">
         <button class="train-no" data-q="1" style="background:var(--danger); color:#fff;">Снова</button>
         <button class="train-no" data-q="3">Трудно</button>
@@ -1214,6 +1232,7 @@ function commitGlobalReview(item, quality){
       document.getElementById('reviewFlipHint').style.display = 'none';
       document.getElementById('reviewBtns').style.display = 'flex';
     });
+    if (settings.autoPlayAudio) speakVocab(vocabSpeakText(w), document.getElementById('reviewTtsNotice'));
     document.getElementById('reviewBtns').querySelectorAll('button').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1253,6 +1272,55 @@ function vocabHeadHtml(e) {
   const head = e.form || e.lemma;
   return `<div class="train-lemma">${head}</div>` +
     (vocabFormDiffers(e) ? `<div class="train-base">начальная форма: <span class="he">${e.lemma}</span></div>` : '');
+}
+
+// ---- word-review audio ----
+// Ported from the trainer's own speak()/checkHebrewVoice() (hebrew_trainer.html)
+// — same voice-detection care, because the same real bug applies here: with
+// no Hebrew voice installed (iOS ships none by default), speechSynthesis
+// doesn't fail, it silently substitutes some other voice and reads the
+// Hebrew text through THAT voice's wrong pronunciation rules ("догз" instead
+// of Hebrew). getVoices() can return [] before the browser's voice list is
+// ready, so hebrewVoice stays null (unknown, don't block) until
+// voiceschanged fires or a live re-check in speakVocab() itself resolves it.
+const ttsSupported = "speechSynthesis" in window;
+let hebrewVoice = null;
+function checkHebrewVoice() {
+  if (!ttsSupported || !window.speechSynthesis || !window.speechSynthesis.getVoices) { hebrewVoice = false; return; }
+  const voices = window.speechSynthesis.getVoices();
+  if (voices.length) {
+    hebrewVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith("he")) || false;
+  }
+}
+if (ttsSupported && window.speechSynthesis && window.speechSynthesis.addEventListener) {
+  checkHebrewVoice();
+  window.speechSynthesis.addEventListener("voiceschanged", checkHebrewVoice, { once: true });
+}
+function vocabSpeakText(w) { return (w && (w.form || w.lemma)) || ''; }
+function speakVocab(text, noticeEl) {
+  if (!ttsSupported || !text) return;
+  if (hebrewVoice === null) checkHebrewVoice();
+  if (hebrewVoice === false) {
+    if (noticeEl) {
+      noticeEl.textContent = 'На этом устройстве не установлен голос для иврита, поэтому озвучка звучит неправильно (например, вместо иврита слышно английское слово). На iPhone: Настройки → Специальные возможности → Контент, зачитываемый вслух → Голоса → добавить иврит.';
+      noticeEl.hidden = false;
+    }
+    return;
+  }
+  if (hebrewVoice === null) {
+    if (noticeEl) {
+      noticeEl.textContent = 'Голос для озвучки ещё загружается — попробуйте ещё раз через секунду.';
+      noticeEl.hidden = false;
+    }
+    return;
+  }
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'he-IL';
+    if (hebrewVoice) u.voice = hebrewVoice;
+    window.speechSynthesis.speak(u);
+  } catch (e) {}
 }
 
 // Снимок текущего места в открытой книге — initReader/goToSentence/
@@ -1461,6 +1529,31 @@ function renderSentence(s, container){
   toggle.title = 'תרגום המשפט';
   toggle.addEventListener('click', (e) => { e.stopPropagation(); trBlock.classList.toggle('open'); });
   sSpan.appendChild(toggle);
+
+  const addToTrainerBtn = document.createElement('span');
+  addToTrainerBtn.className = 'translate-toggle add-toggle';
+  addToTrainerBtn.textContent = '+';
+  addToTrainerBtn.title = 'Добавить это предложение в тренажёр';
+  addToTrainerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!window.cloudUid) {
+      addToTrainerBtn.title = 'Войдите через Google (кнопка вверху страницы), чтобы добавлять предложения в тренажёр';
+      addToTrainerBtn.classList.add('on');
+      setTimeout(() => addToTrainerBtn.classList.remove('on'), 900);
+      return;
+    }
+    const added = addToTrainerBtn.classList.toggle('on');
+    const source = 'reader:' + bookId + ':' + s.id;
+    if (added) {
+      const he = s.words.map(sw => sw.t).join(' ');
+      if (window.cloudAddCustomCard) window.cloudAddCustomCard(source, he, s.fluent, '');
+      addToTrainerBtn.textContent = '✓'; addToTrainerBtn.title = 'В тренажёре — убрать';
+    } else {
+      if (window.cloudRemoveCustomCard) window.cloudRemoveCustomCard(source);
+      addToTrainerBtn.textContent = '+'; addToTrainerBtn.title = 'Добавить это предложение в тренажёр';
+    }
+  });
+  sSpan.appendChild(addToTrainerBtn);
 
   const canEditThisBook = (bookId.startsWith('local-') && settings.editMode) || (isOwner && settings.editModeBase);
   if (canEditThisBook){
@@ -2055,6 +2148,7 @@ function renderTrainCard(){
       <div class="train-hint" id="flipHint">нажми, чтобы увидеть перевод</div>
       <div class="train-answer" id="trainAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos})</span>${prepParadigmTable(w, 'train-prep-table')}</div>
     </div>
+    <div class="tts-notice" id="trainTtsNotice" hidden style="font-size:12px; color:var(--ink-soft); margin-top:6px;"></div>
     <div class="train-btns review-btns" id="trainBtns" style="display:none;">
       <button class="train-no" data-q="1" style="background:var(--danger); color:#fff;">Снова</button>
       <button class="train-no" data-q="3">Трудно</button>
@@ -2066,6 +2160,7 @@ function renderTrainCard(){
     document.getElementById('flipHint').style.display = 'none';
     document.getElementById('trainBtns').style.display = 'flex';
   });
+  if (settings.autoPlayAudio) speakVocab(vocabSpeakText(w), document.getElementById('trainTtsNotice'));
   document.getElementById('trainBtns').querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -2081,7 +2176,7 @@ function renderTrainCard(){
 // from the popover lemma — works only for books whose words already carry
 // real niqud in the data; books without it look the same either way.
 const SETTINGS_KEY = 'hebrew-reader-settings';
-let settings = { nikud:true, names:true, literal:true, detailed:true, autoscroll:true, editMode:false, editModeBase:false, mnemonic:false, showTranslateToggle:true };
+let settings = { nikud:true, names:true, literal:true, detailed:true, autoscroll:true, editMode:false, editModeBase:false, mnemonic:false, showTranslateToggle:true, autoPlayAudio:true, suggestAddToTrainer:false, suggestAddToTrainerTouched:false };
 try{
   const saved = localStorage.getItem(SETTINGS_KEY);
   if (saved) settings = {...settings, ...JSON.parse(saved)};
@@ -2106,12 +2201,35 @@ function pullCloudSettings(){
     document.getElementById('swDetailed').checked = settings.detailed;
     document.getElementById('swAutoscroll').checked = settings.autoscroll;
     document.getElementById('swMnemonic').checked = settings.mnemonic;
+    document.getElementById('swAutoPlayAudio').checked = settings.autoPlayAudio;
+    document.getElementById('swSuggestAddToTrainer').checked = settings.suggestAddToTrainer;
     document.getElementById('swEditBase').checked = settings.editModeBase;
     document.getElementById('swEditMode').checked = settings.editMode;
     applySettings();
   }).catch(err => console.error('[ivrit-reader] cloud settings pull failed', err));
 }
 window.pullReaderCloudSettings = pullCloudSettings;
+
+// Idea 3's auto-enable (ROADMAP, 2026-09-28): turn "+ В тренажёр" on the
+// first time we can see this signed-in account has ever actually used the
+// trainer — so the button doesn't show up by default for someone who only
+// reads and never touches the trainer. Only runs while the setting has
+// never been manually touched (suggestAddToTrainerTouched); a deliberate
+// choice, either direction, always wins over this heuristic. Safe to call
+// on every sign-in — it's a no-op the moment either condition stops holding.
+function maybeAutoEnableAddToTrainer(uid) {
+  if (settings.suggestAddToTrainerTouched || settings.suggestAddToTrainer) return;
+  if (!window.cloudCheckUsedTrainer) return;
+  window.cloudCheckUsedTrainer(uid).then((usedTrainer) => {
+    if (!usedTrainer || settings.suggestAddToTrainerTouched || settings.suggestAddToTrainer) return;
+    settings.suggestAddToTrainer = true;
+    saveSettings();
+    applySettings();
+    const el = document.getElementById('swSuggestAddToTrainer');
+    if (el) el.checked = true;
+  }).catch(() => {});
+}
+window.maybeAutoEnableAddToTrainer = maybeAutoEnableAddToTrainer;
 
 function pullCloudAiKey(){
   if (!window.cloudFetchAiKey) return Promise.resolve();
@@ -2132,6 +2250,7 @@ function applySettings(){
   document.body.classList.toggle('nikud-off', !settings.nikud);
   document.body.classList.toggle('names-off', !settings.names);
   document.body.classList.toggle('translate-toggle-off', !settings.showTranslateToggle);
+  document.body.classList.toggle('suggest-add-trainer-on', !!settings.suggestAddToTrainer);
   document.querySelectorAll('.sentence-tr .tr-row:first-child').forEach(row => {
     row.style.display = settings.literal ? 'flex' : 'none';
   });
@@ -2145,6 +2264,8 @@ document.getElementById('swShowTranslateToggle').checked = settings.showTranslat
 document.getElementById('swDetailed').checked = settings.detailed;
 document.getElementById('swAutoscroll').checked = settings.autoscroll;
 document.getElementById('swMnemonic').checked = settings.mnemonic;
+document.getElementById('swAutoPlayAudio').checked = settings.autoPlayAudio;
+document.getElementById('swSuggestAddToTrainer').checked = settings.suggestAddToTrainer;
 document.getElementById('swEditBase').checked = settings.editModeBase;
 document.getElementById('swEditMode').checked = settings.editMode;
 if (isOwner) document.getElementById('ownerEditRow').style.display = '';
@@ -2156,6 +2277,13 @@ document.getElementById('swShowTranslateToggle').addEventListener('change', (e) 
 document.getElementById('swDetailed').addEventListener('change', (e) => { settings.detailed = e.target.checked; saveSettings(); applySettings(); });
 document.getElementById('swAutoscroll').addEventListener('change', (e) => { settings.autoscroll = e.target.checked; saveSettings(); });
 document.getElementById('swMnemonic').addEventListener('change', (e) => { settings.mnemonic = e.target.checked; saveSettings(); renderPage(currentPage); });
+document.getElementById('swAutoPlayAudio').addEventListener('change', (e) => { settings.autoPlayAudio = e.target.checked; saveSettings(); });
+document.getElementById('swSuggestAddToTrainer').addEventListener('change', (e) => {
+  settings.suggestAddToTrainer = e.target.checked;
+  settings.suggestAddToTrainerTouched = true; // manual choice — stop auto-enabling on sign-in from now on
+  saveSettings();
+  applySettings();
+});
 document.getElementById('swEditBase').addEventListener('change', (e) => { settings.editModeBase = e.target.checked; saveSettings(); renderPage(currentPage); });
 document.getElementById('swEditMode').addEventListener('change', (e) => { settings.editMode = e.target.checked; saveSettings(); renderPage(currentPage); });
 
@@ -5602,6 +5730,15 @@ window.cloudRemoveCustomCard = function (source) {
   if (!window.cloudUid || !source) return;
   setDoc(doc(fbDb, "users", window.cloudUid, "customCards", source), { deleted: true }, { merge: true }).catch(() => {});
 };
+// Cross-app "has this account ever used the trainer?" check for the "+ В
+// тренажёр" auto-enable (see maybeAutoEnableAddToTrainer below) — reads the
+// trainer's OWN meta doc (users/<uid>/meta/state, written by its own
+// cloudSyncMeta() every session) rather than a new flag written from here,
+// so a book's-worth of reader code needs zero trainer-side change to know.
+window.cloudCheckUsedTrainer = function (uid) {
+  if (!uid) return Promise.resolve(false);
+  return getDoc(doc(fbDb, "users", uid, "meta", "state")).then((snap) => snap.exists()).catch(() => false);
+};
 
 // Own Gemini key for "Разбор слова (ИИ-педагог)" — a separate doc from
 // readerSettings/prefs, and deliberately the SAME path+shape the ivrit
@@ -5772,7 +5909,10 @@ onAuthStateChanged(fbAuth, (user) => {
       window.aiKeyPullPromise = Promise.resolve(window.pullReaderCloudAiKey()).catch((e) => console.error("[ivrit-reader] AI key sync failed:", e));
       pulls.push(window.aiKeyPullPromise);
     }
-    Promise.all(pulls).then(() => updateCloudStatusIndicator());
+    Promise.all(pulls).then(() => {
+      updateCloudStatusIndicator();
+      if (window.maybeAutoEnableAddToTrainer) window.maybeAutoEnableAddToTrainer(user.uid);
+    });
     // Место чтения с другого устройства: если новее локального и человек
     // ещё ничего не открывал здесь — переходим туда (см. restoreLastView).
     Promise.resolve(window.cloudFetchLastView()).then((remote) => {
