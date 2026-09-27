@@ -251,6 +251,8 @@
   .wp-ai-btn{ display:block; width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px; font-family:inherit; }
   .wp-ai-btn:hover{ text-decoration:underline; }
   .wp-ai-btn:disabled{ opacity:.6; cursor:default; text-decoration:none; }
+  .wp-suggest-add{ display:block; width:100%; text-align:left; background:rgba(201,169,89,.12); border:1px solid rgba(201,169,89,.35); border-radius:8px; cursor:pointer; padding:8px 10px; margin-top:8px; color: var(--gold); font-size:11.5px; font-family:inherit; line-height:1.4; }
+  .wp-suggest-add:hover{ background:rgba(201,169,89,.2); }
   .wp-ai-result{ margin-top:10px; padding-top:10px; border-top:1px solid #4A473F; font-size:12.5px; line-height:1.55; }
   .wp-ai-result h4{ font-size:11px; color:var(--gold); text-transform:uppercase; letter-spacing:.03em; margin:10px 0 3px; }
   .wp-ai-result h4:first-child{ margin-top:0; }
@@ -636,7 +638,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.91.0</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.92.0</div>
   </div>
 </div>
 
@@ -1760,6 +1762,53 @@ function markSeen(lemma){
   if (window.cloudSyncSeen) window.cloudSyncSeen(bookId, lemma);
 }
 
+// ---- предложить добавить слово в повторение по частоте открытия перевода
+// (2026-09-26, идея владельца, см. ROADMAP) — считаем открытия попапа
+// ТОЛЬКО для содержательных слов (сущ./прил./гл./нареч.): у предлогов/
+// местоимений/частиц уже есть отдельная карточка-парадигма (находка №2,
+// PREP_PARADIGMS), а щёлкать по грамматическому слову вроде לְ на каждой
+// странице — не сигнал "не знаю слово", это раздуло бы тренажёр десятками
+// однотипных карточек. Порог (4) и окно (весь текущий сеанс книги) — первая
+// грубая эвристика, ожидаемо потребует подстройки по реальному использованию.
+const WORD_SUGGEST_CONTENT_POS = new Set(['сущ.', 'прил.', 'гл.', 'нареч.']);
+const WORD_SUGGEST_THRESHOLD = 4;
+const POPUP_COUNT_PREFIX = 'hebrew-reader-popupcount:' + bookId + ':';
+const popupOpenCount = {};
+(function loadPopupCountFromStorage(){
+  try{
+    for (let i = 0; i < localStorage.length; i++){
+      const key = localStorage.key(i);
+      if (key && key.startsWith(POPUP_COUNT_PREFIX)) popupOpenCount[key.slice(POPUP_COUNT_PREFIX.length)] = Number(localStorage.getItem(key)) || 0;
+    }
+  }catch(err){ console.error('localStorage unavailable', err); }
+})();
+function bumpPopupOpenCount(w){
+  if (!WORD_SUGGEST_CONTENT_POS.has(w.pos)) return;
+  const n = (popupOpenCount[w.lemma] || 0) + 1;
+  popupOpenCount[w.lemma] = n;
+  try{ localStorage.setItem(POPUP_COUNT_PREFIX + w.lemma, String(n)); }catch(err){ console.error('save failed', err); }
+}
+function shouldSuggestWordAdd(w){
+  return WORD_SUGGEST_CONTENT_POS.has(w.pos) && !vocabCache[w.lemma] &&
+    (popupOpenCount[w.lemma] || 0) >= WORD_SUGGEST_THRESHOLD;
+}
+// Кроме самого слова (как ★, см. saveVocabEntry — та шлёт в тренажёр только
+// ОДНО предложение, к которому привязан клик) — все ОСТАЛЬНЫЕ предложения
+// книги с той же леммой тоже уходят в тренажёр отдельными карточками.
+function acceptWordSuggestion(w, wordEl){
+  saveVocabEntry(w, wordEl);
+  if (window.cloudAddCustomCard){
+    const thisSentenceId = wordEl && wordEl.dataset.sentence;
+    data.sentences.forEach(s => {
+      if (s.id === thisSentenceId) return;
+      if (!s.words.some(sw => sw.lemma === w.lemma)) return;
+      const he = s.words.map(sw => sw.t).join(' ');
+      window.cloudAddCustomCard('reader:' + bookId + ':' + s.id, he, s.fluent, w.t);
+    });
+  }
+  refreshVocabUI();
+}
+
 function toggleSaveWord(w, starEl, wordEl){
   const isSaved = !!vocabCache[w.lemma];
   if (isSaved) deleteVocabEntry(w.lemma, wordEl); else saveVocabEntry(w, wordEl);
@@ -2132,6 +2181,7 @@ function showPopover(e, w, wordEl){
   currentPopoverWord = w;
   if (currentBookCtx) currentBookCtx.word = { t: w.t, lemma: w.lemma };
   markSeen(w.lemma);
+  bumpPopupOpenCount(w);
 
   // Клик по слову для перевода — это "посмотреть", а не "продолжай играть
   // мимо" — ставим на паузу, чтобы звук не убегал вперёд, пока читаешь подсказку.
@@ -3842,10 +3892,12 @@ function refreshPopoverContent(w, wordEl){
   const isVerb = w.pos === 'гл.';
   const rootInfo = w.root && w.root !== '—' ? ROOT_SEMANTICS[w.root] : null;
   const binyanInfo = isVerb ? findBinyanInfo(w.extra) : null;
+  const suggestAdd = shouldSuggestWordAdd(w);
   popoverEl.innerHTML = `
     <div class="wp-top"><div class="wp-lemma">${lemmaText}</div><div class="wp-star ${isSaved ? 'on' : ''}">★</div></div>
     ${settings.detailed ? `<div class="wp-pos">${w.pos}</div>` : ''}
     <div class="wp-main">${w.tr}</div>
+    ${suggestAdd ? `<button class="wp-suggest-add">➕ Вы часто открываете это слово — добавить в повторение и в тренажёр (все предложения книги с ним)?</button>` : ''}
     ${prepTableHtml}
     ${settings.detailed && w.extra ? `<div class="wp-extra">${w.extra}</div>` : ''}
     ${settings.detailed && w.root && w.root !== '—' ? `<div class="wp-root">корень: ${w.root}</div>` : ''}
@@ -3859,6 +3911,15 @@ function refreshPopoverContent(w, wordEl){
   `;
   const starEl = popoverEl.querySelector('.wp-star');
   starEl.addEventListener('click', (e) => { e.stopPropagation(); toggleSaveWord(w, starEl, wordEl); });
+
+  const suggestBtn = popoverEl.querySelector('.wp-suggest-add');
+  if (suggestBtn){
+    suggestBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      acceptWordSuggestion(w, wordEl);
+      refreshPopoverContent(w, wordEl);
+    });
+  }
 
   if (milogWord){
     showPealimSnippet(milogWord, w.pos, popoverEl.querySelector('.wp-pealim-slot'));
