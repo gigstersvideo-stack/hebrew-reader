@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+  Поддержать проект — отдельная страница, не встроена в reader-prototype.html
+  специально: не хочется тащить логику доната в главный файл (см. ROADMAP,
+  "Донаты"). Стиль — те же CSS-переменные, что в reader-prototype.html,
+  чтобы не выглядело чужеродной вставкой.
+-->
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Поддержать проект — קורא</title>
+<meta name="description" content="Поддержать бесплатный проект для изучения иврита — читалку קורא и тренажёр предложений.">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EAE6DC; --ink: #211F1C; --ink-soft: #6B665C; --line: #D5CEBE;
+    --accent: #37564D; --accent-soft: #DCE6E2; --gold: #A8813F; --gold-soft: #F0E4CC;
+    --panel: #F8F6F0;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--bg); color: var(--ink); font-family:'Inter',sans-serif;
+    min-height:100vh; padding-bottom: 60px;
+  }
+  .wrap{ max-width: 640px; margin:0 auto; padding: 36px 24px 0; }
+  a.back{ color: var(--ink-soft); text-decoration:none; font-size:13px; }
+  a.back:hover{ color: var(--ink); }
+  h1{ font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:28px; margin: 22px 0 10px; }
+  .lede{ color: var(--ink-soft); font-size:15px; line-height:1.6; max-width:52ch; margin: 0 0 32px; }
+  .lede b{ color: var(--ink); font-weight:600; }
+  .cards{ display:flex; flex-wrap:wrap; gap:16px; }
+  .card{
+    flex:1 1 240px; background: var(--panel); border:1px solid var(--line);
+    border-radius:14px; padding:22px; display:flex; flex-direction:column; gap:12px;
+    align-items:flex-start;
+  }
+  .card h2{ font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:18px; margin:0; }
+  .card p{ color: var(--ink-soft); font-size:13px; line-height:1.5; margin:0; flex:1; }
+  .paypal-btn{
+    display:inline-flex; align-items:center; gap:8px; background:#0070BA; color:#fff;
+    border:none; border-radius:24px; padding:11px 22px; font-size:14.5px; font-weight:600;
+    text-decoration:none; font-family:'Inter',sans-serif; letter-spacing:.01em;
+  }
+  .paypal-btn:hover{ background:#005EA6; }
+  .paypal-mark{ font-family: Georgia, serif; font-style: italic; font-weight:700; }
+  .kofi-slot{ min-height:38px; }
+  .note{ color: var(--ink-soft); font-size:12.5px; margin-top:36px; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="reader-prototype.html">← Библиотека</a>
+  <h1>Поддержать проект</h1>
+  <p class="lede">
+    <b>קורא</b> (читалка) и тренажёр предложений — бесплатные и без рекламы,
+    и останутся такими. Если они оказались полезны и вы хотите поддержать
+    дальнейшую работу (новые книги, аудио, разбор слов) — буду благодарен
+    любой сумме. Без обязательств :)
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <h2>PayPal</h2>
+      <p>Разовый перевод любой суммы напрямую через PayPal.</p>
+      <a class="paypal-btn" href="https://paypal.me/readivrit" target="_blank" rel="noopener">
+        <span class="paypal-mark">Pay</span>Pal
+      </a>
+    </div>
+    <div class="card">
+      <h2>Ko-fi</h2>
+      <p>«Купить кофе» — разово или ежемесячно, через Ko-fi.</p>
+      <div class="kofi-slot">
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'P5Y827RBOH');kofiwidget2.draw();</script>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">Оба сервиса — сторонние (PayPal, Ko-fi), сайт קורא никак не хранит и не обрабатывает платёжные данные.</p>
+</div>
+</body>
+</html>
