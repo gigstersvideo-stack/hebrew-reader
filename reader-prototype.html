@@ -636,7 +636,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.89.2</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.90.0</div>
   </div>
 </div>
 
@@ -1236,9 +1236,27 @@ function vocabHeadHtml(e) {
     (vocabFormDiffers(e) ? `<div class="train-base">начальная форма: <span class="he">${e.lemma}</span></div>` : '');
 }
 
+// Снимок текущего места в открытой книге — initReader/goToSentence/
+// showPopover/closePopover его обновляют, leaveBookToLibrary сбрасывает.
+// Нужен отзыву с сайта (getFeedbackContext ниже), который живёт ВНЕ
+// initReader и поэтому не видит его локальные data/bookId/currentSentenceIdx
+// напрямую.
+let currentBookCtx = null;
+
 function initReader(data, bookId, meta) {
 activeReaderToken++;
 const myReaderToken = activeReaderToken;
+currentBookCtx = {
+  id: bookId,
+  title: (meta && meta.title) || null,
+  private: !!(meta && meta.private),
+  mode: (data && data.mode) || 'reading',
+  chapterNum: (meta && meta.chapterNum) || null,
+  chaptersTotal: (meta && meta.chapters && meta.chapters.length) || null,
+  page: null,
+  sentenceId: null,
+  word: null,
+};
 document.querySelectorAll('audio').forEach(el => {
   try{ el.pause(); }catch(err){}
   el.removeAttribute('src');
@@ -2061,6 +2079,7 @@ function showPopover(e, w, wordEl){
   selectedWordEl = wordEl;
   selectedWordEl.classList.add('selected');
   currentPopoverWord = w;
+  if (currentBookCtx) currentBookCtx.word = { t: w.t, lemma: w.lemma };
   markSeen(w.lemma);
 
   // Клик по слову для перевода — это "посмотреть", а не "продолжай играть
@@ -3816,6 +3835,7 @@ function closePopover(){
   if (selectedWordEl){ selectedWordEl.classList.remove('selected'); selectedWordEl = null; }
   document.querySelectorAll('.tword.root-match').forEach(el => el.classList.remove('root-match'));
   currentPopoverWord = null;
+  if (currentBookCtx) currentBookCtx.word = null;
 }
 
 document.addEventListener('click', (e) => { if (popoverEl && !popoverEl.contains(e.target)) closePopover(); });
@@ -3984,6 +4004,10 @@ function goToSentence(idx, autoplay){
     return;
   }
   currentSentenceIdx = idx;
+  if (currentBookCtx){
+    currentBookCtx.sentenceId = (data.sentences[idx] && data.sentences[idx].id) || null;
+    currentBookCtx.page = Math.floor(idx / PAGE_SIZE) + 1;
+  }
   try{ localStorage.setItem(SENTENCE_KEY, String(idx)); }catch(err){}
   if (window.cloudSyncSentence) window.cloudSyncSentence(bookId, idx);
   const targetPage = Math.floor(idx / PAGE_SIZE);
@@ -4102,10 +4126,78 @@ function slugify(str){
 const OWNER_UID = 'JYkCrXPmBwhFaW5fyb6eQcWkihf1';
 window.OWNER_UID = OWNER_UID;
 
+// Отзыв сам запоминает место (2026-09-26, идея владельца, см. ROADMAP) —
+// человек почти всегда пишет про то, что сейчас перед глазами, но не
+// указывает, где это "тут"; раньше при разборе искали слово/предложение
+// по всем книгам вручную. Здесь читаем состояние из DOM (а не из
+// currentBookCtx/currentSong напрямую), потому что это надёжнее отражает
+// "что видно на экране" и не зависит от того, какой из внутренних экранов
+// сейчас активен.
+function getFeedbackContext(){
+  const ctx = {};
+  const songVisible = document.getElementById('songView').style.display !== 'none';
+  const bookVisible = document.getElementById('readerView').style.display !== 'none';
+  if (songVisible && currentSong){
+    ctx.screen = 'song';
+    ctx.id = currentSong.entry.id;
+    ctx.title = currentSong.entry.title || (currentSong.data.meta && currentSong.data.meta.titleHe) || null;
+  } else if (bookVisible && currentBookCtx){
+    ctx.screen = 'book';
+    ctx.id = currentBookCtx.id;
+    ctx.title = currentBookCtx.title;
+    ctx.private = currentBookCtx.private;
+    ctx.mode = currentBookCtx.mode;
+    if (currentBookCtx.chapterNum) ctx.chapter = currentBookCtx.chapterNum + '/' + (currentBookCtx.chaptersTotal || '?');
+    ctx.page = currentBookCtx.page;
+    ctx.sentenceId = currentBookCtx.sentenceId;
+    if (currentBookCtx.word) ctx.word = currentBookCtx.word;
+    const trainPane = document.getElementById('pane-train');
+    const drawerEl = document.getElementById('drawer');
+    if (drawerEl && drawerEl.classList.contains('open') && trainPane && trainPane.classList.contains('active')){
+      ctx.overlay = 'training-tab';
+    }
+  } else {
+    ctx.screen = 'library';
+  }
+  const reviewModal = document.getElementById('reviewModal');
+  if (reviewModal && reviewModal.classList.contains('open')) ctx.overlay = 'global-review';
+  const verEl = document.getElementById('appVersionFooter');
+  ctx.version = verEl ? verEl.textContent.trim() : null;
+  return ctx;
+}
+
+// Короткая читаемая строка для админ-панели отзывов и буфера обмена
+// (см. ниже) — из того же объекта, что уходит в Firestore.
+function formatFeedbackContext(ctx){
+  if (!ctx) return '';
+  let base = '';
+  if (ctx.screen === 'library') base = 'библиотека';
+  else if (ctx.screen === 'song') base = `песня «${ctx.title || ctx.id}»`;
+  else if (ctx.screen === 'book'){
+    const parts = [`книга «${ctx.title || ctx.id}»${ctx.private ? ' (приватная)' : ''}`];
+    if (ctx.chapter) parts.push(`глава ${ctx.chapter}`);
+    if (ctx.page) parts.push(`стр. ${ctx.page}`);
+    if (ctx.sentenceId) parts.push(`предложение ${ctx.sentenceId}`);
+    if (ctx.mode === 'fade') parts.push('режим fade');
+    if (ctx.overlay === 'training-tab') parts.push('вкладка «Тренировка»');
+    if (ctx.word) parts.push(`слово «${ctx.word.t}»`);
+    base = parts.join(', ');
+  }
+  // overlay='global-review' может стоять поверх любого экрана (модалка
+  // "Повторение слов" открывается и из библиотеки, и поверх книги).
+  if (ctx.overlay === 'global-review') base += (base ? ', ' : '') + 'окно «Повторение слов»';
+  return base;
+}
+
 const fbModal = document.getElementById('fbModalBackdrop');
 const fbTextEl = document.getElementById('fbText');
 const fbStatusEl = document.getElementById('fbStatus');
+// Снимок места делаем в момент ОТКРЫТИЯ формы, а не отправки: сама кнопка
+// отзыва — это клик "снаружи" попапа слова, document-level closePopover()
+// (см. ниже) снимет выделение раньше, чем сработает отправка.
+let fbCapturedContext = null;
 document.getElementById('bugReportBtn').addEventListener('click', () => {
+  fbCapturedContext = getFeedbackContext();
   fbModal.style.display = 'flex';
   fbTextEl.value = '';
   fbStatusEl.textContent = '';
@@ -4120,7 +4212,7 @@ document.getElementById('fbSubmit').addEventListener('click', async () => {
   fbStatusEl.textContent = 'Отправляю…'; fbStatusEl.className = 'fb-status';
   try {
     if (!window.cloudSubmitFeedback) throw new Error('нет соединения с базой');
-    await window.cloudSubmitFeedback(type, text, 'reader');
+    await window.cloudSubmitFeedback(type, text, 'reader', fbCapturedContext);
     fbStatusEl.textContent = 'Спасибо, отправлено!'; fbStatusEl.className = 'fb-status ok';
     setTimeout(() => { fbModal.style.display = 'none'; }, 900);
   } catch (e) {
@@ -4135,6 +4227,14 @@ document.getElementById('btnOpenFeedbackReview').addEventListener('click', () =>
 document.getElementById('btnFeedbackReviewClose').addEventListener('click', () => {
   document.getElementById('feedbackReviewView').style.display = 'none';
 });
+
+// Своя копия — оригинал (строка ~3592) объявлен внутри initReader и
+// поэтому не виден здесь: панель отзывов владельца звала его "вслепую"
+// и падала ReferenceError'ом при каждом открытии (найдено при проверке
+// вывода context ниже, тем же прогоном).
+function escapeHtmlLite(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 
 async function renderFeedbackReview() {
   const list = document.getElementById('fbReviewList');
@@ -4152,6 +4252,7 @@ async function renderFeedbackReview() {
         <span>${it.createdAt ? new Date(it.createdAt).toLocaleString('ru-RU') : ''}</span>
       </div>
       <div class="fb-review-text">${escapeHtmlLite(it.text || '')}</div>
+      ${it.context ? `<div class="fb-review-meta" style="margin-top:-2px;">📍 ${escapeHtmlLite(formatFeedbackContext(it.context))}</div>` : ''}
       <div class="fb-review-actions">
         ${it.status === 'new' ? `<button class="pill-btn ghost fb-mark-reviewed" data-id="${it.id}">Просмотрено</button>` : ''}
         <button class="pill-btn ghost fb-delete" data-id="${it.id}">Удалить</button>
@@ -4181,7 +4282,8 @@ document.getElementById('btnFeedbackExport').addEventListener('click', async () 
     const text = items.map(it => {
       const when = it.createdAt ? new Date(it.createdAt).toLocaleString('ru-RU') : '?';
       const kind = it.type === 'bug' ? 'БАГ' : 'ПРЕДЛОЖЕНИЕ';
-      return `[${kind}] ${it.app || '?'} · ${when} · ${it.status || '?'}\n${it.text || ''}`;
+      const where = it.context ? formatFeedbackContext(it.context) : '';
+      return `[${kind}] ${it.app || '?'} · ${when} · ${it.status || '?'}${where ? ' · 📍 ' + where : ''}\n${it.text || ''}`;
     }).join('\n\n---\n\n');
     await navigator.clipboard.writeText(`Отзывы с сайта (${items.length}):\n\n${text}`);
     statusEl.textContent = `Скопировано (${items.length}) — вставьте в чат.`;
@@ -4561,6 +4663,7 @@ function leaveBookToLibrary(){
   document.getElementById('readerView').style.display = 'none';
   document.getElementById('libraryView').style.display = '';
   document.body.classList.remove('reading');
+  currentBookCtx = null;
   setLastView('library');
   renderLibrary(window.readerManifest || []); // refresh in case a book was just imported
 }
@@ -4618,7 +4721,8 @@ async function boot(){
           document.body.classList.add("reading");
           initReader(json, bookId, {
             title: params.get("title") || "Книга по ссылке",
-            sub: "загружено с внешнего адреса"
+            sub: "загружено с внешнего адреса",
+            private: true
           });
           return; // не показываем библиотеку вообще — сразу открываем книгу
         }
@@ -5383,10 +5487,15 @@ window.cloudFetchAiKey = async function () {
 // collection and rule as the ivrit trainer). Submitting doesn't require
 // being signed in — the whole point is a lower bar than filing a GitHub
 // issue.
-window.cloudSubmitFeedback = function (type, text, app) {
+window.cloudSubmitFeedback = function (type, text, app, context) {
+  // context.private (книга открыта по ?book=<приватный URL>) — не
+  // сохраняем location.href как есть, там в query этот самый приватный
+  // адрес; только путь страницы, без параметров.
+  const safeUrl = (context && context.private) ? (location.origin + location.pathname) : location.href;
   return setDoc(doc(collection(fbDb, "feedback")), {
-    type, text, app, url: location.href, uid: window.cloudUid || null,
+    type, text, app, url: safeUrl, uid: window.cloudUid || null,
     userAgent: navigator.userAgent, createdAt: Date.now(), status: "new",
+    context: context || null,
   });
 };
 window.cloudFetchFeedback = async function () {
