@@ -59,6 +59,14 @@
     font-family:'Inter',sans-serif; font-size:13px; font-weight:500;
   }
   .pill-btn.ghost{ background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .support-btn{
+    display:flex; align-items:center; gap:6px; background: var(--gold); color:#fff;
+    border:none; border-radius: 18px; padding: 7px 13px; cursor:pointer;
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600; text-decoration:none;
+  }
+  .support-btn:hover{ background:#8F6C34; }
+  .support-btn .heart{ display:inline-block; transition: transform .2s ease; }
+  .support-btn:hover .heart{ transform: scale(1.3); }
   .pill-btn .star{ color: var(--gold); font-size:14px; }
   .pill-btn:hover{ opacity:.85; }
   .icon-btn{
@@ -624,7 +632,7 @@
 <div id="libraryView">
   <div class="library-wrap">
     <div class="library-header">
-      <a class="pill-btn ghost library-support-link" href="support.html" style="text-decoration:none;">♥ Donate</a>
+      <a class="support-btn library-support-link" href="support.html"><span class="heart">♥</span> Поддержать</a>
       <h1 class="library-kicker">קורא · библиотека</h1>
       <p class="library-sub">Можно подгрузить свою книгу — <a href="how-to-make-a-book.html" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">как её сделать</a>. Есть и отдельный <a href="https://gigstersvideo-stack.github.io/hebrew-tasks/" id="cross-link-trainer" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">тренажёр предложений</a>.</p>
       <div class="library-auth" id="libraryAuth">
@@ -640,7 +648,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.93.2</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.93.3</div>
   </div>
 </div>
 
@@ -713,7 +721,7 @@
   </div>
   <div class="header-right">
     <div class="header-actions">
-      <a class="pill-btn ghost" id="supportLink" href="support.html" style="text-decoration:none;">♥ Donate</a>
+      <a class="support-btn" id="supportLink" href="support.html"><span class="heart">♥</span> Поддержать</a>
       <button class="icon-btn" id="settingsBtn" title="Настройки">⚙</button>
       <button class="pill-btn ghost" id="downloadEditsBtn" style="display:none;">⬇ Скачать книгу с правками</button>
       <button class="pill-btn" id="vocabBtn"><span class="star">★</span><span id="vocabCount">Мои слова (0)</span></button>
