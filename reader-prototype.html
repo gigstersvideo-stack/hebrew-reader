@@ -636,7 +636,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.90.0</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.91.0</div>
   </div>
 </div>
 
@@ -901,18 +901,24 @@ let activeReaderToken = 0;
 // панели вешается один раз здесь, а не внутри initReader — иначе при
 // каждом новом открытии книги обработчик клика дублировался бы поверх
 // старого (та же природа бага, что была у play/loop-кнопок).
+function closeSettingsPanel(){
+  clearOverlayHistory('settings');
+  document.getElementById('settingsPanel').classList.remove('open');
+}
 (() => {
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsPanel = document.getElementById('settingsPanel');
   settingsBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    settingsPanel.classList.toggle('open');
+    if (settingsPanel.classList.contains('open')){ closeSettingsPanel(); return; }
+    settingsPanel.classList.add('open');
+    pushOverlayHistory('settings');
     // Below 480px the panel is position:fixed (measured from the real
     // viewport, not from .header-actions — see the media query), so it no
     // longer inherits "just under the button" from being in-flow; compute
     // it fresh on every open in case the header's own height changed
     // (e.g. a book title that wrapped to two lines).
-    if (settingsPanel.classList.contains('open') && window.innerWidth <= 480){
+    if (window.innerWidth <= 480){
       const r = settingsBtn.getBoundingClientRect();
       const top = Math.max(8, Math.round(r.bottom + 8));
       settingsPanel.style.top = top + 'px';
@@ -927,7 +933,7 @@ let activeReaderToken = 0;
   // later, during bubble) can't suppress this one.
   document.addEventListener('click', (e) => {
     if (settingsPanel.classList.contains('open') && !settingsPanel.contains(e.target) && e.target !== settingsBtn){
-      settingsPanel.classList.remove('open');
+      closeSettingsPanel();
     }
   }, true);
 })();
@@ -1242,6 +1248,33 @@ function vocabHeadHtml(e) {
 // initReader и поэтому не видит его локальные data/bookId/currentSentenceIdx
 // напрямую.
 let currentBookCtx = null;
+
+// Кнопка «назад»: пусть закрывает открытый оверлей (попап слова, ящик
+// словаря, настройки, окно добавления книги), а не выходит из книги/
+// библиотеки — см. ROADMAP. Каждый такой оверлей при открытии кладёт в
+// историю браузера маркер overlay:<имя> поверх текущего состояния экрана;
+// popstate ниже это ловит и просто закрывает оверлей, не трогая экран.
+let openOverlayName = null;
+function pushOverlayHistory(name){
+  openOverlayName = name;
+  try { history.pushState(Object.assign({}, history.state || {}, { overlay: name }), '', location.href); } catch(err){}
+}
+// Звать из ЛЮБОГО обычного закрытия (крестик, клик по фону, Escape,
+// переключение на другой оверлей того же вида) — чтобы не оставлять в
+// истории "фантомную" запись, которую потом пришлось бы перещёлкивать
+// лишним нажатием «назад». Когда закрытие пришло ИЗ popstate (см. ниже),
+// openOverlayName уже сброшен в null, и этот вызов молча ничего не делает.
+function clearOverlayHistory(name){
+  if (openOverlayName !== name) return;
+  openOverlayName = null;
+  try {
+    if (history.state && history.state.overlay === name){
+      const clean = Object.assign({}, history.state);
+      delete clean.overlay;
+      history.replaceState(clean, '', location.href);
+    }
+  } catch(err){}
+}
 
 function initReader(data, bookId, meta) {
 activeReaderToken++;
@@ -1857,16 +1890,33 @@ window.pullReaderCloudProgress = pullCloudProgress;
 pullCloudProgress();
 
 // ---- drawer + tabs ----
-document.getElementById('vocabBtn').addEventListener('click', () => {
-  document.getElementById('drawer').classList.add('open');
-  document.getElementById('drawerBackdrop').classList.add('open');
-});
-document.getElementById('drawerClose').addEventListener('click', closeDrawer);
-document.getElementById('drawerBackdrop').addEventListener('click', closeDrawer);
+// Открытие/закрытие самого ящика (не его содержимого — оно завязано на
+// startTraining() конкретной книги и остаётся ниже, внутри initReader) —
+// вешаем один раз на статичные кнопки, а не при каждом открытии книги:
+// иначе клик по vocabBtn копил бы столько же обработчиков, сколько книг
+// открыли за сессию, и pushOverlayHistory('drawer') срабатывал бы столько
+// же раз на одно нажатие (тот же класс бага, что уже решён для настроек,
+// см. комментарий у settingsBtn выше).
+if (!window.__drawerOpenWired){
+  window.__drawerOpenWired = true;
+  document.getElementById('vocabBtn').addEventListener('click', () => {
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('drawerBackdrop').classList.add('open');
+    pushOverlayHistory('drawer');
+  });
+  document.getElementById('drawerClose').addEventListener('click', () => window.__closeDrawer());
+  document.getElementById('drawerBackdrop').addEventListener('click', () => window.__closeDrawer());
+}
 function closeDrawer(){
+  clearOverlayHistory('drawer');
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('drawerBackdrop').classList.remove('open');
 }
+// closeDrawer/closePopover живут внутри initReader (своя копия на каждую
+// открытую книгу) и поэтому не видны снаружи — OVERLAY_CLOSERS (вызывается
+// из глобального popstate), а теперь и статичные кнопки закрытия выше,
+// достают их через window, обновляется здесь на каждое открытие книги.
+window.__closeDrawer = closeDrawer;
 document.querySelectorAll('.drawer-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.drawer-tab').forEach(t => t.classList.remove('active'));
@@ -2076,6 +2126,7 @@ let currentPopoverWord = null;
 
 function showPopover(e, w, wordEl){
   closePopover();
+  pushOverlayHistory('popover');
   selectedWordEl = wordEl;
   selectedWordEl.classList.add('selected');
   currentPopoverWord = w;
@@ -3831,12 +3882,14 @@ function refreshPopoverContent(w, wordEl){
 }
 
 function closePopover(){
+  clearOverlayHistory('popover');
   if (popoverEl){ popoverEl.remove(); popoverEl = null; }
   if (selectedWordEl){ selectedWordEl.classList.remove('selected'); selectedWordEl = null; }
   document.querySelectorAll('.tword.root-match').forEach(el => el.classList.remove('root-match'));
   currentPopoverWord = null;
   if (currentBookCtx) currentBookCtx.word = null;
 }
+window.__closePopover = closePopover;
 
 document.addEventListener('click', (e) => { if (popoverEl && !popoverEl.contains(e.target)) closePopover(); });
 
@@ -4680,7 +4733,20 @@ function goBackToLibrary(){
   showLibrary();
   syncHistory('library', null, 'replace');
 }
-window.addEventListener('popstate', () => {
+const OVERLAY_CLOSERS = {
+  popover: () => { if (window.__closePopover) window.__closePopover(); },
+  drawer: () => { if (window.__closeDrawer) window.__closeDrawer(); },
+  settings: closeSettingsPanel, import: closeImportModal,
+};
+window.addEventListener('popstate', (e) => {
+  const st = e.state || history.state;
+  if (openOverlayName && (!st || st.overlay !== openOverlayName)){
+    const name = openOverlayName;
+    openOverlayName = null;
+    const closer = OVERLAY_CLOSERS[name];
+    if (closer) closer();
+    return;
+  }
   if (!window.readerManifest) return;
   const r = parseRoute(location.hash);
   const entry = r && window.readerManifest.find(e => e.id === r.id);
@@ -5246,8 +5312,10 @@ function renderLocalBooksList(manifest){
 function openImportModal(){
   document.getElementById('importModal').classList.add('open');
   document.getElementById('importBackdrop').classList.add('open');
+  pushOverlayHistory('import');
 }
 function closeImportModal(){
+  clearOverlayHistory('import');
   document.getElementById('importModal').classList.remove('open');
   document.getElementById('importBackdrop').classList.remove('open');
 }

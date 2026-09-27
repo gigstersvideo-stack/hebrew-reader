@@ -65,7 +65,18 @@ self.addEventListener("fetch", (event) => {
         return response;
       })
       .catch(() =>
-        caches.match(event.request).then((cached) => cached || caches.match(SHELL_URL))
+        caches.match(event.request).then((cached) => {
+          if (cached) return cached;
+          // Оболочку сайта отдаём ТОЛЬКО для навигации (открыл сайт
+          // офлайн) — раньше на сбой сети отдавалась она же для ЛЮБОГО
+          // несостоявшегося запроса, включая json книги/аудио/картинку,
+          // и вместо понятной сетевой ошибки в код приходил HTML (см.
+          // ROADMAP, "кнопка назад").
+          if (event.request.mode === "navigate" || event.request.destination === "document") {
+            return caches.match(SHELL_URL);
+          }
+          return new Response(null, { status: 504, statusText: "Offline" });
+        })
       )
   );
 });
