@@ -515,7 +515,7 @@ def suggest_dictionary_fix(word, words=None):
 # Правило 2: посторонний алфавит внутри ивритского/русского слова
 # ============================================================
 
-HEBREW_LETTERS_RE = re.compile(r"[א-ת]")
+HEBREW_LETTERS_RE = re.compile(r"[א-תיִ-ﭏ]")
 HEBREW_NIQUD_RE = re.compile(r"[֑-ׇ]")
 CYRILLIC_RE = re.compile(r"[Ѐ-ӿ]")
 # обратный апостроф — используется в грамматических пометках как знак
