@@ -3,7 +3,14 @@
   Поддержать проект — отдельная страница, не встроена в reader-prototype.html
   специально: не хочется тащить логику доната в главный файл (см. ROADMAP,
   "Донаты"). Стиль — те же CSS-переменные, что в reader-prototype.html,
-  чтобы не выглядело чужеродной вставкой.
+  чтобы не выглядело чужеродной вставкой (сознательно НЕ типовой
+  бело-серый SaaS-стиль — тёплая песочная палитра сайта важнее).
+
+  Копирайтинг (2026-09-27, обсуждение с владельцем после разбора страницы):
+  фраза "без обязательств :)" сознательно убрана — явное "ты не обязан"
+  привлекает внимание именно к идее обязанности вместо того, чтобы просто
+  не давить самим фактом подачи. Ненавязчивость достигается тем, что
+  просим один раз, без шкалы прогресса/таймера, а не отдельной оговоркой.
 -->
 <html lang="ru">
 <head>
@@ -27,20 +34,28 @@
     background: var(--bg); color: var(--ink); font-family:'Inter',sans-serif;
     min-height:100vh; padding-bottom: 60px;
   }
-  .wrap{ max-width: 640px; margin:0 auto; padding: 36px 24px 0; }
-  a.back{ color: var(--ink-soft); text-decoration:none; font-size:13px; }
+  .wrap{ max-width: 640px; margin:0 auto; padding: 40px 24px 0; }
+  a.back{
+    display:inline-flex; align-items:center; gap:6px; color: var(--ink-soft);
+    text-decoration:none; font-size:12.5px;
+  }
   a.back:hover{ color: var(--ink); }
-  h1{ font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:28px; margin: 22px 0 10px; }
-  .lede{ color: var(--ink-soft); font-size:15px; line-height:1.6; max-width:52ch; margin: 0 0 32px; }
+  .eyebrow{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold);
+    margin: 28px 0 8px; font-weight:600;
+  }
+  h1{ font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:30px; margin: 0 0 16px; }
+  .lede{ color: var(--ink-soft); font-size:15.5px; line-height:1.7; max-width:52ch; margin: 0 0 40px; }
   .lede b{ color: var(--ink); font-weight:600; }
-  .cards{ display:flex; flex-wrap:wrap; gap:16px; }
+  .cards{ display:flex; flex-wrap:wrap; gap:18px; }
   .card{
     flex:1 1 240px; background: var(--panel); border:1px solid var(--line);
-    border-radius:14px; padding:22px; display:flex; flex-direction:column; gap:12px;
-    align-items:flex-start;
+    border-radius:16px; padding:24px; display:flex; flex-direction:column; gap:12px;
+    align-items:flex-start; box-shadow: 0 2px 8px rgba(33,31,28,.04);
   }
+  .card-icon{ font-size:26px; line-height:1; }
   .card h2{ font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:18px; margin:0; }
-  .card p{ color: var(--ink-soft); font-size:13px; line-height:1.5; margin:0; flex:1; }
+  .card p{ color: var(--ink-soft); font-size:13px; line-height:1.55; margin:0; flex:1; }
   .paypal-btn{
     display:inline-flex; align-items:center; gap:8px; background:#0070BA; color:#fff;
     border:none; border-radius:24px; padding:11px 22px; font-size:14.5px; font-weight:600;
@@ -49,39 +64,61 @@
   .paypal-btn:hover{ background:#005EA6; }
   .paypal-mark{ font-family: Georgia, serif; font-style: italic; font-weight:700; }
   .kofi-slot{ min-height:38px; }
-  .note{ color: var(--ink-soft); font-size:12.5px; margin-top:36px; line-height:1.6; }
+  .note{ color: var(--ink-soft); font-size:12.5px; margin-top:40px; line-height:1.6; }
+  .toast{
+    position:fixed; left:50%; bottom:28px; transform:translate(-50%, 20px);
+    background: var(--ink); color:#fff; padding:12px 20px; border-radius:12px;
+    font-size:13.5px; box-shadow:0 8px 24px rgba(0,0,0,.25);
+    opacity:0; pointer-events:none; transition: opacity .25s ease, transform .25s ease;
+  }
+  .toast.show{ opacity:1; transform:translate(-50%, 0); }
 </style>
 </head>
 <body>
 <div class="wrap">
   <a class="back" href="reader-prototype.html">← Библиотека</a>
+  <p class="eyebrow">קורא</p>
   <h1>Поддержать проект</h1>
   <p class="lede">
-    <b>קורא</b> (читалка) и тренажёр предложений — бесплатные и без рекламы,
-    и останутся такими. Если они оказались полезны и вы хотите поддержать
-    дальнейшую работу (новые книги, аудио, разбор слов) — буду благодарен
-    любой сумме. Без обязательств :)
+    <b>קורא</b> и тренажёр предложений остаются бесплатными и без рекламы —
+    так и будет дальше. Если они помогли вам с ивритом и хочется сказать
+    спасибо — буду рад: это идёт прямо на новые книги, озвучку и разбор слов.
   </p>
 
-  <div class="cards">
+  <div class="cards" id="cards">
     <div class="card">
-      <h2>PayPal</h2>
-      <p>Разовый перевод любой суммы напрямую через PayPal.</p>
-      <a class="paypal-btn" href="https://paypal.me/readivrit" target="_blank" rel="noopener">
-        <span class="paypal-mark">Pay</span>Pal
-      </a>
-    </div>
-    <div class="card">
+      <div class="card-icon">☕</div>
       <h2>Ko-fi</h2>
-      <p>«Купить кофе» — разово или ежемесячно, через Ko-fi.</p>
+      <p>Угостить кофе — разово или ежемесячно.</p>
       <div class="kofi-slot">
         <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
         <script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'P5Y827RBOH');kofiwidget2.draw();</script>
       </div>
     </div>
+    <div class="card">
+      <div class="card-icon">💙</div>
+      <h2>PayPal</h2>
+      <p>Разовый перевод любой суммы напрямую.</p>
+      <a class="paypal-btn" href="https://paypal.me/readivrit" target="_blank" rel="noopener">
+        <span class="paypal-mark">Pay</span>Pal
+      </a>
+    </div>
   </div>
 
-  <p class="note">Оба сервиса — сторонние (PayPal, Ko-fi), сайт קורא никак не хранит и не обрабатывает платёжные данные.</p>
+  <p class="note">🔒 Оба сервиса — сторонние (PayPal, Ko-fi), сайт קורא никак не хранит и не обрабатывает платёжные данные.</p>
 </div>
+
+<div class="toast" id="toast">תודה רבה! Спасибо 🙏</div>
+<script>
+  // Честная микро-подсказка: реагирует на сам клик, а не на факт оплаты —
+  // сайт не получает вебхук об успехе платежа с внешнего сервиса.
+  document.getElementById('cards').addEventListener('click', (e) => {
+    if (!e.target.closest('a')) return;
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+  });
+</script>
 </body>
 </html>
