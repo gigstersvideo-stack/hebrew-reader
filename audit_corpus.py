@@ -279,6 +279,74 @@ def find_dict_spelling_violations(w, base_path):
 _PREP_PARADIGMS_RE = re.compile(r"const PREP_PARADIGMS = (\{.*?\n\});", re.S)
 
 
+def _iter_book_entries():
+    """(bookId, book-data JSON) для КАЖДОЙ книги читалки — намеренно
+    исключает book-data-epic-ch*.json (эпос ещё дописывается/переписывается
+    отдельно, много несогласованностей по сюжету — разбирать орфографию
+    рано) и song-data-*.json (другой тип контента, не входит в пункт
+    ROADMAP "словарная проверка в книгах: остаток"). См. audit_all_content
+    выше — та функция специально ДЕРЖИТ эпос/песни в общей проверке
+    (структурные правила безопасны и на них), это другой, более узкий срез
+    только для словарной проверки по требованию."""
+    for f in sorted(glob.glob(os.path.join(HERE, "books", "*", "book-data.json"))):
+        book_id = os.path.basename(os.path.dirname(f))
+        yield book_id, json.load(open(f, encoding="utf-8"))
+
+
+def audit_dictionary():
+    """python audit_corpus.py --dict — словарная проверка полного написания
+    (см. hebrew_spelling_rules.find_dictionary_spelling_violations), не
+    входит в обычный прогон (медленная, требует скачанный словарь Hspell).
+    Только книги (см. _iter_book_entries) — отчёт в _dict/audit_report.json,
+    тот же формат, что у audit_dictionary() в E:\\ivrit\\audit_corpus.py."""
+    words = rules.load_dictionary()
+    if not words:
+        print("Словарь Hspell недоступен (нет сети и нет _dict/he_IL.dic).", file=sys.stderr)
+        return 2
+    import collections
+    occurrences = collections.Counter()
+    locations = {}
+    for book_id, entry in _iter_book_entries():
+        for path, token, reason, cands in rules.find_dictionary_spelling_violations(entry, book_id, words=words):
+            # ".extra" — грамматическая заметка попапа слова ("פיעל прошедшее
+            # ж.р."), а не проза: там встречаются названия биньянов (פיעל,
+            # הפעיל...), которые словарь Hspell не знает как отдельные слова
+            # и предлагает "исправить" на другой настоящий биньян (פעל) — это
+            # сломало бы грамматическое объяснение. Не нужно ktiv-male проверять
+            # грамматическую терминологию, только реальный текст предложений.
+            if path.endswith(".extra"):
+                continue
+            # ".root" — корень (2-4 голые согласные через дефис, напр. "כלפ"
+            # у כלפי или "פתא" у פתאום) — не настоящее слово, словарь Hspell
+            # предлагает "исправить" корень до целого слова, что бессмысленно.
+            if path.endswith(".root"):
+                continue
+            occurrences[token] += 1
+            locations.setdefault(token, path)
+    auto = review = 0
+    auto_occ = review_occ = 0
+    report = []
+    for token, n in occurrences.most_common():
+        fix = rules.suggest_dictionary_fix(token, words)
+        kind = fix[0] if fix else "review"
+        value = fix[1] if fix else []
+        if kind == "auto":
+            auto += 1
+            auto_occ += n
+        else:
+            review += 1
+            review_occ += n
+        report.append({"word": token, "count": n, "kind": kind, "suggest": value, "where": locations[token]})
+    os.makedirs(rules.DICT_DIR, exist_ok=True)
+    out = os.path.join(rules.DICT_DIR, "audit_report.json")
+    json.dump(report, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"Словарная проверка (только книги, без эпоса и песен): {len(occurrences)} слов, {sum(occurrences.values())} вхождений", file=sys.stderr)
+    print(f"  можно исправить механически: {auto} слов ({auto_occ} вхождений)", file=sys.stderr)
+    print(f"  нужна ручная проверка:       {review} слов ({review_occ} вхождений)", file=sys.stderr)
+    print(f"  отчёт: {out}", file=sys.stderr)
+    return 1 if occurrences else 0
+
+
 def audit_prep_paradigms_spelling():
     """2026-09-24 (владелец, после проверки לפני/אחרי/מאחורי на слух):
     формы в PREP_PARADIGMS (см. reader-prototype.html, находка №2/карточка
@@ -457,6 +525,8 @@ def audit_tts_known_bad(total, confirmed_noise):
 
 
 def main():
+    if "--dict" in sys.argv:
+        sys.exit(audit_dictionary())
     cache = rules.load_verified_cache(CACHE_PATH)
     total = 0
     confirmed_noise = 0
