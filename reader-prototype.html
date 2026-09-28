@@ -133,8 +133,18 @@
   .tword:hover{ background: var(--accent-soft); }
   .tword.speaking{ background: var(--accent); color: #fff; }
   .tword.selected{ background: var(--accent); color: #fff; }
+  /* .tword.seen и .tword.saved — визуал выключен по отзыву владельца
+     (2026-09-29): слишком много разноцветных подчёркиваний одновременно
+     на странице, "превращается в мясо". Сам трекинг (.seen/.saved
+     классы, seenCache, vocabCache, облачная синхронизация) НЕ тронут —
+     только эти два правила стиля закомментированы, чтобы легко включить
+     обратно, когда придумается визуал получше. Раскрытие "уже разбирал"
+     пока без замены — просто убрано. Для "сохранено/учим" обсуждали
+     курсив вместо подчёркивания, но не решили окончательно — см.
+     ROADMAP, не реализовано.
   .tword.seen:not(.speaking):not(.selected):not(.saved):not(.root-match):not(.illustration-hover){ box-shadow: inset 0 -1px 0 var(--ink-soft); }
   .tword.saved:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--gold); }
+  */
   .tword.root-match:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--root-hl), 0 0 0 1px var(--root-hl); border-radius:3px; }
   .tword.illustration-hover:not(.speaking):not(.selected){ background: var(--gold-soft); box-shadow: 0 0 0 1px var(--gold); border-radius:3px; }
   .tword-fade1{ font-family:'Inter', sans-serif; font-style: italic; font-weight:500; color: var(--accent); border-bottom: 1px dashed var(--accent); }
@@ -669,7 +679,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.97.0</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.97.3</div>
   </div>
 </div>
 
@@ -1413,12 +1423,12 @@ document.getElementById('bookSub').textContent = (meta && meta.sub) || '';
   prevBtn.onclick = () => {
     if (!prev) return;
     const e = (window.readerManifest || []).find(x => x.id === prev.id);
-    if (e) { window.__readerNavigated = true; openBook(e); }
+    if (e) { window.__readerNavigated = true; openBook(e, { nav: 'replace' }); }
   };
   nextBtn.onclick = () => {
     if (!next || !next.ready) return;
     const e = (window.readerManifest || []).find(x => x.id === next.id);
-    if (e) { window.__readerNavigated = true; openBook(e); }
+    if (e) { window.__readerNavigated = true; openBook(e, { nav: 'replace' }); }
   };
   document.getElementById('chapterNavLabel').onclick = () => openChaptersDrawer({
     title: meta.seriesTitle || meta.title, sub: '', chapters,
@@ -1782,7 +1792,7 @@ function renderPage(pageIndex){
       reader.appendChild(endBox);
       document.getElementById('chapterEndNextBtn').addEventListener('click', () => {
         const e = (window.readerManifest || []).find(x => x.id === next.id);
-        if (e) { window.__readerNavigated = true; openBook(e); }
+        if (e) { window.__readerNavigated = true; openBook(e, { nav: 'replace' }); }
       });
     } else {
       endBox.innerHTML = `<div class="chapter-end-title">Глава ${meta.chapterNum} дописана.</div>
@@ -2081,6 +2091,17 @@ if (!window.__drawerOpenWired){
     document.getElementById('drawer').classList.add('open');
     document.getElementById('drawerBackdrop').classList.add('open');
     pushOverlayHistory('drawer');
+    // Баг с отзыва владельца (2026-09-29): открыл словарь на вкладке
+    // «Тренировка» ещё при пустом словаре (увидел заглушку "сохрани
+    // слово"), закрыл ящик, сохранил слово звёздочкой из текста, открыл
+    // ящик снова — вкладка «Тренировка» остаётся активной (CSS-класс не
+    // сбрасывается при закрытии/открытии), но startTraining() вызывается
+    // только КЛИКОМ по вкладке — заглушка так и висела, пока не
+    // щёлкнешь по вкладкам туда-сюда. Раз ящик открывается уже на
+    // «Тренировке» — перестроить очередь сразу, а не ждать клика.
+    if (document.querySelector('.drawer-tab[data-tab="train"]').classList.contains('active') && window.__startTraining) {
+      window.__startTraining();
+    }
   });
   document.getElementById('drawerClose').addEventListener('click', () => window.__closeDrawer());
   document.getElementById('drawerBackdrop').addEventListener('click', () => window.__closeDrawer());
@@ -2152,13 +2173,18 @@ function startTraining(){
   trainIndex = 0;
   renderTrainCard();
 }
+// Same reason as window.__closeDrawer above: this closure is per-book
+// (redefined on every initReader), but the drawer-open click handler is
+// wired once globally — it reaches the CURRENT book's version through
+// window, reassigned here on every book open.
+window.__startTraining = startTraining;
 
 function renderTrainCard(){
   if (trainIndex >= trainQueue.length){
     document.getElementById('trainProgress').textContent = '';
     document.getElementById('trainArea').innerHTML = trainQueue.length
       ? `<div class="train-summary">Готово! Разобрано слов: ${trainQueue.length}. <div style="margin-top:14px;"><button class="pill-btn" id="trainAgain">Пройти ещё раз</button></div></div>`
-      : '<div class="train-empty">Сначала сохрани несколько слов (★) — тогда здесь появится тренировка.</div>';
+      : '<div class="train-empty">Сначала сохрани слово (★) при чтении — тогда здесь появится тренировка. Хватит и одного.</div>';
     const again = document.getElementById('trainAgain');
     if (again) again.addEventListener('click', startTraining);
     return;
@@ -5235,7 +5261,14 @@ function openChaptersDrawer(seriesEntry){
       if (!entry) return;
       closeChaptersDrawer();
       window.__readerNavigated = true;
-      openBook(entry);
+      // Открыт из библиотеки (карточка серии) — обычный push, как любое
+      // открытие книги. Открыт из уже читаемой книги (ярлычок "Глава N из
+      // M") — replace, тот же принцип, что у стрелок в setupChapterNav:
+      // переключение главы внутри чтения не должно плодить глубину
+      // истории, иначе "← Библиотека" уводит на предыдущую главу вместо
+      // библиотеки (баг с телефона, 2026-09-29).
+      const alreadyReading = document.getElementById('readerView').style.display !== 'none';
+      openBook(entry, alreadyReading ? { nav: 'replace' } : undefined);
     });
   });
   document.getElementById('chaptersModal').classList.add('open');
