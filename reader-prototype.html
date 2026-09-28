@@ -201,15 +201,27 @@
   body.translate-toggle-off .translate-toggle:not(.edit-toggle){ display:none; }
   .edit-toggle{ margin-inline-start: 4px; font-size:10px; }
   .edit-toggle:hover{ background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
-  /* "+ В тренажёр" — off by default (settings.suggestAddToTrainer), shown
-     via a body class rather than skipped at render time so it appears
-     retroactively on already-rendered sentences the moment the setting
-     turns on (auto-enable after sign-in, or the manual Settings toggle) —
-     same trick .translate-toggle-off already uses above. */
-  .add-toggle{ display:none; margin-inline-start: 4px; font-size:10px; color: var(--accent); border-color: var(--accent); }
-  .add-toggle:hover{ background: var(--accent-soft); }
-  .add-toggle.on{ background: var(--accent); color:#fff; }
-  body.suggest-add-trainer-on .add-toggle{ display:inline; }
+  /* "+ В тренажёр" — переехало внутрь раскрытой панели
+     перевода (раньше стояло рядом с א в самом тексте —
+     владелец, 2026-09-29: захламляло текст и подталкивало
+     добавлять каждое предложение подряд, а не только те, где
+     перевод реально понадобился). Выключено по умолчанию
+     (settings.suggestAddToTrainer), видимость через класс body — тот же трюк, что и у
+     .translate-toggle-off выше. Тонкая граница сверху отделяет кнопку от
+     двух строк перевода — читается как действие над предложением,
+     а не третья строка перевода. */
+  .tr-actions{ display:none; justify-content:flex-end; margin-top:9px; padding-top:9px; border-top:1px solid var(--line); }
+  body.suggest-add-trainer-on .tr-actions{ display:flex; }
+  .tr-add-btn{
+    display:inline-flex; align-items:center; gap:6px; background:transparent;
+    border:1px solid var(--accent); color: var(--accent); border-radius:14px;
+    padding:5px 12px; font-family:'Inter',sans-serif; font-size:12.5px; font-weight:600;
+    cursor:pointer; transition: background .15s ease, color .15s ease;
+  }
+  .tr-add-btn:hover{ background: var(--accent-soft); }
+  .tr-add-btn.on{ background: var(--accent); color:#fff; }
+  .tr-add-btn.flash{ border-color: var(--gold); color: var(--gold); }
+  .tr-add-icon{ font-size:13px; line-height:1; }
 
   .sentence-tr{
     display:none; font-family:'Inter', sans-serif; direction: ltr; text-align: left;
@@ -657,7 +669,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.96.0</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.97.0</div>
   </div>
 </div>
 
@@ -1530,31 +1542,6 @@ function renderSentence(s, container){
   toggle.addEventListener('click', (e) => { e.stopPropagation(); trBlock.classList.toggle('open'); });
   sSpan.appendChild(toggle);
 
-  const addToTrainerBtn = document.createElement('span');
-  addToTrainerBtn.className = 'translate-toggle add-toggle';
-  addToTrainerBtn.textContent = '+';
-  addToTrainerBtn.title = 'Добавить это предложение в тренажёр';
-  addToTrainerBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (!window.cloudUid) {
-      addToTrainerBtn.title = 'Войдите через Google (кнопка вверху страницы), чтобы добавлять предложения в тренажёр';
-      addToTrainerBtn.classList.add('on');
-      setTimeout(() => addToTrainerBtn.classList.remove('on'), 900);
-      return;
-    }
-    const added = addToTrainerBtn.classList.toggle('on');
-    const source = 'reader:' + bookId + ':' + s.id;
-    if (added) {
-      const he = s.words.map(sw => sw.t).join(' ');
-      if (window.cloudAddCustomCard) window.cloudAddCustomCard(source, he, s.fluent, '');
-      addToTrainerBtn.textContent = '✓'; addToTrainerBtn.title = 'В тренажёре — убрать';
-    } else {
-      if (window.cloudRemoveCustomCard) window.cloudRemoveCustomCard(source);
-      addToTrainerBtn.textContent = '+'; addToTrainerBtn.title = 'Добавить это предложение в тренажёр';
-    }
-  });
-  sSpan.appendChild(addToTrainerBtn);
-
   const canEditThisBook = (bookId.startsWith('local-') && settings.editMode) || (isOwner && settings.editModeBase);
   if (canEditThisBook){
     const editIcon = document.createElement('span');
@@ -1608,6 +1595,44 @@ function renderSentence(s, container){
     <div class="tr-row"><span class="tr-label">Дословно</span><span class="tr-value literal">${s.literal}</span></div>
     <div class="tr-row"><span class="tr-label">Перевод</span><span class="tr-value">${s.fluent}</span></div>
   `;
+  // "+ В тренажёр" живёт здесь, а не рядом с א в самом тексте (было — см.
+  // отзыв владельца 2026-09-29: рядом с иероглифом захламляло текст и
+  // подталкивало добавлять КАЖДОЕ предложение подряд). Момент, когда
+  // человек решает "знаю / не знаю это предложение" — именно тут, уже
+  // открыв перевод, а не при взгляде на голый иврит.
+  const addRow = document.createElement('div');
+  addRow.className = 'tr-actions';
+  const addToTrainerBtn = document.createElement('button');
+  addToTrainerBtn.type = 'button';
+  addToTrainerBtn.className = 'tr-add-btn';
+  addToTrainerBtn.innerHTML = '<span class="tr-add-icon">+</span><span class="tr-add-label">В тренажёр</span>';
+  addToTrainerBtn.title = 'Добавить это предложение в тренажёр';
+  addToTrainerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!window.cloudUid) {
+      addToTrainerBtn.classList.add('flash');
+      addToTrainerBtn.querySelector('.tr-add-label').textContent = 'Нужен вход через Google';
+      setTimeout(() => {
+        addToTrainerBtn.classList.remove('flash');
+        addToTrainerBtn.querySelector('.tr-add-label').textContent = 'В тренажёр';
+      }, 1600);
+      return;
+    }
+    const added = addToTrainerBtn.classList.toggle('on');
+    const source = 'reader:' + bookId + ':' + s.id;
+    const icon = addToTrainerBtn.querySelector('.tr-add-icon');
+    const label = addToTrainerBtn.querySelector('.tr-add-label');
+    if (added) {
+      const he = s.words.map(sw => sw.t).join(' ');
+      if (window.cloudAddCustomCard) window.cloudAddCustomCard(source, he, s.fluent, '');
+      icon.textContent = '✓'; label.textContent = 'В тренажёре'; addToTrainerBtn.title = 'Убрать из тренажёра';
+    } else {
+      if (window.cloudRemoveCustomCard) window.cloudRemoveCustomCard(source);
+      icon.textContent = '+'; label.textContent = 'В тренажёр'; addToTrainerBtn.title = 'Добавить это предложение в тренажёр';
+    }
+  });
+  addRow.appendChild(addToTrainerBtn);
+  trBlock.appendChild(addRow);
   container.appendChild(trBlock);
 
   if (s.illustration){
