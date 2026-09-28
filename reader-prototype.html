@@ -679,7 +679,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.97.3</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.97.4</div>
   </div>
 </div>
 
@@ -1367,14 +1367,29 @@ function pushOverlayHistory(name){
 // истории "фантомную" запись, которую потом пришлось бы перещёлкивать
 // лишним нажатием «назад». Когда закрытие пришло ИЗ popstate (см. ниже),
 // openOverlayName уже сброшен в null, и этот вызов молча ничего не делает.
+//
+// БЫЛО (баг, отзыв владельца 2026-09-30): здесь стоял history.replaceState
+// — он ЗАМЕНЯЕТ данные текущей записи (снимает overlay-флаг), но не
+// убирает саму запись, которую pushOverlayHistory положил в стек. Ровно
+// та "фантомная запись", о которой предупреждает комментарий выше,
+// оставалась — просто без видимого overlay-флага, неотличимая от
+// обычного состояния книги. Каждый попап слова/ящик словаря/настройки,
+// закрытые обычным способом (не физической кнопкой «назад»), раздували
+// history на одну запись. "← Библиотека" (goBackToLibrary) делает ровно
+// один history.back(), рассчитывая, что под книгой лежит библиотека —
+// после пары открытых-и-закрытых попапов это было уже не так, кнопка
+// приземляла на ту самую фантомную запись (внешне неотличима от текущей
+// книги — выглядит как "ничего не произошло"). Теперь — настоящий
+// history.back(): попадает на ЗАПИСЬ ДО открытия оверлея (не ту, что он
+// создал), стек не растёт. Безопасно даже при вызове ИЗ popstate — тогда
+// openOverlayName уже null (см. обработчик ниже), guard выше отсекает
+// эту ветку раньше, до history.back(), повторного шага назад не будет.
 function clearOverlayHistory(name){
   if (openOverlayName !== name) return;
   openOverlayName = null;
   try {
     if (history.state && history.state.overlay === name){
-      const clean = Object.assign({}, history.state);
-      delete clean.overlay;
-      history.replaceState(clean, '', location.href);
+      history.back();
     }
   } catch(err){}
 }
