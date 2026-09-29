@@ -1760,7 +1760,12 @@ async function applyFlowScene(paragraphEl, scene){
     return naturalWidths[wi] + gapBefore;
   });
   const nonWordWidths = new Map();
-  for (const { nonWordEls } of sentenceMeta) for (const el of nonWordEls) nonWordWidths.set(el, el.getBoundingClientRect().width || 20);
+  const nonWordHeights = new Map();
+  for (const { nonWordEls } of sentenceMeta) for (const el of nonWordEls){
+    const r = el.getBoundingClientRect();
+    nonWordWidths.set(el, r.width || 20);
+    nonWordHeights.set(el, r.height || 20);
+  }
 
   const layer = document.createElement('div');
   layer.className = 'flow-scene-layer';
@@ -1856,9 +1861,15 @@ async function applyFlowScene(paragraphEl, scene){
       if (!fp) return;
       let cursor = fp.right;
       for (const el of m.nonWordEls){
+        // The toggle's own line-height (~20px) is much shorter than the
+        // text row's (~51px) — in normal flow, vertical-align:middle keeps
+        // it level with the text; that mechanism doesn't apply once it's
+        // pulled onto explicit top:Ypx, so it renders flush with the row's
+        // TOP instead of centered on the baseline. Center it manually.
+        const elHeight = nonWordHeights.get(el) || 20;
         el.style.position = 'absolute';
         el.style.left = cursor + 'px';
-        el.style.top = fp.top + 'px';
+        el.style.top = (fp.top + (lineHeight - elHeight) / 2) + 'px';
         cursor += nonWordWidths.get(el) || 20;
       }
       if (m.trEl){
