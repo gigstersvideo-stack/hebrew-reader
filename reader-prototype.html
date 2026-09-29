@@ -1741,13 +1741,23 @@ async function applyFlowScene(paragraphEl, scene){
     // fall back to the full box rather than special-case it blind.
     return u.getBoundingClientRect().width;
   }
+  // naturalWidths[wi] is the word's own true rendered width, with no
+  // reserved gap baked in — renderStep needs this separately from widths[]
+  // (glyph + reserved gap) to know where a word's OWN edge actually is,
+  // as opposed to the far edge of the slack reserved after it. Conflating
+  // the two here previously placed each sentence's toggle a whole
+  // TOGGLE_GAP too far out: past its own word, past the reserved slack,
+  // landing wherever that slack happened to end — usually harmlessly
+  // overlapping the previous (already-placed) word, but visibly over an
+  // illustration whenever that slack landed on a carved image edge.
+  const naturalWidths = units.map(glyphWidth);
   const widths = units.map((u, wi) => {
     let gapBefore = 0;
     if (wi > 0){
       const prevSentenceFinal = sentenceMeta[unitSentenceIdx[wi-1]].wordEls.at(-1) === units[wi-1];
       gapBefore = prevSentenceFinal ? TOGGLE_GAP : SPACE_W;
     }
-    return glyphWidth(u) + gapBefore;
+    return naturalWidths[wi] + gapBefore;
   });
   const nonWordWidths = new Map();
   for (const { nonWordEls } of sentenceMeta) for (const el of nonWordEls) nonWordWidths.set(el, el.getBoundingClientRect().width || 20);
@@ -1824,8 +1834,12 @@ async function applyFlowScene(paragraphEl, scene){
           units[wi].style.left = left + 'px';
           units[wi].style.top = y + 'px';
           const si = unitSentenceIdx[wi];
-          if (!firstWordPos[si]) firstWordPos[si] = { left, top: y, right: left + w };
-          lastWordPos[si] = { left, top: y, right: left + w };
+          // right: the word's OWN true edge (left + its natural, un-inflated
+          // width) — NOT left+w, which would land past the reserved gap
+          // that follows it (see naturalWidths note above measureUnitWidth).
+          const trueRight = left + naturalWidths[wi];
+          if (!firstWordPos[si]) firstWordPos[si] = { left, top: y, right: trueRight };
+          lastWordPos[si] = { left, top: y, right: trueRight };
           wi++;
         }
       }
