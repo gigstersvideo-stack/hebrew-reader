@@ -1396,12 +1396,21 @@ function pushOverlayHistory(name){
 // эту ветку раньше, до history.back(), повторного шага назад не будет.
 function clearOverlayHistory(name){
   if (openOverlayName !== name) return;
-  openOverlayName = null;
   try {
     if (history.state && history.state.overlay === name){
+      // Leave openOverlayName set — history.back() is async, and the
+      // popstate handler's own guard (below) needs to still see it to
+      // recognize this as "just closing an overlay" and short-circuit.
+      // Nulling it here first (as this used to) meant that guard always
+      // missed on a programmatic close (e.g. "Слушать отсюда" в попапе
+      // слова), so popstate fell through to full route reprocessing —
+      // openBook() reran, replaying the flow-scene animation from scratch
+      // and cutting off the playback that same click had just started.
       history.back();
+      return;
     }
   } catch(err){}
+  openOverlayName = null;
 }
 
 function initReader(data, bookId, meta) {
