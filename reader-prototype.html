@@ -1647,7 +1647,28 @@ function findFlowSceneForPage(start, end){
   return null;
 }
 
+// Word widths in applyFlowScene come from real layout, not canvas.measureText
+// — accurate, but only once the actual webfont has painted rather than a
+// fallback. Cheap to wait for, so we do, even though the dominant source of
+// bad widths turned out to be something else entirely (see below).
+function measureSpaceWidth(refUnit){
+  const probe = document.createElement('span');
+  const cs = getComputedStyle(refUnit);
+  probe.style.cssText = 'position:absolute; visibility:hidden; white-space:pre; left:-9999px;';
+  probe.style.fontFamily = cs.fontFamily;
+  probe.style.fontSize = cs.fontSize;
+  probe.style.fontWeight = cs.fontWeight;
+  document.body.appendChild(probe);
+  probe.textContent = 'אא';
+  const w1 = probe.getBoundingClientRect().width;
+  probe.textContent = 'א א';
+  const w2 = probe.getBoundingClientRect().width;
+  document.body.removeChild(probe);
+  return w2 - w1;
+}
+
 async function applyFlowScene(paragraphEl, scene){
+  try { await document.fonts.ready; } catch (e) {}
   const sentenceEls = Array.from(paragraphEl.querySelectorAll('.sentence'));
   // Words flow through the carve algorithm; the translate-toggle (and, in
   // edit mode, the edit icon) do NOT — they used to ride along as regular
@@ -1674,9 +1695,60 @@ async function applyFlowScene(paragraphEl, scene){
   const ch = cw * (FS_DESIGN_H/FS_DESIGN_W);
 
   // Measure real rendered widths (exact font/niqud metrics) before moving
-  // anything out of normal flow — each .tword already carries its own
-  // trailing space in textContent, so word widths alone are enough.
-  const widths = units.map(u => u.getBoundingClientRect().width);
+  // anything out of normal flow.
+  //
+  // Each .tword carries its own trailing space baked into its textContent
+  // (see renderSentence) — the idea being that width alone is then enough,
+  // no separate gap bookkeeping needed. That holds in NORMAL reading, but
+  // breaks here for two reasons specific to this carve pass:
+  //
+  // 1) getBoundingClientRect() below runs while the word is still an
+  //    ordinary inline span inside the whole (un-carved) page's natural,
+  //    wrapping flow. If a word happens to land exactly at a soft-wrap
+  //    point there, its trailing space is *already* 0-width at measurement
+  //    time (CSS collapses whitespace at a line's end) — coincidence of
+  //    total character count, unrelated to anything about that word. Later
+  //    it gets placed with zero reserved gap and visually fuses with the
+  //    next word. (Forcing white-space:pre on every unit to dodge this
+  //    made it worse across the board — don't; measure around it instead.)
+  // 2) The last word of a sentence never gets a trailing space at all (by
+  //    design — in normal reading the next sentence's toggle circle
+  //    supplies the visual break). In the carve, the toggle is placed in a
+  //    separate pass afterward and doesn't push this word's neighbor away,
+  //    so it can end up sitting on top of the text instead of beside it.
+  //
+  // Fix: measure each word's own glyph width via a Range that explicitly
+  // excludes any trailing space (immune to whether the browser already
+  // collapsed it or not). The gap that should follow a word — a plain
+  // space mid-sentence, or room for the next sentence's toggle circle at a
+  // boundary — is added to the width of the word placed right AFTER it,
+  // not the word itself: each word's left edge is computed by walking the
+  // cumulative width backward from the line's right edge, so slack in a
+  // word's own reserved width shows up as empty space before that word,
+  // i.e. between it and its (rightward, already-placed) neighbor.
+  const SPACE_W = measureSpaceWidth(units[0]);
+  const TOGGLE_GAP = 22; // ~toggle circle width + breathing room
+  function glyphWidth(u){
+    const t = u.firstChild;
+    if (t && t.nodeType === Node.TEXT_NODE && t === u.lastChild){
+      const trimmed = t.textContent.replace(/ +$/, '');
+      if (trimmed.length === 0) return 0;
+      const r = document.createRange();
+      r.setStart(t, 0); r.setEnd(t, trimmed.length);
+      return r.getBoundingClientRect().width;
+    }
+    // fade-mode markup (nested spans) — not used by any flow scene today;
+    // fall back to the full box rather than special-case it blind.
+    return u.getBoundingClientRect().width;
+  }
+  const widths = units.map((u, wi) => {
+    let gapBefore = 0;
+    if (wi > 0){
+      const prevSentenceFinal = sentenceMeta[unitSentenceIdx[wi-1]].wordEls.at(-1) === units[wi-1];
+      gapBefore = prevSentenceFinal ? TOGGLE_GAP : SPACE_W;
+    }
+    return glyphWidth(u) + gapBefore;
+  });
   const nonWordWidths = new Map();
   for (const { nonWordEls } of sentenceMeta) for (const el of nonWordEls) nonWordWidths.set(el, el.getBoundingClientRect().width || 20);
 
