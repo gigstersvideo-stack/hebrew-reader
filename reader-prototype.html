@@ -126,6 +126,16 @@
   main{ max-width: 720px; margin: 0 auto; padding: 32px 24px; }
   .paragraph{ font-family:'Frank Ruhl Libre', serif; font-size: 25px; line-height: 2.05; color: var(--ink); margin-bottom: 8px; }
 
+  /* flow scenes: chair/robot/cat-style objects that push surrounding text
+     out of the way instead of sitting in a collapsed illustration chip —
+     see applyFlowScene(). direction:rtl so a word's own left/top (set in
+     JS, ignoring writing direction) lands where the carve math expects. */
+  .flow-scene-layer{ position:relative; direction:rtl; }
+  .flow-scene-layer .translate-toggle{ margin-inline-start:4px; }
+  .flow-actor{ position:absolute; pointer-events:none; display:none; }
+  .flow-actor img{ width:100%; height:100%; display:block; }
+  .flow-scene-blocker{ position:absolute; inset:0; z-index:5; cursor:default; }
+
   .sentence{ position:relative; border-radius: 3px; transition: background .25s ease; }
   .sentence.playing{ background: var(--gold-soft); }
 
@@ -1518,6 +1528,284 @@ function buildIllustration(item, sentenceId, container){
   return wrap;
 }
 
+// ---------- flow scenes: chair/robot/cat-style objects that carve the
+// surrounding real word spans around themselves and play a short pose
+// animation once, instead of sitting in a collapsed illustration chip.
+// Authored with the scene editor (see E:\NEW BIG PROJ\scratchpad tools);
+// scene JSON lives on the book under data.flowScenes. This never rebuilds
+// text — it repositions the exact .tword/.translate-toggle nodes that
+// renderSentence() already wired up, so clicks, saved/seen/root-match
+// classes, niqud toggling etc. all keep working untouched. ----------
+const FS_DESIGN_W = 592, FS_DESIGN_H = 712; // the scene editor's authoring canvas (640x760 minus 24px inset)
+const fsImgCache = {};
+
+function fsLoadImage(src){
+  return new Promise((resolve, reject) => {
+    const im = new Image();
+    im.onload = () => resolve(im);
+    im.onerror = reject;
+    im.src = src;
+  });
+}
+function fsComputeMask(imageEl){
+  const natW = imageEl.naturalWidth, natH = imageEl.naturalHeight;
+  const off = document.createElement('canvas');
+  off.width = natW; off.height = natH;
+  const octx = off.getContext('2d');
+  octx.drawImage(imageEl, 0, 0);
+  const px = octx.getImageData(0, 0, natW, natH).data;
+  const rows = new Array(natH);
+  const ALPHA_THRESHOLD = 80;
+  for (let y = 0; y < natH; y++){
+    let intervals = [], runStart = -1;
+    for (let x = 0; x < natW; x++){
+      const a = px[(y*natW + x)*4 + 3];
+      const opaque = a > ALPHA_THRESHOLD;
+      if (opaque && runStart === -1) runStart = x;
+      if (!opaque && runStart !== -1){ intervals.push([runStart, x]); runStart = -1; }
+    }
+    if (runStart !== -1) intervals.push([runStart, natW]);
+    rows[y] = intervals;
+  }
+  return { rows, natW, natH };
+}
+function fsFlipMask(mask){
+  return { natW: mask.natW, natH: mask.natH, rows: mask.rows.map(ivs => ivs.map(([s,e]) => [mask.natW-e, mask.natW-s]).reverse()) };
+}
+async function fsEnsureCached(src){
+  if (fsImgCache[src]) return fsImgCache[src];
+  const el = await fsLoadImage(src);
+  fsImgCache[src] = { el, mask: fsComputeMask(el) };
+  return fsImgCache[src];
+}
+function fsGetMask(src, flip){
+  const entry = fsImgCache[src];
+  if (!flip) return entry.mask;
+  if (!entry.maskFlipped) entry.maskFlipped = fsFlipMask(entry.mask);
+  return entry.maskFlipped;
+}
+function fsPlacementPx(t, mask, cw, ch){
+  const dispH = t.hFrac*ch;
+  const dispW = dispH * (mask.natW/mask.natH);
+  return { dispX: t.xFrac*cw, dispY: t.yFrac*ch, dispW, dispH, rot: t.rot };
+}
+function fsBlockedIntervals(lineTop, lineBottom, objects){
+  let all = [];
+  for (const obj of objects){
+    const { dispX, dispY, dispW, dispH, rot } = obj.placement;
+    if (Math.abs(rot) > 0.5){
+      const rad = Math.abs(rot) * Math.PI/180;
+      const pad = (dispW*Math.sin(rad) + dispH*Math.sin(rad)) / 2;
+      const top = dispY - pad, bottom = dispY+dispH+pad;
+      if (lineBottom < top || lineTop > bottom) continue;
+      all.push([dispX - pad - obj.halo, dispX + dispW + pad + obj.halo]);
+      continue;
+    }
+    if (lineBottom < dispY || lineTop > dispY + dispH) continue;
+    const { rows, natW, natH } = obj.mask;
+    const scale = dispW / natW;
+    const localTop = (lineTop - dispY) / scale;
+    const localBottom = (lineBottom - dispY) / scale;
+    const ryStart = Math.max(0, Math.floor(localTop));
+    const ryEnd = Math.min(natH - 1, Math.ceil(localBottom));
+    for (let ry = ryStart; ry <= ryEnd; ry++){
+      for (const [xs, xe] of rows[ry]){
+        all.push([dispX + xs*scale - obj.halo, dispX + xe*scale + obj.halo]);
+      }
+    }
+  }
+  if (!all.length) return [];
+  all.sort((a,b) => a[0]-b[0]);
+  const merged = [all[0]];
+  for (let i = 1; i < all.length; i++){
+    const last = merged[merged.length-1];
+    if (all[i][0] <= last[1] + 4) last[1] = Math.max(last[1], all[i][1]);
+    else merged.push(all[i]);
+  }
+  return merged;
+}
+function fsGetSlots(lineTop, lineBottom, objects, containerWidth){
+  const blocked = fsBlockedIntervals(lineTop, lineBottom, objects);
+  if (!blocked.length) return [{x:0, width: containerWidth}];
+  const slots = [];
+  let lastX = 0;
+  for (const [bStart, bEnd] of blocked){
+    const s = Math.max(0, bStart), e = Math.min(containerWidth, bEnd);
+    if (s - lastX > 20) slots.push({x:lastX, width:s-lastX});
+    lastX = Math.max(lastX, e);
+  }
+  if (containerWidth - lastX > 20) slots.push({x:lastX, width:containerWidth-lastX});
+  return slots;
+}
+
+function findFlowSceneForPage(start, end){
+  const scenes = data.flowScenes || [];
+  for (const scene of scenes){
+    const idx = data.sentences.findIndex(s => s.id === scene.anchorSentenceId);
+    if (idx >= start && idx < end) return scene;
+  }
+  return null;
+}
+
+async function applyFlowScene(paragraphEl, scene){
+  const sentenceEls = Array.from(paragraphEl.querySelectorAll('.sentence'));
+  // Words flow through the carve algorithm; the translate-toggle (and, in
+  // edit mode, the edit icon) do NOT — they used to ride along as regular
+  // "words" and ended up scattered wherever the greedy fill happened to
+  // land them, disconnected from their own sentence. They're pinned
+  // instead, right after that sentence's own first word, every frame.
+  const units = [];
+  const sentenceMeta = sentenceEls.map(sEl => {
+    const children = Array.from(sEl.children);
+    const nonWordEls = children.filter(c => !c.classList.contains('tword'));
+    const wordEls = children.filter(c => c.classList.contains('tword'));
+    const trEl = sEl.nextElementSibling && sEl.nextElementSibling.classList.contains('sentence-tr')
+      ? sEl.nextElementSibling : null;
+    for (const w of wordEls) units.push(w);
+    return { nonWordEls, wordEls, trEl };
+  });
+  if (!units.length) return;
+  // unitSentenceIdx[i] = which sentence (index into sentenceMeta) units[i] belongs to
+  const unitSentenceIdx = [];
+  sentenceMeta.forEach((m, si) => { for (let k=0;k<m.wordEls.length;k++) unitSentenceIdx.push(si); });
+
+  const lineHeight = parseFloat(getComputedStyle(paragraphEl).lineHeight) || 51;
+  const cw = paragraphEl.clientWidth;
+  const ch = cw * (FS_DESIGN_H/FS_DESIGN_W);
+
+  // Measure real rendered widths (exact font/niqud metrics) before moving
+  // anything out of normal flow — each .tword already carries its own
+  // trailing space in textContent, so word widths alone are enough.
+  const widths = units.map(u => u.getBoundingClientRect().width);
+  const nonWordWidths = new Map();
+  for (const { nonWordEls } of sentenceMeta) for (const el of nonWordEls) nonWordWidths.set(el, el.getBoundingClientRect().width || 20);
+
+  const layer = document.createElement('div');
+  layer.className = 'flow-scene-layer';
+  const blockerEl = document.createElement('div');
+  blockerEl.className = 'flow-scene-blocker';
+  paragraphEl.appendChild(layer);
+  sentenceEls.forEach(sEl => { sEl.style.display = 'none'; });
+  for (const { nonWordEls, wordEls, trEl } of sentenceMeta){
+    for (const el of nonWordEls) layer.appendChild(el);
+    for (const el of wordEls) layer.appendChild(el);
+    if (trEl) layer.appendChild(trEl);
+  }
+  layer.appendChild(blockerEl);
+
+  const basePath = scene.basePath || '';
+  const objEls = scene.objects.map(obj => {
+    const wrap = document.createElement('div');
+    wrap.className = 'flow-actor';
+    const img = document.createElement('img');
+    wrap.appendChild(img);
+    layer.insertBefore(wrap, blockerEl);
+    return { obj, wrap, img };
+  });
+  for (const { obj } of objEls){
+    for (const key of new Set(obj.frames)) await fsEnsureCached(basePath + key);
+  }
+  // An object can have fewer source drawings than POSE_COUNT (today's seed
+  // objects have 12 drawings stretched across 24 poses, each held for 2
+  // ticks) — stretch-map the pose index onto whatever length it actually has.
+  function frameSrcFor(obj, idx){
+    if (obj.frames.length===1) return basePath + obj.frames[0];
+    const i = Math.min(obj.frames.length-1, Math.floor(idx * obj.frames.length / POSE_COUNT));
+    return basePath + obj.frames[i];
+  }
+
+  function renderStep(poseIdx){
+    const placed = [];
+    for (const { obj, wrap, img } of objEls){
+      const t = obj.transforms[poseIdx];
+      const src = frameSrcFor(obj, poseIdx);
+      const mask = fsGetMask(src, t.flip);
+      const p = fsPlacementPx(t, mask, cw, ch);
+      wrap.style.left = p.dispX+'px';
+      wrap.style.top = p.dispY+'px';
+      wrap.style.width = p.dispW+'px';
+      wrap.style.height = p.dispH+'px';
+      wrap.style.display = 'block';
+      wrap.style.transform = `rotate(${t.rot}deg) scaleX(${t.flip?-1:1})`;
+      if (img.dataset.src !== src){ img.src = src; img.dataset.src = src; }
+      // halo is authored at the FS_DESIGN_W reference width — scale it with
+      // the object on narrower screens, same as size/position.
+      placed.push({ placement: p, mask, halo: obj.halo * (cw/FS_DESIGN_W) });
+    }
+
+    let wi = 0, y = 0;
+    const firstWordPos = new Array(sentenceMeta.length).fill(null);
+    const lastWordPos = new Array(sentenceMeta.length).fill(null);
+    while (wi < units.length){
+      const slots = fsGetSlots(y, y+lineHeight, placed, cw)
+        .sort((a,b) => (b.x+b.width) - (a.x+a.width));
+      for (const slot of slots){
+        if (wi >= units.length) break;
+        let usedWidth = 0;
+        const rightEdge = slot.x + slot.width;
+        while (wi < units.length){
+          const w = widths[wi];
+          if (usedWidth + w > slot.width) break;
+          usedWidth += w;
+          const left = rightEdge - usedWidth;
+          units[wi].style.position = 'absolute';
+          units[wi].style.left = left + 'px';
+          units[wi].style.top = y + 'px';
+          const si = unitSentenceIdx[wi];
+          if (!firstWordPos[si]) firstWordPos[si] = { left, top: y, right: left + w };
+          lastWordPos[si] = { left, top: y, right: left + w };
+          wi++;
+        }
+      }
+      y += lineHeight;
+    }
+
+    // Pin each sentence's translate-toggle (+ edit icon, in edit mode) right
+    // after its own first word — same spot as normal (non-scene) rendering
+    // — instead of letting them flow as generic "words" and end up scattered.
+    // The translation panel opens directly under that sentence's own last
+    // line, overlapping whatever comes after rather than stacking at the top.
+    sentenceMeta.forEach((m, si) => {
+      const fp = firstWordPos[si], lp = lastWordPos[si];
+      if (!fp) return;
+      let cursor = fp.right;
+      for (const el of m.nonWordEls){
+        el.style.position = 'absolute';
+        el.style.left = cursor + 'px';
+        el.style.top = fp.top + 'px';
+        cursor += nonWordWidths.get(el) || 20;
+      }
+      if (m.trEl){
+        m.trEl.style.position = 'absolute';
+        m.trEl.style.left = '0px';
+        m.trEl.style.right = '0px';
+        m.trEl.style.top = (lp.top + lineHeight) + 'px';
+        m.trEl.style.zIndex = '4';
+      }
+    });
+
+    layer.style.height = y + 'px';
+  }
+
+  const POSE_COUNT = 24; // authoring resolution — how many keyframes an object can have
+  // Playback fps/duration are authored per scene, independent of how many
+  // keyframes/drawings actually exist — a tick that lands between two
+  // authored poses SNAPS to the nearest one (no interpolation: the pose
+  // image and its position always change together, in lockstep, never a
+  // drawing held still while its position keeps gliding).
+  const fps = scene.fps || 18;
+  const durationSec = scene.durationSec || (POSE_COUNT/18);
+  const totalTicks = Math.max(1, Math.round(fps*durationSec));
+  const holdMs = 1000/fps;
+  blockerEl.style.display = 'block';
+  for (let tick = 0; tick < totalTicks; tick++){
+    const authoredIdx = Math.min(POSE_COUNT-1, Math.floor(tick * POSE_COUNT / totalTicks));
+    renderStep(authoredIdx);
+    if (tick < totalTicks-1) await new Promise(r => setTimeout(r, holdMs));
+  }
+  blockerEl.style.display = 'none';
+}
+
 const reader = document.getElementById('reader');
 
 // ---- pagination: ~20 sentences per page keeps a screen roughly at the
@@ -1555,7 +1843,7 @@ function markBookCompleted(){
   if (window.cloudSyncCompleted) window.cloudSyncCompleted(bookId, true);
 }
 
-function renderSentence(s, container){
+function renderSentence(s, container, suppressIllustration){
   const sSpan = document.createElement('span');
   sSpan.className = 'sentence';
   sSpan.id = s.id;
@@ -1660,7 +1948,7 @@ function renderSentence(s, container){
   trBlock.appendChild(addRow);
   container.appendChild(trBlock);
 
-  if (s.illustration){
+  if (s.illustration && !suppressIllustration){
     container.appendChild(buildIllustration(s.illustration, s.id, container));
   }
 }
@@ -1791,10 +2079,12 @@ function renderPage(pageIndex){
   p.className = 'paragraph';
   const start = currentPage * PAGE_SIZE;
   const end = Math.min(data.sentences.length, start + PAGE_SIZE);
+  const activeScene = findFlowSceneForPage(start, end);
   for (let i = start; i < end; i++){
-    renderSentence(data.sentences[i], p);
+    renderSentence(data.sentences[i], p, !!activeScene);
   }
   reader.appendChild(p);
+  if (activeScene) applyFlowScene(p, activeScene);
 
   if (currentPage === totalPages - 1 && meta && meta.chapters && meta.chapterNum){
     const chapters = meta.chapters;
