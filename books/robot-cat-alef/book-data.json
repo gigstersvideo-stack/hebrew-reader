@@ -1135,16 +1135,7 @@
           "end": 2.487
         }
       ],
-      "audio": "books/robot-cat-alef/audio/s21.mp3",
-      "illustration": {
-        "word": "חָתוּל",
-        "tr": "кот",
-        "caption": "חָתוּל",
-        "capTr": "Khatul",
-        "mnemonic": "Представь, что гигантский КОТ заворачивает деревенскую ХАТУ в прозрачный кружевной ТЮЛЬ («хату-тюль» — חָתוּל). Кот доволен и гордо обвязывает весь дом огромным бантом.",
-        "img": "books/robot-cat-alef/illustrations/s21.webp",
-        "imgMnemonic": "books/robot-cat-alef/illustrations/s21-mnemonic.webp"
-      }
+      "audio": "books/robot-cat-alef/audio/s21.mp3"
     },
     {
       "id": "s22",
@@ -1761,6 +1752,372 @@
       "fps": 18,
       "durationSec": 2,
       "bg": "#eae6dc"
+    },
+    {
+      "id": "cat-sleeping-1",
+      "anchorSentenceId": "s21",
+      "basePath": "books/robot-cat-alef/flow/cat-sleeping-1/",
+      "objects": [
+        {
+          "id": "chair",
+          "label": "Стул",
+          "halo": 17,
+          "frames": [
+            "chair.png"
+          ],
+          "transforms": [
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": -0.03,
+              "yFrac": 0.426,
+              "hFrac": 0.446,
+              "flip": false,
+              "rot": 0
+            }
+          ]
+        },
+        {
+          "id": "cat",
+          "label": "Кот",
+          "halo": 16,
+          "frames": [
+            "cat-sleeping.png"
+          ],
+          "transforms": [
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            },
+            {
+              "xFrac": 0.035,
+              "yFrac": 0.559,
+              "hFrac": 0.22,
+              "flip": false,
+              "rot": 0
+            }
+          ]
+        }
+      ],
+      "bg": "#eae6dc",
+      "fps": 1,
+      "durationSec": 0
     }
   ]
 }
