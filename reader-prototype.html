@@ -1761,7 +1761,14 @@ async function applyFlowScene(paragraphEl, scene){
   // illustration whenever that slack landed on a carved image edge.
   const naturalWidths = units.map(glyphWidth);
   const widths = units.map((u, wi) => {
-    let gapBefore = 0;
+    // wi===0 (the page's very first word) also needs TOGGLE_GAP: its own
+    // sentence's toggle sits to ITS right same as every other sentence's
+    // does, but with no preceding word/gap on this page to borrow room
+    // from, it otherwise gets placed flush against the row's right edge
+    // (cw) and overflows past it — barely visible on desktop's wide
+    // margin, but on a narrow phone viewport that overflow lands right at
+    // the screen edge, hard to tell apart from the edge and hard to tap.
+    let gapBefore = TOGGLE_GAP;
     if (wi > 0){
       const prevSentenceFinal = sentenceMeta[unitSentenceIdx[wi-1]].wordEls.at(-1) === units[wi-1];
       gapBefore = prevSentenceFinal ? TOGGLE_GAP : SPACE_W;
