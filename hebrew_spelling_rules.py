@@ -92,7 +92,7 @@ KTIV_CHASER_ALLOWLIST = {"לֹא", "כֹּה", "זֹאת", "פֹּה"}
 # ktiv_chaser вставляла сюда лишний вав (רוֹאשׁ) — 128 слов, найдено словарной
 # проверкой 2026-09-20.
 KTIV_CHASER_ALLOWED_STEMS = {"ראש"}
-_STRIP_PUNCT = ".,!?;:\"'()«»־-־״׳"
+_STRIP_PUNCT = ".,!?;:\"'()«»־-־״׳—"
 
 
 def _bare_consonants(word):
