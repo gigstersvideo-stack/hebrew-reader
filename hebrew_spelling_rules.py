@@ -425,7 +425,7 @@ def find_dictionary_spelling_violations(obj, path="", words=None):
     for p, s in _walk_strings(obj, path):
         for token in re.findall(r"[\u05D0-\u05EA\u0591-\u05C7]+", s):
             bare = _bare_consonants(token)
-            if len(bare) < 3 or bare in allow or _in_dictionary(bare, words):
+            if len(bare) < 3 or _in_dictionary(bare, allow) or _in_dictionary(bare, words):
                 continue
             cands = dictionary_candidates(bare, words)
             if cands:
