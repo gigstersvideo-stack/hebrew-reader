@@ -124,7 +124,7 @@
   .header-actions{ position:relative; display:flex; gap:8px; align-items:center; }
 
   main{ max-width: 720px; margin: 0 auto; padding: 32px 24px; }
-  .paragraph{ font-family:'Frank Ruhl Libre', serif; font-size: 25px; line-height: 2.05; color: var(--ink); margin-bottom: 8px; }
+  .paragraph{ position:relative; font-family:'Frank Ruhl Libre', serif; font-size: 25px; line-height: 2.05; color: var(--ink); margin-bottom: 8px; }
 
   /* flow scenes: chair/robot/cat-style objects that push surrounding text
      out of the way instead of sitting in a collapsed illustration chip —
@@ -139,18 +139,20 @@
   .sentence{ position:relative; border-radius: 3px; transition: background .25s ease; }
   .sentence.playing{ background: var(--gold-soft); }
 
-  /* color .28s — отдельно от background/box-shadow (.15s): слово при озвучке
-     гаснет чуть дольше, чем загорается следующее, поэтому цвет "перетекает"
-     от слова к слову, а не мигает (владелец, 2026-10-02: подсветка только
-     цветом текста выглядит мягче и стильнее, чем плывущая подложка — её
-     убрали, см. CHANGELOG). */
-  .tword{ cursor:pointer; border-radius: 3px; padding: 0 1px; position:relative; transition: background .15s ease, color .28s ease-out, box-shadow .15s ease; }
+  /* Подсветка озвучиваемого слова (набор выбран владельцем в демо 2026-10-02):
+     плотный изумруд #05452F (~8.8:1 на кремовом) с едва заметным утолщением
+     штриха + мягкая плашка 17% + «подпрыгивание» слоем-двойником (.word-pop,
+     см. setSpeakingWord). В списке transition у .tword НЕТ color — цвет слова
+     при подпрыгивании ведёт двойник; плавно гаснут только плашка и тень. Если
+     вернуть color в transition, оригинал при возврате слова будет «мигать». */
+  .tword{ cursor:pointer; border-radius: 3px; padding: 0 1px; position:relative; transition: background-color .28s ease, box-shadow .28s ease; }
   .tword:hover{ background: var(--accent-soft); }
-  /* Изумруд #0B7551: ~4.5:1 на кремовом фоне играющего предложения
-     (--gold-soft #F0E4CC) — читается, а от чёрного текста отличается по
-     цвету, не только по яркости. Фона нет — белый текст на таком светлом
-     фоне был бы нечитаем. */
-  .tword.speaking{ color: #0B7551; }
+  .tword.speaking{ color: #05452F; -webkit-text-stroke: 0.45px currentColor;
+    background-color: rgba(11,117,81,.17); box-shadow: 0 0 0 2px rgba(11,117,81,.17); }
+  /* Пока над словом живёт двойник — оригинал прозрачен, иначе буквы двоятся. */
+  .tword.ghost{ color: transparent !important; -webkit-text-stroke-color: transparent !important; }
+  .word-pop{ position:absolute; z-index:3; pointer-events:none; white-space:nowrap; direction:rtl;
+    visibility:hidden; color:#05452F; transform-origin:50% 62%; will-change:transform; }
   .tword.selected{ background: var(--accent); color: #fff; }
   /* .tword.seen и .tword.saved — визуал выключен по отзыву владельца
      (2026-09-29): слишком много разноцветных подчёркиваний одновременно
@@ -704,7 +706,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.98.0</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.0</div>
   </div>
 </div>
 
@@ -4681,19 +4683,87 @@ function updateTransportUI(cur, dur){
   updateScrubSegments(ratio);
 }
 
+// ---- подсветка озвучиваемого слова ----
+// Набор, выбранный владельцем в интерактивном демо (2026-10-02): плотный
+// изумруд + мягкая плашка + лёгкое «подпрыгивание» (+8% на входе, оседает на
+// +6%). Плашка и цвет — CSS (.tword.speaking). Подпрыгивание — слой-двойник
+// (.word-pop) поверх слова: transform на inline-слове не работает, а перевод
+// слова в inline-block сдвигает переносы строк. Пока двойник жив, оригинал
+// прозрачен (.ghost), иначе из-под растущего двойника проглядывают контуры
+// оригинала и буквы «двоятся»; на оригинале НЕТ перехода color (цвет ведёт
+// двойник), а плашка и тень гаснут плавно — иначе при возврате слова
+// мелькает (оба случая пойманы в демо, см. CHANGELOG v1.99.0).
+const POP_PEAK = 1.08, POP_SETTLE = 1.06;
+const SPEAK_COLOR = '#05452F', SPEAK_STROKE = '0.45px';
+const popLayers = [document.createElement('div'), document.createElement('div')];
+popLayers.forEach(d => { d.className = 'word-pop'; });
+let popTurn = 0;
 let prevSpeakingEl = null;
+
+function popEnabledFor(el){
+  // Слова с вложенной разметкой (режим fade: подсказка внутри слова) и
+  // reduced-motion — без двойника, только цвет и плашка.
+  return !!(el.animate && !el.firstElementChild &&
+            !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches));
+}
+function popRestColor(el){
+  const cs = getComputedStyle(document.documentElement);
+  return el.classList.contains('wp-name') ? cs.getPropertyValue('--gold').trim() : cs.getPropertyValue('--ink').trim();
+}
+function popGlyphRect(el){
+  const n = el.firstChild, len = n.textContent.replace(/ +$/, '').length;
+  const r = document.createRange(); r.setStart(n, 0); r.setEnd(n, len);
+  return r.getBoundingClientRect();
+}
+// мгновенно убрать двойник и вернуть оригинал
+function killPop(d){
+  d.getAnimations().forEach(a => a.cancel());
+  d.style.visibility = 'hidden';
+  if (d._el){ d._el.classList.remove('ghost'); d._el = null; }
+  d._on = false;
+}
+// выход: двойник плавно возвращается к 100% и цвету обычного текста, оригинал
+// прозрачен до самого конца — две буквы одновременно не видны
+function popOut(d){
+  if (!d._on) return;
+  d._on = false;
+  const rc = d._el ? popRestColor(d._el) : '';
+  const a = d.animate([
+    {transform:`scale(${POP_SETTLE})`, color:SPEAK_COLOR, webkitTextStrokeWidth:SPEAK_STROKE},
+    {transform:'scale(1)', color:rc, webkitTextStrokeWidth:'0px'}
+  ], {duration:240, easing:'ease-out', fill:'forwards'});
+  a.onfinish = () => { if (!d._on) killPop(d); };
+}
+function popIn(el){
+  const d = popLayers[popTurn = 1 - popTurn];
+  killPop(d);
+  const host = el.closest('.flow-scene-layer') || el.closest('.paragraph');
+  if (!host) return;
+  if (d.parentElement !== host) host.appendChild(d);
+  const hr = host.getBoundingClientRect(), g = popGlyphRect(el);
+  d.textContent = el.textContent.replace(/ +$/, '');
+  d.style.left = (g.left - hr.left) + 'px'; d.style.top = (g.top - hr.top) + 'px';
+  d.style.width = g.width + 'px'; d.style.height = g.height + 'px'; d.style.lineHeight = g.height + 'px';
+  d._el = el; d._on = true;
+  el.classList.add('ghost');
+  d.style.visibility = 'visible';
+  d.animate([
+    {transform:'scale(1)', color:popRestColor(el), webkitTextStrokeWidth:'0px'},
+    {transform:`scale(${POP_PEAK})`, offset:.4, color:SPEAK_COLOR, webkitTextStrokeWidth:SPEAK_STROKE},
+    {transform:`scale(${POP_SETTLE})`, color:SPEAK_COLOR, webkitTextStrokeWidth:SPEAK_STROKE}
+  ], {duration:260, easing:'cubic-bezier(.25,.8,.3,1)', fill:'forwards'});
+}
 
 // Снимает подсветку с текущего слова — при смене/перезапуске предложения,
 // чтобы цвет не "висел" на слове, которое уже не озвучивается.
 function hideHighlightBar(){
   if (prevSpeakingEl){ prevSpeakingEl.classList.remove('speaking'); prevSpeakingEl = null; }
+  popOut(popLayers[popTurn]);
 }
 
 // Общая точка подсветки слова во время проигрывания — и для реального
 // тайминга (highlightWordAtTime), и для оценочного таймера без разметки
 // (startFakeTimerForSentence), чтобы оба пути вели себя одинаково.
-// Подсветка — только цвет текста (.speaking), "перетекание" даёт CSS-переход
-// color на .tword: старое слово гаснет, пока загорается следующее.
 function setSpeakingWord(sentence, idx){
   let el = null;
   if (idx != null && idx >= 0){
@@ -4702,8 +4772,11 @@ function setSpeakingWord(sentence, idx){
   }
   if (el === prevSpeakingEl) return;
   if (prevSpeakingEl) prevSpeakingEl.classList.remove('speaking');
+  popOut(popLayers[popTurn]);
   prevSpeakingEl = el;
-  if (el) el.classList.add('speaking');
+  if (!el) return;
+  el.classList.add('speaking');
+  if (popEnabledFor(el)) popIn(el);
 }
 
 function highlightWordAtTime(sentence, time){
