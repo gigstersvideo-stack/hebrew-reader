@@ -300,7 +300,13 @@
   .wp-root{ font-size:11px; color:#8A8474; margin-top:6px; }
   .wp-root-semantics{ font-size:11.5px; color:#C9BFA6; line-height:1.5; margin-top:4px; }
   .wp-binyan{ font-size:11px; color:#8A8474; line-height:1.5; margin-top:4px; font-style:italic; }
-  .wp-pealim-info{ font-size:12px; color:#C9BFA6; line-height:1.7; margin-top:6px; }
+  /* border-top/padding-top — та же граница-разделитель, что у .wp-link/.wp-ai-btn
+     (2026-10-02, по живому скриншоту): без своей границы блок Pealim визуально
+     "прилипал" к ссылке НАД собой — после того, как между ссылкой Milog и этим
+     блоком появилась ещё и ссылка на Академию иврита, стало читаться так, будто
+     текст Pealim — это превью содержимого Академии, хотя это два разных,
+     несвязанных источника. */
+  .wp-pealim-info{ font-size:12px; color:#C9BFA6; line-height:1.7; margin-top:8px; border-top:1px solid #4A473F; padding-top:8px; }
   .wp-pealim-info bdi{ font-family:'Frank Ruhl Libre', serif; font-size:14px; color:#fff; }
   .wp-pealim-loading{ opacity:.55; font-style:italic; }
   .wp-prep-note{ font-size:11.5px; color:#C9BFA6; line-height:1.5; margin:6px 0 8px; }
@@ -3895,7 +3901,7 @@ async function showPealimSnippet(hebrewWord, expectedPos, slotEl){
       slotEl.innerHTML = `<div class="wp-pealim-info wp-pealim-empty">Pealim: точного совпадения не нашлось — <a class="wp-link" href="${fallbackUrl}" target="_blank" rel="noopener" style="border:none; padding:0; margin:0; display:inline;">искать вручную ↗</a></div>`;
       return;
     }
-    slotEl.innerHTML = `<div class="wp-pealim-info">${parts.join('<br>')}<br>
+    slotEl.innerHTML = `<div class="wp-pealim-info"><b>Pealim:</b> ${parts.join('<br>')}<br>
       <a class="wp-link" href="${info.url}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">подробнее на Pealim ↗</a></div>`;
   }catch(err){
     console.warn('[ivrit-reader] Pealim snippet failed', err);
@@ -4547,7 +4553,7 @@ function refreshPopoverContent(w, wordEl){
     ${settings.detailed && binyanInfo ? `<div class="wp-binyan">${binyanInfo}</div>` : ''}
     <button class="wp-link wp-play-from" style="width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px;">▶ Слушать отсюда</button>
     ${milogWord ? `<a class="wp-link" href="${milogUrl}" target="_blank" rel="noopener">📖 примеры употребления на Milog ↗</a>` : ''}
-    <a class="wp-link" href="${academyUrl}" target="_blank" rel="noopener">🏛️ слово на сайте Академии иврита ↗</a>
+    <a class="wp-link" href="${academyUrl}" target="_blank" rel="noopener">🏛️ официальное значение — Академия иврита ↗</a>
     ${milogWord ? `<div class="wp-pealim-slot"></div>` : ''}
     <button class="wp-ai-btn">🎓 Разбор слова (ИИ-педагог)</button>
     <div class="wp-ai-slot"></div>
