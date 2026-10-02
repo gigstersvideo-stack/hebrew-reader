@@ -124,15 +124,7 @@
   .header-actions{ position:relative; display:flex; gap:8px; align-items:center; }
 
   main{ max-width: 720px; margin: 0 auto; padding: 32px 24px; }
-  /* position:relative — только чтобы быть стабильной системой координат для
-     .word-highlight-bar (см. positionHighlightBar в скрипте): .sentence
-     внутри display:inline и часто переносится по нескольким строкам сам
-     по себе (предложение не начинает новую строку), из-за этого его
-     offsetLeft/Top для потомков ненадёжны (не единый фрагмент). .paragraph
-     — обычный блок, у него один-единственный бокс, даже когда содержимое
-     внутри занимает много строк. Не трогает flow-scene: там свой слой
-     .flow-scene-layer с собственным position:relative. */
-  .paragraph{ position:relative; font-family:'Frank Ruhl Libre', serif; font-size: 25px; line-height: 2.05; color: var(--ink); margin-bottom: 8px; }
+  .paragraph{ font-family:'Frank Ruhl Libre', serif; font-size: 25px; line-height: 2.05; color: var(--ink); margin-bottom: 8px; }
 
   /* flow scenes: chair/robot/cat-style objects that push surrounding text
      out of the way instead of sitting in a collapsed illustration chip —
@@ -147,30 +139,19 @@
   .sentence{ position:relative; border-radius: 3px; transition: background .25s ease; }
   .sentence.playing{ background: var(--gold-soft); }
 
-  .tword{ cursor:pointer; border-radius: 3px; padding: 0 1px; position:relative; transition: background .15s ease, color .15s ease, box-shadow .15s ease; }
+  /* color .28s — отдельно от background/box-shadow (.15s): слово при озвучке
+     гаснет чуть дольше, чем загорается следующее, поэтому цвет "перетекает"
+     от слова к слову, а не мигает (владелец, 2026-10-02: подсветка только
+     цветом текста выглядит мягче и стильнее, чем плывущая подложка — её
+     убрали, см. CHANGELOG). */
+  .tword{ cursor:pointer; border-radius: 3px; padding: 0 1px; position:relative; transition: background .15s ease, color .28s ease-out, box-shadow .15s ease; }
   .tword:hover{ background: var(--accent-soft); }
-  /* .speaking — запасной вариант (сам фон на слове): используется только
-     внутри flow-scene (карвинг текста в иллюстрацию, там слова абсолютно
-     позиционированы относительно всего параграфа, а не .sentence — общий
-     плывущий бар туда не дотянется без риска сломать карвинг). Везде
-     остальное — .speaking-bar, только цвет текста, фон даёт
-     .word-highlight-bar ниже (см. setSpeakingWord в скрипте). */
-  .tword.speaking{ background: var(--accent); color: #fff; }
-  /* z-index: бар (1) ПОВЕРХ фона играющего предложения, слово (2) поверх бара.
-     Без этого бар рисовался ПОД кремовым фоном .sentence.playing (тот —
-     позиционированный и стоит позже бара в DOM), от "активного" слова
-     оставался один белый текст на кремовом — нечитаемо (живой скриншот с
-     iPhone, 2026-10-02; на десктопе в проверке этого не видно было, потому
-     что там сверялись только координаты, а не порядок наложения). */
-  .tword.speaking-bar{ color: #fff; z-index:2; }
+  /* Изумруд #0B7551: ~4.5:1 на кремовом фоне играющего предложения
+     (--gold-soft #F0E4CC) — читается, а от чёрного текста отличается по
+     цвету, не только по яркости. Фона нет — белый текст на таком светлом
+     фоне был бы нечитаем. */
+  .tword.speaking{ color: #0B7551; }
   .tword.selected{ background: var(--accent); color: #fff; }
-  .word-highlight-bar{
-    position:absolute; pointer-events:none; border-radius:3px; z-index:1;
-    background:var(--accent); opacity:0;
-    transition: left .11s cubic-bezier(.3,0,.2,1), top .11s cubic-bezier(.3,0,.2,1),
-                width .11s cubic-bezier(.3,0,.2,1), height .11s cubic-bezier(.3,0,.2,1),
-                opacity .14s ease;
-  }
   /* .tword.seen и .tword.saved — визуал выключен по отзыву владельца
      (2026-09-29): слишком много разноцветных подчёркиваний одновременно
      на странице, "превращается в мясо". Сам трекинг (.seen/.saved
@@ -194,7 +175,7 @@
   }
   .illustration-chip, .illustration-media, .illustration-caption, .illustration-collapse{ cursor:pointer; }
   body.nikud-off .wp-lemma{ letter-spacing: 0; }
-  .tword.wp-name:not(.speaking):not(.selected):not(.speaking-bar){ color: var(--gold); font-weight:500; }
+  .tword.wp-name:not(.speaking):not(.selected){ color: var(--gold); font-weight:500; }
   body.names-off .tword.wp-name{ color:inherit; font-weight:inherit; }
 
   /* ---- серии/главы: полоска навигации под верхним page-nav, карточка
@@ -723,7 +704,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.97.4</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.98.0</div>
   </div>
 </div>
 
@@ -4700,80 +4681,29 @@ function updateTransportUI(cur, dur){
   updateScrubSegments(ratio);
 }
 
-let highlightBarEl = null;
 let prevSpeakingEl = null;
 
+// Снимает подсветку с текущего слова — при смене/перезапуске предложения,
+// чтобы цвет не "висел" на слове, которое уже не озвучивается.
 function hideHighlightBar(){
-  if (highlightBarEl) highlightBarEl.style.opacity = '0';
-  if (prevSpeakingEl){ prevSpeakingEl.classList.remove('speaking', 'speaking-bar'); prevSpeakingEl = null; }
-}
-
-// Двигает один фоновый прямоугольник между словами вместо того, чтобы
-// гасить фон на старом слове и зажигать на новом — отсюда и "перетекание"
-// вместо прыжка (отзыв владельца, 2026-10-01).
-//
-// Привязка к .paragraph, а не к .sentence (поймано вживую при проверке в
-// браузере: бар уезжал на сотни пикселей от реального слова) — .sentence
-// это display:inline, и предложение само по себе может переноситься на
-// несколько строк (оно не начинает новую строку, просто течёт внутри
-// параграфа). offsetLeft/offsetTop для потомков многострочного inline-а
-// неустойчивы (там несколько "фрагментов" строки, единой системы
-// координат нет), поэтому используем getBoundingClientRect() — она дает
-// настоящие экранные координаты для любого элемента независимо от того,
-// сколько у его предка строчных фрагментов — и просто вычитаем координаты
-// .paragraph (обычный блок, один бокс даже при многострочном содержимом).
-// Разница координат не зависит от скролла страницы, т.к. оба прямоугольника
-// меряются в один и тот же момент.
-function positionHighlightBar(el, fresh){
-  const paragraphEl = el.closest('.paragraph');
-  if (!paragraphEl) return;
-  if (!highlightBarEl){
-    highlightBarEl = document.createElement('div');
-    highlightBarEl.className = 'word-highlight-bar';
-  }
-  if (highlightBarEl.parentElement !== paragraphEl){
-    paragraphEl.insertBefore(highlightBarEl, paragraphEl.firstChild);
-  }
-  const pRect = paragraphEl.getBoundingClientRect();
-  const wRect = el.getBoundingClientRect();
-  if (fresh) highlightBarEl.style.transition = 'none';
-  highlightBarEl.style.left = (wRect.left - pRect.left) + 'px';
-  highlightBarEl.style.top = (wRect.top - pRect.top) + 'px';
-  highlightBarEl.style.width = wRect.width + 'px';
-  highlightBarEl.style.height = wRect.height + 'px';
-  if (fresh){
-    highlightBarEl.offsetHeight; // форсируем применение без перехода, прежде чем включить его обратно
-    highlightBarEl.style.transition = '';
-  }
-  highlightBarEl.style.opacity = '1';
+  if (prevSpeakingEl){ prevSpeakingEl.classList.remove('speaking'); prevSpeakingEl = null; }
 }
 
 // Общая точка подсветки слова во время проигрывания — и для реального
 // тайминга (highlightWordAtTime), и для оценочного таймера без разметки
 // (startFakeTimerForSentence), чтобы оба пути вели себя одинаково.
+// Подсветка — только цвет текста (.speaking), "перетекание" даёт CSS-переход
+// color на .tword: старое слово гаснет, пока загорается следующее.
 function setSpeakingWord(sentence, idx){
   let el = null;
   if (idx != null && idx >= 0){
     el = document.querySelector(`.tword[data-sentence="${sentence.id}"][data-word="${idx}"]`);
     if (el === selectedWordEl) el = null;
   }
-  if (el === prevSpeakingEl){
-    if (el && el.style.position !== 'absolute') positionHighlightBar(el, false);
-    return;
-  }
-  if (prevSpeakingEl) prevSpeakingEl.classList.remove('speaking', 'speaking-bar');
-  if (!el){ hideHighlightBar(); prevSpeakingEl = null; return; }
+  if (el === prevSpeakingEl) return;
+  if (prevSpeakingEl) prevSpeakingEl.classList.remove('speaking');
   prevSpeakingEl = el;
-  // flow-scene карвинг абсолютно позиционирует слова относительно всего
-  // параграфа, не относительно .sentence — общий бар туда не дотянется,
-  // откатываемся на старый (мгновенный) фон прямо на слове.
-  if (el.style.position === 'absolute'){
-    el.classList.add('speaking');
-    if (highlightBarEl) highlightBarEl.style.opacity = '0';
-    return;
-  }
-  el.classList.add('speaking-bar');
-  positionHighlightBar(el, true);
+  if (el) el.classList.add('speaking');
 }
 
 function highlightWordAtTime(sentence, time){
