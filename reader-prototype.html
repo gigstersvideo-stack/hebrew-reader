@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.61.0
+  Hebrew Reader — v1.99.2
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -706,7 +706,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.1</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.2</div>
   </div>
 </div>
 
@@ -967,6 +967,43 @@
     link.href = "https://trainivrit.pages.dev/";
   }
 })();
+
+// Экранирование для всего, что вставляется в innerHTML. Данные книги считаются
+// недоверенными: book-data может прийти по чужой ссылке ?book=<url>, из импорта
+// «своей книги» или из облачного словаря — любое поле (fluent, literal, tr, pos,
+// caption...) способно нести <img onerror=...>, который выполнится в том же
+// origin, где лежат ключ Gemini и сессия Firebase. Поэтому правило: строка из
+// данных → только через esc(), адрес из данных → только через safeUrl().
+function esc(s) {
+  return s == null ? '' : String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+// Пропускает относительные пути (books/x/audio/s1.mp3), http(s) и data:image —
+// всё остальное (javascript:, data:text/html, vbscript:) превращается в ''.
+function safeUrl(u) {
+  const s = String(u == null ? '' : u).trim();
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(s)) return s;
+  return /^(https?:|data:image\/)/i.test(s) ? s : '';
+}
+// Inline-SVG из данных (иллюстрации демо-книги, coverSvg) вставляется как
+// разметка — через <img> нельзя, он теряет CSS-переменные темы. Поэтому
+// вычищаем всё исполняемое: <script>, <foreignObject>, on*-атрибуты и
+// javascript:-ссылки. Невалидный SVG превращается в ''.
+function sanitizeSvg(str) {
+  if (!str) return '';
+  let doc;
+  try { doc = new DOMParser().parseFromString(String(str), 'image/svg+xml'); } catch (e) { return ''; }
+  const root = doc.documentElement;
+  if (!root || root.nodeName.toLowerCase() !== 'svg' || doc.getElementsByTagName('parsererror').length) return '';
+  root.querySelectorAll('script, foreignObject, iframe, object, embed').forEach(n => n.remove());
+  [root, ...root.querySelectorAll('*')].forEach(el => {
+    for (const a of Array.from(el.attributes)) {
+      const name = a.name.toLowerCase();
+      if (name.startsWith('on')) el.removeAttribute(a.name);
+      else if ((name === 'href' || name === 'xlink:href') && !safeUrl(a.value)) el.removeAttribute(a.name);
+    }
+  });
+  return new XMLSerializer().serializeToString(root);
+}
 
 // Открытие книги (initReader) может случиться несколько раз за сессию
 // (демо -> своя книга -> обратно), а каждый вызов создаёт свой <audio>
@@ -1266,8 +1303,8 @@ function commitGlobalReview(item, quality){
       <div class="train-card" id="reviewFlipCard">
         ${vocabHeadHtml(w)}
         <div class="train-hint" id="reviewFlipHint">нажми, чтобы увидеть перевод</div>
-        <div class="train-answer" id="reviewAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos}${w.root && w.root !== '—' ? ' · ' + w.root : ''})</span>${prepParadigmTable(w, 'train-prep-table')}</div>
-        ${bookLabel ? `<div style="font-size:11px; color:var(--ink-soft); margin-top:4px;">${bookLabel}</div>` : ''}
+        <div class="train-answer" id="reviewAnswer">${esc(w.tr)} <span style="color:var(--ink-soft)">(${esc(w.pos)}${w.root && w.root !== '—' ? ' · ' + esc(w.root) : ''})</span>${prepParadigmTable(w, 'train-prep-table')}</div>
+        ${bookLabel ? `<div style="font-size:11px; color:var(--ink-soft); margin-top:4px;">${esc(bookLabel)}</div>` : ''}
       </div>
       <div class="tts-notice" id="reviewTtsNotice" hidden style="font-size:12px; color:var(--ink-soft); margin-top:6px;"></div>
       <div class="train-btns review-btns" id="reviewBtns" style="display:none;">
@@ -1324,8 +1361,8 @@ function vocabFormDiffers(e) {
 }
 function vocabHeadHtml(e) {
   const head = e.form || e.lemma;
-  return `<div class="train-lemma">${head}</div>` +
-    (vocabFormDiffers(e) ? `<div class="train-base">начальная форма: <span class="he">${e.lemma}</span></div>` : '');
+  return `<div class="train-lemma">${esc(head)}</div>` +
+    (vocabFormDiffers(e) ? `<div class="train-base">начальная форма: <span class="he">${esc(e.lemma)}</span></div>` : '');
 }
 
 // ---- word-review audio ----
@@ -2229,12 +2266,12 @@ function buildIllustration(item, sentenceId, container){
   // SVG-линарт демо-книги показывается целиком в естественных пропорциях,
   // cover его бы просто обрезал криво
   const media = isSvg
-    ? `<div class="illustration-media svg-media">${item.svg}</div>`
-    : (imgSrc ? `<img class="illustration-media" src="${imgSrc}" alt="${item.caption || ''}">` : '');
+    ? `<div class="illustration-media svg-media">${sanitizeSvg(item.svg)}</div>`
+    : (imgSrc ? `<img class="illustration-media" src="${esc(safeUrl(imgSrc))}" alt="${esc(item.caption)}">` : '');
   const thumb = (isSvg || !imgSrc)
     ? `<div class="chip-thumb chip-fallback">🖼</div>`
-    : `<img class="chip-thumb" src="${imgSrc}" alt="">`;
-  const chipLabel = item.word ? `${item.word} — показать иллюстрацию` : 'Показать иллюстрацию';
+    : `<img class="chip-thumb" src="${esc(safeUrl(imgSrc))}" alt="">`;
+  const chipLabel = item.word ? `${esc(item.word)} — показать иллюстрацию` : 'Показать иллюстрацию';
 
   // свёрнуто в чип по умолчанию — не разрывает чтение и не занимает места,
   // пока не интересно; подпись со словом и блок мнемоники (часть "режима
@@ -2243,8 +2280,8 @@ function buildIllustration(item, sentenceId, container){
     <div class="illustration-chip">${thumb}<span>${chipLabel}</span></div>
     <div class="illustration-expanded">
       ${media}
-      ${showMnemonic ? `<div class="illustration-caption">${item.caption}<div class="cap-tr">${item.capTr}</div></div>` : ''}
-      ${showMnemonic && item.mnemonic ? `<div class="mnemonic-box"><b>Мнемоника «${item.word}» — ${item.tr}:</b> ${item.mnemonic}</div>` : ''}
+      ${showMnemonic ? `<div class="illustration-caption">${esc(item.caption)}<div class="cap-tr">${esc(item.capTr)}</div></div>` : ''}
+      ${showMnemonic && item.mnemonic ? `<div class="mnemonic-box"><b>Мнемоника «${esc(item.word)}» — ${esc(item.tr)}:</b> ${esc(item.mnemonic)}</div>` : ''}
       <div class="illustration-collapse">✕ Свернуть</div>
     </div>
   `;
@@ -2748,8 +2785,8 @@ function renderSentence(s, container, suppressIllustration){
   const trBlock = document.createElement('div');
   trBlock.className = 'sentence-tr';
   trBlock.innerHTML = `
-    <div class="tr-row"><span class="tr-label">Дословно</span><span class="tr-value literal">${s.literal}</span></div>
-    <div class="tr-row"><span class="tr-label">Перевод</span><span class="tr-value">${s.fluent}</span></div>
+    <div class="tr-row"><span class="tr-label">Дословно</span><span class="tr-value literal">${esc(s.literal)}</span></div>
+    <div class="tr-row"><span class="tr-label">Перевод</span><span class="tr-value">${esc(s.fluent)}</span></div>
   `;
   // "+ В тренажёр" живёт здесь, а не рядом с א в самом тексте (было — см.
   // отзыв владельца 2026-09-29: рядом с иероглифом захламляло текст и
@@ -2871,7 +2908,7 @@ document.getElementById('editSaveBtn').addEventListener('click', () => {
   try{
     obj = JSON.parse(raw);
   }catch(e){
-    statusEl.innerHTML = `<div class="status err">JSON невалиден: ${e.message}</div>`;
+    statusEl.innerHTML = `<div class="status err">JSON невалиден: ${esc(e.message)}</div>`;
     return;
   }
   if (!obj.id || !Array.isArray(obj.words)){
@@ -2885,7 +2922,7 @@ document.getElementById('editSaveBtn').addEventListener('click', () => {
       localStorage.setItem('hebrew-reader-bookdata:' + bookId, JSON.stringify(data));
       statusEl.innerHTML = `<div class="status ok">✅ Сохранено в браузере.</div>`;
     }catch(err){
-      statusEl.innerHTML = `<div class="status err">Не удалось сохранить: ${err.message}</div>`;
+      statusEl.innerHTML = `<div class="status err">Не удалось сохранить: ${esc(err.message)}</div>`;
     }
   } else {
     hasUnsavedEdits = true;
@@ -2936,7 +2973,7 @@ function renderPage(pageIndex){
     endBox.className = 'chapter-end';
     if (next && next.ready){
       endBox.innerHTML = `<div class="chapter-end-title">Глава ${meta.chapterNum} дописана.</div>
-        <button class="pill-btn" id="chapterEndNextBtn">Читать главу ${next.num}: ${next.title} →</button>`;
+        <button class="pill-btn" id="chapterEndNextBtn">Читать главу ${next.num}: ${esc(next.title)} →</button>`;
       reader.appendChild(endBox);
       document.getElementById('chapterEndNextBtn').addEventListener('click', () => {
         const e = (window.readerManifest || []).find(x => x.id === next.id);
@@ -3120,8 +3157,8 @@ function renderMineList(){
   }
   list.innerHTML = entries.map(e => `
     <div class="drawer-item">
-      <div><div class="dlemma">${e.form || e.lemma}</div><div class="dtr">${e.pos} · ${e.tr}${vocabFormDiffers(e) ? ` · нач. форма ${e.lemma}` : ''}</div></div>
-      <button class="drawer-remove" data-lemma="${e.lemma}">убрать</button>
+      <div><div class="dlemma">${esc(e.form || e.lemma)}</div><div class="dtr">${esc(e.pos)} · ${esc(e.tr)}${vocabFormDiffers(e) ? ` · нач. форма ${esc(e.lemma)}` : ''}</div></div>
+      <button class="drawer-remove" data-lemma="${esc(e.lemma)}">убрать</button>
     </div>`).join('');
   list.querySelectorAll('.drawer-remove').forEach(btn => {
     btn.addEventListener('click', (e) => { deleteVocabEntry(e.target.dataset.lemma); refreshVocabUI(); });
@@ -3139,10 +3176,10 @@ function renderFreqList(){
     <div class="freq-row">
       <div class="freq-left">
         <span class="freq-rank">${i+1}</span>
-        <span class="freq-lemma">${w.lemma}</span>
+        <span class="freq-lemma">${esc(w.lemma)}</span>
         <span class="freq-count">${w.count}×</span>
       </div>
-      <span class="freq-star ${vocabCache[w.lemma] ? 'on' : ''}" data-lemma="${w.lemma}">★</span>
+      <span class="freq-star ${vocabCache[w.lemma] ? 'on' : ''}" data-lemma="${esc(w.lemma)}">★</span>
     </div>`).join('');
   el.querySelectorAll('.freq-star').forEach(star => {
     star.addEventListener('click', () => {
@@ -3345,7 +3382,7 @@ function renderTrainCard(){
     <div class="train-card" id="flipCard">
       ${vocabHeadHtml(w)}
       <div class="train-hint" id="flipHint">нажми, чтобы увидеть перевод</div>
-      <div class="train-answer" id="trainAnswer">${w.tr} <span style="color:var(--ink-soft)">(${w.pos})</span>${prepParadigmTable(w, 'train-prep-table')}</div>
+      <div class="train-answer" id="trainAnswer">${esc(w.tr)} <span style="color:var(--ink-soft)">(${esc(w.pos)})</span>${prepParadigmTable(w, 'train-prep-table')}</div>
     </div>
     <div class="tts-notice" id="trainTtsNotice" hidden style="font-size:12px; color:var(--ink-soft); margin-top:6px;"></div>
     <div class="train-btns review-btns" id="trainBtns" style="display:none;">
@@ -3531,7 +3568,7 @@ function showPopover(e, w, wordEl){
   }
 
   if (w.root && w.root !== '—'){
-    document.querySelectorAll(`.tword[data-root="${w.root}"]`).forEach(el => {
+    document.querySelectorAll(`.tword[data-root="${CSS.escape(w.root)}"]`).forEach(el => {
       if (el !== wordEl) el.classList.add('root-match');
     });
   }
@@ -3891,7 +3928,7 @@ async function showPealimSnippet(hebrewWord, expectedPos, slotEl){
       return;
     }
     slotEl.innerHTML = `<div class="wp-pealim-info"><b>Pealim:</b> ${parts.join('<br>')}<br>
-      <a class="wp-link" href="${info.url}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">подробнее на Pealim ↗</a></div>`;
+      <a class="wp-link" href="${esc(safeUrl(info.url))}" target="_blank" rel="noopener" style="border-top:none; padding-top:4px; margin-top:4px;">подробнее на Pealim ↗</a></div>`;
   }catch(err){
     console.warn('[ivrit-reader] Pealim snippet failed', err);
     if (slotEl.isConnected){
@@ -4531,13 +4568,13 @@ function refreshPopoverContent(w, wordEl){
   const binyanInfo = isVerb ? findBinyanInfo(w.extra) : null;
   const suggestAdd = shouldSuggestWordAdd(w);
   popoverEl.innerHTML = `
-    <div class="wp-top"><div class="wp-lemma">${lemmaText}</div><div class="wp-star ${isSaved ? 'on' : ''}">★</div></div>
-    ${settings.detailed ? `<div class="wp-pos">${w.pos}</div>` : ''}
-    <div class="wp-main">${w.tr}</div>
+    <div class="wp-top"><div class="wp-lemma">${esc(lemmaText)}</div><div class="wp-star ${isSaved ? 'on' : ''}">★</div></div>
+    ${settings.detailed ? `<div class="wp-pos">${esc(w.pos)}</div>` : ''}
+    <div class="wp-main">${esc(w.tr)}</div>
     ${suggestAdd ? `<button class="wp-suggest-add">➕ Вы часто открываете это слово — добавить в повторение и в тренажёр (все предложения книги с ним)?</button>` : ''}
     ${prepTableHtml}
-    ${settings.detailed && w.extra ? `<div class="wp-extra">${w.extra}</div>` : ''}
-    ${settings.detailed && w.root && w.root !== '—' ? `<div class="wp-root">корень: ${w.root}</div>` : ''}
+    ${settings.detailed && w.extra ? `<div class="wp-extra">${esc(w.extra)}</div>` : ''}
+    ${settings.detailed && w.root && w.root !== '—' ? `<div class="wp-root">корень: ${esc(w.root)}</div>` : ''}
     ${settings.detailed && rootInfo ? `<div class="wp-root-semantics">${rootInfo}</div>` : ''}
     ${settings.detailed && binyanInfo ? `<div class="wp-binyan">${binyanInfo}</div>` : ''}
     <button class="wp-link wp-play-from" style="width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px;">▶ Слушать отсюда</button>
@@ -5090,15 +5127,15 @@ async function renderFeedbackReview() {
   list.innerHTML = items.map(it => `
     <div class="fb-review-item ${it.status === 'new' ? 'is-new' : ''}">
       <div class="fb-review-meta">
-        <span class="fb-review-badge ${it.type}">${it.type === 'bug' ? 'Баг' : 'Предложение'}</span>
+        <span class="fb-review-badge ${it.type === 'bug' ? 'bug' : 'suggestion'}">${it.type === 'bug' ? 'Баг' : 'Предложение'}</span>
         <span>${escapeHtmlLite(it.app || '?')}</span>
         <span>${it.createdAt ? new Date(it.createdAt).toLocaleString('ru-RU') : ''}</span>
       </div>
       <div class="fb-review-text">${escapeHtmlLite(it.text || '')}</div>
       ${it.context ? `<div class="fb-review-meta" style="margin-top:-2px;">📍 ${escapeHtmlLite(formatFeedbackContext(it.context))}</div>` : ''}
       <div class="fb-review-actions">
-        ${it.status === 'new' ? `<button class="pill-btn ghost fb-mark-reviewed" data-id="${it.id}">Просмотрено</button>` : ''}
-        <button class="pill-btn ghost fb-delete" data-id="${it.id}">Удалить</button>
+        ${it.status === 'new' ? `<button class="pill-btn ghost fb-mark-reviewed" data-id="${esc(it.id)}">Просмотрено</button>` : ''}
+        <button class="pill-btn ghost fb-delete" data-id="${esc(it.id)}">Удалить</button>
       </div>
     </div>`).join('');
   list.querySelectorAll('.fb-mark-reviewed').forEach(btn => btn.addEventListener('click', async () => {
@@ -5789,8 +5826,8 @@ function openChaptersDrawer(seriesEntry){
   list.innerHTML = chapters.map(ch => {
     const p = ch.ready ? getBookProgress(ch.id) : { opened:false, completed:false };
     const tag = !ch.ready ? 'скоро' : (p.completed ? '✓ прочитано' : (p.opened ? 'продолжить' : ''));
-    return `<div class="chapter-list-row ${ch.ready ? '' : 'not-ready'}" data-id="${ch.id}">
-      <span class="cl-num">${ch.num}</span><span class="cl-title">${ch.title}</span>
+    return `<div class="chapter-list-row ${ch.ready ? '' : 'not-ready'}" data-id="${esc(ch.id)}">
+      <span class="cl-num">${ch.num}</span><span class="cl-title">${esc(ch.title)}</span>
       ${tag ? `<span class="cl-tag">${tag}</span>` : ''}
     </div>`;
   }).join('');
@@ -5838,7 +5875,7 @@ function renderLibrary(manifest){
     // Растровая обложка (covers/<id>.webp, см. build_covers.py) главнее старого
     // SVG; SVG остаётся запасным — если файл не загрузился, подставляется он.
     if (entry.cover){
-      spineContent = `<img class="cover-img" src="${entry.cover}" alt="" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block;">`;
+      spineContent = `<img class="cover-img" src="${esc(safeUrl(entry.cover))}" alt="" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block;">`;
       spineStyle += ' padding:0; overflow:hidden;';
     } else if (entry.coverSvg){
       spineContent = entry.coverSvg;
@@ -5852,7 +5889,7 @@ function renderLibrary(manifest){
     // itself isn't in scope yet this early (it's declared inside
     // initReader(), which hasn't run until a book is first opened).
     const levelBadge = entry.level
-      ? `<div class="book-level-badge">${entry.level} · ${LEVEL_LABELS[entry.level] || ''}</div>`
+      ? `<div class="book-level-badge">${esc(entry.level)} · ${LEVEL_LABELS[entry.level] || ''}</div>`
       : '';
     const completedBadge = progress.completed ? `<div class="book-completed-badge">✓ Прочитано</div>` : '';
     const progressNote = !progress.completed && progress.opened
@@ -5871,8 +5908,8 @@ function renderLibrary(manifest){
       <div class="${spineClass}" style="${spineStyle}">${spineContent}</div>
       <div class="book-card-body">
         ${lastNote}
-        <div class="book-card-title">${entry.title || entry.id}</div>
-        <div class="book-card-sub">${entry.sub || ''}</div>
+        <div class="book-card-title">${esc(entry.title || entry.id)}</div>
+        <div class="book-card-sub">${esc(entry.sub)}</div>
         ${progressNote}
         ${popularNote}
         ${seriesNote}
@@ -5882,7 +5919,7 @@ function renderLibrary(manifest){
       const coverImg = card.querySelector('img.cover-img');
       if (coverImg) coverImg.addEventListener('error', () => {
         const spine = coverImg.parentElement;
-        spine.innerHTML = entry.coverSvg;
+        spine.innerHTML = sanitizeSvg(entry.coverSvg);
         spine.classList.add('has-cover-svg');
         spine.style.padding = '';
       }, { once: true });
@@ -6024,14 +6061,14 @@ function setupImportModal(manifest){
     const result = validateBookData(raw);
     if (result.valid){
       pendingImportData = result.json;
-      statusEl.innerHTML = `<div class="status ok">✅ Валидно: ${result.count} предложений. Первое: «${result.firstText.slice(0,60)}${result.firstText.length>60?'…':''}»</div>`;
+      statusEl.innerHTML = `<div class="status ok">✅ Валидно: ${result.count} предложений. Первое: «${esc(result.firstText.slice(0,60))}${result.firstText.length>60?'…':''}»</div>`;
       saveBtn.disabled = false;
       saveBtn.style.opacity = '1';
       const titleInput = document.getElementById('importTitle');
       if (result.title && !titleInput.value.trim()) titleInput.value = result.title;
     } else {
       pendingImportData = null;
-      statusEl.innerHTML = `<div class="status err">⚠️ ${result.error}</div>`;
+      statusEl.innerHTML = `<div class="status err">⚠️ ${esc(result.error)}</div>`;
       saveBtn.disabled = true;
       saveBtn.style.opacity = '.5';
     }
@@ -6052,7 +6089,7 @@ function setupImportModal(manifest){
     try{
       localStorage.setItem('hebrew-reader-bookdata:' + id, JSON.stringify(pendingImportData));
     }catch(err){
-      statusEl.innerHTML = `<div class="status err">Не удалось сохранить: ${err.message} (возможно, книга слишком большая для localStorage — попробуй разбить на главы поменьше).</div>`;
+      statusEl.innerHTML = `<div class="status err">Не удалось сохранить: ${esc(err.message)} (возможно, книга слишком большая для localStorage — попробуй разбить на главы поменьше).</div>`;
       return;
     }
     const entry = { id, title, sub: pendingImportData.sentences.length + ' предложений', source: 'local', spineColor: '#5C4A72' };
@@ -6088,8 +6125,8 @@ function renderLocalBooksList(manifest){
   }
   listEl.innerHTML = local.map(e => `
     <div class="drawer-item">
-      <div><div class="dtr" style="font-size:13px; color:var(--ink);">${e.title}</div><div class="dtr">${e.sub}</div></div>
-      <button class="drawer-remove" data-id="${e.id}">удалить</button>
+      <div><div class="dtr" style="font-size:13px; color:var(--ink);">${esc(e.title)}</div><div class="dtr">${esc(e.sub)}</div></div>
+      <button class="drawer-remove" data-id="${esc(e.id)}">удалить</button>
     </div>
   `).join('');
   listEl.querySelectorAll('.drawer-remove').forEach(btn => {
