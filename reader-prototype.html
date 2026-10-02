@@ -156,10 +156,16 @@
      остальное — .speaking-bar, только цвет текста, фон даёт
      .word-highlight-bar ниже (см. setSpeakingWord в скрипте). */
   .tword.speaking{ background: var(--accent); color: #fff; }
-  .tword.speaking-bar{ color: #fff; }
+  /* z-index: бар (1) ПОВЕРХ фона играющего предложения, слово (2) поверх бара.
+     Без этого бар рисовался ПОД кремовым фоном .sentence.playing (тот —
+     позиционированный и стоит позже бара в DOM), от "активного" слова
+     оставался один белый текст на кремовом — нечитаемо (живой скриншот с
+     iPhone, 2026-10-02; на десктопе в проверке этого не видно было, потому
+     что там сверялись только координаты, а не порядок наложения). */
+  .tword.speaking-bar{ color: #fff; z-index:2; }
   .tword.selected{ background: var(--accent); color: #fff; }
   .word-highlight-bar{
-    position:absolute; pointer-events:none; border-radius:3px;
+    position:absolute; pointer-events:none; border-radius:3px; z-index:1;
     background:var(--accent); opacity:0;
     transition: left .11s cubic-bezier(.3,0,.2,1), top .11s cubic-bezier(.3,0,.2,1),
                 width .11s cubic-bezier(.3,0,.2,1), height .11s cubic-bezier(.3,0,.2,1),
