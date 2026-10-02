@@ -115,7 +115,15 @@ function fakeEl(tag) {
     get classList() { return this._classList || (this._classList = fakeClassList(this)); },
     get className() { return Array.from(this.classList._set).join(' '); },
     set className(v) { this.classList._set.clear(); String(v).split(/\s+/).filter(Boolean).forEach(c => this.classList.add(c)); },
-    addEventListener: (type, handler) => { (listeners[type] || (listeners[type] = [])).push(handler); },
+    // Как в браузере: { signal } снимает обработчик при abort() — на этом
+    // держится защита от «обработчиков прошлой книги» в initReader.
+    addEventListener: (type, handler, opts) => {
+      if (opts && opts.signal && opts.signal.aborted) return;
+      (listeners[type] || (listeners[type] = [])).push(handler);
+      if (opts && opts.signal) opts.signal.addEventListener('abort', () => {
+        const arr = listeners[type] || []; const i = arr.indexOf(handler); if (i >= 0) arr.splice(i, 1);
+      });
+    },
     removeEventListener: () => {},
     dispatch(type, evt) { (listeners[type] || []).forEach(h => h(evt || { stopPropagation(){}, preventDefault(){}, target: this })); },
     click() { this.dispatch('click'); },
@@ -193,6 +201,7 @@ const sandbox = {
   window: {},
   console,
   Date, Math, Array, Object, JSON, Set, Number, String, Boolean, RegExp, Promise,
+  AbortController,
   URLSearchParams: URL ? require('url').URLSearchParams : undefined,
   CSS: { escape: (s) => String(s).replace(/[^a-zA-Z0-9_֐-׿-]/g, '\\$&') },
   fetch: () => Promise.resolve({ ok: false, json: async () => ({}) }),
@@ -517,6 +526,21 @@ function makeBook(id, n) {
   const savedB = JSON.parse(store['hebrew-reader-vocab:book-b:lo']);
   check('vocab review: rating a merged card updates BOTH underlying book copies', savedA.srs && savedB.srs && savedA.srs.due === savedB.srs.due);
   check('vocab review: the rating actually advanced the schedule (not just copied stale due)', savedA.srs.due > dueABefore);
+}
+
+// ---- 9. Обработчики прошлой книги (аудит 2026-10-02, G1 планки запуска):
+// initReader вешает обработчики на общие кнопки листалки; без снятия при
+// открытии книги B нажатие «следующая страница» срабатывало и в замыкании
+// книги A — переписывало её сохранённую позицию.
+{
+  store = {};
+  allElements = [];
+  sandbox.initReader(makeBook('book-a', 45), 'book-a', { title: 'A' });
+  sandbox.initReader(makeBook('book-b', 45), 'book-b', { title: 'B' });
+  const posA = store['hebrew-reader-sentence:book-a'];
+  fakeDocument.getElementById('pageNext').click();
+  check('stale listeners: «следующая страница» в книге B не трогает позицию книги A', store['hebrew-reader-sentence:book-a'] === posA);
+  check('stale listeners: «следующая страница» в книге B двигает книгу B на стр. 2', store['hebrew-reader-sentence:book-b'] === '20');
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);

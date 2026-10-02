@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.2
+  Hebrew Reader — v1.99.3
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -706,7 +706,7 @@
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.2</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.3</div>
   </div>
 </div>
 
@@ -2182,6 +2182,15 @@ function prepParadigmTable(w, cellClass) {
 }
 function initReader(data, bookId, meta) {
 activeReaderToken++;
+// Все обработчики, которые эта книга вешает на общие (живущие всю сессию)
+// элементы — кнопки плеера, листалки, настройки, document — снимаются
+// разом при открытии следующей книги. Без этого замыкание прошлой книги
+// продолжало реагировать на «следующая страница»: писало её позицию в
+// localStorage/облако и перерисовывало #reader своими данными.
+if (window.__readerAbort) window.__readerAbort.abort();
+const readerAbort = new AbortController();
+window.__readerAbort = readerAbort;
+const readerListenerOpts = { signal: readerAbort.signal };
 const myReaderToken = activeReaderToken;
 currentBookCtx = {
   id: bookId,
@@ -2285,8 +2294,8 @@ function buildIllustration(item, sentenceId, container){
       <div class="illustration-collapse">✕ Свернуть</div>
     </div>
   `;
-  wrap.querySelector('.illustration-chip').addEventListener('click', () => wrap.classList.add('open'));
-  wrap.querySelector('.illustration-collapse').addEventListener('click', () => wrap.classList.remove('open'));
+  wrap.querySelector('.illustration-chip').addEventListener('click', () => wrap.classList.add('open'), readerListenerOpts);
+  wrap.querySelector('.illustration-collapse').addEventListener('click', () => wrap.classList.remove('open'), readerListenerOpts);
 
   // наведение на картинку/подпись подсвечивает то же слово в тексте
   // предложения — чтобы можно было сопоставить иллюстрацию со словом
@@ -2297,8 +2306,8 @@ function buildIllustration(item, sentenceId, container){
     const on = () => targetWord.classList.add('illustration-hover');
     const off = () => targetWord.classList.remove('illustration-hover');
     wrap.querySelectorAll('.illustration-chip, .illustration-media, .illustration-caption').forEach(el => {
-      el.addEventListener('mouseenter', on);
-      el.addEventListener('mouseleave', off);
+      el.addEventListener('mouseenter', on, readerListenerOpts);
+      el.addEventListener('mouseleave', off, readerListenerOpts);
     });
   }
   return wrap;
@@ -2732,7 +2741,7 @@ function renderSentence(s, container, suppressIllustration){
   toggle.className = 'translate-toggle';
   toggle.textContent = 'א';
   toggle.title = 'תרגום המשפט';
-  toggle.addEventListener('click', (e) => { e.stopPropagation(); trBlock.classList.toggle('open'); });
+  toggle.addEventListener('click', (e) => { e.stopPropagation(); trBlock.classList.toggle('open'); }, readerListenerOpts);
   sSpan.appendChild(toggle);
 
   const canEditThisBook = (bookId.startsWith('local-') && settings.editMode) || (isOwner && settings.editModeBase);
@@ -2741,7 +2750,7 @@ function renderSentence(s, container, suppressIllustration){
     editIcon.className = 'translate-toggle edit-toggle';
     editIcon.textContent = '✎';
     editIcon.title = 'Править это предложение';
-    editIcon.addEventListener('click', (e) => { e.stopPropagation(); openSentenceEditor(s, sSpan); });
+    editIcon.addEventListener('click', (e) => { e.stopPropagation(); openSentenceEditor(s, sSpan); }, readerListenerOpts);
     sSpan.appendChild(editIcon);
   }
 
@@ -2776,7 +2785,7 @@ function renderSentence(s, container, suppressIllustration){
     }
     if (vocabCache[w.lemma]) wSpan.classList.add('saved');
     if (seenCache[w.lemma]) wSpan.classList.add('seen');
-    wSpan.addEventListener('click', (e) => { e.stopPropagation(); showPopover(e, w, wSpan); });
+    wSpan.addEventListener('click', (e) => { e.stopPropagation(); showPopover(e, w, wSpan); }, readerListenerOpts);
     sSpan.appendChild(wSpan);
   });
 
@@ -2823,7 +2832,7 @@ function renderSentence(s, container, suppressIllustration){
       if (window.cloudRemoveCustomCard) window.cloudRemoveCustomCard(source);
       icon.textContent = '+'; label.textContent = 'В тренажёр'; addToTrainerBtn.title = 'Добавить это предложение в тренажёр';
     }
-  });
+  }, readerListenerOpts);
   addRow.appendChild(addToTrainerBtn);
   trBlock.appendChild(addRow);
   container.appendChild(trBlock);
@@ -2851,9 +2860,9 @@ function closeSentenceEditor(){
   editingSentenceIdx = null;
 }
 
-document.getElementById('editClose').addEventListener('click', closeSentenceEditor);
-document.getElementById('editCancelBtn').addEventListener('click', closeSentenceEditor);
-document.getElementById('editBackdrop').addEventListener('click', closeSentenceEditor);
+document.getElementById('editClose').addEventListener('click', closeSentenceEditor, readerListenerOpts);
+document.getElementById('editCancelBtn').addEventListener('click', closeSentenceEditor, readerListenerOpts);
+document.getElementById('editBackdrop').addEventListener('click', closeSentenceEditor, readerListenerOpts);
 
 document.getElementById('editImageFile').addEventListener('change', async (e) => {
   const file = e.target.files[0];
@@ -2881,7 +2890,7 @@ document.getElementById('editImageFile').addEventListener('change', async (e) =>
   }catch(err){
     statusEl.textContent = 'Не удалось прочитать файл: ' + err.message;
   }
-});
+}, readerListenerOpts);
 
 document.getElementById('editRemoveImageBtn').addEventListener('click', () => {
   const ta = document.getElementById('editTextarea');
@@ -2899,7 +2908,7 @@ document.getElementById('editRemoveImageBtn').addEventListener('click', () => {
     statusEl.textContent = '⚠️ JSON в поле выше сейчас невалиден, не могу убрать автоматически — почини JSON и попробуй снова.';
   }
   document.getElementById('editImageFile').value = '';
-});
+}, readerListenerOpts);
 
 document.getElementById('editSaveBtn').addEventListener('click', () => {
   const statusEl = document.getElementById('editStatus');
@@ -2932,7 +2941,7 @@ document.getElementById('editSaveBtn').addEventListener('click', () => {
 
   renderPage(currentPage);
   setTimeout(closeSentenceEditor, 1200);
-});
+}, readerListenerOpts);
 
 function updateDownloadEditsButton(){
   const btn = document.getElementById('downloadEditsBtn');
@@ -2946,7 +2955,7 @@ document.getElementById('downloadEditsBtn').addEventListener('click', () => {
   a.download = bookId + '-edited.json';
   a.click();
   URL.revokeObjectURL(a.href);
-});
+}, readerListenerOpts);
 
 function renderPage(pageIndex){
   currentPage = Math.max(0, Math.min(totalPages - 1, pageIndex));
@@ -2978,7 +2987,7 @@ function renderPage(pageIndex){
       document.getElementById('chapterEndNextBtn').addEventListener('click', () => {
         const e = (window.readerManifest || []).find(x => x.id === next.id);
         if (e) { window.__readerNavigated = true; openBook(e, { nav: 'replace' }); }
-      });
+      }, readerListenerOpts);
     } else {
       endBox.innerHTML = `<div class="chapter-end-title">Глава ${meta.chapterNum} дописана.</div>
         <div class="chapter-end-note">Ждите новые главы — они выходят по мере готовности.</div>`;
@@ -3161,7 +3170,7 @@ function renderMineList(){
       <button class="drawer-remove" data-lemma="${esc(e.lemma)}">убрать</button>
     </div>`).join('');
   list.querySelectorAll('.drawer-remove').forEach(btn => {
-    btn.addEventListener('click', (e) => { deleteVocabEntry(e.target.dataset.lemma); refreshVocabUI(); });
+    btn.addEventListener('click', (e) => { deleteVocabEntry(e.target.dataset.lemma); refreshVocabUI(); }, readerListenerOpts);
   });
 }
 
@@ -3186,7 +3195,7 @@ function renderFreqList(){
       const lemma = star.dataset.lemma;
       const w = freqMap[lemma];
       toggleSaveWord(w, null);
-    });
+    }, readerListenerOpts);
   });
 }
 
@@ -3308,7 +3317,7 @@ document.querySelectorAll('.drawer-tab').forEach(tab => {
     tab.classList.add('active');
     document.getElementById('pane-' + tab.dataset.tab).classList.add('active');
     if (tab.dataset.tab === 'train') startTraining();
-  });
+  }, readerListenerOpts);
 });
 
 // ---- Anki export (tab-separated, front / back) ----
@@ -3323,7 +3332,7 @@ document.getElementById('exportBtn').addEventListener('click', () => {
   a.download = 'hebrew-vocab-anki.txt';
   a.click();
   URL.revokeObjectURL(a.href);
-});
+}, readerListenerOpts);
 // In Anki: File -> Import, choose this .txt, field separator = Tab, map field 1 -> Front, field 2 -> Back.
 
 // ---- training / flashcards ----
@@ -3371,7 +3380,7 @@ function renderTrainCard(){
       ? `<div class="train-summary">Готово! Разобрано слов: ${trainQueue.length}. <div style="margin-top:14px;"><button class="pill-btn" id="trainAgain">Пройти ещё раз</button></div></div>`
       : '<div class="train-empty">Сначала сохрани слово (★) при чтении — тогда здесь появится тренировка. Хватит и одного.</div>';
     const again = document.getElementById('trainAgain');
-    if (again) again.addEventListener('click', startTraining);
+    if (again) again.addEventListener('click', startTraining, readerListenerOpts);
     return;
   }
   const item = trainQueue[trainIndex];
@@ -3395,7 +3404,7 @@ function renderTrainCard(){
     document.getElementById('trainAnswer').classList.add('show');
     document.getElementById('flipHint').style.display = 'none';
     document.getElementById('trainBtns').style.display = 'flex';
-  });
+  }, readerListenerOpts);
   if (settings.autoPlayAudio) speakVocab(vocabSpeakText(w), document.getElementById('trainTtsNotice'));
   document.getElementById('trainBtns').querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -3403,7 +3412,7 @@ function renderTrainCard(){
       commitBookReview(item, Number(btn.dataset.q));
       trainIndex++;
       renderTrainCard();
-    });
+    }, readerListenerOpts);
   });
 }
 
@@ -3506,22 +3515,22 @@ document.getElementById('swEditBase').checked = settings.editModeBase;
 document.getElementById('swEditMode').checked = settings.editMode;
 if (isOwner) document.getElementById('ownerEditRow').style.display = '';
 
-document.getElementById('swNikud').addEventListener('change', (e) => { settings.nikud = e.target.checked; saveSettings(); applySettings(); renderPage(currentPage); });
-document.getElementById('swNames').addEventListener('change', (e) => { settings.names = e.target.checked; saveSettings(); applySettings(); });
-document.getElementById('swLiteral').addEventListener('change', (e) => { settings.literal = e.target.checked; saveSettings(); applySettings(); });
-document.getElementById('swShowTranslateToggle').addEventListener('change', (e) => { settings.showTranslateToggle = e.target.checked; saveSettings(); applySettings(); });
-document.getElementById('swDetailed').addEventListener('change', (e) => { settings.detailed = e.target.checked; saveSettings(); applySettings(); });
-document.getElementById('swAutoscroll').addEventListener('change', (e) => { settings.autoscroll = e.target.checked; saveSettings(); });
-document.getElementById('swMnemonic').addEventListener('change', (e) => { settings.mnemonic = e.target.checked; saveSettings(); renderPage(currentPage); });
-document.getElementById('swAutoPlayAudio').addEventListener('change', (e) => { settings.autoPlayAudio = e.target.checked; saveSettings(); });
+document.getElementById('swNikud').addEventListener('change', (e) => { settings.nikud = e.target.checked; saveSettings(); applySettings(); renderPage(currentPage); }, readerListenerOpts);
+document.getElementById('swNames').addEventListener('change', (e) => { settings.names = e.target.checked; saveSettings(); applySettings(); }, readerListenerOpts);
+document.getElementById('swLiteral').addEventListener('change', (e) => { settings.literal = e.target.checked; saveSettings(); applySettings(); }, readerListenerOpts);
+document.getElementById('swShowTranslateToggle').addEventListener('change', (e) => { settings.showTranslateToggle = e.target.checked; saveSettings(); applySettings(); }, readerListenerOpts);
+document.getElementById('swDetailed').addEventListener('change', (e) => { settings.detailed = e.target.checked; saveSettings(); applySettings(); }, readerListenerOpts);
+document.getElementById('swAutoscroll').addEventListener('change', (e) => { settings.autoscroll = e.target.checked; saveSettings(); }, readerListenerOpts);
+document.getElementById('swMnemonic').addEventListener('change', (e) => { settings.mnemonic = e.target.checked; saveSettings(); renderPage(currentPage); }, readerListenerOpts);
+document.getElementById('swAutoPlayAudio').addEventListener('change', (e) => { settings.autoPlayAudio = e.target.checked; saveSettings(); }, readerListenerOpts);
 document.getElementById('swSuggestAddToTrainer').addEventListener('change', (e) => {
   settings.suggestAddToTrainer = e.target.checked;
   settings.suggestAddToTrainerTouched = true; // manual choice — stop auto-enabling on sign-in from now on
   saveSettings();
   applySettings();
-});
-document.getElementById('swEditBase').addEventListener('change', (e) => { settings.editModeBase = e.target.checked; saveSettings(); renderPage(currentPage); });
-document.getElementById('swEditMode').addEventListener('change', (e) => { settings.editMode = e.target.checked; saveSettings(); renderPage(currentPage); });
+}, readerListenerOpts);
+document.getElementById('swEditBase').addEventListener('change', (e) => { settings.editModeBase = e.target.checked; saveSettings(); renderPage(currentPage); }, readerListenerOpts);
+document.getElementById('swEditMode').addEventListener('change', (e) => { settings.editMode = e.target.checked; saveSettings(); renderPage(currentPage); }, readerListenerOpts);
 
 // Свой ключ Gemini для AI-разбора слова — живёт в localStorage этого
 // браузера (не через saveSettings(), это отдельный документ), и, если
@@ -3540,7 +3549,7 @@ try{
     } else {
       localStorage.removeItem('hebrew-reader-ai-key');
     }
-  });
+  }, readerListenerOpts);
 }catch(err){ console.error('AI key input wiring failed', err); }
 
 // ---- word popover + root highlighting ----
@@ -4418,7 +4427,7 @@ function renderAiAnalysis(a, w){
         if (window.cloudRemoveCustomCard) window.cloudRemoveCustomCard(source);
         btn.textContent = '+'; btn.title = 'Добавить в тренажёр';
       }
-    });
+    }, readerListenerOpts);
   });
 }
 
@@ -4585,7 +4594,7 @@ function refreshPopoverContent(w, wordEl){
     <div class="wp-ai-slot"></div>
   `;
   const starEl = popoverEl.querySelector('.wp-star');
-  starEl.addEventListener('click', (e) => { e.stopPropagation(); toggleSaveWord(w, starEl, wordEl); });
+  starEl.addEventListener('click', (e) => { e.stopPropagation(); toggleSaveWord(w, starEl, wordEl); }, readerListenerOpts);
 
   const suggestBtn = popoverEl.querySelector('.wp-suggest-add');
   if (suggestBtn){
@@ -4593,7 +4602,7 @@ function refreshPopoverContent(w, wordEl){
       e.stopPropagation();
       acceptWordSuggestion(w, wordEl);
       refreshPopoverContent(w, wordEl);
-    });
+    }, readerListenerOpts);
   }
 
   if (milogWord){
@@ -4601,7 +4610,7 @@ function refreshPopoverContent(w, wordEl){
   }
 
   const aiBtn = popoverEl.querySelector('.wp-ai-btn');
-  aiBtn.addEventListener('click', (e) => { e.stopPropagation(); askAiAboutWord(w, wordEl, aiBtn); });
+  aiBtn.addEventListener('click', (e) => { e.stopPropagation(); askAiAboutWord(w, wordEl, aiBtn); }, readerListenerOpts);
 
   const playFromBtn = popoverEl.querySelector('.wp-play-from');
   if (playFromBtn && wordEl){
@@ -4613,7 +4622,7 @@ function refreshPopoverContent(w, wordEl){
         closePopover();
         goToSentence(idx, true);
       }
-    });
+    }, readerListenerOpts);
   }
 }
 
@@ -4627,7 +4636,7 @@ function closePopover(){
 }
 window.__closePopover = closePopover;
 
-document.addEventListener('click', (e) => { if (popoverEl && !popoverEl.contains(e.target)) closePopover(); });
+document.addEventListener('click', (e) => { if (popoverEl && !popoverEl.contains(e.target)) closePopover(); }, readerListenerOpts);
 
 // ---- real per-sentence playback engine: plays actual mp3 files
 // generated by 3_generate_audio.py when a sentence has one, otherwise
@@ -4646,8 +4655,8 @@ audioEl.preload = 'auto';
 document.body.appendChild(audioEl);
 audioEl.addEventListener('timeupdate', () => {
   updateTransportUI(audioEl.currentTime, audioEl.duration || 0);
-});
-audioEl.addEventListener('ended', onSentenceEnded);
+}, readerListenerOpts);
+audioEl.addEventListener('ended', onSentenceEnded, readerListenerOpts);
 
 // Подсветка слова считается ОТДЕЛЬНО от timeupdate — у timeupdate браузеры
 // сами ограничивают частоту примерно до 4 раз в секунду, а слова короткие
@@ -4691,7 +4700,7 @@ function renderScrubSegments(){
     seg.addEventListener('click', (e) => {
       e.stopPropagation();
       goToSentence(i, true);
-    });
+    }, readerListenerOpts);
     track.appendChild(seg);
   }
   updateScrubSegments(0);
@@ -4933,17 +4942,17 @@ document.getElementById('playBtn').addEventListener('click', (e) => {
     }
     updatePlayIcon();
   }
-});
+}, readerListenerOpts);
 document.getElementById('loopBtn').addEventListener('click', (e) => {
   e.stopPropagation();
   if (myReaderToken !== activeReaderToken) return;
   loopSentence = !loopSentence;
   document.getElementById('loopBtn').classList.toggle('on', loopSentence);
-});
+}, readerListenerOpts);
 document.getElementById('speedSelect').addEventListener('change', (e) => {
   speed = parseFloat(e.target.value);
   audioEl.playbackRate = speed;
-});
+}, readerListenerOpts);
   applySettings();
 
   // everything (vocab, settings, popover, playback) is declared by now -> safe to do the first paint
@@ -4963,16 +4972,16 @@ document.getElementById('speedSelect').addEventListener('change', (e) => {
   }
   document.getElementById('pagePrev').addEventListener('click', () => {
     if (currentPage > 0) goToSentence((currentPage - 1) * PAGE_SIZE, false);
-  });
+  }, readerListenerOpts);
   document.getElementById('pageNext').addEventListener('click', () => {
     if (currentPage < totalPages - 1) goToSentence((currentPage + 1) * PAGE_SIZE, false);
-  });
+  }, readerListenerOpts);
   document.getElementById('pagePrevBottom').addEventListener('click', () => {
     if (currentPage > 0) goToSentence((currentPage - 1) * PAGE_SIZE, false);
-  });
+  }, readerListenerOpts);
   document.getElementById('pageNextBottom').addEventListener('click', () => {
     if (currentPage < totalPages - 1) goToSentence((currentPage + 1) * PAGE_SIZE, false);
-  });
+  }, readerListenerOpts);
 }
 
 const LOCAL_BOOKS_INDEX_KEY = 'hebrew-reader-local-books';
