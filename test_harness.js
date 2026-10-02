@@ -374,12 +374,12 @@ function makeBook(id, n) {
   check('last read: exactly the last opened book carries the highlight', cards.filter(c => c.classList.contains('last-read')).length === 1 && lastCard && lastCard.innerHTML.includes('Mid'));
   check('last read: highlighted card has the "Последнее чтение" label', lastCard.innerHTML.includes('Последнее чтение'));
 
-  // Подпись «★ Самая популярная» — только пока человек ничего не выбрал
+  // Подпись «★ Хорошее начало для уровня» — только пока человек ничего не выбрал
   const win = sandbox.window || sandbox;
   win.readerPopularity = { books: { a1: { readers: 3, completed: 1 } } };
   const popMan = [{ id: 'a1', level: 'א', title: 'A1' }, { id: 'b1', level: 'ב', title: 'B1' }];
   const countPopular = () => fakeDocument.getElementById('bookGrid').children
-    .filter(c => c.classList.contains('book-card') && c.innerHTML.includes('Самая популярная')).length;
+    .filter(c => c.classList.contains('book-card') && c.innerHTML.includes('Хорошее начало')).length;
   store = {};
   allElements = [];
   sandbox.renderLibrary(popMan);

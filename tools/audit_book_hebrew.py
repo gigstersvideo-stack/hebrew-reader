@@ -132,6 +132,26 @@ def no_matres(s):
     return bare(s).replace("ו", "").replace("י", "")
 
 
+def tech_problems(word):
+    """Технический мусор в огласованном слове, который не зависит от Nakdan:
+    рафе (טֶלֶפֿוֹן), повтор одного знака на букве (מִישֵׁׁשׁ, שָָׁרְרָה),
+    две гласные под одной буквой, ש без точки шин/син в огласованном слове."""
+    out = []
+    w = heb_word(word)
+    if not NIQQUD.search(w):
+        return out
+    if "\u05BF" in w:
+        out.append("знак рафе")
+    for letter, marks in clusters(w):
+        if len(set(marks)) != len(marks):
+            out.append(f"повтор знака на {letter}")
+        if len(VOWELS.findall(marks)) > 1:
+            out.append(f"две гласные на {letter}")
+        if letter == "ש" and not re.search("[\u05C1\u05C2]", marks):
+            out.append("ש без точки шин/син")
+    return out
+
+
 # ---- Nakdan -------------------------------------------------------------
 
 class Nakdan:
@@ -271,7 +291,7 @@ def nakdan_groups(sents, nak, chunk_chars=1200):
 def check_book(path, nak, rel_root):
     data = json.load(open(path, encoding="utf-8"))
     sents = data.get("sentences", [])
-    f = {k: [] for k in ("niqqud", "lemma_prefix", "lemma_nakdan", "double", "script",
+    f = {k: [] for k in ("niqqud", "lemma_prefix", "lemma_nakdan", "double", "script", "tech",
                          "audio_missing", "timings", "empty", "align")}
     stats = {"sentences": len(sents), "words": 0, "nakdan_top": 0, "nakdan_alt": 0,
              "nakdan_male": 0, "nakdan_loose": 0, "nakdan_checked": 0}
@@ -295,6 +315,8 @@ def check_book(path, nak, rel_root):
                 # в extra законно пишут биньян на иврите (פָּעַל, нифъаль...)
                 if (HEB_LETTERS.search(v) and fld != "extra") or FOREIGN["арабица"].search(v) or FOREIGN["тайский"].search(v) or FOREIGN["CJK"].search(v):
                     f["script"].append((sid, i, fld, "не-русское", v))
+            for prob in tech_problems(w.get("t")):
+                f["tech"].append((sid, i, w.get("t"), prob))
             for fld in ("tr", "pos", "lemma"):
                 if not (w.get(fld) or "").strip():
                     f["empty"].append((sid, i, fld, w.get("t")))
@@ -381,6 +403,7 @@ def check_book(path, nak, rel_root):
 SECTIONS = [
     ("double", "Удвоенные слова (звучат в аудио дважды)",
      lambda x: f"{x[0]} · слово #{x[1]} `{x[2]}` — {x[3]}"),
+    ("tech", "Технический мусор в огласовке", lambda x: f"{x[0]} · #{x[1]} `{x[2]}` — {x[3]}"),
     ("script", "Чужие алфавиты", lambda x: f"{x[0]} · #{x[1]} · {x[2]} · {x[3]}: `{x[4]}`"),
     ("niqqud", "Огласовка расходится с Nakdan",
      lambda x: f"{x[0]} · #{x[1]} наше `{x[2]}` · Nakdan `{x[3]}`" + (f" (ещё: {', '.join(x[4])})" if x[4] else "") + f" — «{x[5]}»"),
@@ -393,7 +416,7 @@ SECTIONS = [
     ("empty", "Пустые поля", lambda x: f"{x[0]} · #{x[1]} {x[2]} пусто у `{x[3]}`"),
     ("align", "Не удалось сопоставить с Nakdan (проверить вручную)", lambda x: f"{x[0]} · {x[1]}"),
 ]
-BLOCKING = ("double", "script", "niqqud", "lemma_prefix", "audio_missing", "timings", "empty")
+BLOCKING = ("double", "script", "tech", "niqqud", "lemma_prefix", "audio_missing", "timings", "empty")
 
 
 def write_report(slug, f, stats, out_dir):

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.3
+  Hebrew Reader — v1.99.4
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -33,6 +33,7 @@
   :root{
     --bg: #EAE6DC; --ink: #211F1C; --ink-soft: #6B665C; --line: #D5CEBE;
     --accent: #37564D; --accent-soft: #DCE6E2; --gold: #A8813F; --gold-soft: #F0E4CC;
+    --gold-ink: #7A5C26; /* золото для мелкого ТЕКСТА: #A8813F на фоне даёт 2.9:1, это — 5.6:1 (WCAG AA) */
     --panel: #F8F6F0; --danger: #A3402F; --root-hl: #C9A24A;
   }
   *{box-sizing:border-box;}
@@ -48,7 +49,7 @@
     direction: ltr; border-bottom: 1px solid var(--line); flex-wrap: wrap; gap:12px;
   }
   .title-block{ direction: rtl; }
-  .kicker{ font-size:11px; letter-spacing: .1em; text-transform:uppercase; color: var(--gold); margin:0 0 6px; font-weight:500; }
+  .kicker{ font-size:11px; letter-spacing: .1em; text-transform:uppercase; color: var(--gold-ink); margin:0 0 6px; font-weight:500; }
   h1{ font-family:'Frank Ruhl Libre', serif; font-weight:500; font-size:23px; margin:0; color:var(--ink); }
   .header-right{ display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
   .header-btns{ display:flex; gap:8px; }
@@ -145,6 +146,7 @@
      см. setSpeakingWord). В списке transition у .tword НЕТ color — цвет слова
      при подпрыгивании ведёт двойник; плавно гаснут только плашка и тень. Если
      вернуть color в transition, оригинал при возврате слова будет «мигать». */
+  .tword:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
   .tword{ cursor:pointer; border-radius: 3px; padding: 0 1px; position:relative; transition: background-color .28s ease, box-shadow .28s ease; }
   .tword:hover{ background: var(--accent-soft); }
   .tword.speaking{ color: #05452F; -webkit-text-stroke: 0.45px currentColor;
@@ -208,7 +210,7 @@
   .chapter-list-row.not-ready{ cursor:default; opacity:.55; }
   .chapter-list-row .cl-num{ font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft); min-width:20px; }
   .chapter-list-row .cl-title{ font-family:'Frank Ruhl Libre',serif; font-size:15px; color:var(--ink); flex:1; }
-  .chapter-list-row .cl-tag{ font-family:'Inter',sans-serif; font-size:10.5px; color:var(--gold); text-transform:uppercase; letter-spacing:.04em; }
+  .chapter-list-row .cl-tag{ font-family:'Inter',sans-serif; font-size:10.5px; color:var(--gold-ink); text-transform:uppercase; letter-spacing:.04em; }
   .chapters-soon{ font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); padding:14px 0 4px; text-align:center; }
 
   .translate-toggle{
@@ -312,7 +314,7 @@
   .train-prep-table td:last-child{ text-align:right; color:var(--ink-soft); }
   .train-prep-table-hit td{ color: var(--accent); font-weight:500; }
   .wp-pealim-empty{ opacity:.7; }
-  .wp-link{ display:inline-block; margin-top:8px; font-size:11.5px; color:var(--gold); text-decoration:none; border-top:1px solid #4A473F; padding-top:8px; width:100%; }
+  .wp-link{ display:inline-block; margin-top:8px; font-size:11.5px; color:var(--gold-ink); text-decoration:none; border-top:1px solid #4A473F; padding-top:8px; width:100%; }
   .wp-link:hover{ text-decoration:underline; }
   .wp-ai-btn{ display:block; width:100%; text-align:left; background:none; border:none; border-top:1px solid #4A473F; cursor:pointer; padding-top:8px; margin-top:8px; color: var(--gold); font-size:11.5px; font-family:inherit; }
   .wp-ai-btn:hover{ text-decoration:underline; }
@@ -320,7 +322,7 @@
   .wp-suggest-add{ display:block; width:100%; text-align:left; background:rgba(201,169,89,.12); border:1px solid rgba(201,169,89,.35); border-radius:8px; cursor:pointer; padding:8px 10px; margin-top:8px; color: var(--gold); font-size:11.5px; font-family:inherit; line-height:1.4; }
   .wp-suggest-add:hover{ background:rgba(201,169,89,.2); }
   .wp-ai-result{ margin-top:10px; padding-top:10px; border-top:1px solid #4A473F; font-size:12.5px; line-height:1.55; }
-  .wp-ai-result h4{ font-size:11px; color:var(--gold); text-transform:uppercase; letter-spacing:.03em; margin:10px 0 3px; }
+  .wp-ai-result h4{ font-size:11px; color:var(--gold-ink); text-transform:uppercase; letter-spacing:.03em; margin:10px 0 3px; }
   .wp-ai-result h4:first-child{ margin-top:0; }
   .wp-ai-result .wp-ai-flag{ color:#D89A5A; font-size:11.5px; }
   /* Each example gets its own card and a fixed corner slot for the action
@@ -525,13 +527,24 @@
   .library-wrap{ max-width: 900px; margin: 0 auto; padding: 60px 24px; }
   .library-header{ margin-bottom: 36px; direction: rtl; text-align: right; position: relative; }
   .library-support-link{ position:absolute; top:0; right:0; direction:ltr; }
-  .library-kicker{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin:0 0 6px; direction:ltr; text-align:left; font-family:'Inter',sans-serif; }
+  .library-kicker{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-ink); margin:0 0 6px; direction:ltr; text-align:left; font-family:'Inter',sans-serif; }
   .library-sub{ font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft); margin-top:8px; direction:ltr; text-align:left; }
   .library-auth{ margin-top:14px; direction:ltr; text-align:left; font-family:'Inter',sans-serif; font-size:13px; }
   .library-auth a, .library-auth button.pill-btn.ghost{ font-size:13px; }
   .reader-auth-user{ display:flex; align-items:center; gap:8px; }
   .reader-auth-avatar{ width:22px; height:22px; border-radius:50%; }
   .reader-auth-status{ font-size:11px; color:var(--ink-soft); margin-top:4px; }
+  .library-lead{ font-family:'Inter',sans-serif; font-size:16px; line-height:1.5; color:var(--ink); margin:6px auto 0 0; padding-right:150px; box-sizing:content-box; direction:ltr; text-align:left; max-width:62ch; text-wrap:pretty; }
+  @media (max-width: 640px){ .library-lead{ margin-top:24px; padding-right:0; } } /* на телефоне «Поддержать» (absolute, справа сверху) не наезжает на текст */
+  .flow-fallback{ display:flex; justify-content:center; align-items:flex-end; gap:12px; margin:4px 0 14px; }
+  .flow-fallback img{ max-height:120px; max-width:45%; width:auto; object-fit:contain; }
+  .level-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin:-14px 0 22px; direction:ltr; }
+  .level-tab{ font-family:'Inter',sans-serif; font-size:13px; padding:6px 12px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--ink); cursor:pointer; }
+  .level-tab .lt-count{ color:var(--ink-soft); margin-left:4px; font-variant-numeric:tabular-nums; }
+  .level-tab[aria-selected="true"]{ background:var(--ink); color:var(--panel); border-color:var(--ink); }
+  .level-tab[aria-selected="true"] .lt-count{ color:var(--line); }
+  .level-tab:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  body.reading #bugReportBtn{ bottom:calc(92px + env(safe-area-inset-bottom, 0px)) !important; width:36px !important; height:36px !important; font-size:15px !important; opacity:.85; }
   .book-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:20px; direction:ltr; }
   .book-card{
     position: relative; background: var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden;
@@ -562,7 +575,7 @@
   .book-card-body{ padding: 14px 16px 16px; }
   .book-card-title{ font-family:'Frank Ruhl Libre', serif; font-size:16px; color:var(--ink); direction:rtl; text-align:right; }
   .book-card-sub{ font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); margin-top:6px; }
-  .book-card-progress{ font-family:'Inter',sans-serif; font-size:11px; color:var(--gold); margin-top:8px; }
+  .book-card-progress{ font-family:'Inter',sans-serif; font-size:11px; color:var(--gold-ink); margin-top:8px; }
   /* Последняя читавшаяся книга: спокойное выделение в тоне читалки (тонкая
      золотая рамка, едва заметная тёплая заливка и подпись), без свечения. */
   .book-card.last-read{
@@ -571,10 +584,10 @@
   }
   .book-card-last{
     font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
-    color:var(--gold); margin-bottom:6px; direction:ltr; text-align:left;
+    color:var(--gold-ink); margin-bottom:6px; direction:ltr; text-align:left;
   }
   .book-card-last::before{ content:""; display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--gold); margin-right:6px; vertical-align:middle; }
-  .book-card-popular{ font-family:'Inter',sans-serif; font-size:11px; color:var(--gold); margin-top:8px; }
+  .book-card-popular{ font-family:'Inter',sans-serif; font-size:11px; color:var(--gold-ink); margin-top:8px; }
   .book-card.add-new{
     display:flex; align-items:center; justify-content:center; min-height:150px;
     border-style:dashed; color:var(--ink-soft); font-family:'Inter',sans-serif; font-size:13px;
@@ -692,7 +705,8 @@
     <div class="library-header">
       <a class="support-btn library-support-link" href="support.html"><span class="heart">♥</span> Поддержать</a>
       <h1 class="library-kicker">קורא · библиотека</h1>
-      <p class="library-sub">Можно подгрузить свою книгу — <a href="how-to-make-a-book.html" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">как её сделать</a>. Есть и отдельный <a href="https://gigstersvideo-stack.github.io/hebrew-tasks/" id="cross-link-trainer" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold);">тренажёр предложений</a>.</p>
+      <p class="library-lead">Истории на иврите под ваш уровень — с огласовками, озвучкой и переводом каждого слова. Нажмите на любое слово, чтобы увидеть перевод, корень и форму.</p>
+      <p class="library-sub">Можно подгрузить свою книгу — <a href="how-to-make-a-book.html" style="color:var(--gold-ink); text-decoration:none; border-bottom:1px solid var(--gold);">как её сделать</a>. Есть и отдельный <a href="https://gigstersvideo-stack.github.io/hebrew-tasks/" id="cross-link-trainer" style="color:var(--gold-ink); text-decoration:none; border-bottom:1px solid var(--gold);">тренажёр предложений</a>.</p>
       <div class="library-auth" id="libraryAuth">
         <button class="pill-btn ghost" id="readerBtnSignin">Войти через Google — синхронизировать словарь, закладки и добавлять фразы в тренажёр</button>
         <div class="reader-auth-user" id="readerAuthUser" style="display:none;">
@@ -705,8 +719,9 @@
       </div>
       <button class="pill-btn ghost" id="globalReviewBtn" style="margin-top:10px;">📚 Повторение слов (<span id="globalReviewCount">0</span>)</button>
     </div>
+    <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.3</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.4</div>
   </div>
 </div>
 
@@ -2784,6 +2799,9 @@ function renderSentence(s, container, suppressIllustration){
       wSpan.textContent = (settings.nikud ? w.t : stripNikud(w.t)) + trailingSpace;
     }
     if (vocabCache[w.lemma]) wSpan.classList.add('saved');
+    // слово — главная кнопка читалки: доступно с клавиатуры (Tab, Enter/Пробел)
+    wSpan.tabIndex = 0;
+    wSpan.setAttribute('role', 'button');
     if (seenCache[w.lemma]) wSpan.classList.add('seen');
     wSpan.addEventListener('click', (e) => { e.stopPropagation(); showPopover(e, w, wSpan); }, readerListenerOpts);
     sSpan.appendChild(wSpan);
@@ -2966,9 +2984,29 @@ function renderPage(pageIndex){
   reader.innerHTML = '';
   const p = document.createElement('div');
   p.className = 'paragraph';
+  p.setAttribute('lang', 'he'); // иначе скринридер читает иврит русским голосом
   const start = currentPage * PAGE_SIZE;
   const end = Math.min(data.sentences.length, start + PAGE_SIZE);
-  const activeScene = findFlowSceneForPage(start, end);
+  // Сцена с обтеканием нарисована под холст 592px: на телефоне текст
+  // зажимается в узкую колонку между картинками — там обычная вёрстка.
+  const pageScene = findFlowSceneForPage(start, end);
+  const viewportW = window.innerWidth || document.documentElement.clientWidth || 9999; // 0 бывает в скрытых фреймах — тогда считаем экран широким
+  const activeScene = viewportW >= 640 ? pageScene : null;
+  if (pageScene && !activeScene) {
+    // Вместо обтекания — последний кадр каждого объекта сцены полосой над текстом.
+    const strip = document.createElement('div');
+    strip.className = 'flow-fallback';
+    (pageScene.objects || []).forEach(o => {
+      const frame = (o.frames || [])[(o.frames || []).length - 1];
+      if (!frame) return;
+      const img = document.createElement('img');
+      img.src = safeUrl(pageScene.basePath + frame);
+      img.alt = o.label || '';
+      img.loading = 'lazy';
+      strip.appendChild(img);
+    });
+    if (strip.children.length) reader.appendChild(strip);
+  }
   for (let i = start; i < end; i++){
     renderSentence(data.sentences[i], p, !!activeScene);
   }
@@ -4923,6 +4961,20 @@ function goToSentence(idx, autoplay){
 // initial paint of the transport bar for the first sentence, without playing
 goToSentence(currentSentenceIdx, false);
 
+// Клавиатура в режиме чтения: Esc закрывает подсказку слова, Enter/Пробел на
+// слове открывают её, Пробел вне полей и кнопок — играть/пауза.
+document.addEventListener('keydown', (e) => {
+  if (document.getElementById('readerView').style.display === 'none') return;
+  const t = e.target;
+  if (e.key === 'Escape' && popoverEl) { closePopover(); return; }
+  if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+  if ((e.key === 'Enter' || e.key === ' ') && t && t.classList && t.classList.contains('tword')) {
+    e.preventDefault(); t.click(); return;
+  }
+  if (e.key === ' ' && !(t && /^(BUTTON|A)$/.test(t.tagName))) {
+    e.preventDefault(); document.getElementById('playBtn').click();
+  }
+}, readerListenerOpts);
 document.getElementById('playBtn').addEventListener('click', (e) => {
   e.stopPropagation();
   if (myReaderToken !== activeReaderToken) return;
@@ -5866,11 +5918,41 @@ function closeChaptersDrawer(){
 document.getElementById('chaptersClose').addEventListener('click', closeChaptersDrawer);
 document.getElementById('chaptersBackdrop').addEventListener('click', closeChaptersDrawer);
 
+// Вкладки уровней над библиотекой: «Все» + уровень, у которого есть книги.
+// Выбор запоминается в браузере (только удобство; без localStorage — «Все»).
+const LEVEL_FILTER_KEY = 'hebrew-reader-level-filter';
+function renderLevelTabs(visible, manifest){
+  const host = document.getElementById('levelTabs');
+  let current = '';
+  try { current = localStorage.getItem(LEVEL_FILTER_KEY) || ''; } catch (e) {}
+  const levels = STARTER_LEVELS.filter(l => visible.some(e => (e.level || '').includes(l)));
+  if (current && !levels.includes(current)) current = '';
+  host.innerHTML = '';
+  const mk = (value, label, count) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'level-tab'; b.setAttribute('role', 'tab');
+    b.setAttribute('aria-selected', value === current ? 'true' : 'false');
+    b.textContent = label;
+    const c = document.createElement('span'); c.className = 'lt-count'; c.textContent = count;
+    b.appendChild(c);
+    b.addEventListener('click', () => {
+      try { localStorage.setItem(LEVEL_FILTER_KEY, value); } catch (e) {}
+      renderLibrary(manifest);
+    });
+    host.appendChild(b);
+  };
+  mk('', 'Все', visible.length);
+  levels.forEach(l => mk(l, `${l} · ${LEVEL_LABELS[l]}`, visible.filter(e => (e.level || '').includes(l)).length));
+  return current;
+}
+
 function renderLibrary(manifest){
   updateGlobalReviewCount();
   const grid = document.getElementById('bookGrid');
   grid.innerHTML = '';
-  const sorted = sortLibrary(manifest.filter(e => !e.hiddenFromLibrary), getBookProgress, popularityOf);
+  const visible = manifest.filter(e => !e.hiddenFromLibrary);
+  const levelFilter = renderLevelTabs(visible, manifest);
+  const sorted = sortLibrary(visible.filter(e => !levelFilter || (e.level || '').includes(levelFilter)), getBookProgress, popularityOf);
   const lastView = getLastView();
   const lastReadId = lastView && lastView.id && manifest.some(e => e.id === lastView.id) ? lastView.id : null;
   // Подпись «★ Самая популярная» — приманка для того, кто ещё ничего не
@@ -5887,7 +5969,7 @@ function renderLibrary(manifest){
       spineContent = `<img class="cover-img" src="${esc(safeUrl(entry.cover))}" alt="" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block;">`;
       spineStyle += ' padding:0; overflow:hidden;';
     } else if (entry.coverSvg){
-      spineContent = entry.coverSvg;
+      spineContent = sanitizeSvg(entry.coverSvg);
       spineClass += ' has-cover-svg';
     } else {
       spineContent = entry.title || entry.id;
@@ -5908,7 +5990,7 @@ function renderLibrary(manifest){
     // рейтинг реально есть (иначе не утверждаем того, чего не знаем) и
     // человек ещё не выбрал ни одной книги.
     const popularNote = nothingChosenYet && starterLevel && pop && pop.readers > 0
-      ? `<div class="book-card-popular">★ Самая популярная на уровне ${starterLevel}</div>` : '';
+      ? `<div class="book-card-popular">★ Хорошее начало для уровня ${starterLevel}</div>` : '';
     const seriesNote = entry.kind === 'series'
       ? `<div class="book-card-progress">${(entry.chapters || []).filter(c => c.ready).length} из ${(entry.chapters || []).length}+ глав</div>` : '';
     card.innerHTML = `
