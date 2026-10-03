@@ -127,6 +127,18 @@ def qq(s):
     return to_haser(s).replace(HOLAM, QAMATS)
 
 
+def partial_ok(ours, voc):
+    """Частичная огласовка (подсказки на трудных буквах, стиль ульпана):
+    слово верно, если буквы те же, а каждый наш знак есть и у варианта Nakdan
+    на той же букве (отсутствие знака — не ошибка)."""
+    a, b = clusters(ours), clusters(voc)
+    if [x[0] for x in a] != [x[0] for x in b]:
+        a, b = clusters(to_haser(ours)), clusters(to_haser(voc))
+        if [x[0] for x in a] != [x[0] for x in b]:
+            return False
+    return all(set(ma) <= set(mb) for (_, ma), (_, mb) in zip(a, b))
+
+
 def no_matres(s):
     """Для сравнения лемм ктив мале ↔ ктив хасер: без ו/י."""
     return bare(s).replace("ו", "").replace("י", "")
@@ -260,7 +272,11 @@ def nakdan_groups(sents, nak, chunk_chars=1200):
     out = {}
 
     def run(batch):
-        toks = nak.analyze("\n".join(plain_text(t) for _, t in batch))
+        try:
+            toks = nak.analyze("\n".join(plain_text(t) for _, t in batch))
+        except RuntimeError as e:  # Nakdan недоступен — пачка непроверена, прогон идёт дальше
+            print("  ! Nakdan:", str(e)[:80], file=sys.stderr)
+            return False
         if toks is None:
             return False
         all_words = [w for _, t in batch for w in t]
@@ -288,7 +304,7 @@ def nakdan_groups(sents, nak, chunk_chars=1200):
 
 # ---- проверки -----------------------------------------------------------
 
-def check_book(path, nak, rel_root):
+def check_book(path, nak, rel_root, text_only=False, partial=False):
     data = json.load(open(path, encoding="utf-8"))
     sents = data.get("sentences", [])
     f = {k: [] for k in ("niqqud", "lemma_prefix", "lemma_nakdan", "double", "script", "tech",
@@ -317,7 +333,7 @@ def check_book(path, nak, rel_root):
                     f["script"].append((sid, i, fld, "не-русское", v))
             for prob in tech_problems(w.get("t")):
                 f["tech"].append((sid, i, w.get("t"), prob))
-            for fld in ("tr", "pos", "lemma"):
+            for fld in (() if text_only else ("tr", "pos", "lemma")):
                 if not (w.get(fld) or "").strip():
                     f["empty"].append((sid, i, fld, w.get("t")))
         for fld in ("fluent",):
@@ -374,10 +390,15 @@ def check_book(path, nak, rel_root):
             elif loose(to_haser(ours)) in [loose(to_haser(v)) for v in vocs]:
                 stats["nakdan_loose"] += 1
                 match = opts[[loose(to_haser(v)) for v in vocs].index(loose(to_haser(ours)))]
+            elif partial and any(partial_ok(ours, v) for v in vocs):
+                stats["nakdan_male"] += 1
+                match = opts[0]
             else:
                 f["niqqud"].append((sid, i, ours, vocs[0], vocs[1:4], w.get("tr")))
                 match = opts[0]
             # лемма
+            if text_only:
+                continue
             lemma = w.get("lemma") or ""
             pos = w.get("pos") or ""
             if "имя" in pos or not match[2]:
@@ -444,6 +465,10 @@ def main():
     ap.add_argument("--all", action="store_true")
     ap.add_argument("--out", default=DEFAULT_OUT)
     ap.add_argument("--no-nakdan", action="store_true")
+    ap.add_argument("--partial-niqqud", action="store_true",
+                    help="огласовка частичная (подсказки): ошибка — только знак, противоречащий Nakdan")
+    ap.add_argument("--text-only", action="store_true",
+                    help="только текст (огласовка, мусор, дубли, алфавиты) — для корпусов без лемм/переводов слов, напр. тренажёра")
     args = ap.parse_args()
 
     paths = args.paths or []
@@ -457,8 +482,10 @@ def main():
     total_blocking = 0
     try:
         for p in paths:
-            slug = os.path.basename(os.path.dirname(os.path.abspath(p)))
-            f, stats = check_book(p, nak, ROOT)
+            base = os.path.basename(p)
+            slug = (os.path.basename(os.path.dirname(os.path.abspath(p))) if base == "book-data.json"
+                    else os.path.splitext(base)[0])  # book-data-epic-chNN.json лежат плоско в корне
+            f, stats = check_book(p, nak, ROOT, text_only=args.text_only, partial=args.partial_niqqud)
             nak.save()
             write_report(slug, f, stats, args.out)
             counts = {k: len(v) for k, v in f.items()}

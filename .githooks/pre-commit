@@ -1,0 +1,9 @@
+#!/bin/sh
+# Перед коммитом: тесты читалки должны быть зелёными (планка запуска, E18).
+# Включается один раз: git config core.hooksPath .githooks
+# Обойти в крайнем случае: git commit --no-verify (и потом починить тесты).
+if git diff --cached --name-only | grep -qE '^(reader-prototype\.html|test_harness\.js|sw\.js)$'; then
+  node test_harness.js > /tmp/reader-tests.log 2>&1 || {
+    echo "pre-commit: тесты читалки упали — коммит остановлен:"; grep -E "FAIL|Error|passed" /tmp/reader-tests.log | tail -15; exit 1; }
+fi
+exit 0

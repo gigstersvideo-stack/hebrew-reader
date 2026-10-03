@@ -85,7 +85,7 @@ def value_of(item, dec):
     return ""
 
 
-def apply_book(slug, items, decisions, report):
+def apply_book(slug, items, decisions, report, extra_ops=None):
     path = os.path.join(ROOT, "books", slug, "book-data.json")
     data = load(path)
     sents = {s["id"]: s for s in data["sentences"]}
@@ -141,6 +141,27 @@ def apply_book(slug, items, decisions, report):
             if fld and fixed and fld in w:
                 w[fld] = fixed
                 report["script"] += 1
+    # ручные правки из нескольких слов (extras): replace / delete / merge
+    for op in sorted(extra_ops or [], key=lambda o: -o["i"]):
+        s = sents.get(op["sid"])
+        if not s or op["i"] >= len(s["words"]) or A.heb_word(s["words"][op["i"]]["t"]) != A.nfc(op["ours"]):
+            report["stale"].append((slug, op["sid"], op["ours"], "ручная правка: слово не на месте"))
+            continue
+        w = s["words"][op["i"]]
+        if op["op"] == "replace":
+            w["t"] = replace_hebrew_span(w["t"], A.nfc(op["value"]))
+            if op.get("lemma"):
+                w["lemma"] = A.nfc(op["lemma"])
+        elif op["op"] == "delete":
+            del s["words"][op["i"]]
+        elif op["op"] == "merge":  # слово i + слово i+1 → одно слово value (свойства — у следующего)
+            nxt = s["words"][op["i"] + 1]
+            nxt["t"] = replace_hebrew_span(nxt["t"], A.nfc(op["value"]))
+            if op.get("lemma"):
+                nxt["lemma"] = A.nfc(op["lemma"])
+            del s["words"][op["i"]]
+        changed_sids.add(op["sid"])
+        report["extra"] = report.get("extra", 0) + 1
     # удаления дублей — с конца, чтобы индексы не съехали
     for sid, i in sorted(removals, key=lambda x: (x[0], -x[1])):
         prev, cur = sents[sid]["words"][i - 1], sents[sid]["words"][i]
@@ -174,6 +195,9 @@ async def revoice(data, sids, slug, m, voice="he-IL-AvriNeural"):
         if s.get("ttsEngine") == "gtts" or any(w.get("lemma") in bad for w in s["words"]):
             s["ttsEngine"] = "gtts"
             bounds = m.synthesize_sentence_gtts(text, out)
+        elif voice == "he-IL-AvriNeural" and getattr(m, "_azure_ipa", None) is not None and m._azure_ipa.needs_ipa(text):
+            # формы на -ךְ, которые edge-tts не умеет — та же ветка, что в main()
+            bounds = m._azure_ipa.synthesize_ipa(text, out)
         else:
             bounds, fell = await m.synthesize_sentence_with_retry(text, voice, out)
             if fell:
@@ -195,6 +219,8 @@ def main():
     books_dir = os.path.join(args.review_dir, "books")
     dec_dir = os.path.join(args.review_dir, "decisions")
     m = load_audio_tool() if args.revoice else None
+    extras_path = os.path.join(args.review_dir, "extras.json")
+    extras = load(extras_path) if os.path.exists(extras_path) else []
     total = {"niqqud": 0, "lemma": 0, "double": 0, "script": 0, "stale": [], "skipped": []}
     revoiced = 0
     for fn in sorted(os.listdir(books_dir)):
@@ -202,12 +228,13 @@ def main():
         if args.only and slug not in args.only:
             continue
         dpath = os.path.join(dec_dir, fn)
-        if not os.path.exists(dpath):
+        if not os.path.exists(dpath) and not any(o["book"] == slug for o in extras):
             continue
         items = doc_body(load(os.path.join(books_dir, fn)))["items"]
-        decisions = doc_body(load(dpath)).get("items", {})
+        decisions = doc_body(load(dpath)).get("items", {}) if os.path.exists(dpath) else {}
         rep = {"niqqud": 0, "lemma": 0, "double": 0, "script": 0, "stale": [], "skipped": []}
-        path, data, sids = apply_book(slug, items, decisions, rep)
+        extra_ops = [o for o in extras if o["book"] == slug]
+        path, data, sids = apply_book(slug, items, decisions, rep, extra_ops)
         print(f"{slug:26s} огласовка {rep['niqqud']:4d}  лемм {rep['lemma']:4d}  дублей {rep['double']:3d}  "
               f"символов {rep['script']:3d}  к переозвучке {len(sids):3d}  устарело {len(rep['stale'])}  пропущено {len(rep['skipped'])}")
         for k in ("niqqud", "lemma", "double", "script"):
