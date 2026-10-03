@@ -159,8 +159,19 @@ def tech_problems(word):
             out.append(f"повтор знака на {letter}")
         if len(VOWELS.findall(marks)) > 1:
             out.append(f"две гласные на {letter}")
+        # точка шин/син — только на ש (U+05C1/05C2 на другой букве — мусор)
+        if letter != "ש" and re.search("[\u05C1\u05C2]", marks):
+            out.append(f"точка шин/син на {letter}")
+        # баг генератора: дагеш уехал на вав-матрес (בוֹּקֶר, לִסְגוֹּר) вместо буквы перед ней
+        if letter == "ו" and DAGESH in marks and HOLAM in marks:
+            out.append("дагеш на вав вместо предыдущей буквы")
         if letter == "ש" and not re.search("[\u05C1\u05C2]", marks):
             out.append("ש без точки шин/син")
+    # холам/кубуц на букве, а следующий вав голый (לִמְכֹּור, מֻושָּׂג) — гласная не на своём месте
+    cl = clusters(w)
+    for k in range(len(cl) - 1):
+        if cl[k + 1][0] == "ו" and cl[k + 1][1] == "" and (HOLAM in cl[k][1] or QUBUTS in cl[k][1]) and cl[k][0] != "ו":
+            out.append("холам/кубуц перед голым вав")
     return out
 
 
