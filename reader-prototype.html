@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.9
+  Hebrew Reader — v1.99.10
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -721,7 +721,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.9</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.10</div>
   </div>
 </div>
 
@@ -847,7 +847,7 @@
         <div class="settings-row settings-ai-key">
           <div>
             <div class="settings-row-label">🎓 Разбор слова (ИИ-педагог)</div>
-            <div class="settings-row-sub">свой ключ Gemini (бесплатный) — используется напрямую из браузера; при входе через Google синхронизируется на ваши устройства (никому, кроме вас, не виден). <a href="ai-key-help.html" target="_blank" rel="noopener" style="color:var(--gold);">Как получить ключ ↗</a></div>
+            <div class="settings-row-sub">свой ключ Gemini (бесплатный) — используется напрямую из браузера; отправляется только в Google; при входе через Google хранится в вашем аккаунте в зашифрованном виде и подхватывается на других устройствах и в тренажёре. <a href="ai-key-help.html" target="_blank" rel="noopener" style="color:var(--gold);">Как получить ключ ↗</a></div>
             <input type="password" id="aiKeyInput" class="ai-key-input" placeholder="вставьте ключ Gemini">
           </div>
         </div>
@@ -3994,6 +3994,21 @@ async function showPealimSnippet(hebrewWord, expectedPos, slotEl){
 // источник, помечать непроверенное, не выдумывать огласовку/корень/этимологию,
 // без транслита без запроса). Передаётся модели как есть, не пересказана.
 const AI_KEY_STORAGE = 'hebrew-reader-ai-key';
+// Ключ Gemini хранится ТОЛЬКО в браузере ученика (не в облаке, 2026-10-04). Чтобы не вводить
+// его второй раз на тренажёре, ссылка между сайтами в шапке несёт его во фрагменте адреса
+// (#…aiKey=…): фрагмент браузер не отправляет на сервер; здесь он сразу сохраняется и стирается.
+(function receiveAiKeyHandoff(){
+  try{
+    const h = location.hash.slice(1);
+    try { if (!localStorage.getItem(AI_KEY_STORAGE)) { const o = localStorage.getItem('hebrew-trainer-ai-key'); if (o) localStorage.setItem(AI_KEY_STORAGE, o); } } catch (e) {}
+    const m = /(?:^|&)aiKey=([^&]+)/.exec(h);
+    if (!m) return;
+    const key = decodeURIComponent(m[1]).trim();
+    if (key) localStorage.setItem(AI_KEY_STORAGE, key);
+    const rest = h.split('&').filter(p => !p.startsWith('aiKey=')).join('&');
+    history.replaceState(history.state, '', location.pathname + location.search + (rest ? '#' + rest : ''));
+  }catch(err){ console.error('AI key handoff failed', err); }
+})();
 // 503 = Google's shared servers are momentarily overloaded — unrelated to
 // this user's own quota, so it doesn't reset on a schedule and can recur
 // within seconds. Rather than re-trying the same congested model on every
@@ -6470,15 +6485,51 @@ window.cloudCheckUsedTrainer = function (uid) {
 // trainer uses, so signing in with the same Google account carries one
 // key to both apps (each still mirrors it into its own origin's
 // localStorage, since the two sites can't share storage directly).
+// Ключ Gemini в облаке хранится ЗАШИФРОВАННЫМ (AES-256-GCM в браузере ученика, 2026-10-04):
+// в Firestore и консоли — шифротекст, не ключ. Схема общая с другим приложением (тот же документ
+// users/{uid}/settings/ai: {enc, v: 1}) — один ключ работает в читалке и тренажёре на всех устройствах.
+async function aiKeyCryptoKey(uid) {
+  const enc = new TextEncoder();
+  const base = await crypto.subtle.importKey("raw", enc.encode(uid + "|ivrit-ai-key-v1"), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({ name: "PBKDF2", salt: enc.encode("ivrit-progress/settings/ai"), iterations: 100000, hash: "SHA-256" },
+    base, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+}
+async function encryptAiKey(uid, plain) {
+  const k = await aiKeyCryptoKey(uid);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, k, new TextEncoder().encode(plain)));
+  const all = new Uint8Array(12 + ct.length); all.set(iv); all.set(ct, 12);
+  let s = ""; all.forEach(b => { s += String.fromCharCode(b); });
+  return btoa(s);
+}
+async function decryptAiKey(uid, b64) {
+  const all = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+  const k = await aiKeyCryptoKey(uid);
+  const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: all.slice(0, 12) }, k, all.slice(12));
+  return new TextDecoder().decode(pt);
+}
 window.cloudSyncAiKey = function (key) {
   if (!window.cloudUid || !key) return;
-  setDoc(doc(fbDb, "users", window.cloudUid, "settings", "ai"), { geminiKey: key }, { merge: true }).catch(() => {});
+  const uid = window.cloudUid;
+  encryptAiKey(uid, key).then(enc => setDoc(doc(fbDb, "users", uid, "settings", "ai"), { enc, v: 1 })).catch((e) => console.error("AI key sync failed", e));
 };
 window.cloudFetchAiKey = async function () {
   if (!window.cloudUid) return null;
+  const uid = window.cloudUid;
   return withAuthRaceRetry(async () => {
-    const snap = await getDoc(doc(fbDb, "users", window.cloudUid, "settings", "ai"));
-    return snap.exists() ? snap.data() : null;
+    const snap = await getDoc(doc(fbDb, "users", uid, "settings", "ai"));
+    if (!snap.exists()) return null;
+    const data = snap.data();
+    if (data.enc) {
+      try { return { geminiKey: await decryptAiKey(uid, data.enc) }; }
+      catch (e) { console.error("AI key decrypt failed", e); return null; }
+    }
+    if (data.geminiKey) {
+      // старая запись открытым текстом — перешифровываем на месте
+      encryptAiKey(uid, data.geminiKey).then(enc => setDoc(doc(fbDb, "users", uid, "settings", "ai"), { enc, v: 1 })).catch(() => {});
+      return { geminiKey: data.geminiKey };
+    }
+    return null;
   });
 };
 
@@ -6595,10 +6646,15 @@ const crossLinkEl = document.getElementById("cross-link-trainer");
 if (crossLinkEl) {
   crossLinkEl.addEventListener("click", () => {
     const idToken = readAuthHandoffToken();
-    if (!idToken) return;
+    let aiKey = null;
+    try { aiKey = localStorage.getItem(AI_KEY_STORAGE); } catch (e) {}
+    if (!idToken && !aiKey) return;
     try {
       const url = new URL(crossLinkEl.href);
-      url.hash = "authHandoff=" + encodeURIComponent(idToken);
+      const parts = [];
+      if (idToken) parts.push("authHandoff=" + encodeURIComponent(idToken));
+      if (aiKey) parts.push("aiKey=" + encodeURIComponent(aiKey));
+      url.hash = parts.join("&");
       crossLinkEl.href = url.toString();
     } catch (e) {}
   });
