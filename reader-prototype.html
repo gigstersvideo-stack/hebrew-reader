@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.10
+  Hebrew Reader — v1.99.11
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -721,7 +721,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.10</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.11</div>
   </div>
 </div>
 
@@ -2981,6 +2981,9 @@ function renderPage(pageIndex){
   if (window.cloudSyncPage) window.cloudSyncPage(bookId, currentPage);
   if (currentPage === totalPages - 1) markBookCompleted();
 
+  // Держим высоту на время перерисовки: иначе между очисткой и новой страницей документ
+  // на миг схлопывается, браузер сдвигает прокрутку — и страница дёргается.
+  reader.style.minHeight = reader.offsetHeight + 'px';
   reader.innerHTML = '';
   const p = document.createElement('div');
   p.className = 'paragraph';
@@ -3046,7 +3049,11 @@ function renderPage(pageIndex){
   const nextBtnBottom = document.getElementById('pageNextBottom');
   if (prevBtnBottom) prevBtnBottom.disabled = currentPage === 0;
   if (nextBtnBottom) nextBtnBottom.disabled = currentPage === totalPages - 1;
-  reader.scrollIntoView({ behavior: 'auto', block: 'start' });
+  // Прокручиваем к началу текста только если читатель ушёл ниже него. Если начало
+  // текста и так на экране (ты наверху страницы), прокрутка не трогается — раньше
+  // scrollIntoView всё равно сдвигал страницу на высоту шапки, отсюда был рывок.
+  if (reader.getBoundingClientRect().top < 0) reader.scrollIntoView({ behavior: 'auto', block: 'start' });
+  requestAnimationFrame(() => { reader.style.minHeight = ''; });
 
   renderScrubSegments();
   applySettings();
