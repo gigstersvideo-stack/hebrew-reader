@@ -340,7 +340,9 @@ def check_book(path, nak, rel_root, text_only=False, partial=False):
             for fld in RUSSIAN_FIELDS:
                 v = w.get(fld) or ""
                 # в extra законно пишут биньян на иврите (פָּעַל, нифъаль...)
-                if (HEB_LETTERS.search(v) and fld != "extra") or FOREIGN["арабица"].search(v) or FOREIGN["тайский"].search(v) or FOREIGN["CJK"].search(v):
+                # иврит в скобках в tr — пояснение идиомы для ученика («погода (מֶזֶג הָאֲוִויר)»), не ошибка
+                vv = re.sub(r"\([^)]*\)", "", v) if fld == "tr" else v
+                if (HEB_LETTERS.search(vv) and fld != "extra") or FOREIGN["арабица"].search(v) or FOREIGN["тайский"].search(v) or FOREIGN["CJK"].search(v):
                     f["script"].append((sid, i, fld, "не-русское", v))
             for prob in tech_problems(w.get("t")):
                 f["tech"].append((sid, i, w.get("t"), prob))
@@ -423,6 +425,8 @@ def check_book(path, nak, rel_root, text_only=False, partial=False):
             if "гл." in pos and bare(lemma) == bare(ours) and bare(lemma)[:1] == "ל":
                 continue
             nk_lemmas = {bare(l) for l in match[2] if bare(l)}
+            if bare(lemma) in SELF_LEMMAS:
+                continue  # самостоятельное слово: его «приставка» — часть слова (מֵעַל, לְלֹא, שֶׁכֵּן)
             if match[1] and bare(lemma) == bare(ours) and bare(lemma) not in nk_lemmas \
                     and bare(lemma)[:1] in PREFIX_LETTERS:
                 f["lemma_prefix"].append((sid, i, ours, lemma, sorted({l for l in match[2]})[:3], w.get("tr")))
@@ -448,6 +452,14 @@ SECTIONS = [
     ("empty", "Пустые поля", lambda x: f"{x[0]} · #{x[1]} {x[2]} пусто у `{x[3]}`"),
     ("align", "Не удалось сопоставить с Nakdan (проверить вручную)", lambda x: f"{x[0]} · {x[1]}"),
 ]
+# Самостоятельные служебные слова и наречия: Nakdan режет их на «приставка + слово»,
+# но словарная форма — само слово (מֵעַל «над», לְלֹא «без», שֶׁכֵּן «поскольку»).
+SELF_LEMMAS = set("""מעל ללא שכן כזה כזאת כזו כאלה לכאן מכאן לשם משם מדי מאז מעולם לבסוף ביותר בעוד
+הללו האם בחוץ בפנים החוצה הביתה מחדש מאשר מסביב מאחור מלפנים מתחת מבפנים מבחוץ לפני לפעמים
+למעלה למטה לאט כאשר כמו למרות בגלל כדי לבין לאורך לראשונה לראשונה בזמן ביחד בדיוק בסדר
+בערך במיוחד בעצם בכלל בקושי בשקט בקול בכוח ממש מיד מייד מהר מאוד לגמרי לבד כך ככה לכן כן
+שלא כשם בשביל לגבי לעומת לקראת במשך בתוך מתוך לתוך כלפי אחורה הלאה בפתאומיות לפתע בפתע לאחר""".split())
+
 BLOCKING = ("double", "script", "tech", "niqqud", "lemma_prefix", "audio_missing", "timings", "empty")
 
 
