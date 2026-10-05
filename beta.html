@@ -126,6 +126,16 @@
           <option>Ульпан бет</option>
           <option>Гимель и выше</option>
         </select></div>
+      <div class="q"><label for="how">Как вы сейчас учите иврит</label>
+        <select id="how" name="how">
+          <option value="">—</option>
+          <option>Учусь в ульпане алеф</option>
+          <option>Закончил ульпан (или бросил)</option>
+          <option>Учусь в ульпане бет и выше</option>
+          <option>Сам — по учебнику, приложениям</option>
+          <option>С преподавателем</option>
+          <option>Другое</option>
+        </select></div>
       <div class="q"><span class="lbl">Чем занимались</span>
         <div class="chips">
           <label><input type="checkbox" name="device" value="iPhone"> iPhone</label>
@@ -216,7 +226,7 @@
   form.addEventListener("input", () => { try { localStorage.setItem(DRAFT, JSON.stringify(collect())); } catch (e) {} });
 
   const LABELS = {
-    level: "Уровень", device: "Устройство", days: "Дней из 7", used: "Больше пользовался",
+    level: "Уровень", how: "Как учит", device: "Устройство", days: "Дней из 7", used: "Больше пользовался",
     r_start: "С чего начать (1–5)", r_reader: "Читалка (1–5)", r_trainer: "Тренажёр (1–5)",
     r_audio: "Озвучка (1–5)", r_level: "Тексты по уровню (1–5)", nps: "Посоветует (0–10)",
     liked: "Понравилось", annoyed: "Мешало", errors: "Ошибки", missing: "Не хватило",
