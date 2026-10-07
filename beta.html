@@ -16,6 +16,19 @@
 <title>Тест-драйв — קורא</title>
 <meta name="description" content="Неделя с читалкой и тренажёром иврита: что попробовать и короткая анкета.">
 <meta name="robots" content="noindex">
+<!-- Превью ссылки (Telegram/WhatsApp/соцсети): кот спрашивает у книг «מְיָאוּ נִשְׁמָע?» —
+     каламбур на «מַה נִּשְׁמָע» («как дела?», дословно «что слышно?»). Абсолютные адреса —
+     иначе мессенджеры картинку не подтянут. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://readivrit.pages.dev/beta.html">
+<meta property="og:title" content="Неделя с ивритом: помогите проверить">
+<meta property="og:description" content="Бесплатная читалка историй с огласовками и озвучкой и тренажёр фраз — для тех, кто уже учит иврит. План на неделю и короткая анкета.">
+<meta property="og:image" content="https://readivrit.pages.dev/beta-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Карандашный рисунок: кот тянется лапой к стопке книг, над ним надпись «מְיָאוּ נִשְׁמָע?»">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://readivrit.pages.dev/beta-og.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +44,11 @@
   body{ background: var(--bg); color: var(--ink); font-family:'Inter',sans-serif; font-size:15px; line-height:1.6; padding-bottom: 60px; }
   .wrap{ max-width: 680px; margin:0 auto; padding: 36px 16px 0; }
   a{ color: var(--accent); }
+  .hero{ margin: -8px -16px 6px; }
+  .hero img{ display:block; width:100%; height:auto;
+    /* края бумаги растворяются в фоне страницы — без рамки и видимой границы */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent); }
   .eyebrow{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-ink); margin: 0 0 8px; font-weight:600; }
   h1{ font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:32px; line-height:1.2; margin: 0 0 14px; text-wrap: balance; }
   h2{ font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:22px; margin: 44px 0 6px; text-wrap: balance; }
@@ -81,6 +99,7 @@
 </head>
 <body>
 <div class="wrap">
+  <figure class="hero"><img src="beta-cat.jpg" width="940" height="550" alt="Кот тянется лапой к стопке книг и спрашивает: «מְיָאוּ נִשְׁמָע?» — «мяу нишма?», как «ма нишма?»"></figure>
   <p class="eyebrow">קורא · тест-драйв</p>
   <h1>Неделя с ивритом: помогите проверить</h1>
   <p class="lede">Это два бесплатных сайта для русскоязычных, которые учат иврит: <b>читалка</b> с историями, где каждое слово можно нажать и послушать, и <b>тренажёр</b> фраз по интервальному повторению. Прежде чем рассказывать о них широко, хочется понять, что работает, а что мешает. <b>Нужно:</b> неделю заниматься по 10–15 минут в день и в конце заполнить анкету ниже (минут 5).</p>
