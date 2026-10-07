@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--
+  Тест-драйв для первых учеников (планка запуска, пункт «внешний тест на 5–10
+  учениках», 2026-10-04). Отдельная страница, как support.html: инструкция на
+  неделю + анкета. Анкета пишет в ту же коллекцию Firestore `feedback`, что и
+  кнопка «жалоба/предложение» на сайтах (правило validFeedback: создавать может
+  любой, читать — только владелец), поэтому правила менять не нужно. Ответы
+  видны владельцу в тренажёре, «Отзывы» — с пометкой «анкета тестера»
+  (context.screen = "tester-survey", см. formatFeedbackContext в тренажёре).
+  Стиль — те же CSS-переменные, что в reader-prototype.html.
+-->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>בדיקת עברית — קורא</title>
+<meta name="description" content="עזרו לנו לבדוק סיפורים מנוקדים עם הקראה לדוברי רוסית שלומדים עברית.">
+<meta name="robots" content="noindex">
+<!-- Превью ссылки (Telegram/WhatsApp/соцсети): кот спрашивает у книг «מְיָאוּ נִשְׁמָע?» —
+     каламбур на «מַה נִּשְׁמָע» («как дела?», дословно «что слышно?»). Абсолютные адреса —
+     иначе мессенджеры картинку не подтянут. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://readivrit.pages.dev/beta-he.html">
+<meta property="og:title" content="דוברי עברית: עזרו לנו לבדוק סיפורים ללומדי עברית">
+<meta property="og:description" content="סיפורים מנוקדים עם הקראה לדוברי רוסית שלומדים עברית. מחפשים דוברי עברית שיקראו, יקשיבו ויסמנו טעויות.">
+<meta property="og:image" content="https://readivrit.pages.dev/beta-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ציור בעיפרון: חתול מושיט כפה לערימת ספרים, ומעליו הכיתוב «מְיָאוּ נִשְׁמָע?»">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://readivrit.pages.dev/beta-og.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Assistant:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EAE6DC; --ink: #211F1C; --ink-soft: #6B665C; --line: #D5CEBE;
+    --accent: #37564D; --accent-soft: #DCE6E2; --gold: #A8813F; --gold-soft: #F0E4CC;
+    --gold-ink: #7A5C26; --panel: #F8F6F0; --danger: #A3402F;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ background: var(--bg); color: var(--ink); font-family:'Assistant','Inter',sans-serif; font-size:16px; line-height:1.6; padding-bottom: 60px; }
+  .wrap{ max-width: 680px; margin:0 auto; padding: 36px 16px 0; }
+  a{ color: var(--accent); }
+  .hero{ margin: -8px -16px 6px; }
+  .hero img{ display:block; width:100%; height:auto;
+    /* края бумаги растворяются в фоне страницы — без рамки и видимой границы */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent); }
+  .eyebrow{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-ink); margin: 0 0 8px; font-weight:600; }
+  h1{ font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:32px; line-height:1.2; margin: 0 0 14px; text-wrap: balance; }
+  h2{ font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:22px; margin: 44px 0 6px; text-wrap: balance; }
+  .lede{ color: var(--ink-soft); font-size:16px; max-width:56ch; margin: 0 0 20px; }
+  .lede b, .soft b{ color: var(--ink); font-weight:600; }
+  .soft{ color: var(--ink-soft); margin: 0 0 14px; }
+  .sites{ display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap:12px; margin: 22px 0 0; }
+  .site{ background: var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 18px; text-decoration:none; color:inherit; display:grid; gap:4px; }
+  .site:hover{ border-color: var(--accent); }
+  .site .he{ font-family:'Frank Ruhl Libre',serif; font-size:22px; color: var(--accent);  }
+  .site .name{ font-weight:600; }
+  .site .what{ color: var(--ink-soft); font-size:13.5px; }
+  .site .url{ font-size:12.5px; color: var(--accent); }
+  ol.days{ list-style:none; padding:0; margin: 16px 0 0; display:grid; gap:10px; counter-reset: d; }
+  ol.days li{ display:grid; grid-template-columns: 76px 1fr; gap:14px; background: var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .day{ font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color: var(--gold-ink); padding-top:2px; }
+  ol.days h3{ margin:0 0 4px; font-size:15.5px; }
+  ol.days p{ margin:0; color: var(--ink-soft); font-size:14px; }
+  .tip{ border-inline-start: 3px solid var(--gold); background: var(--gold-soft); padding: 12px 14px; border-radius: 10px 0 0 10px; font-size:14px; margin: 16px 0 0; }
+  form{ display:grid; gap:18px; margin-top: 18px; }
+  fieldset{ border:1px solid var(--line); background: var(--panel); border-radius:14px; padding: 16px 16px 18px; margin:0; display:grid; gap:10px; min-width:0; }
+  legend{ font-weight:600; padding: 0 6px; }
+  .q{ display:grid; gap:6px; }
+  .q > label, .q > .lbl{ font-weight:500; font-size:14.5px; }
+  .hint{ color: var(--ink-soft); font-size:12.5px; font-weight:400; }
+  select, textarea, input[type=text]{ font: inherit; font-size:15px; width:100%; border:1px solid var(--line); border-radius:9px; padding:9px 10px; background:#fff; color: var(--ink); }
+  textarea{ min-height: 78px; resize: vertical; }
+  .chips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .chips label{ display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); background:#fff; border-radius:999px; padding:6px 12px; font-size:14px; cursor:pointer; }
+  .chips input{ accent-color: var(--accent); margin:0; }
+  .chips label:has(input:checked){ border-color: var(--accent); background: var(--accent-soft); }
+  .scale{ display:grid; grid-template-columns: repeat(5, 1fr); gap:6px; }
+  .scale.ten{ grid-template-columns: repeat(11, 1fr); }
+  .scale label{ display:grid; place-items:center; border:1px solid var(--line); background:#fff; border-radius:8px; padding:8px 0; font-size:14px; cursor:pointer; font-variant-numeric: tabular-nums; }
+  .scale input{ position:absolute; opacity:0; pointer-events:none; }
+  .scale label:has(input:checked){ border-color: var(--accent); background: var(--accent); color:#fff; }
+  .scale label:has(input:focus-visible){ outline:2px solid var(--accent); outline-offset:2px; }
+  .ends{ display:flex; justify-content:space-between; color: var(--ink-soft); font-size:12px; }
+  @media (max-width: 460px){ .scale.ten{ grid-template-columns: repeat(6, 1fr); } ol.days li{ grid-template-columns: 1fr; gap:4px; } }
+  .send{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+  button{ font: inherit; font-weight:600; font-size:15px; background: var(--accent); color:#fff; border:none; border-radius:10px; padding:12px 22px; cursor:pointer; }
+  button:disabled{ opacity:.6; cursor:default; }
+  .status{ font-size:14px; color: var(--ink-soft); }
+  .status.ok{ color: var(--accent); font-weight:600; }
+  .status.err{ color: var(--danger); }
+  .note{ color: var(--ink-soft); font-size:12.5px; margin-top:28px; }
+  ol.days li{ grid-template-columns: 92px 1fr; }
+  ol.days .what-list li{ display:list-item; background:none; border:0; border-radius:0; padding:0; grid-template-columns:none; }
+  .what-list{ margin:6px 0 0; padding-inline-start: 1.2em; color: var(--ink-soft); font-size:14px; display:grid; gap:4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <figure class="hero"><img src="beta-cat.jpg" width="940" height="550" alt="חתול מושיט כפה לערימת ספרים ושואל: «מְיָאוּ נִשְׁמָע?»"></figure>
+  <p class="eyebrow">קורא · בדיקת עברית</p>
+  <h1>דוברי עברית: צריכים את האוזן שלכם</h1>
+  <p class="lede">בנינו שני אתרים חינמיים לדוברי רוסית שלומדים עברית: <b>«קורא»</b> — עשרות סיפורים מנוקדים בארבע רמות, עם הקראה ותרגום של כל מילה, ו<b>מאמן</b> משפטים. הטקסטים, הניקוד וההקראה עברו הגהה בעזרת כלים ממוחשבים, אבל רק מי שעברית היא השפה שלו ישים לב למה שנשמע לא טבעי. <b>מה מבקשים:</b> 30–60 דקות, מתי שנוח, ושאלון קצר בסוף.</p>
+
+  <div class="sites">
+    <a class="site" href="https://readivrit.pages.dev" target="_blank" rel="noopener">
+      <span class="he">קוֹרֵא</span>
+      <span class="name">«קורא» — הסיפורים</span>
+      <span class="what">כאן עיקר הבדיקה: טקסט מנוקד, הקראה והדגשת מילים.</span>
+      <span class="url">readivrit.pages.dev</span>
+    </a>
+    <a class="site" href="https://trainivrit.pages.dev" target="_blank" rel="noopener">
+      <span class="he">תִּרְגּוּל</span>
+      <span class="name">המאמן — משפטים</span>
+      <span class="what">אם יש זמן: משפטים קצרים עם ניקוד.</span>
+      <span class="url">trainivrit.pages.dev</span>
+    </a>
+  </div>
+
+  <h2>מה עושים</h2>
+  <p class="soft">הממשק באתרים ברוסית — לא צריך להבין אותו. הטקסט בעברית במרכז, ומה שצריך מוסבר כאן. הכי נוח מהטלפון.</p>
+  <ol class="days">
+    <li><span class="day">שלב 1</span><div><h3>בוחרים סיפור</h3><p>פותחים את «קורא», בוחרים לשונית רמה — א (הכי קל), ב, ג או ד (הכי מתקדם) — ונכנסים לסיפור. מעניין במיוחד לבדוק את הרמות ג ו־ד: שם המשפטים ארוכים ומורכבים יותר.</p></div></li>
+    <li><span class="day">שלב 2</span><div><h3>קוראים ומקשיבים</h3><p>לוחצים על ▶ בסרגל התחתון: כל משפט מוקרא, והמילים מודגשות לפי ההקראה. לחיצה על משפט מקריאה אותו שוב. כדאי לעבור לפחות על עמוד או שניים.</p></div></li>
+    <li><span class="day">שלב 3</span><div><h3>מה מחפשים</h3><ul class="what-list">
+      <li>ניקוד שגוי או חסר;</li>
+      <li>מילה או ביטוי שלא אומרים כך בעברית — «תרגום מרוסית»;</li>
+      <li>הגייה שגויה בהקראה: הטעמה במקום הלא נכון, מילה שנקראת אחרת ממה שכתוב;</li>
+      <li>הדגשה שלא תואמת את ההקראה;</li>
+      <li>משפט קשה או קל מדי לרמה של הסיפור.</li>
+    </ul></div></li>
+    <li><span class="day">שלב 4</span><div><h3>מדווחים</h3><p>לוחצים על המילה הבעייתית (ייפתח חלון קטן עם תרגום לרוסית — לא חשוב), ואז על הכפתור 💬 בפינת המסך. כותבים בעברית מה לא בסדר ואיך צריך להיות, ושולחים. הדיווח שומר לבד את הספר, העמוד, המשפט והמילה — אין צורך להעתיק או לצלם מסך.</p></div></li>
+    <li><span class="day">אם יש זמן</span><div><h3>המאמן</h3><p>במאמן המשפטים מוקראים בקול של הטלפון עצמו, ולכן ההגייה שם לפעמים משובשת יותר. גם על זה נשמח לשמוע — באותו כפתור 💬.</p></div></li>
+  </ol>
+  <p class="tip">גם דיווח אחד עוזר. ואם הכול נשמע לכם טבעי — זו תשובה חשובה לא פחות.</p>
+
+  <h2 id="anketa">שאלון קצר</h2>
+  <p class="soft">אין שדות חובה. הטיוטה נשמרת בדפדפן עד השליחה.</p>
+
+  <form id="survey" novalidate>
+    <fieldset>
+      <legend>עליכם</legend>
+      <div class="q"><label for="hebrew">העברית שלכם</label>
+        <select id="hebrew" name="hebrew">
+          <option value="">—</option>
+          <option>שפת אם</option>
+          <option>שוטפת, כמו שפת אם</option>
+          <option>טובה מאוד, אבל לא שפת אם</option>
+        </select></div>
+      <div class="q"><label for="books">אילו סיפורים בדקתם? <span class="hint">שם או רמה — בערך.</span></label><input type="text" id="books" name="books" maxlength="300" autocomplete="off"></div>
+      <div class="q"><span class="lbl">ממה בדקתם</span>
+        <div class="chips">
+          <label><input type="checkbox" name="device" value="iPhone"> iPhone</label>
+          <label><input type="checkbox" name="device" value="Android"> Android</label>
+          <label><input type="checkbox" name="device" value="מחשב"> מחשב</label>
+        </div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>ציונים</legend>
+      <p class="hint" style="margin:0">1 — גרוע, 5 — מצוין.</p>
+      <div class="q"><span class="lbl">הניקוד</span><div class="scale" data-name="r_nikud"></div></div>
+      <div class="q"><span class="lbl">עד כמה העברית נשמעת טבעית</span><div class="scale" data-name="r_natural"></div></div>
+      <div class="q"><span class="lbl">איכות ההקראה וההגייה</span><div class="scale" data-name="r_audio"></div></div>
+      <div class="q"><span class="lbl">התאמת הטקסטים לרמות</span><div class="scale" data-name="r_level"></div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>במילים שלכם</legend>
+      <div class="q"><label for="errors">הטעויות הבולטות שמצאתם</label><textarea id="errors" name="errors" maxlength="900"></textarea></div>
+      <div class="q"><label for="pattern">משהו שחוזר שוב ושוב? <span class="hint">למשל אותה מילה שנקראת לא נכון, או סגנון שנשמע מתורגם.</span></label><textarea id="pattern" name="pattern" maxlength="900"></textarea></div>
+      <div class="q"><label for="other">הערות נוספות</label><textarea id="other" name="other" maxlength="900"></textarea></div>
+      <div class="q"><label for="contact">איך אפשר לחזור אליכם <span class="hint">— לא חובה: טלגרם או מייל. רק יוצר הפרויקט רואה.</span></label><input type="text" id="contact" name="contact" maxlength="200" autocomplete="off"></div>
+    </fieldset>
+
+    <div class="send">
+      <button type="submit" id="send">שליחת השאלון</button>
+      <span class="status" id="status" role="status"></span>
+    </div>
+  </form>
+
+  <p class="note">השאלון אנונימי ולא צריך להירשם. רק יוצר הפרויקט רואה את התשובות. תודה רבה על העזרה!</p>
+</div>
+
+<script>
+  // Шкалы 1–5 / 0–10 — радиокнопками, чтобы работали клавиатура и экранные дикторы.
+  document.querySelectorAll(".scale").forEach(box => {
+    const name = box.dataset.name, min = +(box.dataset.min || 1), max = +(box.dataset.max || 5);
+    for (let v = min; v <= max; v++) {
+      const l = document.createElement("label");
+      l.innerHTML = `<input type="radio" name="${name}" value="${v}">${v}`;
+      box.appendChild(l);
+    }
+  });
+
+  const form = document.getElementById("survey");
+  const DRAFT = "beta-he-survey-draft";
+  function collect() {
+    const fd = new FormData(form), out = {};
+    for (const [k, v] of fd.entries()) {
+      if (!String(v).trim()) continue;
+      out[k] = out[k] ? out[k] + ", " + v : String(v).trim();
+    }
+    return out;
+  }
+  function restore() {
+    let d = null;
+    try { d = JSON.parse(localStorage.getItem(DRAFT) || "null"); } catch (e) {}
+    if (!d) return;
+    for (const [k, v] of Object.entries(d)) {
+      const els = form.querySelectorAll(`[name="${k}"]`);
+      els.forEach(el => {
+        if (el.type === "checkbox" || el.type === "radio") el.checked = String(v).split(", ").includes(el.value);
+        else el.value = v;
+      });
+    }
+  }
+  restore();
+  form.addEventListener("input", () => { try { localStorage.setItem(DRAFT, JSON.stringify(collect())); } catch (e) {} });
+
+  const LABELS = {
+    hebrew: "Иврит тестера", books: "Проверенные истории", device: "Устройство",
+    r_nikud: "Огласовки (1–5)", r_natural: "Естественность иврита (1–5)", r_audio: "Озвучка и произношение (1–5)",
+    r_level: "Соответствие уровням (1–5)", errors: "Ошибки", pattern: "Повторяющееся", other: "Прочее", contact: "Контакт",
+  };
+  window.betaSurveyText = function (a) {
+    return Object.keys(LABELS).filter(k => a[k]).map(k => `${LABELS[k]}: ${a[k]}`).join("\n").slice(0, 5000);
+  };
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import { getFirestore, doc, collection, setDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  const app = initializeApp({
+    apiKey: "AIzaSyBt1bUThfMV-9l864CrzdQnJoCmydlV4_E",
+    authDomain: "ivrit-progress.firebaseapp.com",
+    projectId: "ivrit-progress",
+  });
+  const db = getFirestore(app);
+  const form = document.getElementById("survey");
+  const btn = document.getElementById("send");
+  const status = document.getElementById("status");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form), a = {};
+    for (const [k, v] of fd.entries()) { const s = String(v).trim(); if (s) a[k] = a[k] ? a[k] + ", " + s : s; }
+    if (!Object.keys(a).length) { status.className = "status err"; status.textContent = "השאלון ריק — ענו לפחות על שאלה אחת."; return; }
+    btn.disabled = true; status.className = "status"; status.textContent = "שולחים…";
+    try {
+      // Правило validFeedback: context — map до 30 ключей; значения — короткие строки.
+      const context = { screen: "tester-survey-he" };
+      for (const [k, v] of Object.entries(a)) context[k] = v.slice(0, 900);
+      await setDoc(doc(collection(db, "feedback")), {
+        type: "suggestion", text: window.betaSurveyText(a), app: "reader",
+        url: location.origin + location.pathname, uid: null, userAgent: navigator.userAgent,
+        createdAt: Date.now(), status: "new", context,
+      });
+      try { localStorage.removeItem("beta-he-survey-draft"); } catch (err) {}
+      form.reset();
+      status.className = "status ok"; status.textContent = "תודה! השאלון נשלח.";
+    } catch (err) {
+      status.className = "status err"; status.textContent = "השליחה נכשלה — בדקו את החיבור ונסו שוב.";
+      btn.disabled = false;
+      return;
+    }
+    btn.disabled = false;
+  });
+</script>
+</body>
+</html>

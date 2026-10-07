@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.14
+  Hebrew Reader — v1.99.15
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -721,7 +721,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.14</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.15</div>
   </div>
 </div>
 
@@ -5135,6 +5135,7 @@ function formatFeedbackContext(ctx){
   if (!ctx) return '';
   let base = '';
   if (ctx.screen === 'tester-survey') return '📋 анкета тестера (beta.html)';
+  if (ctx.screen === 'tester-survey-he') return '📋 анкета носителя иврита (beta-he.html)';
   if (ctx.screen === 'library') base = 'библиотека';
   else if (ctx.screen === 'song') base = `песня «${ctx.title || ctx.id}»`;
   else if (ctx.screen === 'book'){
