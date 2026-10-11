@@ -465,6 +465,16 @@ function makeBook(id, n) {
   check('completion: a book whose only page IS the last page is marked completed on open', store['hebrew-reader-completed:short-book'] === '1');
 }
 
+// ---- 6b. «Висячая» последняя страница (2026-10-11): хвост ≤5 предложений дописывается в предыдущую
+{
+  store = {}; allElements = [];
+  sandbox.initReader(makeBook('tail-5', 25), 'tail-5', { title: 'Tail 5' });
+  check('tail: 20+5 sentences = ONE page (tail merged), so the book is completed on open', store['hebrew-reader-completed:tail-5'] === '1');
+  store = {}; allElements = [];
+  sandbox.initReader(makeBook('tail-6', 26), 'tail-6', { title: 'Tail 6' });
+  check('tail: 20+6 sentences stay TWO pages (tail above the threshold)', store['hebrew-reader-completed:tail-6'] !== '1');
+}
+
 // ---- vocab cards: the form from the text, not the lemma, carries the translation ----
 {
   check('vocab: form strips trailing punctuation', sandbox.vocabFormOf({t:'הַכּוֹכָב,'}) === 'הַכּוֹכָב');
