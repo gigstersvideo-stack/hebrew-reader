@@ -608,7 +608,10 @@
     width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:var(--panel);
     color:var(--ink); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;
   }
-  .page-nav-btn:disabled{ opacity:.35; cursor:default; }
+  /* 2026-10-12, решение владельца: кнопки, по которым некуда листать, не показываем (а не бледним).
+     visibility, а не display — «Стр. N / M» остаётся по центру. Одна страница — полос листания нет. */
+  .page-nav-btn:disabled{ visibility:hidden; }
+  .page-nav.single-page{ display:none; }
   .page-nav-btn:not(:disabled):hover{ background:var(--accent-soft); }
   .page-indicator{ font-family:'Inter',sans-serif; font-size:12.5px; color:var(--ink-soft); min-width:100px; text-align:center; }
   .status{ padding:10px 12px; border-radius:6px; font-size:13px; }
@@ -824,7 +827,7 @@
           <div><div class="settings-row-label">Автопрокрутка</div><div class="settings-row-sub">экран следует за текущим предложением при воспроизведении</div></div>
           <label class="switch"><input type="checkbox" id="swAutoscroll" checked><span class="switch-track"></span></label>
         </div>
-        <div class="settings-row">
+        <div class="settings-row" style="display:none">
           <div><div class="settings-row-label">Мнемоника</div><div class="settings-row-sub">яркие гротескные картинки-подсказки вместо спокойных атмосферных</div></div>
           <label class="switch"><input type="checkbox" id="swMnemonic"><span class="switch-track"></span></label>
         </div>
@@ -2277,6 +2280,10 @@ data.sentences.forEach(s => s.words.forEach(w => {
 const freqList = Object.values(freqMap).sort((a,b) => b.count - a.count);
 const totalOccurrences = freqList.reduce((sum,w) => sum + w.count, 0);
 
+// 2026-10-12, решение владельца: обычные (статичные) иллюстрации и их мнемонический режим скрыты —
+// остаются только анимированные сцены с обтеканием (flowScenes). Данные картинок в книгах не удалены:
+// вернуть — поставить true (и убрать display:none у строки «Мнемоника» в настройках).
+const SHOW_STATIC_ILLUSTRATIONS = false;
 // ---- illustrations: one per "page" (~10 sentences), original line-art,
 // paired with a mnemonic technique for the featured word ----
 
@@ -2870,7 +2877,7 @@ function renderSentence(s, container, suppressIllustration){
   trBlock.appendChild(addRow);
   container.appendChild(trBlock);
 
-  if (s.illustration && !suppressIllustration){
+  if (s.illustration && !suppressIllustration && SHOW_STATIC_ILLUSTRATIONS){
     container.appendChild(buildIllustration(s.illustration, s.id, container));
   }
 }
@@ -3064,6 +3071,7 @@ function renderPage(pageIndex){
   const nextBtnBottom = document.getElementById('pageNextBottom');
   if (prevBtnBottom) prevBtnBottom.disabled = currentPage === 0;
   if (nextBtnBottom) nextBtnBottom.disabled = currentPage === totalPages - 1;
+  document.querySelectorAll('.page-nav').forEach(el => el.classList.toggle('single-page', totalPages <= 1));
   // Прокручиваем к началу текста только если читатель ушёл ниже него. Если начало
   // текста и так на экране (ты наверху страницы), прокрутка не трогается — раньше
   // scrollIntoView всё равно сдвигал страницу на высоту шапки, отсюда был рывок.
