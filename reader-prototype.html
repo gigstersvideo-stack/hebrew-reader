@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.17
+  Hebrew Reader — v1.99.18
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -136,6 +136,7 @@
   .flow-actor{ position:absolute; pointer-events:none; display:none; }
   .flow-actor img{ width:100%; height:100%; display:block; }
   .flow-scene-blocker{ position:absolute; inset:0; z-index:5; cursor:default; }
+  .flow-baked{ position:absolute; pointer-events:none; } /* холст «запечённой» сцены; шире колонки — рисунок может выходить на поля */
 
   .sentence{ position:relative; border-radius: 3px; transition: background .25s ease; }
   .sentence.playing{ background: var(--gold-soft); }
@@ -165,11 +166,13 @@
      пока без замены — просто убрано. Для "сохранено/учим" обсуждали
      курсив вместо подчёркивания, но не решили окончательно — см.
      ROADMAP, не реализовано.
-  .tword.seen:not(.speaking):not(.selected):not(.saved):not(.root-match):not(.illustration-hover){ box-shadow: inset 0 -1px 0 var(--ink-soft); }
+  .tword.seen:not(.speaking):not(.selected):not(.saved):not(.root-match):not(.illustration-hover):not(.scene-hover){ box-shadow: inset 0 -1px 0 var(--ink-soft); }
   .tword.saved:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--gold); }
   */
   .tword.root-match:not(.speaking):not(.selected){ box-shadow: inset 0 -2px 0 var(--root-hl), 0 0 0 1px var(--root-hl); border-radius:3px; }
   .tword.illustration-hover:not(.speaking):not(.selected){ background: var(--gold-soft); box-shadow: 0 0 0 1px var(--gold); border-radius:3px; }
+  /* связка со сценой: слово объекта, на который навели (и наоборот) — заметнее, в тон золотому свечению объекта */
+  .tword.scene-hover:not(.speaking):not(.selected){ background: rgba(201,162,39,.32); box-shadow: 0 0 0 1.5px rgba(201,162,39,.9); border-radius:3px; }
   .tword-fade1{ font-family:'Inter', sans-serif; font-style: italic; font-weight:500; color: var(--accent); border-bottom: 1px dashed var(--accent); }
   .tword-fade2{ padding-top: 14px; }
   .tword-fade2 .fade-hint{
@@ -724,7 +727,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.17</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.18</div>
   </div>
 </div>
 
@@ -2445,6 +2448,123 @@ function fsGetSlots(lineTop, lineBottom, objects, containerWidth){
   return slots;
 }
 
+// «Запечённая» сцена (kind:'baked', v2): рисунки нарисованы кодом в студии
+// E:\NEW BIG PROJ\flow-studio и выгружены атласами WebP + scene.json:
+//   drawings[i] = [атлас, x, y, w, h] (px атласа; scale px на единицу дизайна 592×712),
+//   masks[i]    = {natW, natH, rows} — силуэт для обтекания в единицах дизайна (строка = 1 ед.),
+//                 строится в студии без «кипения» линий, поэтому текст не дрожит, пока объект стоит;
+//   track[t]    = [[рисунок, x, y, маска, mx, my, ореол], ...] — объекты такта t в порядке отрисовки.
+// Сначала грузится только scene.json (маски) — текст сразу раскладывается вокруг первого кадра;
+// атласы догружаются, и только тогда сцена проигрывается.
+async function fsBakedStage(layer, scene, cw){
+  const base = scene.basePath || '';
+  const data = await (await fetch(safeUrl(base + (scene.src || 'scene.json')))).json();
+  const k = cw / data.designW;
+  const PAD = Math.round(90 * k);
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const H = Math.ceil(data.designH * k);
+  const cv = document.createElement('canvas');
+  cv.className = 'flow-baked';
+  cv.width = Math.round((cw + 2 * PAD) * dpr); cv.height = Math.round(H * dpr);
+  cv.style.left = -PAD + 'px'; cv.style.top = '0px';
+  cv.style.width = (cw + 2 * PAD) + 'px'; cv.style.height = H + 'px';
+  layer.insertBefore(cv, layer.firstChild);
+  const ctx = cv.getContext('2d');
+  const masks = data.masks.map(m => ({ natW: m.natW, natH: m.natH, rows: m.rows.map(r => r ? [r] : []) }));
+  let imgs = null, cur = 0, hl = -1;
+  function draw(t){
+    if (!imgs) return;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.setTransform(dpr, 0, 0, dpr, PAD * dpr, 0);
+    for (const [d, x, y, , , , , obj] of data.track[t]){
+      const [a, ax, ay, w, h] = data.drawings[d];
+      const args = [imgs[a], ax, ay, w, h, x * k, y * k, w / data.scale * k, h / data.scale * k];
+      if (obj === hl){
+        // подсвеченный объект — золотое свечение по силуэту, в цвет подсветки слов (.illustration-hover)
+        ctx.save(); ctx.shadowColor = 'rgba(201,162,39,.95)'; ctx.shadowBlur = 14 * dpr;
+        ctx.drawImage(...args); ctx.drawImage(...args); ctx.restore();
+      }
+      ctx.drawImage(...args);
+    }
+  }
+  const ready = Promise.all(data.atlases.map(a => fsLoadImage(safeUrl(base + a))))
+    .then(list => { imgs = list; draw(cur); });
+  return {
+    count: data.track.length, fps: data.fps, ready, objects: data.objects || [],
+    highlight(obj){ if (obj !== hl){ hl = obj; draw(cur); } },
+    // какой объект под точкой (px от левого верхнего угла слоя) на текущем такте; -1 — никакой
+    hitTest(px, py){
+      const tr = data.track[cur];
+      for (let i = tr.length - 1; i >= 0; i--){
+        const [, , , m, mx, my, , obj] = tr[i];
+        if (m < 0 || obj === undefined) continue;
+        const mm = masks[m], row = Math.floor(py / k - my);
+        if (row < 0 || row >= mm.natH) continue;
+        const iv = mm.rows[row][0], u = px / k - mx;
+        if (iv && u >= iv[0] - 2 && u <= iv[1] + 2) return obj;
+      }
+      return -1;
+    },
+    place(t){
+      cur = t; draw(t);
+      const placed = [];
+      for (const [, , , m, mx, my, halo] of data.track[t]){
+        if (m < 0) continue;
+        const mm = masks[m];
+        placed.push({ placement: { dispX: mx * k, dispY: my * k, dispW: mm.natW * k, dispH: mm.natH * k, rot: 0 }, mask: mm, halo: halo * k });
+      }
+      return placed;
+    },
+  };
+}
+
+// Связка «объект сцены ↔ слова текста» (scene.links: {объект: [леммы]}), включается, когда сцена доиграла.
+// Правила (решение владельца, действуют для всех сцен):
+//  • наведение на объект — светится объект и ВСЕ его слова на странице;
+//  • наведение на слово — светится только ЭТО слово и его объект (остальные такие же слова — нет);
+//  • клик по объекту открывает разбор его первого слова, как клик по самому слову;
+//  • имена собственные со сценой не связываются никогда (картинка учит нарицательное слово:
+//    у Рони — «רוֹבּוֹט», не «רוֹנִי») — такие леммы отбрасываются, даже если попали в links.
+function fsBakedLinks(layer, stage, links){
+  const ids = stage.objects;
+  const posOf = w => { const s = data.sentences.find(x => x.id === w.dataset.sentence); const ww = s && s.words[+w.dataset.word]; return (ww && ww.pos) || ''; };
+  const allWords = Array.from(layer.querySelectorAll('.tword'));
+  const properLemmas = new Set(allWords.filter(w => /имя собств/i.test(posOf(w))).map(w => w.dataset.lemma));
+  const objOfLemma = {};
+  for (const [id, lemmas] of Object.entries(links)) for (const l of lemmas) if (!properLemmas.has(l)) objOfLemma[l] = ids.indexOf(id);
+  const wordsOf = obj => obj < 0 ? [] : allWords.filter(w => objOfLemma[w.dataset.lemma] === obj);
+  const linked = obj => obj >= 0 && wordsOf(obj).length > 0;
+  let active = -1, litWords = [];
+  // obj — какой объект светится; words — какие слова подсветить
+  function setActive(obj, words, overObject){
+    document.documentElement.style.cursor = overObject ? 'pointer' : '';
+    if (obj === active && words.length === litWords.length && words.every((w, i) => w === litWords[i])) return;
+    for (const w of litWords) w.classList.remove('scene-hover');
+    active = obj; litWords = words; stage.highlight(obj);
+    for (const w of litWords) w.classList.add('scene-hover');
+  }
+  const ac = new AbortController();
+  readerAbort.signal.addEventListener('abort', () => ac.abort(), { once: true });
+  const alive = () => { if (layer.isConnected) return true; setActive(-1, [], false); ac.abort(); return false; };
+  // поверх сцены может лежать разбор слова, кнопки, ссылки — их не перехватываем
+  const foreign = e => (popoverEl && popoverEl.contains(e.target)) || (e.target.closest && e.target.closest('button, a, input, select, textarea, label'));
+  const hit = e => { if (foreign(e)) return -1; const r = layer.getBoundingClientRect(); const o = stage.hitTest(e.clientX - r.left, e.clientY - r.top); return linked(o) ? o : -1; };
+  document.addEventListener('mousemove', e => {
+    if (!alive()) return;
+    const w = e.target.closest && e.target.closest('.tword');
+    if (w && layer.contains(w)){ const o = objOfLemma[w.dataset.lemma]; if (o === undefined) setActive(-1, [], false); else setActive(o, [w], false); return; }
+    const o = hit(e); setActive(o, wordsOf(o), o >= 0);
+  }, { signal: ac.signal });
+  // capture: раньше общего «клик мимо закрывает разбор» — иначе он закрыл бы только что открытый
+  document.addEventListener('click', e => {
+    if (!alive() || (e.target.closest && e.target.closest('.tword'))) return;
+    const o = hit(e); if (o < 0) return;
+    const w = wordsOf(o)[0]; if (!w) return;
+    e.stopPropagation(); e.preventDefault();
+    w.click();
+  }, { signal: ac.signal, capture: true });
+}
+
 function findFlowSceneForPage(start, end){
   const scenes = data.flowScenes || [];
   for (const scene of scenes){
@@ -2595,7 +2715,9 @@ async function applyFlowScene(paragraphEl, scene){
   layer.appendChild(blockerEl);
 
   const basePath = scene.basePath || '';
-  const objEls = scene.objects.map(obj => {
+  // Два вида сцен: «позы» (objects — картинки-позы, v1) и «запечённая» (kind:'baked', v2).
+  const baked = scene.kind === 'baked' ? await fsBakedStage(layer, scene, cw) : null;
+  const objEls = baked ? [] : scene.objects.map(obj => {
     const wrap = document.createElement('div');
     wrap.className = 'flow-actor';
     const img = document.createElement('img');
@@ -2606,6 +2728,7 @@ async function applyFlowScene(paragraphEl, scene){
   for (const { obj } of objEls){
     for (const key of new Set(obj.frames)) await fsEnsureCached(basePath + key);
   }
+  if (baked) renderStep(0);   // текст сразу вокруг первого кадра, пока догружаются картинки
   // An object can have fewer source drawings than POSE_COUNT (today's seed
   // objects have 12 drawings stretched across 24 poses, each held for 2
   // ticks) — stretch-map the pose index onto whatever length it actually has.
@@ -2616,7 +2739,7 @@ async function applyFlowScene(paragraphEl, scene){
   }
 
   function renderStep(poseIdx){
-    const placed = [];
+    const placed = baked ? baked.place(poseIdx) : [];
     for (const { obj, wrap, img } of objEls){
       const t = obj.transforms[poseIdx];
       const src = frameSrcFor(obj, poseIdx);
@@ -2708,6 +2831,22 @@ async function applyFlowScene(paragraphEl, scene){
   const durationSec = scene.durationSec || (POSE_COUNT/18);
   const totalTicks = Math.max(1, Math.round(fps*durationSec));
   const holdMs = 1000/fps;
+  if (baked){
+    // проигрываем по часам, а не по счётчику: на медленной машине пропускаются такты, а не растягивается сцена
+    try { await baked.ready; } catch (e) { return; }
+    if (!layer.isConnected) return;
+    blockerEl.style.display = 'block';
+    const t0 = performance.now(); let last = -1;
+    while (layer.isConnected){
+      const t = Math.min(baked.count - 1, Math.floor((performance.now() - t0) * baked.fps / 1000));
+      if (t !== last){ renderStep(t); last = t; }
+      if (t >= baked.count - 1) break;
+      await new Promise(r => setTimeout(r, 8));
+    }
+    blockerEl.style.display = 'none';
+    if (scene.links && layer.isConnected) fsBakedLinks(layer, baked, scene.links);
+    return;
+  }
   blockerEl.style.display = 'block';
   for (let tick = 0; tick < totalTicks; tick++){
     const authoredIdx = Math.min(POSE_COUNT-1, Math.floor(tick * POSE_COUNT / totalTicks));
@@ -3021,6 +3160,14 @@ function renderPage(pageIndex){
     // Вместо обтекания — последний кадр каждого объекта сцены полосой над текстом.
     const strip = document.createElement('div');
     strip.className = 'flow-fallback';
+    if (pageScene.kind === 'baked'){
+      const img = document.createElement('img');
+      img.src = safeUrl(pageScene.basePath + (pageScene.poster || 'poster.webp'));
+      img.alt = pageScene.label || '';
+      img.loading = 'lazy';
+      img.style.maxWidth = '90%';
+      strip.appendChild(img);
+    }
     (pageScene.objects || []).forEach(o => {
       const frame = (o.frames || [])[(o.frames || []).length - 1];
       if (!frame) return;
