@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.20
+  Hebrew Reader — v1.99.21
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -727,7 +727,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.20</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.21</div>
   </div>
 </div>
 
@@ -2478,7 +2478,7 @@ async function fsBakedStage(layer, scene, cw){
   layer.insertBefore(cv, layer.firstChild);
   const ctx = cv.getContext('2d');
   const masks = data.masks.map(m => ({ natW: m.natW, natH: m.natH, rows: m.rows.map(r => r ? [r] : []) }));
-  let imgs = null, cur = 0, hl = -1;
+  let imgs = null, cur = 0, hl = -1, loading = null;
   function draw(t){
     if (!imgs) return;
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
@@ -2494,10 +2494,13 @@ async function fsBakedStage(layer, scene, cw){
       ctx.drawImage(...args);
     }
   }
-  const ready = Promise.all(data.atlases.map(a => fsLoadImage(safeUrl(base + a))))
-    .then(list => { imgs = list; draw(cur); });
+  // атласы грузятся не сразу, а когда сцена близко к экрану (см. fsWhenNear): если читатель
+  // открыл книгу внизу страницы и до сцены не долистал, 2+ МБ картинок не качаются вовсе
+  const load = () => loading || (loading = Promise.all(data.atlases.map(a => fsLoadImage(safeUrl(base + a))))
+    .then(list => { imgs = list; draw(cur); }));
   return {
-    count: data.track.length, fps: data.fps, ready, objects: data.objects || [],
+    canvas: cv, load,
+    count: data.track.length, fps: data.fps, objects: data.objects || [],
     highlight(obj){ if (obj !== hl){ hl = obj; draw(cur); } },
     // какой объект под точкой (px от левого верхнего угла слоя) на текущем такте; -1 — никакой
     hitTest(px, py){
@@ -2570,6 +2573,26 @@ function fsBakedLinks(layer, stage, links){
     e.stopPropagation(); e.preventDefault();
     w.click();
   }, { signal: ac.signal, capture: true });
+}
+
+// Ждём, пока элемент окажется в экране: near — за ~экран до появления (тогда грузим картинки),
+// visible — когда он хотя бы наполовину виден (тогда играем). Читалка возвращает читателя к месту,
+// где он остановился (часто — низ страницы), и без этого сцена проигрывалась бы за кадром.
+// Возвращает false, если слой убрали со страницы, пока ждали (перелистнули, ушли из книги).
+function fsWhenInView(el, layer, onNear){
+  return new Promise(resolve => {
+    let done = false;
+    const finish = v => { if (done) return; done = true; near.disconnect(); vis.disconnect(); clearInterval(watch); resolve(v); };
+    const near = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)){ near.disconnect(); onNear(); } }, { rootMargin: '100% 0px' });
+    const vis = new IntersectionObserver(es => {
+      for (const e of es){
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        if (e.intersectionRatio >= 0.5 || e.intersectionRect.height >= vh * 0.5) finish(true);
+      }
+    }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+    near.observe(el); vis.observe(el);
+    const watch = setInterval(() => { if (!layer.isConnected) finish(false); }, 1000);
+  });
 }
 
 function findFlowSceneForPage(start, end){
@@ -2841,8 +2864,10 @@ async function applyFlowScene(paragraphEl, scene){
   const totalTicks = Math.max(1, Math.round(fps*durationSec));
   const holdMs = 1000/fps;
   if (baked){
+    // ждём, пока сцена окажется в экране (картинки начинают грузиться чуть раньше)
+    if (!(await fsWhenInView(baked.canvas, layer, () => baked.load().catch(() => {})))) return;
     // проигрываем по часам, а не по счётчику: на медленной машине пропускаются такты, а не растягивается сцена
-    try { await baked.ready; } catch (e) { return; }
+    try { await baked.load(); } catch (e) { return; }
     if (!layer.isConnected) return;
     blockerEl.style.display = 'block';
     const t0 = performance.now(); let last = -1;
