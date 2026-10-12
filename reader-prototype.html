@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.18
+  Hebrew Reader — v1.99.19
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -727,7 +727,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.18</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.19</div>
   </div>
 </div>
 
@@ -2460,14 +2460,17 @@ async function fsBakedStage(layer, scene, cw){
   const base = scene.basePath || '';
   const data = await (await fetch(safeUrl(base + (scene.src || 'scene.json')))).json();
   const k = cw / data.designW;
-  const PAD = Math.round(90 * k);
+  // рисунок может выходить за колонку на поля — но не дальше края экрана (на телефоне полей почти нет,
+  // иначе появилась бы горизонтальная прокрутка)
+  const lr = layer.getBoundingClientRect(), vw = document.documentElement.clientWidth || window.innerWidth;
+  const PAD = Math.max(0, Math.min(Math.round(90 * k), Math.floor(lr.left))), PADR = Math.max(0, Math.min(Math.round(90 * k), Math.floor(vw - lr.right)));
   const dpr = Math.min(2, window.devicePixelRatio || 1);
   const H = Math.ceil(data.designH * k);
   const cv = document.createElement('canvas');
   cv.className = 'flow-baked';
-  cv.width = Math.round((cw + 2 * PAD) * dpr); cv.height = Math.round(H * dpr);
+  cv.width = Math.round((cw + PAD + PADR) * dpr); cv.height = Math.round(H * dpr);
   cv.style.left = -PAD + 'px'; cv.style.top = '0px';
-  cv.style.width = (cw + 2 * PAD) + 'px'; cv.style.height = H + 'px';
+  cv.style.width = (cw + PAD + PADR) + 'px'; cv.style.height = H + 'px';
   layer.insertBefore(cv, layer.firstChild);
   const ctx = cv.getContext('2d');
   const masks = data.masks.map(m => ({ natW: m.natW, natH: m.natH, rows: m.rows.map(r => r ? [r] : []) }));
@@ -3151,11 +3154,12 @@ function renderPage(pageIndex){
   p.setAttribute('lang', 'he'); // иначе скринридер читает иврит русским голосом
   const start = pageStartIdx(currentPage);
   const end = pageEndIdx(currentPage);
-  // Сцена с обтеканием нарисована под холст 592px: на телефоне текст
-  // зажимается в узкую колонку между картинками — там обычная вёрстка.
+  // Старые сцены из картинок-поз нарисованы крупно под холст 592px: на телефоне текст зажимался
+  // между картинками — там обычная вёрстка и полоса с картинками. «Запечённые» сцены (kind:'baked')
+  // масштабируются вместе с колонкой и на телефоне проигрываются с обтеканием (проверено на колонке 327px).
   const pageScene = findFlowSceneForPage(start, end);
   const viewportW = window.innerWidth || document.documentElement.clientWidth || 9999; // 0 бывает в скрытых фреймах — тогда считаем экран широким
-  const activeScene = viewportW >= 640 ? pageScene : null;
+  const activeScene = (viewportW >= 640 || (pageScene && pageScene.kind === 'baked')) ? pageScene : null;
   if (pageScene && !activeScene) {
     // Вместо обтекания — последний кадр каждого объекта сцены полосой над текстом.
     const strip = document.createElement('div');
