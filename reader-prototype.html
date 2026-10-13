@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.22
+  Hebrew Reader — v1.99.23
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -727,7 +727,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.22</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.23</div>
   </div>
 </div>
 
@@ -2502,6 +2502,7 @@ async function fsBakedStage(layer, scene, cw){
   return {
     canvas: cv, load,
     count: data.track.length, fps: data.fps, objects: data.objects || [],
+    extent: () => fsTrackExtent(data.track, masks, k),
     highlight(obj){ if (obj !== hl){ hl = obj; draw(cur); } },
     // какой объект под точкой (px от левого верхнего угла слоя) на текущем такте; -1 — никакой
     hitTest(px, py){
@@ -2681,12 +2682,22 @@ const fsGlassRain = (() => {
   return { Sim, drawMap };
 })();
 
+// По какой высоте (px от верха слоя) вообще бывает рисунок сцены за все такты: [верх, низ].
+function fsTrackExtent(track, masks, k){
+  let y0 = Infinity, y1 = -Infinity;
+  for (const tr of track) for (const [, , , m, , my] of tr){ if (m < 0) continue; y0 = Math.min(y0, my); y1 = Math.max(y1, my + masks[m].natH); }
+  return y0 < y1 ? [Math.max(0, y0 * k), y1 * k] : null;
+}
+
 // Шейдерная сцена (kind:'shader', v2): картинку рисует фрагментный шейдер вживую (WebGL), поверх —
 // иллюстрации-текстуры. Собирается в студии E:\NEW BIG PROJ\flow-studio (exportShader) в scene.json:
 //   masks/track — как у kind:'baked' (рисунок = −1: рисует шейдер), objects + hl — номер подсветки в шейдере;
 //   uniforms[имя] = {c: значение} или {t: [по тактам]}; textures, rects; glass — дождь на стекле (fsGlassRain).
 // После последнего такта сцена не замирает: время идёт дальше (дождь, ветер, парус, рыбка) — но только пока
 // сцена видна на экране и вкладка открыта. Нет WebGL — вместо анимации финальный кадр (poster).
+// Слабая машина (старый ноутбук): перед показом несколько пробных кадров с ожиданием видеокарты; не успевает —
+// сначала меньше пикселей (чуть мягче картинка), не помогает — статичный финальный кадр без шейдера (как без WebGL).
+// «Уменьшить движение» в настройках системы — тоже сразу статичный кадр.
 async function fsShaderStage(layer, scene, cw){
   const base = scene.basePath || '';
   const data = await (await fetch(safeUrl(base + (scene.src || 'scene.json')))).json();
@@ -2696,7 +2707,8 @@ async function fsShaderStage(layer, scene, cw){
   const W = cw + PAD + PADR;
   let H = Math.ceil(data.designH * k);
   // шейдер тяжёлый — не больше ~1.8 Мпикс на кадр (ретина на широком экране иначе греет ноутбук)
-  const dprOf = h => Math.max(1, Math.min(Math.min(2, window.devicePixelRatio || 1), Math.sqrt(1.8e6 / (W * h))));
+  let dprCap = 2;                                  // снижается, если машина не тянет (см. load)
+  const dprOf = h => Math.max(0.6, Math.min(dprCap, Math.min(2, window.devicePixelRatio || 1), Math.sqrt(1.8e6 / (W * h))));
   let cv = document.createElement('canvas');
   cv.className = 'flow-baked';
   cv.style.left = -PAD + 'px'; cv.style.top = '0px';
@@ -2708,7 +2720,7 @@ async function fsShaderStage(layer, scene, cw){
   const N = data.track.length;
   const uniAt = (name, t) => { const u = data.uniforms[name]; return u.c !== undefined ? u.c : u.t[Math.min(t, u.t.length - 1)]; };
   let gl = null, prog = null, U = {}, cur = 0, hl = 0, loading = null, ready = false, poster = null;
-  let sim = null, simTick = -1, pin = null, dropCv = null, dropTex = null, idleT0 = 0, idling = false;
+  let sim = null, simTick = -1, pin = null, dropCv = null, dropTex = null, idling = false, staticMode = false;
   const G = data.glass;
 
   function compile(src){
@@ -2778,10 +2790,29 @@ async function fsShaderStage(layer, scene, cw){
     }
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
+  // статичный кадр вместо шейдера: финальный постер, маски последнего такта, проигрывать нечего
+  async function goStatic(){
+    if (gl){ const fresh = cv.cloneNode(); cv.replaceWith(fresh); cv = fresh; stage.canvas = fresh; }
+    gl = null; staticMode = true; cur = N - 1;
+    poster = await fsLoadImage(safeUrl(base + data.poster));
+    ready = true; render(N - 1);
+  }
+  // сколько мс занимает кадр на этой машине (с ожиданием видеокарты: readPixels дожидается конца рисования)
+  function frameMs(){
+    const px = new Uint8Array(4), times = [];
+    for (let i = 0; i < 4; i++){
+      const t0 = performance.now();
+      render(cur, (N - 1) / data.fps + i * 0.04);
+      gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+      if (i) times.push(performance.now() - t0);            // первый кадр — прогрев (сборка, загрузка текстур)
+    }
+    return Math.min(...times);
+  }
   const load = () => loading || (loading = (async () => {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return goStatic();
     const src = await (await fetch(safeUrl(base + data.frag))).text();
     let ok = false;
-    try { ok = compile(src); } catch (e) { console.warn('шейдер сцены не собрался', e); gl = null; }
+    try { ok = compile(src); } catch (e) { console.warn('шейдер сцены не собрался', e); }
     if (!ok){
       // холст уже мог получить webgl-контекст (шейдер не собрался) — для картинки нужен новый
       if (gl){ const fresh = cv.cloneNode(); cv.replaceWith(fresh); cv = fresh; stage.canvas = fresh; }
@@ -2809,12 +2840,20 @@ async function fsShaderStage(layer, scene, cw){
       }
       simTo(cur);
     }
-    ready = true; render(cur);
+    ready = true;
+    // проверка сил: бюджет ~22 мс на кадр (иначе 24 к/с не держится и страница «лагает»)
+    let ms = frameMs();
+    if (ms > 22){
+      const want = dpr * Math.sqrt(22 / ms);              // время кадра ~ числу пикселей
+      if (want >= 0.6){ dprCap = want; dpr = dprOf(H); size(); ms = frameMs(); }
+      if (ms > 30){ console.info('сцена: машине тяжело (' + Math.round(ms) + ' мс/кадр) — статичная картинка'); return goStatic(); }
+    }
+    render(cur);
   })());
   // хвост после финала: время идёт дальше, дождь на стекле продолжается; только пока сцена видна и вкладка открыта
   function idle(){
     if (idling || !gl) return; idling = true;
-    let visible = true, raf = 0, lastFrame = 0, elapsed = 0, lastNow = performance.now();
+    let visible = true, raf = 0, lastFrame = 0, elapsed = 0, lastNow = performance.now(), slow = 0;
     const io = new IntersectionObserver(es => { for (const e of es) visible = e.isIntersecting; wake(); });
     io.observe(stage.canvas);
     const onVis = () => wake();
@@ -2827,9 +2866,13 @@ async function fsShaderStage(layer, scene, cw){
       if (!visible || document.hidden) return;                     // уснули; проснёмся по наблюдателю
       const dt = Math.min(0.1, (now - lastNow) / 1000); lastNow = now; elapsed += dt;
       if (now - lastFrame >= 1000 / 30 - 2){                      // ~30 кадров в секунду
+        const t0 = performance.now();
         lastFrame = now;
         if (gl && sim) sim.step(1 / 30, G.idleRain);
         render(N - 1, (N - 1) / data.fps + elapsed);
+        // сторож: кадр дольше 45 мс стабильно (2 с подряд) — хвост замирает, сцена остаётся финальным кадром
+        slow = (performance.now() - t0 > 45) ? slow + 1 : 0;
+        if (slow > 60){ console.info('сцена: хвост остановлен — машине тяжело'); stopAll(); return; }
       }
       raf = requestAnimationFrame(frame);
     }
@@ -2837,8 +2880,9 @@ async function fsShaderStage(layer, scene, cw){
   }
   const stage = {
     canvas: cv, load, idle,
-    count: N, fps: data.fps, objects: data.objects || [],
+    get count(){ return staticMode ? 1 : N; }, fps: data.fps, objects: data.objects || [],
     layoutRule: { minSlot: data.minSlotPx || 20, noLoneWords: !!data.noLoneWords },
+    extent: () => fsTrackExtent(data.track, masks, k),
     highlight(obj){ const v = obj >= 0 ? (data.hl[obj] || 0) : 0; if (v !== hl){ hl = v; if (!idling) render(cur); } },
     hitTest(px, py){
       const tr = data.track[cur];
@@ -2853,6 +2897,7 @@ async function fsShaderStage(layer, scene, cw){
       return -1;
     },
     place(t){
+      if (staticMode) t = N - 1;
       cur = t;
       if (ready){ if (gl) simTo(t); render(t); }
       const placed = [];
@@ -2913,6 +2958,17 @@ function fsBakedLinks(layer, stage, links){
     const w = wordsOf(o)[0]; if (!w) return;
     e.stopPropagation(); e.preventDefault();
     w.click();
+    // слово могло оказаться далеко внизу страницы — показываем его вместе с открывшимся разбором
+    // (с небольшой паузой: содержимое разбора дорисовывается не сразу и меняет его высоту)
+    setTimeout(() => {
+      const r = w.getBoundingClientRect(), pr = popoverEl ? popoverEl.getBoundingClientRect() : r;
+      const top = Math.min(r.top, pr.top), bot = Math.max(r.bottom, pr.bottom);
+      const bar = document.querySelector('footer.audiobar'), visH = window.innerHeight - (bar ? bar.getBoundingClientRect().height : 70);
+      let dy = 0;
+      if (bot > visH - 12) dy = Math.min(bot - visH + 16, top - 16);   // низ разбора над плеером, но слово не уходит вверх
+      else if (top < 10) dy = top - 16;
+      if (Math.abs(dy) > 4) window.scrollTo({ top: window.scrollY + dy, behavior: 'smooth' });
+    }, 120);
   }, { signal: ac.signal, capture: true });
 }
 
@@ -3105,6 +3161,20 @@ async function applyFlowScene(paragraphEl, scene){
     for (const key of new Set(obj.frames)) await fsEnsureCached(basePath + key);
   }
   if (baked) renderStep(0);   // текст сразу вокруг первого кадра, пока догружаются картинки
+  // Страница открыта с самого верха (не возврат к месту чтения) — шапка занимает пол-экрана, и низ сцены
+  // (робот у кота, море у дождя) оказывался за краем. Докручиваем так, чтобы рисунок сцены встал целиком
+  // по центру видимой области (над нижней панелью плеера); выше рисунка — не дальше его верха.
+  if (baked && baked.extent && window.scrollY < 40){
+    const ex = baked.extent();
+    if (ex){
+      const lr = layer.getBoundingClientRect(), bar = document.querySelector('footer.audiobar');
+      const visH = window.innerHeight - (bar ? Math.min(140, bar.getBoundingClientRect().height) : 70);
+      const top = lr.top + ex[0], bot = lr.top + ex[1];
+      let dy = (top + bot) / 2 - visH / 2;                       // центр рисунка — в центр экрана
+      dy = Math.min(dy, top - 12);                               // но верх рисунка не уходит под край
+      if (dy > 8) window.scrollTo({ top: window.scrollY + dy, behavior: 'smooth' });
+    }
+  }
   // An object can have fewer source drawings than POSE_COUNT (today's seed
   // objects have 12 drawings stretched across 24 poses, each held for 2
   // ticks) — stretch-map the pose index onto whatever length it actually has.

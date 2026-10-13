@@ -524,7 +524,10 @@ void main(){
       acc = overP(acc, kd * u_boat.w);
     }
     acc = overP(acc, wc(u_tBoat, u_boatRect, q) * u_boat.w);
-    if (u_hl == 3.) acc = over(acc, GOLD, glow(u_tBoat, u_boatRect, q, 4.) * .7);
+    // подсветка: 3 — лодка (без паруса), 5 — только парус-одеяло
+    float inSail = step(q.x, 9.) * step(-94., q.x) * step(q.y, -55.) * step(-166., q.y);
+    if (u_hl == 3.) acc = over(acc, GOLD, glow(u_tBoat, u_boatRect, q, 4.) * .7 * (1. - inSail));
+    if (u_hl == 5.) acc = over(acc, GOLD, glow(u_tBoat, u_boatRect, q, 4.) * .8 * inSail);
   }
   if (u_variant < .5) acc = waterLayer0(p, acc, 1.); else acc = seaLayer(p, acc, 1.);
   acc = paintCloudLayer(p, acc);
