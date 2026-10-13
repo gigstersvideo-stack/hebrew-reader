@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.21
+  Hebrew Reader — v1.99.22
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -727,7 +727,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.21</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.22</div>
   </div>
 </div>
 
@@ -2438,17 +2438,18 @@ function fsBlockedIntervals(lineTop, lineBottom, objects){
   }
   return merged;
 }
-function fsGetSlots(lineTop, lineBottom, objects, containerWidth){
+// minSlot — щели уже этого (px) не заполняются: у шейдерных сцен 110, чтобы в узкой щели не повисало одно слово
+function fsGetSlots(lineTop, lineBottom, objects, containerWidth, minSlot = 20){
   const blocked = fsBlockedIntervals(lineTop, lineBottom, objects);
   if (!blocked.length) return [{x:0, width: containerWidth}];
   const slots = [];
   let lastX = 0;
   for (const [bStart, bEnd] of blocked){
     const s = Math.max(0, bStart), e = Math.min(containerWidth, bEnd);
-    if (s - lastX > 20) slots.push({x:lastX, width:s-lastX});
+    if (s - lastX > minSlot) slots.push({x:lastX, width:s-lastX});
     lastX = Math.max(lastX, e);
   }
-  if (containerWidth - lastX > 20) slots.push({x:lastX, width:containerWidth-lastX});
+  if (containerWidth - lastX > minSlot) slots.push({x:lastX, width:containerWidth-lastX});
   return slots;
 }
 
@@ -2467,7 +2468,7 @@ async function fsBakedStage(layer, scene, cw){
   // рисунок может выходить за колонку на поля — но не дальше края экрана (на телефоне полей почти нет,
   // иначе появилась бы горизонтальная прокрутка)
   const lr = layer.getBoundingClientRect(), vw = document.documentElement.clientWidth || window.innerWidth;
-  const PAD = Math.max(0, Math.min(Math.round(90 * k), Math.floor(lr.left))), PADR = Math.max(0, Math.min(Math.round(90 * k), Math.floor(vw - lr.right)));
+  const PAD = Math.max(0, Math.min(Math.round(90 * k), Math.floor(lr.left))), PADR = Math.max(0, Math.min(Math.round(90 * k), Math.floor(vw - lr.right) - 18));   // −18: запас под полосу прокрутки, которая может появиться позже
   const dpr = Math.min(2, window.devicePixelRatio || 1);
   const H = Math.ceil(data.designH * k);
   const cv = document.createElement('canvas');
@@ -2526,6 +2527,346 @@ async function fsBakedStage(layer, scene, cw){
       return placed;
     },
   };
+}
+
+// Дождь на стекле для шейдерных сцен (копия E:\NEW BIG PROJ\flow-studio\glass-sim.js — правится там, потом сюда).
+// Маленькая детерминированная физика капель: падают, висят, копят воду, срываются, сливаются, разгоняются,
+// оставляют мокрые дорожки и бусинки; в режиме «смыв» уносят краску того, по чему бегут.
+// Рисуется в «карту капель» из двух полос: сверху нормаль + мокро, снизу краска (цвет + количество).
+const fsGlassRain = (() => {
+  function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  const SLIDE_R = 1.7, STICK_R = 1.15;
+  function Sim(W, H, seed){ this.W = W; this.H = H; this.rnd = mulberry32(seed); this.drops = []; this.t = 0; this.colorAt = null; }
+  Sim.prototype.spawn = function(x, y, r){
+    const d = { x, y, r, vy: 0, sliding: false, hold: 0.4 + this.rnd() * 1.6, trail: [], ph: this.rnd() * 6.28, beadAcc: 0, dead: false, col: [0, 0, 0], pa: 0 };
+    this.drops.push(d); return d;
+  };
+  Sim.prototype.merge = function(a, b){
+    const wa = a.r * a.r, wb = b.r * b.r, m = wa + wb;
+    a.x = (a.x * wa + b.x * wb) / m;
+    if (!a.sliding) a.y = (a.y * wa + b.y * wb) / m;
+    const pa = a.pa * wa + b.pa * wb;
+    if (pa > 0){ for (let k = 0; k < 3; k++) a.col[k] = (a.col[k] * a.pa * wa + b.col[k] * b.pa * wb) / pa; a.pa = pa / m; }
+    a.r = Math.sqrt(m) * 0.985;
+    if (b.sliding){ a.sliding = true; a.vy = Math.max(a.vy, b.vy); }
+    a.vy *= 1.15; b.dead = true;
+  };
+  Sim.prototype.step = function(dt, rain, wash = 0){
+    const R = this.rnd, D = this.drops;
+    this.t += dt;
+    const n = Math.floor(rain * 45 * dt + R());
+    for (let i = 0; i < n; i++){
+      const x = R() * this.W, y = R() * this.H, r = 0.5 + 0.9 * R() * R() + (R() < 0.08 ? 0.6 : 0);
+      const hit = D.find(d => !d.dead && Math.hypot(d.x - x, d.y - y) < d.r + r);
+      if (hit){ hit.r = Math.sqrt(hit.r * hit.r + r * r); hit.hold -= 0.15; } else this.spawn(x, y, r);
+    }
+    const washing = wash > 0 && wash < 1 && this.colorAt;
+    if (washing){
+      const m = Math.floor(wash * (1 - wash) * 4 * 40 * dt + R());
+      for (let i = 0; i < m; i++){
+        const x = 8 + R() * (this.W - 16), y = 50 + R() * 110, c = this.colorAt(x, y);
+        if (!c || c[3] < 120) continue;
+        const d = this.spawn(x, y, 1.9 + R() * 0.6); d.sliding = true; d.vy = 6 + R() * 6;
+      }
+    }
+    for (const d of D){
+      if (d.dead) continue;
+      if (d.pin){ d.trail.push([d.x, d.y, this.t, d.pa]); if (d.trail.length > 90) d.trail.shift(); continue; }
+      if (!d.sliding){
+        d.hold -= dt;
+        if (d.hold < 1e8) d.r += dt * 0.22 * rain * (0.4 + d.ph / 6.28);
+        if (d.r > SLIDE_R + d.ph * 0.07 && d.hold <= 0){ d.sliding = true; d.vy = 3 + R() * 4; }
+        continue;
+      }
+      if (d.r < STICK_R){ d.sliding = false; d.vy = 0; d.hold = 1e9; d.trail = []; continue; }
+      const vmax = 8 + Math.pow(Math.max(0, d.r - 1.3), 2) * 30;
+      d.vy = Math.min(vmax, d.vy + (10 + d.r * 20) * dt);
+      if (R() < 0.05 * dt * 24 && d.r < 2.6) d.vy *= 0.2;
+      d.y += d.vy * dt;
+      d.dx = (d.dx || 0) * 0.92 + (R() - 0.5) * 0.9;
+      d.kick = (d.kick || 0) * 0.88;
+      d.x += Math.sin(d.y * 0.09 + d.ph) * d.vy * dt * 0.3 * (2 / d.r) + d.dx * d.vy * dt * 0.06 + d.kick * dt;
+      if (d.r > 2.0 && d.vy > 12 && R() < 0.014 * dt * 24){
+        const side = R() < 0.5 ? -1 : 1, nr = d.r * 0.62;
+        const nd = this.spawn(d.x + side * (d.r + nr) * 0.6, d.y - d.r * 0.4, nr);
+        nd.sliding = true; nd.vy = d.vy * 0.55; nd.kick = side * 14; nd.col = d.col.slice(); nd.pa = d.pa; nd.trail = [[d.x, d.y, this.t, d.pa]];
+        d.r = Math.sqrt(Math.max(0.5, d.r * d.r - nr * nr)); d.kick = -side * 6;
+      }
+      if (washing){
+        const c = this.colorAt(d.x, d.y);
+        if (c && c[3] > 90){
+          const k = Math.min(1, dt * 10 * (c[3] / 255));
+          for (let j = 0; j < 3; j++) d.col[j] = d.pa > 0.02 ? d.col[j] + (c[j] - d.col[j]) * k : c[j];
+          d.pa = Math.min(1, d.pa + k * 0.8);
+        }
+      }
+      d.trail.push([d.x, d.y, this.t, d.pa]);
+      if (d.trail.length > 90) d.trail.shift();
+      d.beadAcc += d.vy * dt;
+      if (d.beadAcc > 7 + R() * 10){
+        d.beadAcc = 0;
+        if (R() < 0.6 && d.r > 1.5){
+          const br = 0.35 + R() * 0.3; d.r = Math.sqrt(Math.max(0.3, d.r * d.r - br * br));
+          const b = this.spawn(d.x + (R() - 0.5) * d.r * 0.6, d.y - d.r * 1.3, br); b.hold = 1e9; b.col = d.col.slice(); b.pa = d.pa * 0.8;
+        }
+      }
+      if (d.y - d.r > this.H + 6) d.dead = true;
+    }
+    for (const a of D){
+      if (a.dead || !a.sliding) continue;
+      for (const b of D){
+        if (b === a || b.dead || b.pin) continue;
+        if (Math.abs(b.x - a.x) < a.r + b.r && Math.abs(b.y - a.y) < (a.r + b.r) * 1.2 && Math.hypot(b.x - a.x, (b.y - a.y) / 1.2) < a.r + b.r){
+          if (a.r >= b.r || !b.sliding) this.merge(a, b);
+        }
+      }
+    }
+    if (Math.floor(this.t * 24) % 6 === 0) for (const a of D){
+      if (a.dead || a.sliding) continue;
+      for (const b of D){ if (b === a || b.dead || b.sliding) continue; if (Math.hypot(a.x - b.x, a.y - b.y) < (a.r + b.r) * 0.9) this.merge(a.r >= b.r ? a : b, a.r >= b.r ? b : a); }
+    }
+    for (const d of D) if (d.pa > 0 && !d.sliding) d.pa = Math.max(0, d.pa - dt * 0.25);
+    this.drops = D.filter(d => !d.dead);
+    if (this.drops.length > 260) this.drops.sort((a, b) => b.r - a.r).length = 260;
+  };
+  let sprite = null;
+  function dropSprite(){
+    if (sprite) return sprite;
+    const S = 64; sprite = document.createElement('canvas'); sprite.width = sprite.height = S;
+    const c = sprite.getContext('2d'), img = c.createImageData(S, S);
+    for (let y = 0; y < S; y++) for (let x = 0; x < S; x++){
+      const nx = (x + 0.5) / S * 2 - 1, ny = (y + 0.5) / S * 2 - 1, d = Math.hypot(nx, ny), i = (y * S + x) * 4;
+      if (d > 1) continue;
+      img.data[i] = 128 + nx * 127; img.data[i + 1] = 128 + ny * 127; img.data[i + 2] = 255; img.data[i + 3] = 255;
+    }
+    c.putImageData(img, 0, 0); return sprite;
+  }
+  // карта рисуется прямо из живой симуляции (без снимков: в читалке сцена идёт только вперёд)
+  function drawMap(cv, sim, s){
+    const c = cv.getContext('2d'), H = cv.height / 2, drops = sim.drops, now = sim.t;
+    c.setTransform(1, 0, 0, 1, 0, 0); c.globalAlpha = 1; c.clearRect(0, H, cv.width, H);
+    c.fillStyle = 'rgb(128,128,0)'; c.fillRect(0, 0, cv.width, H);
+    c.lineCap = 'round'; c.lineJoin = 'round';
+    const clipHalf = half => { c.restore(); c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.beginPath(); c.rect(0, half * H, cv.width, H); c.clip(); };
+    c.save();
+    for (const half of [0, 1]){
+      clipHalf(half);
+      c.setTransform(s, 0, 0, s, 0, half * H);
+      for (const d of drops) if (d.sliding && d.trail.length > 1){
+        for (let i = 1; i < d.trail.length; i++){
+          const [x0, y0, t0] = d.trail[i - 1], [x1, y1, , pa] = d.trail[i], wet = Math.max(0, 1 - (now - t0) / 3.5);
+          if (wet <= 0) continue;
+          if (half === 0){ c.strokeStyle = `rgb(128,128,${Math.round(40 + 130 * wet)})`; c.lineWidth = Math.max(0.6, d.r * 0.7); }
+          else { if (pa < 0.02) continue; c.strokeStyle = `rgba(${d.col.map(Math.round)},${(pa * wet * 0.75).toFixed(3)})`; c.lineWidth = Math.max(0.8, d.r * 1.0); }
+          c.beginPath(); c.moveTo(x0, y0); c.lineTo(x1, y1); c.stroke();
+        }
+      }
+    }
+    clipHalf(0);
+    c.setTransform(s, 0, 0, s, 0, 0);
+    const sp = dropSprite();
+    for (const d of drops){
+      const vy = d.sliding ? d.vy : 0, ry = d.r * (1 + Math.min(0.35, vy / 140));
+      c.drawImage(sp, d.x - d.r, d.y + d.r - 2 * ry, d.r * 2, ry * 2);
+    }
+    clipHalf(1);
+    c.setTransform(s, 0, 0, s, 0, H);
+    for (const d of drops) if (d.pa > 0.02){
+      const vy = d.sliding ? d.vy : 0, ry = d.r * (1 + Math.min(0.35, vy / 140));
+      c.fillStyle = `rgba(${d.col.map(Math.round)},${Math.min(1, d.pa * 0.7).toFixed(3)})`;
+      c.beginPath(); c.ellipse(d.x, d.y + d.r - ry, d.r, ry, 0, 0, 6.2832); c.fill();
+    }
+    c.restore();
+  }
+  return { Sim, drawMap };
+})();
+
+// Шейдерная сцена (kind:'shader', v2): картинку рисует фрагментный шейдер вживую (WebGL), поверх —
+// иллюстрации-текстуры. Собирается в студии E:\NEW BIG PROJ\flow-studio (exportShader) в scene.json:
+//   masks/track — как у kind:'baked' (рисунок = −1: рисует шейдер), objects + hl — номер подсветки в шейдере;
+//   uniforms[имя] = {c: значение} или {t: [по тактам]}; textures, rects; glass — дождь на стекле (fsGlassRain).
+// После последнего такта сцена не замирает: время идёт дальше (дождь, ветер, парус, рыбка) — но только пока
+// сцена видна на экране и вкладка открыта. Нет WebGL — вместо анимации финальный кадр (poster).
+async function fsShaderStage(layer, scene, cw){
+  const base = scene.basePath || '';
+  const data = await (await fetch(safeUrl(base + (scene.src || 'scene.json')))).json();
+  const k = cw / data.designW;
+  const lr = layer.getBoundingClientRect(), vw = document.documentElement.clientWidth || window.innerWidth;
+  const PAD = Math.max(0, Math.min(Math.round(90 * k), Math.floor(lr.left))), PADR = Math.max(0, Math.min(Math.round(90 * k), Math.floor(vw - lr.right) - 18));   // −18: запас под полосу прокрутки, которая может появиться позже
+  const W = cw + PAD + PADR;
+  let H = Math.ceil(data.designH * k);
+  // шейдер тяжёлый — не больше ~1.8 Мпикс на кадр (ретина на широком экране иначе греет ноутбук)
+  const dprOf = h => Math.max(1, Math.min(Math.min(2, window.devicePixelRatio || 1), Math.sqrt(1.8e6 / (W * h))));
+  let cv = document.createElement('canvas');
+  cv.className = 'flow-baked';
+  cv.style.left = -PAD + 'px'; cv.style.top = '0px';
+  layer.insertBefore(cv, layer.firstChild);
+  let dpr = dprOf(H);
+  const size = () => { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cv.style.width = W + 'px'; cv.style.height = H + 'px'; };
+  size();
+  const masks = data.masks.map(m => ({ natW: m.natW, natH: m.natH, rows: m.rows.map(r => r ? [r] : []) }));
+  const N = data.track.length;
+  const uniAt = (name, t) => { const u = data.uniforms[name]; return u.c !== undefined ? u.c : u.t[Math.min(t, u.t.length - 1)]; };
+  let gl = null, prog = null, U = {}, cur = 0, hl = 0, loading = null, ready = false, poster = null;
+  let sim = null, simTick = -1, pin = null, dropCv = null, dropTex = null, idleT0 = 0, idling = false;
+  const G = data.glass;
+
+  function compile(src){
+    gl = cv.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false });
+    if (!gl) return false;
+    const sh = (type, s) => { const o = gl.createShader(type); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; };
+    prog = gl.createProgram();
+    gl.attachShader(prog, sh(gl.VERTEX_SHADER, 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}'));
+    gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, src));
+    gl.linkProgram(prog); if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+    gl.useProgram(prog);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(prog, 'a'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const names = ['u_res', 'u_dpr', 'u_k', 'u_pad', 'u_hl', ...Object.keys(data.uniforms), ...Object.keys(data.rects), ...data.textures.map(t => t.u)];
+    if (G) names.push(G.u);
+    for (const n of names) U[n] = gl.getUniformLocation(prog, n);
+    return true;
+  }
+  function texture(unit, src, premult){
+    const t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t);
+    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, premult);
+    if (src) gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, src);
+    for (const [a, b] of [[gl.TEXTURE_MIN_FILTER, gl.LINEAR], [gl.TEXTURE_MAG_FILTER, gl.LINEAR], [gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE], [gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE]]) gl.texParameteri(gl.TEXTURE_2D, a, b);
+    return t;
+  }
+  // симуляция стекла идёт вперёд вместе с тактами (пропущенные такты досчитываются)
+  function simTo(t){
+    if (!G) return;
+    if (!sim || t < simTick){
+      sim = new fsGlassRain.Sim(G.W, G.H, G.seed); sim.colorAt = G.colorAt || null; pin = null;
+      for (let i = 0; i < G.warm; i++) sim.step(1 / data.fps, G.warmRain);
+      simTick = -1;
+    }
+    while (simTick < t){
+      simTick++;
+      const p = G.sim.pin[simTick];
+      if (p && !pin){ pin = sim.spawn(p[0] - G.glassAt[0], p[1] - G.glassAt[1], G.pinR); pin.pin = true; pin.sliding = true; }
+      if (pin && pin.pin){
+        if (p){ const ny = p[1] - G.glassAt[1]; pin.vy = Math.max(0, (ny - pin.y) * data.fps); pin.y = ny; }
+        else { pin.pin = false; pin.vy = Math.max(pin.vy, 18); }
+      }
+      sim.step(1 / data.fps, G.sim.rain[simTick], G.sim.wash[simTick]);
+    }
+  }
+  function render(t, time){
+    if (!ready) return;
+    if (!gl){                                      // без WebGL — финальный кадр картинкой
+      const c = cv.getContext('2d'); c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, cv.width, cv.height);
+      if (poster){ const [px, py, pw, ph] = data.posterRect; c.setTransform(dpr * k, 0, 0, dpr * k, PAD * dpr, 0); c.drawImage(poster, px, py, pw, ph); }
+      return;
+    }
+    if (G){
+      fsGlassRain.drawMap(dropCv, sim, G.S);
+      gl.activeTexture(gl.TEXTURE0 + data.textures.length); gl.bindTexture(gl.TEXTURE_2D, dropTex);
+      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, dropCv);
+    }
+    gl.viewport(0, 0, cv.width, cv.height);
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform2f(U.u_res, cv.width, cv.height); gl.uniform1f(U.u_dpr, dpr); gl.uniform1f(U.u_k, k); gl.uniform1f(U.u_pad, PAD);
+    gl.uniform1f(U.u_hl, hl);
+    for (const n of Object.keys(data.uniforms)){
+      if (!U[n]) continue;
+      const v = n === 'u_time' && time != null ? time : uniAt(n, t);
+      if (Array.isArray(v)) gl.uniform4f(U[n], v[0], v[1], v[2], v[3]); else gl.uniform1f(U[n], v);
+    }
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+  const load = () => loading || (loading = (async () => {
+    const src = await (await fetch(safeUrl(base + data.frag))).text();
+    let ok = false;
+    try { ok = compile(src); } catch (e) { console.warn('шейдер сцены не собрался', e); gl = null; }
+    if (!ok){
+      // холст уже мог получить webgl-контекст (шейдер не собрался) — для картинки нужен новый
+      if (gl){ const fresh = cv.cloneNode(); cv.replaceWith(fresh); cv = fresh; stage.canvas = fresh; }
+      gl = null;
+      poster = await fsLoadImage(safeUrl(base + data.poster));
+      ready = true; render(cur); return;
+    }
+    const imgs = await Promise.all(data.textures.map(t => fsLoadImage(safeUrl(base + t.src))));
+    imgs.forEach((im, i) => { texture(i, im, true); gl.uniform1i(U[data.textures[i].u], i); });
+    for (const [n, r] of Object.entries(data.rects)) if (U[n]) gl.uniform4f(U[n], r[0], r[1], r[2], r[3]);
+    if (G){
+      dropCv = document.createElement('canvas'); dropCv.width = G.W * G.S; dropCv.height = 2 * G.H * G.S;
+      dropTex = texture(data.textures.length, null, false); gl.uniform1i(U[G.u], data.textures.length);
+      // цвет детей за стеклом — для смыва краски каплями
+      const ci = data.textures.findIndex(t => t.u === G.colorTex);
+      if (ci >= 0){
+        const im = imgs[ci], c2 = document.createElement('canvas'); c2.width = im.naturalWidth || im.width; c2.height = im.naturalHeight || im.height;
+        const x2 = c2.getContext('2d', { willReadFrequently: true }); x2.drawImage(im, 0, 0);
+        const px = x2.getImageData(0, 0, c2.width, c2.height).data, r = G.colorRect, ts = c2.width / r[2];
+        G.colorAt = (x, y) => {
+          const X = Math.round((x + G.glassAt[0] - r[0]) * ts), Y = Math.round((y + G.glassAt[1] - r[1]) * ts);
+          if (X < 0 || Y < 0 || X >= c2.width || Y >= c2.height) return null;
+          const i = (Y * c2.width + X) * 4; return [px[i], px[i + 1], px[i + 2], px[i + 3]];
+        };
+      }
+      simTo(cur);
+    }
+    ready = true; render(cur);
+  })());
+  // хвост после финала: время идёт дальше, дождь на стекле продолжается; только пока сцена видна и вкладка открыта
+  function idle(){
+    if (idling || !gl) return; idling = true;
+    let visible = true, raf = 0, lastFrame = 0, elapsed = 0, lastNow = performance.now();
+    const io = new IntersectionObserver(es => { for (const e of es) visible = e.isIntersecting; wake(); });
+    io.observe(stage.canvas);
+    const onVis = () => wake();
+    document.addEventListener('visibilitychange', onVis);
+    const stopAll = () => { cancelAnimationFrame(raf); io.disconnect(); document.removeEventListener('visibilitychange', onVis); };
+    function wake(){ if (!raf && visible && !document.hidden){ lastNow = performance.now(); raf = requestAnimationFrame(frame); } }
+    function frame(now){
+      raf = 0;
+      if (!layer.isConnected){ stopAll(); return; }
+      if (!visible || document.hidden) return;                     // уснули; проснёмся по наблюдателю
+      const dt = Math.min(0.1, (now - lastNow) / 1000); lastNow = now; elapsed += dt;
+      if (now - lastFrame >= 1000 / 30 - 2){                      // ~30 кадров в секунду
+        lastFrame = now;
+        if (gl && sim) sim.step(1 / 30, G.idleRain);
+        render(N - 1, (N - 1) / data.fps + elapsed);
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    wake();
+  }
+  const stage = {
+    canvas: cv, load, idle,
+    count: N, fps: data.fps, objects: data.objects || [],
+    layoutRule: { minSlot: data.minSlotPx || 20, noLoneWords: !!data.noLoneWords },
+    highlight(obj){ const v = obj >= 0 ? (data.hl[obj] || 0) : 0; if (v !== hl){ hl = v; if (!idling) render(cur); } },
+    hitTest(px, py){
+      const tr = data.track[cur];
+      for (let i = tr.length - 1; i >= 0; i--){
+        const [, , , m, mx, my, , obj] = tr[i];
+        if (m < 0 || obj === undefined) continue;
+        const mm = masks[m], row = Math.floor(py / k - my);
+        if (row < 0 || row >= mm.natH) continue;
+        const iv = mm.rows[row][0], u = px / k - mx;
+        if (iv && u >= iv[0] - 2 && u <= iv[1] + 2) return obj;
+      }
+      return -1;
+    },
+    place(t){
+      cur = t;
+      if (ready){ if (gl) simTo(t); render(t); }
+      const placed = [];
+      for (const [, , , m, mx, my, halo] of data.track[t]){
+        if (m < 0) continue;
+        const mm = masks[m];
+        placed.push({ placement: { dispX: mx * k, dispY: my * k, dispW: mm.natW * k, dispH: mm.natH * k, rot: 0 }, mask: mm, halo: halo * k });
+      }
+      return placed;
+    },
+    // дождь «по всей странице»: холст растёт вместе с текстом, если тот ниже рисунка (только вниз — без пересоздания на каждом такте)
+    fit(h){ if (h > H + 2){ H = Math.ceil(h); dpr = dprOf(H); size(); if (ready) render(cur); } },
+  };
+  return stage;
 }
 
 // Связка «объект сцены ↔ слова текста» (scene.links: {объект: [леммы]}), включается, когда сцена доиграла.
@@ -2747,8 +3088,11 @@ async function applyFlowScene(paragraphEl, scene){
   layer.appendChild(blockerEl);
 
   const basePath = scene.basePath || '';
-  // Два вида сцен: «позы» (objects — картинки-позы, v1) и «запечённая» (kind:'baked', v2).
-  const baked = scene.kind === 'baked' ? await fsBakedStage(layer, scene, cw) : null;
+  // Три вида сцен: «позы» (objects — картинки-позы, v1), «запечённая» (kind:'baked', v2) и
+  // «шейдерная» (kind:'shader', v2: рисует WebGL вживую). У двух последних один и тот же интерфейс сцены.
+  const baked = scene.kind === 'baked' ? await fsBakedStage(layer, scene, cw)
+    : scene.kind === 'shader' ? await fsShaderStage(layer, scene, cw) : null;
+  const rule = (baked && baked.layoutRule) || { minSlot: 20, noLoneWords: false };
   const objEls = baked ? [] : scene.objects.map(obj => {
     const wrap = document.createElement('div');
     wrap.className = 'flow-actor';
@@ -2793,10 +3137,16 @@ async function applyFlowScene(paragraphEl, scene){
     const firstWordPos = new Array(sentenceMeta.length).fill(null);
     const lastWordPos = new Array(sentenceMeta.length).fill(null);
     while (wi < units.length){
-      const slots = fsGetSlots(y, y+lineHeight, placed, cw)
+      const slots = fsGetSlots(y, y+lineHeight, placed, cw, rule.minSlot)
         .sort((a,b) => (b.x+b.width) - (a.x+a.width));
       for (const slot of slots){
         if (wi >= units.length) break;
+        // в строке несколько щелей, а в эту влезает лишь одно слово — пропускаем её (не оставляем «висящих» слов)
+        if (rule.noLoneWords && slots.length > 1){
+          let n = 0, u = 0;
+          while (wi + n < units.length && u + widths[wi + n] <= slot.width){ u += widths[wi + n]; n++; }
+          if (n < 2) continue;
+        }
         let usedWidth = 0;
         const rightEdge = slot.x + slot.width;
         while (wi < units.length){
@@ -2851,6 +3201,7 @@ async function applyFlowScene(paragraphEl, scene){
     });
 
     layer.style.height = y + 'px';
+    if (baked && baked.fit) baked.fit(y);
   }
 
   const POSE_COUNT = 24; // authoring resolution — how many keyframes an object can have
@@ -2878,6 +3229,7 @@ async function applyFlowScene(paragraphEl, scene){
       await new Promise(r => setTimeout(r, 8));
     }
     blockerEl.style.display = 'none';
+    if (baked.idle && layer.isConnected) baked.idle();      // шейдерная сцена живёт и после финала
     if (scene.links && layer.isConnected) fsBakedLinks(layer, baked, scene.links);
     return;
   }
@@ -3190,12 +3542,12 @@ function renderPage(pageIndex){
   // масштабируются вместе с колонкой и на телефоне проигрываются с обтеканием (проверено на колонке 327px).
   const pageScene = findFlowSceneForPage(start, end);
   const viewportW = window.innerWidth || document.documentElement.clientWidth || 9999; // 0 бывает в скрытых фреймах — тогда считаем экран широким
-  const activeScene = (viewportW >= 640 || (pageScene && pageScene.kind === 'baked')) ? pageScene : null;
+  const activeScene = (viewportW >= 640 || (pageScene && (pageScene.kind === 'baked' || pageScene.kind === 'shader'))) ? pageScene : null;
   if (pageScene && !activeScene) {
     // Вместо обтекания — последний кадр каждого объекта сцены полосой над текстом.
     const strip = document.createElement('div');
     strip.className = 'flow-fallback';
-    if (pageScene.kind === 'baked'){
+    if (pageScene.kind === 'baked' || pageScene.kind === 'shader'){
       const img = document.createElement('img');
       img.src = safeUrl(pageScene.basePath + (pageScene.poster || 'poster.webp'));
       img.alt = pageScene.label || '';
