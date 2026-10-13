@@ -1582,6 +1582,27 @@
           "דָּג"
         ]
       }
+    },
+    {
+      "id": "cave-pail-1",
+      "kind": "baked",
+      "label": "Пещера из подушек и ведёрко с сокровищами",
+      "anchorSentenceId": "s21",
+      "basePath": "books/rainyday-alef/flow/cave-pail-1/",
+      "src": "scene.json",
+      "poster": "poster.webp",
+      "links": {
+        "fort": [
+          "מְעָרָה",
+          "מִבְצָר"
+        ],
+        "treasure": [
+          "אוֹצָר"
+        ],
+        "gold": [
+          "זָהָב"
+        ]
+      }
     }
   ]
 }

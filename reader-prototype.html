@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.23
+  Hebrew Reader — v1.99.24
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -727,7 +727,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.23</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.24</div>
   </div>
 </div>
 
@@ -2485,6 +2485,7 @@ async function fsBakedStage(layer, scene, cw){
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
     ctx.setTransform(dpr, 0, 0, dpr, PAD * dpr, 0);
     for (const [d, x, y, , , , , obj] of data.track[t]){
+      if (d < 0) continue;                              // невидимая зона: только обтекание, рисунка нет
       const [a, ax, ay, w, h] = data.drawings[d];
       const args = [imgs[a], ax, ay, w, h, x * k, y * k, w / data.scale * k, h / data.scale * k];
       if (obj === hl){
@@ -2502,6 +2503,7 @@ async function fsBakedStage(layer, scene, cw){
   return {
     canvas: cv, load,
     count: data.track.length, fps: data.fps, objects: data.objects || [],
+    layoutRule: { minSlot: data.minSlotPx || 20, noLoneWords: !!data.noLoneWords },
     extent: () => fsTrackExtent(data.track, masks, k),
     highlight(obj){ if (obj !== hl){ hl = obj; draw(cur); } },
     // какой объект под точкой (px от левого верхнего угла слоя) на текущем такте; -1 — никакой
