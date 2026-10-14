@@ -1560,5 +1560,45 @@
       ],
       "audio": "books/market-alef/audio/s24.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "balloon-market-1",
+      "kind": "baked",
+      "label": "Шарик улетел (коллаж)",
+      "anchorSentenceId": "s1",
+      "basePath": "books/market-alef/flow/balloon-market-1/",
+      "src": "scene.json",
+      "poster": "poster.webp",
+      "links": {
+        "stall": [
+          "דּוּכָן"
+        ],
+        "apples": [
+          "תַּפּוּחַ"
+        ],
+        "tomatoes": [
+          "עַגְבָנִיָּיה"
+        ],
+        "bananas": [
+          "בָּנָנָה"
+        ],
+        "cucumbers": [
+          "מְלָפְפוֹן"
+        ],
+        "oranges": [
+          "תַּפּוּז"
+        ],
+        "seller": [
+          "מוֹכֵר"
+        ],
+        "balloon": [
+          "בָּלוֹן"
+        ],
+        "wind": [
+          "רוּחַ"
+        ]
+      }
+    }
   ]
 }
