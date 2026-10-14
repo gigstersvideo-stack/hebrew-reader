@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.25
+  Hebrew Reader — v1.99.26
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -727,7 +727,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.25</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.26</div>
   </div>
 </div>
 
@@ -2488,7 +2488,7 @@ async function fsBakedStage(layer, scene, cw){
       if (d < 0) continue;                              // невидимая зона: только обтекание, рисунка нет
       const [a, ax, ay, w, h] = data.drawings[d];
       const args = [imgs[a], ax, ay, w, h, x * k, y * k, w / data.scale * k, h / data.scale * k];
-      if (obj === hl){
+      if (obj >= 0 && obj === hl){                        // −1 — объект без связки со словами: он не светится никогда
         // подсвеченный объект — золотое свечение по силуэту, в цвет подсветки слов (.illustration-hover)
         ctx.save(); ctx.shadowColor = 'rgba(201,162,39,.95)'; ctx.shadowBlur = 14 * dpr;
         ctx.drawImage(...args); ctx.drawImage(...args); ctx.restore();
@@ -2500,8 +2500,35 @@ async function fsBakedStage(layer, scene, cw){
   // открыл книгу внизу страницы и до сцены не долистал, 2+ МБ картинок не качаются вовсе
   const load = () => loading || (loading = Promise.all(data.atlases.map(a => fsLoadImage(safeUrl(base + a))))
     .then(list => { imgs = list; draw(cur); }));
+  // хвост после финала: если в scene.json есть loop (такт начала петли), такты loop…конец крутятся по кругу —
+  // только картинкой, без перекладки текста (студия собирает петлю с неизменными масками). Пока сцена видна
+  // и вкладка открыта; при «уменьшить движение» — нет.
+  let idling = false;
+  function idle(){
+    const L0 = data.loop, len = data.track.length - L0;
+    if (idling || !(L0 >= 0) || len < 2) return;
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    idling = true;
+    let visible = true, raf = 0, el = 0, lastNow = performance.now();
+    const io = new IntersectionObserver(es => { for (const e of es) visible = e.isIntersecting; wake(); });
+    io.observe(cv);
+    const onVis = () => wake();
+    document.addEventListener('visibilitychange', onVis);
+    const stopAll = () => { cancelAnimationFrame(raf); io.disconnect(); document.removeEventListener('visibilitychange', onVis); };
+    function wake(){ if (!raf && visible && !document.hidden){ lastNow = performance.now(); raf = requestAnimationFrame(frame); } }
+    function frame(now){
+      raf = 0;
+      if (!layer.isConnected){ stopAll(); return; }
+      if (!visible || document.hidden) return;                     // уснули; проснёмся по наблюдателю
+      el += Math.min(0.1, Math.max(0, now - lastNow) / 1000); lastNow = now;
+      const t = L0 + Math.floor(el * data.fps) % len;
+      if (t !== cur){ cur = t; draw(t); }
+      raf = requestAnimationFrame(frame);
+    }
+    wake();
+  }
   return {
-    canvas: cv, load,
+    canvas: cv, load, idle,
     count: data.track.length, fps: data.fps, objects: data.objects || [],
     layoutRule: { minSlot: data.minSlotPx || 20, noLoneWords: !!data.noLoneWords },
     extent: () => fsTrackExtent(data.track, masks, k),

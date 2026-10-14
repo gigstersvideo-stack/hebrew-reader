@@ -1714,5 +1714,34 @@
       ],
       "audio": "books/sea-alef/audio/s32.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "sea-first-1",
+      "kind": "baked",
+      "label": "Первый день на море (ризограф)",
+      "anchorSentenceId": "s1",
+      "basePath": "books/sea-alef/flow/sea-first-1/",
+      "src": "scene.json",
+      "poster": "poster.webp",
+      "links": {
+        "sea": [
+          "יָם"
+        ],
+        "wave": [
+          "גַּל"
+        ],
+        "water": [
+          "מַיִם"
+        ],
+        "papa": [
+          "אַבָּא",
+          "אַבָּא"
+        ],
+        "sand": [
+          "חוֹל"
+        ]
+      }
+    }
   ]
 }
