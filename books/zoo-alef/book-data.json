@@ -1576,5 +1576,48 @@
       ],
       "audio": "books/zoo-alef/audio/s31.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "zoo-theatre-1",
+      "kind": "baked",
+      "label": "Театр теней в зоопарке",
+      "anchorSentenceId": "s1",
+      "basePath": "books/zoo-alef/flow/zoo-theatre-1/",
+      "src": "scene.json",
+      "poster": "poster.webp",
+      "links": {
+        "monkey": [
+          "קוֹף"
+        ],
+        "tree": [
+          "עֵץ"
+        ],
+        "lion": [
+          "אַרְיֵה"
+        ],
+        "sun": [
+          "שֶׁמֶשׁ"
+        ],
+        "elephant": [
+          "פִּיל"
+        ],
+        "water": [
+          "מַיִם"
+        ],
+        "bear": [
+          "דּוֹב"
+        ],
+        "giraffe": [
+          "גִּ'ירָפָה"
+        ],
+        "papa": [
+          "אַבָּא"
+        ],
+        "zoo": [
+          "גַּן"
+        ]
+      }
+    }
   ]
 }
