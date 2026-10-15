@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.27
+  Hebrew Reader — v1.99.28
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -727,7 +727,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.27</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.28</div>
   </div>
 </div>
 
@@ -2458,9 +2458,141 @@ function fsGetSlots(lineTop, lineBottom, objects, containerWidth, minSlot = 20){
 //   drawings[i] = [атлас, x, y, w, h] (px атласа; scale px на единицу дизайна 592×712),
 //   masks[i]    = {natW, natH, rows} — силуэт для обтекания в единицах дизайна (строка = 1 ед.),
 //                 строится в студии без «кипения» линий, поэтому текст не дрожит, пока объект стоит;
-//   track[t]    = [[рисунок, x, y, маска, mx, my, ореол], ...] — объекты такта t в порядке отрисовки.
+//   track[t]    = [[рисунок, x, y, маска, mx, my, ореол], ...] — объекты такта t в порядке отрисовки;
+//                 ореол −1 — маска только для наведения (связка со словом), в раскладку текста не идёт.
+// Необязательно: pixelated — рисовать без сглаживания (пиксель-арт); marginU — на сколько единиц рисунок может
+// выходить на поля (по умолчанию 90); snow — живой снег поверх страницы (fsSnowLayer); hideNarrow — объекты,
+// которые на узкой колонке не рисуются.
 // Сначала грузится только scene.json (маски) — текст сразу раскладывается вокруг первого кадра;
 // атласы догружаются, и только тогда сцена проигрывается.
+// Живой снег для «запечённой» сцены со scene.json → snow (пиксель-арт, snow-alef «תְּהִילָּה וְהַשֶּׁלֶג»):
+// пиксельные снежинки падают по всей странице (за рисунком сцены, под текстом), часть садится на слова;
+// на словах из snow.capWords (שלג, לבן, קר…) к концу сцены по верхней кромке букв вырастают белые шапочки
+// с тонкой тенью снизу — не над огласовками и не рядом с ними. Всё в сетке пикселей арта (snow.px единиц дизайна
+// на пиксель), без сглаживания. Шапочки строятся по настоящей раскладке слов (Range каждого слова).
+// Копия логики студии E:\NEW BIG PROJ\flow-studio (scene-snow.js: flakes/capH; snow-studio.html: profile/caps) —
+// правится там, потом сюда. Живёт, пока слой на странице, сцена видна и вкладка открыта; «уменьшить движение» —
+// без снежинок, сразу готовые шапочки.
+function fsSnowLayer(layer, S, k, PAD, PADR, cw){
+  const bs = S.px * k, dpr = Math.min(2, window.devicePixelRatio || 1);
+  const cv = document.createElement('canvas');
+  cv.className = 'flow-baked'; cv.style.left = -PAD + 'px'; cv.style.top = '0px';
+  layer.insertBefore(cv, layer.firstChild);
+  const ctx = cv.getContext('2d'), art = document.createElement('canvas'), ag = art.getContext('2d');
+  const COL = { white: '#ffffff', snow3: '#b9c8df' };
+  const hash = (a, b = 0, c = 0) => { let h = (a * 374761393 + b * 668265263 + c * 2147483647) | 0; h = (h ^ (h >>> 13)) * 1274126177; h = h ^ (h >>> 16); return (h >>> 0) / 4294967296; };
+  const seg = (t, a, b) => Math.max(0, Math.min(1, (t - a) / (b - a)));
+  const capWords = new Set(S.capWords || []), T0 = S.capT0 ?? 5, T1 = S.capT1 ?? 9.5;
+  const bare = w => w.replace(/[\u0591-\u05C7]/g, '').replace(/[.,!?:;«»"\s]/g, '');
+  // профиль букв слова: верх буквы по столбцам (без огласовок) и есть ли огласовка над ним; y — от верха рамки Range
+  let words = null;
+  function measure(){
+    words = [];
+    const pc = document.createElement('canvas'), pg = pc.getContext('2d', { willReadFrequently: true });
+    Array.from(layer.querySelectorAll('.tword')).forEach((el, wi) => {
+      const text = (el.textContent || '').replace(/ +$/, '');
+      if (!capWords.has(bare(text))) return;
+      const cs = getComputedStyle(el), font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+      const r = document.createRange(); r.setStart(el.firstChild, 0); r.setEnd(el.firstChild, text.length);
+      const box = r.getBoundingClientRect(), W = Math.ceil(box.width) + 2, H = Math.ceil(box.height) + 2;
+      pc.width = W; pc.height = H;
+      const ink = s => { pg.clearRect(0, 0, W, H); pg.font = font; pg.direction = 'rtl'; pg.textAlign = 'right'; pg.textBaseline = 'alphabetic'; pg.fillStyle = '#000';
+        const asc = pg.measureText(text).fontBoundingBoxAscent || parseFloat(cs.fontSize) * 0.9; pg.fillText(s, box.width, asc); return pg.getImageData(0, 0, W, H).data; };
+      const base = ink(text.replace(/[\u0591-\u05C7]/g, '')), full = ink(text), top = new Int16Array(W).fill(-1), dot = new Uint8Array(W);
+      for (let x = 0; x < W; x++){
+        for (let y = 0; y < H; y++) if (base[(y * W + x) * 4 + 3] > 90){ top[x] = y; break; }
+        const lim = top[x] < 0 ? H : top[x] - 2;
+        for (let y = 0; y < lim; y++) if (full[(y * W + x) * 4 + 3] > 120){ dot[x] = 1; break; }
+      }
+      words.push({ el, wi, text, r, W, top, dot });
+    });
+  }
+  // шапочки по текущей раскладке → [столбец, строка, высота] в пикселях арта (+ строка тени снизу) и точки посадки снежинок
+  function caps(tw){
+    const C = [], landMap = new Map(), lr = layer.getBoundingClientRect(), b = Math.round(bs);
+    for (const w of words){
+      const box = w.r.getBoundingClientRect(), left = box.left - lr.left, topY = box.top - lr.top, li = Math.round(topY / 10);
+      const c0 = Math.floor((left + PAD) / bs), c1 = Math.ceil((left + w.W + PAD) / bs), cols = [];
+      for (let ac = c0; ac <= c1; ac++){
+        let n = 0, mt = 1e9, dt = 0; const xa = Math.round(ac * bs - PAD - left);
+        for (let x = xa - b; x < xa + 2 * b; x++){ if (x < 0 || x >= w.W) continue; if (w.dot[x]) dt = 1; if (x < xa || x >= xa + b) continue; if (w.top[x] >= 0){ n++; mt = Math.min(mt, w.top[x]); } }
+        cols.push(n >= Math.ceil(bs * 0.6) && !dt ? { ac, rb: Math.floor((topY + mt) / bs) - 1 } : null);
+      }
+      const g = seg(tw, T0 + 2 * hash(w.wi, 5, 3), T1 + 2 * hash(w.wi, 5, 3));
+      for (let j = 0; j < cols.length; j++){
+        const c = cols[j]; if (!c) continue;
+        const nb = d => { const q = cols[j + d]; return q && Math.abs(q.rb - c.rb) <= 1; };
+        const edge = !(nb(-1) && nb(1)), h = edge ? (g > 0.5 ? 1 : 0) : (g > 0.15 ? 1 : 0) + (g > 0.55 ? 1 : 0) + (g > 0.9 ? 1 : 0);
+        if (!h) continue;
+        C.push([c.ac, c.rb - h, h + 1]);
+        if (!landMap.has(li)) landMap.set(li, new Map()); landMap.get(li).set(c.ac, c.rb - h);
+      }
+    }
+    const lis = [...landMap.keys()].sort((a, b2) => a - b2), lines = lis.map(li => Math.min(...landMap.get(li).values()));
+    const land = (idx, col) => { const m = landMap.get(lis[idx]); const v = m && m.get(col); return v == null ? -1 : v; };
+    return { C, lines, land };
+  }
+  function flakes(t, W, H, lines, land){
+    const out = [], n = Math.round(W * H / (S.density || 700)), H2 = H + 8;
+    for (let i = 0; i < n; i++){
+      const h = q => hash(i, q, 977), layerN = h(1) < 0.42 ? 0 : h(1) < 0.8 ? 1 : 2, v = [9, 15, 21][layerN] * (0.85 + 0.3 * h(2));
+      const amp = 1 + 2.2 * h(3), fq = 0.5 + 0.7 * h(4), ph = h(5) * 6.28, x0 = h(6) * W;
+      const s = h(7) * H2 + v * t, c = Math.floor(s / H2), yF = (s % H2) - 6;
+      const xAt = tt => Math.round(x0 + amp * Math.sin(tt * fq * 6.28 + ph) + 1.5 * Math.sin(tt * 0.31 + i));
+      let x = xAt(t), y = Math.round(yF);
+      if (layerN > 0) for (let li = 0; li < lines.length; li++){
+        const lv = lines[li]; if (lv > yF) break;
+        if (hash(i, c, li + 31) > 0.3) continue;
+        const tc = t - (yF - lv) / v, xc = xAt(tc), top = land(li, xc);
+        if (top < 0) continue;
+        if (t - tc < 0.9){ x = xc; y = top - (layerN === 2 ? 2 : 1); } else y = -99;
+        break;
+      }
+      if (y >= -8) out.push([x, y, layerN]);
+    }
+    return out;
+  }
+  function draw(tw, withFlakes){
+    const H = layer.offsetHeight || 0, CW = cw + PAD + PADR;
+    if (cv.width !== Math.round(CW * dpr) || cv.height !== Math.round(H * dpr)){ cv.width = Math.round(CW * dpr); cv.height = Math.round(H * dpr); cv.style.width = CW + 'px'; cv.style.height = H + 'px'; }
+    const AW = Math.ceil(CW / bs), AH = Math.ceil(H / bs);
+    if (art.width !== AW || art.height !== AH){ art.width = AW; art.height = AH; }
+    ag.clearRect(0, 0, AW, AH);
+    if (!words) measure();
+    const cp = caps(tw), fill = (x, y, w, h, c) => { ag.fillStyle = COL[c]; ag.fillRect(x, y, w, h); };
+    for (const [ac, r, h] of cp.C){ fill(ac, r, 1, h - 1, 'white'); fill(ac, r + h - 1, 1, 1, 'snow3'); }
+    if (withFlakes) for (const [x, y, l] of flakes(tw, AW, AH, cp.lines, cp.land)){
+      if (l === 0){ fill(x, y, 1, 1, 'white'); fill(x + 1, y + 1, 1, 1, 'snow3'); }
+      else if (l === 1){ fill(x - 1, y, 1, 2, 'snow3'); fill(x + 2, y, 1, 2, 'snow3'); fill(x, y - 1, 2, 1, 'snow3'); fill(x, y + 2, 2, 1, 'snow3'); fill(x, y, 2, 2, 'white'); }
+      else { for (const [dx, dy] of [[-1, -1], [1, -1], [-1, 1], [1, 1], [-2, 0], [2, 0], [0, -2], [0, 2]]) fill(x + dx, y + dy, 1, 1, 'snow3'); fill(x - 1, y, 3, 1, 'white'); fill(x, y - 1, 1, 3, 'white'); }
+    }
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height); ctx.imageSmoothingEnabled = false;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.drawImage(art, 0, 0, AW * bs, AH * bs);
+  }
+  let started = false;
+  function start(){
+    if (started) return; started = true;
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ draw(99, false); return; }
+    const t0 = performance.now();
+    let visible = true, raf = 0, lastT = -1;
+    const io = new IntersectionObserver(es => { for (const e of es) visible = e.isIntersecting; wake(); });
+    io.observe(cv);
+    const onVis = () => wake();
+    document.addEventListener('visibilitychange', onVis);
+    function wake(){ if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame); }
+    function frame(now){
+      raf = 0;
+      if (!layer.isConnected){ io.disconnect(); document.removeEventListener('visibilitychange', onVis); return; }
+      if (!visible || document.hidden) return;
+      const t = Math.floor((now - t0) / 1000 * 24);                   // 24 такта в секунду, как у сцены
+      if (t !== lastT){ lastT = t; draw(t / 24, true); }
+      raf = requestAnimationFrame(frame);
+    }
+    wake();
+  }
+  return { start };
+}
+
 async function fsBakedStage(layer, scene, cw){
   const base = scene.basePath || '';
   const data = await (await fetch(safeUrl(base + (scene.src || 'scene.json')))).json();
@@ -2468,7 +2600,8 @@ async function fsBakedStage(layer, scene, cw){
   // рисунок может выходить за колонку на поля — но не дальше края экрана (на телефоне полей почти нет,
   // иначе появилась бы горизонтальная прокрутка)
   const lr = layer.getBoundingClientRect(), vw = document.documentElement.clientWidth || window.innerWidth;
-  const PAD = Math.max(0, Math.min(Math.round(90 * k), Math.floor(lr.left))), PADR = Math.max(0, Math.min(Math.round(90 * k), Math.floor(vw - lr.right) - 18));   // −18: запас под полосу прокрутки, которая может появиться позже
+  const MU = data.marginU || 90;
+  const PAD = Math.max(0, Math.min(Math.round(MU * k), Math.floor(lr.left))), PADR = Math.max(0, Math.min(Math.round(MU * k), Math.floor(vw - lr.right) - 18));   // −18: запас под полосу прокрутки, которая может появиться позже
   const dpr = Math.min(2, window.devicePixelRatio || 1);
   const H = Math.ceil(data.designH * k);
   const cv = document.createElement('canvas');
@@ -2477,15 +2610,21 @@ async function fsBakedStage(layer, scene, cw){
   cv.style.left = -PAD + 'px'; cv.style.top = '0px';
   cv.style.width = (cw + PAD + PADR) + 'px'; cv.style.height = H + 'px';
   layer.insertBefore(cv, layer.firstChild);
+  const snow = data.snow ? fsSnowLayer(layer, data.snow, k, PAD, PADR, cw) : null;   // снег — под рисунком сцены
   const ctx = cv.getContext('2d');
   const masks = data.masks.map(m => ({ natW: m.natW, natH: m.natH, rows: m.rows.map(r => r ? [r] : []) }));
   let imgs = null, cur = 0, hl = -1, loading = null;
+  // hideNarrow: {minCw, objects:[id…]} — на колонке уже minCw эти объекты не рисуются (пикник: муравьи идут по просветам
+  // строк, выставленным под колонку 672; на телефоне строки ложатся иначе и муравьи шли бы по буквам)
+  const HN = data.hideNarrow, hideObj = HN && cw < HN.minCw ? new Set(HN.objects.map(id => (data.objects || []).indexOf(id))) : null;
   function draw(t){
     if (!imgs) return;
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
     ctx.setTransform(dpr, 0, 0, dpr, PAD * dpr, 0);
+    ctx.imageSmoothingEnabled = !data.pixelated;
     for (const [d, x, y, , , , , obj] of data.track[t]){
       if (d < 0) continue;                              // невидимая зона: только обтекание, рисунка нет
+      if (hideObj && hideObj.has(obj)) continue;
       const [a, ax, ay, w, h] = data.drawings[d];
       const args = [imgs[a], ax, ay, w, h, x * k, y * k, w / data.scale * k, h / data.scale * k];
       if (obj >= 0 && obj === hl){                        // −1 — объект без связки со словами: он не светится никогда
@@ -2528,7 +2667,7 @@ async function fsBakedStage(layer, scene, cw){
     wake();
   }
   return {
-    canvas: cv, load, idle,
+    canvas: cv, load, idle, live: snow ? snow.start : null,
     count: data.track.length, fps: data.fps, objects: data.objects || [],
     layoutRule: { minSlot: data.minSlotPx || 20, noLoneWords: !!data.noLoneWords },
     extent: () => fsTrackExtent(data.track, masks, k),
@@ -2550,7 +2689,7 @@ async function fsBakedStage(layer, scene, cw){
       cur = t; draw(t);
       const placed = [];
       for (const [, , , m, mx, my, halo] of data.track[t]){
-        if (m < 0) continue;
+        if (m < 0 || halo < 0) continue;
         const mm = masks[m];
         placed.push({ placement: { dispX: mx * k, dispY: my * k, dispW: mm.natW * k, dispH: mm.natH * k, rot: 0 }, mask: mm, halo: halo * k });
       }
@@ -2714,7 +2853,7 @@ const fsGlassRain = (() => {
 // По какой высоте (px от верха слоя) вообще бывает рисунок сцены за все такты: [верх, низ].
 function fsTrackExtent(track, masks, k){
   let y0 = Infinity, y1 = -Infinity;
-  for (const tr of track) for (const [, , , m, , my] of tr){ if (m < 0) continue; y0 = Math.min(y0, my); y1 = Math.max(y1, my + masks[m].natH); }
+  for (const tr of track) for (const [, , , m, , my, halo] of tr){ if (m < 0 || halo < 0) continue; y0 = Math.min(y0, my); y1 = Math.max(y1, my + masks[m].natH); }
   return y0 < y1 ? [Math.max(0, y0 * k), y1 * k] : null;
 }
 
@@ -3320,6 +3459,7 @@ async function applyFlowScene(paragraphEl, scene){
     try { await baked.load(); } catch (e) { return; }
     if (!layer.isConnected) return;
     blockerEl.style.display = 'block';
+    if (baked.live) baked.live();                            // живой слой (снег) — с началом сцены
     const t0 = performance.now(); let last = -1;
     while (layer.isConnected){
       const t = Math.min(baked.count - 1, Math.floor((performance.now() - t0) * baked.fps / 1000));

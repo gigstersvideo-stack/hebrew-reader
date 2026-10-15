@@ -2493,5 +2493,39 @@
       ],
       "audio": "books/snow-alef/audio/s47.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "snow-yard-1",
+      "kind": "baked",
+      "label": "Тгила и снег (пиксель-арт)",
+      "anchorSentenceId": "s1",
+      "basePath": "books/snow-alef/flow/snow-yard-1/",
+      "src": "scene.json",
+      "poster": "poster.png",
+      "links": {
+        "window": [
+          "חַלּוֹן"
+        ],
+        "coat": [
+          "מְעִיל"
+        ],
+        "hat": [
+          "כּוֹבַע"
+        ],
+        "scarf": [
+          "צָעִיף"
+        ],
+        "ofer": [
+          "יֶלֶד"
+        ],
+        "hands": [
+          "יָד"
+        ],
+        "snow": [
+          "שֶׁלֶג"
+        ]
+      }
+    }
   ]
 }

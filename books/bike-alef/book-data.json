@@ -2071,5 +2071,33 @@
       ],
       "audio": "books/bike-alef/audio/s43.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "bike-line-1",
+      "kind": "baked",
+      "label": "Гиль и велосипед (одна линия)",
+      "anchorSentenceId": "s1",
+      "basePath": "books/bike-alef/flow/bike-line-1/",
+      "src": "scene.json",
+      "poster": "poster.webp",
+      "links": {
+        "gift": [
+          "מַתָּנָה"
+        ],
+        "bike": [
+          "אוֹפַנַּיִים"
+        ],
+        "seat": [
+          "כִּיסֵּא"
+        ],
+        "grass": [
+          "דֶּשֶׁא"
+        ],
+        "sister": [
+          "אָחוֹת"
+        ]
+      }
+    }
   ]
 }

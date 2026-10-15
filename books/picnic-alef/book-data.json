@@ -1920,5 +1920,45 @@
       ],
       "audio": "books/picnic-alef/audio/s34.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "picnic-ants-1",
+      "kind": "baked",
+      "label": "Пикник и муравьи (UPA)",
+      "anchorSentenceId": "s1",
+      "basePath": "books/picnic-alef/flow/picnic-ants-1/",
+      "src": "scene.json",
+      "poster": "poster.webp",
+      "links": {
+        "tree": [
+          "עֵץ"
+        ],
+        "blanket": [
+          "שְׂמִיכָה"
+        ],
+        "basket": [
+          "סַל"
+        ],
+        "fruit": [
+          "פְּרִי"
+        ],
+        "sandwich": [
+          "כָּרִיךְ"
+        ],
+        "ants": [
+          "נְמָלָה"
+        ],
+        "bird": [
+          "צִיפּוֹר"
+        ],
+        "mom": [
+          "אִימָּא"
+        ],
+        "dad": [
+          "אַבָּא"
+        ]
+      }
+    }
   ]
 }
