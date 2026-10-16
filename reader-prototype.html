@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.30
+  Hebrew Reader — v1.99.31
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -733,7 +733,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.30</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.31</div>
   </div>
 </div>
 
@@ -6400,6 +6400,13 @@ async function openSong(entry, opts){
   const host = document.getElementById('ytPlayerHost');
   host.innerHTML = '<div id="ytPlayerTarget"></div>';
   const videoId = songData.meta && songData.meta.youtubeId;
+  // Текст без видео (источник: Мишна, стих) — плеера нет, строки читаются кнопкой 🔊.
+  host.style.display = videoId ? '' : 'none';
+  if (!videoId){
+    document.getElementById('songCalibrateBtn').style.display = 'none';
+    document.getElementById('songCalibHint').textContent = 'Нажмите 🔊 у строки, чтобы послушать её.';
+    return;
+  }
   try{
     if (!videoId) throw new Error('в JSON песни нет meta.youtubeId');
     await loadYouTubeApi();

@@ -302,6 +302,17 @@
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"60\" y=\"62\" width=\"14\" height=\"52\" rx=\"2\"/><rect x=\"92\" y=\"62\" width=\"14\" height=\"52\" rx=\"2\"/><path d=\"M130 112 q10 -26 40 -26 q30 0 40 26 Z\"/><path d=\"M146 104 q6 -12 14 -14 M164 106 q6 -14 16 -16 M184 108 q4 -10 10 -12\"/><path d=\"M40 118 H260\"/></g><path d=\"M67 56 q-6 -10 0 -20 q6 10 0 20 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M99 56 q-6 -10 0 -20 q6 10 0 20 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>"
     },
     {
+      "id": "tubishvat-alef",
+      "title": "חוֹנִי וְהֶחָרוּב",
+      "kicker": "רמה א׳ · סיפור לט״ו בשבט",
+      "level": "א",
+      "sub": "Класс Майи сажает деревья, а учительница рассказывает легенду о Хони, который проспал семьдесят лет под рожковым деревом.",
+      "source": "file",
+      "file": "books/tubishvat-alef/book-data.json",
+      "spineColor": "#C9D3E0",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M60 120 Q120 100 150 70 Q175 45 235 30\"/><path d=\"M150 70 Q160 95 190 100\"/><path d=\"M118 98 Q105 75 85 70\"/></g><g transform=\"translate(235 30)\" stroke=\"var(--ink)\" stroke-width=\"1\"><circle cx=\"0\" cy=\"-5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"5\" cy=\"-1\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"3\" cy=\"5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"-3\" cy=\"5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"-5\" cy=\"-1\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"0\" cy=\"0\" r=\"2\" fill=\"var(--gold)\"/></g><g transform=\"translate(190 100)\" stroke=\"var(--ink)\" stroke-width=\"1\"><circle cx=\"0\" cy=\"-5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"5\" cy=\"-1\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"3\" cy=\"5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"-3\" cy=\"5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"-5\" cy=\"-1\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"0\" cy=\"0\" r=\"2\" fill=\"var(--gold)\"/></g><g transform=\"translate(85 70)\" stroke=\"var(--ink)\" stroke-width=\"1\"><circle cx=\"0\" cy=\"-5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"5\" cy=\"-1\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"3\" cy=\"5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"-3\" cy=\"5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"-5\" cy=\"-1\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"0\" cy=\"0\" r=\"2\" fill=\"var(--gold)\"/></g><g transform=\"translate(170 55)\" stroke=\"var(--ink)\" stroke-width=\"1\"><circle cx=\"0\" cy=\"-5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"5\" cy=\"-1\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"3\" cy=\"5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"-3\" cy=\"5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"-5\" cy=\"-1\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"0\" cy=\"0\" r=\"2\" fill=\"var(--gold)\"/></g><g transform=\"translate(125 92)\" stroke=\"var(--ink)\" stroke-width=\"1\"><circle cx=\"0\" cy=\"-5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"5\" cy=\"-1\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"3\" cy=\"5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"-3\" cy=\"5\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"-5\" cy=\"-1\" r=\"4\" fill=\"#F4D6DE\"/><circle cx=\"0\" cy=\"0\" r=\"2\" fill=\"var(--gold)\"/></g></svg>"
+    },
+    {
       "id": "play-bet",
       "title": "הַמֶּלֶךְ הַבַּיְישָׁן",
       "kicker": "רמה ב׳ · סיפור מקורי",
