@@ -280,6 +280,17 @@
       "cover": "covers/picnic-alef.webp"
     },
     {
+      "id": "hanukkah-alef",
+      "title": "הַנֵּס שֶׁל חֲנוּכָּה",
+      "kicker": "רמה א׳ · סיפור לחנוכה",
+      "level": "א",
+      "sub": "Тамар зажигает с дедушкой первую свечу, и он рассказывает, откуда взялась Ханука: Маккавеи, Храм и кувшинчик масла.",
+      "source": "file",
+      "file": "books/hanukkah-alef/book-data.json",
+      "spineColor": "#C9D3E0",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M62 100 H238\"/><path d=\"M150 100 V118\"/><path d=\"M128 124 H172\"/><path d=\"M70 72 V100\"/><path d=\"M90 72 V100\"/><path d=\"M110 72 V100\"/><path d=\"M130 72 V100\"/><path d=\"M150 62 V100\"/><path d=\"M170 72 V100\"/><path d=\"M190 72 V100\"/><path d=\"M210 72 V100\"/><path d=\"M230 72 V100\"/></g><path d=\"M150 60 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M230 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>"
+    },
+    {
       "id": "play-bet",
       "title": "הַמֶּלֶךְ הַבַּיְישָׁן",
       "kicker": "רמה ב׳ · סיפור מקורי",

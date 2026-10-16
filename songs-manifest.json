@@ -10,6 +10,42 @@
       "source": "file",
       "file": "song-data-hava-nagila.json",
       "spineColor": "#A8813F"
+    },
+    {
+      "id": "lichvod-hachanukah",
+      "kind": "song",
+      "title": "לִכְבוֹד הַחֲנוּכָּה",
+      "kicker": "רמה ב׳ · שיר לחנוכה",
+      "level": "ב",
+      "sub": "Бялик, детская песня к Хануке — общественное достояние",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/lichvod-hachanukah/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M150 18 V36\"/><path d=\"M126 36 H174 V88 L150 118 L126 88 Z\"/><path d=\"M150 36 V108\"/></g><path d=\"M137 56 h6 v14 h-8 M157 54 v16 M163 54 q-6 0 -6 6\" stroke=\"var(--gold)\"/><path d=\"M70 124 Q110 112 150 122 Q190 132 230 120\" stroke=\"var(--gold)\" stroke-dasharray=\"3 5\"/></svg>"
+    },
+    {
+      "id": "hanukkah-brachot",
+      "kind": "song",
+      "title": "בִּרְכוֹת הַדְלָקַת הַנֵּרוֹת",
+      "kicker": "רמה ב׳ · ברכות לחנוכה",
+      "level": "ב",
+      "sub": "что говорят, зажигая ханукальные свечи — из молитвенника",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/hanukkah-brachot/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><rect x=\"124\" y=\"58\" width=\"16\" height=\"58\" rx=\"2\"/><rect x=\"160\" y=\"58\" width=\"16\" height=\"58\" rx=\"2\"/><path d=\"M100 118 H200\"/></g><path d=\"M132 52 q-6 -10 0 -20 q6 10 0 20 Z M168 52 q-6 -10 0 -20 q6 10 0 20 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M118 34 l-6 -5 M182 34 l6 -5 M150 26 v-8\" stroke=\"var(--gold)\"/></svg>"
+    },
+    {
+      "id": "maoz-tzur",
+      "kind": "song",
+      "title": "מָעוֹז צוּר",
+      "kicker": "רמה ד׳ · פיוט לחנוכה",
+      "level": "ד",
+      "sub": "средневековый гимн, который поют после зажигания свечей",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/maoz-tzur/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M62 100 H238\"/><path d=\"M150 100 V118\"/><path d=\"M128 124 H172\"/><path d=\"M70 72 V100\"/><path d=\"M90 72 V100\"/><path d=\"M110 72 V100\"/><path d=\"M130 72 V100\"/><path d=\"M150 62 V100\"/><path d=\"M170 72 V100\"/><path d=\"M190 72 V100\"/><path d=\"M210 72 V100\"/><path d=\"M230 72 V100\"/></g><path d=\"M70 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M90 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M110 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M130 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M150 60 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M170 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M190 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M210 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M230 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>"
     }
   ]
 }

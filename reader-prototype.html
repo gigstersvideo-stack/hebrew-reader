@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.28
+  Hebrew Reader — v1.99.29
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -654,6 +654,12 @@
   .song-lines{ max-width:720px; margin:0 auto; padding:20px 24px 90px; }
   .song-line{ display:block; padding:7px 2px; font-family:'David Libre','Frank Ruhl Libre',serif; font-size:20px; line-height:2; border-radius:4px; direction:rtl; text-align:right; transition: background .25s ease; }
   .song-line.current{ background: var(--gold-soft); }
+  /* 🔊 у строки: текст песни голосом Avri (line.audio), отдельно от видео с настоящим исполнением. */
+  .song-line-say{ font-size:13px; line-height:1; padding:4px 7px; margin-inline-start:8px; vertical-align:middle;
+    border:1px solid var(--line); border-radius:999px; background:var(--panel); color:var(--ink-soft); cursor:pointer; }
+  .song-line-say:hover{ color:var(--ink); }
+  .song-line-say.playing{ background:var(--gold-soft); color:var(--ink); }
+  .song-note{ max-width:480px; margin:10px auto 0; font-size:13px; color:var(--ink-soft); line-height:1.5; direction:ltr; text-align:left; unicode-bidi:plaintext; }
   .song-audiobar{ position:fixed; left:0; right:0; bottom:0; background:var(--panel); border-top:1px solid var(--line); z-index:15; }
   .song-audiobar-inner{ max-width:720px; margin:0 auto; padding:10px 16px; display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
   .yt-host-wrap{ max-width:720px; margin:0 auto; padding:16px 24px 0; }
@@ -727,7 +733,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.28</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.29</div>
   </div>
 </div>
 
@@ -965,7 +971,7 @@
     <span class="demo-flag" id="songSub"></span>
   </div>
 </header>
-<div class="yt-host-wrap"><div id="ytPlayerHost" class="yt-host"></div></div>
+<div class="yt-host-wrap"><div id="ytPlayerHost" class="yt-host"></div><p class="song-note" id="songNote" hidden></p></div>
 <main id="songLines" class="song-lines"></main>
 <footer class="audiobar song-audiobar">
   <div class="audiobar-inner song-audiobar-inner">
@@ -6204,6 +6210,16 @@ function renderSongLines(container, songData, songId){
       lineEl.appendChild(wEl);
       flatWords.push({lineIdx, wordIdx, el: wEl, w});
     });
+    if (line.audio){
+      const say = document.createElement('button');
+      say.type = 'button';
+      say.className = 'song-line-say';
+      say.textContent = '🔊';
+      say.title = 'Прочитать строку (голос)';
+      say.setAttribute('aria-label', 'Прочитать строку');
+      say.addEventListener('click', (e) => { e.stopPropagation(); playSongLineAudio(line.audio, say); });
+      lineEl.appendChild(say);
+    }
     container.appendChild(lineEl);
     const trBlock = document.createElement('div');
     trBlock.className = 'sentence-tr song-line-tr';
@@ -6220,6 +6236,24 @@ function renderSongLines(container, songData, songId){
 // gap the book player has with real timeupdate being too coarse for word-
 // level highlighting (see startHighlightLoop inside initReader) — same fix,
 // a requestAnimationFrame poll of player.getCurrentTime().
+// Строка голосом (запись Avri): видео на это время ставим на паузу, чтобы не звучали оба.
+let songLineAudio = null;
+function playSongLineAudio(src, btn){
+  if (ytPlayer && typeof ytPlayer.pauseVideo === 'function'){ try{ ytPlayer.pauseVideo(); }catch(err){} }
+  if (!songLineAudio) songLineAudio = new Audio();
+  stopSongLineAudio();
+  songLineAudio.src = src;
+  btn.classList.add('playing');
+  const done = () => btn.classList.remove('playing');
+  songLineAudio.onended = done;
+  songLineAudio.onerror = done;
+  songLineAudio.play().catch(done);
+}
+function stopSongLineAudio(){
+  if (songLineAudio){ try{ songLineAudio.pause(); }catch(err){} }
+  document.querySelectorAll('.song-line-say.playing').forEach(el => el.classList.remove('playing'));
+}
+
 let songSyncRAF = null;
 function startSongSyncLoop(){
   if (songSyncRAF) return;
@@ -6240,7 +6274,11 @@ let lastSongLineEl = null;
 function highlightSongWordAtTime(t){
   if (!currentSong) return;
   document.querySelectorAll('.song-line .tword.speaking').forEach(el => el.classList.remove('speaking'));
-  const hit = currentSong.flatWords.find(fw => typeof fw.w.start === 'number' && typeof fw.w.end === 'number' && t >= fw.w.start && t < fw.w.end);
+  // Основное исполнение (start/end) или повторное — припев, куплет «на бис» (alt: [[start, end], ...],
+  // их находит автоматическая синхронизация tools/align_song.py).
+  const inside = (w) => (typeof w.start === 'number' && typeof w.end === 'number' && t >= w.start && t < w.end)
+    || (Array.isArray(w.alt) && w.alt.some(r => t >= r[0] && t < r[1]));
+  const hit = currentSong.flatWords.find(fw => inside(fw.w));
   if (!hit) return;
   hit.el.classList.add('speaking');
   const lineEl = document.getElementById('song-line-' + currentSong.data.lines[hit.lineIdx].id);
@@ -6349,10 +6387,15 @@ async function openSong(entry, opts){
   songCalibrating = false;
   songCalibTimestamps = [];
   document.getElementById('songCalibrateBtn').classList.remove('on');
+  // Синхронизированные автоматически песни ручная калибровка не нужна — кнопку не показываем.
+  document.getElementById('songCalibrateBtn').style.display = songData.meta && songData.meta.calibrated ? 'none' : '';
   document.getElementById('songCopyTimestampsBtn').style.display = 'none';
   document.getElementById('songCalibHint').textContent = songData.meta && songData.meta.calibrated === false
-    ? '⚠ Таймкоды ещё не откалиброваны (плейсхолдер) — подсветка слов будет неточной, пока кто-то не пройдёт калибровку вживую.'
+    ? 'Подсветка слов под видео для этой песни пока не настроена. Нажмите 🔊 у строки, чтобы послушать её отдельно.'
     : '';
+  const noteEl = document.getElementById('songNote');
+  noteEl.textContent = (songData.meta && songData.meta.note) || '';
+  noteEl.hidden = !noteEl.textContent;
 
   const host = document.getElementById('ytPlayerHost');
   host.innerHTML = '<div id="ytPlayerTarget"></div>';
@@ -6365,7 +6408,7 @@ async function openSong(entry, opts){
       playerVars: {rel: 0},
       events: {
         onStateChange: (e) => {
-          if (e.data === YT.PlayerState.PLAYING){ startSongSyncLoop(); hideSongLineTranslations(); }
+          if (e.data === YT.PlayerState.PLAYING){ stopSongLineAudio(); startSongSyncLoop(); hideSongLineTranslations(); }
           else if (e.data === YT.PlayerState.PAUSED){ stopSongSyncLoop(); showSongLineTranslation(); }
           else if (e.data === YT.PlayerState.ENDED){ stopSongSyncLoop(); }
         }
@@ -6413,6 +6456,7 @@ function syncHistory(view, id, mode){
 
 function leaveSongToLibrary(){
   stopSongSyncLoop();
+  stopSongLineAudio();
   closeSongPopover();
   if (ytPlayer && ytPlayer.destroy){ try{ ytPlayer.destroy(); }catch(err){} }
   ytPlayer = null;
