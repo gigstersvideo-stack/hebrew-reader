@@ -46,6 +46,42 @@
       "source": "file",
       "file": "songs/maoz-tzur/song-data.json",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M62 100 H238\"/><path d=\"M150 100 V118\"/><path d=\"M128 124 H172\"/><path d=\"M70 72 V100\"/><path d=\"M90 72 V100\"/><path d=\"M110 72 V100\"/><path d=\"M130 72 V100\"/><path d=\"M150 62 V100\"/><path d=\"M170 72 V100\"/><path d=\"M190 72 V100\"/><path d=\"M210 72 V100\"/><path d=\"M230 72 V100\"/></g><path d=\"M70 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M90 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M110 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M130 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M150 60 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M170 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M190 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M210 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M230 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>"
+    },
+    {
+      "id": "shalom-aleichem",
+      "kind": "song",
+      "title": "שָׁלוֹם עֲלֵיכֶם",
+      "kicker": "רמה ב׳ · זמר לשבת",
+      "level": "ב",
+      "sub": "песня в пятницу вечером перед кидушем — приветствие ангелам",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/shalom-aleichem/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"124\" y=\"58\" width=\"16\" height=\"58\" rx=\"2\"/><rect x=\"160\" y=\"58\" width=\"16\" height=\"58\" rx=\"2\"/><path d=\"M100 118 H200\"/></g><path d=\"M132 52 q-6 -10 0 -20 q6 10 0 20 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M168 52 q-6 -10 0 -20 q6 10 0 20 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>"
+    },
+    {
+      "id": "shabbat-hamalka",
+      "kind": "song",
+      "title": "שַׁבָּת הַמַּלְכָּה",
+      "kicker": "רמה ג׳ · שיר לשבת",
+      "level": "ג",
+      "sub": "Бялик: «Солнце скрылось за верхушками деревьев…» — встреча и проводы субботы",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/shabbat-hamalka/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"124\" y=\"58\" width=\"16\" height=\"58\" rx=\"2\"/><rect x=\"160\" y=\"58\" width=\"16\" height=\"58\" rx=\"2\"/><path d=\"M100 118 H200\"/></g><path d=\"M132 52 q-6 -10 0 -20 q6 10 0 20 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M168 52 q-6 -10 0 -20 q6 10 0 20 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>"
+    },
+    {
+      "id": "kiddush-shabbat",
+      "kind": "song",
+      "title": "קִידּוּשׁ לְלֵיל שַׁבָּת",
+      "kicker": "רמה ד׳ · מקור לשבת",
+      "level": "ד",
+      "sub": "начало кидуша: рассказ Торы о седьмом дне и благословение на вино",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/kiddush-shabbat/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M125 40 H175 Q175 80 150 84 Q125 80 125 40 Z\"/><path d=\"M150 84 V112\"/><path d=\"M130 114 H170\"/></g><path d=\"M128 52 H172\" stroke=\"var(--gold)\"/></svg>"
     }
   ]
 }

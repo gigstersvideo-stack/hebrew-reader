@@ -291,6 +291,17 @@
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><g stroke=\"var(--ink)\"><path d=\"M62 100 H238\"/><path d=\"M150 100 V118\"/><path d=\"M128 124 H172\"/><path d=\"M70 72 V100\"/><path d=\"M90 72 V100\"/><path d=\"M110 72 V100\"/><path d=\"M130 72 V100\"/><path d=\"M150 62 V100\"/><path d=\"M170 72 V100\"/><path d=\"M190 72 V100\"/><path d=\"M210 72 V100\"/><path d=\"M230 72 V100\"/></g><path d=\"M150 60 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M230 70 q-4 -7 0 -13 q4 6 0 13 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>"
     },
     {
+      "id": "shabbat-alef",
+      "title": "שְׁתֵּי חַלּוֹת",
+      "kicker": "רמה א׳ · סיפור לשבת",
+      "level": "א",
+      "sub": "Ноам спрашивает, почему на субботнем столе две халы. Мама рассказывает про ман в пустыне, папа — про седьмой день.",
+      "source": "file",
+      "file": "books/shabbat-alef/book-data.json",
+      "spineColor": "#C9D3E0",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"60\" y=\"62\" width=\"14\" height=\"52\" rx=\"2\"/><rect x=\"92\" y=\"62\" width=\"14\" height=\"52\" rx=\"2\"/><path d=\"M130 112 q10 -26 40 -26 q30 0 40 26 Z\"/><path d=\"M146 104 q6 -12 14 -14 M164 106 q6 -14 16 -16 M184 108 q4 -10 10 -12\"/><path d=\"M40 118 H260\"/></g><path d=\"M67 56 q-6 -10 0 -20 q6 10 0 20 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M99 56 q-6 -10 0 -20 q6 10 0 20 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>"
+    },
+    {
       "id": "play-bet",
       "title": "הַמֶּלֶךְ הַבַּיְישָׁן",
       "kicker": "רמה ב׳ · סיפור מקורי",
