@@ -309,6 +309,71 @@
       "file": "songs/megillat-haatzmaut/song-data.json",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
       "holiday": "zikaron-atzmaut"
+    },
+    {
+      "id": "amar-rabbi-akiva",
+      "kind": "song",
+      "title": "אָמַר רַבִּי עֲקִיבָא",
+      "kicker": "רמה ב׳ · שיר לל״ג בעומר",
+      "level": "ב",
+      "sub": "«люби ближнего, как себя, — великое правило Торы»",
+      "spineColor": "#F2C9A0",
+      "source": "file",
+      "file": "songs/amar-rabbi-akiva/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M110 118 L190 96 M110 96 L190 118\"/></g><path d=\"M150 98 C128 80 136 62 150 34 C152 52 172 58 166 80 C176 72 178 60 176 52 C190 70 184 92 150 98 Z\" fill=\"#F2A65A\" stroke=\"var(--ink)\" stroke-width=\"1.5\"/><path d=\"M150 96 C142 86 146 76 152 66 C156 78 162 82 150 96 Z\" fill=\"var(--gold)\"/></svg>",
+      "holiday": "lag-baomer"
+    },
+    {
+      "id": "bar-yochai",
+      "kind": "song",
+      "title": "בַּר יוֹחַאי",
+      "kicker": "רמה ד׳ · שיר לל״ג בעומר",
+      "level": "ד",
+      "sub": "припев пиюта, который поют у костров и в Мероне",
+      "spineColor": "#F2C9A0",
+      "source": "file",
+      "file": "songs/bar-yochai/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M110 118 L190 96 M110 96 L190 118\"/></g><path d=\"M150 98 C128 80 136 62 150 34 C152 52 172 58 166 80 C176 72 178 60 176 52 C190 70 184 92 150 98 Z\" fill=\"#F2A65A\" stroke=\"var(--ink)\" stroke-width=\"1.5\"/><path d=\"M150 96 C142 86 146 76 152 66 C156 78 162 82 150 96 Z\" fill=\"var(--gold)\"/></svg>",
+      "holiday": "lag-baomer"
+    },
+    {
+      "id": "sefirat-haomer",
+      "kind": "song",
+      "title": "סְפִירַת הָעוֹמֶר",
+      "kicker": "רמה ד׳ · מקור לל״ג בעומר",
+      "level": "ד",
+      "sub": "почему ל״ג — это 33 и что случилось с учениками рабби Акивы",
+      "spineColor": "#F2C9A0",
+      "source": "file",
+      "file": "songs/sefirat-haomer/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
+      "holiday": "lag-baomer"
+    },
+    {
+      "id": "ki-el-asher",
+      "kind": "song",
+      "title": "כִּי אֶל אֲשֶׁר תֵּלְכִי",
+      "kicker": "רמה ג׳ · שיר לשבועות",
+      "level": "ג",
+      "sub": "Рут: «твой народ — мой народ»",
+      "spineColor": "#E8E2B8",
+      "source": "file",
+      "file": "songs/ki-el-asher/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M150 120 V40\"/><path d=\"M150 60 q-12 -4 -14 -14 M150 60 q12 -4 14 -14\"/><path d=\"M150 74 q-12 -4 -14 -14 M150 74 q12 -4 14 -14\"/><path d=\"M150 88 q-12 -4 -14 -14 M150 88 q12 -4 14 -14\"/></g><path d=\"M150 40 q-3 -8 0 -14 q3 6 0 14 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M96 118 Q150 100 204 118\" stroke=\"var(--ink)\" fill=\"none\"/></svg>",
+      "holiday": "shavuot"
+    },
+    {
+      "id": "chag-habikurim",
+      "kind": "song",
+      "title": "חַג הַבִּיכּוּרִים",
+      "kicker": "רמה ד׳ · מקור לשבועות",
+      "level": "ד",
+      "sub": "Тора и Мишна: «семь недель» и шествие с первыми плодами",
+      "spineColor": "#E8E2B8",
+      "source": "file",
+      "file": "songs/chag-habikurim/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
+      "holiday": "shavuot"
     }
   ]
 }

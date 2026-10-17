@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.35
+  Hebrew Reader — v1.99.37
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -747,7 +747,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.35</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.37</div>
   </div>
 </div>
 
@@ -3391,12 +3391,16 @@ async function applyFlowScene(paragraphEl, scene){
       placed.push({ placement: p, mask, halo: obj.halo * (cw/FS_DESIGN_W) });
     }
 
-    let wi = 0, y = 0;
+    let wi = 0, y = 0, stall = 0;
     const firstWordPos = new Array(sentenceMeta.length).fill(null);
     const lastWordPos = new Array(sentenceMeta.length).fill(null);
     while (wi < units.length){
-      const slots = fsGetSlots(y, y+lineHeight, placed, cw, rule.minSlot)
+      const wi0 = wi;
+      let slots = fsGetSlots(y, y+lineHeight, placed, cw, rule.minSlot)
         .sort((a,b) => (b.x+b.width) - (a.x+a.width));
+      // защита от вечного цикла: слово шире любой щели (очень узкая колонка, колонка нулевой ширины в скрытой
+      // вкладке) — после 40 пустых строк подряд ставим его в строку на всю ширину, пусть и с вылетом за край
+      if (stall >= 40) slots = [{ x: 0, width: Math.max(cw, widths[wi]) }];
       for (const slot of slots){
         if (wi >= units.length) break;
         // в строке несколько щелей, а в эту влезает лишь одно слово — пропускаем её (не оставляем «висящих» слов)
@@ -3425,6 +3429,7 @@ async function applyFlowScene(paragraphEl, scene){
           wi++;
         }
       }
+      stall = wi === wi0 ? stall + 1 : 0;
       y += lineHeight;
     }
 

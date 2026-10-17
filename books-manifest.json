@@ -3420,6 +3420,32 @@
           "ready": true
         }
       ]
+    },
+    {
+      "id": "lagbaomer-alef",
+      "title": "הַמְּדוּרָה",
+      "kicker": "רמה א׳ · סיפור לל״ג בעומר",
+      "level": "א",
+      "sub": "Мая и Ноам ссорятся из-за доски для костра — а у костра вспоминают урок рабби Акивы.",
+      "source": "file",
+      "file": "books/lagbaomer-alef/book-data.json",
+      "spineColor": "#F2C9A0",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M110 118 L190 96 M110 96 L190 118\"/></g><path d=\"M150 98 C128 80 136 62 150 34 C152 52 172 58 166 80 C176 72 178 60 176 52 C190 70 184 92 150 98 Z\" fill=\"#F2A65A\" stroke=\"var(--ink)\" stroke-width=\"1.5\"/><path d=\"M150 96 C142 86 146 76 152 66 C156 78 162 82 150 96 Z\" fill=\"var(--gold)\"/></svg>",
+      "shelf": "holidays",
+      "holiday": "lag-baomer"
+    },
+    {
+      "id": "shavuot-alef",
+      "title": "הַבִּיכּוּרִים",
+      "kicker": "רמה א׳ · סיפור לשבועות",
+      "level": "א",
+      "sub": "Тамар с корзиной в садике, чизкейк у бабушки — и книга Рут: «твой народ — мой народ».",
+      "source": "file",
+      "file": "books/shavuot-alef/book-data.json",
+      "spineColor": "#E8E2B8",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M150 120 V40\"/><path d=\"M150 60 q-12 -4 -14 -14 M150 60 q12 -4 14 -14\"/><path d=\"M150 74 q-12 -4 -14 -14 M150 74 q12 -4 14 -14\"/><path d=\"M150 88 q-12 -4 -14 -14 M150 88 q12 -4 14 -14\"/></g><path d=\"M150 40 q-3 -8 0 -14 q3 6 0 14 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M96 118 Q150 100 204 118\" stroke=\"var(--ink)\" fill=\"none\"/></svg>",
+      "shelf": "holidays",
+      "holiday": "shavuot"
     }
   ]
 }
