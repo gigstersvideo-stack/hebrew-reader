@@ -179,6 +179,71 @@
       "file": "songs/megillat-esther/song-data.json",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
       "holiday": "purim"
+    },
+    {
+      "id": "ma-nishtana",
+      "kind": "song",
+      "title": "מַה נִּשְׁתַּנָּה",
+      "kicker": "רמה ג׳ · שיר לפסח",
+      "level": "ג",
+      "sub": "четыре вопроса седера — их задаёт самый младший",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/ma-nishtana/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><ellipse cx=\"150\" cy=\"80\" rx=\"80\" ry=\"34\"/><ellipse cx=\"150\" cy=\"80\" rx=\"62\" ry=\"24\"/><circle cx=\"118\" cy=\"74\" r=\"7\"/><circle cx=\"150\" cy=\"68\" r=\"7\"/><circle cx=\"182\" cy=\"74\" r=\"7\"/><circle cx=\"130\" cy=\"92\" r=\"7\"/><circle cx=\"170\" cy=\"92\" r=\"7\"/></g><circle cx=\"150\" cy=\"68\" r=\"4\" fill=\"var(--gold)\"/></svg>",
+      "holiday": "pesach"
+    },
+    {
+      "id": "avadim-hayinu",
+      "kind": "song",
+      "title": "עֲבָדִים הָיִינוּ",
+      "kicker": "רמה ב׳ · שיר לפסח",
+      "level": "ב",
+      "sub": "«рабами были мы — теперь свободные люди»",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/avadim-hayinu/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"70\" rx=\"6\"/><path d=\"M105 55 H195\" stroke-dasharray=\"2 6\"/><path d=\"M105 70 H195\" stroke-dasharray=\"2 6\"/><path d=\"M105 85 H195\" stroke-dasharray=\"2 6\"/><path d=\"M105 100 H195\" stroke-dasharray=\"2 6\"/></g></svg>",
+      "holiday": "pesach"
+    },
+    {
+      "id": "dayenu",
+      "kind": "song",
+      "title": "דַּיֵּנוּ",
+      "kicker": "רמה ב׳ · שיר לפסח",
+      "level": "ב",
+      "sub": "«если бы Он только… — нам бы хватило»: самая громкая песня седера",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/dayenu/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M60 50 H90 Q90 80 75 82 Q60 80 60 50 Z\"/><path d=\"M75 82 V102\"/><path d=\"M65 104 H85\"/><path d=\"M105 50 H135 Q135 80 120 82 Q105 80 105 50 Z\"/><path d=\"M120 82 V102\"/><path d=\"M110 104 H130\"/><path d=\"M150 50 H180 Q180 80 165 82 Q150 80 150 50 Z\"/><path d=\"M165 82 V102\"/><path d=\"M155 104 H175\"/><path d=\"M195 50 H225 Q225 80 210 82 Q195 80 195 50 Z\"/><path d=\"M210 82 V102\"/><path d=\"M200 104 H220\"/></g><path d=\"M63 60 H87\" stroke=\"var(--gold)\"/><path d=\"M108 60 H132\" stroke=\"var(--gold)\"/><path d=\"M153 60 H177\" stroke=\"var(--gold)\"/><path d=\"M198 60 H222\" stroke=\"var(--gold)\"/></svg>",
+      "holiday": "pesach"
+    },
+    {
+      "id": "echad-mi-yodea",
+      "kind": "song",
+      "title": "אֶחָד מִי יוֹדֵעַ",
+      "kicker": "רמה ב׳ · שיר לפסח",
+      "level": "ב",
+      "sub": "песня-считалка конца седера: числа от одного до пяти (из тринадцати)",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/echad-mi-yodea/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M60 50 H90 Q90 80 75 82 Q60 80 60 50 Z\"/><path d=\"M75 82 V102\"/><path d=\"M65 104 H85\"/><path d=\"M105 50 H135 Q135 80 120 82 Q105 80 105 50 Z\"/><path d=\"M120 82 V102\"/><path d=\"M110 104 H130\"/><path d=\"M150 50 H180 Q180 80 165 82 Q150 80 150 50 Z\"/><path d=\"M165 82 V102\"/><path d=\"M155 104 H175\"/><path d=\"M195 50 H225 Q225 80 210 82 Q195 80 195 50 Z\"/><path d=\"M210 82 V102\"/><path d=\"M200 104 H220\"/></g><path d=\"M63 60 H87\" stroke=\"var(--gold)\"/><path d=\"M108 60 H132\" stroke=\"var(--gold)\"/><path d=\"M153 60 H177\" stroke=\"var(--gold)\"/><path d=\"M198 60 H222\" stroke=\"var(--gold)\"/></svg>",
+      "holiday": "pesach"
+    },
+    {
+      "id": "vehigadeta",
+      "kind": "song",
+      "title": "וְהִגַּדְתָּ לְבִנְךָ",
+      "kicker": "רמה ד׳ · מקור לפסח",
+      "level": "ד",
+      "sub": "Тора и Мишна: откуда слово «Агада» и зачем рассказывать детям",
+      "spineColor": "#C9D3E0",
+      "source": "file",
+      "file": "songs/vehigadeta/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
+      "holiday": "pesach"
     }
   ]
 }

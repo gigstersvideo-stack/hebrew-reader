@@ -332,6 +332,19 @@
       "holiday": "purim"
     },
     {
+      "id": "pesach-alef",
+      "title": "לֵיל הַסֵּדֶר",
+      "kicker": "רמה א׳ · סיפור לפסח",
+      "level": "א",
+      "sub": "Шира задаёт «Ма ништана», дедушка рассказывает об Исходе, а потом все ищут афикоман.",
+      "source": "file",
+      "file": "books/pesach-alef/book-data.json",
+      "spineColor": "#C9D3E0",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><ellipse cx=\"150\" cy=\"80\" rx=\"80\" ry=\"34\"/><ellipse cx=\"150\" cy=\"80\" rx=\"62\" ry=\"24\"/><circle cx=\"118\" cy=\"74\" r=\"7\"/><circle cx=\"150\" cy=\"68\" r=\"7\"/><circle cx=\"182\" cy=\"74\" r=\"7\"/><circle cx=\"130\" cy=\"92\" r=\"7\"/><circle cx=\"170\" cy=\"92\" r=\"7\"/></g><circle cx=\"150\" cy=\"68\" r=\"4\" fill=\"var(--gold)\"/></svg>",
+      "shelf": "holidays",
+      "holiday": "pesach"
+    },
+    {
       "id": "play-bet",
       "title": "הַמֶּלֶךְ הַבַּיְישָׁן",
       "kicker": "רמה ב׳ · סיפור מקורי",
