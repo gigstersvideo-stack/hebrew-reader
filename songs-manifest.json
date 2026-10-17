@@ -283,6 +283,32 @@
       "file": "songs/chok-yom-hashoah/song-data.json",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
       "holiday": "yom-hashoah"
+    },
+    {
+      "id": "hatikva",
+      "kind": "song",
+      "title": "הַתִּקְוָוה",
+      "kicker": "רמה ג׳ · שיר ליום העצמאות",
+      "level": "ג",
+      "sub": "гимн Израиля — им заканчиваются церемонии",
+      "spineColor": "#C7D7EA",
+      "source": "file",
+      "file": "songs/hatikva/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M90 30 V118\"/><rect x=\"92\" y=\"34\" width=\"120\" height=\"76\" rx=\"2\" fill=\"#fff\"/></g><path d=\"M92 44 H212 M92 100 H212\" stroke=\"#2F5DA8\" stroke-width=\"5\"/><path d=\"M152 56 L166 80 H138 Z M152 88 L138 64 H166 Z\" stroke=\"#2F5DA8\" stroke-width=\"2\"/></svg>",
+      "holiday": "zikaron-atzmaut"
+    },
+    {
+      "id": "megillat-haatzmaut",
+      "kind": "song",
+      "title": "מְגִילַּת הָעַצְמָאוּת",
+      "kicker": "רמה ד׳ · מקור ליום העצמאות",
+      "level": "ד",
+      "sub": "Декларация 1948 года: «открыто для алии», равенство граждан",
+      "spineColor": "#C7D7EA",
+      "source": "file",
+      "file": "songs/megillat-haatzmaut/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
+      "holiday": "zikaron-atzmaut"
     }
   ]
 }
