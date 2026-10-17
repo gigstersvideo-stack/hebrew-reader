@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.43
+  Hebrew Reader — v1.99.44
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -747,7 +747,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.43</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.44</div>
   </div>
 </div>
 
@@ -2473,6 +2473,40 @@ function fsGetSlots(lineTop, lineBottom, objects, containerWidth, minSlot = 20){
   return slots;
 }
 
+// Подсветка объекта сцены, связанного со словом (2026-10-17, просьба владельца — «как стикер в iPhone»): не ровное
+// золотое свечение, а тусклый золотой контур, по которому бегут два ярких огонька (полный круг ~1,8 с).
+// pts — замкнутый контур в px холста (до dpr), now — performance.now().
+function fsContourGlow(ctx, pts, now, dpr){
+  if (!pts || pts.length < 3) return;
+  let P = 0;
+  for (let i = 0; i < pts.length; i++){ const a = pts[i], b = pts[(i + 1) % pts.length]; P += Math.hypot(b[0] - a[0], b[1] - a[1]); }
+  ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]); ctx.closePath();
+  ctx.shadowColor = 'rgba(214,170,40,.85)'; ctx.shadowBlur = 6 * dpr; ctx.strokeStyle = 'rgba(222,182,60,.5)'; ctx.lineWidth = 1.6; ctx.stroke();
+  const seg = Math.max(30, P * 0.13);
+  ctx.setLineDash([seg, Math.max(1, P / 2 - seg)]); ctx.lineDashOffset = -(now / 1000) * (P / 1.8);
+  ctx.shadowColor = 'rgba(255,200,60,.95)'; ctx.shadowBlur = 14 * dpr; ctx.strokeStyle = 'rgba(255,238,170,.98)'; ctx.lineWidth = 2.6; ctx.stroke();
+  ctx.lineWidth = 1.2; ctx.shadowBlur = 0; ctx.strokeStyle = 'rgba(255,255,235,1)'; ctx.stroke();
+  ctx.restore();
+}
+function fsInPoly(pts, x, y){
+  let c = false;
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++){
+    const a = pts[i], b = pts[j];
+    if ((a[1] > y) !== (b[1] > y) && x < (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
+  }
+  return c;
+}
+// Контур маски «запечённой» сцены (строка = 1 единица дизайна, в строке один интервал): левый край сверху вниз,
+// правый снизу вверх, с отступом наружу. Считается один раз на маску.
+function fsMaskContour(mm){
+  if (mm.contour) return mm.contour;
+  const L = [], R = [], pad = 3;
+  for (let r = 0; r < mm.natH; r += 2){ const iv = mm.rows[r][0]; if (!iv) continue; L.push([iv[0] - pad, r]); R.push([iv[1] + pad, r]); }
+  if (L.length){ L.unshift([L[0][0], L[0][1] - pad]); R.unshift([R[0][0], R[0][1] - pad]); L.push([L.at(-1)[0], L.at(-1)[1] + pad]); R.push([R.at(-1)[0], R.at(-1)[1] + pad]); }
+  return (mm.contour = L.concat(R.reverse()));
+}
+
 // «Запечённая» сцена (kind:'baked', v2): рисунки нарисованы кодом в студии
 // E:\NEW BIG PROJ\flow-studio и выгружены атласами WebP + scene.json:
 //   drawings[i] = [атлас, x, y, w, h] (px атласа; scale px на единицу дизайна 592×712),
@@ -2649,14 +2683,18 @@ async function fsBakedStage(layer, scene, cw){
       if (hideObj && hideObj.has(obj)) continue;
       const [a, ax, ay, w, h] = data.drawings[d];
       const args = [imgs[a], ax, ay, w, h, x * k, y * k, w / data.scale * k, h / data.scale * k];
-      if (obj >= 0 && obj === hl){                        // −1 — объект без связки со словами: он не светится никогда
-        // подсвеченный объект — золотое свечение по силуэту, в цвет подсветки слов (.illustration-hover)
-        ctx.save(); ctx.shadowColor = 'rgba(201,162,39,.95)'; ctx.shadowBlur = 14 * dpr;
-        ctx.drawImage(...args); ctx.drawImage(...args); ctx.restore();
-      }
       ctx.drawImage(...args);
     }
+    // подсвеченный объект (−1 — объект без связки: не светится никогда) — бегущее золото по контуру его масок
+    // (по силуэтам обтекания; если у объекта только зоны наведения — по ним)
+    if (hl >= 0){
+      const own = data.track[t].filter(e => e[7] === hl && e[3] >= 0), sil = own.filter(e => e[6] >= 0);
+      for (const [, , , m, mx, my] of (sil.length ? sil : own))
+        fsContourGlow(ctx, fsMaskContour(masks[m]).map(([u, v]) => [(mx + u) * k, (my + v) * k]), performance.now(), dpr);
+    }
   }
+  let glowRaf = 0;
+  const glowLoop = () => { glowRaf = 0; if (hl < 0 || !cv.isConnected) return; draw(cur); glowRaf = requestAnimationFrame(glowLoop); };
   // атласы грузятся не сразу, а когда сцена близко к экрану (см. fsWhenNear): если читатель
   // открыл книгу внизу страницы и до сцены не долистал, 2+ МБ картинок не качаются вовсе
   const load = () => loading || (loading = Promise.all(data.atlases.map(a => fsLoadImage(safeUrl(base + a))))
@@ -2693,7 +2731,7 @@ async function fsBakedStage(layer, scene, cw){
     count: data.track.length, fps: data.fps, objects: data.objects || [],
     layoutRule: { minSlot: data.minSlotPx || 20, noLoneWords: !!data.noLoneWords },
     extent: () => fsTrackExtent(data.track, masks, k),
-    highlight(obj){ if (obj !== hl){ hl = obj; draw(cur); } },
+    highlight(obj){ if (obj !== hl){ hl = obj; draw(cur); if (hl >= 0 && !glowRaf) glowRaf = requestAnimationFrame(glowLoop); } },
     // какой объект под точкой (px от левого верхнего угла слоя) на текущем такте; -1 — никакой
     hitTest(px, py){
       const tr = data.track[cur];
@@ -2974,8 +3012,17 @@ async function fsInkStage(layer, scene, cw){
   for (const m of sketches) if (m.type === 'img'){
     m.ims = {};
     for (const [key, f] of Object.entries(m.frames)) m.ims[key] = await fsLoadImage(safeUrl(base + f));
+    for (const pc of m.pieces || []) pc.im = await fsLoadImage(safeUrl(base + pc.src));
   }
-  const objects = sketches.map(m => m.id);
+  // объекты для связки со словами: у картинки — свои части (objects: id + контур в px картинки, after:'event' —
+  // только после события), у наброска — он сам (контур — его многоугольник или рамка). Один id может иметь несколько
+  // контуров (две двери, две стопки ящиков). hitTest проверяет части по порядку: мелкие раньше крупных.
+  const parts = [];
+  for (const m of sketches){
+    if (m.objects) for (const o of m.objects) parts.push({ id: o.id, m, poly: o.poly, after: o.after });
+    else parts.push({ id: m.id, m, poly: m.poly || null });
+  }
+  const objects = [...new Set(parts.map(q => q.id))];
   const wordEl = ([sid, wi]) => layer.querySelector(`.tword[data-sentence="${sid}"][data-word="${wi}"]`);
   const rectOf = el => ({ x: parseFloat(el.style.left) || 0, y: parseFloat(el.style.top) || 0, w: el.getBoundingClientRect().width, h: el.offsetHeight });
   for (const m of sketches){
@@ -3069,7 +3116,12 @@ async function fsInkStage(layer, scene, cw){
         if (m.inline){ ox = m.x; oy = m.y; }
         else { ox = m.side < 0 ? -26 * sc - W : cw + 26 * sc; oy = r.y + r.h / 2 + (m.dy || 0) * sc; }
         m.box = g.box = [ox, oy, W, Hh];
-        if (m.type === 'img'){ g.img = m; tt = g.t0 + m.event[0] + m.event[1]; if (m.loop) loops = true; }
+        if (m.type === 'img'){
+          g.img = m; tt = g.t0 + (m.event ? m.event[0] + m.event[1] : 0);
+          for (const pc of m.pieces || []) tt = Math.max(tt, g.t0 + pc.at + 1.6);
+          if (m.beam) tt = Math.max(tt, g.t0 + m.beam.path[m.beam.path.length - 1][0] + 0.5);
+          if (m.loop) loops = true;
+        }
         else if (m.arrow && !m.inline){
           const ly = r.y + r.h / 2, ax0 = m.side < 0 ? -5 : cw + 5, ay0 = ly + 6, axe = m.side < 0 ? ox + W - 4 * sc : ox + 6 * sc, aye = ly - 4;
           const PEN = { w: 1.3 * sc, nib: 0.75, nibK: 0.45 };
@@ -3081,9 +3133,9 @@ async function fsInkStage(layer, scene, cw){
         // штрихи наброска — в координатах страницы
         const P = p => [ox + p[0] * sc, oy + p[1] * sc];
         for (const s of m.strokes || []){
-          if (s.dot){ g.items.push({ dot: P(s.dot), r: s.r * sc, gap: s.gap ?? 0.1, obj: objects.indexOf(m.id) }); continue; }
+          if (s.dot){ g.items.push({ dot: P(s.dot), r: s.r * sc, gap: s.gap ?? 0.1 }); continue; }
           const o = Object.assign({}, s.o); o.w = (o.w ?? 1.5) * sc; o.speed = (o.speed || 260) * sc;
-          const p = fsInk.prep(s.pts.map(P), o); p.obj = objects.indexOf(m.id); g.items.push(p);
+          const p = fsInk.prep(s.pts.map(P), o); g.items.push(p);
         }
       }
       if (!g.img) tt = fsInk.schedule(g.items, tt);
@@ -3097,15 +3149,15 @@ async function fsInkStage(layer, scene, cw){
     for (const g of groups) if (g.img) drawImg(g, t);
     for (const s of list){
       if (s.hl){ fsInk.drawHL(ctx, s, t); continue; }
-      if (s.obj >= 0 && s.obj === hl){ ctx.save(); ctx.shadowColor = 'rgba(201,162,39,.95)'; ctx.shadowBlur = 8 * dpr; fsInk.drawPen(ctx, s, t); ctx.restore(); }
       fsInk.drawPen(ctx, s, t);
     }
+    drawGlow();
   }
   // Картинка с кадрами (зеркало, play-bet): основа (base) видна с самого начала; event [ждать, длительность] —
   // по стеклу проходит блик, и где он прошёл, основа сменяется финалом (king). Кадры *_t — листок в руках дрожит:
   // короткие дрожания в моменты m.tremble (с от начала) и потом раз в m.loop с, пока сцена видна.
   function imgState(g, tt){
-    const m = g.img, u = tt - g.t0, [w0, wd] = m.event;
+    const m = g.img, u = tt - g.t0, [w0, wd] = m.event || [1e9, 1];
     const p = Math.max(0, Math.min(1, (u - w0) / wd));
     const burst = b => u >= b && u < b + 0.5 && Math.floor((u - b) / 0.08) % 2 === 0;
     let shake = (m.tremble || []).some(burst);
@@ -3113,17 +3165,66 @@ async function fsInkStage(layer, scene, cw){
       const n = Math.floor((u - w0 - wd) / m.loop);
       for (const i of [n, n - 1]) if (i >= 0 && burst(w0 + wd + i * m.loop + 1.2 + ((i * 0.37) % 1) * 1.1)) shake = true;
     }
-    return { p, shake, key: Math.round(p * 60) + (shake ? 't' : '') };
+    // куски (pieces): отрывные полоски объявления — на месте до at, потом дрожат на ветру 0,7 с и улетают вниз за 0,75 с
+    const pcs = (m.pieces || []).map(pc => Math.max(0, Math.min(1.5, u - pc.at)));
+    return { p, shake, pcs, key: Math.round(p * 60) + (shake ? 't' : '') + pcs.map(v => Math.round(v * 30)).join(',') + (m.beam ? '|' + Math.round(u * 24) : '') };
+  }
+  // Луч фонарика (beam, сарай cat-bet): картинка освещена ровно, сверху темнота с мягким краем; в ней светлое пятно
+  // идёт по path [[с, x, y, радиус], …] (px картинки, плавно), рука чуть дрожит. Когда пятно дошло до кота (eyes.at) —
+  // в темноте вспыхивают глаза и потом изредка моргают (петля). До начала сцены — темнота и узкий луч у двери.
+  let dark = null;
+  function beamAt(b, u){
+    const P = b.path; if (u <= P[0][0]) return P[0].slice(1);
+    for (let i = 1; i < P.length; i++) if (u <= P[i][0]){
+      const a = P[i - 1], c = P[i], k = (u - a[0]) / (c[0] - a[0]), e = k * k * (3 - 2 * k);
+      return [1, 2, 3].map(j => a[j] + (c[j] - a[j]) * e);
+    }
+    return P[P.length - 1].slice(1);
+  }
+  function drawBeam(m, u, ox, oy, W, Hh, s){
+    const b = m.beam, [bx, by, br] = beamAt(b, Math.max(0, u));
+    const jx = Math.sin(u * 2.3) * 3 + Math.sin(u * 5.1) * 1.5, jy = Math.cos(u * 1.9) * 2.5;    // рука с фонариком
+    if (!dark) dark = document.createElement('canvas');
+    const dw = Math.ceil(W * dpr), dh = Math.ceil(Hh * dpr);
+    if (dark.width !== dw || dark.height !== dh){ dark.width = dw; dark.height = dh; }
+    const d = dark.getContext('2d');
+    d.setTransform(1, 0, 0, 1, 0, 0); d.globalCompositeOperation = 'source-over'; d.clearRect(0, 0, dw, dh);
+    d.fillStyle = b.color || 'rgba(30,27,34,0.84)'; d.fillRect(0, 0, dw, dh);   // ночь, но сарай угадывается
+    d.globalCompositeOperation = 'destination-out';
+    const cx = (bx + jx) * s * dpr, cy = (by + jy) * s * dpr, r = br * s * dpr;
+    const gr = d.createRadialGradient(cx, cy, r * 0.15, cx, cy, r);
+    gr.addColorStop(0, 'rgba(0,0,0,1)'); gr.addColorStop(0.6, 'rgba(0,0,0,0.85)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
+    d.fillStyle = gr; d.beginPath(); d.arc(cx, cy, r, 0, 7); d.fill();
+    d.globalCompositeOperation = 'destination-in'; d.drawImage(m.ims.base, 0, 0, dw, dh);   // темнота — по форме картинки (мягкий край)
+    ctx.drawImage(dark, ox, oy, W, Hh);
+    // глаза: вспыхивают в луче, потом моргают раз в ~4 с
+    const e = b.eyes; if (!e || u < e.at) return;
+    const on = Math.min(1, (u - e.at) / 0.25), ph = (u - e.at) % 4.2, blink = ph > 3.0 && ph < 3.16 ? 0.15 : 1;
+    for (const [ex, ey] of e.xy){
+      const x = ox + ex * s, y = oy + ey * s, rr = (e.r || 5) * s;
+      ctx.save(); ctx.globalAlpha = on * 0.9; ctx.translate(x, y); ctx.scale(1, blink);
+      const g2 = ctx.createRadialGradient(0, 0, 0, 0, 0, rr * 2.2);
+      g2.addColorStop(0, 'rgba(250,240,170,0.95)'); g2.addColorStop(0.35, 'rgba(225,215,110,0.6)'); g2.addColorStop(1, 'rgba(225,215,110,0)');
+      ctx.fillStyle = g2; ctx.beginPath(); ctx.arc(0, 0, rr * 2.2, 0, 7); ctx.fill(); ctx.restore();
+    }
   }
   function drawImg(g, tt){
     const m = g.img, [ox, oy, W, Hh] = m.box, st = imgState(g, tt), s = W / m.ims.base.naturalWidth, hh = Hh / s;
     const pic = key => m.ims[key + (st.shake && m.ims[key + '_t'] ? '_t' : '')];
-    const glow = objects.indexOf(m.id) === hl;
-    const put = im => {
-      if (glow){ ctx.save(); ctx.shadowColor = 'rgba(201,162,39,.95)'; ctx.shadowBlur = 12 * dpr; ctx.drawImage(im, ox, oy, W, Hh); ctx.restore(); }
-      ctx.drawImage(im, ox, oy, W, Hh);
-    };
+    const put = im => ctx.drawImage(im, ox, oy, W, Hh);
     if (st.p < 1) put(pic('base'));
+    if (m.beam) drawBeam(m, tt - g.t0, ox, oy, W, Hh, s);
+    (m.pieces || []).forEach((pc, i) => {
+      const v = st.pcs[i]; if (v >= 1.45) return;
+      const [rx0, ry0, rw, rh] = pc.rect, px = ox + rx0 * s, py = oy + ry0 * s, pw = rw * s, ph = rh * s;
+      let ang = 0, dx = 0, dy = 0, al = 1;
+      if (v > 0 && v < 0.7) ang = Math.sin(v * 19) * 0.09 * (0.4 + v);                  // дрожит у линии отрыва
+      else if (v >= 0.7){ const q = (v - 0.7) / 0.75; ang = 0.5 * q * q; dx = 14 * q * s / 0.6; dy = ph * 0.6 * q * q; al = 1 - q * q; }   // сорвали
+      ctx.save(); ctx.globalAlpha = al;
+      ctx.translate(px + pw / 2 + dx, py + dy); ctx.rotate(ang);
+      ctx.drawImage(pc.im, -pw / 2, 0, pw, ph);
+      ctx.restore();
+    });
     if (st.p <= 0) return;
     // косые координаты картинки: u = x + sl·y — линия блика идёт по диагонали, сверху-слева вниз-вправо
     const [cx, cy, rx, ry] = m.glass, sl = 0.45, a0 = cx - rx + sl * (cy - ry), a1 = cx + rx + sl * (cy + ry), pos = a0 + (a1 - a0) * st.p;
@@ -3141,6 +3242,23 @@ async function fsInkStage(layer, scene, cw){
     ctx.fillStyle = gr; ctx.fillRect(pos - gx, -50, gx * 2, hh + 100);
     ctx.restore();
   }
+  function partPoly(q){
+    const m = q.m, b = m.box; if (!b) return null;
+    if (m.type === 'img'){ const s = b[2] / m.ims.base.naturalWidth; return q.poly.map(([x, y]) => [b[0] + x * s, b[1] + y * s]); }
+    if (q.poly) return q.poly.map(([x, y]) => [b[0] + x * m.s, b[1] + y * m.s]);
+    const r = 6 * m.s; return [[b[0] - r, b[1] - r], [b[0] + b[2] + r, b[1] - r], [b[0] + b[2] + r, b[1] + b[3] + r], [b[0] - r, b[1] + b[3] + r]];
+  }
+  function partLive(q){
+    const g = groups[data.marks.indexOf(q.m)]; if (!g) return false;
+    if (q.m.type !== 'img') return t >= g.t0;
+    return q.after === 'event' ? imgState(g, t).p >= 1 : true;
+  }
+  function drawGlow(){
+    if (hl < 0) return;
+    for (const q of parts) if (q.id === objects[hl] && partLive(q)) fsContourGlow(ctx, partPoly(q), performance.now(), dpr);
+  }
+  let glowRaf = 0;
+  const glowLoop = () => { glowRaf = 0; if (hl < 0 || !cv.isConnected) return; draw(); glowRaf = requestAnimationFrame(glowLoop); };
   // пометка в экране? (её коробка хотя бы наполовину видна)
   function inView(g){
     if (!g.box) return true;
@@ -3175,9 +3293,9 @@ async function fsInkStage(layer, scene, cw){
     canvas: cv, load: () => Promise.resolve(), live, count: 1, fps: 24, objects, selfPaced: true,
     layoutRule: { minSlot: 40, noLoneWords: true },
     extent: () => null, fit,
-    highlight(obj){ if (obj !== hl){ hl = obj; draw(); } },
+    highlight(obj){ if (obj !== hl){ hl = obj; if (built) draw(); if (hl >= 0 && !glowRaf) glowRaf = requestAnimationFrame(glowLoop); } },
     hitTest(px, py){
-      for (let i = 0; i < sketches.length; i++){ const b = sketches[i].box; if (b && (sketches[i].type === 'img' || t >= groups[data.marks.indexOf(sketches[i])].t0) && px >= b[0] && px <= b[0] + b[2] && py >= b[1] && py <= b[1] + b[3]) return i; }
+      for (const q of parts){ if (!partLive(q)) continue; const pp = partPoly(q); if (pp && fsInPoly(pp, px, py)) return objects.indexOf(q.id); }
       return -1;
     },
     place(){
@@ -3430,9 +3548,12 @@ function fsBakedLinks(layer, stage, links){
   const posOf = w => { const s = data.sentences.find(x => x.id === w.dataset.sentence); const ww = s && s.words[+w.dataset.word]; return (ww && ww.pos) || ''; };
   const allWords = Array.from(layer.querySelectorAll('.tword'));
   const properLemmas = new Set(allWords.filter(w => /имя собств/i.test(posOf(w))).map(w => w.dataset.lemma));
+  // леммы сравниваются в NFC: огласовки в одном и том же слове бывают записаны в разном порядке (дагеш до/после камаца)
+  const nf = l => (l || '').normalize('NFC');
+  const properN = new Set([...properLemmas].map(nf));
   const objOfLemma = {};
-  for (const [id, lemmas] of Object.entries(links)) for (const l of lemmas) if (!properLemmas.has(l)) objOfLemma[l] = ids.indexOf(id);
-  const wordsOf = obj => obj < 0 ? [] : allWords.filter(w => objOfLemma[w.dataset.lemma] === obj);
+  for (const [id, lemmas] of Object.entries(links)) for (const l of lemmas) if (!properN.has(nf(l))) objOfLemma[nf(l)] = ids.indexOf(id);
+  const wordsOf = obj => obj < 0 ? [] : allWords.filter(w => objOfLemma[nf(w.dataset.lemma)] === obj);
   const linked = obj => obj >= 0 && wordsOf(obj).length > 0;
   let active = -1, litWords = [];
   // obj — какой объект светится; words — какие слова подсветить
@@ -3452,7 +3573,7 @@ function fsBakedLinks(layer, stage, links){
   document.addEventListener('mousemove', e => {
     if (!alive()) return;
     const w = e.target.closest && e.target.closest('.tword');
-    if (w && layer.contains(w)){ const o = objOfLemma[w.dataset.lemma]; if (o === undefined) setActive(-1, [], false); else setActive(o, [w], false); return; }
+    if (w && layer.contains(w)){ const o = objOfLemma[nf(w.dataset.lemma)]; if (o === undefined) setActive(-1, [], false); else setActive(o, [w], false); return; }
     const o = hit(e); setActive(o, wordsOf(o), o >= 0);
   }, { signal: ac.signal });
   // capture: раньше общего «клик мимо закрывает разбор» — иначе он закрыл бы только что открытый

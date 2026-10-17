@@ -3401,5 +3401,53 @@
       ],
       "audio": "books/cat-bet/audio/s43.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "flyer-1",
+      "kind": "ink",
+      "label": "Объявление о пропаже кота",
+      "anchorSentenceId": "s1",
+      "basePath": "books/cat-bet/flow/flyer-1/",
+      "src": "scene.json",
+      "links": {
+        "flyer": [
+          "מוֹדָעָה",
+          "דַּף"
+        ],
+        "tabs": [
+          "טֶלֶפוֹן",
+          "מִסְפָּר"
+        ],
+        "cat": [
+          "חָתוּל"
+        ],
+        "fence": [
+          "גָּדֵר"
+        ]
+      }
+    },
+    {
+      "id": "shed-1",
+      "kind": "ink",
+      "label": "Фонарик в старом сарае",
+      "anchorSentenceId": "s21",
+      "basePath": "books/cat-bet/flow/shed-1/",
+      "src": "scene.json",
+      "links": {
+        "cat": [
+          "חָתוּל"
+        ],
+        "crates": [
+          "אַרְגָּז"
+        ],
+        "door": [
+          "דֶּלֶת"
+        ],
+        "shed": [
+          "מַחְסָן"
+        ]
+      }
+    }
   ]
 }
