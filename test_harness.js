@@ -311,11 +311,12 @@ function makeBook(id, n) {
   store['hebrew-reader-page:mid-book'] = '2';       // started, not finished
   store['hebrew-reader-completed:done-book'] = '1'; // completed
   // untouched-book: no localStorage entries at all
+  store['hebrew-reader-level-filter'] = 'א'; // вкладка уровня (с v1.99.32 вкладки «Все» нет)
 
   const manifest = [
-    { id: 'done-book', title: 'Done' },
-    { id: 'untouched-book', title: 'Untouched' },
-    { id: 'mid-book', title: 'Mid' },
+    { id: 'done-book', title: 'Done', level: 'א' },
+    { id: 'untouched-book', title: 'Untouched', level: 'א' },
+    { id: 'mid-book', title: 'Mid', level: 'א' },
   ];
   sandbox.renderLibrary(manifest);
   const grid = fakeDocument.getElementById('bookGrid');
@@ -368,7 +369,8 @@ function makeBook(id, n) {
   sandbox.setLastView('library');
   const lv = sandbox.getLastView();
   check('last view: leaving to the library keeps the last book id', lv.view === 'library' && lv.id === 'mid-book');
-  sandbox.renderLibrary([{ id: 'other', title: 'Other' }, { id: 'mid-book', title: 'Mid' }]);
+  store['hebrew-reader-level-filter'] = 'א';
+  sandbox.renderLibrary([{ id: 'other', title: 'Other', level: 'א' }, { id: 'mid-book', title: 'Mid', level: 'א' }]);
   const cards = fakeDocument.getElementById('bookGrid').children.filter(c => c.classList.contains('book-card') && !c.classList.contains('add-new'));
   const lastCard = cards.find(c => c.classList.contains('last-read'));
   check('last read: exactly the last opened book carries the highlight', cards.filter(c => c.classList.contains('last-read')).length === 1 && lastCard && lastCard.innerHTML.includes('Mid'));
@@ -389,6 +391,44 @@ function makeBook(id, n) {
   sandbox.renderLibrary(popMan);
   check('popular badge: disappears once the reader has opened any book', countPopular() === 0);
   win.readerPopularity = null;
+}
+
+// ---- 3d. Вкладки библиотеки (v1.99.32): «Мои · א · ב · ג · ד · Праздники и песни», без «Все».
+{
+  const man = [
+    { id: 'a-new', title: 'ANew', level: 'א' },
+    { id: 'a-read', title: 'ARead', level: 'א' },
+    { id: 'b-mid', title: 'BMid', level: 'ב' },
+    { id: 'hol-book', title: 'HolBook', level: 'א', shelf: 'holidays', holiday: 'hanukkah' },
+    { id: 'song-x', title: 'SongX', level: 'ב', kind: 'song', holiday: 'hanukkah' },
+    { id: 'song-free', title: 'SongFree', level: 'א', kind: 'song' },
+    { id: 'my-upload', title: 'MyUpload', source: 'local' },
+  ];
+  const tabLabels = () => fakeDocument.getElementById('levelTabs').children.map(b => b.textContent);
+  const cards = () => fakeDocument.getElementById('bookGrid').children
+    .filter(c => c.classList.contains('book-card') && !c.classList.contains('add-new')).map(c => c.innerHTML);
+  const has = (list, t) => list.some(h => h.includes(t));
+  store = {}; allElements = [];
+  store['hebrew-reader-completed:a-read'] = '1';
+  store['hebrew-reader-page:b-mid'] = '3';
+  sandbox.renderLibrary(man);
+  const labels = tabLabels();
+  check('tabs: no «Все»; Мои first, then levels, then Праздники', !labels.some(l => l.startsWith('Все')) && labels[0].startsWith('Мои') && labels[labels.length - 1].startsWith('Праздники'));
+  const mine = cards();
+  check('tabs: «Мои» is the default when there is something in it', has(mine, 'ARead') && has(mine, 'BMid') && has(mine, 'MyUpload'));
+  check('tabs: «Мои» shows only started / read / uploaded', !has(mine, 'ANew') && !has(mine, 'HolBook'));
+  store['hebrew-reader-level-filter'] = 'א'; allElements = [];
+  sandbox.renderLibrary(man);
+  const lvl = cards();
+  check('tabs: a level tab holds that level\'s regular books', has(lvl, 'ANew') && has(lvl, 'ARead'));
+  check('tabs: holiday texts and songs stay out of level tabs', !has(lvl, 'HolBook') && !has(lvl, 'SongFree') && !has(lvl, 'MyUpload'));
+  store['hebrew-reader-level-filter'] = 'holidays'; allElements = [];
+  sandbox.renderLibrary(man);
+  const hol = cards();
+  check('tabs: «Праздники и песни» holds holiday books and all songs', has(hol, 'HolBook') && has(hol, 'SongX') && has(hol, 'SongFree') && !has(hol, 'ANew'));
+  store['hebrew-reader-level-filter'] = 'ג'; allElements = [];
+  sandbox.renderLibrary(man);
+  check('tabs: a saved tab that no longer exists falls back to «Мои»', tabLabels().length && has(cards(), 'BMid'));
 }
 
 // ---- 3c. Адреса экранов для кнопки «назад» (History API)

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.31
+  Hebrew Reader — v1.99.32
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -541,7 +541,21 @@
   @media (max-width: 640px){ .library-lead{ margin-top:24px; padding-right:0; } } /* на телефоне «Поддержать» (absolute, справа сверху) не наезжает на текст */
   .flow-fallback{ display:flex; justify-content:center; align-items:flex-end; gap:12px; margin:4px 0 14px; }
   .flow-fallback img{ max-height:120px; max-width:45%; width:auto; object-fit:contain; }
-  .level-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin:-14px 0 22px; direction:ltr; }
+  .level-tabs{ display:flex; flex-wrap:nowrap; gap:8px; margin:-14px 0 22px; direction:ltr; overflow-x:auto; scrollbar-width:none; }
+  .level-tabs::-webkit-scrollbar{ display:none; }
+  .level-tab{ flex-shrink:0; white-space:nowrap; }
+  .level-tabs.compact{ gap:6px; }
+  .level-tabs.compact .lt-desc, .level-tabs.compact .lt-count{ display:none; } /* не влезает в строку — «א · начальный 9» → «א» */
+  .level-tabs.compact .level-tab{ padding:6px 11px; }
+  .lib-section-title{ grid-column:1/-1; font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; margin:6px 0 -6px; direction:ltr; text-align:left; }
+  .lib-section-title.is-empty{ text-transform:none; letter-spacing:0; font-weight:400; font-size:14px; }
+  .lib-section-title.hol-group{ text-transform:none; letter-spacing:0; font-size:17px; color:var(--ink); display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px; margin-top:14px; }
+  .lib-section-title .hg-when{ font-size:12px; font-weight:500; color:var(--gold-ink); }
+  .lib-section-title .hg-link{ font-size:12px; font-weight:500; color:var(--gold-ink); text-decoration:none; border-bottom:1px solid var(--gold); margin-left:auto; }
+  .season-plaque{ grid-column:1/-1; display:block; width:100%; text-align:left; direction:ltr; font-family:'Inter',sans-serif; font-size:14px; line-height:1.45;
+    background:var(--panel); color:var(--ink); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:6px 12px 12px 6px; padding:12px 16px; cursor:pointer; }
+  .season-plaque:hover{ border-left-color:var(--gold-ink); }
+  .season-plaque b{ font-weight:600; }
   .level-tab{ font-family:'Inter',sans-serif; font-size:13px; padding:6px 12px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--ink); cursor:pointer; }
   .level-tab .lt-count{ color:var(--ink-soft); margin-left:4px; font-variant-numeric:tabular-nums; }
   .level-tab[aria-selected="true"]{ background:var(--ink); color:var(--panel); border-color:var(--ink); }
@@ -733,7 +747,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.31</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.32</div>
   </div>
 </div>
 
@@ -6604,6 +6618,11 @@ async function boot(){
   } catch (err) {
     // no popularity.json -> порядок как в манифесте
   }
+  // Календарь праздников для вкладки «Праздники и песни» и сезонной плашки. Нет файла — без дат.
+  try {
+    const res = await fetch("holidays.json", {cache: "no-store"});
+    if (res.ok) window.readerHolidays = await res.json();
+  } catch (err) {}
 
   renderLibrary(manifest);
 
@@ -6795,18 +6814,43 @@ document.getElementById('chaptersBackdrop').addEventListener('click', closeChapt
 // Вкладки уровней над библиотекой: «Все» + уровень, у которого есть книги.
 // Выбор запоминается в браузере (только удобство; без localStorage — «Все»).
 const LEVEL_FILTER_KEY = 'hebrew-reader-level-filter';
+// Вкладки библиотеки (решение владельца 2026-10-17): «Мои» (начатые, прочитанные, загруженные) · א · ב · ג · ד ·
+// «Праздники и песни» (курс «Праздники Израиля»: истории, песни, источники — по празднику и календарю).
+// Вкладки «Все» нет. Праздничные тексты во вкладки уровней не попадают — там только сезонная плашка.
+const LIB_TAB_MINE = 'mine', LIB_TAB_HOLIDAYS = 'holidays';
+function isHolidayShelfEntry(e){ return e.kind === 'song' || e.shelf === 'holidays'; }
+function libraryTabEntries(visible, tab){
+  if (tab === LIB_TAB_MINE) return visible.filter(e => {
+    if (e.source === 'local') return true;
+    const p = getBookProgress(e.id);
+    return p.opened || p.completed;
+  });
+  if (tab === LIB_TAB_HOLIDAYS) return visible.filter(isHolidayShelfEntry);
+  return visible.filter(e => !isHolidayShelfEntry(e) && e.source !== 'local' && (e.level || '').includes(tab));
+}
+function fitLevelTabs(host){
+  if (!host.clientWidth) return; // библиотека скрыта — мерить нечего, подгонка будет при показе
+  host.classList.remove('compact');
+  if (host.scrollWidth > host.clientWidth + 1) host.classList.add('compact');
+}
+let levelTabsResizeHooked = false;
 function renderLevelTabs(visible, manifest){
   const host = document.getElementById('levelTabs');
   let current = '';
   try { current = localStorage.getItem(LEVEL_FILTER_KEY) || ''; } catch (e) {}
-  const levels = STARTER_LEVELS.filter(l => visible.some(e => (e.level || '').includes(l)));
-  if (current && !levels.includes(current)) current = '';
+  const mineCount = libraryTabEntries(visible, LIB_TAB_MINE).length;
+  const holidayCount = libraryTabEntries(visible, LIB_TAB_HOLIDAYS).length;
+  const levels = STARTER_LEVELS.filter(l => libraryTabEntries(visible, l).length);
+  const tabs = [LIB_TAB_MINE].concat(levels, holidayCount ? [LIB_TAB_HOLIDAYS] : []);
+  // Нет сохранённого выбора (или он больше не существует) — «Мои», если там что-то есть, иначе первый уровень.
+  if (!tabs.includes(current)) current = mineCount ? LIB_TAB_MINE : (levels[0] || LIB_TAB_MINE);
   host.innerHTML = '';
-  const mk = (value, label, count) => {
+  const mk = (value, label, desc, count) => {
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'level-tab'; b.setAttribute('role', 'tab');
     b.setAttribute('aria-selected', value === current ? 'true' : 'false');
     b.textContent = label;
+    if (desc){ const d = document.createElement('span'); d.className = 'lt-desc'; d.textContent = desc; b.appendChild(d); }
     const c = document.createElement('span'); c.className = 'lt-count'; c.textContent = count;
     b.appendChild(c);
     b.addEventListener('click', () => {
@@ -6815,9 +6859,104 @@ function renderLevelTabs(visible, manifest){
     });
     host.appendChild(b);
   };
-  mk('', 'Все', visible.length);
-  levels.forEach(l => mk(l, `${l} · ${LEVEL_LABELS[l]}`, visible.filter(e => (e.level || '').includes(l)).length));
+  mk(LIB_TAB_MINE, 'Мои', '', mineCount);
+  levels.forEach(l => mk(l, l, ` · ${LEVEL_LABELS[l]}`, libraryTabEntries(visible, l).length));
+  if (holidayCount) mk(LIB_TAB_HOLIDAYS, 'Праздники', ' и песни', holidayCount);
+  if (typeof window !== 'undefined' && window.requestAnimationFrame) window.requestAnimationFrame(() => fitLevelTabs(host));
+  else fitLevelTabs(host);
+  if (!levelTabsResizeHooked && typeof window !== 'undefined' && window.addEventListener){
+    levelTabsResizeHooked = true;
+    window.addEventListener('resize', () => fitLevelTabs(host));
+  }
   return current;
+}
+
+// Календарь праздников (holidays.json — собирается вместе с курсом в тренажёре, holidays/build_course.py).
+function readerHolidayNext(ch){
+  const t = new Date(), today = new Date(t.getFullYear(), t.getMonth(), t.getDate()), DAY = 86400000;
+  if (ch.weekly){
+    const dow = today.getDay();
+    if (dow === 5 || dow === 6) return { inDays: 0, now: true };
+    return { inDays: (5 - dow + 7) % 7, now: false };
+  }
+  for (const str of ch.starts || []){
+    const [y, m, d] = str.split('-').map(Number);
+    const inDays = Math.round((new Date(y, m - 1, d) - today) / DAY);
+    if (inDays >= 0) return { inDays, now: false, date: new Date(y, m - 1, d) };
+    if (inDays > -(ch.days || 1)) return { inDays, now: true };
+  }
+  return null;
+}
+const READER_MONTHS = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+function readerHolidayWhen(ch){
+  const n = readerHolidayNext(ch);
+  if (!n) return '';
+  if (ch.weekly) return n.now ? 'сейчас шабат' : 'каждую пятницу вечером';
+  if (n.now) return 'идёт сейчас';
+  if (n.inDays === 0) return 'сегодня вечером';
+  if (n.inDays === 1) return 'завтра вечером';
+  return `вечером ${n.date.getDate()} ${READER_MONTHS[n.date.getMonth()]} · через ${n.inDays} дн.`;
+}
+function trainerBaseUrl(){
+  const a = document.getElementById('cross-link-trainer');
+  return (a && a.href) || 'https://trainivrit.pages.dev/';
+}
+// Вкладка «Праздники и песни»: группы по празднику — ближайший сверху, шабат первым; без праздника — «Песни».
+function renderHolidayShelf(entries, renderCard, grid){
+  const chapters = ((window.readerHolidays && window.readerHolidays.chapters) || [])
+    .map(c => ({ c, n: readerHolidayNext(c) }))
+    .sort((a, b) => (b.c.weekly ? 1 : 0) - (a.c.weekly ? 1 : 0) || (a.n ? a.n.inDays : 99999) - (b.n ? b.n.inDays : 99999));
+  const known = new Set(chapters.map(x => x.c.id));
+  const levelRank = (e) => e.kind === 'song' ? 1 : 0;
+  const cardOf = (e) => renderCard({ entry: e, progress: getBookProgress(e.id), pop: popularityOf(e.id) });
+  chapters.forEach(({ c }) => {
+    const items = entries.filter(e => e.holiday === c.id).sort((a, b) => levelRank(a) - levelRank(b));
+    if (!items.length) return;
+    const h = document.createElement('div');
+    h.className = 'lib-section-title hol-group';
+    const t = document.createElement('span'); t.textContent = `${c.emoji || ''} ${c.title}`; h.appendChild(t);
+    const w = readerHolidayWhen(c);
+    if (w){ const ws = document.createElement('span'); ws.className = 'hg-when'; ws.textContent = w; h.appendChild(ws); }
+    if (c.ready){
+      const a = document.createElement('a'); a.className = 'hg-link'; a.target = '_blank'; a.rel = 'noopener';
+      a.href = trainerBaseUrl() + '#/holidays/' + encodeURIComponent(c.id);
+      a.textContent = 'карточки главы в тренажёре ↗';
+      h.appendChild(a);
+    }
+    grid.appendChild(h);
+    items.forEach(cardOf);
+  });
+  const rest = entries.filter(e => !known.has(e.holiday));
+  if (rest.length){
+    const h = document.createElement('div');
+    h.className = 'lib-section-title hol-group';
+    h.textContent = '🎵 Песни';
+    grid.appendChild(h);
+    rest.forEach(cardOf);
+  }
+}
+// Сезонная плашка во вкладке уровня: ближайший (≤ 30 дней) праздник — его история на этом уровне,
+// а если такой нет — переход на вкладку «Праздники и песни».
+function renderSeasonPlaque(grid, level, visible, manifest){
+  const chapters = (window.readerHolidays && window.readerHolidays.chapters) || [];
+  const up = chapters.filter(c => !c.weekly).map(c => ({ c, n: readerHolidayNext(c) }))
+    .filter(x => x.n && x.n.inDays <= 30).sort((a, b) => a.n.inDays - b.n.inDays)[0];
+  if (!up) return;
+  const items = visible.filter(e => e.holiday === up.c.id);
+  if (!items.length) return;
+  const book = items.find(e => e.kind !== 'song' && (e.level || '').includes(level));
+  const el = document.createElement('button');
+  el.type = 'button'; el.className = 'season-plaque';
+  const b = document.createElement('b');
+  b.textContent = `${up.c.emoji || ''} ${up.n.now ? 'Сейчас' : up.n.inDays === 0 ? 'Сегодня вечером' : up.n.inDays === 1 ? 'Завтра' : 'Через ' + up.n.inDays + ' дн.'} — ${up.c.title}. `;
+  el.appendChild(b);
+  el.appendChild(document.createTextNode(book ? `История на вашем уровне: «${book.title}» →` : 'Тексты и песни к празднику →'));
+  el.addEventListener('click', () => {
+    if (book){ window.__readerNavigated = true; openBook(book); return; }
+    try { localStorage.setItem(LEVEL_FILTER_KEY, LIB_TAB_HOLIDAYS); } catch (e) {}
+    renderLibrary(manifest);
+  });
+  grid.appendChild(el);
 }
 
 function renderLibrary(manifest){
@@ -6825,14 +6964,14 @@ function renderLibrary(manifest){
   const grid = document.getElementById('bookGrid');
   grid.innerHTML = '';
   const visible = manifest.filter(e => !e.hiddenFromLibrary);
-  const levelFilter = renderLevelTabs(visible, manifest);
-  const sorted = sortLibrary(visible.filter(e => !levelFilter || (e.level || '').includes(levelFilter)), getBookProgress, popularityOf);
+  const tab = renderLevelTabs(visible, manifest);
+  const sorted = sortLibrary(libraryTabEntries(visible, tab), getBookProgress, popularityOf);
   const lastView = getLastView();
   const lastReadId = lastView && lastView.id && manifest.some(e => e.id === lastView.id) ? lastView.id : null;
   // Подпись «★ Самая популярная» — приманка для того, кто ещё ничего не
   // выбрал: как только человек открыл любую книгу, она пропадает.
   const nothingChosenYet = !sorted.some(x => x.progress.opened || x.progress.completed);
-  sorted.forEach(({ entry, progress, pop, starterLevel }) => {
+  const renderCard = ({ entry, progress, pop, starterLevel }) => {
     const card = document.createElement('div');
     card.className = 'book-card' + (entry.id === lastReadId ? ' last-read' : '');
     const spineColor = entry.spineColor || '#37564D';
@@ -6895,13 +7034,34 @@ function renderLibrary(manifest){
       entry.kind === 'song' ? openSong(entry) : openBook(entry);
     });
     grid.appendChild(card);
-  });
-
-  const addCard = document.createElement('div');
-  addCard.className = 'book-card add-new';
-  addCard.textContent = '+ Добавить свою книгу';
-  addCard.addEventListener('click', openImportModal);
-  grid.appendChild(addCard);
+  };
+  const section = (text, cls) => {
+    const h = document.createElement('div');
+    h.className = 'lib-section-title' + (cls ? ' ' + cls : '');
+    h.textContent = text;
+    grid.appendChild(h);
+  };
+  if (tab === LIB_TAB_MINE){
+    const local = sorted.filter(x => x.entry.source === 'local');
+    const reading = sorted.filter(x => x.entry.source !== 'local' && !x.progress.completed);
+    const done = sorted.filter(x => x.entry.source !== 'local' && x.progress.completed);
+    [['Читаю сейчас', reading], ['Загруженные мной', local], ['Прочитано', done]].forEach(([title, list]) => {
+      if (!list.length) return;
+      section(title);
+      list.forEach(renderCard);
+    });
+    if (!sorted.length) section('Здесь будут книги, которые вы начали читать, прочитали или загрузили сами. Выберите уровень — א, ב, ג или ד.', 'is-empty');
+    const addCard = document.createElement('div');
+    addCard.className = 'book-card add-new';
+    addCard.textContent = '+ Добавить свою книгу';
+    addCard.addEventListener('click', openImportModal);
+    grid.appendChild(addCard);
+  } else if (tab === LIB_TAB_HOLIDAYS){
+    renderHolidayShelf(sorted.map(x => x.entry), renderCard, grid);
+  } else {
+    renderSeasonPlaque(grid, tab, visible, manifest);
+    sorted.forEach(renderCard);
+  }
 }
 
 // opts.silent — при автоматическом возврате на место чтения (обновление
