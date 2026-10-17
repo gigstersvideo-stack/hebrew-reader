@@ -3749,5 +3749,40 @@
       ],
       "audio": "books/diary-bet/audio/s44.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "diary-margin-1",
+      "kind": "ink",
+      "label": "Заметки на полях",
+      "anchorSentenceId": "s1",
+      "basePath": "books/diary-bet/flow/diary-margin-1/",
+      "src": "scene.json",
+      "links": {
+        "diary": [
+          "יוֹמָן"
+        ],
+        "yard": [
+          "עֵץ",
+          "אֶבֶן"
+        ]
+      }
+    },
+    {
+      "id": "diary-margin-2",
+      "kind": "ink",
+      "label": "Заметки на полях: разгадка",
+      "anchorSentenceId": "s21",
+      "basePath": "books/diary-bet/flow/diary-margin-2/",
+      "src": "scene.json",
+      "links": {
+        "tree": [
+          "עֵץ"
+        ],
+        "box": [
+          "קוּפְסָה"
+        ]
+      }
+    }
   ]
 }

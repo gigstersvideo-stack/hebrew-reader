@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.38
+  Hebrew Reader — v1.99.43
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -747,7 +747,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.38</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.43</div>
   </div>
 </div>
 
@@ -2872,6 +2872,320 @@ const fsGlassRain = (() => {
   return { Sim, drawMap };
 })();
 
+// Чернильный движок для сцен kind:'ink' (копия E:\NEW BIG PROJ\flow-studio\bet-diary-ink.js — правится там, потом сюда).
+// Линия пишется на глазах: нажим в начале, сход на конце, ширина от направления пера, лёгкая дрожь руки, «мокрый»
+// хвост темнее и высыхает; написанная линия неподвижна. Маркер — широкий скошенный кончик, полупрозрачный, под текстом.
+const fsInk = (() => {
+  function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function noise1(seed){ const R = mulberry32(seed), v = []; for (let i = 0; i < 512; i++) v.push(R() * 2 - 1);
+    return x => { const i = Math.floor(x), f = x - i, a = v[((i % 512) + 512) % 512], b = v[(((i + 1) % 512) + 512) % 512], u = f * f * (3 - 2 * f); return a + (b - a) * u; }; }
+  function smooth(pts, per = 10){
+    const n = pts.length, out = []; if (n < 3){ if (n === 2){ for (let k = 0; k <= per; k++){ const t = k / per; out.push([pts[0][0] + (pts[1][0] - pts[0][0]) * t, pts[0][1] + (pts[1][1] - pts[0][1]) * t]); } return out; } return pts.slice(); }
+    const g = i => pts[Math.max(0, Math.min(n - 1, i))];
+    for (let i = 0; i < n - 1; i++){ const p0 = g(i - 1), p1 = g(i), p2 = g(i + 1), p3 = g(i + 2);
+      for (let k = 0; k < per; k++){ const t = k / per, t2 = t * t, t3 = t2 * t; const f = j => 0.5 * ((2 * p1[j]) + (-p0[j] + p2[j]) * t + (2 * p0[j] - 5 * p1[j] + 4 * p2[j] - p3[j]) * t2 + (-p0[j] + 3 * p1[j] - 3 * p2[j] + p3[j]) * t3); out.push([f(0), f(1)]); } }
+    out.push(pts[n - 1].slice()); return out;
+  }
+  function resample(pts, step){ const out = [pts[0].slice()]; let carry = 0;
+    for (let i = 1; i < pts.length; i++){ const a = pts[i - 1], b = pts[i], d = Math.hypot(b[0] - a[0], b[1] - a[1]); let pos = step - carry;
+      while (pos <= d){ const t = pos / d; out.push([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]); pos += step; } carry = d - (pos - step); }
+    const l = pts[pts.length - 1], o = out[out.length - 1]; if (Math.hypot(l[0] - o[0], l[1] - o[1]) > step * 0.3) out.push(l.slice()); return out; }
+  function prep(pts, o = {}){
+    const seed = o.seed ?? 1, N1 = noise1(seed), N2 = noise1(seed + 77);
+    let d = resample(smooth(pts, 10), 0.8);
+    const jit = o.jit ?? 0.55, wl = o.jitL ?? 26;
+    if (jit){ let s = 0; d = d.map((p, i) => { if (i) s += Math.hypot(p[0] - d[i - 1][0], p[1] - d[i - 1][1]); const a = d[Math.max(0, i - 1)], b = d[Math.min(d.length - 1, i + 1)]; let nx = -(b[1] - a[1]), ny = b[0] - a[0]; const l = Math.hypot(nx, ny) || 1; const j = N1(s / wl) * jit; return [p[0] + nx / l * j, p[1] + ny / l * j]; }); }
+    const L = [0]; for (let i = 1; i < d.length; i++) L.push(L[i - 1] + Math.hypot(d[i][0] - d[i - 1][0], d[i][1] - d[i - 1][1]));
+    const tot = L[L.length - 1] || 1, w0 = o.w ?? 1.5, nib = o.nib ?? 0.7, nibK = o.nibK ?? 0.35, pin = o.pin ?? 3, pout = o.pout ?? 10, endW = o.endW ?? 0.3, startW = o.startW ?? 0.6;
+    const W = d.map((p, i) => { const a = d[Math.max(0, i - 1)], b = d[Math.min(d.length - 1, i + 1)], ang = Math.atan2(b[1] - a[1], b[0] - a[0]);
+      const nf = 1 - nibK + nibK * Math.abs(Math.sin(ang - nib)), s = L[i];
+      const pr = Math.min(1, startW + (1 - startW) * Math.min(1, s / pin)) * (s > tot - pout ? endW + (1 - endW) * Math.pow((tot - s) / pout, 0.7) : 1);
+      return w0 * nf * pr * (1 + 0.13 * N2(s / 7)); });
+    return { d, L, tot, W, o, dash: o.dash || null, speed: o.speed || 260, gap: o.gap ?? 0.12 };
+  }
+  const ease = u => { u = Math.max(0, Math.min(1, u)); return 0.45 * u + 0.55 * u * u * (3 - 2 * u); };
+  function invEase(v){ let a = 0, b = 1; for (let i = 0; i < 24; i++){ const m = (a + b) / 2; if (ease(m) < v) a = m; else b = m; } return (a + b) / 2; }
+  // штрихи подряд, с отрывами пера; точка-«тычок» занимает 0.06 с
+  function schedule(list, t0){ let t = t0;
+    for (const s of list){ t += s.gap ?? 0.12;
+      if (s.dot){ s.t0 = t; s.t1 = t + 0.06; t = s.t1; continue; }
+      s.t0 = t; s.dur = Math.max(0.05, s.tot / s.speed); s.t1 = t + s.dur; t = s.t1; s.tAt = s.L.map(l => s.t0 + invEase(l / s.tot) * s.dur); }
+    return t; }
+  const DRY = [46, 52, 128], WETC = [24, 26, 84], WET = 0.55;
+  const mix = (a, b, u) => `rgb(${Math.round(a[0] + (b[0] - a[0]) * u)},${Math.round(a[1] + (b[1] - a[1]) * u)},${Math.round(a[2] + (b[2] - a[2]) * u)})`;
+  function visible(s, t){ if (t <= s.t0) return 0; const n = s.d.length; if (t >= s.t1) return n; const v = ease((t - s.t0) / s.dur) * s.tot; let m = 1; while (m < n && s.L[m] <= v) m++; return m; }
+  function drawPen(g, s, t){
+    if (s.dot){ if (t < s.t0) return; const wet = Math.max(0, 1 - (t - s.t1) / WET); g.fillStyle = mix(DRY, WETC, wet * 0.85); g.beginPath(); g.arc(s.dot[0], s.dot[1], s.r * Math.min(1, (t - s.t0) / 0.06), 0, 7); g.fill(); return; }
+    const m = visible(s, t); if (m < 2) return;
+    const d = s.d, W = s.W, Lft = [], Rgt = [];
+    for (let i = 0; i < m; i++){ const a = d[Math.max(0, i - 1)], b = d[Math.min(m - 1, i + 1)]; let nx = -(b[1] - a[1]), ny = b[0] - a[0]; const l = Math.hypot(nx, ny) || 1; nx /= l; ny /= l; const w = W[i] / 2; Lft.push([d[i][0] + nx * w, d[i][1] + ny * w]); Rgt.push([d[i][0] - nx * w, d[i][1] - ny * w]); }
+    const CH = 6;
+    for (let c0 = 0; c0 < m - 1; c0 += CH){
+      const c1 = Math.min(m - 1, c0 + CH);
+      if (s.dash){ const ss = s.L[c0] % (s.dash[0] + s.dash[1]); if (ss > s.dash[0]) continue; }
+      const wet = Math.max(0, 1 - (t - s.tAt[c1]) / WET);
+      g.fillStyle = mix(DRY, WETC, wet * 0.85); g.beginPath();
+      g.moveTo(Lft[c0][0], Lft[c0][1]); for (let i = c0 + 1; i <= c1; i++) g.lineTo(Lft[i][0], Lft[i][1]);
+      for (let i = c1; i >= c0; i--) g.lineTo(Rgt[i][0], Rgt[i][1]); g.closePath(); g.fill();
+      g.beginPath(); g.arc(d[c1][0], d[c1][1], W[c1] / 2, 0, 7); g.fill();
+    }
+    if (!s.dash && (s.o.blob ?? 1)){ g.fillStyle = mix(DRY, WETC, 0.25); g.beginPath(); g.arc(d[0][0], d[0][1], W[0] * 0.62, 0, 7); g.fill(); }
+  }
+  function drawHL(g, s, t){
+    const m = visible(s, t); if (m < 2) return;
+    const d = s.d, hw = (s.o.w || 22) / 2, ca = s.o.nib ?? 1.35, cx = Math.cos(ca) * hw, cy = Math.sin(ca) * hw, N = noise1((s.o.seed || 3) + 5);
+    g.save(); g.globalCompositeOperation = 'multiply'; g.globalAlpha = s.o.alpha ?? 0.5; g.fillStyle = s.o.color || '#F2D44C';
+    g.beginPath(); g.moveTo(d[0][0] + cx, d[0][1] + cy);
+    for (let i = 1; i < m; i++){ const e = 1 + 0.04 * N(s.L[i] / 9); g.lineTo(d[i][0] + cx * e, d[i][1] + cy * e); }
+    for (let i = m - 1; i >= 0; i--){ const e = 1 + 0.05 * N(s.L[i] / 8 + 40); g.lineTo(d[i][0] - cx * e, d[i][1] - cy * e); }
+    g.closePath(); g.fill();
+    g.globalAlpha = (s.o.alpha ?? 0.5) * 0.35;
+    for (const i of [0, m - 1]){ if (i === m - 1 && t < s.t1) continue; g.beginPath(); g.ellipse(d[i][0], d[i][1], 2.6, hw * 0.98, ca - Math.PI / 2, 0, 7); g.fill(); }
+    g.restore();
+  }
+  return { prep, schedule, drawPen, drawHL };
+})();
+
+// «Заметки на полях» (kind:'ink'; diary-bet): поверх страницы ручкой пишет героиня — наброски и маркер. Пометки
+// привязаны к СЛОВАМ, поэтому рисует их читалка по настоящей раскладке текущей ширины, а не запечённая картинка.
+// scene.json → marks[], по порядку письма:
+//   {type:'sketch', anchor:[id предложения, № слова], x, dy, w, h, poly?, strokes, margin?, arrow?} — набросок
+//     (штрихи в своих единицах 0..w × 0..h). Без margin — врезка в колонку слева, текст её обтекает; верх врезки —
+//     у строки слова-якоря (+dy). margin — на поле у строки якоря (+dy от середины строки), со стрелкой от края
+//     колонки; если поля не хватает (телефон) — та же врезка в колонку.
+//   {type:'hl', words:[[id, №], …]} — маркер по словам справа налево, по отрезку на строку.
+// Врезки ставятся по очереди: раскладка → где оказалось слово-якорь → врезка встаёт туда → раскладка заново
+// (fit возвращает true). Текст после этого не двигается всю сцену. Письмо идёт по часам, пока следующая пометка
+// в экране (иначе ждёт читателя); всё дописывается и замирает, петли нет. «Уменьшить движение» — сразу готовое.
+async function fsInkStage(layer, scene, cw){
+  const base = scene.basePath || '';
+  const data = await (await fetch(safeUrl(base + (scene.src || 'scene.json')))).json();
+  const k = cw / data.designW, sc = Math.max(0.85, Math.min(1, k));   // наброски не мельче 85%: на телефоне мельче не читаются
+  const lr = layer.getBoundingClientRect(), vw = document.documentElement.clientWidth || window.innerWidth;
+  const PAD = Math.max(0, Math.min(150, Math.floor(lr.left))), PADR = Math.max(0, Math.min(150, Math.floor(vw - lr.right) - 18));
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const cv = document.createElement('canvas');
+  cv.className = 'flow-baked';
+  cv.style.left = -PAD + 'px'; cv.style.top = '0px'; cv.style.width = (cw + PAD + PADR) + 'px';
+  layer.insertBefore(cv, layer.firstChild);
+  const ctx = cv.getContext('2d');
+  const sketches = data.marks.filter(m => m.type === 'sketch' || m.type === 'img');
+  // картинки (img): кадры грузятся сразу — по ним строится маска обтекания
+  for (const m of sketches) if (m.type === 'img'){
+    m.ims = {};
+    for (const [key, f] of Object.entries(m.frames)) m.ims[key] = await fsLoadImage(safeUrl(base + f));
+  }
+  const objects = sketches.map(m => m.id);
+  const wordEl = ([sid, wi]) => layer.querySelector(`.tword[data-sentence="${sid}"][data-word="${wi}"]`);
+  const rectOf = el => ({ x: parseFloat(el.style.left) || 0, y: parseFloat(el.style.top) || 0, w: el.getBoundingClientRect().width, h: el.offsetHeight });
+  for (const m of sketches){
+    m.s = m.type === 'img' ? Math.max(m.minScale || 0.62, Math.min(1, k)) : sc;
+    const W = m.w * m.s, gap = 26 * m.s;
+    m.room = W + gap;
+    // поле: со стороны, где места больше (у иврита конец строки — слева)
+    m.side = m.margin ? (PAD >= m.room ? -1 : PADR >= m.room ? 1 : 0) : 0;
+    m.inline = !m.side;
+    m.y = null;
+    if (m.inline){
+      // маска врезки (px): многоугольник набросков или прямоугольник; строка = 1 px
+      const natW = Math.ceil(W), natH = Math.ceil(m.h * m.s), poly = (m.poly || [[0, 0], [m.w, 0], [m.w, m.h], [0, m.h]]).map(p => [p[0] * m.s, p[1] * m.s]);
+      const rows = [];
+      // картинка: по силуэту всех кадров, но сплошной полосой на строку (между мальчиком и зеркалом слова не встают)
+      let px = null;
+      if (m.ims){
+        const oc = document.createElement('canvas'); oc.width = natW; oc.height = natH; const og = oc.getContext('2d');
+        for (const im of Object.values(m.ims)) og.drawImage(im, 0, 0, natW, natH);
+        px = og.getImageData(0, 0, natW, natH).data;
+      }
+      for (let ry = 0; ry < natH && px; ry++){
+        let a = -1, b = -1;
+        for (let x = 0; x < natW; x++) if (px[(ry * natW + x) * 4 + 3] > 60){ if (a < 0) a = x; b = x + 1; }
+        rows.push(a >= 0 ? [[a, b]] : []);
+      }
+      for (let ry = 0; ry < natH && !px; ry++){
+        const yy = ry + 0.5; let a = Infinity, b = -Infinity;
+        for (let i = 0; i < poly.length; i++){ const p = poly[i], q = poly[(i + 1) % poly.length];
+          if ((p[1] <= yy) !== (q[1] <= yy)){ const x = p[0] + (yy - p[1]) / (q[1] - p[1]) * (q[0] - p[0]); a = Math.min(a, x); b = Math.max(b, x); } }
+        rows.push(a < b ? [[Math.max(0, a), Math.min(natW, b)]] : []);
+      }
+      m.mask = { natW, natH, rows };
+      m.x = Math.max(-PAD, (m.x || 0) * k);
+    }
+  }
+  let built = false, list = [], groups = [], end = 0, hl = -1, t = 0, H = 0, loops = false;
+  // раскладка готова: ставим следующую врезку (тогда раскладка заново) или строим пометки по словам
+  function fit(y){
+    H = y;
+    const next = sketches.find(m => m.inline && m.y === null);
+    if (next){
+      const el = wordEl(next.anchor);
+      // поле не поместилось (телефон) — врезка низом к строке якоря; иначе — верхом к ней (+dy)
+      const r = el && rectOf(el);
+      next.y = !r ? 0 : Math.max(0, next.below ? r.y + r.h + (next.dy || 0) * next.s
+        : next.margin || next.bottom ? r.y + r.h - next.h * next.s : r.y + (next.dy || 0) * next.s);
+      next.passes = 0;
+      return true;
+    }
+    // bottom: низ картинки — у строки якоря; обтекание удлиняет текст, и якорь съезжает вниз — догоняем (до 3 раз)
+    for (const m of sketches) if (m.inline && m.bottom && m.passes < 3){
+      const el = wordEl(m.anchor), r = el && rectOf(el); if (!r) continue;
+      const want = Math.max(0, r.y + r.h - m.h * m.s);
+      if (Math.abs(want - m.y) > 2){ m.y = want; m.passes++; return true; }
+    }
+    // картинка может опускаться ниже последней строки — слой растягиваем под неё
+    for (const m of sketches) if (m.inline && m.y !== null) H = Math.max(H, m.y + m.h * m.s + 8);
+    if (H > y) layer.style.height = H + 'px';
+    if (!built) build();
+    cv.width = Math.round((cw + PAD + PADR) * dpr); cv.height = Math.round(H * dpr); cv.style.height = H + 'px';
+    draw();
+    return false;
+  }
+  function build(){
+    built = true; let tt = 0;
+    for (const m of data.marks){
+      const g = { items: [], box: null, t0: 0 };
+      tt += m.t0 ?? m.pause ?? 0.5; g.t0 = tt;
+      if (m.type === 'hl' || m.type === 'ul'){
+        // по строкам: слова одной строки — один отрезок
+        const lines = new Map();
+        for (const w of m.words){ const el = wordEl(w); if (!el) continue; const r = rectOf(el), key = Math.round(r.y);
+          const L = lines.get(key) || { x0: Infinity, x1: -Infinity, y: r.y, h: r.h }; L.x0 = Math.min(L.x0, r.x); L.x1 = Math.max(L.x1, r.x + r.w); lines.set(key, L); }
+        if (m.type === 'ul') for (const L of lines.values()){
+          // подчёркивание волной справа налево, с крючком на конце; ниже огласовок
+          const yy = L.y + L.h * 0.86, n = Math.max(3, Math.round((L.x1 - L.x0) / 14)), pts = [];
+          for (let i = 0; i <= n; i++) pts.push([L.x1 + 2 - (L.x1 - L.x0 + 4) * i / n, yy + (i % 2 ? 1.1 : -0.6)]);
+          pts.push([L.x0 - 5, yy - 2.5]);
+          const u = fsInk.prep(pts, { w: 1.3 * sc, nib: 0.75, nibK: 0.45, seed: 71, speed: 210, pout: 7, endW: 0.35 }); u.gap = 0.3; g.items.push(u);
+          g.box = [L.x0, L.y, L.x1 - L.x0, L.h];
+        }
+        else for (const L of lines.values()){
+          const yy = L.y + L.h * 0.6, len = L.x1 - L.x0, s = fsInk.prep([[L.x1 + 3, yy + 0.6], [L.x1 - len * 0.5, yy - 0.4], [L.x0 - 3, yy + 0.9]], { w: L.h * 0.5, nib: 1.38, seed: 41, jit: 0.6, jitL: 40, speed: 150 });
+          s.gap = 0.15; s.hl = true; g.items.push(s);
+          g.box = [L.x0, L.y, len, L.h];
+        }
+      } else {
+        const el = wordEl(m.anchor), r = el ? rectOf(el) : { x: 0, y: 0, w: 0, h: 0 }, sc = m.s, W = m.w * sc, Hh = m.h * sc;
+        let ox, oy;
+        if (m.inline){ ox = m.x; oy = m.y; }
+        else { ox = m.side < 0 ? -26 * sc - W : cw + 26 * sc; oy = r.y + r.h / 2 + (m.dy || 0) * sc; }
+        m.box = g.box = [ox, oy, W, Hh];
+        if (m.type === 'img'){ g.img = m; tt = g.t0 + m.event[0] + m.event[1]; if (m.loop) loops = true; }
+        else if (m.arrow && !m.inline){
+          const ly = r.y + r.h / 2, ax0 = m.side < 0 ? -5 : cw + 5, ay0 = ly + 6, axe = m.side < 0 ? ox + W - 4 * sc : ox + 6 * sc, aye = ly - 4;
+          const PEN = { w: 1.3 * sc, nib: 0.75, nibK: 0.45 };
+          const a = fsInk.prep([[ax0, ay0], [(ax0 + axe) / 2, ay0 - 1], [axe, aye]], Object.assign({}, PEN, { seed: 72, speed: 220, pout: 4, endW: 0.6 })); a.gap = 0.1;
+          const dx = axe - ax0, dy = aye - ay0, l = Math.hypot(dx, dy), ux = dx / l, uy = dy / l, nx = -uy, ny = ux;
+          const h = fsInk.prep([[axe - ux * 8 + nx * 5, aye - uy * 8 + ny * 5], [axe, aye], [axe - ux * 8 - nx * 5, aye - uy * 8 - ny * 5]], Object.assign({}, PEN, { seed: 73, speed: 140, pin: 1, pout: 3, endW: 0.5 })); h.gap = 0.08;
+          g.items.push(a, h);
+        }
+        // штрихи наброска — в координатах страницы
+        const P = p => [ox + p[0] * sc, oy + p[1] * sc];
+        for (const s of m.strokes || []){
+          if (s.dot){ g.items.push({ dot: P(s.dot), r: s.r * sc, gap: s.gap ?? 0.1, obj: objects.indexOf(m.id) }); continue; }
+          const o = Object.assign({}, s.o); o.w = (o.w ?? 1.5) * sc; o.speed = (o.speed || 260) * sc;
+          const p = fsInk.prep(s.pts.map(P), o); p.obj = objects.indexOf(m.id); g.items.push(p);
+        }
+      }
+      if (!g.img) tt = fsInk.schedule(g.items, tt);
+      g.t1 = tt; groups.push(g); list.push(...g.items);
+    }
+    end = tt;
+  }
+  function draw(){
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.setTransform(dpr, 0, 0, dpr, PAD * dpr, 0);
+    for (const g of groups) if (g.img) drawImg(g, t);
+    for (const s of list){
+      if (s.hl){ fsInk.drawHL(ctx, s, t); continue; }
+      if (s.obj >= 0 && s.obj === hl){ ctx.save(); ctx.shadowColor = 'rgba(201,162,39,.95)'; ctx.shadowBlur = 8 * dpr; fsInk.drawPen(ctx, s, t); ctx.restore(); }
+      fsInk.drawPen(ctx, s, t);
+    }
+  }
+  // Картинка с кадрами (зеркало, play-bet): основа (base) видна с самого начала; event [ждать, длительность] —
+  // по стеклу проходит блик, и где он прошёл, основа сменяется финалом (king). Кадры *_t — листок в руках дрожит:
+  // короткие дрожания в моменты m.tremble (с от начала) и потом раз в m.loop с, пока сцена видна.
+  function imgState(g, tt){
+    const m = g.img, u = tt - g.t0, [w0, wd] = m.event;
+    const p = Math.max(0, Math.min(1, (u - w0) / wd));
+    const burst = b => u >= b && u < b + 0.5 && Math.floor((u - b) / 0.08) % 2 === 0;
+    let shake = (m.tremble || []).some(burst);
+    if (m.loop && u > w0 + wd){
+      const n = Math.floor((u - w0 - wd) / m.loop);
+      for (const i of [n, n - 1]) if (i >= 0 && burst(w0 + wd + i * m.loop + 1.2 + ((i * 0.37) % 1) * 1.1)) shake = true;
+    }
+    return { p, shake, key: Math.round(p * 60) + (shake ? 't' : '') };
+  }
+  function drawImg(g, tt){
+    const m = g.img, [ox, oy, W, Hh] = m.box, st = imgState(g, tt), s = W / m.ims.base.naturalWidth, hh = Hh / s;
+    const pic = key => m.ims[key + (st.shake && m.ims[key + '_t'] ? '_t' : '')];
+    const glow = objects.indexOf(m.id) === hl;
+    const put = im => {
+      if (glow){ ctx.save(); ctx.shadowColor = 'rgba(201,162,39,.95)'; ctx.shadowBlur = 12 * dpr; ctx.drawImage(im, ox, oy, W, Hh); ctx.restore(); }
+      ctx.drawImage(im, ox, oy, W, Hh);
+    };
+    if (st.p < 1) put(pic('base'));
+    if (st.p <= 0) return;
+    // косые координаты картинки: u = x + sl·y — линия блика идёт по диагонали, сверху-слева вниз-вправо
+    const [cx, cy, rx, ry] = m.glass, sl = 0.45, a0 = cx - rx + sl * (cy - ry), a1 = cx + rx + sl * (cy + ry), pos = a0 + (a1 - a0) * st.p;
+    const skew = () => { ctx.translate(ox, oy); ctx.scale(s, s); ctx.transform(1, 0, -sl, 1, 0, 0); };
+    ctx.save();
+    if (st.p < 1){ skew(); ctx.beginPath(); ctx.rect(-9999, -50, pos + 9999, hh + 100); ctx.setTransform(dpr, 0, 0, dpr, PAD * dpr, 0); ctx.clip(); }
+    put(pic('king'));
+    ctx.restore();
+    if (st.p >= 1) return;
+    ctx.save();
+    ctx.beginPath(); ctx.ellipse(ox + cx * s, oy + cy * s, rx * s, ry * s, 0, 0, 7); ctx.clip();
+    skew();
+    const gx = 46, gr = ctx.createLinearGradient(pos - gx, 0, pos + gx, 0);
+    gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.38, 'rgba(250,250,252,0.85)'); gr.addColorStop(0.5, 'rgba(250,250,252,0.97)'); gr.addColorStop(0.62, 'rgba(250,250,252,0.85)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = gr; ctx.fillRect(pos - gx, -50, gx * 2, hh + 100);
+    ctx.restore();
+  }
+  // пометка в экране? (её коробка хотя бы наполовину видна)
+  function inView(g){
+    if (!g.box) return true;
+    const r = layer.getBoundingClientRect(), top = r.top + g.box[1], bot = top + g.box[3];
+    const bar = document.querySelector('footer.audiobar'), visB = window.innerHeight - (bar ? bar.getBoundingClientRect().height : 0);
+    return Math.min(bot, visB) - Math.max(top, 0) >= Math.min(g.box[3], visB) * 0.5;
+  }
+  // пролистана вверх: середина её места выше края экрана (иначе пометка, застрявшая на кромке, ждала бы вечно)
+  function above(g){ return !!g.box && layer.getBoundingClientRect().top + g.box[1] + g.box[3] / 2 < 0; }
+  function live(){
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ t = end + 1; draw(); return; }
+    let last = performance.now(), raf = 0, lastKey = '';
+    const frame = now => {
+      raf = 0;
+      if (!layer.isConnected) return;
+      const dt = Math.min(0.1, Math.max(0, now - last) / 1000); last = now;
+      if (!document.hidden){
+        // перед новой пометкой ждём, пока её место в экране
+        // (её уже пролистали вверх — дописываем сразу готовой и идём дальше)
+        const g = groups.find(g => t < g.t0 && t + dt >= g.t0);
+        if (g && above(g)) t = g.t1;
+        else if (!g || inView(g) || t > end) t += dt;   // хвост-петля идёт по часам; рисуется, только когда картинка в экране
+      }
+      // после конца перерисовываем только при смене кадра картинки (дрожание) и пока она в экране
+      if (t <= end + 1) draw();
+      else { const g = groups.find(g => g.img && inView(g)); if (g){ const key = imgState(g, t).key; if (key !== lastKey){ lastKey = key; draw(); } } }
+      if (t <= end + 1 || loops) raf = requestAnimationFrame(frame);
+    };
+    raf = requestAnimationFrame(frame);
+  }
+  return {
+    canvas: cv, load: () => Promise.resolve(), live, count: 1, fps: 24, objects, selfPaced: true,
+    layoutRule: { minSlot: 40, noLoneWords: true },
+    extent: () => null, fit,
+    highlight(obj){ if (obj !== hl){ hl = obj; draw(); } },
+    hitTest(px, py){
+      for (let i = 0; i < sketches.length; i++){ const b = sketches[i].box; if (b && (sketches[i].type === 'img' || t >= groups[data.marks.indexOf(sketches[i])].t0) && px >= b[0] && px <= b[0] + b[2] && py >= b[1] && py <= b[1] + b[3]) return i; }
+      return -1;
+    },
+    place(){
+      return sketches.filter(m => m.inline && m.y !== null).map(m => ({ placement: { dispX: m.x, dispY: m.y, dispW: m.mask.natW, dispH: m.mask.natH, rot: 0 }, mask: m.mask, halo: (m.halo ?? 12) * k }));
+    },
+  };
+}
+
 // По какой высоте (px от верха слоя) вообще бывает рисунок сцены за все такты: [верх, низ].
 function fsTrackExtent(track, masks, k){
   let y0 = Infinity, y1 = -Infinity;
@@ -3334,10 +3648,11 @@ async function applyFlowScene(paragraphEl, scene){
   layer.appendChild(blockerEl);
 
   const basePath = scene.basePath || '';
-  // Три вида сцен: «позы» (objects — картинки-позы, v1), «запечённая» (kind:'baked', v2) и
+  // Четыре вида сцен: «позы» (objects — картинки-позы, v1), «запечённая» (kind:'baked', v2), «чернила» (kind:'ink') и
   // «шейдерная» (kind:'shader', v2: рисует WebGL вживую). У двух последних один и тот же интерфейс сцены.
   const baked = scene.kind === 'baked' ? await fsBakedStage(layer, scene, cw)
-    : scene.kind === 'shader' ? await fsShaderStage(layer, scene, cw) : null;
+    : scene.kind === 'shader' ? await fsShaderStage(layer, scene, cw)
+    : scene.kind === 'ink' ? await fsInkStage(layer, scene, cw) : null;
   const rule = (baked && baked.layoutRule) || { minSlot: 20, noLoneWords: false };
   const objEls = baked ? [] : scene.objects.map(obj => {
     const wrap = document.createElement('div');
@@ -3466,7 +3781,8 @@ async function applyFlowScene(paragraphEl, scene){
     });
 
     layer.style.height = y + 'px';
-    if (baked && baked.fit) baked.fit(y);
+    // fit === true: сцена поставила врезку по только что найденному месту слова — раскладка заново (kind:'ink')
+    if (baked && baked.fit && baked.fit(y) === true) return renderStep(poseIdx);
   }
 
   const POSE_COUNT = 24; // authoring resolution — how many keyframes an object can have
@@ -3481,7 +3797,8 @@ async function applyFlowScene(paragraphEl, scene){
   const holdMs = 1000/fps;
   if (baked){
     // ждём, пока сцена окажется в экране (картинки начинают грузиться чуть раньше)
-    if (!(await fsWhenInView(baked.canvas, layer, () => baked.load().catch(() => {})))) return;
+    // чернильной сцене ждать не нужно: каждая её пометка сама ждёт, пока окажется в экране
+    if (!baked.selfPaced && !(await fsWhenInView(baked.canvas, layer, () => baked.load().catch(() => {})))) return;
     // проигрываем по часам, а не по счётчику: на медленной машине пропускаются такты, а не растягивается сцена
     try { await baked.load(); } catch (e) { return; }
     if (!layer.isConnected) return;
@@ -3808,7 +4125,7 @@ function renderPage(pageIndex){
   // масштабируются вместе с колонкой и на телефоне проигрываются с обтеканием (проверено на колонке 327px).
   const pageScene = findFlowSceneForPage(start, end);
   const viewportW = window.innerWidth || document.documentElement.clientWidth || 9999; // 0 бывает в скрытых фреймах — тогда считаем экран широким
-  const activeScene = (viewportW >= 640 || (pageScene && (pageScene.kind === 'baked' || pageScene.kind === 'shader'))) ? pageScene : null;
+  const activeScene = (viewportW >= 640 || (pageScene && (pageScene.kind === 'baked' || pageScene.kind === 'shader' || pageScene.kind === 'ink'))) ? pageScene : null;
   if (pageScene && !activeScene) {
     // Вместо обтекания — последний кадр каждого объекта сцены полосой над текстом.
     const strip = document.createElement('div');

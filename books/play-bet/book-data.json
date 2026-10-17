@@ -3999,5 +3999,22 @@
       ],
       "audio": "books/play-bet/audio/s54.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "mirror-king-1",
+      "kind": "ink",
+      "label": "Король в зеркале",
+      "anchorSentenceId": "s1",
+      "basePath": "books/play-bet/flow/mirror-king-1/",
+      "src": "scene.json",
+      "links": {
+        "mirror": [
+          "מַרְאָה",
+          "מֶלֶךְ",
+          "דַּף"
+        ]
+      }
+    }
   ]
 }

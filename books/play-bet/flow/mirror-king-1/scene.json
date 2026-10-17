@@ -1,0 +1,1 @@
+{"version":2,"kind":"ink","id":"mirror-king-1","designW":672,"marks":[{"id":"mirror","type":"img","anchor":["s20",4],"bottom":true,"x":-40,"w":241,"h":330,"halo":14,"frames":{"base":"base.webp","base_t":"base_t.webp","king":"king.webp","king_t":"king_t.webp"},"glass":[434,354,98,335],"t0":0.3,"tremble":[0.9],"event":[2.6,0.8],"loop":4.5}]}
