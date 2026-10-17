@@ -452,6 +452,84 @@
       "file": "songs/zichron-terua/song-data.json",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
       "holiday": "rosh-hashana"
+    },
+    {
+      "id": "adon-haselichot",
+      "kind": "song",
+      "title": "אֲדוֹן הַסְּלִיחוֹת",
+      "kicker": "רמה ג׳ · פיוט ליום כיפור",
+      "level": "ג",
+      "sub": "пиют-азбука: «мы согрешили перед Тобой, смилуйся над нами»",
+      "spineColor": "#DCDCE6",
+      "source": "file",
+      "file": "songs/adon-haselichot/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M120 120 V44 Q150 22 180 44 V120\"/><path d=\"M104 120 H196\"/></g><circle cx=\"168\" cy=\"84\" r=\"3\" fill=\"var(--gold)\" stroke=\"none\"/></svg>",
+      "holiday": "yom-kippur"
+    },
+    {
+      "id": "yona",
+      "kind": "song",
+      "title": "יוֹנָה",
+      "kicker": "רמה ג׳ · מקור ליום כיפור",
+      "level": "ג",
+      "sub": "пророк, который убежал, — и город, который раскаялся",
+      "spineColor": "#DCDCE6",
+      "source": "file",
+      "file": "songs/yona/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M100 70 Q150 30 200 70 Q150 110 100 70 Z M200 70 L224 54 V86 Z\"/><circle cx=\"124\" cy=\"66\" r=\"3\"/></g><path d=\"M80 112 q20 -10 40 0 t40 0 t40 0 t40 0\" stroke=\"var(--gold)\"/></svg>",
+      "holiday": "yom-kippur"
+    },
+    {
+      "id": "bein-adam-lachavero",
+      "kind": "song",
+      "title": "בֵּין אָדָם לַחֲבֵרוֹ",
+      "kicker": "רמה ד׳ · מקור ליום כיפור",
+      "level": "ד",
+      "sub": "почему перед Йом Кипуром просят прощения у людей",
+      "spineColor": "#DCDCE6",
+      "source": "file",
+      "file": "songs/bein-adam-lachavero/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
+      "holiday": "yom-kippur"
+    },
+    {
+      "id": "mayim-besason",
+      "kind": "song",
+      "title": "וּשְׁאַבְתֶּם מַיִם",
+      "kicker": "רמה ב׳ · שיר לסוכות",
+      "level": "ב",
+      "sub": "песня-хоровод о радости черпания воды",
+      "spineColor": "#D5E2C8",
+      "source": "file",
+      "file": "songs/mayim-besason/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M126 50 H174 L168 110 H132 Z\"/></g><path d=\"M150 18 q-10 14 0 22 q10 -8 0 -22 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M80 124 q20 -8 40 0 t40 0 t40 0 t40 0\" stroke=\"var(--gold)\"/></svg>",
+      "holiday": "sukkot"
+    },
+    {
+      "id": "sisu-vesimchu",
+      "kind": "song",
+      "title": "שִׂישׂוּ וְשִׂמְחוּ",
+      "kicker": "רמה ב׳ · שיר לשמחת תורה",
+      "level": "ב",
+      "sub": "с этой песней танцуют со свитками Торы",
+      "spineColor": "#D5E2C8",
+      "source": "file",
+      "file": "songs/sisu-vesimchu/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M120 120 V30\"/><path d=\"M120 34 H190 L176 52 L190 70 H120\"/></g><path d=\"M150 44 l6 10 h-12 Z M150 60 l6 -10 h-12 Z\" stroke=\"var(--gold)\" fill=\"none\"/></svg>",
+      "holiday": "sukkot"
+    },
+    {
+      "id": "basukkot-teshvu",
+      "kind": "song",
+      "title": "בַּסּוּכּוֹת תֵּשְׁבוּ",
+      "kicker": "רמה ד׳ · מקור לסוכות",
+      "level": "ד",
+      "sub": "откуда сукка и четыре вида",
+      "spineColor": "#D5E2C8",
+      "source": "file",
+      "file": "songs/basukkot-teshvu/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
+      "holiday": "sukkot"
     }
   ]
 }

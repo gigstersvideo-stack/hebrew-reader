@@ -3472,6 +3472,32 @@
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M150 52 C128 36 96 52 100 82 C104 108 126 120 150 110 C174 120 196 108 200 82 C204 52 172 36 150 52 Z\"/><path d=\"M150 52 V36\"/></g><path d=\"M152 40 q14 -12 26 -4 q-12 10 -26 4 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M206 104 q8 14 0 22 q-8 -8 0 -22 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>",
       "shelf": "holidays",
       "holiday": "rosh-hashana"
+    },
+    {
+      "id": "yomkippur-alef",
+      "title": "סְלִיחָה",
+      "kicker": "רמה א׳ · סיפור ליום כיפור",
+      "level": "א",
+      "sub": "Ноам и Идо мирятся накануне Йом Кипура, а утром катаются на велосипедах посреди пустой дороги.",
+      "source": "file",
+      "file": "books/yomkippur-alef/book-data.json",
+      "spineColor": "#DCDCE6",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><circle cx=\"110\" cy=\"96\" r=\"22\"/><circle cx=\"190\" cy=\"96\" r=\"22\"/><path d=\"M110 96 L140 60 H176 L190 96 M140 60 L154 96 H110 M170 50 h14\"/></g><path d=\"M60 124 H240\" stroke=\"var(--gold)\" stroke-dasharray=\"10 8\"/></svg>",
+      "shelf": "holidays",
+      "holiday": "yom-kippur"
+    },
+    {
+      "id": "sukkot-alef",
+      "title": "סוּכָּה בַּמִּרְפֶּסֶת",
+      "kicker": "רמה א׳ · סיפור לסוכות ולשמחת תורה",
+      "level": "א",
+      "sub": "Тамар с папой строят сукку на балконе, смотрят на звёзды сквозь ветки, а на Симхат Тора танцуют со свитком.",
+      "source": "file",
+      "file": "books/sukkot-alef/book-data.json",
+      "spineColor": "#D5E2C8",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M95 120 V56 H205 V120 M95 56 L95 120\"/><path d=\"M90 56 q20 -14 40 0 q20 -14 40 0 q20 -14 40 0\" stroke=\"var(--ink)\"/></g><path d=\"M120 76 v10 M150 72 v14 M180 76 v10\" stroke=\"var(--gold)\"/><circle cx=\"150\" cy=\"30\" r=\"3\" fill=\"var(--gold)\" stroke=\"none\"/></svg>",
+      "shelf": "holidays",
+      "holiday": "sukkot"
     }
   ]
 }
