@@ -345,6 +345,19 @@
       "holiday": "pesach"
     },
     {
+      "id": "yomhashoah-alef",
+      "title": "הַצְּפִירָה",
+      "kicker": "רמה א׳ · סיפור ליום השואה",
+      "level": "א",
+      "sub": "Ноа впервые слышит сирену, а вечером бабушка Рахель зажигает поминальную свечу.",
+      "source": "file",
+      "file": "books/yomhashoah-alef/book-data.json",
+      "spineColor": "#B8BEC6",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M128 60 L132 112 H168 L172 60 Z\"/><path d=\"M134 74 H166\"/><path d=\"M150 74 V64\"/></g><path d=\"M150 62 q-7 -10 0 -24 q7 14 0 24 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>",
+      "shelf": "holidays",
+      "holiday": "yom-hashoah"
+    },
+    {
       "id": "play-bet",
       "title": "הַמֶּלֶךְ הַבַּיְישָׁן",
       "kicker": "רמה ב׳ · סיפור מקורי",

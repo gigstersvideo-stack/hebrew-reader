@@ -244,6 +244,45 @@
       "file": "songs/vehigadeta/song-data.json",
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
       "holiday": "pesach"
+    },
+    {
+      "id": "eli-eli",
+      "kind": "song",
+      "title": "אֵלִי, אֵלִי",
+      "kicker": "רמה ב׳ · שיר ליום השואה",
+      "level": "ב",
+      "sub": "«הֲלִיכָה לְקֵיסָרְיָה» — стихи Ханы Сенеш",
+      "spineColor": "#B8BEC6",
+      "source": "file",
+      "file": "songs/eli-eli/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M50 70 q25 -12 50 0 t50 0 t50 0 t50 0\"/><path d=\"M50 88 q25 -12 50 0 t50 0 t50 0 t50 0\"/><path d=\"M50 112 Q150 100 250 112\"/></g><circle cx=\"215\" cy=\"38\" r=\"12\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>",
+      "holiday": "yom-hashoah"
+    },
+    {
+      "id": "ani-maamin",
+      "kind": "song",
+      "title": "אֲנִי מַאֲמִין",
+      "kicker": "רמה ד׳ · שיר ליום השואה",
+      "level": "ד",
+      "sub": "песня надежды, которую пели в гетто и в лагерях",
+      "spineColor": "#B8BEC6",
+      "source": "file",
+      "file": "songs/ani-maamin/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M128 60 L132 112 H168 L172 60 Z\"/><path d=\"M134 74 H166\"/><path d=\"M150 74 V64\"/></g><path d=\"M150 62 q-7 -10 0 -24 q7 14 0 24 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>",
+      "holiday": "yom-hashoah"
+    },
+    {
+      "id": "chok-yom-hashoah",
+      "kind": "song",
+      "title": "חוֹק יוֹם הַזִּיכָּרוֹן לַשּׁוֹאָה וְלַגְּבוּרָה",
+      "kicker": "רמה ד׳ · מקור ליום השואה",
+      "level": "ד",
+      "sub": "закон 1959 года: почему 27 нисана, сирена и две минуты тишины",
+      "spineColor": "#B8BEC6",
+      "source": "file",
+      "file": "songs/chok-yom-hashoah/song-data.json",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><rect x=\"95\" y=\"40\" width=\"110\" height=\"64\" rx=\"4\"/><path d=\"M95 40 q-12 0 -12 12 v40 q0 12 12 12 M205 40 q12 0 12 12 v40 q0 12 -12 12\"/><path d=\"M110 58 H190 M110 72 H190 M110 86 H170\"/></g></svg>",
+      "holiday": "yom-hashoah"
     }
   ]
 }
