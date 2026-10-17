@@ -3446,6 +3446,32 @@
       "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M150 120 V40\"/><path d=\"M150 60 q-12 -4 -14 -14 M150 60 q12 -4 14 -14\"/><path d=\"M150 74 q-12 -4 -14 -14 M150 74 q12 -4 14 -14\"/><path d=\"M150 88 q-12 -4 -14 -14 M150 88 q12 -4 14 -14\"/></g><path d=\"M150 40 q-3 -8 0 -14 q3 6 0 14 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M96 118 Q150 100 204 118\" stroke=\"var(--ink)\" fill=\"none\"/></svg>",
       "shelf": "holidays",
       "holiday": "shavuot"
+    },
+    {
+      "id": "av-alef",
+      "title": "הַכּוֹס",
+      "kicker": "רמה א׳ · סיפור לתשעה באב ולט״ו באב",
+      "level": "א",
+      "sub": "Йоав постится в Тиша бе-Ав, а через шесть дней на свадьбе тёти Ноги жених разбивает стакан — чтобы помнить Иерусалим.",
+      "source": "file",
+      "file": "books/av-alef/book-data.json",
+      "spineColor": "#D9C7D9",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M132 40 H168 L162 104 H138 Z\"/><path d=\"M140 112 H160\"/><path d=\"M150 52 l-6 14 l8 8 l-5 14\" stroke-width=\"1.5\"/></g><path d=\"M96 30 Q150 14 204 30\" stroke=\"var(--gold)\"/><path d=\"M100 30 V118 M200 30 V118\" stroke=\"var(--ink)\"/></svg>",
+      "shelf": "holidays",
+      "holiday": "av"
+    },
+    {
+      "id": "roshhashana-alef",
+      "title": "תַּפּוּחַ בִּדְבַשׁ",
+      "kicker": "רמה א׳ · סיפור לראש השנה",
+      "level": "א",
+      "sub": "Майя рисует открытку «шана това», Итай считает зёрна граната и отказывается от рыбьей головы, а утром трубит шофар.",
+      "source": "file",
+      "file": "books/roshhashana-alef/book-data.json",
+      "spineColor": "#E6D3A8",
+      "coverSvg": "<svg viewBox=\"0 0 300 140\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g stroke=\"var(--ink)\"><path d=\"M150 52 C128 36 96 52 100 82 C104 108 126 120 150 110 C174 120 196 108 200 82 C204 52 172 36 150 52 Z\"/><path d=\"M150 52 V36\"/></g><path d=\"M152 40 q14 -12 26 -4 q-12 10 -26 4 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/><path d=\"M206 104 q8 14 0 22 q-8 -8 0 -22 Z\" fill=\"var(--gold)\" stroke=\"var(--ink)\" stroke-width=\"1\"/></svg>",
+      "shelf": "holidays",
+      "holiday": "rosh-hashana"
     }
   ]
 }
