@@ -4607,5 +4607,25 @@
       ],
       "audio": "books/lostletter-bet/audio/s55.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "letter-bench-1",
+      "kind": "baked",
+      "label": "Письмо на мокрой скамейке",
+      "anchorSentenceId": "s1",
+      "basePath": "books/lostletter-bet/flow/letter-bench-1/",
+      "src": "scene.json",
+      "poster": "poster.webp",
+      "links": {
+        "bench": [
+          "סַפְסָל"
+        ],
+        "envelope": [
+          "מַעֲטָפָה",
+          "מִכְתָּב"
+        ]
+      }
+    }
   ]
 }

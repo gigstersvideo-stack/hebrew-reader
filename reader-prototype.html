@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Hebrew Reader — v1.99.37
+  Hebrew Reader — v1.99.38
   См. CHANGELOG.md за полной историей изменений.
 -->
 <html lang="ru" dir="rtl">
@@ -747,7 +747,7 @@
     </div>
     <div class="level-tabs" id="levelTabs" role="tablist" aria-label="Уровень"></div>
     <div class="book-grid" id="bookGrid"></div>
-    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.37</div>
+    <div id="appVersionFooter" style="text-align:center; margin-top:32px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-soft);">Hebrew Reader v1.99.38</div>
   </div>
 </div>
 
@@ -2615,7 +2615,9 @@ function fsSnowLayer(layer, S, k, PAD, PADR, cw){
 
 async function fsBakedStage(layer, scene, cw){
   const base = scene.basePath || '';
-  const data = await (await fetch(safeUrl(base + (scene.src || 'scene.json')))).json();
+  let data = await (await fetch(safeUrl(base + (scene.src || 'scene.json')))).json();
+  // narrow: {maxCw, src} — на узкой колонке своя раскладка сцены (нуар: панели полосой над текстом, а не сбоку)
+  if (data.narrow && cw <= data.narrow.maxCw) data = await (await fetch(safeUrl(base + data.narrow.src))).json();
   const k = cw / data.designW;
   // рисунок может выходить за колонку на поля — но не дальше края экрана (на телефоне полей почти нет,
   // иначе появилась бы горизонтальная прокрутка)

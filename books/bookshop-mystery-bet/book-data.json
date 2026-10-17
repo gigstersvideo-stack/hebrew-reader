@@ -1924,5 +1924,28 @@
       ],
       "audio": "books/bookshop-mystery-bet/audio/s22.mp3"
     }
+  ],
+  "flowScenes": [
+    {
+      "id": "noir-book-1",
+      "kind": "baked",
+      "label": "Пропавшая книга (нуар-комикс)",
+      "anchorSentenceId": "s1",
+      "basePath": "books/bookshop-mystery-bet/flow/noir-book-1/",
+      "src": "scene.json",
+      "poster": "poster.webp",
+      "links": {
+        "shelf": [
+          "סֵפֶר",
+          "מַדָּף"
+        ],
+        "cup": [
+          "קָפֶה"
+        ],
+        "window": [
+          "חַלּוֹן"
+        ]
+      }
+    }
   ]
 }
