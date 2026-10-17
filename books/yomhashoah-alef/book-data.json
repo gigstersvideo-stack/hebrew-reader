@@ -590,6 +590,64 @@
     },
     {
       "id": "s12",
+      "literal": "Они — стоят — смирно, — без — двигаться.",
+      "fluent": "Они стоят смирно, не двигаясь.",
+      "words": [
+        {
+          "t": "הֵם",
+          "lemma": "הֵם",
+          "pos": "мест.",
+          "tr": "они",
+          "extra": "",
+          "root": "—",
+          "start": 0.05,
+          "end": 0.275
+        },
+        {
+          "t": "עוֹמְדִים",
+          "lemma": "לַעֲמוֹד",
+          "pos": "гл.",
+          "tr": "стоят",
+          "extra": "пааль, наст., м.р. мн.ч.",
+          "root": "ע-מ-ד",
+          "start": 0.275,
+          "end": 0.613
+        },
+        {
+          "t": "דּוֹם,",
+          "lemma": "דּוֹם",
+          "pos": "нареч.",
+          "tr": "смирно",
+          "extra": "עוֹמְדִים דּוֹם — «стоят смирно» (молча, не двигаясь)",
+          "root": "ד-מ-ם",
+          "start": 0.613,
+          "end": 1.225
+        },
+        {
+          "t": "בְּלִי",
+          "lemma": "בְּלִי",
+          "pos": "предл.",
+          "tr": "без",
+          "extra": "",
+          "root": "—",
+          "start": 1.413,
+          "end": 1.7
+        },
+        {
+          "t": "לָזוּז.",
+          "lemma": "לָזוּז",
+          "pos": "гл.",
+          "tr": "двигаться",
+          "extra": "пааль, инфинитив",
+          "root": "ז-ו-ז",
+          "start": 1.7,
+          "end": 2.337
+        }
+      ],
+      "audio": "books/yomhashoah-alef/audio/s12.mp3"
+    },
+    {
+      "id": "s13",
       "literal": "Из окна — Ноа — видит — (вин.) — дорогу.",
       "fluent": "Из окна Ноа видит дорогу.",
       "words": [
@@ -644,10 +702,10 @@
           "end": 2.15
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s12.mp3"
+      "audio": "books/yomhashoah-alef/audio/s13.mp3"
     },
     {
-      "id": "s13",
+      "id": "s14",
       "literal": "Машины — останавливаются.",
       "fluent": "Машины останавливаются.",
       "words": [
@@ -672,10 +730,10 @@
           "end": 1.413
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s13.mp3"
+      "audio": "books/yomhashoah-alef/audio/s14.mp3"
     },
     {
-      "id": "s14",
+      "id": "s15",
       "literal": "Люди — выходят — из машин — и стоят — возле — машин.",
       "fluent": "Люди выходят из машин и стоят рядом с ними.",
       "words": [
@@ -740,10 +798,10 @@
           "end": 3.538
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s14.mp3"
+      "audio": "books/yomhashoah-alef/audio/s15.mp3"
     },
     {
-      "id": "s15",
+      "id": "s16",
       "literal": "Ни — один — не — говорит.",
       "fluent": "Никто не говорит ни слова.",
       "words": [
@@ -788,10 +846,10 @@
           "end": 1.675
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s15.mp3"
+      "audio": "books/yomhashoah-alef/audio/s16.mp3"
     },
     {
-      "id": "s16",
+      "id": "s17",
       "literal": "Через — две — минуты — сирена — кончается.",
       "fluent": "Через две минуты сирена смолкает.",
       "words": [
@@ -846,10 +904,10 @@
           "end": 2.725
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s16.mp3"
+      "audio": "books/yomhashoah-alef/audio/s17.mp3"
     },
     {
-      "id": "s17",
+      "id": "s18",
       "literal": "На церемонии — дети — поют — «Эли, — Эли».",
       "fluent": "На церемонии дети поют «Эли, Эли».",
       "words": [
@@ -904,10 +962,88 @@
           "end": 2.675
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s17.mp3"
+      "audio": "books/yomhashoah-alef/audio/s18.mp3"
     },
     {
-      "id": "s18",
+      "id": "s19",
+      "literal": "Переживший — Катастрофу — рассказывает — детям — о — детстве — его.",
+      "fluent": "Переживший Катастрофу рассказывает детям о своём детстве.",
+      "words": [
+        {
+          "t": "נִיצּוֹל",
+          "lemma": "נִיצּוֹל",
+          "pos": "сущ.",
+          "tr": "переживший",
+          "extra": "смихут: נִיצּוֹל שׁוֹאָה — переживший Катастрофу",
+          "root": "נ-צ-ל",
+          "start": 0.05,
+          "end": 0.575
+        },
+        {
+          "t": "שׁוֹאָה",
+          "lemma": "שׁוֹאָה",
+          "pos": "сущ.",
+          "tr": "Катастрофы",
+          "extra": "ж.р. ед.ч.",
+          "root": "שׁ-ו-א",
+          "start": 0.575,
+          "end": 0.963
+        },
+        {
+          "t": "מְסַפֵּר",
+          "lemma": "לְסַפֵּר",
+          "pos": "гл.",
+          "tr": "рассказывает",
+          "extra": "пиэль, наст., м.р. ед.ч.",
+          "root": "ס-פ-ר",
+          "start": 0.963,
+          "end": 1.45
+        },
+        {
+          "t": "לַיְּלָדִים",
+          "lemma": "יֶלֶד",
+          "pos": "сущ.",
+          "tr": "детям",
+          "extra": "לְ + הַ + мн.ч. יְלָדִים",
+          "root": "י-ל-ד",
+          "start": 1.45,
+          "end": 2.125
+        },
+        {
+          "t": "עַל",
+          "lemma": "עַל",
+          "pos": "предл.",
+          "tr": "на; о",
+          "extra": "",
+          "root": "—",
+          "start": 2.125,
+          "end": 2.225
+        },
+        {
+          "t": "הַיַּלְדוּת",
+          "lemma": "יַלְדוּת",
+          "pos": "сущ.",
+          "tr": "детстве",
+          "extra": "ж.р. ед.ч., с артиклем ה",
+          "root": "י-ל-ד",
+          "start": 2.225,
+          "end": 2.675
+        },
+        {
+          "t": "שֶׁלּוֹ.",
+          "lemma": "שֶׁל",
+          "pos": "предл.",
+          "tr": "его",
+          "extra": "שֶׁל + ־וֹ",
+          "root": "—",
+          "start": 2.675,
+          "end": 3.087
+        }
+      ],
+      "audio": "books/yomhashoah-alef/audio/s19.mp3"
+    },
+    {
+      "id": "s20",
       "literal": "Вечером — Ноа — в доме — (чьём) — бабушки — Рахели.",
       "fluent": "Вечером Ноа у бабушки Рахели.",
       "words": [
@@ -972,10 +1108,10 @@
           "end": 2.5
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s18.mp3"
+      "audio": "books/yomhashoah-alef/audio/s20.mp3"
     },
     {
-      "id": "s19",
+      "id": "s21",
       "literal": "Бабушка — живёт — в стране — много — лет.",
       "fluent": "Бабушка живёт в Израиле много лет.",
       "words": [
@@ -1030,10 +1166,10 @@
           "end": 2.288
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s19.mp3"
+      "audio": "books/yomhashoah-alef/audio/s21.mp3"
     },
     {
-      "id": "s20",
+      "id": "s22",
       "literal": "На — столе — есть — свеча — в стакане.",
       "fluent": "На столе свеча в стаканчике.",
       "words": [
@@ -1041,7 +1177,7 @@
           "t": "עַל",
           "lemma": "עַל",
           "pos": "предл.",
-          "tr": "на",
+          "tr": "на; о",
           "extra": "",
           "root": "—",
           "start": 0.05,
@@ -1088,10 +1224,10 @@
           "end": 2.062
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s20.mp3"
+      "audio": "books/yomhashoah-alef/audio/s22.mp3"
     },
     {
-      "id": "s21",
+      "id": "s23",
       "literal": "Бабушка — зажигает — (вин.) — свечу.",
       "fluent": "Бабушка зажигает свечу.",
       "words": [
@@ -1136,10 +1272,10 @@
           "end": 1.85
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s21.mp3"
+      "audio": "books/yomhashoah-alef/audio/s23.mp3"
     },
     {
-      "id": "s22",
+      "id": "s24",
       "literal": "Ноа — спрашивает: — «Бабушка, — зачем — свеча?»",
       "fluent": "Ноа спрашивает: «Бабушка, зачем свеча?»",
       "words": [
@@ -1194,10 +1330,10 @@
           "end": 3.138
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s22.mp3"
+      "audio": "books/yomhashoah-alef/audio/s24.mp3"
     },
     {
-      "id": "s23",
+      "id": "s25",
       "literal": "«Это — свеча — памяти.",
       "fluent": "«Это поминальная свеча.",
       "words": [
@@ -1232,10 +1368,10 @@
           "end": 1.387
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s23.mp3"
+      "audio": "books/yomhashoah-alef/audio/s25.mp3"
     },
     {
-      "id": "s24",
+      "id": "s26",
       "literal": "Она — для папы — и для мамы — моих».",
       "fluent": "Она — в память о моих папе и маме».",
       "words": [
@@ -1280,10 +1416,10 @@
           "end": 1.425
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s24.mp3"
+      "audio": "books/yomhashoah-alef/audio/s26.mp3"
     },
     {
-      "id": "s25",
+      "id": "s27",
       "literal": "Бабушка — рассказывает: — «В Катастрофу — я была — девочкой — маленькой, — как — ты.",
       "fluent": "Бабушка рассказывает: «В Катастрофу я была маленькой девочкой, как ты.",
       "words": [
@@ -1368,10 +1504,10 @@
           "end": 4.125
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s25.mp3"
+      "audio": "books/yomhashoah-alef/audio/s27.mp3"
     },
     {
-      "id": "s26",
+      "id": "s28",
       "literal": "Семья — добрая — спрятала — меня — в доме — своём.",
       "fluent": "Одна добрая семья спрятала меня у себя дома.",
       "words": [
@@ -1436,10 +1572,10 @@
           "end": 2.85
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s26.mp3"
+      "audio": "books/yomhashoah-alef/audio/s28.mp3"
     },
     {
-      "id": "s27",
+      "id": "s29",
       "literal": "Я — жива, — но — папа — и мама — мои — не — вернулись».",
       "fluent": "Я жива, но мои папа и мама не вернулись».",
       "words": [
@@ -1524,10 +1660,10 @@
           "end": 3.112
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s27.mp3"
+      "audio": "books/yomhashoah-alef/audio/s29.mp3"
     },
     {
-      "id": "s28",
+      "id": "s30",
       "literal": "Ноа — держит — (вин.) — руку — (чью) — бабушки.",
       "fluent": "Ноа держит бабушку за руку.",
       "words": [
@@ -1592,10 +1728,10 @@
           "end": 2.237
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s28.mp3"
+      "audio": "books/yomhashoah-alef/audio/s30.mp3"
     },
     {
-      "id": "s29",
+      "id": "s31",
       "literal": "Бабушка — улыбается: — «Теперь — есть — у меня — семья — большая — и есть — у меня — тебя».",
       "fluent": "Бабушка улыбается: «Теперь у меня большая семья — и у меня есть ты».",
       "words": [
@@ -1700,10 +1836,10 @@
           "end": 4.588
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s29.mp3"
+      "audio": "books/yomhashoah-alef/audio/s31.mp3"
     },
     {
-      "id": "s30",
+      "id": "s32",
       "literal": "Ноа — спрашивает: — «Зачем — нужно — помнить?»",
       "fluent": "Ноа спрашивает: «Зачем нужно помнить?»",
       "words": [
@@ -1758,10 +1894,10 @@
           "end": 2.625
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s30.mp3"
+      "audio": "books/yomhashoah-alef/audio/s32.mp3"
     },
     {
-      "id": "s31",
+      "id": "s33",
       "literal": "Бабушка — говорит: — «Чтобы — это — не — случилось — снова».",
       "fluent": "Бабушка говорит: «Чтобы это больше не повторилось».",
       "words": [
@@ -1836,10 +1972,10 @@
           "end": 3.0
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s31.mp3"
+      "audio": "books/yomhashoah-alef/audio/s33.mp3"
     },
     {
-      "id": "s32",
+      "id": "s34",
       "literal": "Свеча — горит — всю — ночь.",
       "fluent": "Свеча горит всю ночь.",
       "words": [
@@ -1884,10 +2020,10 @@
           "end": 1.812
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s32.mp3"
+      "audio": "books/yomhashoah-alef/audio/s34.mp3"
     },
     {
-      "id": "s33",
+      "id": "s35",
       "literal": "Ноа — смотрит — на — огонёк — маленький — и помнит.",
       "fluent": "Ноа смотрит на маленький огонёк и помнит.",
       "words": [
@@ -1915,7 +2051,7 @@
           "t": "עַל",
           "lemma": "עַל",
           "pos": "предл.",
-          "tr": "на",
+          "tr": "на; о",
           "extra": "",
           "root": "—",
           "start": 1.113,
@@ -1952,7 +2088,7 @@
           "end": 2.9
         }
       ],
-      "audio": "books/yomhashoah-alef/audio/s33.mp3"
+      "audio": "books/yomhashoah-alef/audio/s35.mp3"
     }
   ]
 }
